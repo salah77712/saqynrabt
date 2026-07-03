@@ -36,6 +36,35 @@ export default function SettingsPage() {
   const questionsAccrued = mockMode ? 15 : 25; // Dummy questions asked count
   const remainingQuestions = Math.max(0, maxQuestions - questionsAccrued);
 
+  // Automation text request usage
+  const [automationTextsUsed, setAutomationTextsUsed] = useState<number | null>(null);
+  const automationTextsLimit = entitlements?.automation_texts_limit ?? 300;
+  const [showAutomationTooltip, setShowAutomationTooltip] = useState(false);
+
+  // Fetch live automation usage from usage_ledger
+  useEffect(() => {
+    if (mockMode) {
+      setAutomationTextsUsed(47); // Sandbox demo value
+      return;
+    }
+    const loadUsage = async () => {
+      try {
+        const token = await getToken();
+        const apiBase = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8787';
+        const res = await fetch(`${apiBase}/api/usage-stats`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (res.ok) {
+          const data = await res.json();
+          setAutomationTextsUsed(data?.automation_texts_used ?? 0);
+        }
+      } catch (err) {
+        console.warn('Usage stats unavailable:', err);
+      }
+    };
+    loadUsage();
+  }, [mockMode]);
+
   // Fetch Unknown Questions (Rule 40)
   const fetchUnknownQuestions = async () => {
     setLoadingQuestions(true);
@@ -216,7 +245,63 @@ export default function SettingsPage() {
         </div>
       </div>
 
-      {/* 2. Billing Settings & Auto-Overage (Rule 17) */}
+      {/* 2. Automation Usage Card */}
+      <div className="bg-dark-800 border border-dark-700 rounded-xl p-6 shadow-md space-y-4">
+        <div className="flex items-center justify-between border-b border-dark-700 pb-4">
+          <div className="flex items-center gap-2">
+            <h2 className="text-base font-bold text-white">Automation Usage</h2>
+            {/* Info Tooltip */}
+            <div className="relative">
+              <button
+                onMouseEnter={() => setShowAutomationTooltip(true)}
+                onMouseLeave={() => setShowAutomationTooltip(false)}
+                className="w-4 h-4 rounded-full bg-dark-700 border border-dark-600 text-slate-400 text-[10px] font-bold flex items-center justify-center cursor-default"
+                aria-label="What counts as a text request?"
+              >
+                i
+              </button>
+              {showAutomationTooltip && (
+                <div className="absolute left-6 top-0 z-50 w-72 bg-dark-900 border border-dark-600 rounded-lg p-3 text-xs text-slate-300 shadow-xl">
+                  A text request is counted every time a customer sends a message through your website chat, contact form, or WhatsApp/SMS integration.
+                </div>
+              )}
+            </div>
+          </div>
+          <span className="text-xs bg-dark-900 px-3 py-1 border border-dark-700 text-slate-400 rounded-full font-mono">
+            Cycle: July 2026
+          </span>
+        </div>
+
+        <div className="flex items-center justify-between">
+          <span className="text-sm text-slate-400">Text Requests Used</span>
+          <span className="text-sm font-bold text-slate-100">
+            {automationTextsUsed !== null ? automationTextsUsed : '—'}
+            <span className="text-slate-500 font-normal"> / {automationTextsLimit}</span>
+          </span>
+        </div>
+
+        {/* Progress bar */}
+        {automationTextsUsed !== null && (
+          <div className="w-full bg-dark-900 rounded-full h-2 border border-dark-700 overflow-hidden">
+            <div
+              className={`h-2 rounded-full transition-all ${
+                automationTextsUsed / automationTextsLimit > 0.85
+                  ? 'bg-red-500'
+                  : automationTextsUsed / automationTextsLimit > 0.6
+                  ? 'bg-amber-400'
+                  : 'bg-emerald-500'
+              }`}
+              style={{ width: `${Math.min(100, (automationTextsUsed / automationTextsLimit) * 100).toFixed(1)}%` }}
+            />
+          </div>
+        )}
+
+        <p className="text-xs text-slate-600">
+          Counts website chat, contact form messages, WhatsApp, and SMS requests routed through your automation.
+        </p>
+      </div>
+
+      {/* 3. Billing Settings & Auto-Overage (Rule 17) */}
       <div className="bg-dark-800 border border-dark-700 rounded-xl p-6 shadow-md space-y-6">
         <div>
           <h2 className="text-base font-bold text-white mb-1">Billing Preferences</h2>

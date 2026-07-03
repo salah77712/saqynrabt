@@ -196,6 +196,22 @@ export default {
         );
       }
 
+      // A2. Usage Stats Endpoint — returns live counters from usage_ledger
+      if (url.pathname === '/api/usage-stats' && request.method === 'GET') {
+        const [ledger] = await sql`
+          SELECT questions_count, automation_texts_used
+          FROM usage_ledger
+          WHERE company_id = ${jwt.company_id}
+        `;
+        return new Response(
+          JSON.stringify({
+            questions_count: ledger?.questions_count ?? 0,
+            automation_texts_used: ledger?.automation_texts_used ?? 0,
+          }),
+          { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } }
+        );
+      }
+
       // B. Employee Management (Rule 36 / 28)
       if (url.pathname === '/api/employees') {
         if (request.method === 'GET') {
@@ -310,7 +326,8 @@ export default {
 
         // Check entitlements (Rule 26)
         const [entitlements] = await sql`
-          SELECT dept_limit FROM company_entitlements WHERE company_id = ${jwt.company_id}
+          SELECT dept_limit, automation_texts_limit, auto_overage_enabled
+          FROM company_entitlements WHERE company_id = ${jwt.company_id}
         `;
         const deptLimit = entitlements?.dept_limit ?? 0;
         if (deptLimit === 0) {
@@ -318,6 +335,28 @@ export default {
             status: 403,
             headers: { ...headers, 'Content-Type': 'application/json' },
           });
+        }
+
+        // Increment automation_texts_used counter in usage_ledger
+        await sql`
+          INSERT INTO usage_ledger (company_id, automation_texts_used)
+          VALUES (${jwt.company_id}, 1)
+          ON CONFLICT (company_id)
+          DO UPDATE SET automation_texts_used = usage_ledger.automation_texts_used + 1
+        `;
+
+        // Check text request limit (Rule 22 equivalent for automation)
+        const textsLimit = entitlements?.automation_texts_limit ?? 300;
+        const autoOverageEnabled = entitlements?.auto_overage_enabled ?? false;
+        const [ledger] = await sql`
+          SELECT automation_texts_used FROM usage_ledger WHERE company_id = ${jwt.company_id}
+        `;
+        const textsUsed = ledger?.automation_texts_used ?? 0;
+        if (textsUsed > textsLimit && !autoOverageEnabled) {
+          return new Response(
+            JSON.stringify({ error: 'Limit reached', message: 'Monthly automation text request limit reached. Enable auto-overage or upgrade your plan.', requestId }),
+            { status: 429, headers: { ...headers, 'Content-Type': 'application/json' } }
+          );
         }
 
         // Mock automation task execution
@@ -736,6 +775,75 @@ export default {
           status: 200,
           headers: { ...headers, 'Content-Type': 'application/json' },
         });
+      }
+
+      // I. Generic Provider-Agnostic Messaging Webhook (Rule 34)
+      // Accepts any JSON payload from WhatsApp, SMS, or web chat providers.
+      // Provider MUST include: metadata.company_id (or top-level company_id)
+      // Message text is extracted from body / text / message fields.
+      if (url.pathname === '/api/message/webhook' && request.method === 'POST') {
+        const body: any = await request.json();
+
+        // --- Extract company_id (provider-agnostic) ---
+        const incomingCompanyId: string | undefined =
+          body?.metadata?.company_id ||
+          body?.company_id ||
+          undefined;
+
+        if (!incomingCompanyId) {
+          return new Response(
+            JSON.stringify({ error: 'Missing company_id in payload metadata.', requestId }),
+            { status: 400, headers: { ...headers, 'Content-Type': 'application/json' } }
+          );
+        }
+
+        // --- Extract message text (support multiple provider field names) ---
+        const messageText: string =
+          body?.body ||
+          body?.text ||
+          body?.message ||
+          body?.Body ||
+          body?.Text ||
+          '';
+
+        console.log(`[${requestId}] Incoming message webhook | company=${incomingCompanyId} | text=${messageText.substring(0, 80)}`);
+
+        // --- Increment automation_texts_used counter ---
+        await sql`
+          INSERT INTO usage_ledger (company_id, automation_texts_used)
+          VALUES (${incomingCompanyId}, 1)
+          ON CONFLICT (company_id)
+          DO UPDATE SET automation_texts_used = usage_ledger.automation_texts_used + 1
+        `;
+
+        // --- Check limit against plan entitlements ---
+        const [webhookEntitlements] = await sql`
+          SELECT automation_texts_limit, auto_overage_enabled
+          FROM company_entitlements
+          WHERE company_id = ${incomingCompanyId}
+        `;
+        const webhookTextsLimit = webhookEntitlements?.automation_texts_limit ?? 300;
+        const webhookAutoOverage = webhookEntitlements?.auto_overage_enabled ?? false;
+
+        const [webhookLedger] = await sql`
+          SELECT automation_texts_used FROM usage_ledger WHERE company_id = ${incomingCompanyId}
+        `;
+        const webhookTextsUsed = webhookLedger?.automation_texts_used ?? 0;
+
+        if (webhookTextsUsed > webhookTextsLimit && !webhookAutoOverage) {
+          return new Response(
+            JSON.stringify({ error: 'Limit reached', requestId }),
+            { status: 429, headers: { ...headers, 'Content-Type': 'application/json' } }
+          );
+        }
+
+        // --- Generate reply (placeholder — wire real AI handler here later) ---
+        const reply = 'Thank you for your message. Our team will get back to you shortly.';
+
+        return new Response(
+          JSON.stringify({ status: 'processed', reply }),
+          { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } }
+        );
       }
 
       // Default Endpoint Not Found
