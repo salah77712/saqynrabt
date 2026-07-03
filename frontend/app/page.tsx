@@ -3,6 +3,12 @@
 import { useState, useEffect } from 'react';
 
 const industries = [
+  { 
+    id: 'default', 
+    label: 'Every Business', 
+    headline: 'Empower Every Team Member. Automate Every Guest Request.', 
+    copy: 'The secure 24/7 AI front-desk and private staff knowledge hub for any industry. No missed calls. No repetitive questions.' 
+  },
   { id: 'healthcare', label: '🏥 Healthcare', headline: 'Empower Your Medical Staff. Automate Patient Intake.', copy: 'Reduce front-desk workload by automating patient bookings and triaging emergencies.' },
   { id: 'hospitality', label: '🏨 Hospitality', headline: 'Empower Your Hospitality Staff. Coordinate Guest Services.', copy: 'Never miss a booking inquiry. Handle late check-ins automatically.' },
   { id: 'homeservices', label: '🔧 Home Services', headline: 'Empower Your Service Crew. Capture Every Emergency Call.', copy: 'Capture urgent calls 24/7 and dispatch technicians to the job instantly.' },
@@ -20,11 +26,11 @@ const industries = [
   { id: 'accounting', label: '📈 Accounting & Tax', headline: 'Empower Your Tax Advisors. Standardize Audit Management.', copy: 'Handle tax season refund status checks without a receptionist.' }
 ];
 
-const GOLDMINE_INDUSTRIES = industries.slice(0, 6);
-const OTHER_INDUSTRIES = industries.slice(6);
+const GOLDMINE_INDUSTRIES = industries.filter(i => ['healthcare', 'hospitality', 'homeservices', 'realestate', 'automotive', 'food'].includes(i.id));
+const OTHER_INDUSTRIES = industries.filter(i => ['towing', 'veterinary', 'plumbing', 'boutiquehotel', 'catering', 'dealership', 'construction', 'law', 'accounting'].includes(i.id));
 
 export default function MarketingPage() {
-  const [activeIndustry, setActiveIndustry] = useState('hospitality');
+  const [activeIndustry, setActiveIndustry] = useState('default');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlanName, setSelectedPlanName] = useState('');
 
@@ -51,9 +57,7 @@ export default function MarketingPage() {
     }
   };
 
-  const currentCopy = industries.find(i => i.id === activeIndustry)?.copy || industries[0].copy;
   const currentLabel = industries.find(i => i.id === activeIndustry)?.label || industries[0].label;
-  const currentHeadline = industries.find(i => i.id === activeIndustry)?.headline || industries[0].headline;
 
   return (
     <div className="bg-[#ffffff] text-[#111111] min-h-screen relative flex flex-col font-sans pt-20">
@@ -97,7 +101,7 @@ export default function MarketingPage() {
                 className={`min-h-[44px] px-6 py-3 rounded-full border-2 font-medium text-sm transition-all whitespace-nowrap cursor-pointer ${
                   activeIndustry === industry.id 
                     ? 'bg-[#1A365D] text-white border-[#1A365D]' 
-                    : 'bg-white text-[#1A365D] border-gray-300 hover:border-[#1A365D]'
+                    : 'bg-white text-gray-600 border-gray-300 hover:border-[#1A365D]'
                 }`}
               >
                 {industry.label}
@@ -137,12 +141,12 @@ export default function MarketingPage() {
         
         {/* Dynamic H1 Headline */}
         <h1 className="text-5xl md:text-6xl font-bold text-[#1A365D] leading-tight max-w-3xl">
-          {currentHeadline}
+          {industries.find(i => i.id === activeIndustry)?.headline}
         </h1>
 
         {/* Dynamic Subtext Pain Point */}
         <p className="max-w-2xl mx-auto text-lg text-gray-600 mt-4 leading-relaxed">
-          {currentCopy}
+          {industries.find(i => i.id === activeIndustry)?.copy}
         </p>
 
         <div className="flex flex-wrap items-center justify-center gap-4 mt-8">
