@@ -33,13 +33,16 @@ export default function SettingsPage() {
 
   const maxQuestions = entitlements?.max_questions ?? 1000;
   const activeCount = entitlements?.active_employees ?? 1;
-  const questionsAccrued = mockMode ? 15 : 25; // Dummy questions asked count
-  const remainingQuestions = Math.max(0, maxQuestions - questionsAccrued);
 
-  // Automation text request usage
+  // Usage stats from database
+  const [questionsUsed, setQuestionsUsed] = useState<number | null>(null);
   const [automationTextsUsed, setAutomationTextsUsed] = useState<number | null>(null);
   const automationTextsLimit = entitlements?.automation_texts_limit ?? 300;
   const [showAutomationTooltip, setShowAutomationTooltip] = useState(false);
+
+  const questionsAccrued = questionsUsed !== null ? questionsUsed : (mockMode ? 15 : 25);
+  const remainingQuestions = Math.max(0, maxQuestions - questionsAccrued);
+
 
   // Fetch live automation usage from usage_ledger
   useEffect(() => {
@@ -57,6 +60,7 @@ export default function SettingsPage() {
         if (res.ok) {
           const data = await res.json();
           setAutomationTextsUsed(data?.automation_texts_used ?? 0);
+          setQuestionsUsed(data?.questions_count ?? 0);
         }
       } catch (err) {
         console.warn('Usage stats unavailable:', err);
