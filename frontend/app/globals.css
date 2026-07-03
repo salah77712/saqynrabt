@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-dark-900 text-slate-100 font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* Rule 1: Mobile Touch Targets minimum height */
+  button, 
+  a.btn, 
+  input[type="button"], 
+  input[type="submit"],
+  select,
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="file"] {
+    min-height: 44px;
+  }
+}
+
+/* Custom premium scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #090d16;
+}
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #22c55e;
+}

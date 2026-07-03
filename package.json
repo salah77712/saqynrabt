@@ -1,0 +1,15 @@
+{
+  "name": "saqyn-rabt",
+  "version": "1.0.0",
+  "description": "SAQYN RABT Workspace",
+  "scripts": {
+    "dev:frontend": "npm --prefix frontend run dev",
+    "dev:backend": "npm --prefix backend-workers run dev",
+    "build:frontend": "npm --prefix frontend run build",
+    "build:backend": "npm --prefix backend-workers run build",
+    "install:all": "npm install --prefix frontend && npm install --prefix backend-workers"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

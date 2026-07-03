@@ -1,0 +1,26 @@
+name = "saqyn-backend"
+main = "index.ts"
+compatibility_date = "2024-03-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Essential keys listed as vars (can also be deployed as wrangler secrets)
+OPENAI_API_KEY = "placeholder_openai_api_key"
+DATABASE_URL = "postgresql://user:password@ep-***.us-east-2.aws.neon.tech/neondb?sslmode=require"
+PINECONE_API_KEY = "placeholder_pinecone_api_key"
+PINECONE_INDEX_NAME = "saqyn-rag"
+CLERK_SECRET_KEY = "placeholder_clerk_secret_key"
+R2_ACCESS_KEY = "placeholder_r2_access_key"
+R2_SECRET_KEY = "placeholder_r2_secret_key"
+REDIS_URL = "redis://default:***@***.upstash.io:6379"
+VOICE_AI_ACTIVATED = "true" # Rule 32 Voice AI dead-switch
+VAPI_API_KEY = "your_vapi_private_key_here"
+
+[[r2_buckets]]
+binding = "BUCKET"
+bucket_name = "saqyn-documents"
+
+# For processing PDFs asynchronously via Cloudflare Queues if needed (Rule 24)
+# [[queues.producers]]
+# queue = "pdf-ingestion-queue"
+# binding = "INGESTION_QUEUE"
