@@ -3,28 +3,28 @@
 import { useState, useEffect } from 'react';
 
 const industries = [
-  { id: 'healthcare', label: '🏥 Healthcare', copy: 'Reduce front-desk workload by automating patient bookings.' },
-  { id: 'hospitality', label: '🏨 Hospitality', copy: 'Never miss a booking inquiry. Handle late check-ins.' },
-  { id: 'homeservices', label: '🔧 Home Services', copy: 'Capture urgent emergency calls 24/7 and dispatch techs.' },
-  { id: 'realestate', label: '🏢 Real Estate', copy: 'Route urgent maintenance requests instantly.' },
-  { id: 'automotive', label: '🚗 Automotive', copy: 'Handle quote inquiries so mechanics can stay on the floor.' },
-  { id: 'food', label: '🍽️ Food & Beverage', copy: 'Automate table reservations and takeout orders.' },
-  { id: 'towing', label: 'Towing & Roadside', copy: 'Capture stranded drivers, get GPS data, and dispatch trucks.' },
-  { id: 'veterinary', label: 'Veterinary', copy: 'Triage emergency pet visits and route to the nurse instantly.' },
-  { id: 'plumbing', label: 'Plumbing & HVAC', copy: 'Stop losing money from missed after-hours repair calls.' },
-  { id: 'boutiquehotel', label: 'Boutique Hotels', copy: 'Let guests auto-assign digital door codes at midnight.' },
-  { id: 'catering', label: 'Catering & Catering', copy: 'Quote and book catering orders with no phone tag.' },
-  { id: 'dealership', label: 'Auto Dealerships', copy: 'Answer real-time inventory questions about used cars.' },
-  { id: 'construction', label: 'Construction & Contracting', copy: 'Keep subcontractors updated on material delivery times.' },
-  { id: 'law', label: 'Law Firms', copy: 'Auto-answer retainer fee and intake form questions.' },
-  { id: 'accounting', label: 'Accounting & Tax', copy: 'Handle tax season refund status checks without a receptionist.' }
+  { id: 'healthcare', label: '🏥 Healthcare', headline: 'Empower Your Medical Staff. Automate Patient Intake.', copy: 'Reduce front-desk workload by automating patient bookings and triaging emergencies.' },
+  { id: 'hospitality', label: '🏨 Hospitality', headline: 'Empower Your Hospitality Staff. Coordinate Guest Services.', copy: 'Never miss a booking inquiry. Handle late check-ins automatically.' },
+  { id: 'homeservices', label: '🔧 Home Services', headline: 'Empower Your Service Crew. Capture Every Emergency Call.', copy: 'Capture urgent calls 24/7 and dispatch technicians to the job instantly.' },
+  { id: 'realestate', label: '🏢 Real Estate', headline: 'Empower Your Management Team. Streamline Maintenance.', copy: 'Route urgent tenant maintenance requests straight to your on-site crew.' },
+  { id: 'automotive', label: '🚗 Automotive', headline: 'Empower Your Mechanics. Automate Repair Quotes.', copy: 'Handle quote inquiries instantly so your mechanics can focus on fixing cars.' },
+  { id: 'food', label: '🍽️ Food & Beverage', headline: 'Empower Your Front-of-House. Book Reservations 24/7.', copy: 'Automate table reservations and takeout orders during peak rush hours.' },
+  { id: 'towing', label: '🚨 Towing & Roadside', headline: 'Empower Your Fleet Operators. Coordinate Emergency Roadside Rescue.', copy: 'Capture stranded drivers, get GPS data, and dispatch trucks rapidly.' },
+  { id: 'veterinary', label: '🐈 Veterinary', headline: 'Empower Your Veterinary Staff. Triage Pet Emergencies.', copy: 'Triage emergency pet visits and route to the nurse instantly.' },
+  { id: 'plumbing', label: '💧 Plumbing & HVAC', headline: 'Empower Your Field Plumbers. Streamline Repair Dispatches.', copy: 'Stop losing money from missed after-hours repair calls.' },
+  { id: 'boutiquehotel', label: '🛎️ Boutique Hotels', headline: 'Empower Your Boutique Staff. Automate Guest Key Codes.', copy: 'Let guests auto-assign digital door codes at midnight.' },
+  { id: 'catering', label: '🍷 Restaurants & Catering', headline: 'Empower Your Catering Crew. Standardize Large Event Bookings.', copy: 'Quote and book catering orders with no phone tag.' },
+  { id: 'dealership', label: '🏁 Auto Dealerships', headline: 'Empower Your Sales Team. Automate Vehicle Inventory Inquiries.', copy: 'Answer real-time inventory questions about used cars.' },
+  { id: 'construction', label: '🏗️ Construction & Contracting', headline: 'Empower Your Construction Crew. Streamline Site Work Permits.', copy: 'Keep subcontractors updated on material delivery times.' },
+  { id: 'law', label: '⚖️ Law Firms', headline: 'Empower Your Case Associates. Streamline Client Intake Audits.', copy: 'Auto-answer retainer fee and intake form questions.' },
+  { id: 'accounting', label: '📈 Accounting & Tax', headline: 'Empower Your Tax Advisors. Standardize Audit Management.', copy: 'Handle tax season refund status checks without a receptionist.' }
 ];
 
 const GOLDMINE_INDUSTRIES = industries.slice(0, 6);
 const OTHER_INDUSTRIES = industries.slice(6);
 
 export default function MarketingPage() {
-  const [activeIndustry, setActiveIndustry] = useState('healthcare');
+  const [activeIndustry, setActiveIndustry] = useState('hospitality');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlanName, setSelectedPlanName] = useState('');
 
@@ -53,6 +53,7 @@ export default function MarketingPage() {
 
   const currentCopy = industries.find(i => i.id === activeIndustry)?.copy || industries[0].copy;
   const currentLabel = industries.find(i => i.id === activeIndustry)?.label || industries[0].label;
+  const currentHeadline = industries.find(i => i.id === activeIndustry)?.headline || industries[0].headline;
 
   return (
     <div className="bg-[#ffffff] text-[#111111] min-h-screen relative flex flex-col font-sans pt-20">
@@ -88,15 +89,15 @@ export default function MarketingPage() {
         {/* Industry Switcher (Rule 4, 15 industries) */}
         <div className="w-full flex flex-col items-center mb-8">
           {/* Goldmine Pills horizontal scroll */}
-          <div className="w-full max-w-3xl overflow-x-auto flex flex-nowrap justify-start md:justify-center gap-3 py-2 scrollbar-none">
+          <div className="w-full max-w-3xl overflow-x-auto flex flex-nowrap justify-start md:justify-center gap-3 py-2 scrollbar-hide [&::-webkit-scrollbar]:hidden">
             {GOLDMINE_INDUSTRIES.map((industry) => (
               <button
                 key={industry.id}
                 onClick={() => setActiveIndustry(industry.id)}
                 className={`min-h-[44px] px-6 py-3 rounded-full border-2 font-medium text-sm transition-all whitespace-nowrap cursor-pointer ${
                   activeIndustry === industry.id 
-                    ? 'border-[#1A365D] bg-[#1A365D] text-white' 
-                    : 'border-gray-300 bg-white text-[#1A365D] hover:border-[#1A365D]'
+                    ? 'bg-[#1A365D] text-white border-[#1A365D]' 
+                    : 'bg-white text-[#1A365D] border-gray-300 hover:border-[#1A365D]'
                 }`}
               >
                 {industry.label}
@@ -134,9 +135,9 @@ export default function MarketingPage() {
           {currentLabel}
         </span>
         
-        {/* H1 Headline */}
+        {/* Dynamic H1 Headline */}
         <h1 className="text-5xl md:text-6xl font-bold text-[#1A365D] leading-tight max-w-3xl">
-          Empower Your Hospitality Staff. Coordinate Guest Services.
+          {currentHeadline}
         </h1>
 
         {/* Dynamic Subtext Pain Point */}
