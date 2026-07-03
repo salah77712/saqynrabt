@@ -219,13 +219,47 @@ export default function MarketingPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12 max-w-4xl mx-auto">
             
-            {/* Card 1: Starter */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-[#1A365D] transition-colors shadow-sm">
+            {/* Card 1: Business Automation */}
+            <div className="bg-white border border-gray-200 rounded-xl p-8 flex flex-col justify-between hover:border-[#1A365D] transition-colors shadow-sm">
               <div>
-                <h3 className="text-lg font-bold text-gray-800">Starter</h3>
-                <p className="text-xs text-gray-500 mt-1">For organizations with 1-50 employees</p>
+                <h3 className="text-xl font-bold text-gray-800">Business Automation</h3>
+                <p className="text-xs text-gray-500 mt-1">For handling customer calls, bookings, and complaints 24/7.</p>
+                <div className="my-6">
+                  <span className="text-3xl font-bold text-[#1A365D]">899 QAR</span>
+                  <span className="text-gray-500 text-sm">/mo</span>
+                  
+                  {/* Setup Fee */}
+                  <div className="mt-2 text-sm text-[#10B981] font-bold">
+                    + 1,499 QAR setup fee
+                  </div>
+                </div>
+                <ul className="text-gray-600 text-sm space-y-3 border-t border-gray-100 pt-6">
+                  <li className="flex items-center gap-2">✔️ Handle incoming guest/customer calls 24/7</li>
+                  <li className="flex items-center gap-2">✔️ Capture bookings and orders automatically</li>
+                  <li className="flex items-center gap-2">✔️ Route complaints to the right department</li>
+                  <li className="flex items-center gap-2">✔️ Live call transcripts on your dashboard</li>
+                  <li className="flex items-center gap-2">✔️ 250 voice minutes / month</li>
+                </ul>
+              </div>
+              <button
+                onClick={() => openPlanModal('Business Automation')}
+                className="mt-8 w-full bg-gray-100 hover:bg-[#1A365D] hover:text-white text-[#1A365D] font-semibold rounded-full transition-all"
+                style={{ minHeight: '44px' }}
+              >
+                Get Automation
+              </button>
+            </div>
+
+            {/* Card 2: Internal Company Chatbot */}
+            <div className="bg-white border-2 border-[#1A365D] rounded-xl p-8 flex flex-col justify-between relative shadow-md hover:shadow-lg transition-all">
+              <span className="absolute top-0 right-8 -translate-y-1/2 bg-[#10B981] text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
+                Recommended
+              </span>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Internal Company Chatbot</h3>
+                <p className="text-xs text-gray-500 mt-1">Private RAG assistant for your employees, SOPs, and HR.</p>
                 <div className="my-6">
                   <span className="text-3xl font-bold text-[#1A365D]">1,799 QAR</span>
                   <span className="text-gray-500 text-sm">/mo</span>
@@ -236,81 +270,20 @@ export default function MarketingPage() {
                   </div>
                 </div>
                 <ul className="text-gray-600 text-sm space-y-3 border-t border-gray-100 pt-6">
-                  <li className="flex items-center gap-2">✓ Up to 50 active employees</li>
-                  <li className="flex items-center gap-2">✓ 5 uploaded training documents</li>
-                  <li className="flex items-center gap-2">✓ 1,000 monthly inquiries</li>
-                  <li className="flex items-center gap-2">✓ 1 department routing lock</li>
+                  <li className="flex items-center gap-2">✔️ Private AI trained on your company documents</li>
+                  <li className="flex items-center gap-2">✔️ Answer HR policies, SOPs, and vacation rules</li>
+                  <li className="flex items-center gap-2">✔️ Onboarding and staff training assistant</li>
+                  <li className="flex items-center gap-2">✔️ Employee login and approvals</li>
+                  <li className="flex items-center gap-2">✔️ Up to 50 employees & 2,000 questions/month</li>
                 </ul>
               </div>
               <button
-                onClick={() => openPlanModal('Starter')}
-                className="mt-8 w-full bg-gray-100 hover:bg-[#1A365D] hover:text-white text-[#1A365D] font-semibold rounded-full transition-all"
-                style={{ minHeight: '44px' }}
-              >
-                Select Plan
-              </button>
-            </div>
-
-            {/* Card 2: Growth */}
-            <div className="bg-white border-2 border-[#1A365D] rounded-xl p-6 flex flex-col justify-between relative shadow-md hover:shadow-lg transition-all">
-              <span className="absolute top-0 right-8 -translate-y-1/2 bg-[#10B981] text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">
-                Popular
-              </span>
-              <div>
-                <h3 className="text-lg font-bold text-gray-900">Growth</h3>
-                <p className="text-xs text-gray-500 mt-1">For organizations with 51-150 employees</p>
-                <div className="my-6">
-                  <span className="text-3xl font-bold text-[#1A365D]">3,499 QAR</span>
-                  <span className="text-gray-500 text-sm">/mo</span>
-                  
-                  {/* Setup Fee */}
-                  <div className="mt-2 text-sm text-[#10B981] font-bold">
-                    + 5,999 QAR setup fee
-                  </div>
-                </div>
-                <ul className="text-gray-600 text-sm space-y-3 border-t border-gray-100 pt-6">
-                  <li className="flex items-center gap-2">✓ Up to 150 active employees</li>
-                  <li className="flex items-center gap-2">✓ 15 uploaded training documents</li>
-                  <li className="flex items-center gap-2">✓ 5,000 monthly inquiries</li>
-                  <li className="flex items-center gap-2">✓ 5 department routing lock</li>
-                </ul>
-              </div>
-              <button
-                onClick={() => openPlanModal('Growth')}
+                onClick={() => openPlanModal('Internal Company Chatbot')}
                 className="mt-8 w-full bg-[#1A365D] text-white font-bold rounded-full hover:opacity-95 transition-all"
                 style={{ minHeight: '44px' }}
               >
-                Select Plan
+                Get Chatbot
               </button>
-            </div>
-
-            {/* Card 3: Enterprise */}
-            <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-col justify-between hover:border-[#1A365D] transition-colors shadow-sm">
-              <div>
-                <h3 className="text-lg font-bold text-gray-800">Enterprise</h3>
-                <p className="text-xs text-gray-500 mt-1">For organizations with 151+ employees</p>
-                <div className="my-6">
-                  <span className="text-3xl font-bold text-[#1A365D]">Custom Pricing</span>
-                  <div className="mt-2 text-sm text-gray-500 font-semibold">
-                    Tailored setup fee configuration
-                  </div>
-                </div>
-                <ul className="text-gray-600 text-sm space-y-3 border-t border-gray-100 pt-6">
-                  <li className="flex items-center gap-2">✓ Unlimited employees</li>
-                  <li className="flex items-center gap-2">✓ Custom documents quota</li>
-                  <li className="flex items-center gap-2">✓ Unlimited queries & audits</li>
-                  <li className="flex items-center gap-2">✓ Dedicated account manager</li>
-                </ul>
-              </div>
-              <a
-                href={calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-8 w-full flex items-center justify-center bg-gray-100 hover:bg-[#1A365D] hover:text-white text-[#1A365D] font-semibold rounded-full transition-all"
-                style={{ minHeight: '44px' }}
-              >
-                Contact Sales
-              </a>
             </div>
 
           </div>
