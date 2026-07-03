@@ -1,6 +1,7 @@
 {
   "name": "saqyn-frontend",
   "version": "1.0.0",
+  "description": "SAQYN RABT Next.js Frontend Client",
   "private": true,
   "scripts": {
     "dev": "next dev",
