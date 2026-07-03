@@ -137,8 +137,9 @@ export default function MarketingPage() {
           </div>
 
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <a href="#features" className="hover:text-[#1A365D] transition-colors">Features</a>
-            <a href="#pricing" className="hover:text-[#1A365D] transition-colors">Plans</a>
+            <a href="/automation" className="hover:text-[#1A365D] transition-colors">Automation</a>
+            <a href="/chatbot" className="hover:text-[#1A365D] transition-colors">Chatbot</a>
+            <a href="#pricing" className="hover:text-[#1A365D] transition-colors">Pricing</a>
             <a href="/dashboard" className="hover:text-[#1A365D] transition-colors">Dashboard Demo</a>
           </nav>
 
@@ -335,12 +336,12 @@ export default function MarketingPage() {
                       ))}
                     </ul>
 
-                    <button
-                      onClick={() => openPlanModal(`${tier.title} Automation`)}
-                      className="mt-6 w-full bg-[#1A365D] text-white py-3 rounded-lg font-medium hover:bg-opacity-90 transition-all"
+                    <a
+                      href="/automation"
+                      className="mt-6 w-full bg-[#1A365D] text-white py-3 rounded-lg font-medium hover:opacity-90 transition-all text-center block"
                     >
-                      {tier.cta}
-                    </button>
+                      Learn More →
+                    </a>
                   </div>
                 ))}
               </div>
@@ -396,16 +397,16 @@ export default function MarketingPage() {
                     </ul>
 
                     {/* Enterprise gets a lighter CTA */}
-                    <button
-                      onClick={() => openPlanModal(`${tier.title} Chatbot`)}
-                      className={`mt-6 w-full py-3 rounded-lg font-medium transition-all ${
+                    <a
+                      href="/chatbot"
+                      className={`mt-6 w-full py-3 rounded-lg font-medium transition-all text-center block ${
                         tier.cta === 'Contact Sales'
                           ? 'bg-gray-100 text-[#1A365D] hover:bg-gray-200'
-                          : 'bg-[#1A365D] text-white hover:bg-opacity-90'
+                          : 'bg-[#1A365D] text-white hover:opacity-90'
                       }`}
                     >
-                      {tier.cta}
-                    </button>
+                      Learn More →
+                    </a>
                   </div>
                 ))}
               </div>
