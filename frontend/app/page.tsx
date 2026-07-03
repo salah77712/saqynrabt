@@ -255,30 +255,6 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* ── Product Showcase ───────────────────────────────────────────────── */}
-      <section id="showcase" className="bg-slate-50 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#1A365D] mb-3">What We Build for You</h2>
-            <p className="text-gray-500 max-w-xl mx-auto text-sm">Three capabilities — deployed as standalone products or combined into a single unified platform.</p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {showcaseCards.map((card) => (
-              <div
-                key={card.title}
-                className={`bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all ${card.accent} flex flex-col`}
-              >
-                <span className="text-4xl mb-4">{card.icon}</span>
-                <h3 className="text-lg font-bold text-[#1A365D] mb-2">{card.title}</h3>
-                <p className="text-gray-500 text-sm leading-relaxed flex-1">{card.desc}</p>
-                <a href={card.link} className="mt-5 text-sm font-semibold text-[#1A365D] hover:underline">
-                  {card.linkLabel}
-                </a>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* ── No Surprise Bills Banner ───────────────────────────────────────── */}
       <div className="bg-emerald-50 border-y border-emerald-100 py-5 px-6 text-center">
