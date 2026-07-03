@@ -9,17 +9,17 @@
     "vercel-build": "next build"
   },
   "dependencies": {
-    "next": "15.5.20",
-    "react": "19.0.0",
-    "react-dom": "19.0.0",
-    "@clerk/nextjs": "6.12.12",
-    "ai": "3.4.0"
+    "next": "^15.5.20",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "@clerk/nextjs": "^6.12.12",
+    "ai": "^3.4.0"
   },
   "devDependencies": {
-    "@types/node": "22.0.0",
-    "@types/react": "19.0.0",
-    "@types/react-dom": "19.0.0",
-    "tailwindcss": "4.0.0",
-    "typescript": "5.0.0"
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.0.0"
   }
 }
