@@ -1,0 +1,22 @@
+{
+  "name": "SAQYN RABT",
+  "short_name": "SAQYN",
+  "description": "Enterprise AI Operations & Front-Desk Automation",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "background_color": "#F8F9FB",
+  "theme_color": "#141F33",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "dashboard": {
+    "title": "لوحة تحكم العميل",
+    "overview": "نظرة عامة",
+    "staff_knowledge": "مركز معرفة الموظفين",
+    "guest_queue": "طابور الضيوف والعملاء",
+    "documents": "مركز المستندات",
+    "approvals": "الموافقات المعلقة",
+    "settings": "الاستخدام والإعدادات",
+    "client_portal": "بوابة العميل",
+    "sandbox": "وضع الرمل",
+    "demo": "عرض توضيحي",
+    "exit": "خروج",
+    "active_client": "مسؤول العميل النشط",
+    "live": "مباشر"
+  },
+  "sidebar": {
+    "automation": "الأتمتة",
+    "chatbot": "المساعد الذكي",
+    "documents": "المستندات",
+    "approvals": "الموافقات",
+    "settings": "الإعدادات"
+  },
+  "chat": {
+    "input_placeholder": "اطرح سؤالك هنا..."
+  }
+}

@@ -1,0 +1,156 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useSignIn } from '@clerk/nextjs';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { useLocale } from '../../../providers';
+
+export default function SignInPage() {
+  const { isLoaded, signIn, setActive } = useSignIn();
+  const router = useRouter();
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isLoaded) return;
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const result = await signIn.create({
+        identifier: email,
+        password,
+      });
+
+      if (result.status === 'complete') {
+        await setActive({ session: result.createdSessionId });
+        router.push('/dashboard');
+      } else {
+        console.log('SignIn status incomplete:', result);
+        setError(t({ en: 'Additional verification steps required.', ar: 'مطلوب خطوات تحقق إضافية.' }));
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError(err.errors?.[0]?.message || t({ en: 'Invalid email or password.', ar: 'البريد الإلكتروني أو كلمة المرور غير صالحة.' }));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleOAuth = async (strategy: 'oauth_google') => {
+    if (!isLoaded) return;
+    try {
+      await signIn.authenticateWithRedirect({
+        strategy,
+        redirectUrl: '/sso-callback',
+        redirectUrlComplete: '/dashboard',
+      });
+    } catch (err: any) {
+      console.error('OAuth failed:', err);
+    }
+  };
+
+  return (
+    <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 w-full max-w-md animate-fadeIn">
+        
+        {/* Logo */}
+        <div className="text-center mb-8">
+          <Link href="/" className="flex flex-col items-center gap-1">
+            <span className="text-[#141F33] font-extrabold text-2xl tracking-tight">SAQYN RABT</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#718096] font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
+          </Link>
+        </div>
+
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6">
+            ⚠️ {error}
+          </div>
+        )}
+
+        {/* Inputs */}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              required
+            />
+          </div>
+
+          <div>
+            <div className="flex justify-between items-center mb-1.5">
+              <label htmlFor="password" className="block text-xs font-bold text-[#141F33]">{t({ en: 'Password', ar: 'كلمة المرور' })}</label>
+              <Link href="/forgot-password" className="text-[10px] font-bold text-[#2A5CFF] hover:underline">
+                {t({ en: 'Forgot Password?', ar: 'نسيت كلمة المرور؟' })}
+              </Link>
+            </div>
+            <input
+              type="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+          >
+            {loading ? t({ en: 'Signing In...', ar: 'جاري تسجيل الدخول...' }) : t({ en: 'Sign In', ar: 'تسجيل الدخول' })}
+          </button>
+        </form>
+
+        {/* Separator */}
+        <div className="relative my-6">
+          <div className="absolute inset-0 flex items-center">
+            <div className="w-full border-t border-gray-200" />
+          </div>
+          <div className="relative flex justify-center text-xs">
+            <span className="bg-white px-3 text-[#718096] font-bold">{t({ en: 'Or continue with', ar: 'أو الاستمرار بواسطة' })}</span>
+          </div>
+        </div>
+
+        {/* Social Auth */}
+        <div className="grid grid-cols-2 gap-4">
+          <button
+            onClick={() => handleOAuth('oauth_google')}
+            className="flex items-center justify-center border border-gray-200 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-gray-50 transition-colors min-h-[44px]"
+          >
+            Google
+          </button>
+          <button
+            onClick={() => alert('Enterprise SSO login is coming soon.')}
+            className="flex items-center justify-center border border-gray-200 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-gray-50 transition-colors min-h-[44px]"
+          >
+            SSO
+          </button>
+        </div>
+
+        {/* Footer Link */}
+        <p className="text-center text-xs text-[#718096] font-bold mt-8">
+          {t({ en: "Don't have an account?", ar: 'ليس لديك حساب؟' })}{' '}
+          <Link href="/sign-up" className="text-[#2A5CFF] hover:underline">
+            {t({ en: 'Sign Up', ar: 'إنشاء حساب' })}
+          </Link>
+        </p>
+
+      </div>
+    </div>
+  );
+}

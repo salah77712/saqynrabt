@@ -1,118 +1,75 @@
 'use client';
 
+import React from 'react';
+import { useLocale } from '../providers';
+import Link from 'next/Link';
 import { MarketingHeader } from '../../components/MarketingHeader';
 import { Footer } from '../../components/Footer';
 
-const features = [
-  {
-    icon: '📞',
-    title: 'Call Answering 24/7',
-    desc: 'AI answers every incoming call with natural voice, even at 3 AM. Captures bookings, routes complaints, and logs transcripts — zero human effort.',
-  },
-  {
-    icon: '💬',
-    title: 'Multi-Channel Intake',
-    desc: 'Parse inbound messages from WhatsApp, SMS, web chat, and contact forms. Every channel, one unified dashboard.',
-  },
-  {
-    icon: '🧠',
-    title: 'Private RAG Knowledge Base',
-    desc: 'Upload HR handbooks, SOPs, and policies. Your team gets instant answers from your documents — never generic AI guesses.',
-  },
-  {
-    icon: '🚨',
-    title: 'Smart Complaint Routing',
-    desc: 'Flags urgent issues by keyword and routes them to the right manager instantly. No ticket gets lost.',
-  },
-  {
-    icon: '📋',
-    title: 'Booking & Appointment Capture',
-    desc: 'Reservations, orders, and appointments captured automatically without human input. Syncs with your calendar.',
-  },
-  {
-    icon: '📊',
-    title: 'Live Dashboard & Analytics',
-    desc: 'Every call, message, and query logged in real time. See team performance, busiest hours, and knowledge gaps.',
-  },
-  {
-    icon: '🌐',
-    title: 'Multi-Language Support',
-    desc: 'Handles Arabic, English, and more simultaneously across all channels. Your global team speaks their language.',
-  },
-  {
-    icon: '🔐',
-    title: 'Enterprise-Grade Security',
-    desc: 'Your data never trains the model. Isolated knowledge base, encrypted storage, and role-based access control.',
-  },
-  {
-    icon: '👤',
-    title: 'Employee Login & Roles',
-    desc: 'Each employee has their own login. Admins control document access, department routing, and permissions.',
-  },
-  {
-    icon: '📈',
-    title: 'Onboarding Accelerator',
-    desc: 'New hires get instant answers to standard questions on day one. Reduces training time by up to 40%.',
-  },
-  {
-    icon: '🔧',
-    title: 'Custom Workflows',
-    desc: 'Multi-location businesses, custom routing trees, CRM integrations, and bespoke knowledge bases built to your specs.',
-  },
-  {
-    icon: '🎯',
-    title: 'Knowledge Gap Tracking',
-    desc: 'See every question the AI could not answer. Know exactly which documents to add to close the gaps.',
-  },
-];
-
 export default function FeaturesPage() {
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+
+  const content = {
+    title: { en: 'One Platform. Two Powerful Products.', ar: 'منصة واحدة. منتجان قويان.' },
+    subtitle: { en: 'Secure, private, and automated business operations designed for Qatar and the Middle East.', ar: 'عمليات تجارية آمنة وخاصة ومؤتمتة مصممة لدولة قطر والشرق الأوسط.' },
+    automationTitle: { en: '24/7 Call & Booking Handling', ar: 'إدارة المكالمات والحجوزات على مدار الساعة' },
+    automationDesc: { en: 'Capture every customer inquiry, route complaints, and automate bookings without missing a single call.', ar: 'التقط كل استفسار من العملاء، ووجه الشكاوى، وأتمت الحجوزات دون تفويت أي مكالمة.' },
+    chatbotTitle: { en: 'RAG-Powered Staff Assistant', ar: 'مساعد موظفين مدعوم بالـ RAG' },
+    chatbotDesc: { en: 'Upload your SOPs, HR policies, and vacation rules. Employees ask questions; the AI answers strictly from your knowledge base.', ar: 'قم بتحميل إجراءات التشغيل والسياسات. يطرح الموظفون الأسئلة ويجيب الذكاء الاصطناعي بدقة من قاعدة المعرفة.' },
+    customTitle: { en: 'Tailored Workflows', ar: 'سير عمل مخصص بالكامل' },
+    customDesc: { en: 'Need custom routing or specialized integrations? We build bespoke automation for any operational need.', ar: 'هل تحتاج إلى توجيه مخصص أو تكاملات متخصصة؟ نحن نبني أتمتة مخصصة لأي حاجة تشغيلية.' },
+    reportingTitle: { en: 'Live Usage & Audit', ar: 'مراقبة الاستخدام المباشر والتدقيق' },
+    reportingDesc: { en: 'Monitor voice minutes, text requests, and employee adoption directly from your dashboard.', ar: 'راقب دقائق الصوت وطلبات النصوص واعتماد الموظفين مباشرة من لوحة التحكم.' },
+  };
+
   return (
-    <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans">
+    <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <MarketingHeader />
 
-      <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
-        <span className="inline-block bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-          Features
-        </span>
-        <h1 className="text-4xl md:text-5xl font-bold text-primary leading-tight max-w-4xl mx-auto">
-          Everything Your Team Needs to Operate at Full Speed
-        </h1>
-        <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-          From call answering to knowledge management — one platform for your entire operation.
-        </p>
-      </section>
+      <main className="flex-1 max-w-6xl mx-auto py-24 px-6 lg:px-12 flex flex-col items-center">
+        {/* Hero Section */}
+        <div className="text-center max-w-2xl mb-16">
+          <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Features & Capabilities', ar: 'الميزات والقدرات' })}</span>
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-[#141F33] leading-tight tracking-tight mt-3">
+            {t(content.title)}
+          </h1>
+          <p className="text-sm font-semibold text-[#718096] mt-4 leading-relaxed">
+            {t(content.subtitle)}
+          </p>
+        </div>
 
-      <section className="bg-slate-50 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {features.map((f) => (
-              <div key={f.title} className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/5 text-2xl mb-4">
-                  {f.icon}
-                </div>
-                <h3 className="text-lg font-bold text-primary mb-2">{f.title}</h3>
-                <p className="text-sm text-slate-500 leading-relaxed">{f.desc}</p>
-              </div>
-            ))}
+        {/* 2x2 Feature Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+          {/* Card 1: Automation */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
+            <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center text-2xl mb-6">📞</div>
+            <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.automationTitle)}</h3>
+            <p className="text-xs font-semibold text-[#718096] leading-relaxed mt-3">{t(content.automationDesc)}</p>
+          </div>
+
+          {/* Card 2: Chatbot */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
+            <div className="h-12 w-12 rounded-xl bg-indigo-50 flex items-center justify-center text-2xl mb-6">🧠</div>
+            <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.chatbotTitle)}</h3>
+            <p className="text-xs font-semibold text-[#718096] leading-relaxed mt-3">{t(content.chatbotDesc)}</p>
+          </div>
+
+          {/* Card 3: Custom */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
+            <div className="h-12 w-12 rounded-xl bg-violet-50 flex items-center justify-center text-2xl mb-6">🔧</div>
+            <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.customTitle)}</h3>
+            <p className="text-xs font-semibold text-[#718096] leading-relaxed mt-3">{t(content.customDesc)}</p>
+          </div>
+
+          {/* Card 4: Reporting */}
+          <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
+            <div className="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center text-2xl mb-6">📈</div>
+            <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.reportingTitle)}</h3>
+            <p className="text-xs font-semibold text-[#718096] leading-relaxed mt-3">{t(content.reportingDesc)}</p>
           </div>
         </div>
-      </section>
-
-      <section className="py-20">
-        <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-primary mb-4">Ready to see it in action?</h2>
-          <p className="text-slate-500 mb-8">Book a 15-minute demo tailored to your industry and team size.</p>
-          <a
-            href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white hover:opacity-90 transition-all"
-          >
-            Book a Demo
-          </a>
-        </div>
-      </section>
+      </main>
 
       <Footer />
     </div>

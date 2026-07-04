@@ -1,0 +1,27 @@
+{
+  "dashboard": {
+    "title": "Client Dashboard",
+    "overview": "Overview",
+    "staff_knowledge": "Staff Knowledge Hub",
+    "guest_queue": "Guest & Client Queue",
+    "documents": "Documents Hub",
+    "approvals": "Pending Approvals",
+    "settings": "Usage & Settings",
+    "client_portal": "Client Portal",
+    "sandbox": "Sandbox",
+    "demo": "Demo",
+    "exit": "Exit",
+    "active_client": "Active Client Admin",
+    "live": "Live"
+  },
+  "sidebar": {
+    "automation": "Automation",
+    "chatbot": "Chatbot",
+    "documents": "Documents",
+    "approvals": "Approvals",
+    "settings": "Settings"
+  },
+  "chat": {
+    "input_placeholder": "Ask your question..."
+  }
+}
