@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Providers } from './providers';
+import { ToastProvider } from '../lib/toast';
+import { GlobalToast } from '../components/GlobalToast';
+import { GlobalStatusBar } from '../components/GlobalStatusBar';
 
 export const metadata: Metadata = {
   title: 'SAQYN RABT | Staff Hub & Guest Queue Automation',
@@ -16,9 +19,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
-        <Providers>
-          {children}
-        </Providers>
+        <ToastProvider>
+          <GlobalStatusBar />
+          <Providers>
+            {children}
+          </Providers>
+          <GlobalToast />
+        </ToastProvider>
       </body>
     </html>
   );
