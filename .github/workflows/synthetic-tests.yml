@@ -1,0 +1,18 @@
+name: Synthetic Uptime Tests
+
+on:
+  schedule:
+    - cron: '*/15 * * * *' # Run every 15 minutes
+
+jobs:
+  ping_endpoints:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping API Health check
+        run: |
+          response=$(curl -s -o /dev/null -w "%{http_code}" https://saqyn-backend.workers.dev/health)
+          if [ "$response" -ne 200 ]; then
+            echo "API Health check endpoint returned $response instead of 200"
+            exit 1
+          fi
+          echo "Health check succeeded."
