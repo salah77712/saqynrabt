@@ -1,0 +1,80 @@
+'use client';
+
+import React, { useState } from 'react';
+import { useLocale } from '../../providers';
+
+interface ClientItem {
+  id: string;
+  name: string;
+  plan: string;
+  status: 'active' | 'suspended';
+  healthScore: number;
+}
+
+export default function AdminClientsPage() {
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+
+  const [clients, setClients] = useState<ClientItem[]>([
+    { id: 'c-1', name: 'Al-Safa Hospitality', plan: 'Enterprise Plus', status: 'active', healthScore: 94 },
+    { id: 'c-2', name: 'Al-Rayyan Clinical Clinic', plan: 'Growth Plan', status: 'active', healthScore: 78 },
+  ]);
+
+  const handleToggleStatus = (id: string) => {
+    setClients(prev =>
+      prev.map(c => {
+        if (c.id === id) {
+          const nextStatus = c.status === 'active' ? 'suspended' : 'active';
+          return { ...c, status: nextStatus };
+        }
+        return c;
+      })
+    );
+  };
+
+  return (
+    <div className="space-y-6 animate-fadeIn max-w-xl py-12 px-6 mx-auto">
+      
+      {/* Header */}
+      <div>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Global Client Accounts', ar: 'حسابات العملاء الشاملة' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Suspend/enable tenant access.', ar: 'لوحة إدارة موظفي SAQYN. إيقاف وتفعيل صلاحيات وصول العملاء.' })}</p>
+      </div>
+
+      {/* Clients list */}
+      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+        <div className="divide-y divide-gray-100">
+          {clients.map((c) => (
+            <div key={c.id} className="py-4 flex justify-between items-center gap-4 first:pt-0 last:pb-0">
+              <div>
+                <p className="text-xs font-extrabold text-[#141F33]">{c.name}</p>
+                <div className="flex gap-2 items-center mt-1">
+                  <span className="text-[10px] text-slate-400 font-bold">{c.plan}</span>
+                  <span className="text-[10px] text-[#2A5CFF] font-bold">CHS: {c.healthScore}%</span>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <span className={`text-[8px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
+                  c.status === 'active' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
+                }`}>
+                  {c.status}
+                </span>
+
+                <button
+                  onClick={() => handleToggleStatus(c.id)}
+                  className={`font-bold px-3 py-1.5 rounded-lg text-xs border ${
+                    c.status === 'active' ? 'text-red-650 border-red-200 hover:bg-red-50' : 'text-emerald-650 border-emerald-200 hover:bg-emerald-50'
+                  }`}
+                >
+                  {c.status === 'active' ? 'Suspend' : 'Activate'}
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  );
+}
