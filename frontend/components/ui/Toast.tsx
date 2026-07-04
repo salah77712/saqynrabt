@@ -1,50 +1,42 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import * as React from 'react';
 
-interface ToastProps {
+export interface ToastProps {
   message: string;
-  type: 'success' | 'error' | 'warning' | 'info';
-  onClose: () => void;
-  duration?: number;
+  type?: 'success' | 'error' | 'info';
+  onClose?: () => void;
 }
 
-export function Toast({ message, type, onClose, duration = 5000 }: ToastProps) {
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      onClose();
-    }, duration);
+export function Toast({ message, type = 'success', onClose }: ToastProps) {
+  React.useEffect(() => {
+    if (!onClose) return;
+    const timer = setTimeout(() => onClose(), 5000);
     return () => clearTimeout(timer);
-  }, [onClose, duration]);
+  }, [onClose]);
 
-  const typeStyles = {
-    success: 'bg-emerald-50 border-emerald-200 text-emerald-800',
-    error: 'bg-red-50 border-red-200 text-red-800',
-    warning: 'bg-amber-50 border-amber-200 text-amber-800',
-    info: 'bg-blue-50 border-blue-200 text-blue-800',
-  };
-
-  const icons = {
-    success: '✅',
-    error: '❌',
-    warning: '⚠️',
-    info: 'ℹ️',
+  const bgColors = {
+    success: 'bg-[#10B981] text-white',
+    error: 'bg-red-500 text-white',
+    info: 'bg-[#141F33] text-white dark:bg-royal',
   };
 
   return (
     <div
+      className={`fixed bottom-6 right-6 z-50 flex items-center justify-between gap-4 px-4 py-3 rounded-xl shadow-2xl animate-slideUp max-w-sm ${bgColors[type]}`}
       role="status"
-      className={`fixed top-4 right-4 z-50 flex items-center gap-3 px-4 py-3 rounded-xl border shadow-lg max-w-sm w-full animate-fadeIn transition-all duration-300 ${typeStyles[type]}`}
+      aria-live="polite"
     >
-      <span className="text-sm shrink-0">{icons[type]}</span>
-      <p className="text-xs font-bold flex-1">{message}</p>
-      <button
-        onClick={onClose}
-        className="text-[10px] font-extrabold hover:opacity-70 transition-opacity p-1"
-        aria-label="Close Notification"
-      >
-        ✕
-      </button>
+      <span className="text-xs font-bold leading-relaxed">{message}</span>
+      {onClose && (
+        <button
+          onClick={onClose}
+          className="text-white opacity-80 hover:opacity-100 font-bold text-xs"
+          aria-label="Dismiss toast"
+        >
+          ✕
+        </button>
+      )}
     </div>
   );
 }
