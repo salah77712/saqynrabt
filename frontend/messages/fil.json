@@ -1,0 +1,27 @@
+{
+  "dashboard": {
+    "title": "Dashboard",
+    "overview": "Pangkalahatang-ideya",
+    "staff_knowledge": "Sentro ng Kaalaman ng Staff",
+    "guest_queue": "Pila ng Bisita",
+    "documents": "Sentro ng Dokumento",
+    "approvals": "Nakabinbing Pag-apruba",
+    "settings": "Mga Setting",
+    "client_portal": "Portal ng Kliyente",
+    "sandbox": "Sandbox",
+    "demo": "Demo",
+    "exit": "Umalis",
+    "active_client": "Aktibong Admin",
+    "live": "Live"
+  },
+  "sidebar": {
+    "automation": "Awtomasyon",
+    "chatbot": "Chatbot",
+    "documents": "Mga Dokumento",
+    "approvals": "Mga Pag-apruba",
+    "settings": "Mga Setting"
+  },
+  "chat": {
+    "input_placeholder": "Itanong ang iyong tanong..."
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "dashboard": {
+    "title": "ڈیش بورڈ",
+    "overview": "جائزہ",
+    "staff_knowledge": "سٹاف نالج ہب",
+    "guest_queue": "مہمانوں کی قطار",
+    "documents": "دستاویزات مرکز",
+    "approvals": "منظوریاں",
+    "settings": "ترتیبات",
+    "client_portal": "کلائنٹ پورٹل",
+    "sandbox": "سینڈ باکس",
+    "demo": "ڈیمو",
+    "exit": "باہر نکلیں",
+    "active_client": "سرگرم ایڈمن",
+    "live": "لائیو"
+  },
+  "sidebar": {
+    "automation": "آٹومیشن",
+    "chatbot": "چیٹ بوٹ",
+    "documents": "دستاویزات",
+    "approvals": "منظوریاں",
+    "settings": "ترتیبات"
+  },
+  "chat": {
+    "input_placeholder": "اپنا سوال پوچھیں..."
+  }
+}

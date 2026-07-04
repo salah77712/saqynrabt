@@ -1,0 +1,27 @@
+{
+  "dashboard": {
+    "title": "Papan Pemuka",
+    "overview": "Gambaran Keseluruhan",
+    "staff_knowledge": "Hab Pengetahuan Kakitangan",
+    "guest_queue": "Barisan Tetamu",
+    "documents": "Hab Dokumen",
+    "approvals": "Kelulusan Belum Selesai",
+    "settings": "Tetapan",
+    "client_portal": "Portal Pelanggan",
+    "sandbox": "Sandbox",
+    "demo": "Demo",
+    "exit": "Keluar",
+    "active_client": "Admin Aktif",
+    "live": "Langsung"
+  },
+  "sidebar": {
+    "automation": "Automasi",
+    "chatbot": "Chatbot",
+    "documents": "Dokumen",
+    "approvals": "Kelulusan",
+    "settings": "Tetapan"
+  },
+  "chat": {
+    "input_placeholder": "Tanya soalan anda..."
+  }
+}

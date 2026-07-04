@@ -1,0 +1,27 @@
+{
+  "dashboard": {
+    "title": "Tableau de Bord",
+    "overview": "Aperçu",
+    "staff_knowledge": "Centre de Connaissances",
+    "guest_queue": "File d'Attente",
+    "documents": "Documents",
+    "approvals": "Approbations",
+    "settings": "Paramètres",
+    "client_portal": "Portail Client",
+    "sandbox": "Bac à sable",
+    "demo": "Démo",
+    "exit": "Quitter",
+    "active_client": "Admin Client",
+    "live": "En direct"
+  },
+  "sidebar": {
+    "automation": "Automatisation",
+    "chatbot": "Chatbot",
+    "documents": "Documents",
+    "approvals": "Approbations",
+    "settings": "Paramètres"
+  },
+  "chat": {
+    "input_placeholder": "Posez votre question..."
+  }
+}

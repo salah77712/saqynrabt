@@ -1,0 +1,27 @@
+{
+  "dashboard": {
+    "title": "डैशबोर्ड",
+    "overview": "अवलोकन",
+    "staff_knowledge": "स्टाफ ज्ञान केंद्र",
+    "guest_queue": "अतिथि कतार",
+    "documents": "दस्तावेज़ हब",
+    "approvals": "लंबित स्वीकृतियां",
+    "settings": "सेटिंग्स",
+    "client_portal": "ग्राहक पोर्टल",
+    "sandbox": "सैंडबॉक्स",
+    "demo": "डेमो",
+    "exit": "बाहर निकलें",
+    "active_client": "सक्रिय व्यवस्थापक",
+    "live": "लाइव"
+  },
+  "sidebar": {
+    "automation": "स्वचालन",
+    "chatbot": "चैटबॉट",
+    "documents": "दस्तावेज़",
+    "approvals": "स्वीकृतियां",
+    "settings": "सेटिंग्स"
+  },
+  "chat": {
+    "input_placeholder": "अपना प्रश्न पूछें..."
+  }
+}
