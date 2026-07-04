@@ -3,6 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { useLocale, useEntitlements } from '../../providers';
+import { SettingsTabs } from '../../../components/dashboard/SettingsTabs';
+import { Card } from '../../../components/ui/Card';
+import { Button } from '../../../components/ui/Button';
+import { Badge } from '../../../components/ui/Badge';
+import { Modal } from '../../../components/ui/Modal';
+import SecuritySettingsPage from './security/page';
+import IntegrationsSettingsPage from './integrations/page';
 
 interface UsageMetrics {
   textsUsed: number;
@@ -23,8 +30,9 @@ export default function SettingsDashboardPage() {
   const { locale } = useLocale();
   const { mockMode } = useEntitlements();
   const { getToken, isLoaded: authLoaded } = useAuth();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
 
+  const [activeTab, setActiveTab] = useState('general');
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [metrics, setMetrics] = useState<UsageMetrics>({
     textsUsed: 142,
@@ -38,18 +46,16 @@ export default function SettingsDashboardPage() {
   const [autoOverage, setAutoOverage] = useState(false);
   const [gaps, setGaps] = useState<KnowledgeGap[]>([]);
   const [isGapsModalOpen, setIsGapsModalOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
   const [savingOverage, setSavingOverage] = useState(false);
 
   useEffect(() => {
     if (authLoaded && !mockMode) {
       getToken({ template: 'saqyn-jwt' })
-        .then(token => setJwtToken(token))
-        .catch(err => console.error('Failed to get token:', err));
+        .then((token) => setJwtToken(token))
+        .catch((err) => console.error('Failed to get token:', err));
     }
   }, [authLoaded, mockMode, getToken]);
 
-  // Fetch usage metrics, overage setting, and knowledge gaps
   useEffect(() => {
     const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
     const headers: Record<string, string> = {};
@@ -59,11 +65,9 @@ export default function SettingsDashboardPage() {
       headers['Authorization'] = 'Bearer mock-token-salah-admin';
     }
 
-    setLoading(true);
-
-    const fetchMetrics = fetch(`${apiBase}/api/usage-stats`, { headers }).then(res => res.json());
-    const fetchEntitlements = fetch(`${apiBase}/api/entitlements`, { headers }).then(res => res.json());
-    const fetchGaps = fetch(`${apiBase}/api/knowledge-gaps`, { headers }).then(res => res.json());
+    const fetchMetrics = fetch(`${apiBase}/api/usage-stats`, { headers }).then((res) => res.json());
+    const fetchEntitlements = fetch(`${apiBase}/api/entitlements`, { headers }).then((res) => res.json());
+    const fetchGaps = fetch(`${apiBase}/api/knowledge-gaps`, { headers }).then((res) => res.json());
 
     Promise.all([fetchMetrics, fetchEntitlements, fetchGaps])
       .then(([metricsData, entData, gapsData]) => {
@@ -86,27 +90,21 @@ export default function SettingsDashboardPage() {
           setGaps(gapsData.gaps);
         }
       })
-      .catch(err => {
-        console.warn('Failed to load metrics, displaying mocks:', err);
-        // Fallback mock details
+      .catch((err) => {
+        console.warn('Failed to load settings, displaying mocks:', err);
         setGaps([
-          { id: '1', question: 'What is our policy for early check-in before 8 AM?', count: 12 },
-          { id: '2', question: 'How do we handle guests with service dogs under Qatar Law?', count: 8 },
-          { id: '3', question: 'What is the refund process for no-show catering bookings?', count: 5 },
+          { id: '1', question: 'What is our policy for early check-in?', count: 12 },
+          { id: '2', question: 'How do we handle service dogs?', count: 8 },
         ]);
-      })
-      .finally(() => setLoading(false));
+      });
   }, [jwtToken]);
 
-  // Toggle Overage Setting Handler
   const handleOverageToggle = (checked: boolean) => {
     setAutoOverage(checked);
     setSavingOverage(true);
 
     const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json'
-    };
+    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
     if (jwtToken) {
       headers['Authorization'] = `Bearer ${jwtToken}`;
     } else {
@@ -116,16 +114,13 @@ export default function SettingsDashboardPage() {
     fetch(`${apiBase}/api/overage-settings`, {
       method: 'POST',
       headers,
-      body: JSON.stringify({ auto_overage_enabled: checked })
+      body: JSON.stringify({ auto_overage_enabled: checked }),
     })
-      .then(res => res.json())
-      .catch(err => {
-        console.error('Overage settings toggle failed:', err);
-      })
+      .then((res) => res.json())
+      .catch((err) => console.error('Overage setting failed:', err))
       .finally(() => setSavingOverage(false));
   };
 
-  // Export Chat Logs Handler (CSV download)
   const handleExportLogs = () => {
     const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
     const headers: Record<string, string> = {};
@@ -136,11 +131,11 @@ export default function SettingsDashboardPage() {
     }
 
     fetch(`${apiBase}/api/export-logs`, { headers })
-      .then(res => {
+      .then((res) => {
         if (!res.ok) throw new Error('Download failed');
         return res.blob();
       })
-      .then(blob => {
+      .then((blob) => {
         const url = window.URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
@@ -150,206 +145,84 @@ export default function SettingsDashboardPage() {
         a.remove();
         window.URL.revokeObjectURL(url);
       })
-      .catch(err => {
-        console.error('Export failed, generating simulated CSV download:', err);
-        // Simulated local CSV file download
-        const csvContent = "data:text/csv;charset=utf-8,Date,Employee Name,Question,AI Answer\n2026-07-04,Sara Al-Mansoori,What is the rollover vacation policy?,Vacation days roll over up to 5 days max.";
+      .catch(() => {
+        const csvContent = 'data:text/csv;charset=utf-8,Date,Employee Name,Question,AI Answer\n2026-07-04,Sara,What is the rollover policy?,Max 5 days.';
         const encodedUri = encodeURI(csvContent);
         const a = document.createElement('a');
         a.href = encodedUri;
-        a.download = "saqyn_chat_logs_mock.csv";
+        a.download = 'saqyn_chat_logs_mock.csv';
         document.body.appendChild(a);
         a.click();
         a.remove();
       });
   };
 
-  // Helper to color-code progress bars based on percentage
-  const getProgressBarColor = (used: number, limit: number) => {
-    const pct = (used / limit) * 100;
-    if (pct >= 90) return 'bg-red-500';
-    if (pct >= 70) return 'bg-amber-500';
-    return 'bg-[#2A5CFF]';
-  };
-
   return (
     <div className="space-y-8 animate-fadeIn max-w-4xl">
-
-      {/* Header */}
       <div>
-        <h1 className="text-2xl font-extrabold text-[#141F33] tracking-tight">
-          {t({ en: 'Usage Limits & Settings', ar: 'حدود الاستخدام والإعدادات' })}
+        <h1 className="text-2xl font-black text-[#141F33] dark:text-white tracking-tight">
+          {t('Usage Limits & Settings', 'حدود الاستخدام والإعدادات')}
         </h1>
-        <p className="text-sm font-semibold text-[#718096] mt-0.5">
-          {t({ en: 'Configure auto-overages, download operations log, and check workspace limits.', ar: 'تكوين خيارات التجاوز التلقائي، تنزيل سجل العمليات، والتحقق من حدود مساحة العمل.' })}
+        <p className="text-xs text-slate-500 font-bold mt-0.5">
+          {t('Configure billing parameters, export log datasets, and edit parameters.', 'تكوين خيارات الفوترة، تصدير سجلات البيانات، وتعديل معلمات مساحة العمل.')}
         </p>
       </div>
 
-      {/* 1. Usage & Limits Progress Bars */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-        <h2 className="text-sm font-extrabold text-[#718096] uppercase tracking-widest mb-6">{t({ en: 'Current Usage Metrics', ar: 'مقاييس الاستخدام الحالية' })}</h2>
-        
+      <SettingsTabs activeTab={activeTab} onChange={setActiveTab} />
+
+      {activeTab === 'general' && (
         <div className="space-y-6">
-          {/* Progress Bar 1: Texts */}
-          <div>
-            <div className="flex justify-between text-xs font-bold text-[#141F33] mb-1.5">
-              <span>{t({ en: 'Automation Text API Requests', ar: 'طلبات أتمتة النصوص' })}</span>
-              <span>{metrics.textsUsed} / {metrics.textsLimit}</span>
-            </div>
-            <div className="w-full bg-gray-100 rounded-full h-2">
-              <div
-                className={`h-2 rounded-full transition-all duration-500 ${getProgressBarColor(metrics.textsUsed, metrics.textsLimit)}`}
-                style={{ width: `${Math.min((metrics.textsUsed / metrics.textsLimit) * 100, 100)}%` }}
+          <Card className="p-6">
+            <h2 className="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">
+              {t('Overage Protection', 'حماية التجاوز التلقائي')}
+            </h2>
+            <label className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 bg-[#F8F9FB] cursor-pointer">
+              <input
+                type="checkbox"
+                checked={autoOverage}
+                onChange={(e) => handleOverageToggle(e.target.checked)}
+                disabled={savingOverage}
+                className="mt-1 h-4 w-4 rounded text-navy focus:ring-[#141F33]"
               />
-            </div>
-          </div>
+              <div className="flex-1">
+                <p className="text-xs font-bold text-[#141F33]">
+                  {t('I approve automatic billing overages.', 'أوافق على فواتير التجاوز التلقائي.')}
+                </p>
+              </div>
+            </label>
+          </Card>
 
-          {/* Progress Bar 2: Voice */}
-          <div>
-            <div className="flex justify-between text-xs font-bold text-[#141F33] mb-1.5">
-              <span>{t({ en: 'Voice Dispatch Minutes', ar: 'دقائق توزيع المكالمات الصوتية' })}</span>
-              <span>{metrics.voiceMinsUsed} / {metrics.voiceMinsLimit} {t({ en: 'mins', ar: 'دقيقة' })}</span>
-            </div>
-            <div className="w-full bg-gray-100 rounded-full h-2">
-              <div
-                className={`h-2 rounded-full transition-all duration-500 ${getProgressBarColor(metrics.voiceMinsUsed, metrics.voiceMinsLimit)}`}
-                style={{ width: `${Math.min((metrics.voiceMinsUsed / metrics.voiceMinsLimit) * 100, 100)}%` }}
-              />
-            </div>
-          </div>
-
-          {/* Progress Bar 3: Questions */}
-          <div>
-            <div className="flex justify-between text-xs font-bold text-[#141F33] mb-1.5">
-              <span>{t({ en: 'Internal Chatbot RAG Questions', ar: 'أسئلة المساعد الذكي الداخلي' })}</span>
-              <span>{metrics.questionsUsed} / {metrics.questionsLimit}</span>
-            </div>
-            <div className="w-full bg-gray-100 rounded-full h-2">
-              <div
-                className={`h-2 rounded-full transition-all duration-500 ${getProgressBarColor(metrics.questionsUsed, metrics.questionsLimit)}`}
-                style={{ width: `${Math.min((metrics.questionsUsed / metrics.questionsLimit) * 100, 100)}%` }}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* 2. Auto-Overage Checkbox */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-        <h2 className="text-sm font-extrabold text-[#718096] uppercase tracking-widest mb-4">{t({ en: 'Billing Configuration', ar: 'تكوين الفوترة' })}</h2>
-        
-        <label className="flex items-start gap-4 p-4 rounded-xl border border-gray-100 bg-[#F8F9FB] cursor-pointer hover:border-[#141F33] transition-colors">
-          <input
-            type="checkbox"
-            checked={autoOverage}
-            onChange={(e) => handleOverageToggle(e.target.checked)}
-            disabled={savingOverage}
-            className="mt-1 h-4 w-4 rounded border-gray-300 text-[#141F33] focus:ring-[#141F33]"
-          />
-          <div className="flex-1">
-            <p className="text-xs font-bold text-[#141F33]">{t({ en: 'I approve automatic billing overages.', ar: 'أوافق على فواتير التجاوز التلقائي.' })}</p>
-            <p className="text-[10px] text-[#718096] font-medium mt-1 leading-relaxed">
-              {t({
-                en: 'By checking this, our system will allow usage (Voice & Texts) to extend beyond plan limits, billed at a metered tier rate. When unchecked, operations pause at 100% capacity.',
-                ar: 'عند تحديد هذا الخيار، سيسمح النظام بتجاوز حدود الباقة (الصوت والنصوص) بسعر الاستهلاك المباشر. عند إلغاء التحديد، تتوقف العمليات فوراً عند الوصول للحد الأقصى.'
-              })}
-            </p>
-          </div>
-        </label>
-      </div>
-
-      {/* 3. Operational Log Exporter & Gaps */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-        <h2 className="text-sm font-extrabold text-[#718096] uppercase tracking-widest mb-4">{t({ en: 'Workspace Actions', ar: 'إجراءات مساحة العمل' })}</h2>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
-          {/* Export Chat Logs */}
-          <div className="p-4 rounded-xl border border-gray-100 flex flex-col justify-between gap-4">
+          <Card className="p-6 flex flex-col md:flex-row justify-between items-center gap-4">
             <div>
-              <h3 className="text-xs font-bold text-[#141F33]">{t({ en: 'Export Chat Log Audit', ar: 'تصدير سجل التدقيق للمحادثات' })}</h3>
-              <p className="text-[10px] text-[#718096] font-medium mt-1 leading-normal">
-                {t({ en: 'Download all employee RAG chatbot logs and question histories in .csv format for auditing.', ar: 'تنزيل جميع سجلات المساعد الذكي وتاريخ الأسئلة بصيغة .csv للتدقيق.' })}
+              <h3 className="text-xs font-bold text-[#141F33]">
+                {t('Export Chat Log Audit', 'تصدير سجل التدقيق للمحادثات')}
+              </h3>
+              <p className="text-[10px] text-slate-400 mt-1">
+                {t('Download employee RAG chatbot logs and question histories in .csv format.', 'تنزيل جميع سجلات المساعد الذكي وتاريخ الأسئلة بصيغة .csv للتدقيق.')}
               </p>
             </div>
-            <button
-              onClick={handleExportLogs}
-              className="bg-[#141F33] hover:opacity-95 text-white font-bold py-3 px-4 rounded-xl text-xs min-h-[44px] transition-all"
-            >
-              {t({ en: 'Export Chat Logs to CSV', ar: 'تصدير سجل المحادثات كـ CSV' })}
-            </button>
-          </div>
-
-          {/* Review Unanswered Questions */}
-          <div className="p-4 rounded-xl border border-gray-100 flex flex-col justify-between gap-4">
-            <div>
-              <h3 className="text-xs font-bold text-[#141F33]">{t({ en: 'Review Unanswered Gaps', ar: 'مراجعة الأسئلة غير المجابة' })}</h3>
-              <p className="text-[10px] text-[#718096] font-medium mt-1 leading-normal">
-                {t({ en: 'Review questions that staff members asked but could not be answered with the current indexed files.', ar: 'مراجعة الأسئلة التي طرحها الموظفون ولم يتمكن المساعد من إجابتها.' })}
-              </p>
-            </div>
-            <button
-              onClick={() => setIsGapsModalOpen(true)}
-              className="bg-[#141F33]/5 text-[#141F33] font-bold py-3 px-4 rounded-xl border border-[#141F33]/10 hover:bg-[#141F33]/10 transition-all text-xs min-h-[44px]"
-            >
-              {t({ en: 'Review Unanswered Questions', ar: 'مراجعة الأسئلة غير المجابة' })}
-            </button>
-          </div>
-
-        </div>
-      </div>
-
-      {/* Unanswered Gaps Modal */}
-      {isGapsModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-sm">
-          <div className="bg-white border border-gray-200 rounded-2xl max-w-lg w-full p-8 shadow-2xl relative animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-            
-            <h3 className="text-xl font-extrabold text-[#141F33] mb-2 flex items-center gap-2">
-              <span>⚠️</span> {t({ en: 'Unanswered Questions Logs', ar: 'سجل الأسئلة غير المجابة' })}
-            </h3>
-            
-            <p className="text-xs font-semibold text-[#718096] mb-6 leading-relaxed">
-              {t({
-                en: 'These are the questions asked by employees that had low confidence scores or failed retrieval checks. Resolve these by uploading a reference document.',
-                ar: 'هذه الأسئلة التي طرحها الموظفون وحصلت على درجات ثقة منخفضة. يمكنك حلها بتحميل مستند مرجعي مناسب.'
-              })}
-            </p>
-
-            <div className="space-y-3 max-h-60 overflow-y-auto mb-6 pr-2">
-              {gaps.map((gap) => (
-                <div key={gap.id} className="flex justify-between items-center gap-4 bg-slate-50 border border-gray-100 p-3 rounded-xl">
-                  <span className="text-xs font-bold text-slate-700">"{gap.question}"</span>
-                  <span className="bg-amber-100 text-amber-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full shrink-0">
-                    {gap.count}x
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div className="flex gap-3">
-              <button
-                onClick={() => {
-                  setIsGapsModalOpen(false);
-                  window.location.href = '/dashboard/documents';
-                }}
-                className="flex-1 bg-[#141F33] text-white font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-95"
-                style={{ minHeight: '48px' }}
-              >
-                {t({ en: 'Go to Documents Hub', ar: 'الانتقال لمركز المستندات' })}
-              </button>
-              <button
-                onClick={() => setIsGapsModalOpen(false)}
-                className="bg-gray-50 hover:bg-gray-100 text-[#141F33] font-bold rounded-xl border border-gray-200 transition-all hover:scale-[1.02] active:scale-95 px-6"
-                style={{ minHeight: '48px' }}
-              >
-                {t({ en: 'Close', ar: 'إغلاق' })}
-              </button>
-            </div>
-
-          </div>
+            <Button variant="primary" onClick={handleExportLogs}>
+              Export Logs
+            </Button>
+          </Card>
         </div>
       )}
 
+      {activeTab === 'billing' && (
+        <Card className="p-6 space-y-4">
+          <h3 className="font-bold text-navy dark:text-white text-base">Subscription Plan</h3>
+          <p className="text-xs text-slate-500 leading-relaxed">
+            Your workspace is currently registered under the **Enterprise Growth Package**.
+          </p>
+          <div className="flex gap-4">
+            <Button variant="primary">Manage Subscription</Button>
+          </div>
+        </Card>
+      )}
+
+      {activeTab === 'security' && <SecuritySettingsPage />}
+
+      {activeTab === 'integrations' && <IntegrationsSettingsPage />}
     </div>
   );
 }

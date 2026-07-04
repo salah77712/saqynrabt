@@ -2,6 +2,10 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLocale, useEntitlements } from '../providers';
+import { OverviewMetrics } from '../../components/dashboard/OverviewMetrics';
+import { QuickActions } from '../../components/dashboard/QuickActions';
+import { RecentActivity } from '../../components/dashboard/RecentActivity';
+import { UsageCard } from '../../components/dashboard/UsageCard';
 
 interface UsageMetrics {
   textsUsed: number;
@@ -17,7 +21,7 @@ interface UsageMetrics {
 export default function DashboardOverviewPage() {
   const { locale } = useLocale();
   const { mockMode } = useEntitlements();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
 
   const [metrics, setMetrics] = useState<UsageMetrics>({
     textsUsed: 142,
@@ -33,16 +37,15 @@ export default function DashboardOverviewPage() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // If not in mockMode, we could fetch live usage stats from '/api/usage-stats'
     if (!mockMode) {
       setLoading(true);
       const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
       fetch(`${apiBase}/api/usage-stats`, {
         headers: {
-          'Authorization': 'Bearer mock-token-salah-admin' // Sandbox credentials fallback
-        }
+          'Authorization': 'Bearer mock-token-salah-admin',
+        },
       })
-        .then(res => res.json())
+        .then((res) => res.json())
         .then((data: any) => {
           if (data && data.usage) {
             setMetrics({
@@ -57,183 +60,74 @@ export default function DashboardOverviewPage() {
             });
           }
         })
-        .catch(err => console.error('Failed to fetch usage stats:', err))
+        .catch((err) => console.error('Failed to fetch usage stats:', err))
         .finally(() => setLoading(false));
     }
   }, [mockMode]);
 
-  const recentAutomation = [
-    { id: 1, customer: '+974 5531 ****', action: 'Requested late check-out Room 302', time: '5m ago', type: 'Voice Call', status: 'Resolved' },
-    { id: 2, customer: '+974 3324 ****', action: 'Booked Deluxe Room for 3 nights', time: '14m ago', type: 'SMS Booking', status: 'Resolved' },
-    { id: 3, customer: '+974 6672 ****', action: 'Lodged air conditioning complaint Room 104', time: '32m ago', type: 'Voice Call', status: 'In Progress' },
-    { id: 4, customer: '+974 5541 ****', action: 'Inquired about dinner buffet hours', time: '1h ago', type: 'WhatsApp', status: 'Resolved' },
-    { id: 5, customer: '+974 3381 ****', action: 'Requested airport shuttle transfer', time: '2h ago', type: 'SMS Booking', status: 'Pending' },
+  const metricCards = [
+    { label: t('Questions Answered Today', 'الأسئلة المجابة اليوم'), value: metrics.questionsUsed, change: '↑ 12% today', isPositive: true },
+    { label: t('Pending Automations', 'الأتمتة المعلقة'), value: 3, change: 'All clear soon', isPositive: true },
+    { label: t('Active Employees', 'الموظفون النشطون'), value: metrics.employeesUsed, change: '0 churn cases', isPositive: true },
+    { label: t('Quota Consumption', 'استهلاك الكوتا'), value: `${Math.round((metrics.questionsUsed / metrics.questionsLimit) * 100)}%`, change: 'Optimal load', isPositive: true },
   ];
 
-  const recentChatbot = [
-    { id: 1, employee: 'Sara Al-Mansoori', query: 'What is the vacation rollover policy for 2026?', time: '2m ago', source: 'hr_handbook.pdf' },
-    { id: 2, employee: 'John Doe', query: 'How to handle late guests checking in after midnight?', time: '18m ago', source: 'front_desk_sop.pdf' },
-    { id: 3, employee: 'Ahmed Al-Thani', query: 'Where do we log mechanical vehicle inspection logs?', time: '41m ago', source: 'safety_sop.pdf' },
-    { id: 4, employee: 'Sara Al-Mansoori', query: 'What is the emergency fire exit route for Sector B?', time: '1h ago', source: 'fire_safety.pdf' },
-    { id: 5, employee: 'John Doe', query: 'How many days of sick leave are allowed annually?', time: '3h ago', source: 'hr_handbook.pdf' },
+  const quickActions = [
+    { href: '/dashboard/chat', label: t('New Chat', 'محادثة جديدة'), icon: '💬' },
+    { href: '/dashboard/documents', label: t('Upload PDF', 'تحميل ملف PDF'), icon: '📄' },
+    { href: '/dashboard/team', label: t('Manage Team', 'إدارة الفريق'), icon: '👥' },
+    { href: '/dashboard/reports', label: t('View Reports', 'عرض التقارير'), icon: '📊' },
+  ];
+
+  const recentEvents = [
+    { id: '1', type: 'automation' as const, title: t('Customer requested repair quote', 'طلب العميل تقدير إصلاح'), time: '2m ago' },
+    { id: '2', type: 'chat' as const, title: t('Sara Al-Mansoori verified HR policy', 'تحققت سارة المنصوري من سياسة الموارد البشرية'), time: '14m ago' },
+    { id: '3', type: 'approval' as const, title: t('Fahad Rashid requested access approval', 'طلب فهد رشيد الموافقة على الدخول'), time: '1h ago' },
   ];
 
   return (
     <div className="space-y-8 animate-fadeIn">
-      
-      {/* Header */}
+      {/* Header title */}
       <div>
-        <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight">
-          {t({ en: 'Good morning, Salah', ar: 'صباح الخير، صلاح' })}
+        <h1 className="text-3xl font-extrabold text-[#141F33] dark:text-white tracking-tight">
+          {t('Good morning, Salah', 'صباح الخير، صلاح')}
         </h1>
         <p className="text-sm font-semibold text-[#718096] mt-1">
-          {t({ en: "Here's your front desk and knowledge hub summary for today.", ar: 'إليك ملخص مكتب الاستقبال ومركز المعرفة لليوم.' })}
+          {t("Here's your business operations summary for today.", 'إليك ملخص عمليات عملك اليوم.')}
         </p>
       </div>
 
-      {/* Usage Cards Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        
-        {/* Automation Usage Card */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-100">
-            <span className="text-2xl">📞</span>
-            <h2 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Business Automation Usage', ar: 'استخدام أتمتة الأعمال' })}</h2>
-          </div>
-          
-          <div className="space-y-5">
-            {/* Progress Bar 1: Texts */}
-            <div>
-              <div className="flex justify-between text-xs font-bold text-slate-600 mb-1.5">
-                <span>{t({ en: 'Automation Texts Used', ar: 'نصوص الأتمتة المستخدمة' })}</span>
-                <span>{metrics.textsUsed} / {metrics.textsLimit}</span>
-              </div>
-              <div className="w-full bg-gray-100 rounded-full h-2">
-                <div
-                  className="bg-[#2A5CFF] h-2 rounded-full transition-all duration-500"
-                  style={{ width: `${(metrics.textsUsed / metrics.textsLimit) * 100}%` }}
-                />
-              </div>
-            </div>
+      {/* Metrics Cards Grid */}
+      <OverviewMetrics metrics={metricCards} />
 
-            {/* Progress Bar 2: Voice */}
-            <div>
-              <div className="flex justify-between text-xs font-bold text-slate-600 mb-1.5">
-                <span>{t({ en: 'Voice Minutes Used', ar: 'دقائق الصوت المستخدمة' })}</span>
-                <span>{metrics.voiceMinsUsed} / {metrics.voiceMinsLimit} {t({ en: 'mins', ar: 'دقيقة' })}</span>
-              </div>
-              <div className="w-full bg-gray-100 rounded-full h-2">
-                <div
-                  className="bg-[#10B981] h-2 rounded-full transition-all duration-500"
-                  style={{ width: `${(metrics.voiceMinsUsed / metrics.voiceMinsLimit) * 100}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Chatbot Usage Card */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
-          <div className="flex items-center gap-3 mb-6 pb-3 border-b border-gray-100">
-            <span className="text-2xl">💬</span>
-            <h2 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Staff Knowledge Hub Usage', ar: 'استخدام مركز معرفة الموظفين' })}</h2>
-          </div>
-
-          <div className="space-y-5">
-            {/* Progress Bar 1: Questions */}
-            <div>
-              <div className="flex justify-between text-xs font-bold text-slate-600 mb-1.5">
-                <span>{t({ en: 'Questions Answered', ar: 'الأسئلة التي تمت الإجابة عليها' })}</span>
-                <span>{metrics.questionsUsed} / {metrics.questionsLimit}</span>
-              </div>
-              <div className="w-full bg-gray-100 rounded-full h-2">
-                <div
-                  className="bg-[#141F33] h-2 rounded-full transition-all duration-500"
-                  style={{ width: `${(metrics.questionsUsed / metrics.questionsLimit) * 100}%` }}
-                />
-              </div>
-            </div>
-
-            {/* Progress Bar 2: Active Employees */}
-            <div>
-              <div className="flex justify-between text-xs font-bold text-slate-600 mb-1.5">
-                <span>{t({ en: 'Active Employees Authorized', ar: 'الموظفون النشطون المعتمدون' })}</span>
-                <span>{metrics.employeesUsed} / {metrics.employeesLimit}</span>
-              </div>
-              <div className="w-full bg-gray-100 rounded-full h-2">
-                <div
-                  className="bg-[#8B5CF6] h-2 rounded-full transition-all duration-500"
-                  style={{ width: `${(metrics.employeesUsed / metrics.employeesLimit) * 100}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-
+      {/* Quick Action Pills */}
+      <div className="space-y-3">
+        <h3 className="text-xs font-black uppercase tracking-wider text-slate-400">
+          {t('Quick Actions', 'إجراءات سريعة')}
+        </h3>
+        <QuickActions actions={quickActions} />
       </div>
 
-      {/* Recent Activity Feed */}
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-        
-        {/* Left Column: Recent Automation Events */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <div className="mb-4">
-            <h3 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Recent Front Desk Requests', ar: 'طلبات الاستقبال الأخيرة' })}</h3>
-            <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Live events captured by automated phone/chat nodes.', ar: 'الفعاليات المباشرة التي تم التقاطها بواسطة عقد الهاتف/الدردشة الآلية.' })}</p>
-          </div>
-          <div className="flex flex-col">
-            {recentAutomation.map((item) => (
-              <div key={item.id} className="flex items-center justify-between gap-4 border-b border-gray-100 py-3.5 last:border-b-0">
-                <div className="flex items-start gap-3 min-w-0">
-                  <span className="text-base mt-0.5">📞</span>
-                  <div className="min-w-0">
-                    <p className="text-xs font-extrabold text-[#141F33]">{item.customer}</p>
-                    <p className="text-xs font-semibold text-[#718096] truncate mt-0.5">{item.action}</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2.5 shrink-0">
-                  <span className="text-[10px] font-bold text-slate-400">{item.time}</span>
-                  <span className={`text-[9px] font-extrabold uppercase px-2.5 py-0.5 rounded-full ${
-                    item.status === 'Resolved' ? 'bg-emerald-100 text-emerald-800' :
-                    item.status === 'In Progress' ? 'bg-blue-100 text-blue-800' : 'bg-amber-100 text-amber-800'
-                  }`}>
-                    {item.status}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right Column: Recent Chatbot Queries */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-          <div className="mb-4">
-            <h3 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Recent Staff Knowledge Queries', ar: 'استفسارات الموظفين الأخيرة' })}</h3>
-            <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Private questions answered from indexed handbooks & SOPs.', ar: 'الأسئلة الخاصة التي تمت الإجابة عليها من الكتيبات وإجراءات التشغيل.' })}</p>
-          </div>
-          <div className="flex flex-col">
-            {recentChatbot.map((item) => (
-              <div key={item.id} className="flex items-center justify-between gap-4 border-b border-gray-100 py-3.5 last:border-b-0">
-                <div className="flex items-start gap-3 min-w-0">
-                  <span className="text-base mt-0.5">💬</span>
-                  <div className="min-w-0">
-                    <p className="text-xs font-extrabold text-[#141F33]">{item.employee}</p>
-                    <p className="text-xs font-semibold text-[#718096] truncate mt-0.5">"{item.query}"</p>
-                  </div>
-                </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="text-[10px] font-bold text-slate-400">{item.time}</span>
-                  <span className="bg-[#141F33]/5 text-[#141F33] text-[9px] font-extrabold px-2 py-0.5 rounded-full truncate max-w-[100px]">
-                    {item.source}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
+      {/* Usage Progress Cards */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <UsageCard
+          title={t('Customer Automation', 'أتمتة العملاء')}
+          icon="📞"
+          used={metrics.voiceMinsUsed}
+          limit={metrics.voiceMinsLimit}
+          label={t('Voice Minutes Used', 'دقائق الصوت المستخدمة')}
+        />
+        <UsageCard
+          title={t('Employee Knowledge Hub', 'مركز معرفة الموظفين')}
+          icon="💬"
+          used={metrics.questionsUsed}
+          limit={metrics.questionsLimit}
+          label={t('RAG Questions Answered', 'الأسئلة المجابة')}
+        />
       </div>
 
+      {/* Activity Feed */}
+      <RecentActivity activities={recentEvents} />
     </div>
   );
 }

@@ -6,6 +6,8 @@ import { usePathname, useRouter } from 'next/navigation';
 import { UserButton, useAuth } from '@clerk/nextjs';
 import { useEntitlements, useLocale } from '../providers';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher';
+import { FeedbackWidget } from '../../components/FeedbackWidget';
+import { BottomNav } from '../../components/dashboard/BottomNav';
 
 export default function DashboardLayout({
   children,
@@ -258,6 +260,8 @@ export default function DashboardLayout({
             </div>
           </div>
 
+          <FeedbackWidget />
+          <BottomNav />
         </main>
       </div>
     </div>
