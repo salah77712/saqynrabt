@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
@@ -169,84 +170,7 @@ export default function MarketingPage() {
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       
-      {/* ── Navbar & Global Header (Section 2) ─────────────────────────────── */}
-      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
-        isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-gray-100/50 shadow-sm' : 'bg-white/80 backdrop-blur-md border-b border-gray-100/20'
-      }`}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
-          
-          {/* Logo Left */}
-          <Link href="/" className="flex items-baseline gap-2 select-none group">
-            <span className="text-[#141F33] font-extrabold text-xl tracking-tight transition-colors group-hover:text-[#2A5CFF]">SAQYN RABT</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#718096] font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
-          </Link>
-
-          {/* Nav Links Center */}
-          <nav className="hidden items-center gap-8 md:flex">
-            <Link href="#features" className="text-sm font-semibold text-[#718096] transition-colors hover:text-[#141F33]">{t({ en: 'Features', ar: 'الميزات' })}</Link>
-            <Link href="#industries" className="text-sm font-semibold text-[#718096] transition-colors hover:text-[#141F33]">{t({ en: 'Industries', ar: 'الصناعات' })}</Link>
-            <Link href="#how-it-works" className="text-sm font-semibold text-[#718096] transition-colors hover:text-[#141F33]">{t({ en: 'How It Works', ar: 'كيف يعمل' })}</Link>
-            <Link href="#pricing" className="text-sm font-semibold text-[#718096] transition-colors hover:text-[#141F33]">{t({ en: 'Pricing', ar: 'الأسعار' })}</Link>
-          </nav>
-
-          {/* Nav Buttons Right */}
-          <div className="hidden items-center gap-4 md:flex">
-            <LanguageSwitcher />
-            <Link href="/dashboard" className="text-sm font-bold text-[#2A5CFF] min-h-[44px] flex items-center justify-center px-4 transition-all hover:scale-[1.02]">
-              {t({ en: 'Dashboard Demo', ar: 'عرض لوحة التحكم' })}
-            </Link>
-            <a
-              href={calendlyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-6 py-3 text-sm font-bold text-white transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95"
-            >
-              {t({ en: 'Book a 15-Min Demo', ar: 'احجز عرضًا لمدة 15 دقيقة' })}
-            </a>
-          </div>
-
-          {/* Mobile Menu Toggle Button */}
-          <button
-            type="button"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 text-[#141F33] md:hidden hover:bg-gray-50 transition-colors"
-            aria-label="Toggle navigation"
-          >
-            <span className="text-xl">☰</span>
-          </button>
-        </div>
-
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="border-t border-gray-100 bg-white px-6 py-6 md:hidden shadow-lg animate-fadeIn">
-            <div className="flex flex-col gap-4">
-              <Link href="#features" onClick={() => setIsMobileMenuOpen(false)} className="text-base font-bold text-[#141F33]">{t({ en: 'Features', ar: 'الميزات' })}</Link>
-              <Link href="#industries" onClick={() => setIsMobileMenuOpen(false)} className="text-base font-bold text-[#141F33]">{t({ en: 'Industries', ar: 'الصناعات' })}</Link>
-              <Link href="#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-base font-bold text-[#141F33]">{t({ en: 'How It Works', ar: 'كيف يعمل' })}</Link>
-              <Link href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-base font-bold text-[#141F33]">{t({ en: 'Pricing', ar: 'الأسعار' })}</Link>
-              
-              <div className="border-t border-gray-100 pt-4 flex flex-col gap-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-sm font-semibold text-[#718096]">{t({ en: 'Select Language:', ar: 'اختر اللغة:' })}</span>
-                  <LanguageSwitcher />
-                </div>
-                <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="text-center font-bold text-[#2A5CFF] py-3 rounded-xl border border-[#2A5CFF]/20">
-                  {t({ en: 'Dashboard Demo', ar: 'عرض لوحة التحكم' })}
-                </Link>
-                <a
-                  href={calendlyUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-center bg-[#141F33] text-white font-bold py-3 rounded-xl"
-                >
-                  {t({ en: 'Book a Demo', ar: 'احجز عرضًا' })}
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
-      </header>
+      <Header />
 
       {/* ── Hero Section (Section 3 & 4) ─────────────────────────────────── */}
       <section className="relative overflow-hidden py-20 lg:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">

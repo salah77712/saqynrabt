@@ -1,21 +1,18 @@
-/**
- * Multi-Currency Exchange Rates and formatters
- */
-export const CURRENCY_SYMBOLS: Record<string, string> = {
-  QAR: '﷼',
-  USD: '$',
-  EUR: '€',
-  SAR: 'SR',
-  AED: 'DH'
+const exchangeRates: Record<string, number> = {
+  QAR: 1.0,
+  USD: 0.27,
+  EUR: 0.25,
+  SAR: 1.03,
+  AED: 1.01,
 };
 
-/**
- * Formats amount based on company preferred currency
- */
-export function formatLocalPrice(
-  amount: number,
-  currency = 'QAR'
-): string {
-  const symbol = CURRENCY_SYMBOLS[currency.toUpperCase()] || '$';
-  return `${amount.toFixed(2)} ${symbol}`;
+export function convertCurrency(
+  amountInQar: number,
+  targetCurrency: string
+): { amount: number; currency: string } {
+  const rate = exchangeRates[targetCurrency.toUpperCase()] || 1.0;
+  return {
+    amount: Math.round(amountInQar * rate * 100) / 100,
+    currency: targetCurrency.toUpperCase(),
+  };
 }
