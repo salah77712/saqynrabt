@@ -15,10 +15,49 @@ export interface Env {
   INGESTION_QUEUE?: Queue;
   NODE_ENV?: string;
   VAPI_API_KEY?: string;
+  // Security parameters
+  ALLOW_MOCK_TOKENS?: string;
+  CLERK_WEBHOOK_SECRET?: string;
+  VAPI_WEBHOOK_SECRET?: string;
+  MESSAGE_WEBHOOK_SECRET?: string;
+  ADMIN_SECRET?: string;
 }
 
 // Global active connections counter for Concurrency Guard (Rule 13)
 let currentDBConnections = 0;
+
+// Helper: chunk text into overlapping segments (1024 chars, 50 overlap)
+function chunkText(text: string): string[] {
+  const size = 1024;
+  const overlap = 50;
+  const chunks: string[] = [];
+  let start = 0;
+  while (start < text.length) {
+    const end = Math.min(start + size, text.length);
+    chunks.push(text.slice(start, end));
+    start += size - overlap;
+    if (start >= text.length) break;
+  }
+  return chunks;
+}
+
+// Helper: generate OpenAI embedding for a single text string
+async function generateEmbedding(text: string, apiKey: string): Promise<number[]> {
+  const res = await fetch('https://api.openai.com/v1/embeddings', {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      input: text,
+      model: 'text-embedding-3-small',
+    }),
+  });
+  if (!res.ok) throw new Error(`OpenAI embedding failed: ${await res.text()}`);
+  const data: any = await res.json();
+  return data.data[0].embedding;
+}
 
 // Helper to set CORS headers (Rule 7)
 function corsHeaders(request: Request, env: Env): Record<string, string> {
@@ -46,12 +85,88 @@ interface JWTPayload {
   [key: string]: any;
 }
 
+// Helper to verify Clerk (Svix) Webhooks manually using Web Crypto API
+async function verifyClerkWebhook(request: Request, bodyText: string, webhookSecret: string | undefined, env: Env): Promise<boolean> {
+  const svixId = request.headers.get("svix-id");
+  const svixTimestamp = request.headers.get("svix-timestamp");
+  const svixSignature = request.headers.get("svix-signature");
+
+  if (!svixId || !svixTimestamp || !svixSignature) {
+    if (env.ALLOW_MOCK_TOKENS === 'true') {
+      return true; // Bypass signature checks in test environment if headers are missing
+    }
+    return false;
+  }
+
+  if (!webhookSecret) {
+    if (env.NODE_ENV === 'production') {
+      console.error("Clerk Webhook Secret is not configured in production. Rejecting webhook.");
+      return false;
+    }
+    return true; // Bypass signature verification in dev/local if secret is missing
+  }
+
+  // Prevent replay attacks (5 minute threshold)
+  const now = Math.floor(Date.now() / 1000);
+  const timestamp = parseInt(svixTimestamp, 10);
+  if (isNaN(timestamp) || Math.abs(now - timestamp) > 300) {
+    return false;
+  }
+
+  // The secret is base64 encoded after the "whsec_" prefix (if any)
+  const secretKey = webhookSecret.startsWith("whsec_")
+    ? webhookSecret.substring(6)
+    : webhookSecret;
+
+  try {
+    const encoder = new TextEncoder();
+    
+    // Decode base64 secret to Uint8Array
+    const binaryString = atob(secretKey);
+    const keyData = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      keyData[i] = binaryString.charCodeAt(i);
+    }
+
+    const key = await crypto.subtle.importKey(
+      "raw",
+      keyData,
+      { name: "HMAC", hash: "SHA-256" },
+      false,
+      ["verify", "sign"]
+    );
+
+    const signedPayload = `${svixId}.${svixTimestamp}.${bodyText}`;
+    const payloadData = encoder.encode(signedPayload);
+
+    // Parse signatures (there might be multiple signatures separated by spaces)
+    const signatures = svixSignature.split(" ");
+    for (const sig of signatures) {
+      const parts = sig.split(",");
+      if (parts.length === 2 && parts[0] === "v1") {
+        const sigHex = parts[1];
+        // Convert hex signature to Uint8Array
+        const sigBytes = new Uint8Array(sigHex.match(/.{1,2}/g)!.map(byte => parseInt(byte, 16)));
+        
+        const isValid = await crypto.subtle.verify("HMAC", key, sigBytes, payloadData);
+        if (isValid) return true;
+      }
+    }
+  } catch (e) {
+    console.error("Clerk webhook signature verification error:", e);
+  }
+  return false;
+}
+
 async function verifyJWT(authHeader: string | null, env: Env): Promise<JWTPayload | null> {
   if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
   const token = authHeader.split(' ')[1];
   
   // Developer/Demo bypass for instant dashboard demos (Rule 30 support)
   if (token.startsWith('mock-token-')) {
+    if (env.NODE_ENV === 'production' && env.ALLOW_MOCK_TOKENS !== 'true') {
+      return null;
+    }
     const parts = token.split('-');
     // format: mock-token-[company_id]-[user_id]-[role]
     return {
@@ -123,7 +238,11 @@ async function verifyJWT(authHeader: string | null, env: Env): Promise<JWTPayloa
     }
   }
 
-  // Fallback to standard base64 decoding (for dev/local simulation)
+  // Fallback to standard base64 decoding (for dev/local simulation only)
+  if (env.NODE_ENV === 'production') {
+    console.error("CRITICAL: CLERK_JWT_VERIFICATION_KEY is missing in production. Refusing token verification.");
+    return null;
+  }
   const parts = token.split('.');
   if (parts.length !== 3) return null;
   try {
@@ -218,76 +337,107 @@ export default {
       // PUBLIC ROUTES (No Auth Required)
       // ────────────────────────────────────────────────────────────────────────
 
-      // A. Public wake-up and auto DB migrations/warming (Rule 31)
+      // A. Public wake-up and database warming (Rule 31)
       if (url.pathname === '/api/wakeup' && request.method === 'GET') {
-        // Initialize tables to prevent crashes
-        await sql`
-          CREATE TABLE IF NOT EXISTS company_members (
-            id SERIAL PRIMARY KEY,
-            company_id VARCHAR(255),
-            clerk_user_id VARCHAR(255) UNIQUE,
-            email VARCHAR(255),
-            name VARCHAR(255),
-            status VARCHAR(50) DEFAULT 'pending',
-            role VARCHAR(50) DEFAULT 'employee',
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-          )
-        `;
-        await sql`
-          CREATE TABLE IF NOT EXISTS company_entitlements (
-            company_id VARCHAR(255) PRIMARY KEY,
-            max_employees INTEGER DEFAULT 50,
-            max_documents INTEGER DEFAULT 5,
-            max_questions INTEGER DEFAULT 1000,
-            dept_limit INTEGER DEFAULT 3,
-            automation_texts_limit INTEGER DEFAULT 300,
-            voice_minutes_limit INTEGER DEFAULT 250,
-            auto_overage_enabled BOOLEAN DEFAULT FALSE
-          )
-        `;
-        await sql`
-          CREATE TABLE IF NOT EXISTS usage_ledger (
-            company_id VARCHAR(255) PRIMARY KEY,
-            questions_count INTEGER DEFAULT 0,
-            questions_used INTEGER DEFAULT 0,
-            voice_minutes_used INTEGER DEFAULT 0,
-            automation_texts_used INTEGER DEFAULT 0
-          )
-        `;
-        await sql`
-          CREATE TABLE IF NOT EXISTS knowledge_gaps (
-            id SERIAL PRIMARY KEY,
-            company_id VARCHAR(255),
-            user_id VARCHAR(255),
-            question_text TEXT,
-            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-          )
-        `;
-        await sql`
-          CREATE TABLE IF NOT EXISTS documents (
-            id VARCHAR(255) PRIMARY KEY,
-            company_id VARCHAR(255),
-            name VARCHAR(255),
-            status VARCHAR(50) DEFAULT 'active',
-            r2_key VARCHAR(555),
-            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-          )
-        `;
-
-        // Safe alterations
+        let schemaVersion = 0;
         try {
-          await sql`ALTER TABLE usage_ledger ADD COLUMN IF NOT EXISTS questions_used INTEGER DEFAULT 0`;
-          await sql`ALTER TABLE usage_ledger ADD COLUMN IF NOT EXISTS voice_minutes_used INTEGER DEFAULT 0`;
-          await sql`ALTER TABLE usage_ledger ADD COLUMN IF NOT EXISTS automation_texts_used INTEGER DEFAULT 0`;
-          await sql`ALTER TABLE company_entitlements ADD COLUMN IF NOT EXISTS max_questions INTEGER DEFAULT 1000`;
-          await sql`ALTER TABLE company_entitlements ADD COLUMN IF NOT EXISTS automation_texts_limit INTEGER DEFAULT 300`;
-          await sql`ALTER TABLE company_entitlements ADD COLUMN IF NOT EXISTS voice_minutes_limit INTEGER DEFAULT 250`;
-          await sql`ALTER TABLE company_entitlements ADD COLUMN IF NOT EXISTS auto_overage_enabled BOOLEAN DEFAULT FALSE`;
+          const [row] = await sql`SELECT version FROM _schema_version ORDER BY version DESC LIMIT 1`;
+          schemaVersion = row?.version ?? 0;
         } catch (e) {
-          // ignore if already present or not supported
+          // table doesn't exist yet, we'll return 0
         }
 
-        return new Response(JSON.stringify({ status: 'warmed' }), {
+        return new Response(JSON.stringify({ status: 'warmed', schema: schemaVersion }), {
+          status: 200,
+          headers: { ...headers, 'Content-Type': 'application/json' },
+        });
+      }
+
+      // A2. Admin Migrations Execution (Protected POST route)
+      if (url.pathname === '/api/admin/migrate' && request.method === 'POST') {
+        const adminSecret = request.headers.get('X-Admin-Secret') || url.searchParams.get('secret');
+        if (!env.ADMIN_SECRET || adminSecret !== env.ADMIN_SECRET) {
+          return new Response(JSON.stringify({ error: 'Unauthorized', requestId }), {
+            status: 401,
+            headers: { ...headers, 'Content-Type': 'application/json' },
+          });
+        }
+
+        // Run migrations
+        await sql`CREATE TABLE IF NOT EXISTS _schema_version (version INTEGER PRIMARY KEY, applied_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`;
+        const [row] = await sql`SELECT version FROM _schema_version ORDER BY version DESC LIMIT 1`;
+        const currentVersion = row?.version ?? 0;
+
+        if (currentVersion < 1) {
+          await sql`
+            CREATE TABLE IF NOT EXISTS company_members (
+              id SERIAL PRIMARY KEY,
+              company_id VARCHAR(255),
+              clerk_user_id VARCHAR(255) UNIQUE,
+              email VARCHAR(255),
+              name VARCHAR(255),
+              status VARCHAR(50) DEFAULT 'pending',
+              role VARCHAR(50) DEFAULT 'employee',
+              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+          `;
+          await sql`
+            CREATE TABLE IF NOT EXISTS company_entitlements (
+              company_id VARCHAR(255) PRIMARY KEY,
+              max_employees INTEGER DEFAULT 50,
+              max_documents INTEGER DEFAULT 5,
+              max_questions INTEGER DEFAULT 1000,
+              dept_limit INTEGER DEFAULT 3,
+              automation_texts_limit INTEGER DEFAULT 300,
+              voice_minutes_limit INTEGER DEFAULT 250,
+              auto_overage_enabled BOOLEAN DEFAULT FALSE
+            )
+          `;
+          await sql`
+            CREATE TABLE IF NOT EXISTS usage_ledger (
+              company_id VARCHAR(255) PRIMARY KEY,
+              questions_count INTEGER DEFAULT 0,
+              questions_used INTEGER DEFAULT 0,
+              voice_minutes_used INTEGER DEFAULT 0,
+              automation_texts_used INTEGER DEFAULT 0
+            )
+          `;
+          await sql`
+            CREATE TABLE IF NOT EXISTS knowledge_gaps (
+              id SERIAL PRIMARY KEY,
+              company_id VARCHAR(255),
+              user_id VARCHAR(255),
+              question_text TEXT,
+              timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+          `;
+          await sql`
+            CREATE TABLE IF NOT EXISTS documents (
+              id VARCHAR(255) PRIMARY KEY,
+              company_id VARCHAR(255),
+              name VARCHAR(255),
+              status VARCHAR(50) DEFAULT 'active',
+              r2_key VARCHAR(555),
+              created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+          `;
+          await sql`INSERT INTO _schema_version (version) VALUES (1)`;
+        }
+
+        if (currentVersion < 2) {
+          try {
+            await sql`ALTER TABLE usage_ledger ADD COLUMN IF NOT EXISTS questions_used INTEGER DEFAULT 0`;
+            await sql`ALTER TABLE usage_ledger ADD COLUMN IF NOT EXISTS voice_minutes_used INTEGER DEFAULT 0`;
+            await sql`ALTER TABLE usage_ledger ADD COLUMN IF NOT EXISTS automation_texts_used INTEGER DEFAULT 0`;
+            await sql`ALTER TABLE company_entitlements ADD COLUMN IF NOT EXISTS max_questions INTEGER DEFAULT 1000`;
+            await sql`ALTER TABLE company_entitlements ADD COLUMN IF NOT EXISTS automation_texts_limit INTEGER DEFAULT 300`;
+            await sql`ALTER TABLE company_entitlements ADD COLUMN IF NOT EXISTS voice_minutes_limit INTEGER DEFAULT 250`;
+            await sql`ALTER TABLE company_entitlements ADD COLUMN IF NOT EXISTS auto_overage_enabled BOOLEAN DEFAULT FALSE`;
+          } catch (e) { /* ignore */ }
+          await sql`INSERT INTO _schema_version (version) VALUES (2)`;
+        }
+
+        return new Response(JSON.stringify({ status: 'migrated', schema: Math.max(currentVersion, 2) }), {
           status: 200,
           headers: { ...headers, 'Content-Type': 'application/json' },
         });
@@ -295,7 +445,17 @@ export default {
 
       // B. Clerk Auth Sync Webhook (Rule 11)
       if (url.pathname === '/api/webhook' && request.method === 'POST') {
-        const body: any = await request.json();
+        const bodyText = await request.clone().text();
+        const verified = await verifyClerkWebhook(request, bodyText, env.CLERK_WEBHOOK_SECRET, env);
+        if (!verified) {
+          console.error("Clerk webhook verification failed.");
+          return new Response(JSON.stringify({ error: 'Unauthorized', requestId }), {
+            status: 401,
+            headers: { ...headers, 'Content-Type': 'application/json' },
+          });
+        }
+
+        const body: any = JSON.parse(bodyText);
         
         if (body?.type === 'user.created') {
           const data = body.data;
@@ -359,6 +519,23 @@ export default {
 
       // C. Vapi Voice Webhook (Part 6)
       if (url.pathname === '/api/vapi-webhook' && request.method === 'POST') {
+        // Verification Check
+        const vapiSecret = request.headers.get('x-vapi-secret') || url.searchParams.get('secret');
+        if (env.VAPI_WEBHOOK_SECRET) {
+          if (vapiSecret) {
+            if (vapiSecret !== env.VAPI_WEBHOOK_SECRET) {
+              return new Response(JSON.stringify({ error: 'Unauthorized', requestId }), {
+                status: 401,
+                headers: { ...headers, 'Content-Type': 'application/json' },
+              });
+            }
+          } else {
+            console.warn(`[${requestId}] WARNING: Vapi webhook secret was not provided in the incoming request. Skipping strict verification.`);
+          }
+        } else {
+          console.warn(`[${requestId}] WARNING: Vapi Webhook Secret is not configured in environment variables. Skipping strict verification.`);
+        }
+
         const body: any = await request.json();
         
         // Extract company_id from customer metadata
@@ -413,6 +590,23 @@ export default {
 
       // D. Generic Provider-Agnostic Messaging Webhook (Part 4)
       if (url.pathname === '/api/message/webhook' && request.method === 'POST') {
+        // Verification Check
+        if (env.MESSAGE_WEBHOOK_SECRET) {
+          const authVal = request.headers.get('Authorization')?.split(' ')[1] || url.searchParams.get('secret');
+          if (authVal !== env.MESSAGE_WEBHOOK_SECRET) {
+            return new Response(JSON.stringify({ error: 'Unauthorized', requestId }), {
+              status: 401,
+              headers: { ...headers, 'Content-Type': 'application/json' },
+            });
+          }
+        } else if (env.NODE_ENV === 'production') {
+          console.error("Message Webhook Secret is not configured in production. Rejecting request.");
+          return new Response(JSON.stringify({ error: 'Unauthorized', requestId }), {
+            status: 401,
+            headers: { ...headers, 'Content-Type': 'application/json' },
+          });
+        }
+
         const body: any = await request.json();
         const incomingCompanyId = body?.metadata?.company_id || body?.company_id;
 
@@ -522,8 +716,26 @@ export default {
         });
       }
 
-      // E. Entitlements Fetch (Rule 25)
+      // E. Entitlements Fetch (Rule 25) — cached via Redis (Rule 14)
       if (url.pathname === '/api/entitlements' && request.method === 'GET') {
+        const cacheKey = `entitlements:${jwt.company_id}`;
+        let cached: string | null = null;
+        try {
+          const cachedVal = await redis.get(cacheKey);
+          if (cachedVal) {
+            cached = typeof cachedVal === 'string' ? cachedVal : JSON.stringify(cachedVal);
+          }
+        } catch (e) {
+          console.error("Redis entitlements cache read failed:", e);
+        }
+
+        if (cached) {
+          return new Response(cached, {
+            status: 200,
+            headers: { ...headers, 'Content-Type': 'application/json', 'X-Cache': 'HIT' },
+          });
+        }
+
         const [entitlements] = await sql`
           SELECT max_employees, max_documents, max_questions, dept_limit, automation_texts_limit, voice_minutes_limit, auto_overage_enabled
           FROM company_entitlements
@@ -539,20 +751,26 @@ export default {
           FROM documents
           WHERE company_id = ${jwt.company_id} AND status = 'active'
         `;
-        return new Response(
-          JSON.stringify({
-            max_employees: entitlements?.max_employees ?? 50,
-            max_documents: entitlements?.max_documents ?? 5,
-            max_questions: entitlements?.max_questions ?? 1000,
-            dept_limit: entitlements?.dept_limit ?? 3,
-            automation_texts_limit: entitlements?.automation_texts_limit ?? 300,
-            voice_minutes_limit: entitlements?.voice_minutes_limit ?? 250,
-            auto_overage_enabled: entitlements?.auto_overage_enabled ?? false,
-            active_employees: memberCount?.active_count ?? 0,
-            active_documents: docCount?.doc_count ?? 0
-          }),
-          { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } }
-        );
+        const body = JSON.stringify({
+          max_employees: entitlements?.max_employees ?? 50,
+          max_documents: entitlements?.max_documents ?? 5,
+          max_questions: entitlements?.max_questions ?? 1000,
+          dept_limit: entitlements?.dept_limit ?? 3,
+          automation_texts_limit: entitlements?.automation_texts_limit ?? 300,
+          voice_minutes_limit: entitlements?.voice_minutes_limit ?? 250,
+          auto_overage_enabled: entitlements?.auto_overage_enabled ?? false,
+          active_employees: memberCount?.active_count ?? 0,
+          active_documents: docCount?.doc_count ?? 0
+        });
+        try {
+          ctx.waitUntil(redis.set(cacheKey, body, { ex: 300 }));
+        } catch (e) {
+          console.error("Redis entitlements cache write failed:", e);
+        }
+        return new Response(body, {
+          status: 200,
+          headers: { ...headers, 'Content-Type': 'application/json', 'X-Cache': 'MISS' },
+        });
       }
 
       // E2. Usage Stats Endpoint
@@ -639,12 +857,13 @@ export default {
 
       // G. Chat logs CSV Export (Rule 41)
       if (url.pathname === '/api/export-logs' && request.method === 'GET') {
-        const fileKey = `logs/${jwt.company_id}/chat_logs.ndjson`;
-        const r2Object = await env.BUCKET.get(fileKey);
-        
         let csvContent = 'Date,Employee Name,Question,AI Answer\n';
+        const prefix = `logs/${jwt.company_id}/chat_logs_`;
+        const objects = await env.BUCKET.list({ prefix });
 
-        if (r2Object) {
+        for (const obj of objects.objects) {
+          const r2Object = await env.BUCKET.get(obj.key);
+          if (!r2Object) continue;
           const text = await r2Object.text();
           const lines = text.trim().split('\n');
           for (const line of lines) {
@@ -680,6 +899,11 @@ export default {
           SET auto_overage_enabled = ${body.auto_overage_enabled}
           WHERE company_id = ${jwt.company_id}
         `;
+        try {
+          ctx.waitUntil(redis.del(`entitlements:${jwt.company_id}`));
+        } catch (e) {
+          console.error("Redis entitlements cache clear failed:", e);
+        }
         return new Response(JSON.stringify({ success: true }), {
           status: 200,
           headers: { ...headers, 'Content-Type': 'application/json' },
@@ -919,21 +1143,18 @@ export default {
             `;
           }
 
-          // Rule 41: Append to .ndjson chat log file in R2
-          const fileKey = `logs/${jwt.company_id}/chat_logs.ndjson`;
-          const existingObject = await env.BUCKET.get(fileKey);
-          let logsText = '';
-          if (existingObject) {
-            logsText = await existingObject.text();
-          }
+          // Rule 41: Per-day .ndjson chat log file in R2 (avoids read-modify-write on a single blob)
+          const today = new Date().toISOString().slice(0, 10);
+          const fileKey = `logs/${jwt.company_id}/chat_logs_${today}.ndjson`;
           const logEntry = JSON.stringify({
             timestamp: new Date().toISOString(),
             employee_name: jwt.name || jwt.email || jwt.sub,
             question: userText,
             answer: fullAnswer.trim()
-          });
-          logsText += logEntry + '\n';
-          await env.BUCKET.put(fileKey, logsText);
+          }) + '\n';
+          const existingObject = await env.BUCKET.get(fileKey);
+          const previous = existingObject ? await existingObject.text() : '';
+          await env.BUCKET.put(fileKey, previous + logEntry);
         })());
 
         return new Response(readable, {
@@ -1038,16 +1259,21 @@ export default {
           });
         }
 
-        // Fallback: Inline chunking logic (waitUntil)
+        // Inline chunking + embedding + storage (Rule 20)
         ctx.waitUntil((async () => {
           try {
-            const textContent = `Text chunking mock text for document ${file.name}. Rule 20 vector chunking: 1024 size, 50 overlap.`;
-            const dummyVector = Array.from({ length: 1536 }, () => 0.001);
+            const rawText = await file.text();
+            const isBinary = rawText.includes('\u0000') || rawText.replace(/[\x20-\x7E\r\n\t]/g, '').length > rawText.length * 0.3;
+            const cleanText = isBinary ? `[Extracted from ${file.name}]` : rawText;
+            const chunks = chunkText(cleanText);
 
-            await sql`
-              INSERT INTO chatbot_chunks (company_id, document_id, text_content, embedding)
-              VALUES (${jwt.company_id}, ${docId}, ${textContent}, ${JSON.stringify(dummyVector)}::vector)
-            `;
+            for (let i = 0; i < chunks.length; i++) {
+              const embedding = await generateEmbedding(chunks[i], env.OPENAI_API_KEY);
+              await sql`
+                INSERT INTO chatbot_chunks (company_id, document_id, text_content, embedding)
+                VALUES (${jwt.company_id}, ${docId}, ${chunks[i]}, ${JSON.stringify(embedding)}::vector)
+              `;
+            }
           } catch (err) {
             console.error(`Error chunking document ${file.name}:`, err);
           }
@@ -1145,6 +1371,62 @@ export default {
       );
     } finally {
       currentDBConnections--;
+    }
+  },
+
+  // ──────────────────────────────────────────────────────────────────────────
+  //  Queue Consumer: Async Document Ingestion
+  // ──────────────────────────────────────────────────────────────────────────
+  async queue(batch: MessageBatch<{
+    company_id: string;
+    document_id: string;
+    file_key: string;
+    file_name: string;
+  }>, env: Env, ctx: ExecutionContext) {
+    const sql = neon(env.DATABASE_URL);
+    for (const msg of batch.messages) {
+      const { company_id, document_id, file_key, file_name } = msg.body;
+      try {
+        const r2Object = await env.BUCKET.get(file_key);
+        if (!r2Object) {
+          console.error(`Queue: R2 object not found: ${file_key}`);
+          msg.ack();
+          continue;
+        }
+        const rawText = await r2Object.text();
+        const isBinary = rawText.includes('\u0000') || rawText.replace(/[\x20-\x7E\r\n\t]/g, '').length > rawText.length * 0.3;
+        const cleanText = isBinary ? `[Extracted from ${file_name}]` : rawText;
+        const chunks = chunkText(cleanText);
+
+        for (let i = 0; i < chunks.length; i++) {
+          const embedding = await generateEmbedding(chunks[i], env.OPENAI_API_KEY);
+          if (env.PINECONE_INDEX_HOST) {
+            await fetch(`https://${env.PINECONE_INDEX_HOST}/vectors/upsert`, {
+              method: 'POST',
+              headers: {
+                'Api-Key': env.PINECONE_API_KEY,
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({
+                vectors: [{
+                  id: `${document_id}_chunk_${i}`,
+                  values: embedding,
+                  metadata: { text: chunks[i], document_id, company_id },
+                }],
+                namespace: company_id,
+              }),
+            });
+          }
+          await sql`
+            INSERT INTO chatbot_chunks (company_id, document_id, text_content, embedding)
+            VALUES (${company_id}, ${document_id}, ${chunks[i]}, ${JSON.stringify(embedding)}::vector)
+          `;
+        }
+        msg.ack();
+      } catch (err) {
+        console.error(`Queue ingestion failed for ${file_key}:`, err);
+        msg.retry({ delaySeconds: 10 });
+      }
     }
   },
 };

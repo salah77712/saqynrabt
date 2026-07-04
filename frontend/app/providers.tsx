@@ -3,6 +3,20 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { ClerkProvider, useAuth } from '@clerk/nextjs';
 
+export type Locale = 'en' | 'ar';
+
+interface LanguageContextProps {
+  locale: Locale;
+  setLocale: (value: Locale) => void;
+}
+
+const LanguageContext = createContext<LanguageContextProps>({
+  locale: 'en',
+  setLocale: () => {},
+});
+
+export const useLocale = () => useContext(LanguageContext);
+
 export interface Entitlements {
   max_employees: number;
   max_documents: number;
@@ -33,10 +47,37 @@ export const useEntitlements = () => useContext(EntitlementsContext);
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Z3VpZGluZy1jdWItMTcuY2xlcmsuYWNjb3VudHMuZGV2JA'}>
-      <EntitlementsProvider>
-        {children}
-      </EntitlementsProvider>
+      <LanguageProvider>
+        <EntitlementsProvider>
+          {children}
+        </EntitlementsProvider>
+      </LanguageProvider>
     </ClerkProvider>
+  );
+}
+
+function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [locale, setLocale] = useState<Locale>('en');
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedLocale = window.localStorage.getItem('saqyn-locale') as Locale | null;
+      if (savedLocale === 'en' || savedLocale === 'ar') {
+        setLocale(savedLocale);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('saqyn-locale', locale);
+    }
+  }, [locale]);
+
+  return (
+    <LanguageContext.Provider value={{ locale, setLocale }}>
+      {children}
+    </LanguageContext.Provider>
   );
 }
 

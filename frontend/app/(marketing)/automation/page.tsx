@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { Footer } from '../../../components/Footer';
+import { MarketingHeader } from '../../../components/MarketingHeader';
 
 const automationTiers = [
   {
@@ -66,28 +68,9 @@ export default function AutomationPage() {
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
 
   return (
-    <div className="bg-white text-[#111111] min-h-screen flex flex-col font-sans">
+    <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans">
 
-      {/* Navbar */}
-      <header className="sticky top-0 left-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 h-18 py-4 flex items-center justify-between">
-          <Link href="/" className="text-[#1A365D] font-bold text-xl tracking-wider hover:opacity-80 transition-opacity">
-            SAQYN RABT
-          </Link>
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <Link href="/automation" className="text-[#1A365D] font-semibold border-b-2 border-[#1A365D] pb-0.5">Automation</Link>
-            <Link href="/chatbot" className="hover:text-[#1A365D] transition-colors">Chatbot</Link>
-            <Link href="/#pricing" className="hover:text-[#1A365D] transition-colors">Pricing</Link>
-            <Link href="/dashboard" className="hover:text-[#1A365D] transition-colors">Dashboard Demo</Link>
-          </nav>
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="inline-flex items-center justify-center bg-[#1A365D] text-white px-6 py-3 rounded-full font-medium hover:opacity-90 transition-all text-sm"
-          >
-            Book a Demo
-          </button>
-        </div>
-      </header>
+      <MarketingHeader />
 
       {/* Hero */}
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
@@ -97,7 +80,7 @@ export default function AutomationPage() {
         <h1 className="text-5xl md:text-6xl font-bold text-[#1A365D] leading-tight max-w-4xl mx-auto">
           Never Miss a Customer Call, Booking, or Complaint Again.
         </h1>
-        <p className="mt-6 text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
+        <p className="mt-6 text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
           The 24/7 AI front-desk that handles external inquiries, routes requests, and streamlines your guest experience.
         </p>
         <div className="mt-10 flex flex-wrap gap-4 justify-center">
@@ -126,8 +109,8 @@ export default function AutomationPage() {
                   <div key={uc.title} className="flex items-start gap-4 bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
                     <span className="text-2xl mt-0.5">{uc.icon}</span>
                     <div>
-                      <p className="font-semibold text-gray-800 text-sm">{uc.title}</p>
-                      <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{uc.desc}</p>
+                      <p className="font-semibold text-slate-800 text-sm">{uc.title}</p>
+                      <p className="text-slate-500 text-xs mt-0.5 leading-relaxed">{uc.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -148,8 +131,8 @@ export default function AutomationPage() {
               ].map((item, i) => (
                 <div key={i} className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
                   <div>
-                    <p className="text-sm font-medium text-gray-800">{item.label}</p>
-                    <p className="text-xs text-gray-400 mt-0.5">{item.dept}</p>
+                    <p className="text-sm font-medium text-slate-800">{item.label}</p>
+                    <p className="text-xs text-slate-400 mt-0.5">{item.dept}</p>
                   </div>
                   <span className={`text-xs font-semibold border rounded-full px-3 py-1 whitespace-nowrap ml-3 ${item.color}`}>{item.status}</span>
                 </div>
@@ -167,7 +150,7 @@ export default function AutomationPage() {
         <div className="max-w-5xl mx-auto px-6">
           <div className="text-center mb-14">
             <h2 className="text-3xl font-bold text-[#1A365D] mb-3">Automation Pricing</h2>
-            <p className="text-gray-500">All plans include onboarding support and your dedicated dashboard.</p>
+            <p className="text-slate-500">All plans include onboarding support and your dedicated dashboard.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {automationTiers.map((tier) => (
@@ -176,10 +159,10 @@ export default function AutomationPage() {
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">⭐ Popular</span>
                 )}
                 <h3 className="text-xl font-bold text-[#1A365D]">{tier.title}</h3>
-                <p className="text-xs text-gray-400 mt-0.5 mb-4">{tier.subtitle}</p>
+                <p className="text-xs text-slate-400 mt-0.5 mb-4">{tier.subtitle}</p>
                 <div className="mb-1">
                   <span className="text-4xl font-extrabold text-[#1A365D]">{tier.price}</span>
-                  <span className="text-gray-400 text-sm ml-1">QAR / mo</span>
+                  <span className="text-slate-400 text-sm ml-1">QAR / mo</span>
                 </div>
                 <p className="text-green-600 font-medium text-sm mb-5">+ {tier.setup} QAR setup fee</p>
                 <ul className="flex flex-col gap-2 mb-6 flex-1">
@@ -208,29 +191,22 @@ export default function AutomationPage() {
           <div className="space-y-5">
             {faqs.map((faq) => (
               <div key={faq.q} className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
-                <p className="font-semibold text-gray-800 mb-2">{faq.q}</p>
-                <p className="text-gray-500 text-sm leading-relaxed">{faq.a}</p>
+                <p className="font-semibold text-slate-800 mb-2">{faq.q}</p>
+                <p className="text-slate-500 text-sm leading-relaxed">{faq.a}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-gray-100 bg-white py-8 text-center text-xs text-gray-400 mt-auto">
-        <div className="flex items-center justify-center gap-6 mb-3 text-sm">
-          <Link href="/" className="text-[#1A365D] font-semibold hover:underline">← Back to Home</Link>
-          <Link href="/chatbot" className="hover:text-[#1A365D] transition-colors">Internal Chatbot →</Link>
-        </div>
-        <p>&copy; {new Date().getFullYear()} SAQYN RABT. All rights reserved.</p>
-      </footer>
+      <Footer />
 
       {/* Demo Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-gray-900/60 backdrop-blur-sm">
           <div className="bg-white border border-gray-200 rounded-xl max-w-md w-full p-6 shadow-xl">
             <h3 className="text-lg font-bold text-[#1A365D] mb-2">Book a Demo — Business Automation</h3>
-            <p className="text-sm text-gray-500 mb-6 leading-relaxed">
+            <p className="text-sm text-slate-500 mb-6 leading-relaxed">
               Book a 15-minute setup call with our team to configure your automation workspace.
             </p>
             <div className="flex flex-col gap-3">

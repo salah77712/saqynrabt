@@ -4,19 +4,19 @@
 
 body {
   font-family: 'Inter', sans-serif;
-  background: #ffffff;
-  color: #111111;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Rule 1: Mobile Touch Targets minimum height */
-button, 
-a.btn, 
-input[type="button"], 
-input[type="submit"],
+::selection {
+  background: #1A365D;
+  color: #ffffff;
+}
+
+a,
+button,
+input,
 select,
-input[type="text"],
-input[type="email"],
-input[type="password"],
-input[type="file"] {
+textarea {
   min-height: 44px;
 }

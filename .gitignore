@@ -1,10 +1,64 @@
-node_modules
+node_modules/
+backend-workers/.dev.vars
+backend-workers/wrangler.toml
+.opencode/
+
+# SAQYN RABT – ABSOLUTE SECURITY BLOCKLIST
+# Environment files
 .env
 .env.local
 .env.production
+.env.development
+.env.staging
+
+# Cloudflare / Wrangler
 .wrangler
-.next
+wrangler.toml.local
+
+# Node
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json*
+yarn.lock*
+
+# Build outputs
+.next/
+dist/
+build/
+out/
+.turbo/
+
+# OS files
 .DS_Store
-dist
-build
+Thumbs.db
+desktop.ini
+
+# IDE / Editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cursor/
+.windsurf/
+
+# Certificates / Keys
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+*.p8
+
+# Logs
+logs/
 *.log
+
+# Database dumps
+*.sqlite
+*.sqlite3
+
+# Temporary files
+*.tmp
+*.temp

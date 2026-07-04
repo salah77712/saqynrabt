@@ -1,0 +1,43 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "postgres": {
+      "type": "local",
+      "command": ["node", ".opencode\\postgres-wrapper.cjs"],
+      "enabled": true,
+      "timeout": 30000
+    },
+    "pinecone": {
+      "type": "local",
+      "command": ["node", ".opencode\\pinecone-wrapper.cjs"],
+      "enabled": true,
+      "timeout": 30000
+    },
+    "redis": {
+      "type": "local",
+      "command": ["node", ".opencode\\redis-wrapper.cjs"],
+      "enabled": true,
+      "timeout": 15000
+    },
+    "cloudflare": {
+      "type": "local",
+      "command": ["npx", "-y", "@cloudflare/mcp-server-cloudflare", "run", "6c77b8690fff1ed820e20271c8b40f5a"],
+      "enabled": true,
+      "timeout": 30000
+    },
+    "clerk": {
+      "type": "remote",
+      "url": "https://mcp.clerk.com/mcp",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer {env:CLERK_SECRET_KEY}"
+      }
+    },
+    "fetch": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-fetch-server"],
+      "enabled": true,
+      "timeout": 15000
+    }
+  }
+}

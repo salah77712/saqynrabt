@@ -1,8 +1,29 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Footer } from '../components/Footer';
+import { MarketingHeader } from '../components/MarketingHeader';
+import { useLocale } from './providers';
 
-// ─── Industry Data ────────────────────────────────────────────────────────────
+const navContent = {
+  automation: { en: 'Automation', ar: 'الأتمتة' },
+  chatbot: { en: 'Chatbot', ar: 'المساعد الذكي' },
+  features: { en: 'Features', ar: 'الميزات' },
+  pricing: { en: 'Pricing', ar: 'الأسعار' },
+  dashboardDemo: { en: 'Dashboard Demo', ar: 'عرض لوحة التحكم' },
+  bookDemo: { en: 'Book a 15-Min Demo', ar: 'احجز عرضًا لمدة 15 دقيقة' },
+};
+
+const heroContent = {
+  heading: { en: 'Automate Every Customer Interaction.', ar: 'أتمت كل تفاعل مع العميل.' },
+  subheading: { en: 'Never miss a call, booking, or complaint. Our AI handles your front-desk 24/7, routing requests to the right team automatically.', ar: 'لا تفوت مكالمة أو حجزًا أو شكوى. يتولى الذكاء الاصطناعي مكتب الاستقبال الخاص بك على مدار الساعة ويوجه الطلبات تلقائيًا للفريق المناسب.' },
+  rightHeroHeading: { en: 'Empower Your Team with Private AI Knowledge.', ar: 'مكن فريقك بمعرفة ذكاء اصطناعي خاصة.' },
+  rightHeroSubheading: { en: 'A RAG-powered assistant trained on your HR, SOPs, and policies. Employees get instant answers, never generic chatbots.', ar: 'مساعد مدعوم بـ RAG مدرب على مواد الموارد البشرية وسياسات التشغيل الموحدة. يحصل الموظفون على إجابات فورية وليس روبوتات دردشة عامة.' },
+  explorAuto: { en: 'Explore Automation →', ar: 'استكشف الأتمتة →' },
+  exploreChat: { en: 'Explore Chatbot →', ar: 'استكشف المساعد الذكي →' },
+};
+
+// Industry Data
 const industries = [
   { id: 'default', label: 'Every Business', headline: 'Empower Every Team Member. Automate Every Guest Request.', copy: 'The secure 24/7 AI front-desk and private staff knowledge hub for any industry. No missed calls. No repetitive questions.' },
   { id: 'healthcare', label: '🏥 Healthcare', headline: 'Empower Your Medical Staff. Automate Patient Intake.', copy: 'Reduce front-desk workload by automating patient bookings and triaging emergencies.' },
@@ -82,6 +103,8 @@ export default function MarketingPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlanName, setSelectedPlanName] = useState('');
   const [isCustomModal, setIsCustomModal] = useState(false);
+  const { locale } = useLocale();
+  const t = (obj: { en: string; ar: string }) => locale === 'ar' ? obj.ar : obj.en;
 
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
 
@@ -112,68 +135,63 @@ export default function MarketingPage() {
   const currentIndustry = industries.find(i => i.id === activeIndustry) || industries[0];
 
   return (
-    <div className="bg-white text-[#111111] min-h-screen flex flex-col font-sans">
+    <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 
-      {/* ── Navbar ─────────────────────────────────────────────────────────── */}
-      <header className="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-md z-50 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <span className="text-[#1A365D] font-bold text-xl tracking-wider">SAQYN RABT</span>
-
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-            <a href="/automation" className="hover:text-[#1A365D] transition-colors">Automation</a>
-            <a href="/chatbot" className="hover:text-[#1A365D] transition-colors">Chatbot</a>
-            <a href="#showcase" className="hover:text-[#1A365D] transition-colors">Features</a>
-            <a href="#pricing" className="hover:text-[#1A365D] transition-colors">Pricing</a>
-            <a href="/dashboard" className="hover:text-[#1A365D] transition-colors">Dashboard Demo</a>
-          </nav>
-
-          <a
-            href={calendlyUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center bg-[#1A365D] text-white px-6 py-3 rounded-full min-h-[44px] font-medium hover:opacity-90 transition-all text-sm"
-          >
-            Book a 15-Min Demo
-          </a>
-        </div>
-      </header>
+      <MarketingHeader />
 
       {/* ── Split Hero ─────────────────────────────────────────────────────── */}
-      <section className="pt-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 min-h-[460px]">
-
-          {/* Left — Automation */}
-          <div className="bg-[#1A365D] text-white px-10 py-16 flex flex-col justify-center">
-            <span className="text-5xl mb-4">📞</span>
-            <h1 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-              Automate Every Customer Interaction.
+      <section className="bg-[radial-gradient(circle_at_top_left,_rgba(26,54,93,0.08),_transparent_40%),linear-gradient(135deg,_#f8fbff_0%,_#ffffff_100%)] py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
+          <div className="rounded-3xl bg-[#1A365D] p-8 text-white shadow-[0_30px_80px_-30px_rgba(26,54,93,0.6)] sm:p-10 lg:p-12">
+            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl">📞</div>
+            <h1 className="max-w-xl text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
+              {t(heroContent.heading)}
             </h1>
-            <p className="text-blue-100 text-base leading-relaxed mb-8 max-w-sm">
-              Never miss a call, booking, or complaint. Our AI handles your front-desk 24/7, routing requests to the right team automatically.
+            <p className="mt-5 max-w-lg text-base leading-8 text-blue-100 sm:text-lg">
+              {t(heroContent.subheading)}
             </p>
-            <a
-              href="/automation"
-              className="self-start bg-white text-[#1A365D] font-bold px-7 py-3 rounded-lg hover:bg-blue-50 transition-all"
-            >
-              Explore Automation →
-            </a>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="/automation"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-white px-6 py-3 font-semibold text-[#1A365D] transition-all hover:-translate-y-0.5 hover:bg-blue-50"
+              >
+                {t(heroContent.explorAuto)}
+              </a>
+              <a
+                href={calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/30 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10"
+              >
+                {t(navContent.bookDemo)}
+              </a>
+            </div>
           </div>
 
-          {/* Right — Chatbot */}
-          <div className="bg-slate-50 text-[#1A365D] px-10 py-16 flex flex-col justify-center border-l border-gray-100">
-            <span className="text-5xl mb-4">🧠</span>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight mb-4">
-              Empower Your Team with Private AI Knowledge.
+          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.25)] sm:p-10 lg:p-12">
+            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-2xl">🧠</div>
+            <h2 className="max-w-xl text-3xl font-semibold leading-tight text-[#1A365D] sm:text-4xl">
+              Empower Every Team Member with Private AI Knowledge.
             </h2>
-            <p className="text-gray-500 text-base leading-relaxed mb-8 max-w-sm">
-              A RAG-powered assistant trained on your HR, SOPs, and policies. Employees get instant answers, never generic chatbots.
+            <p className="mt-5 max-w-lg text-base leading-8 text-slate-600 sm:text-lg">
+              A private RAG assistant trained on your HR handbook, SOPs, and policies. Employees get fast answers without generic AI drift.
             </p>
-            <a
-              href="/chatbot"
-              className="self-start bg-[#1A365D] text-white font-bold px-7 py-3 rounded-lg hover:opacity-90 transition-all"
-            >
-              Explore Chatbot →
-            </a>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="/chatbot"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#1A365D] px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#15304f]"
+              >
+                Explore Chatbot →
+              </a>
+              <a
+                href={calendlyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-slate-300 px-6 py-3 font-semibold text-[#1A365D] transition-all hover:border-[#1A365D] hover:bg-slate-50"
+              >
+                {t(navContent.bookDemo)}
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -181,7 +199,7 @@ export default function MarketingPage() {
       {/* ── Industry Switcher ──────────────────────────────────────────────── */}
       <section className="bg-white border-t border-gray-100 py-14">
         <div className="max-w-4xl mx-auto px-6 flex flex-col items-center">
-          <p className="text-xs font-bold tracking-widest text-gray-400 uppercase mb-5">
+          <p className="text-xs font-bold tracking-widest text-slate-400 uppercase mb-5">
             Built for 15+ industries — select yours
           </p>
 
@@ -194,7 +212,7 @@ export default function MarketingPage() {
                 className={`min-h-[40px] px-5 py-2 rounded-full border-2 font-medium text-sm transition-all whitespace-nowrap cursor-pointer ${
                   activeIndustry === industry.id
                     ? 'bg-[#1A365D] text-white border-[#1A365D]'
-                    : 'bg-white text-gray-600 border-gray-200 hover:border-[#1A365D]'
+                    : 'bg-white text-slate-600 border-gray-200 hover:border-[#1A365D]'
                 }`}
               >
                 {industry.label}
@@ -208,7 +226,7 @@ export default function MarketingPage() {
               id="other-industries"
               value={OTHER_INDUSTRIES.some(i => i.id === activeIndustry) ? activeIndustry : ''}
               onChange={handleSelectChange}
-              className="w-full min-h-[40px] bg-white border border-gray-200 rounded-md px-4 py-2 text-gray-600 focus:outline-none focus:ring-2 focus:ring-[#1A365D] transition-all appearance-none cursor-pointer text-center text-sm"
+              className="w-full min-h-[40px] bg-white border border-gray-200 rounded-md px-4 py-2 text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#1A365D] transition-all appearance-none cursor-pointer text-center text-sm"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%234B5563' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
                 backgroundPosition: 'right 1rem center',
@@ -230,7 +248,7 @@ export default function MarketingPage() {
             <h2 className="text-2xl md:text-3xl font-bold text-[#1A365D] leading-tight mt-2 max-w-2xl mx-auto">
               {currentIndustry.headline}
             </h2>
-            <p className="text-gray-500 mt-3 max-w-xl mx-auto text-sm leading-relaxed">
+            <p className="text-slate-500 mt-3 max-w-xl mx-auto text-sm leading-relaxed">
               {currentIndustry.copy}
             </p>
           </div>
@@ -256,19 +274,17 @@ export default function MarketingPage() {
       </section>
 
 
-      {/* ── No Surprise Bills Banner ───────────────────────────────────────── */}
-      <div className="bg-emerald-50 border-y border-emerald-100 py-5 px-6 text-center">
-        <p className="text-emerald-700 font-semibold text-sm">
-          ✅ No surprise bills. Every plan has a fixed monthly price and a one-time setup fee. Overages only if you enable them.
-        </p>
-      </div>
-
       {/* ── Pricing ────────────────────────────────────────────────────────── */}
-      <section id="pricing" className="bg-white py-20">
+      <section id="pricing" className="bg-slate-50 py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-[#1A365D] mb-3">Transparent Pricing for Every Business</h2>
-            <p className="text-gray-500">Two products. Six tiers. No bundles. No confusion.</p>
+            <h2 className="text-3xl font-bold text-primary mb-3">Transparent Pricing for Every Business</h2>
+            <p className="text-slate-500">Two products. Six tiers. No bundles. No confusion.</p>
+          </div>
+          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl py-4 px-6 text-center mb-10">
+            <p className="text-emerald-700 font-semibold text-sm">
+              ✅ No surprise bills. Fixed monthly price + one-time setup. Overages only if you enable them.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -279,7 +295,7 @@ export default function MarketingPage() {
                 <span className="text-2xl">📞</span>
                 <div>
                   <h3 className="text-xl font-extrabold text-[#1A365D]">Business Automation</h3>
-                  <p className="text-xs text-gray-400 mt-0.5">Handle calls, bookings & complaints 24/7.</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Handle calls, bookings & complaints 24/7.</p>
                 </div>
                 <a href="/automation" className="ml-auto text-xs text-blue-600 font-semibold hover:underline whitespace-nowrap">Full details →</a>
               </div>
@@ -292,28 +308,30 @@ export default function MarketingPage() {
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="text-lg font-bold text-[#1A365D]">{tier.title}</h4>
-                        <p className="text-xs text-gray-400 mt-0.5">{tier.subtitle}</p>
+                        <p className="text-xs text-slate-400 mt-0.5">{tier.subtitle}</p>
                       </div>
                       <div className="text-right">
                         <div>
                           <span className="text-2xl font-extrabold text-[#1A365D]">{tier.price}</span>
-                          <span className="text-gray-400 text-xs ml-1">QAR/mo</span>
+                          <span className="text-slate-400 text-xs ml-1">QAR/mo</span>
                         </div>
                         <p className="text-green-600 text-xs font-medium mt-0.5">+ {tier.setup} QAR setup</p>
                       </div>
                     </div>
                     <ul className="mt-4 flex flex-col gap-1.5">
                       {tier.features.map((f, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-gray-600 text-xs">
+                        <li key={idx} className="flex items-center gap-2 text-slate-600 text-xs">
                           <span className="text-green-500 font-bold">✓</span>{f}
                         </li>
                       ))}
                     </ul>
                     <a
-                      href="/automation"
+                      href={calendlyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="mt-5 w-full bg-[#1A365D] text-white py-3 rounded-lg font-medium hover:opacity-90 transition-all text-sm text-center block"
                     >
-                      Learn More →
+                      Book a Demo →
                     </a>
                   </div>
                 ))}
@@ -326,7 +344,7 @@ export default function MarketingPage() {
                 <span className="text-2xl">🧠</span>
                 <div>
                   <h3 className="text-xl font-extrabold text-[#1A365D]">Internal Company Chatbot</h3>
-                  <p className="text-xs text-gray-400 mt-0.5">Private RAG assistant for employees, SOPs, and HR.</p>
+                  <p className="text-xs text-slate-400 mt-0.5">Private RAG assistant for employees, SOPs, and HR.</p>
                 </div>
                 <a href="/chatbot" className="ml-auto text-xs text-emerald-600 font-semibold hover:underline whitespace-nowrap">Full details →</a>
               </div>
@@ -339,13 +357,13 @@ export default function MarketingPage() {
                     <div className="flex items-start justify-between">
                       <div>
                         <h4 className="text-lg font-bold text-[#1A365D]">{tier.title}</h4>
-                        <p className="text-xs text-gray-400 mt-0.5">{tier.subtitle}</p>
+                        <p className="text-xs text-slate-400 mt-0.5">{tier.subtitle}</p>
                       </div>
                       <div className="text-right">
                         {tier.price !== 'Custom' ? (
                           <div>
                             <span className="text-2xl font-extrabold text-[#1A365D]">{tier.price}</span>
-                            <span className="text-gray-400 text-xs ml-1">QAR/mo</span>
+                            <span className="text-slate-400 text-xs ml-1">QAR/mo</span>
                           </div>
                         ) : (
                           <span className="text-2xl font-extrabold text-[#1A365D]">Custom</span>
@@ -357,20 +375,22 @@ export default function MarketingPage() {
                     </div>
                     <ul className="mt-4 flex flex-col gap-1.5">
                       {chatbotFeatures[tier.id]?.map((f, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-gray-600 text-xs">
+                        <li key={idx} className="flex items-center gap-2 text-slate-600 text-xs">
                           <span className="text-green-500 font-bold">✓</span>{f}
                         </li>
                       ))}
                     </ul>
                     <a
-                      href="/chatbot"
+                      href={calendlyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className={`mt-5 w-full py-3 rounded-lg font-medium transition-all text-sm text-center block ${
                         tier.cta === 'Contact Sales'
                           ? 'bg-gray-100 text-[#1A365D] hover:bg-gray-200'
                           : 'bg-[#1A365D] text-white hover:opacity-90'
                       }`}
                     >
-                      Learn More →
+                      Book a Demo →
                     </a>
                   </div>
                 ))}
@@ -381,22 +401,7 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* ── Footer ─────────────────────────────────────────────────────────── */}
-      <footer className="border-t border-gray-100 bg-white py-10 mt-auto">
-        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-400">
-          <span className="text-[#1A365D] font-bold text-base tracking-wide">SAQYN RABT</span>
-          <nav className="flex flex-wrap items-center justify-center gap-5">
-            <a href="/automation" className="hover:text-[#1A365D] transition-colors">Automation</a>
-            <a href="/chatbot" className="hover:text-[#1A365D] transition-colors">Chatbot</a>
-            <a href="#custom" className="hover:text-[#1A365D] transition-colors">Custom Solutions</a>
-            <a href="/dashboard" className="hover:text-[#1A365D] transition-colors">Dashboard Demo</a>
-            <a href="#" className="hover:text-[#1A365D] transition-colors">Privacy</a>
-            <a href="#" className="hover:text-[#1A365D] transition-colors">Terms</a>
-            <a href="#" className="hover:text-[#1A365D] transition-colors">About</a>
-          </nav>
-          <span>&copy; {new Date().getFullYear()} SAQYN RABT. All rights reserved.</span>
-        </div>
-      </footer>
+      <Footer />
 
       {/* ── Book a Demo Modal ───────────────────────────────────────────────── */}
       {isModalOpen && (
@@ -405,7 +410,7 @@ export default function MarketingPage() {
             <h3 className="text-lg font-bold text-[#1A365D] mb-2">
               {isCustomModal ? 'Request a Custom Demo' : `Configure Plan — ${selectedPlanName}`}
             </h3>
-            <p className="text-sm text-gray-500 mb-6 leading-relaxed">
+            <p className="text-sm text-slate-500 mb-6 leading-relaxed">
               {isCustomModal
                 ? 'Tell us about your business and we\'ll build a tailored proposal. A 15-minute call is all it takes to get started.'
                 : 'Book a 15-minute setup call with our team to configure your custom workspace.'}

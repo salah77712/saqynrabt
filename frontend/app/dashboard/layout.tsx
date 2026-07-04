@@ -3,8 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { useAuth, UserButton } from '@clerk/nextjs';
-import { useEntitlements } from '../providers';
+import { UserButton } from '@clerk/nextjs';
+import { useEntitlements, useLocale } from '../providers';
+import { LanguageSwitcher } from '../../components/LanguageSwitcher';
 
 export default function DashboardLayout({
   children,
@@ -13,147 +14,153 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { signOut } = useAuth();
-  const { entitlements, loading, mockMode, setMockMode } = useEntitlements();
+  const { mockMode, setMockMode } = useEntitlements();
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
-  // Rule 32: Voice AI Financial Lock dead-switch
-  // Renders voice tabs or screens only if Voice AI is activated
   const isVoiceActivated = process.env.NEXT_PUBLIC_VOICE_AI_ACTIVATED === 'true';
 
+  const dashboardContent = {
+    overview: { en: 'Overview', ar: 'نظرة عامة' },
+    staffKnowledge: { en: 'Staff Knowledge Hub', ar: 'مركز معرفة الموظفين' },
+    guestQueue: { en: 'Guest & Client Queue', ar: 'طابور الضيوف والعملاء' },
+    documents: { en: 'Documents Hub', ar: 'مركز المستندات' },
+    approvals: { en: 'Pending Approvals', ar: 'الموافقات المعلقة' },
+    settings: { en: 'Usage & Settings', ar: 'الاستخدام والإعدادات' },
+    voice: { en: 'Voice Dispatch Hub', ar: 'مركز توزيع الصوت' },
+    clientPortal: { en: 'Client Portal', ar: 'بوابة العميل' },
+    sandbox: { en: 'Sandbox', ar: 'وضع الرمل' },
+    demo: { en: 'Demo', ar: 'عرض توضيحي' },
+    exit: { en: 'Exit', ar: 'خروج' },
+    activeClient: { en: 'Active Client Admin', ar: 'مسؤول العميل النشط' },
+    demoSandbox: { en: '⚠️ Demo sandbox mode is active for fast review.', ar: '⚠️ وضع رمل العرض النشط للمراجعة السريعة.' },
+    configure: { en: 'Configure environment', ar: 'تكوين البيئة' },
+    clientDashboard: { en: 'Client Dashboard', ar: 'لوحة تحكم العميل' },
+    live: { en: 'Live', ar: 'مباشر' },
+  };
+
   const menuItems = [
-    {
-      name: 'Staff Knowledge Hub', // Rule 3 exact copy
-      path: '/dashboard/chat',
-      icon: '💬',
-    },
-    {
-      name: 'Guest & Client Queue', // Rule 3 exact copy
-      path: '/dashboard/automation',
-      icon: '⚡',
-    },
-    {
-      name: 'Documents Hub',
-      path: '/dashboard/documents',
-      icon: '📁',
-    },
-    {
-      name: 'Pending Approvals', // Rule 36 approval tab
-      path: '/dashboard/approvals',
-      icon: '👤',
-    },
-    {
-      name: 'Usage & Settings',
-      path: '/dashboard/settings',
-      icon: '⚙️',
-    },
+    { name: dashboardContent.overview, path: '/dashboard', icon: '◉' },
+    { name: dashboardContent.staffKnowledge, path: '/dashboard/chat', icon: '💬' },
+    { name: dashboardContent.guestQueue, path: '/dashboard/automation', icon: '⚡' },
+    { name: dashboardContent.documents, path: '/dashboard/documents', icon: '📁' },
+    { name: dashboardContent.approvals, path: '/dashboard/approvals', icon: '👤' },
+    { name: dashboardContent.settings, path: '/dashboard/settings', icon: '⚙️' },
   ];
 
   if (isVoiceActivated) {
-    menuItems.push({
-      name: 'Voice Dispatch Hub', // Rule 32 voice tab
-      path: '/dashboard/voice',
-      icon: '📞',
-    });
+    menuItems.push({ name: dashboardContent.voice, path: '/dashboard/voice', icon: '📞' });
   }
 
+  const currentTitle = pathname === '/dashboard'
+    ? t(dashboardContent.overview)
+    : menuItems.find((item) => item.path !== '/dashboard' && pathname.startsWith(item.path)) ? t(menuItems.find((item) => item.path !== '/dashboard' && pathname.startsWith(item.path))!.name) : t(dashboardContent.clientDashboard);
+
   return (
-    <div className="min-h-screen bg-dark-900 text-slate-100 flex flex-col md:flex-row font-sans">
-      
-      {/* Sidebar Panel */}
-      <aside className="w-full md:w-64 bg-dark-800 border-r border-dark-700 flex flex-col justify-between shrink-0">
-        <div>
-          {/* Logo and Brand */}
-          <div className="h-16 border-b border-dark-700 flex items-center justify-between px-6">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="w-6 h-6 bg-brand-500 rounded flex items-center justify-center font-bold text-dark-900 text-xs">
+    <div className="min-h-screen bg-slate-50 text-slate-900" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="flex min-h-screen flex-col md:flex-row">
+        <aside className="w-full border-b border-slate-200 bg-slate-950 text-slate-100 md:w-72 md:border-b-0 md:border-r md:border-slate-800">
+          <div className="flex items-center justify-between px-6 py-5">
+            <Link href="/" className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500 font-bold text-dark-900">
                 SR
               </div>
-              <span className="font-bold text-sm tracking-wider">SAQYN RABT</span>
+              <div>
+                <p className="text-sm font-semibold tracking-[0.25em]">SAQYN RABT</p>
+                <p className="text-[11px] uppercase tracking-[0.3em] text-slate-400">{t(dashboardContent.clientPortal)}</p>
+              </div>
             </Link>
             {mockMode && (
-              <span className="text-[10px] bg-amber-950 text-amber-400 px-2 py-0.5 rounded font-mono font-bold border border-amber-500/20">
-                SANDBOX
+              <span className="rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.25em] text-amber-300">
+                {t(dashboardContent.sandbox)}
               </span>
             )}
           </div>
 
-          {/* Navigation Links */}
-          <nav className="p-4 space-y-1">
+          <nav className="space-y-1 px-3 py-2">
             {menuItems.map((item) => {
-              const isActive = pathname === item.path;
+              const isActive = pathname === item.path || (item.path !== '/dashboard' && pathname.startsWith(item.path));
               return (
                 <Link
                   key={item.path}
                   href={item.path}
-                  className={`flex items-center gap-3 px-4 rounded-lg text-sm font-semibold transition-all hover:bg-dark-700 ${
-                    isActive 
-                      ? 'bg-brand-500 text-dark-900 shadow-md hover:bg-brand-600' 
-                      : 'text-slate-300'
+                  className={`flex items-center gap-3 rounded-2xl px-4 text-sm font-semibold transition-all ${
+                    isActive
+                      ? 'bg-brand-500 text-dark-900 shadow-lg shadow-brand-500/20'
+                      : 'text-slate-300 hover:bg-slate-800 hover:text-white'
                   }`}
                   style={{ minHeight: '44px' }}
                 >
                   <span className="text-base">{item.icon}</span>
-                  <span>{item.name}</span>
+                  <span>{t(item.name)}</span>
                 </Link>
               );
             })}
           </nav>
-        </div>
 
-        {/* User Account Controls */}
-        <div className="p-4 border-t border-dark-700 flex items-center justify-between gap-3">
-          {mockMode ? (
-            <div className="flex items-center justify-between w-full">
-              <div className="flex flex-col">
-                <span className="text-xs font-semibold text-white">Salah (Demo)</span>
-                <span className="text-[10px] text-slate-500">admin@alsafa.qa</span>
+          <div className="mt-6 border-t border-slate-800 p-4">
+            {mockMode ? (
+              <div className="rounded-2xl border border-slate-800 bg-slate-900/80 p-3">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-semibold text-white">Salah ({t(dashboardContent.demo)})</p>
+                    <p className="text-[11px] text-slate-400">admin@alsafa.qa</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      setMockMode(false);
+                      router.push('/');
+                    }}
+                    className="text-xs font-semibold text-brand-400 hover:text-white"
+                  >
+                    {t(dashboardContent.exit)}
+                  </button>
+                </div>
               </div>
-              <button 
-                onClick={() => {
-                  setMockMode(false);
-                  router.push('/');
-                }}
-                className="text-xs text-brand-400 hover:text-white"
-              >
-                Exit Sandbox
+            ) : (
+              <div className="flex items-center gap-3 rounded-2xl border border-slate-800 bg-slate-900/80 p-3">
+                <UserButton afterSignOutUrl="/" />
+                <div>
+                  <p className="text-sm font-semibold text-slate-100">Salah Al-Qahtani</p>
+                  <p className="text-[11px] text-slate-400">{t(dashboardContent.activeClient)}</p>
+                </div>
+              </div>
+            )}
+          </div>
+        </aside>
+
+        <main className="flex min-w-0 flex-1 flex-col">
+          {mockMode && (
+            <div className="flex items-center justify-between border-b border-amber-200 bg-amber-50 px-6 py-2 text-xs font-semibold text-amber-700">
+              <span>{t(dashboardContent.demoSandbox)}</span>
+              <button onClick={() => router.push('/dashboard/settings')} className="underline hover:text-amber-900">
+                {t(dashboardContent.configure)}
               </button>
             </div>
-          ) : (
-            <div className="flex items-center justify-between w-full">
+          )}
+
+          <header className="border-b border-slate-200 bg-white/80 px-6 py-4 backdrop-blur">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <p className="text-[11px] font-semibold uppercase tracking-[0.35em] text-primary">{t(dashboardContent.clientDashboard)}</p>
+                <h2 className="text-xl font-semibold text-slate-900">{currentTitle}</h2>
+              </div>
               <div className="flex items-center gap-3">
-                <UserButton afterSignOutUrl="/" />
-                <div className="flex flex-col">
-                  <span className="text-xs font-semibold text-slate-200">Salah Al-Qahtani</span>
-                  <span className="text-[10px] text-slate-500">Active Admin</span>
+                <LanguageSwitcher />
+                <div className="flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-2 text-sm font-medium text-emerald-700">
+                  <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                  {t(dashboardContent.live)}
                 </div>
               </div>
             </div>
-          )}
-        </div>
-      </aside>
+          </header>
 
-      {/* Main Content Area */}
-      <main className="flex-grow flex flex-col min-w-0">
-        
-        {/* Sandbox Warning Banner */}
-        {mockMode && (
-          <div className="bg-amber-950/80 border-b border-amber-500/20 px-6 py-2 flex items-center justify-between text-xs text-amber-300">
-            <span>⚠️ Running in Demo Sandbox Mode. Local database calls are simulated for instant review.</span>
-            <button 
-              onClick={() => router.push('/dashboard/settings')} 
-              className="underline font-bold hover:text-white"
-            >
-              Configure Environment
-            </button>
+
+          <div className="flex-1 overflow-auto p-6 md:p-8">
+            {children}
           </div>
-        )}
-
-        {/* Dashboard Pages Content */}
-        <div className="p-6 md:p-8 flex-grow overflow-auto">
-          {children}
-        </div>
-      </main>
-
+        </main>
+      </div>
     </div>
   );
 }
