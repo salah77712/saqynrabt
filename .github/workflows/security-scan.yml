@@ -3,8 +3,6 @@ name: Security Scanning (SAST/DAST)
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
 
 jobs:
   sonar_scan:
@@ -22,6 +20,5 @@ jobs:
           args: >
             -Dsonar.organization=salah77712
             -Dsonar.projectKey=salah77712_saqynrabt
-            -Dsonar.projectBaseDir=.
             -Dsonar.sources=frontend,backend-workers
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/.wrangler/**

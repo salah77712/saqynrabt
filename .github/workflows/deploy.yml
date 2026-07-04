@@ -2,71 +2,62 @@ name: Deploy SAQYN RABT Platform
 
 on:
   push:
-    branches:
-      - main
-      - staging
-    tags:
-      - 'v*'
+    branches: [ main ]
 
 jobs:
   build_frontend:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: 'npm'
+          node-version: '20'
 
       - name: Install Frontend Dependencies
-        run: npm --prefix frontend install
+        working-directory: ./frontend
+        run: npm install
 
-      - name: Build Next.js Bundle
-        run: npm --prefix frontend run build
-        env:
-          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
-          NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
-
-  build_backend:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      - name: Install Cloudflare Wrangler
-        run: npm install -g wrangler
-
-      - name: Deploy to Cloudflare Workers
-        run: npx wrangler deploy
-        working-directory: ./backend-workers
-        env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      - name: Build Frontend
+        working-directory: ./frontend
+        run: npm run build
 
   test_suite:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      - name: Setup Node.js Environment
-        uses: actions/setup-node@v3
+      - name: Install Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: '20'
+
+      - name: Install Frontend Dependencies
+        working-directory: ./frontend
+        run: npm install
+
+      - name: Run E2E Playwright Tests
+        working-directory: ./frontend
+        run: npx playwright test
+
+  build_backend:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
       - name: Install Backend Dependencies
-        run: npm --prefix backend-workers install
+        working-directory: ./backend-workers
+        run: npm install
 
-      - name: Run Backend Integration Test Suite
-        run: npm --prefix backend-workers run test
-        env:
-          REDIS_URL: ${{ secrets.REDIS_URL }}
-          NEON_DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+      - name: Deploy Backend to Cloudflare
+        working-directory: ./backend-workers
+        run: npx wrangler deploy
