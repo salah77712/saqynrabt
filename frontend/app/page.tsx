@@ -2,26 +2,9 @@
 
 import { useState, useEffect } from 'react';
 import { Footer } from '../components/Footer';
-import { MarketingHeader } from '../components/MarketingHeader';
 import { useLocale } from './providers';
-
-const navContent = {
-  automation: { en: 'Automation', ar: 'الأتمتة' },
-  chatbot: { en: 'Chatbot', ar: 'المساعد الذكي' },
-  features: { en: 'Features', ar: 'الميزات' },
-  pricing: { en: 'Pricing', ar: 'الأسعار' },
-  dashboardDemo: { en: 'Dashboard Demo', ar: 'عرض لوحة التحكم' },
-  bookDemo: { en: 'Book a 15-Min Demo', ar: 'احجز عرضًا لمدة 15 دقيقة' },
-};
-
-const heroContent = {
-  heading: { en: 'Automate Every Customer Interaction.', ar: 'أتمت كل تفاعل مع العميل.' },
-  subheading: { en: 'Never miss a call, booking, or complaint. Our AI handles your front-desk 24/7, routing requests to the right team automatically.', ar: 'لا تفوت مكالمة أو حجزًا أو شكوى. يتولى الذكاء الاصطناعي مكتب الاستقبال الخاص بك على مدار الساعة ويوجه الطلبات تلقائيًا للفريق المناسب.' },
-  rightHeroHeading: { en: 'Empower Your Team with Private AI Knowledge.', ar: 'مكن فريقك بمعرفة ذكاء اصطناعي خاصة.' },
-  rightHeroSubheading: { en: 'A RAG-powered assistant trained on your HR, SOPs, and policies. Employees get instant answers, never generic chatbots.', ar: 'مساعد مدعوم بـ RAG مدرب على مواد الموارد البشرية وسياسات التشغيل الموحدة. يحصل الموظفون على إجابات فورية وليس روبوتات دردشة عامة.' },
-  explorAuto: { en: 'Explore Automation →', ar: 'استكشف الأتمتة →' },
-  exploreChat: { en: 'Explore Chatbot →', ar: 'استكشف المساعد الذكي →' },
-};
+import { LanguageSwitcher } from '../components/LanguageSwitcher';
+import Link from 'next/link';
 
 // Industry Data
 const industries = [
@@ -50,7 +33,7 @@ const OTHER_INDUSTRIES = industries.filter(i =>
   ['towing', 'veterinary', 'plumbing', 'boutiquehotel', 'catering', 'dealership', 'construction', 'law', 'accounting'].includes(i.id)
 );
 
-// ─── Pricing Data ─────────────────────────────────────────────────────────────
+// Pricing Data
 const automationTiers = [
   { id: 'auto-starter', title: 'Starter', subtitle: 'For small front desks.', price: '1,499', setup: '1,999', popular: false, features: ['Basic call answering', '500 text requests/mo', '250 voice mins/mo', '1 department routing', 'Standard support'] },
   { id: 'auto-growth',  title: 'Growth',  subtitle: 'For growing operations.', price: '2,499', setup: '3,499', popular: true,  features: ['Advanced call answering', '2,000 text requests/mo', '700 voice mins/mo', '3 dept routing', 'Complaint routing', 'Weekly report'] },
@@ -69,44 +52,27 @@ const chatbotFeatures: Record<string, string[]> = {
   'chat-enterprise': ['Unlimited employees', 'Unlimited questions', 'Unlimited documents', 'Dedicated knowledge base', 'Custom branding'],
 };
 
-// ─── Showcase Cards ───────────────────────────────────────────────────────────
-const showcaseCards = [
-  {
-    icon: '📞',
-    title: 'Call & Booking Automation',
-    desc: 'AI answers every call and inbound message 24/7. It captures bookings, routes complaints to the right department, and logs live transcripts on your dashboard — zero human effort required.',
-    link: '/automation',
-    linkLabel: 'Explore Automation →',
-    accent: 'border-t-4 border-t-blue-600',
-  },
-  {
-    icon: '💬',
-    title: 'Internal RAG Chatbot',
-    desc: 'Upload your HR handbook, SOPs, and policy docs. Employees get instant, accurate answers pulled directly from your documents — not generic AI guesses.',
-    link: '/chatbot',
-    linkLabel: 'Explore Chatbot →',
-    accent: 'border-t-4 border-t-emerald-500',
-  },
-  {
-    icon: '🔧',
-    title: 'Customizable Workflows',
-    desc: 'Multi-location businesses, enterprise CRM integrations, custom routing trees, and bespoke knowledge bases — our team builds exactly what you need.',
-    link: '#custom',
-    linkLabel: 'Request Custom Demo →',
-    accent: 'border-t-4 border-t-violet-500',
-  },
-];
-
-// ─── Component ────────────────────────────────────────────────────────────────
 export default function MarketingPage() {
   const [activeIndustry, setActiveIndustry] = useState('default');
+  const [activeProduct, setActiveProduct] = useState<'automation' | 'chatbot'>('automation');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPlanName, setSelectedPlanName] = useState('');
   const [isCustomModal, setIsCustomModal] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale } = useLocale();
+
   const t = (obj: { en: string; ar: string }) => locale === 'ar' ? obj.ar : obj.en;
 
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
@@ -134,270 +100,580 @@ export default function MarketingPage() {
 
   const currentIndustry = industries.find(i => i.id === activeIndustry) || industries[0];
 
+  // Chatbot-specific headlines/copies per industry (for toggle state)
+  const chatbotIndustryHeadlines: Record<string, { en: string; ar: string }> = {
+    default: {
+      en: 'Empower Every Team Member with Private AI Knowledge.',
+      ar: 'مكّن كل عضو في الفريق بمعرفة الذكاء الاصطناعي الخاصة.'
+    },
+    healthcare: {
+      en: 'Empower Your Medical Staff. Access SOPs Instantly.',
+      ar: 'مكّن طاقمك الطبي. احصل على إجراءات التشغيل فورًا.'
+    },
+    hospitality: {
+      en: 'Empower Your Hospitality Staff. Standardize Hotel SOPs.',
+      ar: 'مكّن موظفي الضيافة. وحد إجراءات تشغيل الفندق.'
+    },
+    homeservices: {
+      en: 'Empower Your Service Crew. Access Safety Manuals 24/7.',
+      ar: 'مكّن طاقم الخدمة. احصل على أدلة السلامة على مدار الساعة.'
+    },
+    realestate: {
+      en: 'Empower Your Management Team. Access Property SOPs.',
+      ar: 'مكّن فريق الإدارة. احصل على إجراءات تشغيل العقار.'
+    },
+    automotive: {
+      en: 'Empower Your Mechanics. Access Diagnostic Standards.',
+      ar: 'مكّن الفنيين لديك. احصل على معايير التشخيص.'
+    },
+    food: {
+      en: 'Empower Your Kitchen & Staff. Standardize Hygiene Manuals.',
+      ar: 'مكّن مطبخك وموظفيك. وحد أدلة النظافة.'
+    }
+  };
+
+  const chatbotIndustryCopies: Record<string, { en: string; ar: string }> = {
+    default: {
+      en: 'A private RAG assistant trained on your HR, SOPs, and policies. Employees get fast, verified answers without generic AI drift.',
+      ar: 'مساعد RAG خاص مدرب على الموارد البشرية وإجراءات التشغيل والسياسات. يحصل الموظفون على إجابات سريعة وموثوقة.'
+    },
+    healthcare: {
+      en: 'Upload clinical SOPs, treatment protocols, and clinic guidelines. Nurses and staff get verified, non-generic answers instantly.',
+      ar: 'قم بتحميل إجراءات التشغيل السريرية وبروتوكولات العلاج. يحصل طاقم التمريض على إجابات موثوقة على الفور.'
+    },
+    hospitality: {
+      en: 'Train your private assistant on check-in policies, room configurations, and guest handle rules to onboard front desk staff faster.',
+      ar: 'درب مساعدك الخاص على سياسات الدخول وتجهيز الغرف لتدريب موظفي الاستقبال بشكل أسرع.'
+    },
+    homeservices: {
+      en: 'Make safety protocols, appliance manuals, and pricing calculators available to field technicians instantly on their phones.',
+      ar: 'اجعل بروتوعولات السلامة وأدلة الأجهزة الحاسبة متاحة للفنيين في الميدان على هواتفهم فورًا.'
+    },
+    realestate: {
+      en: 'Index building handbooks, vendor directories, and lease templates for on-site property managers and leasing coordinators.',
+      ar: 'فهرس كتيبات المباني ودليل الموردين ونماذج الإيجار لمديري العقارات وموظفي التأجير.'
+    },
+    automotive: {
+      en: 'Give mechanics instant access to manufacturer schematics, diagnostic procedures, and shop safety policies.',
+      ar: 'امنح الفنيين وصولاً فوريًا إلى مخططات المصنّع وإجراءات التشخيص وسياسات السلامة.'
+    },
+    food: {
+      en: 'Train floor staff on kitchen guidelines, food allergies policy, and dining room standards to ensure top hospitality.',
+      ar: 'درب موظفي الخدمة على إرشادات المطبخ وسياسة الحساسية الغذائية لضمان أفضل خدمة.'
+    }
+  };
+
+  const chatbotHeadline = chatbotIndustryHeadlines[activeIndustry] || chatbotIndustryHeadlines.default;
+  const chatbotCopy = chatbotIndustryCopies[activeIndustry] || chatbotIndustryCopies.default;
+
   return (
-    <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      
+      {/* ── Navbar & Global Header (Section 2) ─────────────────────────────── */}
+      <header className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+        isScrolled ? 'bg-white/90 backdrop-blur-md border-b border-gray-100/50 shadow-sm' : 'bg-white/80 backdrop-blur-md border-b border-gray-100/20'
+      }`}>
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-12">
+          
+          {/* Logo Left */}
+          <Link href="/" className="flex items-baseline gap-2 select-none group">
+            <span className="text-[#141F33] font-extrabold text-xl tracking-tight transition-colors group-hover:text-[#2A5CFF]">SAQYN RABT</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#718096] font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
+          </Link>
 
-      <MarketingHeader />
+          {/* Nav Links Center */}
+          <nav className="hidden items-center gap-8 md:flex">
+            <Link href="#features" className="text-sm font-semibold text-[#718096] transition-colors hover:text-[#141F33]">{t({ en: 'Features', ar: 'الميزات' })}</Link>
+            <Link href="#industries" className="text-sm font-semibold text-[#718096] transition-colors hover:text-[#141F33]">{t({ en: 'Industries', ar: 'الصناعات' })}</Link>
+            <Link href="#how-it-works" className="text-sm font-semibold text-[#718096] transition-colors hover:text-[#141F33]">{t({ en: 'How It Works', ar: 'كيف يعمل' })}</Link>
+            <Link href="#pricing" className="text-sm font-semibold text-[#718096] transition-colors hover:text-[#141F33]">{t({ en: 'Pricing', ar: 'الأسعار' })}</Link>
+          </nav>
 
-      {/* ── Split Hero ─────────────────────────────────────────────────────── */}
-      <section className="bg-[radial-gradient(circle_at_top_left,_rgba(26,54,93,0.08),_transparent_40%),linear-gradient(135deg,_#f8fbff_0%,_#ffffff_100%)] py-16 sm:py-20 lg:py-24">
-        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-6 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
-          <div className="rounded-3xl bg-[#1A365D] p-8 text-white shadow-[0_30px_80px_-30px_rgba(26,54,93,0.6)] sm:p-10 lg:p-12">
-            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl">📞</div>
-            <h1 className="max-w-xl text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
-              {t(heroContent.heading)}
+          {/* Nav Buttons Right */}
+          <div className="hidden items-center gap-4 md:flex">
+            <LanguageSwitcher />
+            <Link href="/dashboard" className="text-sm font-bold text-[#2A5CFF] min-h-[44px] flex items-center justify-center px-4 transition-all hover:scale-[1.02]">
+              {t({ en: 'Dashboard Demo', ar: 'عرض لوحة التحكم' })}
+            </Link>
+            <a
+              href={calendlyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-6 py-3 text-sm font-bold text-white transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95"
+            >
+              {t({ en: 'Book a 15-Min Demo', ar: 'احجز عرضًا لمدة 15 دقيقة' })}
+            </a>
+          </div>
+
+          {/* Mobile Menu Toggle Button */}
+          <button
+            type="button"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-gray-200 text-[#141F33] md:hidden hover:bg-gray-50 transition-colors"
+            aria-label="Toggle navigation"
+          >
+            <span className="text-xl">☰</span>
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMobileMenuOpen && (
+          <div className="border-t border-gray-100 bg-white px-6 py-6 md:hidden shadow-lg animate-fadeIn">
+            <div className="flex flex-col gap-4">
+              <Link href="#features" onClick={() => setIsMobileMenuOpen(false)} className="text-base font-bold text-[#141F33]">{t({ en: 'Features', ar: 'الميزات' })}</Link>
+              <Link href="#industries" onClick={() => setIsMobileMenuOpen(false)} className="text-base font-bold text-[#141F33]">{t({ en: 'Industries', ar: 'الصناعات' })}</Link>
+              <Link href="#how-it-works" onClick={() => setIsMobileMenuOpen(false)} className="text-base font-bold text-[#141F33]">{t({ en: 'How It Works', ar: 'كيف يعمل' })}</Link>
+              <Link href="#pricing" onClick={() => setIsMobileMenuOpen(false)} className="text-base font-bold text-[#141F33]">{t({ en: 'Pricing', ar: 'الأسعار' })}</Link>
+              
+              <div className="border-t border-gray-100 pt-4 flex flex-col gap-3">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-semibold text-[#718096]">{t({ en: 'Select Language:', ar: 'اختر اللغة:' })}</span>
+                  <LanguageSwitcher />
+                </div>
+                <Link href="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="text-center font-bold text-[#2A5CFF] py-3 rounded-xl border border-[#2A5CFF]/20">
+                  {t({ en: 'Dashboard Demo', ar: 'عرض لوحة التحكم' })}
+                </Link>
+                <a
+                  href={calendlyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="text-center bg-[#141F33] text-white font-bold py-3 rounded-xl"
+                >
+                  {t({ en: 'Book a Demo', ar: 'احجز عرضًا' })}
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+      </header>
+
+      {/* ── Hero Section (Section 3 & 4) ─────────────────────────────────── */}
+      <section className="relative overflow-hidden py-20 lg:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+          
+          {/* Left Column (The Pitch) */}
+          <div className="flex flex-col items-start gap-6 lg:w-[55%]">
+            
+            {/* Two-Product Toggle (Section 4) */}
+            <div className="inline-flex rounded-full bg-white p-1 border border-gray-200/80 shadow-sm">
+              <button
+                type="button"
+                onClick={() => setActiveProduct('automation')}
+                className={`min-h-[38px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
+                  activeProduct === 'automation'
+                    ? 'bg-[#141F33] text-white shadow-sm'
+                    : 'bg-transparent text-[#718096] hover:text-[#141F33]'
+                }`}
+              >
+                🤖 {t({ en: 'Automation', ar: 'الأتمتة' })}
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveProduct('chatbot')}
+                className={`min-h-[38px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
+                  activeProduct === 'chatbot'
+                    ? 'bg-[#141F33] text-white shadow-sm'
+                    : 'bg-transparent text-[#718096] hover:text-[#141F33]'
+                }`}
+              >
+                🧠 {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
+              </button>
+            </div>
+
+            {/* Dynamic H1 Headline */}
+            <h1 className="text-5xl lg:text-6xl font-extrabold leading-[1.1] text-[#141F33] tracking-tight transition-all duration-300">
+              {activeProduct === 'automation' ? currentIndustry.headline : t(chatbotHeadline)}
             </h1>
-            <p className="mt-5 max-w-lg text-base leading-8 text-blue-100 sm:text-lg">
-              {t(heroContent.subheading)}
+
+            {/* Subtext */}
+            <p className="text-lg lg:text-xl text-[#718096] max-w-xl font-medium leading-relaxed transition-all duration-300">
+              {activeProduct === 'automation' ? currentIndustry.copy : t(chatbotCopy)}
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="/automation"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-white px-6 py-3 font-semibold text-[#1A365D] transition-all hover:-translate-y-0.5 hover:bg-blue-50"
+
+            {/* CTA Row */}
+            <div className="flex flex-wrap gap-4 mt-2">
+              <Link
+                href={activeProduct === 'automation' ? '/automation' : '/chatbot'}
+                className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-4 font-bold text-white shadow-md transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95"
               >
-                {t(heroContent.explorAuto)}
-              </a>
-              <a
-                href={calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-white/30 px-6 py-3 font-semibold text-white transition-all hover:bg-white/10"
+                {t({ en: 'Explore Product', ar: 'استكشف المنتج' })}
+              </Link>
+              <button
+                type="button"
+                onClick={openCustomModal}
+                className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-white border border-[#141F33] px-8 py-4 font-bold text-[#141F33] transition-all hover:bg-gray-50 hover:scale-[1.02] active:scale-95"
               >
-                {t(navContent.bookDemo)}
-              </a>
+                {t({ en: 'Book a Demo', ar: 'احجز عرضًا' })}
+              </button>
             </div>
           </div>
 
-          <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-[0_20px_60px_-30px_rgba(15,23,42,0.25)] sm:p-10 lg:p-12">
-            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-50 text-2xl">🧠</div>
-            <h2 className="max-w-xl text-3xl font-semibold leading-tight text-[#1A365D] sm:text-4xl">
-              Empower Every Team Member with Private AI Knowledge.
-            </h2>
-            <p className="mt-5 max-w-lg text-base leading-8 text-slate-600 sm:text-lg">
-              A private RAG assistant trained on your HR handbook, SOPs, and policies. Employees get fast answers without generic AI drift.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="/chatbot"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#1A365D] px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-[#15304f]"
-              >
-                Explore Chatbot →
-              </a>
-              <a
-                href={calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-slate-300 px-6 py-3 font-semibold text-[#1A365D] transition-all hover:border-[#1A365D] hover:bg-slate-50"
-              >
-                {t(navContent.bookDemo)}
-              </a>
+          {/* Right Column (Floating Dashboard Mockup) */}
+          <div className="w-full lg:w-[45%] flex justify-center">
+            <div className="w-full max-w-[480px] bg-white p-6 rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-gray-100/80 relative z-10 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-[1.02]">
+              
+              {/* Card Window Mock Header */}
+              <div className="flex items-center gap-1.5 pb-4 border-b border-gray-100 mb-6">
+                <span className="h-3 w-3 rounded-full bg-[#EF4444]" />
+                <span className="h-3 w-3 rounded-full bg-[#F59E0B]" />
+                <span className="h-3 w-3 rounded-full bg-[#10B981]" />
+                <span className="text-[11px] font-bold text-slate-400 ml-2 uppercase tracking-widest">{t({ en: 'SAQYN SECURE OPS', ar: 'عمليات ساقين الآمنة' })}</span>
+              </div>
+
+              {/* Chat Bubble Interface */}
+              <div className="bg-[#F8F9FB] p-5 rounded-2xl border border-gray-100 shadow-sm mb-6 animate-fadeIn">
+                {activeProduct === 'automation' ? (
+                  <>
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="h-7 w-7 rounded-full bg-[#2A5CFF] flex items-center justify-center text-xs text-white">🛎️</div>
+                      <span className="text-xs font-bold text-[#141F33]">{t({ en: 'Guest - Room 204', ar: 'نزيل - غرفة 204' })}</span>
+                    </div>
+                    <p className="text-xs font-semibold text-slate-700 leading-relaxed">
+                      "{t({ en: 'Can I request a late check-out at 2 PM?', ar: 'هل يمكنني طلب تسجيل المغادرة المتأخر في الساعة 2 ظهرًا؟' })}"
+                    </p>
+                    <div className="mt-4 pt-3 border-t border-gray-200/60">
+                      <p className="text-xs text-[#10B981] font-bold flex items-center gap-2">
+                        <span className="text-sm">🤖</span>
+                        <span>{t({ en: 'AI Response: Approved. Fee of 150 QAR added.', ar: 'استجابة الذكاء الاصطناعي: تم القبول. تم إضافة رسوم 150 ريال قطري.' })}</span>
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="h-7 w-7 rounded-full bg-[#141F33] flex items-center justify-center text-xs text-white">👩‍💼</div>
+                      <span className="text-xs font-bold text-[#141F33]">{t({ en: 'Sarah (Front Desk Agent)', ar: 'سارة (موظف الاستقبال)' })}</span>
+                    </div>
+                    <p className="text-xs font-semibold text-slate-700 leading-relaxed">
+                      "{t({ en: 'What is our policy for early guest check-ins?', ar: 'ما هي سياستنا لتسجيل الوصول المبكر للنزلاء؟' })}"
+                    </p>
+                    <div className="mt-4 pt-3 border-t border-gray-200/60">
+                      <p className="text-xs text-[#2A5CFF] font-bold flex items-center gap-2">
+                        <span className="text-sm">🧠</span>
+                        <span>{t({ en: 'RAG Verified: Fee is 100 QAR if clean; waive if vacant.', ar: 'مستخرج من المستندات: الرسوم 100 ريال إذا كانت الغرفة جاهزة؛ تُعفى إن كانت شاغرة.' })}</span>
+                      </p>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Dynamic Bottom Card Widget */}
+              <div className="bg-[#F8F9FB] p-5 rounded-2xl border border-gray-100 shadow-sm animate-fadeIn">
+                {activeProduct === 'automation' ? (
+                  <>
+                    <h4 className="text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-widest">{t({ en: 'Live Guest Queue', ar: 'طابور النزلاء المباشر' })}</h4>
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center justify-between text-xs border-b border-gray-200/40 pb-2">
+                        <span className="font-bold text-[#141F33]">{t({ en: 'Room 204 - Late checkout', ar: 'غرفة 204 - مغادرة متأخرة' })}</span>
+                        <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">{t({ en: 'Completed', ar: 'مكتمل' })}</span>
+                      </div>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="font-bold text-[#141F33]">{t({ en: 'Room 102 - Fresh towels', ar: 'غرفة 102 - مناشف إضافية' })}</span>
+                        <span className="bg-orange-100 text-orange-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">{t({ en: 'Assigned', ar: 'معين' })}</span>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <h4 className="text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-widest">{t({ en: 'Indexed Knowledge Base', ar: 'قاعدة المعرفة المفهرسة' })}</h4>
+                    <div className="flex flex-col gap-3">
+                      <div className="flex items-center gap-3 text-xs border-b border-gray-200/40 pb-2">
+                        <span className="text-slate-400 text-sm">📄</span>
+                        <span className="font-bold text-[#141F33] truncate max-w-[160px]">hotel_sop_v2.pdf</span>
+                        <span className="ml-auto bg-green-100 text-green-800 text-[9px] font-extrabold px-2.5 py-0.5 rounded-full">{t({ en: 'Indexed', ar: 'مفهرس' })}</span>
+                      </div>
+                      <div className="flex items-center gap-3 text-xs">
+                        <span className="text-slate-400 text-sm">📄</span>
+                        <span className="font-bold text-[#141F33] truncate max-w-[160px]">hr_policy_qatar.pdf</span>
+                        <span className="ml-auto bg-green-100 text-green-800 text-[9px] font-extrabold px-2.5 py-0.5 rounded-full">{t({ en: 'Indexed', ar: 'مفهرس' })}</span>
+                      </div>
+                    </div>
+                  </>
+                )}
+              </div>
+
             </div>
           </div>
+
         </div>
       </section>
 
-      {/* ── Industry Switcher ──────────────────────────────────────────────── */}
-      <section className="bg-white border-t border-gray-100 py-14">
-        <div className="max-w-4xl mx-auto px-6 flex flex-col items-center">
-          <p className="text-xs font-bold tracking-widest text-slate-400 uppercase mb-5">
-            Built for 15+ industries — select yours
+      {/* ── Industry Switcher & Social Proof (Section 5) ──────────────────── */}
+      <section id="industries" className="bg-white border-y border-gray-100 py-16 lg:py-24">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
+          
+          <p className="text-xs font-extrabold tracking-widest text-[#718096] uppercase mb-8 text-center">
+            {t({ en: 'Engineered for Qatar & Middle East Operations — Select Your Industry', ar: 'مصمم خصيصًا للعمليات في قطر والشرق الأوسط - اختر قطاعك' })}
           </p>
 
-          {/* Goldmine Pills */}
-          <div className="w-full overflow-x-auto flex flex-nowrap justify-start md:justify-center gap-3 py-1 [&::-webkit-scrollbar]:hidden">
-            {GOLDMINE_INDUSTRIES.map((industry) => (
+          {/* 6 Top Industry Pills */}
+          <div className="w-full flex flex-wrap justify-center gap-4 py-2">
+            {GOLDMINE_INDUSTRIES.map((ind) => (
               <button
-                key={industry.id}
-                onClick={() => setActiveIndustry(industry.id)}
-                className={`min-h-[40px] px-5 py-2 rounded-full border-2 font-medium text-sm transition-all whitespace-nowrap cursor-pointer ${
-                  activeIndustry === industry.id
-                    ? 'bg-[#1A365D] text-white border-[#1A365D]'
-                    : 'bg-white text-slate-600 border-gray-200 hover:border-[#1A365D]'
+                key={ind.id}
+                onClick={() => setActiveIndustry(ind.id)}
+                className={`min-h-[44px] px-6 py-3 rounded-full border text-sm font-semibold transition-all hover:scale-[1.05] hover:border-[#141F33] cursor-pointer ${
+                  activeIndustry === ind.id
+                    ? 'bg-[#141F33] text-white border-[#141F33] shadow-md'
+                    : 'bg-white text-[#141F33] border-gray-200 shadow-sm hover:shadow-md'
                 }`}
               >
-                {industry.label}
+                {ind.label}
               </button>
             ))}
           </div>
 
           {/* Other Industries Dropdown */}
-          <div className="mt-4 w-full max-w-xs mx-auto">
+          <div className="mt-6 w-full max-w-xs mx-auto">
             <select
               id="other-industries"
               value={OTHER_INDUSTRIES.some(i => i.id === activeIndustry) ? activeIndustry : ''}
               onChange={handleSelectChange}
-              className="w-full min-h-[40px] bg-white border border-gray-200 rounded-md px-4 py-2 text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#1A365D] transition-all appearance-none cursor-pointer text-center text-sm"
+              className="w-full min-h-[44px] bg-white border border-gray-200 rounded-xl px-4 py-2 text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#141F33] transition-all appearance-none cursor-pointer text-center text-sm shadow-sm font-semibold"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%234B5563' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
-                backgroundPosition: 'right 1rem center',
+                backgroundPosition: locale === 'ar' ? 'left 1rem center' : 'right 1rem center',
                 backgroundSize: '1.25rem',
                 backgroundRepeat: 'no-repeat',
-                paddingRight: '2.5rem',
+                paddingLeft: locale === 'ar' ? '2.5rem' : '1rem',
+                paddingRight: locale === 'ar' ? '1rem' : '2.5rem',
               }}
             >
-              <option value="">Other Industries…</option>
+              <option value="">{t({ en: 'Other Industries…', ar: 'صناعات أخرى…' })}</option>
               {OTHER_INDUSTRIES.map((ind) => (
                 <option key={ind.id} value={ind.id}>{ind.label}</option>
               ))}
             </select>
           </div>
 
-          {/* Dynamic Headline */}
-          <div className="mt-8 text-center">
-            <span className="text-xs font-bold tracking-widest text-emerald-600 uppercase">{currentIndustry.label}</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1A365D] leading-tight mt-2 max-w-2xl mx-auto">
+          {/* Dynamic Headline Panel */}
+          <div className="mt-12 text-center bg-[#F8F9FB] p-8 rounded-2xl border border-gray-100 max-w-3xl w-full">
+            <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{currentIndustry.label}</span>
+            <h2 className="text-2xl md:text-3xl font-extrabold text-[#141F33] leading-tight mt-3">
               {currentIndustry.headline}
             </h2>
-            <p className="text-slate-500 mt-3 max-w-xl mx-auto text-sm leading-relaxed">
+            <p className="text-[#718096] mt-4 text-sm leading-relaxed max-w-xl mx-auto font-medium">
               {currentIndustry.copy}
             </p>
           </div>
-        </div>
-      </section>
 
-      {/* ── Trust & Custom Banner ──────────────────────────────────────────── */}
-      <section id="custom" className="bg-gradient-to-r from-[#1A365D] to-blue-700 py-14 px-6">
-        <div className="max-w-4xl mx-auto text-center text-white">
-          <h2 className="text-2xl md:text-3xl font-bold mb-3">
-            Need a fully customized automation solution?
-          </h2>
-          <p className="text-blue-100 max-w-2xl mx-auto text-base leading-relaxed mb-8">
-            We build tailored AI workflows for enterprises, multi-location businesses, and unique operational needs — from complex routing to specialized knowledge bases.
-          </p>
-          <button
-            onClick={openCustomModal}
-            className="bg-white text-[#1A365D] font-bold px-8 py-3 rounded-lg hover:bg-blue-50 transition-all"
-          >
-            Request a Custom Demo
-          </button>
-        </div>
-      </section>
+          {/* Social Proof (Trust Boost) */}
+          <div className="mt-16 pt-12 border-t border-gray-100 w-full flex flex-col items-center gap-6">
+            <p className="text-xs font-extrabold tracking-widest text-[#718096] uppercase text-center">
+              {t({ en: 'Trusted by front desks and teams in Qatar and across the Middle East', ar: 'موثوق به من قبل مكاتب الاستقبال والفرق في قطر وأنحاء الشرق الأوسط' })}
+            </p>
+            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
+              
+              {/* Hotel Icon SVG */}
+              <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Hospitality Sector">
+                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h6M9 13h6M9 17h6" />
+                </svg>
+                <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Hotels</span>
+              </div>
 
+              {/* Clinic/Medical SVG */}
+              <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Healthcare Sector">
+                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <path d="M12 8v8M8 12h8" />
+                </svg>
+                <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Clinics</span>
+              </div>
 
-      {/* ── Pricing ────────────────────────────────────────────────────────── */}
-      <section id="pricing" className="bg-slate-50 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-primary mb-3">Transparent Pricing for Every Business</h2>
-            <p className="text-slate-500">Two products. Six tiers. No bundles. No confusion.</p>
+              {/* Factory/Industry SVG */}
+              <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Industrial Operations">
+                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 21h18M3 7l5 4V7l5 4V7l6 5v9H3V7z" />
+                </svg>
+                <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Operations</span>
+              </div>
+
+              {/* Retail/Shop SVG */}
+              <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Retail Outlets">
+                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" />
+                  <path d="M9 22V12h6v10" />
+                </svg>
+                <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Retail</span>
+              </div>
+
+            </div>
           </div>
-          <div className="bg-emerald-50 border border-emerald-200 rounded-2xl py-4 px-6 text-center mb-10">
-            <p className="text-emerald-700 font-semibold text-sm">
-              ✅ No surprise bills. Fixed monthly price + one-time setup. Overages only if you enable them.
+
+        </div>
+      </section>
+
+      {/* ── Pricing Section (Section 6) ─────────────────────────────────── */}
+      <section id="pricing" className="py-24 lg:py-32 bg-[#F8F9FB]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-extrabold text-[#141F33] mb-4">
+              {t({ en: 'Transparent pricing. No hidden costs.', ar: 'أسعار شفافة. بدون تكاليف خفية.' })}
+            </h2>
+            <p className="text-base lg:text-lg text-[#10B981] font-semibold tracking-wide uppercase">
+              {t({ en: 'Auto-overage is OFF by default. You control your budget.', ar: 'خيار تجاوز الحد التلقائي مغلق افتراضيًا. أنت من يتحكم بميزانيتك.' })}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-
-            {/* ── Automation Column ── */}
-            <div>
-              <div className="flex items-center gap-3 mb-7 pb-4 border-b-2 border-blue-600">
-                <span className="text-2xl">📞</span>
-                <div>
-                  <h3 className="text-xl font-extrabold text-[#1A365D]">Business Automation</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">Handle calls, bookings & complaints 24/7.</p>
-                </div>
-                <a href="/automation" className="ml-auto text-xs text-blue-600 font-semibold hover:underline whitespace-nowrap">Full details →</a>
+          {/* Pricing Layout (Two Columns) */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
+            
+            {/* Left Column: Business Automation */}
+            <div className="flex flex-col gap-8">
+              
+              <div className="border-b-2 border-[#2A5CFF]/30 pb-4 mb-2">
+                <h3 className="text-lg font-extrabold text-[#141F33] tracking-wider uppercase flex items-center gap-3">
+                  <span>🤖</span> {t({ en: 'BUSINESS AUTOMATION', ar: 'أتمتة الأعمال' })}
+                </h3>
+                <p className="text-xs text-[#718096] font-medium mt-1">
+                  {t({ en: 'Handle incoming calls, bookings & guest complaints 24/7.', ar: 'إدارة المكالمات الواردة، الحجوزات وشكاوى النزلاء على مدار الساعة.' })}
+                </p>
               </div>
-              <div className="flex flex-col gap-4">
+
+              <div className="flex flex-col gap-6">
                 {automationTiers.map((tier) => (
-                  <div key={tier.id} className="relative bg-white border border-blue-100 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-200">
+                  <div
+                    key={tier.id}
+                    className="relative bg-white border border-gray-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] hover:border-[#141F33] transition-all duration-300"
+                  >
                     {tier.popular && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">⭐ Popular</span>
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-extrabold tracking-widest px-4 py-1 rounded-full uppercase">
+                        {t({ en: 'POPULAR', ar: 'شائع' })}
+                      </span>
                     )}
-                    <div className="flex items-start justify-between">
+
+                    <div className="flex items-start justify-between gap-4">
                       <div>
-                        <h4 className="text-lg font-bold text-[#1A365D]">{tier.title}</h4>
-                        <p className="text-xs text-slate-400 mt-0.5">{tier.subtitle}</p>
+                        <h4 className="text-xl font-extrabold text-[#141F33]">{tier.title}</h4>
+                        <p className="text-xs text-[#718096] font-medium mt-1">{tier.subtitle}</p>
                       </div>
                       <div className="text-right">
                         <div>
-                          <span className="text-2xl font-extrabold text-[#1A365D]">{tier.price}</span>
-                          <span className="text-slate-400 text-xs ml-1">QAR/mo</span>
+                          <span className="text-3xl font-extrabold text-[#141F33]">{tier.price}</span>
+                          <span className="text-xs font-bold text-[#718096] ml-1">QAR/mo</span>
                         </div>
-                        <p className="text-green-600 text-xs font-medium mt-0.5">+ {tier.setup} QAR setup</p>
-                      </div>
-                    </div>
-                    <ul className="mt-4 flex flex-col gap-1.5">
-                      {tier.features.map((f, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-slate-600 text-xs">
-                          <span className="text-green-500 font-bold">✓</span>{f}
-                        </li>
-                      ))}
-                    </ul>
-                    <a
-                      href={calendlyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-5 w-full bg-[#1A365D] text-white py-3 rounded-lg font-medium hover:opacity-90 transition-all text-sm text-center block"
-                    >
-                      Book a Demo →
-                    </a>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* ── Chatbot Column ── */}
-            <div>
-              <div className="flex items-center gap-3 mb-7 pb-4 border-b-2 border-emerald-500">
-                <span className="text-2xl">🧠</span>
-                <div>
-                  <h3 className="text-xl font-extrabold text-[#1A365D]">Internal Company Chatbot</h3>
-                  <p className="text-xs text-slate-400 mt-0.5">Private RAG assistant for employees, SOPs, and HR.</p>
-                </div>
-                <a href="/chatbot" className="ml-auto text-xs text-emerald-600 font-semibold hover:underline whitespace-nowrap">Full details →</a>
-              </div>
-              <div className="flex flex-col gap-4">
-                {chatbotTiers.map((tier) => (
-                  <div key={tier.id} className="relative bg-white border border-emerald-100 rounded-xl p-6 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all duration-200">
-                    {tier.popular && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">⭐ Popular</span>
-                    )}
-                    <div className="flex items-start justify-between">
-                      <div>
-                        <h4 className="text-lg font-bold text-[#1A365D]">{tier.title}</h4>
-                        <p className="text-xs text-slate-400 mt-0.5">{tier.subtitle}</p>
-                      </div>
-                      <div className="text-right">
-                        {tier.price !== 'Custom' ? (
-                          <div>
-                            <span className="text-2xl font-extrabold text-[#1A365D]">{tier.price}</span>
-                            <span className="text-slate-400 text-xs ml-1">QAR/mo</span>
-                          </div>
-                        ) : (
-                          <span className="text-2xl font-extrabold text-[#1A365D]">Custom</span>
-                        )}
-                        <p className="text-green-600 text-xs font-medium mt-0.5">
-                          {tier.setup !== 'Custom' ? `+ ${tier.setup} QAR setup` : 'Custom setup'}
+                        <p className="text-[#10B981] font-semibold text-xs mt-1">
+                          + {tier.setup} QAR {t({ en: 'setup fee', ar: 'رسوم تأسيس' })}
                         </p>
                       </div>
                     </div>
-                    <ul className="mt-4 flex flex-col gap-1.5">
-                      {chatbotFeatures[tier.id]?.map((f, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-slate-600 text-xs">
-                          <span className="text-green-500 font-bold">✓</span>{f}
+
+                    <ul className="mt-6 flex flex-col gap-2.5 border-t border-gray-100 pt-6">
+                      {tier.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2.5 text-xs font-semibold text-slate-600">
+                          <span className="text-[#10B981] font-bold">✓</span> {feature}
                         </li>
                       ))}
                     </ul>
-                    <a
-                      href={calendlyUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={`mt-5 w-full py-3 rounded-lg font-medium transition-all text-sm text-center block ${
-                        tier.cta === 'Contact Sales'
-                          ? 'bg-gray-100 text-[#1A365D] hover:bg-gray-200'
-                          : 'bg-[#1A365D] text-white hover:opacity-90'
-                      }`}
+
+                    <button
+                      type="button"
+                      onClick={() => openPlanModal(`Automation - ${tier.title}`)}
+                      className="mt-8 w-full bg-[#141F33] text-white py-4 rounded-xl font-bold text-sm hover:bg-opacity-95 transition-all duration-300 min-h-[44px]"
                     >
-                      Book a Demo →
-                    </a>
+                      {t({ en: 'Book a Demo', ar: 'احجز عرضًا' })}
+                    </button>
                   </div>
                 ))}
               </div>
+
+            </div>
+
+            {/* Right Column: Internal Chatbot */}
+            <div className="flex flex-col gap-8">
+
+              <div className="border-b-2 border-[#10B981]/30 pb-4 mb-2">
+                <h3 className="text-lg font-extrabold text-[#141F33] tracking-wider uppercase flex items-center gap-3">
+                  <span>🧠</span> {t({ en: 'INTERNAL CHATBOT', ar: 'المساعد الذكي الداخلي' })}
+                </h3>
+                <p className="text-xs text-[#718096] font-medium mt-1">
+                  {t({ en: 'Private RAG-powered assistant for HR, manuals, policies & SOPs.', ar: 'مساعد RAG خاص وموثوق لأدلة الموارد البشرية والسياسات وإجراءات التشغيل.' })}
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-6">
+                {chatbotTiers.map((tier) => (
+                  <div
+                    key={tier.id}
+                    className="relative bg-white border border-gray-200/80 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] hover:border-[#141F33] transition-all duration-300"
+                  >
+                    {tier.popular && (
+                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-extrabold tracking-widest px-4 py-1 rounded-full uppercase">
+                        {t({ en: 'POPULAR', ar: 'شائع' })}
+                      </span>
+                    )}
+
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h4 className="text-xl font-extrabold text-[#141F33]">{tier.title}</h4>
+                        <p className="text-xs text-[#718096] font-medium mt-1">{tier.subtitle}</p>
+                      </div>
+                      <div className="text-right">
+                        <div>
+                          {tier.price !== 'Custom' ? (
+                            <>
+                              <span className="text-3xl font-extrabold text-[#141F33]">{tier.price}</span>
+                              <span className="text-xs font-bold text-[#718096] ml-1">QAR/mo</span>
+                            </>
+                          ) : (
+                            <span className="text-2xl font-extrabold text-[#141F33]">{t({ en: 'Custom', ar: 'مخصص' })}</span>
+                          )}
+                        </div>
+                        <p className="text-[#10B981] font-semibold text-xs mt-1">
+                          {tier.setup !== 'Custom' ? `+ ${tier.setup} QAR ` + t({ en: 'setup fee', ar: 'رسوم تأسيس' }) : t({ en: 'Custom setup', ar: 'تأسيس مخصص' })}
+                        </p>
+                      </div>
+                    </div>
+
+                    <ul className="mt-6 flex flex-col gap-2.5 border-t border-gray-100 pt-6">
+                      {(chatbotFeatures[tier.id] || []).map((feature, idx) => (
+                        <li key={idx} className="flex items-center gap-2.5 text-xs font-semibold text-slate-600">
+                          <span className="text-[#10B981] font-bold">✓</span> {feature}
+                        </li>
+                      ))}
+                    </ul>
+
+                    <button
+                      type="button"
+                      onClick={() => openPlanModal(`Chatbot - ${tier.title}`)}
+                      className="mt-8 w-full bg-[#141F33] text-white py-4 rounded-xl font-bold text-sm hover:bg-opacity-95 transition-all duration-300 min-h-[44px]"
+                    >
+                      {tier.cta === 'Contact Sales' ? t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' }) : t({ en: 'Book a Demo', ar: 'احجز عرضًا' })}
+                    </button>
+                  </div>
+                ))}
+              </div>
+
             </div>
 
           </div>
+
+        </div>
+      </section>
+
+      {/* ── Custom Solution CTA Banner ────────────────────────────────────── */}
+      <section className="bg-gradient-to-r from-[#141F33] to-[#2A5CFF] py-20 px-6 text-white border-t border-gray-800">
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
+          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+            {t({ en: 'Need a customized operational workflow?', ar: 'هل تحتاج إلى سير عمل تشغيلي مخصص بالكامل؟' })}
+          </h2>
+          <p className="text-blue-100 max-w-xl text-base font-medium leading-relaxed">
+            {t({
+              en: 'We design bespoke local AI pipelines for multi-location enterprises, integrating private systems, custom security policies, and custom voice nodes.',
+              ar: 'نقوم بتصميم مسارات ذكاء اصطناعي محلية مخصصة للمؤسسات متعددة الفروع، مع دمج الأنظمة الخاصة وسياسات الأمان المخصصة.'
+            })}
+          </p>
+          <button
+            type="button"
+            onClick={openCustomModal}
+            className="mt-4 bg-white text-[#141F33] font-bold px-8 py-4 rounded-xl hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] shadow-md"
+          >
+            {t({ en: 'Request a Custom Solution', ar: 'طلب حل مخصص' })}
+          </button>
         </div>
       </section>
 
@@ -405,37 +681,49 @@ export default function MarketingPage() {
 
       {/* ── Book a Demo Modal ───────────────────────────────────────────────── */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-gray-900/60 backdrop-blur-sm">
-          <div className="bg-white border border-gray-200 rounded-xl max-w-md w-full p-6 shadow-xl">
-            <h3 className="text-lg font-bold text-[#1A365D] mb-2">
-              {isCustomModal ? 'Request a Custom Demo' : `Configure Plan — ${selectedPlanName}`}
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-sm">
+          <div className="bg-white border border-gray-200 rounded-2xl max-w-md w-full p-8 shadow-2xl relative animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+            
+            <h3 className="text-xl font-extrabold text-[#141F33] mb-3">
+              {isCustomModal ? t({ en: 'Request a Custom Demo', ar: 'طلب عرض مخصص' }) : `${t({ en: 'Configure Plan —', ar: 'تكوين الخطة —' })} ${selectedPlanName}`}
             </h3>
-            <p className="text-sm text-slate-500 mb-6 leading-relaxed">
+            
+            <p className="text-sm font-semibold text-[#718096] mb-8 leading-relaxed">
               {isCustomModal
-                ? 'Tell us about your business and we\'ll build a tailored proposal. A 15-minute call is all it takes to get started.'
-                : 'Book a 15-minute setup call with our team to configure your custom workspace.'}
+                ? t({
+                    en: 'Tell us about your business operations. A 15-minute consultation is all we need to draw up a customized integration plan.',
+                    ar: 'أخبرنا عن عمليات عملك. كل ما نحتاجه هو استشارة مدتها 15 دقيقة لوضع خطة تكامل مخصصة.'
+                  })
+                : t({
+                    en: 'Book a 15-minute setup call with our technical team to allocate your private workspace and configure billing preferences.',
+                    ar: 'احجز مكالمة إعداد مدتها 15 دقيقة مع فريقنا الفني لتخصيص مساحة العمل الخاصة بك وتكوين تفضيلات الفوترة.'
+                  })}
             </p>
+
             <div className="flex flex-col gap-3">
               <a
                 href={calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center bg-[#1A365D] text-white font-bold rounded-full transition-colors"
-                style={{ minHeight: '44px' }}
+                className="w-full flex items-center justify-center bg-[#141F33] text-white font-bold rounded-xl transition-all hover:scale-[1.02] active:scale-95 shadow-md"
+                style={{ minHeight: '48px' }}
               >
-                Book a Demo
+                {t({ en: 'Confirm Call Time', ar: 'تأكيد وقت المكالمة' })}
               </a>
               <button
+                type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-full transition-colors"
-                style={{ minHeight: '44px' }}
+                className="w-full bg-gray-50 hover:bg-gray-100 text-[#141F33] font-bold rounded-xl border border-gray-200 transition-all hover:scale-[1.02] active:scale-95"
+                style={{ minHeight: '48px' }}
               >
-                Close
+                {t({ en: 'Close', ar: 'إغلاق' })}
               </button>
             </div>
+
           </div>
         </div>
       )}
+
     </div>
   );
 }
