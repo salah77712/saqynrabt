@@ -1,0 +1,37 @@
+openapi: 3.0.3
+info:
+  title: SAQYN RABT Developer API
+  description: Public B2B operations and integration API endpoints.
+  version: 1.0.0
+servers:
+  - url: https://api.saqynrabt.com
+paths:
+  /api/chat:
+    post:
+      summary: Send message to RAG staff chatbot
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - question
+              properties:
+                question:
+                  type: string
+      responses:
+        '200':
+          description: Answer stream or direct JSON reply
+        '401':
+          description: Unauthorized
+        '429':
+          description: Usage limit reached
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

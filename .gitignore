@@ -29,6 +29,14 @@ build/
 out/
 .turbo/
 
+# Mobile/Desktop Build Outputs
+mobile/.expo/
+mobile/dist/
+desktop/dist/
+desktop/out/
+e2e/test-results/
+e2e/playwright-report/
+
 # OS files
 .DS_Store
 Thumbs.db

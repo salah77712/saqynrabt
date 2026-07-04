@@ -1,0 +1,21 @@
+{
+  "appId": "com.saqynrabt.desktop",
+  "productName": "SAQYN RABT",
+  "directories": {
+    "output": "dist"
+  },
+  "files": [
+    "main.js",
+    "preload.js",
+    "package.json"
+  ],
+  "win": {
+    "target": "nsis"
+  },
+  "mac": {
+    "target": "dmg"
+  },
+  "linux": {
+    "target": "AppImage"
+  }
+}
