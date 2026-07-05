@@ -1,6 +1,6 @@
-import { withAuth } from "@clerk/nextjs";
+import { authMiddleware } from "@clerk/nextjs";
 
-export default withAuth({
+export default authMiddleware({
   publicRoutes: [
     "/",
     "/sign-in",
