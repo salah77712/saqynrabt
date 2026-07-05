@@ -1,7 +1,15 @@
-import { authMiddleware } from "@clerk/nextjs";
+import { withAuth } from "@clerk/nextjs";
 
-export default authMiddleware({
-  publicRoutes: ["/", "/sign-in", "/sign-up", "/api/webhook", "/api/health", "/api/wakeup"],
+export default withAuth({
+  publicRoutes: [
+    "/",
+    "/sign-in",
+    "/sign-up",
+    "/api/webhook",
+    "/api/health",
+    "/api/wakeup",
+    "/dashboard"
+  ],
 });
 
 export const config = {
