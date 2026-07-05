@@ -6,8 +6,8 @@ import { AutomationQueue } from '../../../components/dashboard/AutomationQueue';
 import { AutomationFilters } from '../../../components/dashboard/AutomationFilters';
 import { Card } from '../../../components/ui/Card';
 import { Badge } from '../../../components/ui/Badge';
-import { SkeletonCard } from '../../../components/ui/Skeleton';
-import { EmptyStateWithRetry, EmptyAutomationState } from '../../../components/ui/EmptyState';
+import { SkeletonCard, SkeletonTable } from '../../../components/ui/Skeleton';
+import { EmptyStateWithRetry, EmptyAutomationState, EmptyState } from '../../../components/ui/EmptyState';
 import { useAutomationRequests } from '../../../hooks/queries/useAutomationRequests';
 import { PullToRefresh } from '../../../components/PullToRefresh';
 
@@ -46,26 +46,12 @@ export default function AutomationDashboardPage() {
     return 'danger';
   };
 
-  if (isLoading) {
-    return (
-      <div className="space-y-6 animate-fadeIn">
-        <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 dark:bg-slate-800 rounded-lg w-72 mb-2" />
-          <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded-lg w-96" />
-        </div>
-        <SkeletonCard />
-        <SkeletonCard />
-      </div>
-    );
-  }
+  if (isLoading) return <SkeletonTable />;
 
-  if (isError) {
-    return (
-      <EmptyStateWithRetry
-        message={error?.message || t('Failed to load automation data.', 'فشل تحميل بيانات الأتمتة.')}
-        onRetry={() => refetch()}
-      />
-    );
+  if (isError || error) return <EmptyState title="Could not load requests" retry={refetch} />;
+
+  if (data && (data.length === 0 || (data.requests && data.requests.length === 0 && data.activeCalls && data.activeCalls.length === 0))) {
+    return <EmptyState title="Live guest queue" description="All clear. No pending requests." />;
   }
 
   return (

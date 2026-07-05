@@ -25,7 +25,7 @@ export function useUsage(enabled = true) {
   return useQuery<UsageData>({
     queryKey: ['usage'],
     queryFn: fetchUsage,
-    staleTime: 30_000,
+    staleTime: 60_000,
     refetchInterval: 60_000,
     retry: 2,
     enabled,

@@ -7,23 +7,25 @@ interface EmptyStateAction {
 }
 
 interface EmptyStateProps {
-  icon: string;
+  icon?: string;
   title: string;
-  description: string;
+  description?: string;
   actionText?: string;
   onAction?: () => void;
   secondaryAction?: EmptyStateAction;
   compact?: boolean;
+  retry?: () => void;
 }
 
 export function EmptyState({
-  icon,
+  icon = "⚠️",
   title,
-  description,
+  description = "",
   actionText,
   onAction,
   secondaryAction,
   compact = false,
+  retry,
 }: EmptyStateProps) {
   const containerClass = compact
     ? 'flex flex-col items-center justify-center text-center p-6'
@@ -41,9 +43,9 @@ export function EmptyState({
         {description}
       </p>
       <div className={`flex ${secondaryAction ? 'gap-3' : ''}`}>
-        {actionText && onAction && (
-          <Button variant="primary" size="sm" onClick={onAction}>
-            {actionText}
+        {((actionText && onAction) || retry) && (
+          <Button variant="primary" size="sm" onClick={onAction || retry}>
+            {actionText || "Retry"}
           </Button>
         )}
         {secondaryAction && (

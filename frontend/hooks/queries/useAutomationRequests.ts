@@ -32,8 +32,8 @@ export function useAutomationRequests() {
   return useQuery<AutomationResponse>({
     queryKey: ['automation-requests'],
     queryFn: fetchAutomationRequests,
-    staleTime: 15_000,
-    refetchInterval: 30_000,
+    staleTime: 60_000,
+    refetchInterval: 10_000,
     retry: 2,
   });
 }

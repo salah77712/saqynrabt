@@ -25,7 +25,7 @@ export function useDocuments() {
   return useQuery<DocumentsResponse>({
     queryKey: ['documents'],
     queryFn: fetchDocuments,
-    staleTime: 10_000,
+    staleTime: 60_000,
     refetchInterval: 15_000,
     retry: 2,
   });

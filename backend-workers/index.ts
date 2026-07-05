@@ -766,16 +766,53 @@ export default {
 
       // E2. Usage Stats Endpoint
       if (url.pathname === '/api/usage-stats' && request.method === 'GET') {
-        const [ledger] = await sql`
+        const rows = await sql`
           SELECT questions_count, questions_used, voice_minutes_used, automation_texts_used
           FROM usage_ledger
           WHERE company_id = ${jwt.company_id}
         `;
+        
+        const [entitlements] = await sql`
+          SELECT max_employees, max_documents, max_questions, dept_limit, automation_texts_limit, voice_minutes_limit, auto_overage_enabled
+          FROM company_entitlements
+          WHERE company_id = ${jwt.company_id}
+        `;
+
+        if (rows.length === 0) {
+          return new Response(JSON.stringify({ 
+            questions_used: 0, 
+            automation_texts_used: 0, 
+            voice_minutes_used: 0,
+            questions_limit: entitlements?.max_questions ?? 1000,
+            automation_texts_limit: entitlements?.automation_texts_limit ?? 300,
+            voice_minutes_limit: entitlements?.voice_minutes_limit ?? 250,
+            employees_used: 0,
+            employees_limit: entitlements?.max_employees ?? 50,
+            limits: { 
+              questions: entitlements?.max_questions ?? 2000, 
+              texts: entitlements?.automation_texts_limit ?? 500, 
+              voice: entitlements?.voice_minutes_limit ?? 250 
+            }
+          }), { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } });
+        }
+
+        const ledger = rows[0];
         return new Response(
           JSON.stringify({
+            questions_used: ledger?.questions_used ?? ledger?.questions_count ?? 0,
             questions_count: ledger?.questions_used ?? ledger?.questions_count ?? 0,
             voice_minutes_used: ledger?.voice_minutes_used ?? 0,
             automation_texts_used: ledger?.automation_texts_used ?? 0,
+            questions_limit: entitlements?.max_questions ?? 1000,
+            automation_texts_limit: entitlements?.automation_texts_limit ?? 300,
+            voice_minutes_limit: entitlements?.voice_minutes_limit ?? 250,
+            employees_used: 0,
+            employees_limit: entitlements?.max_employees ?? 50,
+            limits: { 
+              questions: entitlements?.max_questions ?? 2000, 
+              texts: entitlements?.automation_texts_limit ?? 500, 
+              voice: entitlements?.voice_minutes_limit ?? 250 
+            }
           }),
           { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } }
         );
@@ -907,43 +944,52 @@ export default {
       }
 
       // I. Automation Executions Endpoint (Rule 29 / 26)
-      if (url.pathname === '/api/automation' && request.method === 'POST') {
-        const body = await request.json() as { company_id: string; [key: string]: any };
-        
-        // Tenant Isolation Check (Rule 6)
-        if (jwt.company_id !== body.company_id) {
-          return new Response(JSON.stringify({ error: 'Forbidden', requestId }), {
-            status: 403,
+      if (url.pathname === '/api/automation') {
+        if (request.method === 'GET') {
+          return new Response(JSON.stringify({
+            requests: [],
+            activeCalls: []
+          }), { status: 200, headers: { ...headers, 'Content-Type': 'application/json' } });
+        }
+
+        if (request.method === 'POST') {
+          const body = await request.json() as { company_id: string; [key: string]: any };
+          
+          // Tenant Isolation Check (Rule 6)
+          if (jwt.company_id !== body.company_id) {
+            return new Response(JSON.stringify({ error: 'Forbidden', requestId }), {
+              status: 403,
+              headers: { ...headers, 'Content-Type': 'application/json' },
+            });
+          }
+
+          // central limit check
+          const limitCheck = await checkUsageLimit(sql, jwt.company_id, 'texts');
+          if (limitCheck.limitReached) {
+            return new Response(
+              JSON.stringify({ error: 'LIMIT_REACHED', message: 'Monthly text request limit reached. Enable auto-overage or upgrade plan.', requestId }),
+              { status: 429, headers: { ...headers, 'Content-Type': 'application/json' } }
+            );
+          }
+
+          // Increment automation_texts_used counter in usage_ledger
+          await sql`
+            INSERT INTO usage_ledger (company_id, automation_texts_used)
+            VALUES (${jwt.company_id}, 1)
+            ON CONFLICT (company_id)
+            DO UPDATE SET automation_texts_used = usage_ledger.automation_texts_used + 1
+          `;
+
+          const tasks = [
+            { id: 't1', title: 'Route Guest Inquiry', department: 'Front Desk', status: 'Completed' },
+            { id: 't2', title: 'Update Vacation Balance Ledger', department: 'HR', status: 'Completed' }
+          ];
+
+          return new Response(JSON.stringify({ success: true, executedCount: 2, tasks }), {
+            status: 200,
             headers: { ...headers, 'Content-Type': 'application/json' },
           });
         }
-
-        // central limit check
-        const limitCheck = await checkUsageLimit(sql, jwt.company_id, 'texts');
-        if (limitCheck.limitReached) {
-          return new Response(
-            JSON.stringify({ error: 'LIMIT_REACHED', message: 'Monthly text request limit reached. Enable auto-overage or upgrade plan.', requestId }),
-            { status: 429, headers: { ...headers, 'Content-Type': 'application/json' } }
-          );
-        }
-
-        // Increment automation_texts_used counter in usage_ledger
-        await sql`
-          INSERT INTO usage_ledger (company_id, automation_texts_used)
-          VALUES (${jwt.company_id}, 1)
-          ON CONFLICT (company_id)
-          DO UPDATE SET automation_texts_used = usage_ledger.automation_texts_used + 1
-        `;
-
-        const tasks = [
-          { id: 't1', title: 'Route Guest Inquiry', department: 'Front Desk', status: 'Completed' },
-          { id: 't2', title: 'Update Vacation Balance Ledger', department: 'HR', status: 'Completed' }
-        ];
-
-        return new Response(JSON.stringify({ success: true, executedCount: 2, tasks }), {
-          status: 200,
-          headers: { ...headers, 'Content-Type': 'application/json' },
-        });
       }
 
       // J. Chat Endpoint with RAG (Rule 29 / 22 / 23 / 19 / 20 / 21 / 14)
