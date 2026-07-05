@@ -3,12 +3,15 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { useChat } from 'ai/react';
-import { useLocale, useEntitlements } from '../../providers';
+import { useLocale } from '../../providers';
 import { Button } from '../../../components/ui/Button';
 import { Card } from '../../../components/ui/Card';
 import { Input } from '../../../components/ui/Input';
 import { Modal } from '../../../components/ui/Modal';
 import { Badge } from '../../../components/ui/Badge';
+import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
+import { EmptyStateWithRetry } from '../../../components/ui/EmptyState';
+import { useChatHistory } from '../../../hooks/queries/useChatHistory';
 import { PullToRefresh } from '../../../components/PullToRefresh';
 
 interface KnowledgeGap {
@@ -19,59 +22,60 @@ interface KnowledgeGap {
 
 export default function ChatbotDashboardPage() {
   const { locale } = useLocale();
-  const { mockMode } = useEntitlements();
   const { getToken, isLoaded: authLoaded } = useAuth();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
 
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [gaps, setGaps] = useState<KnowledgeGap[]>([]);
+  const [gapsLoading, setGapsLoading] = useState(true);
+  const [gapsError, setGapsError] = useState(false);
   const [selectedGap, setSelectedGap] = useState<string | null>(null);
   const [isGapModalOpen, setIsGapModalOpen] = useState(false);
   const [showGapsSheet, setShowGapsSheet] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  const { data: chatHistory, isLoading: historyLoading } = useChatHistory();
 
   const scrollToBottom = useCallback(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, []);
 
   useEffect(() => {
-    if (authLoaded && !mockMode) {
+    if (authLoaded) {
       getToken({ template: 'saqyn-jwt' })
         .then((token) => setJwtToken(token))
         .catch((err) => console.error('Failed to get token:', err));
     }
-  }, [authLoaded, mockMode, getToken]);
+  }, [authLoaded, getToken]);
 
   useEffect(() => {
+    if (!jwtToken) return;
+    setGapsLoading(true);
+    setGapsError(false);
     const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
-    fetch(`${apiBase}/api/knowledge-gaps`, { headers })
+    fetch(`${apiBase}/api/knowledge-gaps`, {
+      headers: { Authorization: `Bearer ${jwtToken}` },
+    })
       .then((res) => res.json())
       .then((data: any) => {
         if (Array.isArray(data)) {
           setGaps(data);
         } else if (data && Array.isArray(data.gaps)) {
           setGaps(data.gaps);
+        } else {
+          setGaps([]);
         }
       })
-      .catch((err) => {
-        console.warn('Failed to fetch knowledge gaps, showing fallback:', err);
-        setGaps([
-          { id: '1', question: 'What is our policy for early check-in before 8 AM?', count: 12 },
-          { id: '2', question: 'How do we handle guests with service dogs?', count: 8 },
-        ]);
-      });
+      .catch(() => {
+        setGapsError(true);
+        setGaps([]);
+      })
+      .finally(() => setGapsLoading(false));
   }, [jwtToken]);
 
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
     api: `${process.env.NEXT_PUBLIC_API_URL || ''}/api/chat`,
-    headers: jwtToken ? { Authorization: `Bearer ${jwtToken}` } : { Authorization: 'Bearer mock-token-salah-admin' },
+    headers: jwtToken ? { Authorization: `Bearer ${jwtToken}` } : {},
     initialMessages: [
       {
         id: 'welcome-msg',
@@ -113,12 +117,23 @@ export default function ChatbotDashboardPage() {
     }
   }, []);
 
+  if (historyLoading) {
+    return (
+      <div className="animate-fadeIn">
+        <div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-4 md:gap-8">
+          <SkeletonCard />
+          <div className="hidden xl:block">
+            <SkeletonCard />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <PullToRefresh onRefresh={handleRefresh}>
       <div className="animate-fadeIn">
-        {/* Mobile: Single column, Desktop: Two columns */}
         <div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-4 md:gap-8">
-          {/* Main Chat Interface */}
           <Card className="flex flex-col overflow-hidden p-0"
             style={{ height: 'calc(100vh - 280px)', minHeight: '400px', maxHeight: '700px' }}>
             <div className="px-4 md:px-6 py-3 md:py-4 border-b border-gray-100 bg-white flex items-center justify-between shrink-0">
@@ -136,7 +151,6 @@ export default function ChatbotDashboardPage() {
                     {t('Streaming...', 'جاري الكتابة...')}
                   </span>
                 )}
-                {/* Mobile: Knowledge gaps trigger */}
                 <button
                   onClick={() => setShowGapsSheet(true)}
                   aria-label={t('Show knowledge gaps', 'عرض فجوات المعرفة')}
@@ -192,7 +206,6 @@ export default function ChatbotDashboardPage() {
             </form>
           </Card>
 
-          {/* Desktop: Knowledge Gap Panel */}
           <Card className="hidden xl:flex flex-col justify-between p-6">
             <div className="space-y-4">
               <div className="pb-3 border-b border-gray-100">
@@ -204,23 +217,39 @@ export default function ChatbotDashboardPage() {
                 </p>
               </div>
 
-              <div className="space-y-3">
-                {gaps.map((gap) => (
-                  <div
-                    key={gap.id}
-                    onClick={() => {
-                      setSelectedGap(gap.question);
-                      setIsGapModalOpen(true);
-                    }}
-                    className="bg-slate-50 border border-gray-100 rounded-xl p-3.5 hover:border-royal transition-all cursor-pointer flex items-start justify-between gap-3"
-                  >
-                    <p className="text-xs font-bold text-slate-700 leading-normal">
-                      &ldquo;{gap.question}&rdquo;
-                    </p>
-                    <Badge variant="warning">{gap.count}x</Badge>
-                  </div>
-                ))}
-              </div>
+              {gapsLoading ? (
+                <div className="space-y-3">
+                  {[1, 2, 3].map((i) => (
+                    <Skeleton key={i} variant="rectangular" className="h-16 w-full" />
+                  ))}
+                </div>
+              ) : gapsError ? (
+                <p className="text-xs text-slate-400">
+                  {t('Could not load knowledge gaps.', 'تعذر تحميل فجوات المعرفة.')}
+                </p>
+              ) : gaps.length === 0 ? (
+                <p className="text-xs text-slate-400">
+                  {t('No knowledge gaps detected yet. Ask questions to identify gaps.', 'لم يتم اكتشاف أي فجوات معرفية بعد. اطرح أسئلة لتحديد الفجوات.')}
+                </p>
+              ) : (
+                <div className="space-y-3">
+                  {gaps.map((gap) => (
+                    <div
+                      key={gap.id}
+                      onClick={() => {
+                        setSelectedGap(gap.question);
+                        setIsGapModalOpen(true);
+                      }}
+                      className="bg-slate-50 border border-gray-100 rounded-xl p-3.5 hover:border-royal transition-all cursor-pointer flex items-start justify-between gap-3"
+                    >
+                      <p className="text-xs font-bold text-slate-700 leading-normal">
+                        &ldquo;{gap.question}&rdquo;
+                      </p>
+                      <Badge variant="warning">{gap.count}x</Badge>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             <Button variant="outline" className="w-full mt-6 min-h-[44px]" onClick={() => setIsGapModalOpen(true)}>
@@ -229,7 +258,6 @@ export default function ChatbotDashboardPage() {
           </Card>
         </div>
 
-        {/* Mobile: Knowledge Gaps Bottom Sheet */}
         {showGapsSheet && (
           <div className="fixed inset-0 z-50 flex items-end xl:hidden">
             <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setShowGapsSheet(false)} />
@@ -250,21 +278,29 @@ export default function ChatbotDashboardPage() {
                 </button>
               </div>
               <div className="space-y-3">
-                {gaps.map((gap) => (
-                  <div
-                    key={gap.id}
-                    onClick={() => {
-                      setSelectedGap(gap.question);
-                      setIsGapModalOpen(true);
-                    }}
-                    className="bg-slate-50 border border-gray-100 rounded-xl p-3.5 flex items-start justify-between gap-3"
-                  >
-                    <p className="text-xs font-bold text-slate-700 leading-normal">
-                      &ldquo;{gap.question}&rdquo;
-                    </p>
-                    <Badge variant="warning">{gap.count}x</Badge>
-                  </div>
-                ))}
+                {gapsLoading ? (
+                  <Skeleton variant="rectangular" className="h-32 w-full" />
+                ) : gaps.length === 0 ? (
+                  <p className="text-xs text-slate-400">
+                    {t('No gaps detected.', 'لم يتم اكتشاف أي فجوات.')}
+                  </p>
+                ) : (
+                  gaps.map((gap) => (
+                    <div
+                      key={gap.id}
+                      onClick={() => {
+                        setSelectedGap(gap.question);
+                        setIsGapModalOpen(true);
+                      }}
+                      className="bg-slate-50 border border-gray-100 rounded-xl p-3.5 flex items-start justify-between gap-3"
+                    >
+                      <p className="text-xs font-bold text-slate-700 leading-normal">
+                        &ldquo;{gap.question}&rdquo;
+                      </p>
+                      <Badge variant="warning">{gap.count}x</Badge>
+                    </div>
+                  ))
+                )}
               </div>
               <Button variant="outline" className="w-full mt-4 min-h-[44px]" onClick={() => setIsGapModalOpen(true)}>
                 {t('Review All Gaps', 'مراجعة جميع الفجوات')}
@@ -277,12 +313,12 @@ export default function ChatbotDashboardPage() {
           <p className="text-xs text-slate-500 mb-4 leading-relaxed">
             {t(
               'The following query was not answered by the current indexed documents. Upload a PDF containing the correct policy details to fix this.',
-              'تم طرح هذا السؤال من قبل الموظفين ولكن تعذر الإجابة عليه بناءً على المستندات الحالية. لحل هذا، قم بتحميل مستند PDF يحتوي على السياسة.'
+              'تم طرح هذا السؤال من قبل الموظفين ولكن تعذر الإجابة عليه بناءً على المستندات الحالية.'
             )}
           </p>
           <div className="bg-[#F8F9FB] border border-gray-200 rounded-xl p-4 mb-6">
             <p className="text-sm font-bold text-slate-700">
-              &ldquo;{selectedGap || gaps[0]?.question || 'No question selected'}&rdquo;
+              &ldquo;{selectedGap || (gaps.length > 0 ? gaps[0].question : t('No question selected', 'لم يتم تحديد سؤال'))}&rdquo;
             </p>
           </div>
           <div className="flex gap-3">

@@ -9,6 +9,7 @@ VOICE_AI_ACTIVATED = "true"
 PINECONE_INDEX_NAME = "saqyn-rag"
 PINECONE_INDEX_HOST = "saqyn-rag-sl2iiwr.svc.aped-4627-b74a.pinecone.io"
 R2_BUCKET_NAME = "saqyn-documents"
+EMAIL_API_KEY = "re_***"
 
 
 [[r2_buckets]]

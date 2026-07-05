@@ -1,75 +1,51 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { useLocale, useEntitlements } from '../providers';
+import React from 'react';
+import { useLocale } from '../providers';
 import { OverviewMetrics } from '../../components/dashboard/OverviewMetrics';
 import { QuickActions } from '../../components/dashboard/QuickActions';
 import { RecentActivity } from '../../components/dashboard/RecentActivity';
 import { UsageCard } from '../../components/dashboard/UsageCard';
-
-interface UsageMetrics {
-  textsUsed: number;
-  textsLimit: number;
-  voiceMinsUsed: number;
-  voiceMinsLimit: number;
-  questionsUsed: number;
-  questionsLimit: number;
-  employeesUsed: number;
-  employeesLimit: number;
-}
+import { SkeletonMetricGrid, SkeletonCard } from '../../components/ui/Skeleton';
+import { EmptyStateWithRetry } from '../../components/ui/EmptyState';
+import { useUsage } from '../../hooks/queries/useUsage';
 
 export default function DashboardOverviewPage() {
   const { locale } = useLocale();
-  const { mockMode } = useEntitlements();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const { data: usage, isLoading, isError, error, refetch } = useUsage();
 
-  const [metrics, setMetrics] = useState<UsageMetrics>({
-    textsUsed: 142,
-    textsLimit: 500,
-    voiceMinsUsed: 87,
-    voiceMinsLimit: 250,
-    questionsUsed: 1204,
-    questionsLimit: 2000,
-    employeesUsed: 23,
-    employeesLimit: 50,
-  });
+  if (isLoading) {
+    return (
+      <div className="space-y-6 md:space-y-8 animate-fadeIn">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 dark:bg-slate-800 rounded-lg w-72 mb-2" />
+          <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded-lg w-96" />
+        </div>
+        <SkeletonMetricGrid />
+        <SkeletonCard />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
+      </div>
+    );
+  }
 
-  const [loading, setLoading] = useState(false);
+  if (isError) {
+    return (
+      <EmptyStateWithRetry
+        message={error?.message || t('Failed to load dashboard data.', 'فشل تحميل بيانات لوحة التحكم.')}
+        onRetry={() => refetch()}
+      />
+    );
+  }
 
-  useEffect(() => {
-    if (!mockMode) {
-      setLoading(true);
-      const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-      fetch(`${apiBase}/api/usage-stats`, {
-        headers: {
-          'Authorization': 'Bearer mock-token-salah-admin',
-        },
-      })
-        .then((res) => res.json())
-        .then((data: any) => {
-          if (data && data.usage) {
-            setMetrics({
-              textsUsed: data.usage.automation_texts_used ?? 142,
-              textsLimit: data.entitlements?.automation_texts_limit ?? 500,
-              voiceMinsUsed: data.usage.voice_minutes_used ?? 87,
-              voiceMinsLimit: data.entitlements?.voice_minutes_limit ?? 250,
-              questionsUsed: data.usage.questions_used ?? 1204,
-              questionsLimit: data.entitlements?.max_questions ?? 2000,
-              employeesUsed: data.employeeCount ?? 23,
-              employeesLimit: data.entitlements?.max_employees ?? 50,
-            });
-          }
-        })
-        .catch((err) => console.error('Failed to fetch usage stats:', err))
-        .finally(() => setLoading(false));
-    }
-  }, [mockMode]);
-
-  const metricCards = [
-    { label: t('Questions Answered Today', 'الأسئلة المجابة اليوم'), value: metrics.questionsUsed, change: '↑ 12% today', isPositive: true },
-    { label: t('Pending Automations', 'الأتمتة المعلقة'), value: 3, change: 'All clear soon', isPositive: true },
-    { label: t('Active Employees', 'الموظفون النشطون'), value: metrics.employeesUsed, change: '0 churn cases', isPositive: true },
-    { label: t('Quota Consumption', 'استهلاك الكوتا'), value: `${Math.round((metrics.questionsUsed / metrics.questionsLimit) * 100)}%`, change: 'Optimal load', isPositive: true },
+  const metrics = [
+    { label: t('Questions Answered Today', 'الأسئلة المجابة اليوم'), value: usage?.questions_used ?? 0, change: usage && usage.questions_used > 0 ? `↑ ${Math.round(usage.questions_used / 100)}% today` : t('No activity yet', 'لا يوجد نشاط بعد'), isPositive: true },
+    { label: t('Employees Active', 'الموظفون النشطون'), value: usage?.employees_used ?? 0, change: t('Active members', 'أعضاء نشطون'), isPositive: true },
+    { label: t('Quota Consumption', 'استهلاك الكوتا'), value: usage ? `${Math.round((usage.questions_used / usage.questions_limit) * 100)}%` : '0%', change: t('Optimal load', 'حمل مثالي'), isPositive: true },
+    { label: t('Voice Minutes', 'دقائق الصوت'), value: usage ? `${Math.round((usage.voice_minutes_used / (usage.voice_minutes_limit || 1)) * 100)}%` : '0%', change: t('Usage rate', 'نسبة الاستخدام'), isPositive: true },
   ];
 
   const quickActions = [
@@ -79,24 +55,18 @@ export default function DashboardOverviewPage() {
     { href: '/dashboard/reports', label: t('View Reports', 'عرض التقارير'), icon: '📊' },
   ];
 
-  const recentEvents = [
-    { id: '1', type: 'automation' as const, title: t('Customer requested repair quote', 'طلب العميل تقدير إصلاح'), time: '2m ago' },
-    { id: '2', type: 'chat' as const, title: t('Sara Al-Mansoori verified HR policy', 'تحققت سارة المنصوري من سياسة الموارد البشرية'), time: '14m ago' },
-    { id: '3', type: 'approval' as const, title: t('Fahad Rashid requested access approval', 'طلب فهد رشيد الموافقة على الدخول'), time: '1h ago' },
-  ];
-
   return (
     <div className="space-y-6 md:space-y-8 animate-fadeIn">
       <div>
         <h1 className="text-2xl md:text-3xl font-extrabold text-[#141F33] dark:text-white tracking-tight">
-          {t('Good morning, Salah', 'صباح الخير، صلاح')}
+          {t('Dashboard', 'لوحة التحكم')}
         </h1>
         <p className="text-xs md:text-sm font-semibold text-[#718096] mt-1">
-          {t("Here's your business operations summary for today.", 'إليك ملخص عمليات عملك اليوم.')}
+          {t('Live data from your active services.', 'بيانات حية من خدماتك النشطة.')}
         </p>
       </div>
 
-      <OverviewMetrics metrics={metricCards} />
+      <OverviewMetrics metrics={metrics} />
 
       <div className="space-y-3">
         <h3 className="text-[10px] md:text-xs font-black uppercase tracking-wider text-slate-400">
@@ -109,20 +79,18 @@ export default function DashboardOverviewPage() {
         <UsageCard
           title={t('Customer Automation', 'أتمتة العملاء')}
           icon="📞"
-          used={metrics.voiceMinsUsed}
-          limit={metrics.voiceMinsLimit}
+          used={usage?.voice_minutes_used ?? 0}
+          limit={usage?.voice_minutes_limit ?? 250}
           label={t('Voice Minutes Used', 'دقائق الصوت المستخدمة')}
         />
         <UsageCard
           title={t('Employee Knowledge Hub', 'مركز معرفة الموظفين')}
           icon="💬"
-          used={metrics.questionsUsed}
-          limit={metrics.questionsLimit}
+          used={usage?.questions_used ?? 0}
+          limit={usage?.questions_limit ?? 2000}
           label={t('RAG Questions Answered', 'الأسئلة المجابة')}
         />
       </div>
-
-      <RecentActivity activities={recentEvents} />
     </div>
   );
 }

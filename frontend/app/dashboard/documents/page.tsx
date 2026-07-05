@@ -1,106 +1,49 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useAuth } from '@clerk/nextjs';
-import { useLocale, useEntitlements } from '../../providers';
+import { useLocale } from '../../providers';
 import { DocumentGrid } from '../../../components/dashboard/DocumentGrid';
 import { Card } from '../../../components/ui/Card';
 import { Input } from '../../../components/ui/Input';
-
-interface DocumentItem {
-  id: string;
-  name: string;
-  size: string;
-  status: 'ready' | 'processing';
-}
+import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
+import { EmptyStateWithRetry, EmptyDocumentsState } from '../../../components/ui/EmptyState';
+import { useDocuments } from '../../../hooks/queries/useDocuments';
 
 export default function DocumentsDashboardPage() {
   const { locale } = useLocale();
-  const { mockMode } = useEntitlements();
   const { getToken, isLoaded: authLoaded } = useAuth();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const { data, isLoading, isError, error, refetch } = useDocuments();
 
-  const [jwtToken, setJwtToken] = useState<string | null>(null);
-  const [documents, setDocuments] = useState<DocumentItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [uploading, setUploading] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    if (authLoaded && !mockMode) {
-      getToken({ template: 'saqyn-jwt' })
-        .then((token) => setJwtToken(token))
-        .catch((err) => console.error('Failed to get token:', err));
-    }
-  }, [authLoaded, mockMode, getToken]);
+  const documents = data?.documents ?? [];
 
-  const fetchDocuments = () => {
-    setLoading(true);
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
-    fetch(`${apiBase}/api/documents`, { headers })
-      .then((res) => res.json())
-      .then((data: any) => {
-        const list = Array.isArray(data) ? data : data?.documents || [];
-        setDocuments(
-          list.map((d: any) => ({
-            id: d.id,
-            name: d.name,
-            size: d.size || '1.2 MB',
-            status: d.status === 'ready' ? 'ready' : 'processing',
-          }))
-        );
-      })
-      .catch((err) => {
-        console.warn('Failed to fetch documents, using mock details:', err);
-        setDocuments([
-          { id: 'doc-1', name: 'hr_policy_qatar.pdf', size: '2.4 MB', status: 'ready' },
-          { id: 'doc-2', name: 'front_desk_sop.pdf', size: '1.8 MB', status: 'ready' },
-        ]);
-      })
-      .finally(() => setLoading(false));
-  };
-
-  useEffect(() => {
-    fetchDocuments();
-  }, [jwtToken]);
-
-  const handleDelete = (id: string) => {
+  const handleDelete = useCallback(async (id: string) => {
     if (!confirm(t('Are you sure you want to delete this document?', 'هل أنت متأكد من حذف هذا المستند؟'))) {
       return;
     }
 
     const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
+    const token = authLoaded ? await getToken({ template: 'saqyn-jwt' }).catch(() => null) : null;
 
-    fetch(`${apiBase}/api/documents?id=${id}`, {
-      method: 'DELETE',
-      headers,
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setDocuments((prev) => prev.filter((doc) => doc.id !== id));
-      })
-      .catch((err) => {
-        console.error('Delete failed:', err);
-        setDocuments((prev) => prev.filter((doc) => doc.id !== id));
+    try {
+      await fetch(`${apiBase}/api/documents?id=${id}`, {
+        method: 'DELETE',
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
       });
-  };
+      refetch();
+    } catch (err) {
+      console.error('Delete failed:', err);
+      refetch();
+    }
+  }, [authLoaded, getToken, refetch, t]);
 
-  const handleFileUpload = (file: File) => {
+  const handleFileUpload = useCallback(async (file: File) => {
     if (!file) return;
-
     if (file.type !== 'application/pdf') {
       alert(t('Only PDF documents are allowed.', 'يسمح بملفات PDF فقط.'));
       return;
@@ -111,38 +54,51 @@ export default function DocumentsDashboardPage() {
     formData.append('file', file);
 
     const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
+    const token = authLoaded ? await getToken({ template: 'saqyn-jwt' }).catch(() => null) : null;
 
-    fetch(`${apiBase}/api/documents`, {
-      method: 'POST',
-      headers,
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then(() => {
-        fetchDocuments();
-      })
-      .catch((err) => {
-        console.error('Upload failed:', err);
-        const newDoc: DocumentItem = {
-          id: `doc-${Date.now()}`,
-          name: file.name,
-          size: `${(file.size / (1024 * 1024)).toFixed(1)} MB`,
-          status: 'ready',
-        };
-        setDocuments((prev) => [newDoc, ...prev]);
-      })
-      .finally(() => setUploading(false));
-  };
+    try {
+      await fetch(`${apiBase}/api/documents`, {
+        method: 'POST',
+        headers: token ? { Authorization: `Bearer ${token}` } : {},
+        body: formData,
+      });
+      refetch();
+    } catch (err) {
+      console.error('Upload failed:', err);
+    } finally {
+      setUploading(false);
+    }
+  }, [authLoaded, getToken, refetch, t]);
 
   const filteredDocs = documents.filter((doc) =>
     doc.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  if (isLoading) {
+    return (
+      <div className="space-y-6 md:space-y-8 animate-fadeIn">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 dark:bg-slate-800 rounded-lg w-72 mb-2" />
+          <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded-lg w-96" />
+        </div>
+        <Skeleton variant="rectangular" className="h-48 w-full" />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <EmptyStateWithRetry
+        message={error?.message || t('Failed to load documents.', 'فشل تحميل المستندات.')}
+        onRetry={() => refetch()}
+      />
+    );
+  }
 
   return (
     <div className="space-y-6 md:space-y-8 animate-fadeIn">
@@ -166,7 +122,6 @@ export default function DocumentsDashboardPage() {
         </div>
       </div>
 
-      {/* Upload Zone - Mobile optimized */}
       <label className="block">
         <div className="border-2 border-dashed border-gray-300 rounded-2xl p-6 md:p-12 bg-white flex flex-col items-center justify-center text-center transition-colors hover:border-[#141F33] group relative overflow-hidden cursor-pointer">
           <span className="text-2xl md:text-4xl mb-2 md:mb-4 group-hover:scale-110 transition-transform">📁</span>
@@ -181,12 +136,14 @@ export default function DocumentsDashboardPage() {
             {t('Browse Files', 'تصفح الملفات')}
           </div>
           <input
+            ref={fileInputRef}
             type="file"
             accept=".pdf"
             className="absolute inset-0 opacity-0 cursor-pointer"
             onChange={(e) => {
               if (e.target.files && e.target.files[0]) {
                 handleFileUpload(e.target.files[0]);
+                if (fileInputRef.current) fileInputRef.current.value = '';
               }
             }}
           />
@@ -199,7 +156,11 @@ export default function DocumentsDashboardPage() {
         </div>
       </label>
 
-      <DocumentGrid docs={filteredDocs} onDelete={handleDelete} />
+      {filteredDocs.length === 0 && !isLoading ? (
+        <EmptyDocumentsState onUpload={() => fileInputRef.current?.click()} />
+      ) : (
+        <DocumentGrid docs={filteredDocs} onDelete={handleDelete} />
+      )}
     </div>
   );
 }

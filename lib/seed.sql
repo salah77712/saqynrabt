@@ -85,85 +85,73 @@ CREATE TABLE IF NOT EXISTS usage_ledger (
 -- DML - SEED DATA INSERTS (Rule 30)
 -- ==============================================================================
 
--- 1. Insert Dummy Company
+-- 1. Insert Demo Company
 INSERT INTO companies (id, name, auto_overage_enabled)
-VALUES ('dummy_company', 'Al Safa Business Hub', false)
+VALUES ('demo-company', 'SAQYN RABT Demo', false)
 ON CONFLICT (id) DO NOTHING;
 
--- 2. Insert Default Entitlements for Dummy Company
+-- 2. Insert Default Entitlements for Demo Company
 INSERT INTO company_entitlements (company_id, max_employees, max_documents, max_questions, dept_limit)
-VALUES ('dummy_company', 50, 5, 1000, 3)
+VALUES ('demo-company', 50, 5, 1000, 3)
 ON CONFLICT (company_id) DO NOTHING;
 
--- 3. Insert Usage Ledger for Dummy Company
+-- 3. Insert Usage Ledger for Demo Company (starts at zero; increments via real usage)
 INSERT INTO usage_ledger (company_id, questions_count)
-VALUES ('dummy_company', 15) -- 15 questions asked already
+VALUES ('demo-company', 0)
 ON CONFLICT (company_id) DO NOTHING;
 
--- 4. Insert 1 Pending User for Clerk Webhook Demo Integration
+-- 4. Insert 1 Active Admin User (created via Clerk; synced here for dashboard access)
 INSERT INTO company_members (company_id, clerk_user_id, email, name, status, role)
 VALUES (
-    'dummy_company', 
-    'user_2Pnd12345demo', 
-    'pending.employee@alsafa.qa', 
-    'Tariq Mahmood', 
-    'pending', 
-    'employee'
-)
-ON CONFLICT (clerk_user_id) DO NOTHING;
-
--- 5. Insert 1 Active Admin User to access dashboard
-INSERT INTO company_members (company_id, clerk_user_id, email, name, status, role)
-VALUES (
-    'dummy_company', 
-    'user_admin12345demo', 
-    'admin@alsafa.qa', 
-    'Salah Al-Qahtani', 
-    'active', 
+    'demo-company',
+    'user_admin12345demo',
+    'admin@saqyn.ai',
+    'Salah Admin',
+    'active',
     'admin'
 )
 ON CONFLICT (clerk_user_id) DO NOTHING;
 
--- 6. Insert Employee Profile for the Active User (to test get_employee_balance tool - Rule 21)
+-- 5. Insert Employee Profile for the Active User (to test get_employee_balance tool)
 INSERT INTO employee_profiles (clerk_user_id, company_id, name, department, vacation_balance)
 VALUES (
     'user_admin12345demo',
-    'dummy_company',
-    'Salah Al-Qahtani',
+    'demo-company',
+    'Salah Admin',
     'Operations',
-    28
+    30
 )
 ON CONFLICT (clerk_user_id) DO NOTHING;
 
--- 7. Insert Dummy Document
+-- 6. Insert Demo Document with a minimal R2 key
 INSERT INTO documents (id, company_id, name, status, r2_key)
 VALUES (
-    'doc_dummy_01', 
-    'dummy_company', 
-    'Al_Safa_HR_SOP_2026.pdf', 
-    'active', 
-    'dummy_company/doc_dummy_01.pdf'
+    'doc_demo_01',
+    'demo-company',
+    'saqyn_hr_policy_2026.pdf',
+    'active',
+    'demo-company/doc_demo_01.pdf'
 )
 ON CONFLICT (id) DO NOTHING;
 
--- 8. Insert Exactly 3 Rows into chatbot_chunks with dummy 1536-dim embeddings (Rule 30)
--- Using ARRAY_FILL(0::float, ARRAY[1536])::vector to elegant construct 1536 float elements
+-- 7. Insert Exactly 3 Rows into chatbot_chunks with dummy 1536-dim embeddings
+-- so the chat works immediately upon first login (Rule 30)
 INSERT INTO chatbot_chunks (company_id, document_id, text_content, embedding)
 VALUES (
-    'dummy_company',
-    'doc_dummy_01',
+    'demo-company',
+    'doc_demo_01',
     'Company Policy: Office hours are Sunday through Thursday, 8:00 AM to 5:00 PM. All team members must coordinate their attendance with their respective department heads.',
     ARRAY_FILL(0.001::float, ARRAY[1536])::vector
 ),
 (
-    'dummy_company',
-    'doc_dummy_01',
+    'demo-company',
+    'doc_demo_01',
     'Vacation Policy: Employees accrue 2.5 vacation days per month, up to 30 days annually. Vacation balance requests can be checked directly by asking the Staff Knowledge Hub assistant.',
     ARRAY_FILL(0.002::float, ARRAY[1536])::vector
 ),
 (
-    'dummy_company',
-    'doc_dummy_01',
+    'demo-company',
+    'doc_demo_01',
     'Operations Protocol: Technical maintenance shifts operate on a 24/7 on-call rotation. Critical incidents must be logged within the dashboard queue within 15 minutes of occurrence.',
     ARRAY_FILL(0.003::float, ARRAY[1536])::vector
 )

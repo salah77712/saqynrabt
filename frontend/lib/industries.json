@@ -1,0 +1,42 @@
+[
+  {
+    "id": "default",
+    "label": "All Industries",
+    "headline": "Automate Every Customer Interaction. Empower Every Team Member.",
+    "headlineAr": "أتمتة كل تفاعل مع العملاء. تمكين كل عضو في الفريق.",
+    "copy": "The 24/7 AI front-desk and private staff knowledge hub built for any business \u2013 from clinics and workshops to retail and law firms.",
+    "copyAr": "\u0645\u0643\u062A\u0628 \u0627\u0644\u0627\u0633\u062A\u0642\u0628\u0627\u0644 \u0627\u0644\u0630\u0643\u064A \u0639\u0644\u0649 \u0645\u062F\u0627\u0631 \u0627\u0644\u0633\u0627\u0639\u0629 \u0637\u0648\u0627\u0644 \u0623\u064A\u0627\u0645 \u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0648\u0645\u0631\u0643\u0632 \u0627\u0644\u0645\u0639\u0631\u0641\u0629 \u0627\u0644\u062E\u0627Øµ \u0628\u0627\u0644\u0645\u0648Ø¸\u0641\u064A\u0646 \u0648\u0627\u0644\u0645Øµ\u0645\u0645 \u0644Ø£\u064A \u0639\u0645\u0644 \u062AØ¬Ø§Ø±\u064A."
+  },
+  {
+    "id": "healthcare",
+    "label": "\uD83C\uDFE5 Healthcare",
+    "headline": "Empower Your Medical Team. Automate Patient Intake.",
+    "headlineAr": "\u062A\u0645\u0643\u064A\u0646 \u0641\u0631\u064A\u0642\u0643 \u0627\u0644Ø·Ø¨\u064A. \u0623\u062A\u0645\u062A\u0629 \u0627Ø³\u062A\u0642Ø¨\u0627\u0644 \u0627\u0644\u0645Ø±Ø¶\u0649.",
+    "copy": "Reduce front-desk workload by automating patient bookings and triage inquiries.",
+    "copyAr": "\u062A\u0642\u0644\u064A\u0644 \u0639Ø¨Ø¡ \u0627\u0644Ø¹\u0645\u0644 \u0641\u064A \u0645\u0643ØªØ¨ \u0627\u0644Ø§Ø³Øª\u0642Ø¨\u0627\u0644 Ø¨\u0648Ø§Ø³Ø·\u0629 Ø£Ù\u0645Øª\u0629 ØØ¬\u0648Ø²Ø§Øª \u0627\u0644\u0645Ø±Ø¶\u0649 \u0648Ø§\u0644Ø§Ø³Øª\u0641Ø³Ø§Ø±Ø§Øª."
+  },
+  {
+    "id": "law",
+    "label": "\u2696\uFE0F Law Firms",
+    "headline": "Empower Your Legal Team. Automate Client Intake.",
+    "headlineAr": "\u062A\u0645\u0643\u064A\u0646 \u0641\u0631\u064A\u0642\u0643 \u0627\u0644\u0642Ø§\u0646\u0648\u0646\u064A. \u0623Øª\u0645Øª\u0629 \u0627Ø³\u062A\u0642Ø¨Ø§\u0644 \u0627\u0644Ø¹\u0645\u0644Ø§Ø¡.",
+    "copy": "Respond to standard retainer inquiries and case status updates instantly.",
+    "copyAr": "\u0627\u0644Ø±Ø¯ \u0639\u0644\u0649 Ø§Ø³Øª\u0641Ø³Ø§Ø±Ø§Øª \u0627\u0644\u0645\u0648\u0643\u0644\u064A\u0646 \u0627\u0644\u0645Ø¹ØªØ§Ø¯Ø© \u0648ØªØØ¯\u064AØ«Ø§Øª ØØ§\u0644Ø© \u0627\u0644\u0642Ø¶\u064AØ© Ø¹\u0644\u0649 \u0627\u0644\u0641\u0648Ø±."
+  },
+  {
+    "id": "hospitality",
+    "label": "\uD83C\uDFE8 Hospitality",
+    "headline": "Empower Your Hospitality Staff. Coordinate Guest Services.",
+    "headlineAr": "\u062A\u0645\u0643\u064A\u0646 \u0645\u0648Ø¸\u0641\u064A \u0627\u0644Ø¶\u064AØ§Ù\u0081Ø©. \u062A\u0646Ø³\u064A\u0642 Ø®Ø¯\u0645Ø§Øª \u0627\u0644\u0646Ø²\u0644Ø§Ø¡.",
+    "copy": "Manage room requests, check-in rules, and booking questions with no delays.",
+    "copyAr": "\u0625Ø¯Ø§Ø±Ø© Ø·\u0644Ø¨Ø§Øª \u0627\u0644ØºØ±Ù\u0081Ø \u0648\u0642\u0648Ø§Ø¹Ø¯ ØªØ³Ø¬\u064A\u0644 \u0627\u0644\u0648Øµ\u0648\u0644Ø \u0648Ø£Ø³Ø¦\u0644Ø© Ø§\u0644ØØ¬Ø² Ø¯\u0648Ù\u0086 ØªØ£Ø®\u064AØ±."
+  },
+  {
+    "id": "retail",
+    "label": "\uD83D\uDECD\uFE0F Retail Stores",
+    "headline": "Empower Your Retail Staff. Automate Customer Orders.",
+    "headlineAr": "\u062A\u0645\u0643\u064A\u0646 \u0645\u0648Ø¸\u0641\u064A \u0627\u0644ØªØ¬Ø²Ø¦Ø©. Ø£Øª\u0645ØªØ© Ø·\u0644Ø¨Ø§Øª Ø§\u0644Ø¹\u0645\u0644Ø§Ø¡.",
+    "copy": "Handle product stock checks and shipping updates without picking up a phone.",
+    "copyAr": "\u0627\u0644ØªØ¹Ø§\u0645\u0644 \u0645Ø¹ Ù\u0641ØØµØ§Øª \u0645Ø®Ø²\u0648Ù\u0086 \u0627\u0644\u0645Ù\u0086ØªØ¬Ø§Øª \u0648ØªØØ¯\u064AØ«Ø§Øª Ø§\u0644Ø´ØÙ\u0086 Ø¯\u0648Ù\u0086 Ø§\u0644ØØ§Ø¬Ø© \u0644\u0644Ø§ØªØµØ§\u0644."
+  }
+]

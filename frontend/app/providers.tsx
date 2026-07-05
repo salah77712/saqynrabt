@@ -2,6 +2,17 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { ClerkProvider, useAuth } from '@clerk/nextjs';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: 2,
+      staleTime: 30_000,
+    },
+  },
+});
 
 export type Locale = 'en' | 'ar';
 
@@ -46,13 +57,15 @@ export const useEntitlements = () => useContext(EntitlementsContext);
 
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Z3VpZGluZy1jdWItMTcuY2xlcmsuYWNjb3VudHMuZGV2JA'}>
-      <LanguageProvider>
-        <EntitlementsProvider>
-          {children}
-        </EntitlementsProvider>
-      </LanguageProvider>
-    </ClerkProvider>
+    <QueryClientProvider client={queryClient}>
+      <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Z3VpZGluZy1jdWItMTcuY2xlcmsuYWNjb3VudHMuZGV2JA'}>
+        <LanguageProvider>
+          <EntitlementsProvider>
+            {children}
+          </EntitlementsProvider>
+        </LanguageProvider>
+      </ClerkProvider>
+    </QueryClientProvider>
   );
 }
 
