@@ -19,7 +19,6 @@ export function Header() {
     { label: { en: 'Industries', ar: 'الصناعات' }, href: '/industries' },
     { label: { en: 'How It Works', ar: 'آلية العمل' }, href: '/how-it-works' },
     { label: { en: 'Pricing', ar: 'الأسعار' }, href: '/pricing' },
-    { label: { en: 'Dashboard Demo', ar: 'العرض التوضيحي' }, href: '/dashboard' },
   ];
 
   const closeMenu = useCallback(() => setMobileMenuOpen(false), []);

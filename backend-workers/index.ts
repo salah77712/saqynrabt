@@ -358,7 +358,7 @@ export default {
       
       // Initialize Redis (Rule 14)
       const redis = new Redis({
-        url: env.REDIS_URL.split('redis://')[1] ? `https://${env.REDIS_URL.split('@')[1]}` : env.REDIS_URL,
+        url: env.REDIS_URL.split('redis://')[1] ? `https://${env.REDIS_URL.split('@')[1].replace(/:.*$/, '')}` : env.REDIS_URL,
         token: env.REDIS_URL.split('@')[0].split('default:')[1] || '',
       });
 

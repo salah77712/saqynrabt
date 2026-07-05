@@ -1,19 +1,36 @@
 'use client';
 
 import React from 'react';
+import { useUser } from '@clerk/nextjs';
 import { useLocale } from '../providers';
 import { OverviewMetrics } from '../../components/dashboard/OverviewMetrics';
 import { QuickActions } from '../../components/dashboard/QuickActions';
-import { RecentActivity } from '../../components/dashboard/RecentActivity';
 import { UsageCard } from '../../components/dashboard/UsageCard';
 import { SkeletonMetricGrid, SkeletonCard } from '../../components/ui/Skeleton';
-import { EmptyStateWithRetry } from '../../components/ui/EmptyState';
 import { useUsage } from '../../hooks/queries/useUsage';
 
 export default function DashboardOverviewPage() {
   const { locale } = useLocale();
+  const { isLoaded, isSignedIn, user } = useUser();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
-  const { data: usage, isLoading, isError, error, refetch } = useUsage();
+  const { data: usage, isLoading, isError, error, refetch } = useUsage(!!user);
+
+  if (!isLoaded || !isSignedIn) {
+    return (
+      <div className="space-y-6 md:space-y-8 animate-fadeIn">
+        <div className="animate-pulse">
+          <div className="h-8 bg-gray-200 dark:bg-slate-800 rounded-lg w-72 mb-2" />
+          <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded-lg w-96" />
+        </div>
+        <SkeletonMetricGrid />
+        <SkeletonCard />
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+          <SkeletonCard />
+          <SkeletonCard />
+        </div>
+      </div>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -34,10 +51,21 @@ export default function DashboardOverviewPage() {
 
   if (isError) {
     return (
-      <EmptyStateWithRetry
-        message={error?.message || t('Failed to load dashboard data.', 'فشل تحميل بيانات لوحة التحكم.')}
-        onRetry={() => refetch()}
-      />
+      <div className="flex flex-col items-center justify-center text-center p-8 border border-gray-100 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 shadow-sm max-w-sm mx-auto">
+        <span className="text-4xl mb-4" role="img" aria-hidden="true">⚠️</span>
+        <h3 className="font-bold text-navy dark:text-white text-base mb-1">
+          {t('Error loading dashboard', 'خطأ في تحميل لوحة التحكم')}
+        </h3>
+        <p className="text-xs text-slate-500 leading-relaxed mb-6">
+          {error?.message || t('Something went wrong. Please try again.', 'حدث خطأ ما. يرجى المحاولة مرة أخرى.')}
+        </p>
+        <button
+          onClick={() => refetch()}
+          className="inline-flex items-center justify-center rounded-xl bg-[#141F33] text-white font-bold px-6 py-3 text-sm transition-all hover:scale-[1.02] active:scale-95 min-h-[44px]"
+        >
+          {t('Retry', 'إعادة المحاولة')}
+        </button>
+      </div>
     );
   }
 
