@@ -7,7 +7,7 @@ export function middleware(request: NextRequest) {
   // 1. Content Security Policy (CSP) Directives
   const cspDirectives = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.saqynrabt.com https://challenges.cloudflare.com",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.saqynrabt.com https://static.cloudflareinsights.com https://challenges.cloudflare.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "img-src 'self' data: https: blob:",
     "connect-src 'self' https://api.saqynrabt.com https://clerk.saqynrabt.com https://*.clerk.accounts.dev",
@@ -15,6 +15,7 @@ export function middleware(request: NextRequest) {
     "font-src 'self' data: https://fonts.gstatic.com",
     "media-src 'self'",
     "object-src 'none'",
+    "worker-src 'self' blob:",
   ].join('; ');
 
   response.headers.set('Content-Security-Policy', cspDirectives);
