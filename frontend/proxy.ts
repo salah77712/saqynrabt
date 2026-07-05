@@ -1,6 +1,6 @@
 import { authMiddleware } from "@clerk/nextjs/server";
 
-export default authMiddleware({
+const handler = authMiddleware({
   publicRoutes: [
     "/",
     "/sign-in",
@@ -11,6 +11,9 @@ export default authMiddleware({
     "/dashboard"
   ],
 });
+
+export const proxy = handler;
+export default handler;
 
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
