@@ -1,5 +1,6 @@
 import { neon } from '@neondatabase/serverless';
 import { Redis } from '@upstash/redis';
+import { verifyToken } from '@clerk/backend';
 
 // Define environment interface
 export interface Env {
@@ -8,7 +9,6 @@ export interface Env {
   PINECONE_API_KEY: string;
   PINECONE_INDEX_HOST?: string;
   CLERK_SECRET_KEY: string;
-  CLERK_JWT_VERIFICATION_KEY?: string; // Optional cryptographic public key
   REDIS_URL: string;
   VOICE_AI_ACTIVATED: string;
   BUCKET: R2Bucket;
@@ -162,95 +162,29 @@ async function verifyClerkWebhook(request: Request, bodyText: string, webhookSec
 async function verifyJWT(authHeader: string | null, env: Env): Promise<JWTPayload | null> {
   if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
   const token = authHeader.split(' ')[1];
-  
+
   // Developer/Demo bypass for instant dashboard demos (Rule 30 support)
   if (token.startsWith('mock-token-')) {
     if (env.NODE_ENV === 'production' && env.ALLOW_MOCK_TOKENS !== 'true') {
       return null;
     }
     const parts = token.split('-');
-    // format: mock-token-[company_id]-[user_id]-[role]
     return {
       company_id: parts[2] || 'dummy_company',
       sub: parts[3] || 'user_admin12345demo',
       email: 'demo@saqynrabt.com',
-      role: parts[4] || 'admin'
+      role: parts[4] || 'admin',
     };
   }
 
-  // Optional cryptographic RS256 signature verification if CLERK_JWT_VERIFICATION_KEY is present
-  if (env.CLERK_JWT_VERIFICATION_KEY) {
-    try {
-      const parts = token.split('.');
-      if (parts.length !== 3) return null;
-      
-      const header = JSON.parse(atob(parts[0].replace(/-/g, '+').replace(/_/g, '/')));
-      if (header.alg !== 'RS256') return null;
-
-      const pemHeader = "-----BEGIN PUBLIC KEY-----";
-      const pemFooter = "-----END PUBLIC KEY-----";
-      const pemContents = env.CLERK_JWT_VERIFICATION_KEY
-        .replace(pemHeader, "")
-        .replace(pemFooter, "")
-        .replace(/\s/g, "");
-      
-      const binaryDerString = atob(pemContents);
-      const binaryDer = new Uint8Array(binaryDerString.length);
-      for (let i = 0; i < binaryDerString.length; i++) {
-        binaryDer[i] = binaryDerString.charCodeAt(i);
-      }
-
-      const publicKey = await crypto.subtle.importKey(
-        "spki",
-        binaryDer,
-        {
-          name: "RSASSA-PKCS1-v1_5",
-          hash: "SHA-256",
-        },
-        false,
-        ["verify"]
-      );
-
-      const data = new TextEncoder().encode(parts[0] + "." + parts[1]);
-      const signatureBin = new Uint8Array(
-        atob(parts[2].replace(/-/g, '+').replace(/_/g, '/'))
-          .split("")
-          .map((c) => c.charCodeAt(0))
-      );
-
-      const isValid = await crypto.subtle.verify(
-        "RSASSA-PKCS1-v1_5",
-        publicKey,
-        signatureBin,
-        data
-      );
-
-      if (!isValid) return null;
-
-      const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
-      const now = Math.floor(Date.now() / 1000);
-      if (payload.exp && payload.exp < now) return null;
-
-      const company_id = payload.company_id || payload.org_id || 'dummy_company';
-      return { ...payload, company_id };
-    } catch (e) {
-      console.error("JWT Verification failed:", e);
-      return null;
-    }
-  }
-
-  // Fallback to standard base64 decoding (for dev/local simulation only)
-  if (env.NODE_ENV === 'production') {
-    console.error("CRITICAL: CLERK_JWT_VERIFICATION_KEY is missing in production. Refusing token verification.");
-    return null;
-  }
-  const parts = token.split('.');
-  if (parts.length !== 3) return null;
   try {
-    const payload = JSON.parse(atob(parts[1].replace(/-/g, '+').replace(/_/g, '/')));
-    const company_id = payload.company_id || payload.org_id || 'dummy_company';
-    return { ...payload, company_id };
+    const payload = await verifyToken(token, {
+      secretKey: env.CLERK_SECRET_KEY,
+    });
+    const company_id = (payload as any).company_id || (payload as any).org_id || 'dummy_company';
+    return { ...(payload as any), company_id };
   } catch (e) {
+    console.error("JWT verification failed:", e);
     return null;
   }
 }
