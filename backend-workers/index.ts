@@ -21,6 +21,7 @@ export interface Env {
   VAPI_WEBHOOK_SECRET?: string;
   MESSAGE_WEBHOOK_SECRET?: string;
   ADMIN_SECRET?: string;
+  EMAIL_API_KEY?: string;
 }
 
 // Global active connections counter for Concurrency Guard (Rule 13)
@@ -286,6 +287,34 @@ async function checkUsageLimit(
   }
 }
 
+// Helper: write audit log entry (Part 19)
+async function logAudit(
+  env: Env,
+  company_id: string,
+  user_id: string,
+  action: string,
+  details?: any,
+  ip_address?: string | null,
+  user_agent?: string | null
+): Promise<void> {
+  try {
+    const sql = neon(env.DATABASE_URL);
+    await sql`
+      INSERT INTO audit_logs (company_id, user_id, action, details, ip_address, user_agent)
+      VALUES (
+        ${company_id},
+        ${user_id},
+        ${action},
+        ${details ? JSON.stringify(details) : null}::jsonb,
+        ${ip_address || null},
+        ${user_agent || null}
+      )
+    `;
+  } catch (err) {
+    console.error(`Audit log insert failed for action="${action}":`, err);
+  }
+}
+
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const requestId = crypto.randomUUID(); // Rule 12
@@ -348,6 +377,28 @@ export default {
         }
 
         return new Response(JSON.stringify({ status: 'warmed', schema: schemaVersion }), {
+          status: 200,
+          headers: { ...headers, 'Content-Type': 'application/json' },
+        });
+      }
+
+      // A1. Public health check endpoint
+      if (url.pathname === '/api/health' && request.method === 'GET') {
+        let dbOk = false;
+        let redisOk = false;
+        try {
+          await sql`SELECT 1`;
+          dbOk = true;
+        } catch (e) { /* ok */ }
+        try {
+          await redis.ping();
+          redisOk = true;
+        } catch (e) { /* ok */ }
+
+        return new Response(JSON.stringify({
+          status: dbOk && redisOk ? 'healthy' : 'degraded',
+          checks: { database: dbOk ? 'online' : 'offline', cache: redisOk ? 'online' : 'offline' },
+        }), {
           status: 200,
           headers: { ...headers, 'Content-Type': 'application/json' },
         });
@@ -437,6 +488,8 @@ export default {
           await sql`INSERT INTO _schema_version (version) VALUES (2)`;
         }
 
+        ctx.waitUntil(logAudit(env, 'system', 'admin', 'migration.run', { from_version: currentVersion, to_version: Math.max(currentVersion, 2) }, request.headers.get('cf-connecting-ip'), request.headers.get('user-agent')));
+
         return new Response(JSON.stringify({ status: 'migrated', schema: Math.max(currentVersion, 2) }), {
           status: 200,
           headers: { ...headers, 'Content-Type': 'application/json' },
@@ -486,6 +539,8 @@ export default {
             ON CONFLICT (company_id) DO NOTHING
           `;
 
+          ctx.waitUntil(logAudit(env, companyId, clerkUserId, 'webhook.user.created', { email, name, role }, request.headers.get('cf-connecting-ip'), request.headers.get('user-agent')));
+
           return new Response(JSON.stringify({ success: true, role }), {
             status: 201,
             headers: { ...headers, 'Content-Type': 'application/json' },
@@ -504,6 +559,8 @@ export default {
             SET email = ${email}, name = ${name}, company_id = ${companyId}
             WHERE clerk_user_id = ${clerkUserId}
           `;
+
+          ctx.waitUntil(logAudit(env, companyId, clerkUserId, 'webhook.user.updated', { email, name }, request.headers.get('cf-connecting-ip'), request.headers.get('user-agent')));
 
           return new Response(JSON.stringify({ success: true }), {
             status: 200,
@@ -848,6 +905,8 @@ export default {
             `;
           }
 
+          ctx.waitUntil(logAudit(env, jwt.company_id, jwt.sub, `employee.${body.status === 'active' ? 'approved' : 'suspended'}`, { target_user_id: body.clerk_user_id }, request.headers.get('cf-connecting-ip'), request.headers.get('user-agent')));
+
           return new Response(JSON.stringify({ success: true }), {
             status: 200,
             headers: { ...headers, 'Content-Type': 'application/json' },
@@ -904,6 +963,9 @@ export default {
         } catch (e) {
           console.error("Redis entitlements cache clear failed:", e);
         }
+
+        ctx.waitUntil(logAudit(env, jwt.company_id, jwt.sub, 'overage_settings.toggle', { auto_overage_enabled: body.auto_overage_enabled }, request.headers.get('cf-connecting-ip'), request.headers.get('user-agent')));
+
         return new Response(JSON.stringify({ success: true }), {
           status: 200,
           headers: { ...headers, 'Content-Type': 'application/json' },
@@ -1182,6 +1244,29 @@ export default {
         });
       }
 
+      // K2. Feedback submission (Part 19)
+      if (url.pathname === '/api/feedback' && request.method === 'POST') {
+        const body = await request.json() as { rating: number; comment?: string };
+        const { rating, comment } = body;
+
+        if (typeof rating !== 'number' || rating < 1 || rating > 5) {
+          return new Response(JSON.stringify({ error: 'rating must be an integer between 1 and 5' }), {
+            status: 400,
+            headers: { ...headers, 'Content-Type': 'application/json' },
+          });
+        }
+
+        await sql`
+          INSERT INTO feedback (company_id, user_id, rating, comment)
+          VALUES (${jwt.company_id}, ${jwt.sub}, ${rating}, ${comment || null})
+        `;
+
+        return new Response(JSON.stringify({ success: true }), {
+          status: 201,
+          headers: { ...headers, 'Content-Type': 'application/json' },
+        });
+      }
+
       // L. Documents Hub (Rule 24 / 28 / 37)
       if ((url.pathname === '/api/documents' || url.pathname === '/api/ingest') && request.method === 'POST') {
         const formData = await request.formData();
@@ -1346,6 +1431,8 @@ export default {
             SET status = 'deleted' 
             WHERE id = ${docId} AND company_id = ${jwt.company_id}
           `;
+
+          ctx.waitUntil(logAudit(env, jwt.company_id, jwt.sub, 'document.deleted', { document_id: docId, document_name: doc.r2_key }, request.headers.get('cf-connecting-ip'), request.headers.get('user-agent')));
 
           return new Response(JSON.stringify({ success: true }), {
             status: 200,

@@ -15,8 +15,7 @@ export function GlobalStatusBar() {
   const checkHealth = useCallback(async () => {
     const start = Date.now();
     try {
-      const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-      const res = await fetch(`${apiBase}/api/health`, { cache: 'no-store' });
+      const res = await fetch('/api/health', { cache: 'no-store' });
       if (res.ok) {
         setLatency(Date.now() - start);
         setStatus('online');
