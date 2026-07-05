@@ -177,7 +177,7 @@ export default function MarketingPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
           {/* Left Column (The Pitch) */}
-          <div className="flex flex-col items-start gap-6 lg:w-[55%]">
+          <div className="flex flex-col items-start gap-6 lg:w-full">
             
             {/* Two-Product Toggle (Section 4) */}
             <div className="inline-flex rounded-full bg-white p-1 border border-gray-200/80 shadow-sm">
@@ -233,92 +233,7 @@ export default function MarketingPage() {
             </div>
           </div>
 
-          {/* Right Column (Floating Dashboard Mockup) */}
-          <div className="w-full lg:w-[45%] flex justify-center">
-            <div className="w-full max-w-[480px] bg-white p-6 rounded-2xl shadow-[0_20px_50px_-12px_rgba(0,0,0,0.15)] border border-gray-100/80 relative z-10 hover:shadow-[0_30px_60px_-15px_rgba(0,0,0,0.25)] transition-all duration-300 hover:scale-[1.02]">
-              
-              {/* Card Window Mock Header */}
-              <div className="flex items-center gap-1.5 pb-4 border-b border-gray-100 mb-6">
-                <span className="h-3 w-3 rounded-full bg-[#EF4444]" />
-                <span className="h-3 w-3 rounded-full bg-[#F59E0B]" />
-                <span className="h-3 w-3 rounded-full bg-[#10B981]" />
-                <span className="text-[11px] font-bold text-slate-400 ml-2 uppercase tracking-widest">{t({ en: 'SAQYN SECURE OPS', ar: 'عمليات ساقين الآمنة' })}</span>
-              </div>
 
-              {/* Chat Bubble Interface */}
-              <div className="bg-[#F8F9FB] p-5 rounded-2xl border border-gray-100 shadow-sm mb-6 animate-fadeIn">
-                {activeProduct === 'automation' ? (
-                  <>
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="h-7 w-7 rounded-full bg-[#2A5CFF] flex items-center justify-center text-xs text-white">🛎️</div>
-                      <span className="text-xs font-bold text-[#141F33]">{t({ en: 'Guest - Room 204', ar: 'نزيل - غرفة 204' })}</span>
-                    </div>
-                    <p className="text-xs font-semibold text-slate-700 leading-relaxed">
-                      "{t({ en: 'Can I request a late check-out at 2 PM?', ar: 'هل يمكنني طلب تسجيل المغادرة المتأخر في الساعة 2 ظهرًا؟' })}"
-                    </p>
-                    <div className="mt-4 pt-3 border-t border-gray-200/60">
-                      <p className="text-xs text-[#10B981] font-bold flex items-center gap-2">
-                        <span className="text-sm">🤖</span>
-                        <span>{t({ en: 'AI Response: Approved. Fee of 150 QAR added.', ar: 'استجابة الذكاء الاصطناعي: تم القبول. تم إضافة رسوم 150 ريال قطري.' })}</span>
-                      </p>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <div className="flex items-center gap-2 mb-3">
-                      <div className="h-7 w-7 rounded-full bg-[#141F33] flex items-center justify-center text-xs text-white">👩‍💼</div>
-                      <span className="text-xs font-bold text-[#141F33]">{t({ en: 'Sarah (Front Desk Agent)', ar: 'سارة (موظف الاستقبال)' })}</span>
-                    </div>
-                    <p className="text-xs font-semibold text-slate-700 leading-relaxed">
-                      "{t({ en: 'What is our policy for early guest check-ins?', ar: 'ما هي سياستنا لتسجيل الوصول المبكر للنزلاء؟' })}"
-                    </p>
-                    <div className="mt-4 pt-3 border-t border-gray-200/60">
-                      <p className="text-xs text-[#2A5CFF] font-bold flex items-center gap-2">
-                        <span className="text-sm">🧠</span>
-                        <span>{t({ en: 'RAG Verified: Fee is 100 QAR if clean; waive if vacant.', ar: 'مستخرج من المستندات: الرسوم 100 ريال إذا كانت الغرفة جاهزة؛ تُعفى إن كانت شاغرة.' })}</span>
-                      </p>
-                    </div>
-                  </>
-                )}
-              </div>
-
-              {/* Dynamic Bottom Card Widget */}
-              <div className="bg-[#F8F9FB] p-5 rounded-2xl border border-gray-100 shadow-sm animate-fadeIn">
-                {activeProduct === 'automation' ? (
-                  <>
-                    <h4 className="text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-widest">{t({ en: 'Live Guest Queue', ar: 'طابور النزلاء المباشر' })}</h4>
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center justify-between text-xs border-b border-gray-200/40 pb-2">
-                        <span className="font-bold text-[#141F33]">{t({ en: 'Room 204 - Late checkout', ar: 'غرفة 204 - مغادرة متأخرة' })}</span>
-                        <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">{t({ en: 'Completed', ar: 'مكتمل' })}</span>
-                      </div>
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="font-bold text-[#141F33]">{t({ en: 'Room 102 - Fresh towels', ar: 'غرفة 102 - مناشف إضافية' })}</span>
-                        <span className="bg-orange-100 text-orange-800 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">{t({ en: 'Assigned', ar: 'معين' })}</span>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <h4 className="text-[10px] font-bold text-slate-400 mb-3 uppercase tracking-widest">{t({ en: 'Indexed Knowledge Base', ar: 'قاعدة المعرفة المفهرسة' })}</h4>
-                    <div className="flex flex-col gap-3">
-                      <div className="flex items-center gap-3 text-xs border-b border-gray-200/40 pb-2">
-                        <span className="text-slate-400 text-sm">📄</span>
-                        <span className="font-bold text-[#141F33] truncate max-w-[160px]">hotel_sop_v2.pdf</span>
-                        <span className="ml-auto bg-green-100 text-green-800 text-[9px] font-extrabold px-2.5 py-0.5 rounded-full">{t({ en: 'Indexed', ar: 'مفهرس' })}</span>
-                      </div>
-                      <div className="flex items-center gap-3 text-xs">
-                        <span className="text-slate-400 text-sm">📄</span>
-                        <span className="font-bold text-[#141F33] truncate max-w-[160px]">hr_policy_qatar.pdf</span>
-                        <span className="ml-auto bg-green-100 text-green-800 text-[9px] font-extrabold px-2.5 py-0.5 rounded-full">{t({ en: 'Indexed', ar: 'مفهرس' })}</span>
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-
-            </div>
-          </div>
 
         </div>
       </section>

@@ -81,6 +81,39 @@ CREATE TABLE IF NOT EXISTS usage_ledger (
     last_reset TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
 
+-- 9. Feedback Table (Rule 42)
+CREATE TABLE IF NOT EXISTS feedback (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    company_id VARCHAR(255) REFERENCES companies(id) ON DELETE CASCADE,
+    user_id TEXT,
+    rating INTEGER,
+    comment TEXT,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- 10. Audit Logs Table (Security Rule S3)
+CREATE TABLE IF NOT EXISTS audit_logs (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    company_id VARCHAR(255) REFERENCES companies(id) ON DELETE CASCADE,
+    user_id TEXT,
+    action TEXT,
+    details JSONB,
+    ip_address TEXT,
+    user_agent TEXT,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- 11. Notifications Table (Rule 43)
+CREATE TABLE IF NOT EXISTS notifications (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    company_id VARCHAR(255) REFERENCES companies(id) ON DELETE CASCADE,
+    user_id TEXT,
+    title TEXT,
+    body TEXT,
+    read BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT NOW()
+);
+
 -- ==============================================================================
 -- DML - SEED DATA INSERTS (Rule 30)
 -- ==============================================================================
