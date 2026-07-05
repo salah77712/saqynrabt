@@ -18,6 +18,8 @@ export default function SignUpPage() {
   const [agree, setAgree] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [pendingVerification, setPendingVerification] = useState(false);
+  const [code, setCode] = useState('');
 
   // Live password strength meter evaluation (Section 2.3)
   const getPasswordStrength = () => {
@@ -59,9 +61,7 @@ export default function SignUpPage() {
 
       // Send the email verification code
       await signUp.prepareEmailAddressVerification({ strategy: 'email_code' });
-      
-      // Redirect to onboarding/verification page
-      router.push('/onboarding');
+      setPendingVerification(true);
     } catch (err: any) {
       console.error("SignUp Error:", err);
       const msg = err.errors?.[0]?.message || err.message || t({ en: 'Network error. Please check your connection and try again.', ar: 'خطأ في الشبكة. يرجى التحقق من الاتصال والمحاولة مرة أخرى.' });
@@ -70,6 +70,87 @@ export default function SignUpPage() {
       setLoading(false);
     }
   };
+
+  const handleVerification = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isLoaded) return;
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const completeSignUp = await signUp.attemptEmailAddressVerification({
+        code,
+      });
+
+      if (completeSignUp.status === 'complete') {
+        await setActive({ session: completeSignUp.createdSessionId });
+        router.push('/onboarding');
+      } else {
+        console.error('Incomplete signup status:', completeSignUp);
+        setError(t({ en: 'Sign up incomplete. Please try again.', ar: 'لم يكتمل التسجيل. يرجى المحاولة مرة أخرى.' }));
+      }
+    } catch (err: any) {
+      console.error("Verification Error:", err);
+      setError(err.errors?.[0]?.message || err.message || t({ en: 'Verification failed. Please check the code.', ar: 'فشل التحقق. يرجى التحقق من الرمز.' }));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (pendingVerification) {
+    return (
+      <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 w-full max-w-md animate-fadeIn text-center">
+          
+          {/* Logo */}
+          <div className="text-center mb-8">
+            <Link href="/" className="flex flex-col items-center gap-1">
+              <span className="text-[#141F33] font-extrabold text-2xl tracking-tight">SAQYN RABT</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#718096] font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
+            </Link>
+          </div>
+
+          <div className="text-4xl mb-4">✉️</div>
+          <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
+            {t({ en: 'Verify Your Email', ar: 'تأكيد بريدك الإلكتروني' })}
+          </h2>
+          <p className="text-xs font-semibold text-[#718096] mb-6 leading-relaxed">
+            {t({ 
+              en: `Please enter the 6-digit verification code sent to ${email}.`, 
+              ar: `يرجى إدخال رمز التحقق المكون من 6 أرقام المرسل إلى ${email}.` 
+            })}
+          </p>
+
+          {error && (
+            <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
+              ⚠️ {error}
+            </div>
+          )}
+
+          <form onSubmit={handleVerification} className="space-y-4">
+            <input
+              type="text"
+              placeholder="123456"
+              maxLength={6}
+              value={code}
+              onChange={(e) => setCode(e.target.value)}
+              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              required
+            />
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            >
+              {loading ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Activate Account', ar: 'التحقق وتنشيط الحساب' })}
+            </button>
+          </form>
+
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
