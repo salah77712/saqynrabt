@@ -1,13 +1,14 @@
+import { clerkMiddleware } from '@clerk/nextjs/server';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export function middleware(request: NextRequest) {
+export default clerkMiddleware((auth, request: NextRequest) => {
   const response = NextResponse.next();
 
   // 1. Content Security Policy (CSP) Directives
   const cspDirectives = [
     "default-src 'self'",
-    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.saqynrabt.com https://static.cloudflareinsights.com https://challenges.cloudflare.com",
+    "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.saqynrabt.com https://*.clerk.accounts.dev https://static.cloudflareinsights.com https://challenges.cloudflare.com",
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "img-src 'self' data: https: blob:",
     "connect-src 'self' https://api.saqynrabt.com https://clerk.saqynrabt.com https://*.clerk.accounts.dev",
@@ -48,7 +49,7 @@ export function middleware(request: NextRequest) {
   );
 
   return response;
-}
+});
 
 export const config = {
   matcher: [
