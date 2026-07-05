@@ -7,6 +7,7 @@ import { Badge } from '../../../components/ui/Badge';
 import { TeamTable } from '../../../components/dashboard/TeamTable';
 import { Modal } from '../../../components/ui/Modal';
 import { Input } from '../../../components/ui/Input';
+import { useMediaQuery } from '../../../hooks/useMediaQuery';
 
 interface Employee {
   id: string;
@@ -26,6 +27,7 @@ export default function TeamDashboardPage() {
   const [inviteModalOpen, setInviteModalOpen] = useState(false);
   const [inviteName, setInviteName] = useState('');
   const [inviteEmail, setInviteEmail] = useState('');
+  const isMobile = useMediaQuery('(max-width: 767px)');
 
   const handleAction = (id: string, action: 'approve' | 'suspend') => {
     setMembers((prev) =>
@@ -59,14 +61,48 @@ export default function TeamDashboardPage() {
   const pending = members.filter((m) => m.status === 'pending');
   const active = members.filter((m) => m.status === 'active');
 
-  return (
-    <main id="main-content" className="p-6 space-y-6">
-      <div className="flex justify-between items-center mb-6">
-        <div>
-          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">Workspace Directory</h1>
-          <p className="text-xs text-slate-500 font-bold">Manage team access controls and coordinate staff approvals.</p>
+  const renderMobileCard = (m: Employee) => (
+    <div key={m.id} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
+      <div className="flex items-start justify-between mb-2">
+        <div className="flex-1 min-w-0">
+          <h4 className="text-sm font-bold text-[#141F33] truncate">{m.name}</h4>
+          <p className="text-[11px] text-slate-500 truncate">{m.email}</p>
         </div>
-        <Button variant="primary" size="sm" onClick={() => setInviteModalOpen(true)}>
+        <Badge variant={m.status === 'active' ? 'success' : 'primary'}>{m.status}</Badge>
+      </div>
+      <p className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-3">{m.role}</p>
+      <div className="flex gap-2">
+        {m.status === 'pending' ? (
+          <button
+            onClick={() => handleAction(m.id, 'approve')}
+            className="flex-1 min-h-[44px] rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 font-bold text-xs"
+          >
+            Approve
+          </button>
+        ) : (
+          <button
+            onClick={() => handleAction(m.id, 'suspend')}
+            className="flex-1 min-h-[44px] rounded-lg bg-red-50 border border-red-200 text-red-600 font-bold text-xs"
+          >
+            Suspend
+          </button>
+        )}
+      </div>
+    </div>
+  );
+
+  return (
+    <main id="main-content" className="space-y-6">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
+        <div>
+          <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-white">
+            Workspace Directory
+          </h1>
+          <p className="text-[10px] md:text-xs text-slate-500 font-bold">
+            Manage team access controls and coordinate staff approvals.
+          </p>
+        </div>
+        <Button variant="primary" onClick={() => setInviteModalOpen(true)} className="min-h-[44px] text-xs md:text-sm w-full md:w-auto">
           Invite Colleague
         </Button>
       </div>
@@ -74,18 +110,26 @@ export default function TeamDashboardPage() {
       <div className="space-y-6">
         {pending.length > 0 && (
           <div className="space-y-3">
-            <h3 className="text-sm font-black uppercase tracking-wider text-orange-500">
+            <h3 className="text-xs md:text-sm font-black uppercase tracking-wider text-orange-500">
               Pending Approvals ({pending.length})
             </h3>
-            <TeamTable members={pending} onAction={handleAction} />
+            {isMobile ? (
+              <div className="space-y-3">{pending.map(renderMobileCard)}</div>
+            ) : (
+              <TeamTable members={pending} onAction={handleAction} />
+            )}
           </div>
         )}
 
         <div className="space-y-3">
-          <h3 className="text-sm font-black uppercase tracking-wider text-navy dark:text-white">
+          <h3 className="text-xs md:text-sm font-black uppercase tracking-wider text-navy dark:text-white">
             Active Members ({active.length})
           </h3>
-          <TeamTable members={active} onAction={handleAction} />
+          {isMobile ? (
+            <div className="space-y-3">{active.map(renderMobileCard)}</div>
+          ) : (
+            <TeamTable members={active} onAction={handleAction} />
+          )}
         </div>
       </div>
 
@@ -93,13 +137,13 @@ export default function TeamDashboardPage() {
         <div className="space-y-4">
           <div>
             <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">Full Name</label>
-            <Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" />
+            <Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] text-sm" />
           </div>
           <div>
             <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">Email Address</label>
-            <Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" />
+            <Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] text-sm" />
           </div>
-          <Button variant="primary" className="w-full" onClick={handleSendInvite}>
+          <Button variant="primary" className="w-full min-h-[44px]" onClick={handleSendInvite}>
             Send Invitation
           </Button>
         </div>

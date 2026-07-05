@@ -86,30 +86,26 @@ export default function DashboardOverviewPage() {
   ];
 
   return (
-    <div className="space-y-8 animate-fadeIn">
-      {/* Header title */}
+    <div className="space-y-6 md:space-y-8 animate-fadeIn">
       <div>
-        <h1 className="text-3xl font-extrabold text-[#141F33] dark:text-white tracking-tight">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-[#141F33] dark:text-white tracking-tight">
           {t('Good morning, Salah', 'صباح الخير، صلاح')}
         </h1>
-        <p className="text-sm font-semibold text-[#718096] mt-1">
+        <p className="text-xs md:text-sm font-semibold text-[#718096] mt-1">
           {t("Here's your business operations summary for today.", 'إليك ملخص عمليات عملك اليوم.')}
         </p>
       </div>
 
-      {/* Metrics Cards Grid */}
       <OverviewMetrics metrics={metricCards} />
 
-      {/* Quick Action Pills */}
       <div className="space-y-3">
-        <h3 className="text-xs font-black uppercase tracking-wider text-slate-400">
+        <h3 className="text-[10px] md:text-xs font-black uppercase tracking-wider text-slate-400">
           {t('Quick Actions', 'إجراءات سريعة')}
         </h3>
         <QuickActions actions={quickActions} />
       </div>
 
-      {/* Usage Progress Cards */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         <UsageCard
           title={t('Customer Automation', 'أتمتة العملاء')}
           icon="📞"
@@ -126,7 +122,6 @@ export default function DashboardOverviewPage() {
         />
       </div>
 
-      {/* Activity Feed */}
       <RecentActivity activities={recentEvents} />
     </div>
   );

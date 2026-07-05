@@ -7,7 +7,8 @@ import { UserButton, useAuth } from '@clerk/nextjs';
 import { useEntitlements, useLocale } from '../providers';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher';
 import { FeedbackWidget } from '../../components/FeedbackWidget';
-import { BottomNav } from '../../components/dashboard/BottomNav';
+import { MobileBottomNav } from '../../components/MobileBottomNav';
+import { useSwipe } from '../../hooks/useSwipe';
 
 export default function DashboardLayout({
   children,
@@ -19,7 +20,7 @@ export default function DashboardLayout({
   const { mockMode, setMockMode } = useEntitlements();
   const { locale } = useLocale();
   const { getToken, isLoaded: authLoaded } = useAuth();
-  
+
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [pendingCount, setPendingCount] = useState(0);
@@ -58,7 +59,6 @@ export default function DashboardLayout({
       ? t(menuItems.find((item) => item.path !== '/dashboard' && pathname.startsWith(item.path))!.name)
       : t(dashboardContent.clientDashboard);
 
-  // Fetch JWT Token
   useEffect(() => {
     if (authLoaded && !mockMode) {
       getToken({ template: 'saqyn-jwt' })
@@ -67,7 +67,6 @@ export default function DashboardLayout({
     }
   }, [authLoaded, mockMode, getToken]);
 
-  // Fetch pending approval count (Section 1.2)
   useEffect(() => {
     const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
     const headers: Record<string, string> = {};
@@ -86,32 +85,26 @@ export default function DashboardLayout({
       })
       .catch(err => {
         console.warn('Failed to load pending count, using mock:', err);
-        setPendingCount(2); // Fallback mock value
+        setPendingCount(2);
       });
   }, [jwtToken]);
 
+  const swipeHandlers = useSwipe({
+    onSwipeLeft: () => {
+      if (window.innerWidth >= 768) setIsSidebarOpen(false);
+    },
+    onSwipeRight: () => {
+      if (window.innerWidth >= 768) setIsSidebarOpen(true);
+    },
+    threshold: 50,
+  });
+
   return (
     <div className="min-h-screen bg-[#F8F9FB] text-[#1A202C] flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      
-      {/* Mobile Top Nav Bar */}
-      <header className="flex h-16 w-full items-center justify-between border-b border-gray-200 bg-white px-6 md:hidden sticky top-0 z-40 shadow-sm">
-        <Link href="/" className="flex items-baseline gap-2">
-          <span className="text-[#141F33] font-extrabold text-lg tracking-tight">SAQYN RABT</span>
-          <span className="text-[8px] uppercase tracking-[0.2em] text-[#718096] font-bold">PRIVATE AI OPS</span>
-        </Link>
-        <button
-          type="button"
-          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 text-[#141F33] min-h-[44px] min-w-[44px]"
-        >
-          <span className="text-lg">☰</span>
-        </button>
-      </header>
+      <div className="flex flex-1 relative" style={{ minHeight: 'calc(100vh - env(safe-area-inset-top, 0px))' }}>
 
-      <div className="flex flex-1 relative h-screen overflow-hidden">
-        
-        {/* Sidebar Navigation */}
-        <aside className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-gray-200 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static md:h-screen ${
+        {/* Sidebar Navigation - Hidden on mobile, visible on md+ */}
+        <aside className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-gray-200 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static ${
           isCollapsed ? 'md:w-20' : 'md:w-64'
         } ${
           isSidebarOpen
@@ -122,9 +115,8 @@ export default function DashboardLayout({
               ? 'translate-x-full right-0 left-auto md:translate-x-0'
               : '-translate-x-full md:translate-x-0'
         }`}>
-          
+
           <div className="flex flex-col overflow-y-auto flex-1">
-            {/* Sidebar Logo Header */}
             <div className="flex items-center justify-between px-6 py-6 border-b border-gray-100 min-h-[80px]">
               <Link href="/" className="flex flex-col items-start gap-0.5 min-w-0">
                 <span className={`text-[#141F33] font-extrabold tracking-tight transition-colors hover:text-[#2A5CFF] truncate ${
@@ -143,7 +135,6 @@ export default function DashboardLayout({
               )}
             </div>
 
-            {/* Navigation links */}
             <nav className="px-3 py-6 space-y-1.5 flex-1">
               {menuItems.map((item) => {
                 const isActive = pathname === item.path || (item.path !== '/dashboard' && pathname.startsWith(item.path));
@@ -164,8 +155,7 @@ export default function DashboardLayout({
                   >
                     <span className="text-lg">{item.icon}</span>
                     {!isCollapsed && <span className="truncate">{t(item.name)}</span>}
-                    
-                    {/* Approvals Red Badge (Section 1.2) */}
+
                     {item.badge && pendingCount > 0 && (
                       <span className={`absolute bg-red-500 text-white rounded-full text-[9px] font-extrabold flex items-center justify-center ${
                         isCollapsed ? '-top-1 -right-1 h-4 w-4' : 'right-4 px-2 py-0.5'
@@ -179,7 +169,6 @@ export default function DashboardLayout({
             </nav>
           </div>
 
-          {/* Desktop Collapse Trigger Button */}
           <div className="hidden md:flex justify-end px-4 py-2 border-t border-gray-50 bg-white">
             <button
               type="button"
@@ -191,7 +180,6 @@ export default function DashboardLayout({
             </button>
           </div>
 
-          {/* User Profile Section at Bottom */}
           <div className="p-4 border-t border-gray-100 bg-white">
             {mockMode ? (
               <div className="rounded-xl border border-gray-200 bg-[#F8F9FB] p-3 flex flex-col gap-2 min-w-0">
@@ -225,7 +213,6 @@ export default function DashboardLayout({
 
         </aside>
 
-        {/* Backdrop for mobile menu */}
         {isSidebarOpen && (
           <div
             onClick={() => setIsSidebarOpen(false)}
@@ -233,11 +220,43 @@ export default function DashboardLayout({
           />
         )}
 
-        {/* Page Content Column */}
-        <main className="flex min-w-0 flex-1 flex-col h-full overflow-hidden">
-          
-          {/* Top Page Header */}
-          <header className="border-b border-gray-200 bg-white px-8 py-5 sticky top-0 z-30 shadow-sm shrink-0">
+        {/* Page Content */}
+        <main
+          className="flex min-w-0 flex-1 flex-col h-full overflow-hidden"
+          {...swipeHandlers}
+          style={{ paddingBottom: 'calc(64px + env(safe-area-inset-bottom, 0px))' }}
+        >
+          {/* Mobile Top Header Bar */}
+          <header className="flex h-14 w-full items-center justify-between border-b border-gray-200 bg-white px-4 md:hidden sticky top-0 z-30 shadow-sm shrink-0"
+            style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
+            <Link href="/" className="flex items-center gap-2 min-h-[44px]">
+              <div className="w-7 h-7 bg-[#141F33] rounded-md flex items-center justify-center text-white font-bold text-xs">
+                S
+              </div>
+              <span className="text-[#141F33] font-extrabold text-sm tracking-tight">SAQYN</span>
+            </Link>
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[8px] font-bold text-emerald-700">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                {t(dashboardContent.live)}
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                aria-label={isSidebarOpen ? 'Close sidebar menu' : 'Open sidebar menu'}
+                className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 text-[#141F33] min-h-[44px] min-w-[44px]"
+              >
+                <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M2.5 5H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M2.5 10H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                  <path d="M2.5 15H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+                </svg>
+              </button>
+            </div>
+          </header>
+
+          {/* Desktop Page Header */}
+          <header className="hidden md:block border-b border-gray-200 bg-white px-6 lg:px-8 py-5 sticky top-0 z-30 shadow-sm shrink-0">
             <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#718096]">{t(dashboardContent.clientDashboard)}</p>
@@ -253,15 +272,16 @@ export default function DashboardLayout({
             </div>
           </header>
 
-          {/* Main Dashboard Child Pages */}
-          <div className="flex-1 overflow-y-auto p-6 md:p-8">
+          {/* Page Content */}
+          <div className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8"
+            style={{ WebkitOverflowScrolling: 'touch' }}>
             <div className="max-w-7xl mx-auto w-full">
               {children}
             </div>
           </div>
 
           <FeedbackWidget />
-          <BottomNav />
+          <MobileBottomNav />
         </main>
       </div>
     </div>

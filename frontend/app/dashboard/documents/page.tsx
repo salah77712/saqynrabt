@@ -145,13 +145,13 @@ export default function DocumentsDashboardPage() {
   );
 
   return (
-    <div className="space-y-8 animate-fadeIn">
+    <div className="space-y-6 md:space-y-8 animate-fadeIn">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-black text-[#141F33] dark:text-white tracking-tight">
+          <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-white tracking-tight">
             {t('Private Knowledge Documents', 'مستندات المعرفة الخاصة')}
           </h1>
-          <p className="text-xs text-slate-500 font-bold">
+          <p className="text-[10px] md:text-xs text-slate-500 font-bold">
             {t('Upload and index PDFs to expand your internal chatbot knowledge.', 'تحميل وفهرسة ملفات PDF لتوسيع معرفة المساعد الذكي.')}
           </p>
         </div>
@@ -161,36 +161,43 @@ export default function DocumentsDashboardPage() {
             placeholder={t('Search documents...', 'البحث في المستندات...')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
+            className="min-h-[44px] text-xs md:text-sm"
           />
         </div>
       </div>
 
-      {/* Drag & Drop Upload Zone */}
-      <div className="border-2 border-dashed border-gray-300 rounded-2xl p-12 bg-white flex flex-col items-center justify-center text-center transition-colors hover:border-[#141F33] group relative overflow-hidden">
-        <span className="text-4xl mb-4 group-hover:scale-110 transition-transform">📁</span>
-        <h3 className="text-sm font-extrabold text-[#141F33]">{t('Drag and drop your PDFs here', 'اسحب وأسقط ملفات PDF هنا')}</h3>
-        <p className="text-xs text-[#718096] font-medium mt-1 mb-5">{t('Support PDF up to 10MB', 'يُدعم صيغة PDF حتى 10 ميجابايت')}</p>
+      {/* Upload Zone - Mobile optimized */}
+      <label className="block">
+        <div className="border-2 border-dashed border-gray-300 rounded-2xl p-6 md:p-12 bg-white flex flex-col items-center justify-center text-center transition-colors hover:border-[#141F33] group relative overflow-hidden cursor-pointer">
+          <span className="text-2xl md:text-4xl mb-2 md:mb-4 group-hover:scale-110 transition-transform">📁</span>
+          <h3 className="text-xs md:text-sm font-extrabold text-[#141F33]">
+            {t('Tap to upload PDFs', 'اضغط لرفع ملفات PDF')}
+          </h3>
+          <p className="text-[10px] md:text-xs text-[#718096] font-medium mt-1">
+            {t('PDF up to 10MB', 'PDF حتى 10 ميجابايت')}
+          </p>
 
-        <label className="bg-[#141F33] hover:opacity-95 text-white font-bold px-6 py-3 rounded-xl cursor-pointer text-xs min-h-[44px] inline-flex items-center justify-center">
-          {t('Browse Files', 'تصفح الملفات')}
+          <div className="mt-3 md:mt-5 bg-[#141F33] hover:opacity-95 text-white font-bold px-5 md:px-6 py-2.5 md:py-3 rounded-xl text-[10px] md:text-xs min-h-[44px] inline-flex items-center justify-center">
+            {t('Browse Files', 'تصفح الملفات')}
+          </div>
           <input
             type="file"
             accept=".pdf"
-            className="hidden"
+            className="absolute inset-0 opacity-0 cursor-pointer"
             onChange={(e) => {
               if (e.target.files && e.target.files[0]) {
                 handleFileUpload(e.target.files[0]);
               }
             }}
           />
-        </label>
 
-        {uploading && (
-          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center">
-            <span className="h-8 w-8 rounded-full border-4 border-gray-200 border-t-[#141F33] animate-spin" />
-          </div>
-        )}
-      </div>
+          {uploading && (
+            <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center">
+              <span className="h-6 w-6 md:h-8 md:w-8 rounded-full border-3 border-gray-200 border-t-[#141F33] animate-spin" />
+            </div>
+          )}
+        </div>
+      </label>
 
       <DocumentGrid docs={filteredDocs} onDelete={handleDelete} />
     </div>
