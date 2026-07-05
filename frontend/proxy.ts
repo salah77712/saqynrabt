@@ -10,8 +10,7 @@ try {
       "/sign-up",
       "/api/webhook",
       "/api/health",
-      "/api/wakeup",
-      "/dashboard"
+      "/api/wakeup"
     ],
   });
 } catch (e) {

@@ -63,8 +63,9 @@ export default function SignUpPage() {
       // Redirect to onboarding/verification page
       router.push('/onboarding');
     } catch (err: any) {
-      console.error(err);
-      setError(err.errors?.[0]?.message || t({ en: 'Registration failed.', ar: 'فشل التسجيل.' }));
+      console.error("SignUp Error:", err);
+      const msg = err.errors?.[0]?.message || err.message || t({ en: 'Network error. Please check your connection and try again.', ar: 'خطأ في الشبكة. يرجى التحقق من الاتصال والمحاولة مرة أخرى.' });
+      setError(msg);
     } finally {
       setLoading(false);
     }
