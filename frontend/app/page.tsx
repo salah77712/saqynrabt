@@ -80,8 +80,7 @@ export default function MarketingPage() {
   }, []);
 
   useEffect(() => {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    fetch(`${apiBase}/api/wakeup`, { method: 'GET' })
+    fetch('/api/wakeup', { method: 'GET' })
       .then(res => res.json())
       .then(data => console.log('Database pre-warmed:', data))
       .catch(err => console.warn('Pre-warming ping bypassed:', err.message));
