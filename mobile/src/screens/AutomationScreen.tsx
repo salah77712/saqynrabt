@@ -1,81 +1,90 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView, ActivityIndicator } from 'react-native';
 import { colors, typography, spacing } from '../constants/theme';
+import { request } from '../lib/api';
 
-interface Task {
+interface Workflow {
   id: string;
-  room: string;
-  type: string;
-  status: 'pending' | 'assigned' | 'completed';
-  time: string;
+  name: string;
+  trigger_event: string;
+  action_type: string;
+  is_active: boolean;
+  updated_at: string;
 }
 
 export function AutomationScreen() {
-  const [tasks, setTasks] = useState<Task[]>([
-    { id: '1', room: 'Room 204', type: 'Late checkout request', status: 'pending', time: '10 mins ago' },
-    { id: '2', room: 'Room 102', type: 'Fresh towels dispatch', status: 'assigned', time: '15 mins ago' },
-    { id: '3', room: 'Room 305', type: 'Room service query', status: 'completed', time: '1 hour ago' },
-  ]);
+  const [workflows, setWorkflows] = useState<Workflow[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
-  const updateStatus = (id: string, newStatus: Task['status']) => {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, status: newStatus } : t))
-    );
-  };
+  useEffect(() => {
+    loadWorkflows();
+  }, []);
 
-  const getStatusStyle = (status: Task['status']) => {
-    switch (status) {
-      case 'pending': return styles.statusPending;
-      case 'assigned': return styles.statusAssigned;
-      case 'completed': return styles.statusCompleted;
+  const loadWorkflows = async () => {
+    try {
+      setLoading(true);
+      setError(null);
+      const data = await request('/api/automation');
+      setWorkflows(data.automations || []);
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
+
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.center}>
+          <ActivityIndicator size="large" color={colors.royal} />
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  if (error) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <View style={styles.center}>
+          <Text style={styles.errorText}>{error}</Text>
+          <TouchableOpacity style={styles.retryButton} onPress={loadWorkflows}>
+            <Text style={styles.retryText}>Retry</Text>
+          </TouchableOpacity>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>Live Guest Queue</Text>
+        <Text style={styles.headerTitle}>Automations</Text>
+        <Text style={styles.headerSubtitle}>{workflows.length} active workflows</Text>
       </View>
       <FlatList
-        data={tasks}
+        data={workflows}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.list}
         renderItem={({ item }) => (
           <View style={styles.card}>
             <View style={styles.cardHeader}>
-              <Text style={styles.roomText}>{item.room}</Text>
-              <Text style={styles.timeText}>{item.time}</Text>
-            </View>
-            <Text style={styles.typeText}>{item.type}</Text>
-
-            <View style={styles.actionRow}>
-              <View style={[styles.badge, getStatusStyle(item.status)]}>
-                <Text style={styles.badgeText}>{item.status.toUpperCase()}</Text>
+              <Text style={styles.cardTitle}>{item.name}</Text>
+              <View style={[styles.badge, item.is_active ? styles.badgeActive : styles.badgeInactive]}>
+                <Text style={styles.badgeText}>{item.is_active ? 'ACTIVE' : 'INACTIVE'}</Text>
               </View>
-
-              {item.status !== 'completed' && (
-                <View style={styles.buttonGroup}>
-                  {item.status === 'pending' && (
-                    <TouchableOpacity
-                      style={styles.actionButton}
-                      onPress={() => updateStatus(item.id, 'assigned')}
-                    >
-                      <Text style={styles.buttonText}>Assign</Text>
-                    </TouchableOpacity>
-                  )}
-                  {item.status === 'assigned' && (
-                    <TouchableOpacity
-                      style={[styles.actionButton, styles.completeButton]}
-                      onPress={() => updateStatus(item.id, 'completed')}
-                    >
-                      <Text style={styles.buttonText}>Complete</Text>
-                    </TouchableOpacity>
-                  )}
-                </View>
-              )}
             </View>
+            <Text style={styles.eventText}>Trigger: {item.trigger_event}</Text>
+            <Text style={styles.actionText}>Action: {item.action_type}</Text>
+            <Text style={styles.timeText}>Updated: {new Date(item.updated_at).toLocaleDateString()}</Text>
           </View>
         )}
+        ListEmptyComponent={
+          <View style={styles.center}>
+            <Text style={styles.emptyText}>No automations configured yet.</Text>
+          </View>
+        }
       />
     </SafeAreaView>
   );
@@ -85,6 +94,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: colors.background,
+  },
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: spacing.md,
   },
   header: {
     padding: spacing.md,
@@ -97,6 +112,11 @@ const styles = StyleSheet.create({
     fontSize: typography.sizes.lg,
     fontWeight: typography.weights.bold as any,
     color: colors.navy,
+  },
+  headerSubtitle: {
+    fontSize: typography.sizes.xs,
+    color: colors.textSecondary,
+    marginTop: 2,
   },
   list: {
     padding: spacing.md,
@@ -112,26 +132,14 @@ const styles = StyleSheet.create({
   cardHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: spacing.xs,
+    alignItems: 'center',
+    marginBottom: spacing.sm,
   },
-  roomText: {
+  cardTitle: {
     fontSize: typography.sizes.base,
     fontWeight: typography.weights.bold as any,
     color: colors.navy,
-  },
-  timeText: {
-    fontSize: typography.sizes.xs,
-    color: colors.textSecondary,
-  },
-  typeText: {
-    fontSize: typography.sizes.sm,
-    color: colors.textPrimary,
-    marginBottom: spacing.md,
-  },
-  actionRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flex: 1,
   },
   badge: {
     paddingHorizontal: spacing.sm,
@@ -143,32 +151,45 @@ const styles = StyleSheet.create({
     fontWeight: typography.weights.bold as any,
     color: colors.white,
   },
-  statusPending: {
-    backgroundColor: colors.error,
-  },
-  statusAssigned: {
-    backgroundColor: colors.royal,
-  },
-  statusCompleted: {
+  badgeActive: {
     backgroundColor: colors.success,
   },
-  buttonGroup: {
-    flexDirection: 'row',
+  badgeInactive: {
+    backgroundColor: colors.textSecondary,
   },
-  actionButton: {
+  eventText: {
+    fontSize: typography.sizes.sm,
+    color: colors.textPrimary,
+  },
+  actionText: {
+    fontSize: typography.sizes.sm,
+    color: colors.textPrimary,
+    marginTop: 2,
+  },
+  timeText: {
+    fontSize: typography.sizes.xs,
+    color: colors.textSecondary,
+    marginTop: spacing.sm,
+  },
+  errorText: {
+    fontSize: typography.sizes.base,
+    color: colors.error,
+    textAlign: 'center',
+    marginBottom: spacing.md,
+  },
+  retryButton: {
     backgroundColor: colors.navy,
-    paddingHorizontal: spacing.md,
+    paddingHorizontal: spacing.lg,
     paddingVertical: spacing.sm,
     borderRadius: 8,
-    minHeight: 36,
-    justifyContent: 'center',
   },
-  completeButton: {
-    backgroundColor: colors.success,
-  },
-  buttonText: {
+  retryText: {
     color: colors.white,
-    fontSize: typography.sizes.xs,
     fontWeight: typography.weights.bold as any,
+  },
+  emptyText: {
+    fontSize: typography.sizes.base,
+    color: colors.textSecondary,
+    textAlign: 'center',
   },
 });

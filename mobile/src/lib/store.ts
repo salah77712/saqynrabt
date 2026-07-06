@@ -1,5 +1,7 @@
 import { create } from 'zustand';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
+
+const TOKEN_KEY = 'saqyn-auth-token';
 
 interface Member {
   id: string;
@@ -20,16 +22,16 @@ interface AppState {
   loadCachedState: () => Promise<void>;
 }
 
-export const useAppStore = create<AppState>((set, get) => ({
+export const useAppStore = create<AppState>((set) => ({
   token: null,
   user: null,
   entitlements: null,
   notifications: [],
   setToken: async (token) => {
     if (token) {
-      await AsyncStorage.setItem('saqyn-auth-token', token);
+      await SecureStore.setItemAsync(TOKEN_KEY, token);
     } else {
-      await AsyncStorage.removeItem('saqyn-auth-token');
+      await SecureStore.deleteItemAsync(TOKEN_KEY);
     }
     set({ token });
   },
@@ -37,7 +39,7 @@ export const useAppStore = create<AppState>((set, get) => ({
   setEntitlements: (entitlements) => set({ entitlements }),
   addNotification: (noti) => set((state) => ({ notifications: [noti, ...state.notifications] })),
   loadCachedState: async () => {
-    const token = await AsyncStorage.getItem('saqyn-auth-token');
+    const token = await SecureStore.getItemAsync(TOKEN_KEY);
     if (token) set({ token });
   },
 }));

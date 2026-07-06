@@ -1,0 +1,113 @@
+import { neon } from '@neondatabase/serverless';
+import type { RequestWithContext } from '../utils';
+import { corsHeaders, verifyClerkWebhook } from '../utils';
+
+export async function handleClerkWebhook(request: RequestWithContext): Promise<Response> {
+  const headers = corsHeaders(request, request.env);
+  headers['Content-Type'] = 'application/json';
+  const env = request.env;
+
+  const bodyText = await request.text();
+  const isValid = await verifyClerkWebhook(request, bodyText, env.CLERK_WEBHOOK_SECRET, env);
+  if (!isValid) {
+    return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 401, headers });
+  }
+
+  try {
+    const body = JSON.parse(bodyText);
+    const type = body.type;
+    const data = body.data;
+    const sql = neon(env.DATABASE_URL);
+
+    if (type === 'user.created' || type === 'user.updated') {
+      const company_id = data.private_metadata?.company_id || data.public_metadata?.company_id;
+      const clerkUserId = data.id;
+      const email = data.email_addresses?.[0]?.email_address || '';
+      const firstName = data.first_name || '';
+      const lastName = data.last_name || '';
+
+      if (company_id) {
+        await sql`
+          INSERT INTO employees (company_id, clerk_user_id, email, first_name, last_name, is_active)
+          VALUES (${company_id}, ${clerkUserId}, ${email}, ${firstName}, ${lastName}, true)
+          ON CONFLICT (clerk_user_id)
+          DO UPDATE SET email = ${email}, first_name = ${firstName}, last_name = ${lastName}, updated_at = NOW()
+        `;
+      }
+    } else if (type === 'user.deleted') {
+      await sql`UPDATE employees SET is_active = false WHERE clerk_user_id = ${data.id}`;
+    } else if (type === 'organization.created' || type === 'organization.updated') {
+      const company_id = data.id;
+      const name = data.name || '';
+      await sql`
+        INSERT INTO companies (id, name, slug)
+        VALUES (${company_id}, ${name}, ${data.slug || ''})
+        ON CONFLICT (id) DO UPDATE SET name = ${name}, slug = ${data.slug || ''}, updated_at = NOW()
+      `;
+    } else if (type === 'organizationMembership.created') {
+      const company_id = data.organization?.id;
+      const clerkUserId = data.public_user_data?.user_id;
+      const email = data.public_user_data?.identifier || '';
+      const firstName = data.public_user_data?.first_name || '';
+      const lastName = data.public_user_data?.last_name || '';
+      if (company_id && clerkUserId) {
+        await sql`
+          INSERT INTO employees (company_id, clerk_user_id, email, first_name, last_name, is_active)
+          VALUES (${company_id}, ${clerkUserId}, ${email}, ${firstName}, ${lastName}, true)
+          ON CONFLICT (clerk_user_id)
+          DO UPDATE SET company_id = ${company_id}, email = ${email}, first_name = ${firstName}, last_name = ${lastName}, is_active = true, updated_at = NOW()
+        `;
+      }
+    }
+
+    return new Response(JSON.stringify({ success: true }), { headers });
+  } catch (err: any) {
+    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+  }
+}
+
+export async function handleVapiWebhook(request: RequestWithContext): Promise<Response> {
+  const headers = corsHeaders(request, request.env);
+  headers['Content-Type'] = 'application/json';
+  const env = request.env;
+
+  try {
+    const body: any = await request.json();
+    const company_id = body.company_id || 'dummy_company';
+    const transcript = body.message?.transcript || body.transcript || '';
+    const sql = neon(env.DATABASE_URL);
+
+    if (transcript) {
+      await sql`
+        INSERT INTO audit_logs (company_id, user_id, action, details)
+        VALUES (${company_id}, 'vapi_webhook', 'voice_transcript_received', ${JSON.stringify({ transcript_length: transcript.length })}::jsonb)
+      `;
+    }
+
+    return new Response(JSON.stringify({ success: true }), { headers });
+  } catch (err: any) {
+    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+  }
+}
+
+export async function handleMessageWebhook(request: RequestWithContext): Promise<Response> {
+  const headers = corsHeaders(request, request.env);
+  headers['Content-Type'] = 'application/json';
+  const env = request.env;
+
+  try {
+    const body: any = await request.json();
+    const message = body.message || '';
+    const from = body.from || body.sender || 'unknown';
+    const sql = neon(env.DATABASE_URL);
+
+    await sql`
+      INSERT INTO audit_logs (company_id, user_id, action, details)
+      VALUES ('webhook', ${from}, 'incoming_message', ${JSON.stringify({ message_length: message.length })}::jsonb)
+    `;
+
+    return new Response(JSON.stringify({ success: true, received: true }), { headers });
+  } catch (err: any) {
+    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+  }
+}

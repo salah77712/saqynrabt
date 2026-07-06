@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity, KeyboardAvoidingView, Platform, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, TouchableOpacity, KeyboardAvoidingView, Platform, SafeAreaView, ActivityIndicator } from 'react-native';
 import { colors, typography, spacing } from '../constants/theme';
+import { request } from '../lib/api';
 
 interface Message {
   id: string;
@@ -13,22 +14,36 @@ export function ChatScreen() {
     { id: '1', sender: 'assistant', text: 'Hello! I am your RAG-powered Staff Assistant. How can I help you today?' },
   ]);
   const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
 
-  const sendMessage = () => {
-    if (!input.trim()) return;
+  const sendMessage = async () => {
+    if (!input.trim() || loading) return;
     const userMsg: Message = { id: Date.now().toString(), sender: 'user', text: input };
     setMessages((prev) => [...prev, userMsg]);
     setInput('');
+    setLoading(true);
 
-    // Simulate RAG Streaming reply
-    setTimeout(() => {
+    try {
+      const data = await request('/api/chat', {
+        method: 'POST',
+        body: JSON.stringify({ message: input }),
+      });
       const reply: Message = {
         id: (Date.now() + 1).toString(),
         sender: 'assistant',
-        text: 'This is a simulated RAG response. Under production, this streams verified knowledge base segments.',
+        text: data.response || data.reply || 'No response.',
       };
       setMessages((prev) => [...prev, reply]);
-    }, 1000);
+    } catch (err: any) {
+      const errorMsg: Message = {
+        id: (Date.now() + 1).toString(),
+        sender: 'assistant',
+        text: `Error: ${err.message}`,
+      };
+      setMessages((prev) => [...prev, errorMsg]);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,6 +64,7 @@ export function ChatScreen() {
           </View>
         )}
       />
+      {loading && <ActivityIndicator style={{ marginBottom: 8 }} color={colors.royal} />}
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View style={styles.inputContainer}>
           <TextInput
@@ -57,8 +73,9 @@ export function ChatScreen() {
             onChangeText={setInput}
             placeholder="Type your question..."
             placeholderTextColor={colors.textSecondary}
+            editable={!loading}
           />
-          <TouchableOpacity style={styles.sendButton} onPress={sendMessage}>
+          <TouchableOpacity style={styles.sendButton} onPress={sendMessage} disabled={loading}>
             <Text style={styles.sendButtonText}>Send</Text>
           </TouchableOpacity>
         </View>

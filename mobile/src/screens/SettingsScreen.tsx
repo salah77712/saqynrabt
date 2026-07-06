@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Switch, TouchableOpacity, SafeAreaView, Alert } from 'react-native';
 import { colors, typography, spacing } from '../constants/theme';
+import { useAppStore } from '../lib/store';
+import { setToken } from '../lib/api';
+import { useAuth } from '@clerk/clerk-expo';
 
 export function SettingsScreen() {
+  const { signOut } = useAuth();
+  const setStoreToken = useAppStore((s) => s.setToken);
   const [notificationsEnabled, setNotificationsEnabled] = useState(true);
   const [biometricsEnabled, setBiometricsEnabled] = useState(false);
 
   const handleLogout = () => {
     Alert.alert('Logout', 'Are you sure you want to sign out?', [
       { text: 'Cancel', style: 'cancel' },
-      { text: 'Logout', style: 'destructive', onPress: () => {} },
+      {
+        text: 'Logout',
+        style: 'destructive',
+        onPress: async () => {
+          await setToken(null);
+          await setStoreToken(null);
+          signOut();
+        },
+      },
     ]);
   };
 
@@ -20,7 +33,7 @@ export function SettingsScreen() {
       </View>
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Preferences</Text>
-        
+
         <View style={styles.row}>
           <Text style={styles.rowLabel}>Push Notifications</Text>
           <Switch
