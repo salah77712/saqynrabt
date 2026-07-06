@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useLocale } from '../../providers';
 import { Card } from '../../../components/ui/Card';
 import { Badge } from '../../../components/ui/Badge';
 import { HealthScore } from '../../../components/HealthScore';
@@ -14,6 +15,9 @@ interface ClientItem {
 }
 
 export default function ClientSuccessPage() {
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+
   const clients: ClientItem[] = [
     { id: '1', name: 'Qatar Medical Center', score: 94, status: 'active', usage: '82% quota' },
     { id: '2', name: 'Doha Service Workshop', score: 78, status: 'active', usage: '45% quota' },
@@ -24,10 +28,10 @@ export default function ClientSuccessPage() {
     <main id="main-content" className="p-6 space-y-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">Customer Success Console</h1>
-          <p className="text-xs text-slate-500 font-bold">Monitor account health indexes and retention risks.</p>
+          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Customer Success Console', ar: 'وحدة تحكم نجاح العملاء'})}</h1>
+          <p className="text-xs text-slate-500 font-bold">{t({en: 'Monitor account health indexes and retention risks.', ar: 'مراقبة مؤشرات صحة الحساب ومخاطر الاحتفاظ.'})}</p>
         </div>
-        <Badge variant="warning">3 Accounts Need Attention</Badge>
+        <Badge variant="warning">{t({en: '3 Accounts Need Attention', ar: '3 حسابات تحتاج إلى انتباه'})}</Badge>
       </div>
 
       <div className="space-y-4">
@@ -35,13 +39,13 @@ export default function ClientSuccessPage() {
           <Card key={client.id} className="flex flex-col md:flex-row items-center justify-between gap-4">
             <div>
               <h4 className="font-bold text-navy dark:text-white text-base">{client.name}</h4>
-              <p className="text-xs text-slate-400 mt-1">Resource consumption: {client.usage}</p>
+              <p className="text-xs text-slate-400 mt-1">{t({en: 'Resource consumption:', ar: 'استهلاك الموارد:'})} {client.usage}</p>
             </div>
-            
+
             <div className="flex items-center gap-6">
               <HealthScore score={client.score} />
               <Badge variant={client.status === 'active' ? 'success' : 'danger'}>
-                {client.status === 'active' ? 'Healthy' : 'Retention Warning'}
+                {client.status === 'active' ? t({en: 'Healthy', ar: 'سليم'}) : t({en: 'Retention Warning', ar: 'تحذير الاحتفاظ'})}
               </Badge>
             </div>
           </Card>

@@ -1,7 +1,10 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { useLocale } from '../../providers';
 
 export default function HealthPage() {
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
   const [status, setStatus] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
 
@@ -19,16 +22,16 @@ export default function HealthPage() {
 
   return (
     <div className="p-6 max-w-4xl">
-      <h1 className="text-2xl font-bold mb-4">Live MCP Health Dashboard</h1>
+      <h1 className="text-2xl font-bold mb-4">{t({en: 'Live MCP Health Dashboard', ar: 'لوحة صحة MCP المباشرة'})}</h1>
       {loading ? (
-        <p className="text-slate-500">Checking MCP providers...</p>
+        <p className="text-slate-500">{t({en: 'Checking MCP providers...', ar: 'جارٍ التحقق من موفري MCP...'})}</p>
       ) : (
         <div className="grid gap-4">
           {Object.entries(status).map(([key, val]) => (
             <div key={key} className="flex justify-between border-b p-2">
               <span className="font-mono text-lg">{key.toUpperCase()}</span>
               <span className={`px-3 py-1 rounded-full text-sm ${val === 'online' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                {val === 'online' ? '🟢 Live' : '🔴 Offline'}
+                {val === 'online' ? `🟢 ${t({en: 'Live', ar: 'نشط'})}` : `🔴 ${t({en: 'Offline', ar: 'غير متصل'})}`}
               </span>
             </div>
           ))}

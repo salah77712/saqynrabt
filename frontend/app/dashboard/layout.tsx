@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { UserButton, useUser } from '@clerk/nextjs';
 import { useEntitlements, useLocale } from '../providers';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher';
+import { DarkModeToggle } from '../../components/DarkModeToggle';
 import { FeedbackWidget } from '../../components/FeedbackWidget';
 import { MobileBottomNav } from '../../components/MobileBottomNav';
 import { useSwipe } from '../../hooks/useSwipe';
@@ -356,6 +357,7 @@ export default function DashboardLayout({
               </div>
               <div className="flex items-center gap-4">
                 <LanguageSwitcher />
+                <DarkModeToggle />
                 <div className="flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold text-emerald-700">
                   <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
                   {t(dashboardContent.live)}

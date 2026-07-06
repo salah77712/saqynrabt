@@ -1,40 +1,25 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import { useTheme } from '../hooks/useTheme';
 
 export function DarkModeToggle() {
-  const [darkMode, setDarkMode] = useState(false);
-
-  useEffect(() => {
-    // Check local preferences
-    const active = localStorage.getItem('theme') === 'dark';
-    setDarkMode(active);
-    if (active) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
-  }, []);
-
-  const handleToggle = () => {
-    const next = !darkMode;
-    setDarkMode(next);
-    if (next) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  };
+  const { theme, toggleTheme, isDark } = useTheme();
 
   return (
     <button
-      onClick={handleToggle}
+      onClick={toggleTheme}
       className="p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-bold transition-all border border-slate-200 dark:border-slate-700"
-      title="Toggle Dark Mode"
+      title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
     >
-      {darkMode ? '🌙 Dark' : '☀️ Light'}
+      {isDark ? (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+          <path d="M120,40V16a8,8,0,0,1,16,0V40a8,8,0,0,1-16,0Zm72,88a64,64,0,1,1-64-64A64.07,64.07,0,0,1,192,128Zm-16,0a48,48,0,1,0-48,48A48.05,48.05,0,0,0,176,128ZM58.34,69.66A8,8,0,0,0,69.66,58.34l-16-16A8,8,0,0,0,42.34,53.66Zm0,116.68-16,16a8,8,0,0,0,11.32,11.32l16-16A8,8,0,0,0,58.34,186.34ZM128,216a8,8,0,0,0-8,8v24a8,8,0,0,0,16,0V224A8,8,0,0,0,128,216Zm69.66-29.66a8,8,0,0,0-11.32,11.32l16,16a8,8,0,0,0,11.32-11.32Zm0-116.68a8,8,0,0,0,11.32-11.32l-16-16a8,8,0,0,0-11.32,11.32ZM40,128a8,8,0,0,0-8-8H8a8,8,0,0,0,0,16H32A8,8,0,0,0,40,128Zm216-8H224a8,8,0,0,0,0,16h32a8,8,0,0,0,0-16Z" />
+        </svg>
+      ) : (
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 256 256">
+          <path d="M233.54,142.23a8,8,0,0,0-8-2,88.08,88.08,0,0,1-109.78-109.78,8,8,0,0,0-10-10,104.84,104.84,0,0,0-36.87,171.06L56,224a8,8,0,0,0,13.77,8.18l12.28-17.87a104.29,104.29,0,0,0,33.71,6.81A104.89,104.89,0,0,0,143.19,224h1.14a104.16,104.16,0,0,0,90.35-61.72A8,8,0,0,0,233.54,142.23ZM185.76,202.2a88.88,88.88,0,0,1-56.2,19.08,87.24,87.24,0,0,1-33.39-6.49,8,8,0,0,0-9.9,3.1L75.67,232.5A88.78,88.78,0,0,1,49.62,198.2a88.82,88.82,0,0,1-13.36-30.78,87.58,87.58,0,0,1,2.55-46.77,8,8,0,0,0-1-7.78,87.36,87.36,0,0,1-10.38-21.08A72,72,0,0,0,120,168a72.46,72.46,0,0,0,27.08-5.13,8,8,0,0,0,4.35-10.58A87.69,87.69,0,0,1,148,128a88,88,0,0,1,44.07-76.78,88,88,0,0,1,28.27,87.68,87,87,0,0,1-20.33,38.54A8,8,0,0,0,198.29,187.6l-10.65,10.65A89,89,0,0,1,185.76,202.2Z" />
+        </svg>
+      )}
     </button>
   );
 }

@@ -1,13 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../providers';
 import Link from 'next/link';
 
 export default function OnboardingWizardPage() {
   const { locale } = useLocale();
   const router = useRouter();
+  const { getToken, isSignedIn } = useAuth();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const [step, setStep] = useState(1);
@@ -19,17 +21,53 @@ export default function OnboardingWizardPage() {
     setupPreference: 'both',
     teamInvites: '',
   });
+  const [submitting, setSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const saved = localStorage.getItem('saqyn-onboarding');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          setFormData(prev => ({ ...prev, ...parsed }));
+        } catch {}
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('saqyn-onboarding', JSON.stringify(formData));
+    }
+  }, [formData]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleNext = () => {
+  const handleNext = async () => {
     if (step < 5) {
       setStep(prev => prev + 1);
     } else {
-      router.push('/dashboard');
+      setSubmitting(true);
+      try {
+        if (isSignedIn) {
+          await fetch('/api/onboarding', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(formData),
+          });
+        }
+        if (typeof window !== 'undefined') {
+          localStorage.removeItem('saqyn-onboarding');
+        }
+        router.push('/dashboard');
+      } catch {
+        router.push('/dashboard');
+      } finally {
+        setSubmitting(false);
+      }
     }
   };
 
@@ -267,7 +305,11 @@ export default function OnboardingWizardPage() {
               onClick={handleNext}
               className="flex-1 bg-[#141F33] hover:opacity-95 text-white font-bold py-3 px-6 rounded-xl transition-all text-xs min-h-[44px] flex items-center justify-center"
             >
-              {step === 5 ? t({ en: 'Complete Setup', ar: 'إكمال الإعداد' }) : t({ en: 'Continue', ar: 'متابعة' })}
+              {submitting
+                ? t({ en: 'Saving...', ar: 'جاري الحفظ...' })
+                : step === 5
+                  ? t({ en: 'Complete Setup', ar: 'إكمال الإعداد' })
+                  : t({ en: 'Continue', ar: 'متابعة' })}
             </button>
           </div>
         </div>

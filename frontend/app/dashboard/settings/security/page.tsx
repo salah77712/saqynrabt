@@ -1,28 +1,32 @@
 'use client';
 
 import React from 'react';
+import { useLocale } from '../../../providers';
 import { Card } from '../../../../components/ui/Card';
 import { Button } from '../../../../components/ui/Button';
 import { Badge } from '../../../../components/ui/Badge';
 
 export default function SecuritySettingsPage() {
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+
   return (
     <Card className="space-y-4 max-w-md">
-      <h3 className="font-bold text-navy dark:text-white text-base">Account Security Policies</h3>
+      <h3 className="font-bold text-navy dark:text-white text-base">{t({en: 'Account Security Policies', ar: 'سياسات أمان الحساب'})}</h3>
       <p className="text-xs text-slate-500 leading-relaxed">
-        Verify identity verification settings, device logs, and two-factor configurations.
+        {t({en: 'Verify identity verification settings, device logs, and two-factor configurations.', ar: 'التحقق من إعدادات التحقق من الهوية وسجلات الأجهزة وتكوينات المصادقة الثنائية.'})}
       </p>
 
       <div className="flex justify-between items-center py-2 border-b border-gray-100">
         <div>
-          <p className="text-xs font-bold text-navy dark:text-white">Multi-Factor Authentication (MFA)</p>
-          <p className="text-[10px] text-slate-400 mt-0.5">Protect logins via standard SMS/TOTP codes.</p>
+          <p className="text-xs font-bold text-navy dark:text-white">{t({en: 'Multi-Factor Authentication (MFA)', ar: 'المصادقة متعددة العوامل (MFA)'})}</p>
+          <p className="text-[10px] text-slate-400 mt-0.5">{t({en: 'Protect logins via standard SMS/TOTP codes.', ar: 'حماية تسجيلات الدخول عبر رموز SMS/TOTP القياسية.'})}</p>
         </div>
-        <Badge variant="primary">Active</Badge>
+        <Badge variant="primary">{t({en: 'Active', ar: 'نشط'})}</Badge>
       </div>
 
       <Button variant="outline" className="w-full">
-        Reset Workspace Password
+        {t({en: 'Reset Workspace Password', ar: 'إعادة تعيين كلمة مرور مساحة العمل'})}
       </Button>
     </Card>
   );

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useLocale } from '../../providers';
 import { Card } from '../../../components/ui/Card';
 import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
@@ -13,19 +14,24 @@ interface WorkflowNode {
 }
 
 export default function WorkflowsPage() {
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+
   const [nodes, setNodes] = useState<WorkflowNode[]>([
-    { id: '1', type: 'trigger', label: 'Incoming Guest Phone Call', desc: 'Fires when Vapi webhook detects call.' },
-    { id: '2', type: 'condition', label: 'Outside Business Hours?', desc: 'Checks if time is between 6 PM and 8 AM.' },
-    { id: '3', type: 'action', label: 'Route to Guest AI Agent', desc: 'Launches RAG search flow on SOP.' },
+    { id: '1', type: 'trigger', label: t({en: 'Incoming Guest Phone Call', ar: 'مكالمة هاتفية واردة من ضيف'}), desc: t({en: 'Fires when Vapi webhook detects call.', ar: 'يتم تشغيله عند اكتشاف webhook Vapi للمكالمة.'}) },
+    { id: '2', type: 'condition', label: t({en: 'Outside Business Hours?', ar: 'خارج ساعات العمل؟'}), desc: t({en: 'Checks if time is between 6 PM and 8 AM.', ar: 'يتحقق مما إذا كان الوقت بين 6 مساءً و 8 صباحاً.'}) },
+    { id: '3', type: 'action', label: t({en: 'Route to Guest AI Agent', ar: 'توجيه إلى وكيل الذكاء الاصطناعي للضيف'}), desc: t({en: 'Launches RAG search flow on SOP.', ar: 'تشغيل تدفق البحث RAG على إجراءات التشغيل الموحدة.'}) },
   ]);
 
   const handleAddNode = (type: WorkflowNode['type']) => {
-    const label = type === 'action' ? 'New Action Module' : 'New Decision Condition';
+    const label = type === 'action'
+      ? t({en: 'New Action Module', ar: 'وحدة إجراء جديدة'})
+      : t({en: 'New Decision Condition', ar: 'شرط قرار جديد'});
     const newNode: WorkflowNode = {
       id: Date.now().toString(),
       type,
       label,
-      desc: 'Configured trigger parameters.',
+      desc: t({en: 'Configured trigger parameters.', ar: 'معلمات المشغل المكونة.'}),
     };
     setNodes((prev) => [...prev, newNode]);
   };
@@ -34,12 +40,12 @@ export default function WorkflowsPage() {
     <main id="main-content" className="p-6 space-y-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">Workflow Automation Canvas</h1>
-          <p className="text-xs text-slate-500 font-bold">Design routing logic for phone, chat, and escalations.</p>
+          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Workflow Automation Canvas', ar: 'لوحة أتمتة سير العمل'})}</h1>
+          <p className="text-xs text-slate-500 font-bold">{t({en: 'Design routing logic for phone, chat, and escalations.', ar: 'تصميم منطق التوجيه للهاتف والمحادثة والتصعيد.'})}</p>
         </div>
         <div className="flex gap-2">
-          <Button variant="outline" size="sm" onClick={() => handleAddNode('condition')}>+ Decision</Button>
-          <Button variant="primary" size="sm" onClick={() => handleAddNode('action')}>+ Action</Button>
+          <Button variant="outline" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ قرار'})}</Button>
+          <Button variant="primary" size="sm" onClick={() => handleAddNode('action')}>{t({en: '+ Action', ar: '+ إجراء'})}</Button>
         </div>
       </div>
 

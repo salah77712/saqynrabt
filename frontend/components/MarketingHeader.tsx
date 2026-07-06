@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState, useCallback } from 'react';
 import { LanguageSwitcher } from './LanguageSwitcher';
+import { DarkModeToggle } from './DarkModeToggle';
 import { useLocale } from '../app/providers';
 import { SearchOverlay } from './SearchOverlay';
 
@@ -201,6 +202,8 @@ export function MarketingHeader() {
             </button>
 
             <LanguageSwitcher />
+
+            <DarkModeToggle />
 
             <a
               href={calendlyUrl}
