@@ -48,7 +48,14 @@ export default {
       (request as any).requestId = requestId;
 
       const router = createRouter(env);
-      return await router.fetch(request);
+      const response = await router.fetch(request);
+      if (!response) {
+        return new Response(JSON.stringify({ error: 'Not found', path: url.pathname }), {
+          status: 404,
+          headers: { ...headers, 'Content-Type': 'application/json' },
+        });
+      }
+      return response;
     } catch (err: any) {
       console.error(`[${requestId}] Unhandled error:`, err);
       return new Response(JSON.stringify({ error: 'Internal server error', requestId }), {
