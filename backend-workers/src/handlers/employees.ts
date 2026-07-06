@@ -217,9 +217,10 @@ export async function handleKnowledgeGaps(request: RequestWithContext): Promise<
   try {
     const sql = neon(env.DATABASE_URL);
     const gaps = await sql`
-      SELECT question, count, last_asked
+      SELECT question_text AS question, COUNT(*) AS count, MAX(timestamp) AS last_asked
       FROM knowledge_gaps
       WHERE company_id = ${company_id}
+      GROUP BY question_text
       ORDER BY count DESC
       LIMIT 50
     `;
