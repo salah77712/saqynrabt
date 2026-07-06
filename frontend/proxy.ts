@@ -56,14 +56,14 @@ try {
   console.error("clerkMiddleware initialization failed:", e);
 }
 
-export function proxy(req: any, event: any) {
+export async function proxy(req: any, event: any) {
   if (!handler) {
     const res = NextResponse.next();
     applyCSP(res);
     return res;
   }
   try {
-    return handler(req, event);
+    return await handler(req, event);
   } catch (err) {
     console.error("clerkMiddleware execution failed:", err);
     const res = NextResponse.next();
@@ -72,8 +72,8 @@ export function proxy(req: any, event: any) {
   }
 }
 
-export default function middleware(req: any, event: any) {
-  return proxy(req, event);
+export default async function middleware(req: any, event: any) {
+  return await proxy(req, event);
 }
 
 export const config = {
