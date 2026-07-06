@@ -34,20 +34,13 @@ function applyCSP(res: NextResponse | Response) {
 let handler: any;
 try {
   handler = clerkMiddleware((auth, req) => {
-    const { userId, sessionClaims } = auth();
+    const { userId } = auth();
     const url = new URL(req.url);
     const isPublic = isPublicRoute(req);
     
     // If user is unauthenticated and tries to access a protected route → redirect to sign-in
     if (!userId && !isPublic) {
       return NextResponse.redirect(new URL('/sign-in?redirect_url=' + encodeURIComponent(url.pathname), req.url));
-    }
-    
-    // If user is authenticated but email is NOT verified → redirect to verification
-    if (userId && sessionClaims?.email_verified !== true) {
-      if (!isPublic) {
-        return NextResponse.redirect(new URL('/sign-in?redirect_url=/dashboard', req.url));
-      }
     }
     
     return applyCSP(NextResponse.next());
