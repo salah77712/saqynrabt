@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../providers';
 import { DocumentGrid } from '../../../components/dashboard/DocumentGrid';
 import { Card } from '../../../components/ui/Card';
@@ -12,7 +11,6 @@ import { useDocuments } from '../../../hooks/queries/useDocuments';
 
 export default function DocumentsDashboardPage() {
   const { locale } = useLocale();
-  const { getToken, isLoaded: authLoaded } = useAuth();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
   const { data, isLoading, isError, error, refetch } = useDocuments();
 
@@ -27,20 +25,14 @@ export default function DocumentsDashboardPage() {
       return;
     }
 
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const token = authLoaded ? await getToken({ template: 'saqyn-jwt' }).catch(() => null) : null;
-
     try {
-      await fetch(`${apiBase}/api/documents?id=${id}`, {
-        method: 'DELETE',
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-      });
+      await fetch(`/api/documents?id=${id}`, { method: 'DELETE' });
       refetch();
     } catch (err) {
       console.error('Delete failed:', err);
       refetch();
     }
-  }, [authLoaded, getToken, refetch, t]);
+  }, [refetch, t]);
 
   const handleFileUpload = useCallback(async (file: File) => {
     if (!file) return;
@@ -53,22 +45,15 @@ export default function DocumentsDashboardPage() {
     const formData = new FormData();
     formData.append('file', file);
 
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const token = authLoaded ? await getToken({ template: 'saqyn-jwt' }).catch(() => null) : null;
-
     try {
-      await fetch(`${apiBase}/api/documents`, {
-        method: 'POST',
-        headers: token ? { Authorization: `Bearer ${token}` } : {},
-        body: formData,
-      });
+      await fetch('/api/documents', { method: 'POST', body: formData });
       refetch();
     } catch (err) {
       console.error('Upload failed:', err);
     } finally {
       setUploading(false);
     }
-  }, [authLoaded, getToken, refetch, t]);
+  }, [refetch, t]);
 
   const filteredDocs = documents.filter((doc) =>
     doc.name.toLowerCase().includes(searchQuery.toLowerCase())

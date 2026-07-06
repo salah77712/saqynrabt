@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useCallback } from 'react';
-import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../providers';
 import { Card } from '../../../components/ui/Card';
 import { Button } from '../../../components/ui/Button';
@@ -24,7 +23,6 @@ interface Employee {
 
 export default function TeamDashboardPage() {
   const { locale } = useLocale();
-  const { getToken, isLoaded: authLoaded } = useAuth();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
   const { data, isLoading, isError, error, refetch } = usePendingApprovals();
   const isMobile = useMediaQuery('(max-width: 767px)');
@@ -37,37 +35,25 @@ export default function TeamDashboardPage() {
   const active = data?.active ?? [];
 
   const handleAction = useCallback(async (id: string, action: 'approve' | 'suspend') => {
-    const token = authLoaded ? await getToken({ template: 'saqyn-jwt' }).catch(() => null) : null;
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-
     try {
-      await fetch(`${apiBase}/api/approvals`, {
+      await fetch('/api/approvals', {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ id, action }),
       });
       refetch();
     } catch (err) {
       console.error('Approval action failed:', err);
     }
-  }, [authLoaded, getToken, refetch]);
+  }, [refetch]);
 
   const handleSendInvite = useCallback(async () => {
     if (!inviteName || !inviteEmail) return;
 
-    const token = authLoaded ? await getToken({ template: 'saqyn-jwt' }).catch(() => null) : null;
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-
     try {
-      await fetch(`${apiBase}/api/approvals`, {
+      await fetch('/api/approvals', {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ action: 'invite', name: inviteName, email: inviteEmail }),
       });
       refetch();
@@ -78,7 +64,7 @@ export default function TeamDashboardPage() {
     setInviteModalOpen(false);
     setInviteName('');
     setInviteEmail('');
-  }, [inviteName, inviteEmail, authLoaded, getToken, refetch]);
+  }, [inviteName, inviteEmail, refetch]);
 
   const renderMobileCard = (m: Employee) => (
     <div key={m.id} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import { useAuth } from '@clerk/nextjs';
 import { useChat } from 'ai/react';
 import { useLocale } from '../../providers';
 import { Button } from '../../../components/ui/Button';
@@ -22,10 +21,8 @@ interface KnowledgeGap {
 
 export default function ChatbotDashboardPage() {
   const { locale } = useLocale();
-  const { getToken, isLoaded: authLoaded } = useAuth();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
 
-  const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [gaps, setGaps] = useState<KnowledgeGap[]>([]);
   const [gapsLoading, setGapsLoading] = useState(true);
   const [gapsError, setGapsError] = useState(false);
@@ -41,21 +38,9 @@ export default function ChatbotDashboardPage() {
   }, []);
 
   useEffect(() => {
-    if (authLoaded) {
-      getToken({ template: 'saqyn-jwt' })
-        .then((token) => setJwtToken(token))
-        .catch((err) => console.error('Failed to get token:', err));
-    }
-  }, [authLoaded, getToken]);
-
-  useEffect(() => {
-    if (!jwtToken) return;
     setGapsLoading(true);
     setGapsError(false);
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    fetch(`${apiBase}/api/knowledge-gaps`, {
-      headers: { Authorization: `Bearer ${jwtToken}` },
-    })
+    fetch('/api/knowledge-gaps')
       .then((res) => res.json())
       .then((data: any) => {
         if (Array.isArray(data)) {
@@ -71,11 +56,10 @@ export default function ChatbotDashboardPage() {
         setGaps([]);
       })
       .finally(() => setGapsLoading(false));
-  }, [jwtToken]);
+  }, []);
 
   const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    api: `${process.env.NEXT_PUBLIC_API_URL || ''}/api/chat`,
-    headers: jwtToken ? { Authorization: `Bearer ${jwtToken}` } : {},
+    api: '/api/chat',
     initialMessages: [
       {
         id: 'welcome-msg',

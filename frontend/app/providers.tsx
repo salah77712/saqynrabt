@@ -125,13 +125,7 @@ function EntitlementsProvider({ children }: { children: React.ReactNode }) {
       return;
     }
     try {
-      const token = await getToken();
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8787';
-      const response = await fetch(`${apiUrl}/api/entitlements`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch('/api/entitlements');
       if (response.ok) {
         const data = await response.json();
         setEntitlements(data);

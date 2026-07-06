@@ -5,20 +5,12 @@ export async function sendChatMessageFeedback(
   chatMessageId: string,
   rating: number,
   comment: string,
-  token?: string
+  _token?: string
 ): Promise<boolean> {
   try {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    };
-    if (token) {
-      headers['Authorization'] = `Bearer ${token}`;
-    }
-
-    const response = await fetch(`${apiBase}/api/feedback`, {
+    const response = await fetch('/api/feedback', {
       method: 'POST',
-      headers,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         chat_message_id: chatMessageId,
         rating,

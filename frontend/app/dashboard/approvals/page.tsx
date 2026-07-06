@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '@clerk/nextjs';
 import { useLocale, useEntitlements } from '../../providers';
 
 interface EmployeeItem {
@@ -15,38 +14,21 @@ interface EmployeeItem {
 export default function ApprovalsDashboardPage() {
   const { locale } = useLocale();
   const { mockMode } = useEntitlements();
-  const { getToken, isLoaded: authLoaded } = useAuth();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
-  const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [employees, setEmployees] = useState<EmployeeItem[]>([]);
   const [maxEmployees, setMaxEmployees] = useState(50);
   const [loading, setLoading] = useState(false);
   const [approvingId, setApprovingId] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (authLoaded && !mockMode) {
-      getToken({ template: 'saqyn-jwt' })
-        .then(token => setJwtToken(token))
-        .catch(err => console.error('Failed to get token:', err));
-    }
-  }, [authLoaded, mockMode, getToken]);
-
   const fetchEmployeesAndEntitlements = () => {
     setLoading(true);
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
 
     // Fetch employees list
-    const fetchEmployeesPromise = fetch(`${apiBase}/api/employees`, { headers }).then(res => res.json());
+    const fetchEmployeesPromise = fetch('/api/employees').then(res => res.json());
     
     // Fetch plan entitlements (for limit validation)
-    const fetchEntitlementsPromise = fetch(`${apiBase}/api/entitlements`, { headers }).then(res => res.json());
+    const fetchEntitlementsPromise = fetch('/api/entitlements').then(res => res.json());
 
     Promise.all([fetchEmployeesPromise, fetchEntitlementsPromise])
       .then(([empData, entData]) => {
@@ -76,7 +58,7 @@ export default function ApprovalsDashboardPage() {
 
   useEffect(() => {
     fetchEmployeesAndEntitlements();
-  }, [jwtToken]);
+  }, []);
 
   const activeCount = employees.filter(e => e.status === 'active').count || employees.filter(e => e.status === 'active').length;
   const isLimitReached = activeCount >= maxEmployees;
@@ -89,19 +71,9 @@ export default function ApprovalsDashboardPage() {
     }
 
     setApprovingId(clerkUserId);
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json'
-    };
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
-    fetch(`${apiBase}/api/employees`, {
+    fetch('/api/employees', {
       method: 'PATCH',
-      headers,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ clerk_user_id: clerkUserId })
     })
       .then(res => {

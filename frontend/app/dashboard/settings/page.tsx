@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../providers';
 import { SettingsTabs } from '../../../components/dashboard/SettingsTabs';
 import { Card } from '../../../components/ui/Card';
@@ -24,12 +23,10 @@ interface KnowledgeGap {
 
 export default function SettingsDashboardPage() {
   const { locale } = useLocale();
-  const { getToken, isLoaded: authLoaded } = useAuth();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
   const { data: usage, isLoading: usageLoading, isError: usageError, error: usageErrorObj, refetch: refetchUsage } = useUsage();
 
   const [activeTab, setActiveTab] = useState('general');
-  const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [autoOverage, setAutoOverage] = useState(false);
   const [overageLoading, setOverageLoading] = useState(false);
   const [gaps, setGaps] = useState<KnowledgeGap[]>([]);
@@ -39,23 +36,8 @@ export default function SettingsDashboardPage() {
   const isMobile = useMediaQuery('(max-width: 767px)');
 
   useEffect(() => {
-    if (authLoaded) {
-      getToken({ template: 'saqyn-jwt' })
-        .then((token) => setJwtToken(token))
-        .catch((err) => console.error('Failed to get token:', err));
-    }
-  }, [authLoaded, getToken]);
-
-  useEffect(() => {
-    if (!jwtToken) {
-      setGapsLoading(false);
-      return;
-    }
     setGapsLoading(true);
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    fetch(`${apiBase}/api/knowledge-gaps`, {
-      headers: { Authorization: `Bearer ${jwtToken}` },
-    })
+    fetch('/api/knowledge-gaps')
       .then((res) => res.json())
       .then((data: any) => {
         if (Array.isArray(data)) {
@@ -70,20 +52,16 @@ export default function SettingsDashboardPage() {
         setGaps([]);
       })
       .finally(() => setGapsLoading(false));
-  }, [jwtToken]);
+  }, []);
 
   const handleOverageToggle = useCallback(async (checked: boolean) => {
     setAutoOverage(checked);
     setSavingOverage(true);
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
 
     try {
-      await fetch(`${apiBase}/api/overage-settings`, {
+      await fetch('/api/overage-settings', {
         method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${jwtToken}`,
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ auto_overage_enabled: checked }),
       });
     } catch (err) {
@@ -92,14 +70,10 @@ export default function SettingsDashboardPage() {
     } finally {
       setSavingOverage(false);
     }
-  }, [jwtToken]);
+  }, []);
 
   const handleExportLogs = useCallback(() => {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-
-    fetch(`${apiBase}/api/export-logs`, {
-      headers: jwtToken ? { Authorization: `Bearer ${jwtToken}` } : {},
-    })
+    fetch('/api/export-logs')
       .then((res) => {
         if (!res.ok) throw new Error('Download failed');
         return res.blob();
@@ -124,7 +98,7 @@ export default function SettingsDashboardPage() {
         a.click();
         a.remove();
       });
-  }, [jwtToken]);
+  }, []);
 
   const tabOptions = [
     { id: 'general', label: t('General', 'عام') },

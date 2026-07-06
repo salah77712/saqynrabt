@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { UserButton, useAuth, useUser } from '@clerk/nextjs';
+import { UserButton, useUser } from '@clerk/nextjs';
 import { useEntitlements, useLocale } from '../providers';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher';
 import { FeedbackWidget } from '../../components/FeedbackWidget';
@@ -19,7 +19,6 @@ export default function DashboardLayout({
   const router = useRouter();
   const { mockMode, setMockMode } = useEntitlements();
   const { locale } = useLocale();
-  const { getToken, isLoaded: authLoaded } = useAuth();
   const { user, isLoaded: userLoaded } = useUser();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -30,7 +29,6 @@ export default function DashboardLayout({
   const [resending, setResending] = useState(false);
   const [resendStatus, setResendStatus] = useState('');
   const [pendingCount, setPendingCount] = useState(0);
-  const [jwtToken, setJwtToken] = useState<string | null>(null);
 
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
@@ -170,23 +168,7 @@ export default function DashboardLayout({
   }
 
   useEffect(() => {
-    if (authLoaded && !mockMode) {
-      getToken({ template: 'saqyn-jwt' })
-        .then(token => setJwtToken(token))
-        .catch(err => console.error('Failed to get token:', err));
-    }
-  }, [authLoaded, mockMode, getToken]);
-
-  useEffect(() => {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
-    fetch(`${apiBase}/api/employees`, { headers })
+    fetch('/api/employees')
       .then(res => res.json())
       .then((data: any) => {
         const list = Array.isArray(data) ? data : data?.employees || [];
@@ -197,7 +179,7 @@ export default function DashboardLayout({
         console.warn('Failed to load pending count, using mock:', err);
         setPendingCount(2);
       });
-  }, [jwtToken]);
+  }, []);
 
   const swipeHandlers = useSwipe({
     onSwipeLeft: () => {
