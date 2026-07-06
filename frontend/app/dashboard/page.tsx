@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useUser } from '@clerk/nextjs';
-import { useLocale } from '../providers';
+import { useLocale, useEntitlements } from '../providers';
 import { OverviewMetrics } from '../../components/dashboard/OverviewMetrics';
 import { QuickActions } from '../../components/dashboard/QuickActions';
 import { UsageCard } from '../../components/dashboard/UsageCard';
@@ -12,11 +12,13 @@ import { EmptyState } from '../../components/ui/EmptyState';
 
 export default function DashboardOverviewPage() {
   const { locale } = useLocale();
+  const { mockMode } = useEntitlements();
   const { isLoaded, isSignedIn, user } = useUser();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
-  const { data: usage, isLoading, isError, error, refetch } = useUsage(!!user);
+  const { data: usage, isLoading, isError, error, refetch } = useUsage(mockMode || !!user);
 
-  if (!isLoaded || !isSignedIn) {
+  const isAuth = mockMode || (isLoaded && isSignedIn);
+  if (!isAuth) {
     return (
       <div className="space-y-6 md:space-y-8 animate-fadeIn">
         <div className="animate-pulse">
