@@ -1,8 +1,8 @@
-import { getAuth } from '@clerk/nextjs/server';
+import { getSafeAuth } from '../../../lib/safe-auth';
 import type { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {
-  const { userId, getToken } = getAuth(req);
+  const { userId, getToken } = getSafeAuth(req);
   if (!userId) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }

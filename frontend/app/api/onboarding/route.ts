@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getAuth } from '@clerk/nextjs/server';
+import { getSafeAuth } from '../../../lib/safe-auth';
 import type { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const { getToken } = getAuth(req);
+    const { getToken } = getSafeAuth(req);
     const token = await getToken({ template: 'saqyn-jwt' });
 
     if (!token) {

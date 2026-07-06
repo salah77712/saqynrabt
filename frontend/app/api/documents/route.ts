@@ -1,8 +1,8 @@
-import { getAuth } from '@clerk/nextjs/server';
+import { getSafeAuth } from '../../../lib/safe-auth';
 import type { NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest) {
-  const { getToken, userId } = getAuth(req);
+  const { getToken, userId } = getSafeAuth(req);
   if (!userId) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }
@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const { getToken, userId } = getAuth(req);
+  const { getToken, userId } = getSafeAuth(req);
   if (!userId) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }
@@ -53,7 +53,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const { getToken, userId } = getAuth(req);
+  const { getToken, userId } = getSafeAuth(req);
   if (!userId) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }
