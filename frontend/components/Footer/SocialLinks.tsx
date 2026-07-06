@@ -1,20 +1,77 @@
 import * as React from 'react';
 
+const links = [
+  {
+    href: 'https://www.instagram.com/saqynrabt',
+    label: 'Instagram',
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+        <path d="M128,80a48,48,0,1,0,48,48A48.05,48.05,0,0,0,128,80Zm0,80a32,32,0,1,1,32-32A32,32,0,0,1,128,160ZM176,24H80A56.06,56.06,0,0,0,24,80v96a56.06,56.06,0,0,0,56,56h96a56.06,56.06,0,0,0,56-56V80A56.06,56.06,0,0,0,176,24Zm40,152a40,40,0,0,1-40,40H80a40,40,0,0,1-40-40V80A40,40,0,0,1,80,40h96a40,40,0,0,1,40,40ZM192,76a12,12,0,1,1-12-12A12,12,0,0,1,192,76Z" />
+      </svg>
+    ),
+  },
+  {
+    href: 'https://www.facebook.com/share/1BNzmp2vXB/',
+    label: 'Facebook',
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+        <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm8,191.63V152h24a8,8,0,0,0,0-16H136V112a16,16,0,0,1,16-16h16a8,8,0,0,0,0-16H152a32,32,0,0,0-32,32v24H96a8,8,0,0,0,0,16h24v63.63a88,88,0,1,1,16,0Z" />
+      </svg>
+    ),
+  },
+  {
+    href: 'https://x.com/saqynrabt',
+    label: 'X (Twitter)',
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+        <path d="M214.75,211.71l-62.6-98.38,61.77-67.95a8,8,0,0,0-11.84-10.76L143.24,99.34,102.75,35.71A8,8,0,0,0,96,32H48a8,8,0,0,0-6.75,12.3l62.6,98.38-61.77,67.95a8,8,0,1,0,11.84,10.76l58.84-64.72,40.49,63.63A8,8,0,0,0,160,224h48a8,8,0,0,0,6.75-12.29ZM164.39,208,62.75,48h29l101.64,160Z" />
+      </svg>
+    ),
+  },
+  {
+    href: 'https://www.threads.com/@saqynrabt',
+    label: 'Threads',
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+        <path d="M176,100a8,8,0,0,1-8,8c-12.58,0-22.57,4.11-29.56,12.17a50.75,50.75,0,0,0-4,5.66,86.69,86.69,0,0,1,3.56,10.63C145.35,152,152,167.24,152,184c0,14.24-4.63,27.07-13,36S120,236,104,236c-17.34,0-30.52-6.28-39.18-18.66a58.85,58.85,0,0,1-7.22-13.06c-1.57-4.25-2.34-8.65-2.28-13.08a8,8,0,0,1,16,.56c0,5.64,1.69,15.14,8.17,22.09C87.27,222.13,95,220,104,220c16,0,26.7-12,26.7-36,0-19.2-5.67-32.57-10.52-41.58a68.43,68.43,0,0,0-12.35-16.19l-4.15-3.82,4.06-3.94C117.13,107.18,128.85,100,144,100A8,8,0,0,1,176,100ZM128,64c-31.49,0-49.43,10.08-59.09,20.64C58.39,96.09,56,109,56,116a8,8,0,0,0,16,0c0-3.11,1.12-14,8.73-22.11C88.87,84.56,103.15,80,128,80s39.14,4.56,47.28,13.89C182.89,102,184,112.89,184,116s-1.11,14-8.73,22.11C167.14,147.44,152.85,152,128,152a8,8,0,0,0,0,16c31.49,0,49.43-10.08,59.09-20.64C197.61,135.91,200,123,200,116s-2.39-19.91-12.91-31.36C177.43,74.08,159.49,64,128,64Z" />
+      </svg>
+    ),
+  },
+  {
+    href: 'https://www.tiktok.com/@saqyn.rabt',
+    label: 'TikTok',
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+        <path d="M224,96a8,8,0,0,1-8,8,56.06,56.06,0,0,1-56-56,8,8,0,0,1,16,0,40,40,0,0,0,40,40A8,8,0,0,1,224,96Zm-56,40a8,8,0,0,0-8,8v32a72,72,0,0,1-144,0V104A72,72,0,0,1,88,32a8,8,0,0,1,0,16,56,56,0,0,0-56,56v72a56,56,0,0,0,112,0V144A8,8,0,0,0,168,136Z" />
+      </svg>
+    ),
+  },
+  {
+    href: 'https://www.linkedin.com/company/saqynrabt/',
+    label: 'LinkedIn',
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 256 256">
+        <path d="M216,24H40A16,16,0,0,0,24,40V216a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V40A16,16,0,0,0,216,24Zm0,192H40V40H216V216ZM96,112v64a8,8,0,0,1-16,0V112a8,8,0,0,1,16,0Zm88,28v36a8,8,0,0,1-16,0V140a20,20,0,0,0-40,0v36a8,8,0,0,1-16,0V112a8,8,0,0,1,15.79-1.78A36,36,0,0,1,184,140ZM100,84a12,12,0,1,1-12-12A12,12,0,0,1,100,84Z" />
+      </svg>
+    ),
+  },
+];
+
 export function SocialLinks() {
   return (
-    <div className="flex items-center gap-4 text-slate-400">
-      <a href="#" className="hover:text-white transition-colors" aria-label="LinkedIn">
-        LD
-      </a>
-      <a href="#" className="hover:text-white transition-colors" aria-label="Twitter">
-        TW
-      </a>
-      <a href="#" className="hover:text-white transition-colors" aria-label="Instagram">
-        IG
-      </a>
-      <a href="#" className="hover:text-white transition-colors" aria-label="YouTube">
-        YT
-      </a>
+    <div className="flex items-center gap-5 mt-2" role="list" aria-label="Social media links">
+      {links.map(({ href, label, svg }) => (
+        <a
+          key={label}
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={label}
+          className="text-slate-400 hover:text-white transition-colors duration-200 block"
+        >
+          {svg}
+        </a>
+      ))}
     </div>
   );
 }
