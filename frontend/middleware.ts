@@ -33,11 +33,19 @@ export default authMiddleware({
     "/dashboard"
   ],
   afterAuth: (auth, req) => {
-    if (auth.userId && auth.sessionClaims?.email_verified === true) {
-      return applyCSP(NextResponse.next());
+    const url = new URL(req.url);
+    // If user is unauthenticated and tries to access a protected route → redirect to sign-in
+    if (!auth.userId && !auth.isPublicRoute) {
+      return NextResponse.redirect(new URL('/sign-in?redirect_url=' + encodeURIComponent(url.pathname), req.url));
     }
+    // If user is authenticated but email is NOT verified → redirect to verification
+    if (auth.userId && auth.sessionClaims?.email_verified !== true) {
+      return NextResponse.redirect(new URL('/sign-in?redirect_url=/dashboard', req.url));
+    }
+    // Apply CSP headers
     const res = NextResponse.next();
-    return applyCSP(res);
+    applyCSP(res);
+    return res;
   }
 });
 
