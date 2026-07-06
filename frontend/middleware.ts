@@ -1,22 +1,6 @@
 import { authMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-let middlewareHandler: any;
-try {
-  middlewareHandler = authMiddleware({
-    publicRoutes: [
-      "/",
-      "/sign-in",
-      "/sign-up",
-      "/api/webhook",
-      "/api/health",
-      "/api/wakeup"
-    ],
-  });
-} catch (e) {
-  console.error("Clerk authMiddleware initialization failed:", e);
-}
-
 const CSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.saqynrabt.com https://static.cloudflareinsights.com",
@@ -38,23 +22,24 @@ function applyCSP(res: NextResponse | Response) {
   return res;
 }
 
-export function proxy(req: any, event: any) {
-  if (!middlewareHandler) {
-    console.error("Clerk middleware handler not initialized. Bypassing.");
-    return applyCSP(NextResponse.next());
-  }
-  try {
-    const res = middlewareHandler(req, event);
+export default authMiddleware({
+  publicRoutes: [
+    "/",
+    "/sign-in",
+    "/sign-up",
+    "/api/webhook",
+    "/api/health",
+    "/api/wakeup",
+    "/dashboard"
+  ],
+  afterAuth: (auth, req) => {
+    if (auth.userId && auth.sessionClaims?.email_verified === true) {
+      return applyCSP(NextResponse.next());
+    }
+    const res = NextResponse.next();
     return applyCSP(res);
-  } catch (err) {
-    console.error("Error executing Clerk middleware:", err);
-    return applyCSP(NextResponse.next());
   }
-}
-
-export default function middleware(req: any, event: any) {
-  return proxy(req, event);
-}
+});
 
 export const config = {
   matcher: ["/((?!.+\\.[\\w]+$|_next).*)", "/", "/(api|trpc)(.*)"],
