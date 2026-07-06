@@ -1,7 +1,8 @@
-import { auth } from '@clerk/nextjs/server';
+import { getAuth } from '@clerk/nextjs/server';
+import type { NextRequest } from 'next/server';
 
-export async function POST(request: Request) {
-  const { getToken, userId } = await auth();
+export async function POST(req: NextRequest) {
+  const { getToken, userId } = getAuth(req);
   if (!userId) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }
@@ -16,7 +17,7 @@ export async function POST(request: Request) {
     return Response.json({ error: 'API URL not configured' }, { status: 500 });
   }
 
-  const body = await request.json();
+  const body = await req.json();
 
   try {
     const res = await fetch(`${apiBase}/api/chat`, {
@@ -46,7 +47,7 @@ export async function POST(request: Request) {
     const data = await res.json();
     return Response.json(data, { status: res.status });
   } catch (err) {
-    console.error('Chat request failed:', err);
-    return Response.json({ error: 'Chat request failed' }, { status: 502 });
+    console.error('Chat req failed:', err);
+    return Response.json({ error: 'Chat req failed' }, { status: 502 });
   }
 }

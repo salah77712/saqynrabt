@@ -1,7 +1,8 @@
-import { auth } from '@clerk/nextjs/server';
+import { getAuth } from '@clerk/nextjs/server';
+import type { NextRequest } from 'next/server';
 
-export async function GET() {
-  const { getToken, userId } = await auth();
+export async function GET(req: NextRequest) {
+  const { getToken, userId } = getAuth(req);
   if (!userId) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }
@@ -24,8 +25,8 @@ export async function GET() {
   }
 }
 
-export async function PATCH(request: Request) {
-  const { getToken, userId } = await auth();
+export async function PATCH(req: NextRequest) {
+  const { getToken, userId } = getAuth(req);
   if (!userId) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }
@@ -36,7 +37,7 @@ export async function PATCH(request: Request) {
     return Response.json({ error: 'API URL not configured' }, { status: 500 });
   }
 
-  const body = await request.json();
+  const body = await req.json();
 
   try {
     const res = await fetch(`${apiBase}/api/employees`, {

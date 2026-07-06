@@ -1,14 +1,15 @@
-import { auth } from '@clerk/nextjs/server';
+import { getAuth } from '@clerk/nextjs/server';
+import type { NextRequest } from 'next/server';
 
-export async function POST(request: Request) {
-  const { userId, getToken } = await auth();
+export async function POST(req: NextRequest) {
+  const { userId, getToken } = getAuth(req);
   if (!userId) {
     return Response.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
   let body: { rating?: number; comment?: string };
   try {
-    body = await request.json();
+    body = await req.json();
   } catch {
     return Response.json({ error: 'Invalid JSON body' }, { status: 400 });
   }
