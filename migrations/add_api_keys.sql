@@ -1,7 +1,7 @@
 -- Create table for Developer API Keys
 CREATE TABLE IF NOT EXISTS api_keys (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  company_id UUID NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
+  company_id VARCHAR(255) NOT NULL REFERENCES companies(id) ON DELETE CASCADE,
   name VARCHAR(255) NOT NULL,
   key_hash VARCHAR(255) NOT NULL UNIQUE,
   key_hint VARCHAR(50) NOT NULL,
