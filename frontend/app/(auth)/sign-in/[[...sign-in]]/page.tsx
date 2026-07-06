@@ -35,7 +35,10 @@ export default function SignInPage() {
         router.push('/dashboard');
       } else {
         console.log('SignIn status incomplete:', result);
-        setError(t({ en: 'Additional verification steps required.', ar: 'مطلوب خطوات تحقق إضافية.' }));
+        setError(t({ 
+          en: `Additional verification steps required (Status: ${result.status}).`, 
+          ar: `مطلوب خطوات تحقق إضافية (الحالة: ${result.status}).` 
+        }));
       }
     } catch (err: any) {
       console.error(err);
