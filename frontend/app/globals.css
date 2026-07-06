@@ -2,23 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Inter', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: #141F33;
+    color: #ffffff;
+  }
+
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+  }
+
+  *:focus-visible {
+    outline: 2px solid #2A5CFF;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
 }
 
-::selection {
-  background: #1A365D;
-  color: #ffffff;
-}
-
-a,
-button,
-input,
-select,
-textarea {
-  min-height: 44px;
+@layer utilities {
+  .btn-primary {
+    @apply inline-flex items-center justify-center min-h-[44px] rounded-xl bg-[#141F33] px-6 py-3 font-bold text-white shadow-sm transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95 focus-visible:outline-2 focus-visible:outline-royal;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center min-h-[44px] rounded-xl border border-[#141F33] bg-white px-6 py-3 font-bold text-[#141F33] transition-all hover:bg-gray-50 hover:scale-[1.02] active:scale-95;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center justify-center min-h-[44px] rounded-xl bg-gray-100 px-5 py-2.5 text-sm font-bold text-[#141F33] transition-all hover:bg-gray-200 hover:scale-[1.02] active:scale-95;
+  }
+  .card-hover {
+    @apply transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-[#141F33];
+  }
+  .section-fade {
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+  .section-slide {
+    opacity: 0;
+    animation: slideUp 0.5s ease-out forwards;
+  }
 }
 
 /* ── Global animation keyframes ─────────────────────────── */
@@ -29,7 +64,7 @@ textarea {
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(12px); }
+  from { opacity: 0; transform: translateY(16px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -48,6 +83,11 @@ textarea {
   50%      { opacity: 0.7; }
 }
 
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
 .animate-fadeIn {
   animation: fadeIn 0.3s ease-out forwards;
 }
@@ -58,6 +98,25 @@ textarea {
 
 .animate-slideDown {
   animation: slideDown 0.3s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.3s ease-out forwards;
+}
+
+/* ── Reduced motion ─────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* ── Search overlay backdrop ───────────────────────────── */

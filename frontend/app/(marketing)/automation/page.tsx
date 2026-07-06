@@ -63,64 +63,95 @@ const faqs = [
   },
 ];
 
+function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boolean }) {
+  const [isOpen, setIsOpen] = useState(defaultOpen || false);
+  return (
+    <div className="bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-gray-50/50"
+      >
+        <span className="font-bold text-sm text-[#141F33] pr-4">{q}</span>
+        <svg
+          className={`h-4 w-4 shrink-0 text-[#718096] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+        </svg>
+      </button>
+      {isOpen && (
+        <div className="px-6 pb-5 text-sm text-[#718096] leading-relaxed animate-slideDown">
+          {a}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function AutomationPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
 
   return (
-    <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans">
-
+    <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white">
       <MarketingHeader />
 
       {/* Hero */}
-      <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
-        <span className="inline-block bg-blue-50 text-[#1A365D] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-          Business Automation
-        </span>
-        <h1 className="text-5xl md:text-6xl font-bold text-[#1A365D] leading-tight max-w-4xl mx-auto">
-          Never Miss a Customer Call, Booking, or Complaint Again.
-        </h1>
-        <p className="mt-6 text-xl text-slate-500 max-w-2xl mx-auto leading-relaxed">
-          The 24/7 AI front-desk that handles external inquiries, routes requests, and streamlines your guest experience.
-        </p>
-        <div className="mt-10 flex flex-wrap gap-4 justify-center">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="bg-[#1A365D] text-white px-8 py-4 rounded-lg font-semibold hover:opacity-90 transition-all text-base"
-          >
-            Book a Demo
-          </button>
-          <Link href="/#pricing" className="border-2 border-gray-200 text-[#1A365D] px-8 py-4 rounded-lg font-semibold hover:border-[#1A365D] transition-all text-base">
-            View Pricing
-          </Link>
+      <section className="relative overflow-hidden py-20 md:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
+          <span className="inline-block bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 animate-fadeIn">
+            Business Automation
+          </span>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-[#141F33] leading-tight max-w-4xl mx-auto animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+            Never Miss a Customer Call, Booking, or Complaint Again.
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-[#718096] max-w-2xl mx-auto leading-relaxed font-medium animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+            The 24/7 AI front-desk that handles external inquiries, routes requests, and streamlines your guest experience.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4 justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+            <button
+              type="button"
+              onClick={() => setIsModalOpen(true)}
+              className="btn-primary text-sm px-8 py-4"
+            >
+              Book a Demo
+            </button>
+            <Link href="/#pricing" className="btn-secondary text-sm px-8 py-4">
+              View Pricing
+            </Link>
+          </div>
         </div>
       </section>
 
       {/* Product Showcase */}
-      <section className="bg-slate-50 py-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-
-            {/* Left — Use Cases */}
+      <section className="bg-white border-y border-gray-100 py-20 md:py-28">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-[#1A365D] mb-8">What it handles for you</h2>
-              <div className="grid grid-cols-1 gap-4">
-                {useCases.map((uc) => (
-                  <div key={uc.title} className="flex items-start gap-4 bg-white border border-gray-100 rounded-xl p-5 shadow-sm hover:shadow-md transition-all">
-                    <span className="text-2xl mt-0.5">{uc.icon}</span>
+              <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-8">What it handles for you</h2>
+              <div className="flex flex-col gap-4">
+                {useCases.map((uc, i) => (
+                  <div
+                    key={uc.title}
+                    className="flex items-start gap-4 bg-white border border-gray-100 rounded-xl p-5 shadow-sm card-hover animate-slideUp"
+                    style={{ animationDelay: `${i * 0.05}s` }}
+                  >
+                    <span className="text-2xl mt-0.5 shrink-0">{uc.icon}</span>
                     <div>
-                      <p className="font-semibold text-slate-800 text-sm">{uc.title}</p>
-                      <p className="text-slate-500 text-xs mt-0.5 leading-relaxed">{uc.desc}</p>
+                      <p className="font-extrabold text-slate-800 text-sm">{uc.title}</p>
+                      <p className="text-[#718096] text-xs mt-0.5 leading-relaxed">{uc.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Right — Dashboard Mockup */}
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-xl p-6 space-y-4">
+            {/* Dashboard Mockup */}
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-xl p-6 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-center justify-between pb-4 border-b border-gray-100">
-                <span className="text-[#1A365D] font-bold text-base">Live Queue</span>
+                <span className="text-[#141F33] font-black text-base">Live Queue</span>
                 <span className="text-xs bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200 rounded-full px-3 py-1">● Live</span>
               </div>
               {[
@@ -131,14 +162,16 @@ export default function AutomationPage() {
               ].map((item, i) => (
                 <div key={i} className="flex items-center justify-between py-3 border-b border-gray-50 last:border-0">
                   <div>
-                    <p className="text-sm font-medium text-slate-800">{item.label}</p>
+                    <p className="text-sm font-semibold text-slate-800">{item.label}</p>
                     <p className="text-xs text-slate-400 mt-0.5">{item.dept}</p>
                   </div>
                   <span className={`text-xs font-semibold border rounded-full px-3 py-1 whitespace-nowrap ml-3 ${item.color}`}>{item.status}</span>
                 </div>
               ))}
               <div className="pt-2 text-center">
-                <Link href="/dashboard/automation" className="text-xs text-[#1A365D] font-semibold hover:underline">View Full Dashboard Demo →</Link>
+                <Link href="/dashboard/automation" className="text-xs text-[#141F33] font-bold hover:underline">
+                  View Full Dashboard Demo &rarr;
+                </Link>
               </div>
             </div>
           </div>
@@ -146,35 +179,43 @@ export default function AutomationPage() {
       </section>
 
       {/* Pricing */}
-      <section className="py-20 bg-white">
-        <div className="max-w-5xl mx-auto px-6">
+      <section className="py-20 md:py-28 bg-[#F8F9FB]">
+        <div className="max-w-5xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-14">
-            <h2 className="text-3xl font-bold text-[#1A365D] mb-3">Automation Pricing</h2>
-            <p className="text-slate-500">All plans include onboarding support and your dedicated dashboard.</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-3">Automation Pricing</h2>
+            <p className="text-[#718096] font-medium">All plans include onboarding support and your dedicated dashboard.</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {automationTiers.map((tier) => (
-              <div key={tier.id} className="relative bg-white border border-gray-200 rounded-xl p-6 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col">
+            {automationTiers.map((tier, i) => (
+              <div
+                key={tier.id}
+                className="relative bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm card-hover flex flex-col animate-slideUp"
+                style={{ animationDelay: `${i * 0.1}s` }}
+              >
                 {tier.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">⭐ Popular</span>
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm">
+                    Popular
+                  </span>
                 )}
-                <h3 className="text-xl font-bold text-[#1A365D]">{tier.title}</h3>
-                <p className="text-xs text-slate-400 mt-0.5 mb-4">{tier.subtitle}</p>
+                <h3 className="text-xl font-extrabold text-[#141F33]">{tier.title}</h3>
+                <p className="text-xs text-[#718096] font-medium mt-0.5 mb-4">{tier.subtitle}</p>
                 <div className="mb-1">
-                  <span className="text-4xl font-extrabold text-[#1A365D]">{tier.price}</span>
-                  <span className="text-slate-400 text-sm ml-1">QAR / mo</span>
+                  <span className="text-4xl font-extrabold text-[#141F33]">{tier.price}</span>
+                  <span className="text-[#718096] text-sm font-bold ml-1">QAR / mo</span>
                 </div>
-                <p className="text-green-600 font-medium text-sm mb-5">+ {tier.setup} QAR setup fee</p>
+                <p className="text-[#10B981] font-bold text-sm mb-5">+ {tier.setup} QAR setup fee</p>
                 <ul className="flex flex-col gap-2 mb-6 flex-1">
                   {tier.features.map((f, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-gray-600 text-sm">
-                      <span className="text-green-500 font-bold text-base leading-none">✓</span>{f}
+                    <li key={idx} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
+                      <span className="text-[#10B981] font-bold text-base leading-none">✓</span>
+                      {f}
                     </li>
                   ))}
                 </ul>
                 <button
+                  type="button"
                   onClick={() => setIsModalOpen(true)}
-                  className="w-full bg-[#1A365D] text-white py-3 rounded-lg font-medium hover:opacity-90 transition-all"
+                  className="w-full bg-[#141F33] text-white py-3.5 rounded-xl font-bold text-sm transition-all min-h-[44px] hover:scale-[1.02] hover:shadow-lg active:scale-95"
                 >
                   Get Started
                 </button>
@@ -185,14 +226,13 @@ export default function AutomationPage() {
       </section>
 
       {/* FAQ */}
-      <section className="bg-slate-50 py-20">
-        <div className="max-w-3xl mx-auto px-6">
-          <h2 className="text-3xl font-bold text-[#1A365D] mb-10 text-center">Frequently Asked Questions</h2>
-          <div className="space-y-5">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
-                <p className="font-semibold text-slate-800 mb-2">{faq.q}</p>
-                <p className="text-slate-500 text-sm leading-relaxed">{faq.a}</p>
+      <section className="bg-white border-y border-gray-100 py-20 md:py-28">
+        <div className="max-w-3xl mx-auto px-6 lg:px-12">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="flex flex-col gap-4">
+            {faqs.map((faq, i) => (
+              <div key={faq.q} className="animate-slideUp" style={{ animationDelay: `${i * 0.08}s` }}>
+                <FAQItem q={faq.q} a={faq.a} open={i === 0} />
               </div>
             ))}
           </div>
@@ -203,10 +243,10 @@ export default function AutomationPage() {
 
       {/* Demo Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-gray-900/60 backdrop-blur-sm">
-          <div className="bg-white border border-gray-200 rounded-xl max-w-md w-full p-6 shadow-xl">
-            <h3 className="text-lg font-bold text-[#1A365D] mb-2">Book a Demo — Business Automation</h3>
-            <p className="text-sm text-slate-500 mb-6 leading-relaxed">
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-white border border-gray-200 rounded-2xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
+            <h3 className="text-xl font-extrabold text-[#141F33] mb-2">Book a Demo</h3>
+            <p className="text-sm font-medium text-[#718096] mb-6 leading-relaxed">
               Book a 15-minute setup call with our team to configure your automation workspace.
             </p>
             <div className="flex flex-col gap-3">
@@ -214,15 +254,14 @@ export default function AutomationPage() {
                 href={calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full flex items-center justify-center bg-[#1A365D] text-white font-bold rounded-full transition-colors"
-                style={{ minHeight: '44px' }}
+                className="btn-primary text-sm"
               >
                 Book a Demo
               </a>
               <button
+                type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="w-full bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-full transition-colors"
-                style={{ minHeight: '44px' }}
+                className="btn-ghost text-sm"
               >
                 Close
               </button>
