@@ -37,17 +37,33 @@ const isPublicRoute = createRouteMatcher([
   "/sitemap.xml",
 ]);
 
-export default clerkMiddleware((auth, req) => {
-  const { userId } = auth();
-  const isPublic = isPublicRoute(req);
+let handler: any = null;
 
-  if (!userId && !isPublic) {
-    const url = new URL(req.url);
-    return NextResponse.redirect(
-      new URL("/sign-in?redirect_url=" + encodeURIComponent(url.pathname), req.url)
-    );
+if (process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
+  handler = clerkMiddleware((auth, req) => {
+    const { userId } = auth();
+    const isPublic = isPublicRoute(req);
+
+    if (!userId && !isPublic) {
+      const url = new URL(req.url);
+      return NextResponse.redirect(
+        new URL("/sign-in?redirect_url=" + encodeURIComponent(url.pathname), req.url)
+      );
+    }
+  });
+}
+
+export default async function middleware(req: any, event: any) {
+  if (!handler) {
+    return NextResponse.next();
   }
-});
+  try {
+    return await handler(req, event);
+  } catch (err) {
+    console.error("clerkMiddleware execution failed:", err);
+    return NextResponse.next();
+  }
+}
 
 export const config = {
   matcher: [
