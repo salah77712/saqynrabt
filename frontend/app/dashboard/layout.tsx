@@ -169,12 +169,6 @@ export default function DashboardLayout({
   }
 
   useEffect(() => {
-    if (isLoaded && user && !user.emailVerified) {
-      window.location.href = '/sign-in?redirect_url=/dashboard';
-    }
-  }, [isLoaded, user]);
-
-  useEffect(() => {
     fetch('/api/employees')
       .then(res => res.json())
       .then((data: any) => {
