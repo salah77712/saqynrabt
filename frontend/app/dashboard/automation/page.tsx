@@ -24,7 +24,7 @@ export default function AutomationDashboardPage() {
 
   const filteredRequests = requests.filter((req) => {
     const matchesFilter = filter === 'all' || req.status === filter;
-    const matchesSearch = req.customer.toLowerCase().includes(search.toLowerCase());
+    const matchesSearch = (req.customer || '').toLowerCase().includes(search?.toLowerCase());
     return matchesFilter && matchesSearch;
   });
 

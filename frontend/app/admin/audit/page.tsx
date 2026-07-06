@@ -24,8 +24,8 @@ export default function AdminAuditPage() {
   ]);
 
   const filteredLogs = logs.filter(log =>
-    log.user.toLowerCase().includes(search.toLowerCase()) ||
-    log.action.toLowerCase().includes(search.toLowerCase())
+    log.user?.toLowerCase().includes(search?.toLowerCase()) ||
+    log.action?.toLowerCase().includes(search?.toLowerCase())
   );
 
   return (

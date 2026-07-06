@@ -56,7 +56,7 @@ export default function DocumentsDashboardPage() {
   }, [refetch, t]);
 
   const filteredDocs = documents.filter((doc) =>
-    doc.name.toLowerCase().includes(searchQuery.toLowerCase())
+    doc.name?.toLowerCase().includes(searchQuery?.toLowerCase())
   );
 
   if (isLoading) {

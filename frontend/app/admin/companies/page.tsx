@@ -45,7 +45,7 @@ export default function AdminCompaniesPage() {
   };
 
   const filtered = companies.filter(c =>
-    c.name.toLowerCase().includes(search.toLowerCase())
+    c.name?.toLowerCase().includes(search?.toLowerCase())
   );
 
   const itemsPerPage = 3;

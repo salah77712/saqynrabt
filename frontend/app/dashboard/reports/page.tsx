@@ -19,7 +19,7 @@ export default function ReportsPage() {
     setToast(null);
 
     try {
-      const res = await fetch(`/api/export-logs?format=${format.toLowerCase()}`, {
+      const res = await fetch(`/api/export-logs?format=${format?.toLowerCase()}`, {
         method: 'GET',
       });
 
@@ -34,7 +34,7 @@ export default function ReportsPage() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = `report.${format.toLowerCase() === 'excel' ? 'xlsx' : format.toLowerCase()}`;
+        a.download = `report.${format?.toLowerCase() === 'excel' ? 'xlsx' : format?.toLowerCase()}`;
         document.body.appendChild(a);
         a.click();
         a.remove();

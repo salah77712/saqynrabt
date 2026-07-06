@@ -9,7 +9,7 @@ export function useKeyboardShortcut(
 ) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const isKeyMatch = e.key.toLowerCase() === key.toLowerCase();
+      const isKeyMatch = e.key?.toLowerCase() === key?.toLowerCase();
       const isModifierMatch = ctrlOrCmd ? e.ctrlKey || e.metaKey : true;
 
       if (isKeyMatch && isModifierMatch) {

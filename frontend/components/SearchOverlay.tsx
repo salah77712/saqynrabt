@@ -54,10 +54,10 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
     ? searchIndex.filter((item) => {
         const q = query.toLowerCase();
         return (
-          item.title.toLowerCase().includes(q) ||
+          item.title?.toLowerCase().includes(q) ||
           item.titleAr.includes(query) ||
-          item.keywords.toLowerCase().includes(q) ||
-          item.href.toLowerCase().includes(q)
+          item.keywords?.toLowerCase().includes(q) ||
+          item.href?.toLowerCase().includes(q)
         );
       })
     : [];

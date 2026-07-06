@@ -18,7 +18,7 @@ async function fetchDocuments(): Promise<DocumentsResponse> {
   if (!res.ok) {
     throw new Error('Failed to fetch documents');
   }
-  return res.json();
+  try { return await res.json(); } catch (e) { console.error("Invalid JSON response", e); throw new Error("Invalid JSON response"); }
 }
 
 export function useDocuments() {

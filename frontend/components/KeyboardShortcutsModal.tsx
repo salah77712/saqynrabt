@@ -32,8 +32,8 @@ export function KeyboardShortcutsModal({ isOpen, onClose }: KeyboardShortcutsMod
 
   const filtered = shortcuts.filter(
     (s) =>
-      s.desc.toLowerCase().includes(search.toLowerCase()) ||
-      s.keys.toLowerCase().includes(search.toLowerCase())
+      s.desc?.toLowerCase().includes(search?.toLowerCase()) ||
+      s.keys?.toLowerCase().includes(search?.toLowerCase())
   );
 
   return (
