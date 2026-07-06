@@ -1,4 +1,4 @@
-﻿import { auth } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -11,9 +11,9 @@ export async function GET() {
     }
 
     const response = await fetch(
-      ${process.env.NEXT_PUBLIC_API_URL}/api/usage-stats,
+      `${process.env.NEXT_PUBLIC_API_URL}/api/usage-stats`,
       {
-        headers: { Authorization: Bearer  },
+        headers: { Authorization: `Bearer ${token}` },
       }
     );
 
