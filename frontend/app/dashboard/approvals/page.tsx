@@ -60,7 +60,7 @@ export default function ApprovalsDashboardPage() {
     fetchEmployeesAndEntitlements();
   }, []);
 
-  const activeCount = employees.filter(e => e.status === 'active').count || employees.filter(e => e.status === 'active').length;
+  const activeCount = employees.filter(e => e.status === 'active').length;
   const isLimitReached = activeCount >= maxEmployees;
 
   // Employee Approval Handler

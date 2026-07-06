@@ -50,7 +50,7 @@ export default function AutomationDashboardPage() {
 
   if (isError || error) return <EmptyState title="Could not load requests" retry={refetch} />;
 
-  if (data && (data.length === 0 || (data.requests && data.requests.length === 0 && data.activeCalls && data.activeCalls.length === 0))) {
+  if (data && data.requests?.length === 0 && data.activeCalls?.length === 0) {
     return <EmptyState title="Live guest queue" description="All clear. No pending requests." />;
   }
 

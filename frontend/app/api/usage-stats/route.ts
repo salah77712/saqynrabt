@@ -1,32 +1,46 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getSafeAuth } from '../../../lib/safe-auth';
-import type { NextRequest } from 'next/server';
+// Laws 1, 2, 3, 15, 16 COMPLIANT — auto-generated BFF proxy
+import { auth } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const { getToken } = getSafeAuth(req);
+    const { getToken } = auth();
     const token = await getToken();
 
     if (!token) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json(
+        { error: "Unauthorized - no auth token found" },
+        { status: 401 }
+      );
     }
 
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL || 'https://api.saqynrabt.com'}/api/usage-stats`,
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    );
-
-    if (!response.ok) {
-      const errText = await response.text();
-      return NextResponse.json({ error: errText }, { status: response.status });
+    const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!apiBase) {
+      return NextResponse.json(
+        { error: "Backend URL is not configured." },
+        { status: 500 }
+      );
     }
 
-    const data = await response.json();
-    return NextResponse.json(data);
-  } catch (err) {
-    console.error('Usage stats proxy error:', err);
-    return NextResponse.json({ error: 'Failed to fetch usage stats' }, { status: 500 });
+    const res = await fetch(`${apiBase}/api/usage-stats`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    });
+
+    const text = await res.text();
+    try {
+      const data = JSON.parse(text);
+      return NextResponse.json(data, { status: res.status });
+    } catch {
+      console.error("[/api/usage-stats GET] Invalid JSON from backend:", text);
+      return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 });
+    }
+  } catch (err: unknown) {
+    console.error("[/api/usage-stats GET] Handler error:", err);
+    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
   }
 }

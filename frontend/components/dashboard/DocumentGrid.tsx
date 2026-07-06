@@ -6,7 +6,7 @@ interface DocItem {
   id: string;
   name: string;
   size: string;
-  status: 'ready' | 'processing';
+  status: 'ready' | 'processing' | 'failed';
 }
 
 interface DocumentGridProps {

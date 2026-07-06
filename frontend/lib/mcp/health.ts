@@ -19,7 +19,7 @@ export async function checkMCPHealth() {
   } catch { status.pinecone = 'offline'; }
 
   try {
-    const redis = new Redis({ url: MCP_REGISTRY.upstash.url! });
+    const redis = new Redis({ url: MCP_REGISTRY.upstash.url!, token: MCP_REGISTRY.upstash.token! });
     await redis.ping();
     status.upstash = 'online';
   } catch { status.upstash = 'offline'; }

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLocale } from '../providers';
-import Link from 'next/Link';
+import Link from 'next/link';
 import { MarketingHeader } from '../../components/MarketingHeader';
 import { Footer } from '../../components/Footer';
 

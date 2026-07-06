@@ -1,58 +1,90 @@
-import { getSafeAuth } from '../../../lib/safe-auth';
-import type { NextRequest } from 'next/server';
+// Laws 1, 2, 3, 10, 15, 16 COMPLIANT
+import { auth } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const { getToken } = getSafeAuth(req);
-  const token = await getToken();
-
-  const apiBase = process.env.NEXT_PUBLIC_API_URL;
-  if (!apiBase) {
-    return Response.json({ error: 'API URL not configured' }, { status: 500 });
-  }
-
   try {
+    const { getToken } = auth();
+    const token = await getToken();
+
+    if (!token) {
+      return NextResponse.json(
+        { error: "Unauthorized - no auth token found" },
+        { status: 401 }
+      );
+    }
+
+    const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!apiBase) {
+      return NextResponse.json(
+        { error: "Backend URL is not configured." },
+        { status: 500 }
+      );
+    }
+
     const res = await fetch(`${apiBase}/api/employees`, {
-      headers: token
-        ? { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
-        : { 'Content-Type': 'application/json' },
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     });
 
     const text = await res.text();
     try {
       const data = JSON.parse(text);
-      return Response.json(data, { status: res.status });
+      return NextResponse.json(data, { status: res.status });
     } catch {
-      console.error('Employees: invalid JSON from backend:', text);
-      return Response.json({ error: 'Invalid backend response' }, { status: 502 });
+      console.error("[/api/employees GET] Invalid JSON from backend:", text);
+      return NextResponse.json(
+        { success: false, error: "Internal Server Error" },
+        { status: 502 }
+      );
     }
-  } catch (err) {
-    console.error('Employees fetch failed:', err);
-    return Response.json({ error: 'Failed to fetch employees' }, { status: 502 });
+  } catch (err: unknown) {
+    console.error("[/api/employees GET] Handler error:", err);
+    return NextResponse.json(
+      { success: false, error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }
 
 export async function PATCH(req: NextRequest) {
-  const { getToken } = getSafeAuth(req);
-  const token = await getToken();
-
-  const apiBase = process.env.NEXT_PUBLIC_API_URL;
-  if (!apiBase) {
-    return Response.json({ error: 'API URL not configured' }, { status: 500 });
-  }
-
-  let body: any;
   try {
-    body = await req.json();
-  } catch {
-    return Response.json({ error: 'Invalid request body' }, { status: 400 });
-  }
+    const { getToken } = auth();
+    const token = await getToken();
 
-  try {
+    if (!token) {
+      return NextResponse.json(
+        { error: "Unauthorized - no auth token found" },
+        { status: 401 }
+      );
+    }
+
+    const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!apiBase) {
+      return NextResponse.json(
+        { error: "Backend URL is not configured." },
+        { status: 500 }
+      );
+    }
+
+    let body: unknown;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json(
+        { error: "Invalid request body" },
+        { status: 400 }
+      );
+    }
+
     const res = await fetch(`${apiBase}/api/employees`, {
-      method: 'PATCH',
+      method: "PATCH",
       headers: {
-        'Content-Type': 'application/json',
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
     });
@@ -60,13 +92,19 @@ export async function PATCH(req: NextRequest) {
     const text = await res.text();
     try {
       const data = JSON.parse(text);
-      return Response.json(data, { status: res.status });
+      return NextResponse.json(data, { status: res.status });
     } catch {
-      console.error('Employees PATCH: invalid JSON from backend:', text);
-      return Response.json({ error: 'Invalid backend response' }, { status: 502 });
+      console.error("[/api/employees PATCH] Invalid JSON from backend:", text);
+      return NextResponse.json(
+        { success: false, error: "Internal Server Error" },
+        { status: 502 }
+      );
     }
-  } catch (err) {
-    console.error('Employee update failed:', err);
-    return Response.json({ error: 'Failed to update employee' }, { status: 502 });
+  } catch (err: unknown) {
+    console.error("[/api/employees PATCH] Handler error:", err);
+    return NextResponse.json(
+      { success: false, error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

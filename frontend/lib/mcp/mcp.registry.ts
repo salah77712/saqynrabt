@@ -20,6 +20,7 @@ export const MCP_REGISTRY = {
   upstash: {
     type: 'cache',
     url: process.env.REDIS_URL,
+    token: process.env.UPSTASH_REDIS_REST_TOKEN,
     active: true
   },
   vapi: {

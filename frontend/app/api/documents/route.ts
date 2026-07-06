@@ -1,78 +1,67 @@
-import { getSafeAuth } from '../../../lib/safe-auth';
-import type { NextRequest } from 'next/server';
+// Laws 1, 2, 3, 15, 16 COMPLIANT
+import { auth } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const { getToken } = getSafeAuth(req);
-
-  const token = await getToken();
-  const apiBase = process.env.NEXT_PUBLIC_API_URL;
-  if (!apiBase) {
-    return Response.json({ error: 'API URL not configured' }, { status: 500 });
-  }
-
   try {
+    const { getToken } = auth();
+    const token = await getToken();
+    if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401 });
+    const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
     const res = await fetch(`${apiBase}/api/documents`, {
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     });
     const text = await res.text();
-    let data: any;
-    try { data = JSON.parse(text); } catch { return Response.json({ error: 'Invalid backend response' }, { status: 502 }); }
-    return Response.json(data, { status: res.status });
-  } catch (err) {
-    console.error('Documents fetch failed:', err);
-    return Response.json({ error: 'Failed to fetch documents from live NeonDB' }, { status: 502 });
+    try { const data = JSON.parse(text); return NextResponse.json(data, { status: res.status }); }
+    catch { return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 }); }
+  } catch (err: unknown) {
+    console.error("[/api/documents GET]", err);
+    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
   }
 }
 
 export async function POST(req: NextRequest) {
-  const { getToken } = getSafeAuth(req);
-
-  const token = await getToken();
-  const apiBase = process.env.NEXT_PUBLIC_API_URL;
-  if (!apiBase) {
-    return Response.json({ error: 'API URL not configured' }, { status: 500 });
-  }
-
   try {
-    const formData = await request.formData();
+    const { getToken } = auth();
+    const token = await getToken();
+    if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401 });
+    const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
+    const formData = await req.formData();
     const res = await fetch(`${apiBase}/api/documents`, {
-      method: 'POST',
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      method: "POST",
+      headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
     const text = await res.text();
-    let data: any;
-    try { data = JSON.parse(text); } catch { return Response.json({ error: 'Invalid backend response' }, { status: 502 }); }
-    return Response.json(data, { status: res.status });
-  } catch (err) {
-    console.error('Document upload failed:', err);
-    return Response.json({ error: 'Failed to upload document' }, { status: 502 });
+    try { const data = JSON.parse(text); return NextResponse.json(data, { status: res.status }); }
+    catch { return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 }); }
+  } catch (err: unknown) {
+    console.error("[/api/documents POST]", err);
+    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
   }
 }
 
 export async function DELETE(req: NextRequest) {
-  const { getToken } = getSafeAuth(req);
-
-  const token = await getToken();
-  const apiBase = process.env.NEXT_PUBLIC_API_URL;
-  if (!apiBase) {
-    return Response.json({ error: 'API URL not configured' }, { status: 500 });
-  }
-
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get('id');
-
   try {
+    const { getToken } = auth();
+    const token = await getToken();
+    if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401 });
+    const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
     const res = await fetch(`${apiBase}/api/documents?id=${id}`, {
-      method: 'DELETE',
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     });
     const text = await res.text();
-    let data: any;
-    try { data = JSON.parse(text); } catch { return Response.json({ error: 'Invalid backend response' }, { status: 502 }); }
-    return Response.json(data, { status: res.status });
-  } catch (err) {
-    console.error('Document delete failed:', err);
-    return Response.json({ error: 'Failed to delete document' }, { status: 502 });
+    try { const data = JSON.parse(text); return NextResponse.json(data, { status: res.status }); }
+    catch { return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 }); }
+  } catch (err: unknown) {
+    console.error("[/api/documents DELETE]", err);
+    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
   }
 }

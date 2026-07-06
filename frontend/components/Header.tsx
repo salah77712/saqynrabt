@@ -96,7 +96,7 @@ export function Header() {
             </Link>
 
             {isSignedIn ? (
-              <UserButton afterSignOutUrl="/" showName={false} userProfileMode="navigation" />
+              <UserButton afterSignOutUrl="/" showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user" />
             ) : (
               <Link href="/sign-in" className="text-xs font-extrabold text-navy hover:underline min-h-[44px] flex items-center px-2">
                 Sign In

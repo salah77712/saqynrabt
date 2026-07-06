@@ -1,52 +1,75 @@
-import { getSafeAuth } from '../../../lib/safe-auth';
-import type { NextRequest } from 'next/server';
+// Laws 1, 2, 3, 11, 15, 16 COMPLIANT - supports streaming SSE responses
+import { auth } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
-  const { getToken } = getSafeAuth(req);
-
-  const token = await getToken();
-  if (!token) {
-    return Response.json({ error: 'Failed to get auth token' }, { status: 500 });
-  }
-
-  const apiBase = process.env.NEXT_PUBLIC_API_URL;
-  if (!apiBase) {
-    return Response.json({ error: 'API URL not configured' }, { status: 500 });
-  }
-
-  const body = await req.json();
-
   try {
+    const { getToken } = auth();
+    const token = await getToken();
+
+    if (!token) {
+      return NextResponse.json(
+        { error: "Unauthorized - no auth token found" },
+        { status: 401 }
+      );
+    }
+
+    const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!apiBase) {
+      return NextResponse.json(
+        { error: "Backend URL is not configured." },
+        { status: 500 }
+      );
+    }
+
+    let body: unknown;
+    try {
+      body = await req.json();
+    } catch {
+      return NextResponse.json({ error: "Invalid request body" }, { status: 400 });
+    }
+
     const res = await fetch(`${apiBase}/api/chat`, {
-      method: 'POST',
+      method: "POST",
       headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
     });
 
-    const contentType = res.headers.get('Content-Type') || '';
-
-    if (contentType.includes('text/event-stream')) {
+    // Pass through SSE streaming responses
+    const contentType = res.headers.get("Content-Type") || "";
+    if (contentType.includes("text/event-stream")) {
       const { readable, writable } = new TransformStream();
       res.body?.pipeTo(writable);
       return new Response(readable, {
         status: res.status,
         headers: {
-          'Content-Type': 'text/event-stream',
-          'Cache-Control': 'no-cache',
-          'Connection': 'keep-alive',
+          "Content-Type": "text/event-stream",
+          "Cache-Control": "no-cache",
+          Connection: "keep-alive",
         },
       });
     }
 
     const text = await res.text();
-    let data: any;
-    try { data = JSON.parse(text); } catch { return Response.json({ error: 'Invalid backend response' }, { status: 502 }); }
-    return Response.json(data, { status: res.status });
-  } catch (err) {
-    console.error('Chat req failed:', err);
-    return Response.json({ error: 'Chat req failed' }, { status: 502 });
+    try {
+      const data = JSON.parse(text);
+      return NextResponse.json(data, { status: res.status });
+    } catch {
+      console.error("[/api/chat POST] Invalid JSON from backend:", text);
+      return NextResponse.json(
+        { success: false, error: "Internal Server Error" },
+        { status: 502 }
+      );
+    }
+  } catch (err: unknown) {
+    console.error("[/api/chat POST] Handler error:", err);
+    return NextResponse.json(
+      { success: false, error: "Internal Server Error" },
+      { status: 500 }
+    );
   }
 }

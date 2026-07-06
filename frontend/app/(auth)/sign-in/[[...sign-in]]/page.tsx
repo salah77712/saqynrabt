@@ -38,15 +38,15 @@ export default function SignInPage() {
         router.push('/dashboard');
       } else if (result.status === 'needs_second_factor') {
         const totpFactor = result.supportedSecondFactors?.find(f => f.strategy === 'totp');
-        const emailFactor = result.supportedSecondFactors?.find(f => f.strategy === 'email_code');
-        const phoneFactor = result.supportedSecondFactors?.find(f => f.strategy === 'phone_code');
+        const emailFactor = result.supportedSecondFactors?.find(f => (f.strategy as string) === 'email_code');
+        const phoneFactor = result.supportedSecondFactors?.find(f => (f.strategy as string) === 'phone_code');
         
-        const strategy = totpFactor?.strategy || emailFactor?.strategy || phoneFactor?.strategy;
+        const strategy: string | undefined = totpFactor?.strategy || (emailFactor ? 'email_code' : undefined) || (phoneFactor ? 'phone_code' : undefined);
         
         if (strategy) {
           setFactorStrategy(strategy as any);
           if (strategy === 'email_code' || strategy === 'phone_code') {
-            await signIn.prepareSecondFactor({ strategy });
+            await signIn.prepareSecondFactor({ strategy } as any);
           }
           setShow2FA(true);
         } else {
@@ -75,7 +75,7 @@ export default function SignInPage() {
     setError('');
 
     try {
-      const result = await signIn.attemptSecondFactor({
+      const result = await (signIn.attemptSecondFactor as any)({
         strategy: factorStrategy,
         code: twoFactorCode,
       });

@@ -1,29 +1,46 @@
-import { getSafeAuth } from '../../../lib/safe-auth';
-import type { NextRequest } from 'next/server';
+// Laws 1, 2, 3, 15, 16 COMPLIANT — auto-generated BFF proxy
+import { auth } from "@clerk/nextjs/server";
+import { NextResponse } from "next/server";
+import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const { getToken } = getSafeAuth(req);
-
-  const token = await getToken();
-  const apiBase = process.env.NEXT_PUBLIC_API_URL;
-  if (!apiBase) {
-    return Response.json({ error: 'API URL not configured' }, { status: 500 });
-  }
-
   try {
+    const { getToken } = auth();
+    const token = await getToken();
+
+    if (!token) {
+      return NextResponse.json(
+        { error: "Unauthorized - no auth token found" },
+        { status: 401 }
+      );
+    }
+
+    const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!apiBase) {
+      return NextResponse.json(
+        { error: "Backend URL is not configured." },
+        { status: 500 }
+      );
+    }
+
     const res = await fetch(`${apiBase}/api/export-logs`, {
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
-    });
-    const blob = await res.blob();
-    return new Response(blob, {
-      status: res.status,
+      method: "GET",
       headers: {
-        'Content-Type': res.headers.get('Content-Type') || 'text/csv',
-        'Content-Disposition': res.headers.get('Content-Disposition') || 'attachment; filename="chat_logs.csv"',
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
       },
     });
-  } catch (err) {
-    console.error('Export logs fetch failed:', err);
-    return Response.json({ error: 'Failed to export logs' }, { status: 502 });
+
+    const text = await res.text();
+    try {
+      const data = JSON.parse(text);
+      return NextResponse.json(data, { status: res.status });
+    } catch {
+      console.error("[/api/export-logs GET] Invalid JSON from backend:", text);
+      return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 });
+    }
+  } catch (err: unknown) {
+    console.error("[/api/export-logs GET] Handler error:", err);
+    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
   }
 }
