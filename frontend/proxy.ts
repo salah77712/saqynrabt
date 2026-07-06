@@ -1,33 +1,20 @@
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-let clerkMiddleware: any = null;
-let isPublicRoute: any = null;
+const isPublicRoute = createRouteMatcher([
+  "/",
+  "/sign-in(.*)",
+  "/sign-up(.*)",
+  "/api/webhook",
+  "/api/health",
+  "/api/wakeup",
+]);
 
-if (process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
+let handler: any = null;
+
+if (typeof process !== 'undefined' && process.env && process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
   try {
-    const clerk = require("@clerk/nextjs/server");
-    clerkMiddleware = clerk.clerkMiddleware;
-    isPublicRoute = clerk.createRouteMatcher([
-      "/",
-      "/sign-in(.*)",
-      "/sign-up(.*)",
-      "/api/webhook",
-      "/api/health",
-      "/api/wakeup",
-    ]);
-  } catch (err) {
-    console.error("Clerk initialization failed:", err);
-  }
-}
-
-export default async function middleware(req: any, event: any) {
-  if (!clerkMiddleware || !isPublicRoute) {
-    console.warn("Clerk publishable key or helper missing; bypassing auth middleware");
-    return NextResponse.next();
-  }
-
-  try {
-    const handler = clerkMiddleware((auth: any, req: any) => {
+    handler = clerkMiddleware((auth, req) => {
       const { userId } = auth();
       const url = new URL(req.url);
       const isPublic = isPublicRoute(req);
@@ -36,6 +23,16 @@ export default async function middleware(req: any, event: any) {
         return NextResponse.redirect(new URL('/sign-in?redirect_url=' + encodeURIComponent(url.pathname), req.url));
       }
     });
+  } catch (err) {
+    console.error("Failed to initialize clerkMiddleware:", err);
+  }
+}
+
+export default async function middleware(req: any, event: any) {
+  if (!handler) {
+    return NextResponse.next();
+  }
+  try {
     return await handler(req, event);
   } catch (err) {
     console.error("clerkMiddleware execution failed:", err);
