@@ -1,23 +1,53 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useLocale } from '../../providers';
 import { Card } from '../../../components/ui/Card';
 import { Button } from '../../../components/ui/Button';
 import { Toast } from '../../../components/ui/Toast';
 
+type Format = 'PDF' | 'CSV' | 'EXCEL';
+
 export default function ReportsPage() {
   const { locale } = useLocale();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
-  const [toastMessage, setToastMessage] = useState<string | null>(null);
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+  const [loading, setLoading] = useState<Format | null>(null);
 
-  const triggerExport = (format: string) => {
-    setToastMessage(t({en: `Generating custom audit report in ${format} format...`, ar: `جارٍ إنشاء تقرير التدقيق المخصص بتنسيق ${format}...`}));
+  const handleExport = useCallback(async (format: Format) => {
+    setLoading(format);
+    setToast(null);
 
-    setTimeout(() => {
-      setToastMessage(t({en: 'Report compiled successfully. Download started.', ar: 'تم تجميع التقرير بنجاح. بدأ التنزيل.'}));
-    }, 1500);
-  };
+    try {
+      const res = await fetch(`/api/export-logs?format=${format.toLowerCase()}`, {
+        method: 'GET',
+      });
+
+      const contentType = res.headers.get('content-type') || '';
+
+      if (contentType.includes('application/json')) {
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.message || 'Export failed');
+        setToast({ message: data.message, type: 'success' });
+      } else {
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `report.${format.toLowerCase() === 'excel' ? 'xlsx' : format.toLowerCase()}`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+        setToast({ message: t({ en: 'File downloaded successfully.', ar: 'تم تنزيل الملف بنجاح.' }), type: 'success' });
+      }
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Export failed';
+      setToast({ message, type: 'error' });
+    } finally {
+      setLoading(null);
+    }
+  }, [t]);
 
   return (
     <main id="main-content" className="p-6 space-y-6">
@@ -34,8 +64,8 @@ export default function ReportsPage() {
               {t({en: 'Generate a formal operations PDF including current workspace metrics and redacting PII details.', ar: 'إنشاء PDF رسمي للعمليات يتضمن مقاييس مساحة العمل الحالية مع إخفاء تفاصيل المعلومات الشخصية.'})}
             </p>
           </div>
-          <Button variant="primary" className="mt-6 w-full" onClick={() => triggerExport('PDF')}>
-            {t({en: 'Export PDF Report', ar: 'تصدير تقرير PDF'})}
+          <Button variant="primary" className="mt-6 w-full" disabled={loading !== null} onClick={() => handleExport('PDF')}>
+            {loading === 'PDF' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export PDF Report', ar: 'تصدير تقرير PDF'})}
           </Button>
         </Card>
 
@@ -46,8 +76,8 @@ export default function ReportsPage() {
               {t({en: 'Export comprehensive RAG assistant transcripts to CSV formats suitable for local spreadsheet review.', ar: 'تصدير نصوص مساعد RAG الشاملة بتنسيق CSV مناسب للمراجعة المحلية.'})}
             </p>
           </div>
-          <Button variant="outline" className="mt-6 w-full" onClick={() => triggerExport('CSV')}>
-            {t({en: 'Export CSV Database', ar: 'تصدير قاعدة البيانات CSV'})}
+          <Button variant="outline" className="mt-6 w-full" disabled={loading !== null} onClick={() => handleExport('CSV')}>
+            {loading === 'CSV' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export CSV Database', ar: 'تصدير قاعدة البيانات CSV'})}
           </Button>
         </Card>
 
@@ -58,14 +88,14 @@ export default function ReportsPage() {
               {t({en: 'Download monthly allocation files detailing voice minute calls and document uploads.', ar: 'تنزيل ملفات التخصيص الشهرية التي توضح دقائق المكالمات الصوتية ورفع المستندات.'})}
             </p>
           </div>
-          <Button variant="outline" className="mt-6 w-full" onClick={() => triggerExport('EXCEL')}>
-            {t({en: 'Export Excel Sheet', ar: 'تصدير ورقة Excel'})}
+          <Button variant="outline" className="mt-6 w-full" disabled={loading !== null} onClick={() => handleExport('EXCEL')}>
+            {loading === 'EXCEL' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export Excel Sheet', ar: 'تصدير ورقة Excel'})}
           </Button>
         </Card>
       </div>
 
-      {toastMessage && (
-        <Toast message={toastMessage} onClose={() => setToastMessage(null)} />
+      {toast && (
+        <Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
       )}
     </main>
   );
