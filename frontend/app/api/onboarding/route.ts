@@ -5,7 +5,7 @@ import type { NextRequest } from 'next/server';
 export async function POST(req: NextRequest) {
   try {
     const { getToken } = getSafeAuth(req);
-    const token = await getToken({ template: 'saqyn-jwt' });
+    const token = await getToken();
 
     if (!token) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });

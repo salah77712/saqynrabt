@@ -2,12 +2,9 @@ import { getSafeAuth } from '../../../lib/safe-auth';
 import type { NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest) {
-  const { getToken, userId } = getSafeAuth(req);
-  if (!userId) {
-    return Response.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const { getToken } = getSafeAuth(req);
 
-  const token = await getToken({ template: 'saqyn-jwt' });
+  const token = await getToken();
   const apiBase = process.env.NEXT_PUBLIC_API_URL;
   if (!apiBase) {
     return Response.json({ error: 'API URL not configured' }, { status: 500 });

@@ -7,28 +7,28 @@ export interface SafeAuthContext {
 }
 
 export function getSafeAuth(req: NextRequest): SafeAuthContext {
-  // If Clerk Publishable Key is not set, or is the fallback test key, default to mock demo user
-  const isMock = !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 
-                 process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY === 'pk_test_Z3VpZGluZy1jdWItMTcuY2xlcmsuYWNjb3VudHMuZGV2JA';
-  
-  if (isMock) {
-    return {
-      userId: 'user_admin12345demo',
-      getToken: async () => 'mock-token-dummy_company-user_admin12345demo-admin'
-    };
-  }
-
   try {
     const authData = getAuth(req);
+
     return {
       userId: authData.userId,
-      getToken: authData.getToken
+      getToken: async (options?: { template?: string }) => {
+        try {
+          // Always try without template first — returns raw Clerk session token
+          // that the backend can verify with CLERK_SECRET_KEY via verifyToken()
+          const token = await authData.getToken();
+          return token;
+        } catch (err) {
+          console.warn('getToken failed:', err);
+          return null;
+        }
+      }
     };
   } catch (err) {
-    console.warn('Clerk auth failed or context missing, falling back to demo user:', err);
+    console.warn('getSafeAuth: Clerk context unavailable:', err);
     return {
-      userId: 'user_admin12345demo',
-      getToken: async () => 'mock-token-dummy_company-user_admin12345demo-admin'
+      userId: null,
+      getToken: async () => null,
     };
   }
 }

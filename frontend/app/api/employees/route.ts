@@ -2,12 +2,9 @@ import { getSafeAuth } from '../../../lib/safe-auth';
 import type { NextRequest } from 'next/server';
 
 export async function GET(req: NextRequest) {
-  const { getToken, userId } = getSafeAuth(req);
-  if (!userId) {
-    return Response.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const { getToken } = getSafeAuth(req);
+  const token = await getToken();
 
-  const token = await getToken({ template: 'saqyn-jwt' });
   const apiBase = process.env.NEXT_PUBLIC_API_URL;
   if (!apiBase) {
     return Response.json({ error: 'API URL not configured' }, { status: 500 });
@@ -15,10 +12,19 @@ export async function GET(req: NextRequest) {
 
   try {
     const res = await fetch(`${apiBase}/api/employees`, {
-      headers: token ? { Authorization: `Bearer ${token}` } : {},
+      headers: token
+        ? { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }
+        : { 'Content-Type': 'application/json' },
     });
-    const data = await res.json();
-    return Response.json(data, { status: res.status });
+
+    const text = await res.text();
+    try {
+      const data = JSON.parse(text);
+      return Response.json(data, { status: res.status });
+    } catch {
+      console.error('Employees: invalid JSON from backend:', text);
+      return Response.json({ error: 'Invalid backend response' }, { status: 502 });
+    }
   } catch (err) {
     console.error('Employees fetch failed:', err);
     return Response.json({ error: 'Failed to fetch employees' }, { status: 502 });
@@ -26,30 +32,39 @@ export async function GET(req: NextRequest) {
 }
 
 export async function PATCH(req: NextRequest) {
-  const { getToken, userId } = getSafeAuth(req);
-  if (!userId) {
-    return Response.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  const { getToken } = getSafeAuth(req);
+  const token = await getToken();
 
-  const token = await getToken({ template: 'saqyn-jwt' });
   const apiBase = process.env.NEXT_PUBLIC_API_URL;
   if (!apiBase) {
     return Response.json({ error: 'API URL not configured' }, { status: 500 });
   }
 
-  const body = await req.json();
+  let body: any;
+  try {
+    body = await req.json();
+  } catch {
+    return Response.json({ error: 'Invalid request body' }, { status: 400 });
+  }
 
   try {
     const res = await fetch(`${apiBase}/api/employees`, {
       method: 'PATCH',
       headers: {
-        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
       body: JSON.stringify(body),
     });
-    const data = await res.json();
-    return Response.json(data, { status: res.status });
+
+    const text = await res.text();
+    try {
+      const data = JSON.parse(text);
+      return Response.json(data, { status: res.status });
+    } catch {
+      console.error('Employees PATCH: invalid JSON from backend:', text);
+      return Response.json({ error: 'Invalid backend response' }, { status: 502 });
+    }
   } catch (err) {
     console.error('Employee update failed:', err);
     return Response.json({ error: 'Failed to update employee' }, { status: 502 });

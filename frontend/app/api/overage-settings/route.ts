@@ -2,13 +2,9 @@ import { getSafeAuth } from '../../../lib/safe-auth';
 import type { NextRequest } from 'next/server';
 
 export async function POST(req: NextRequest) {
-  const { getToken, userId } = getSafeAuth(req);
+  const { getToken } = getSafeAuth(req);
 
-  if (!userId) {
-    return Response.json({ error: 'Unauthorized' }, { status: 401 });
-  }
-
-  const token = await getToken({ template: 'saqyn-jwt' });
+  const token = await getToken();
   if (!token) {
     return Response.json({ error: 'Failed to get auth token' }, { status: 500 });
   }
@@ -29,7 +25,9 @@ export async function POST(req: NextRequest) {
       },
       body: JSON.stringify(body),
     });
-    const data = await res.json();
+    const text = await res.text();
+    let data: any;
+    try { data = JSON.parse(text); } catch { return Response.json({ error: 'Invalid backend response' }, { status: 502 }); }
     return Response.json(data, { status: res.status });
   } catch (err) {
     console.error('Overage settings update failed:', err);
