@@ -16,6 +16,9 @@ export default function SignInPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [show2FA, setShow2FA] = useState(false);
+  const [twoFactorCode, setTwoFactorCode] = useState('');
+  const [factorStrategy, setFactorStrategy] = useState<'totp' | 'email_code' | 'phone_code' | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,6 +36,22 @@ export default function SignInPage() {
       if (result.status === 'complete') {
         await setActive({ session: result.createdSessionId });
         router.push('/dashboard');
+      } else if (result.status === 'needs_second_factor') {
+        const totpFactor = result.supportedSecondFactors?.find(f => f.strategy === 'totp');
+        const emailFactor = result.supportedSecondFactors?.find(f => f.strategy === 'email_code');
+        const phoneFactor = result.supportedSecondFactors?.find(f => f.strategy === 'phone_code');
+        
+        const strategy = totpFactor?.strategy || emailFactor?.strategy || phoneFactor?.strategy;
+        
+        if (strategy) {
+          setFactorStrategy(strategy as any);
+          if (strategy === 'email_code' || strategy === 'phone_code') {
+            await signIn.prepareSecondFactor({ strategy });
+          }
+          setShow2FA(true);
+        } else {
+          setError(t({ en: 'No supported second factor strategy found.', ar: 'لم يتم العثور على طريقة تحقق ثنائية مدعومة.' }));
+        }
       } else {
         console.log('SignIn status incomplete:', result);
         setError(t({ 
@@ -43,6 +62,33 @@ export default function SignInPage() {
     } catch (err: any) {
       console.error(err);
       setError(err.errors?.[0]?.message || t({ en: 'Invalid email or password.', ar: 'البريد الإلكتروني أو كلمة المرور غير صالحة.' }));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handle2FASubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!isLoaded || !factorStrategy) return;
+
+    setLoading(true);
+    setError('');
+
+    try {
+      const result = await signIn.attemptSecondFactor({
+        strategy: factorStrategy,
+        code: twoFactorCode,
+      });
+
+      if (result.status === 'complete') {
+        await setActive({ session: result.createdSessionId });
+        router.push('/dashboard');
+      } else {
+        setError(t({ en: 'Verification failed. Please try again.', ar: 'فشل التحقق. يرجى المحاولة مرة أخرى.' }));
+      }
+    } catch (err: any) {
+      console.error(err);
+      setError(err.errors?.[0]?.message || t({ en: 'Verification failed. Please check the code.', ar: 'فشل التحقق. يرجى التحقق من الرمز.' }));
     } finally {
       setLoading(false);
     }
@@ -79,79 +125,126 @@ export default function SignInPage() {
           </div>
         )}
 
-        {/* Inputs */}
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div>
-            <label htmlFor="email" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
-              required
-            />
-          </div>
-
-          <div>
-            <div className="flex justify-between items-center mb-1.5">
-              <label htmlFor="password" className="block text-xs font-bold text-[#141F33]">{t({ en: 'Password', ar: 'كلمة المرور' })}</label>
-              <Link href="/forgot-password" className="text-[10px] font-bold text-[#2A5CFF] hover:underline">
-                {t({ en: 'Forgot Password?', ar: 'نسيت كلمة المرور؟' })}
-              </Link>
+        {show2FA ? (
+          /* Two-Factor Authentication Form */
+          <form onSubmit={handle2FASubmit} className="space-y-4">
+            <div className="text-center mb-4">
+              <h3 className="text-sm font-bold text-[#141F33] mb-1">
+                {t({ en: 'Two-Factor Authentication', ar: 'التحقق بخطوتين' })}
+              </h3>
+              <p className="text-[11px] text-[#718096] font-semibold">
+                {factorStrategy === 'totp' 
+                  ? t({ en: 'Enter the code from your authenticator app.', ar: 'أدخل الرمز من تطبيق المصادقة الخاص بك.' })
+                  : t({ en: 'Enter the verification code sent to your device.', ar: 'أدخل رمز التحقق المرسل إلى جهازك.' })
+                }
+              </p>
             </div>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
-              required
-            />
-          </div>
+            
+            <div>
+              <input
+                type="text"
+                placeholder="123456"
+                maxLength={6}
+                value={twoFactorCode}
+                onChange={(e) => setTwoFactorCode(e.target.value)}
+                className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                required
+              />
+            </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
-          >
-            {loading ? t({ en: 'Signing In...', ar: 'جاري تسجيل الدخول...' }) : t({ en: 'Sign In', ar: 'تسجيل الدخول' })}
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            >
+              {loading ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Sign In', ar: 'التحقق وتسجيل الدخول' })}
+            </button>
 
-        {/* Separator */}
-        <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-200" />
-          </div>
-          <div className="relative flex justify-center text-xs">
-            <span className="bg-white px-3 text-[#718096] font-bold">{t({ en: 'Or continue with', ar: 'أو الاستمرار بواسطة' })}</span>
-          </div>
-        </div>
+            <button
+              type="button"
+              onClick={() => setShow2FA(false)}
+              className="w-full text-center text-xs font-bold text-[#718096] hover:underline"
+            >
+              {t({ en: 'Back to Sign In', ar: 'العودة لتسجيل الدخول' })}
+            </button>
+          </form>
+        ) : (
+          /* Standard Sign-In Form */
+          <>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label htmlFor="email" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
+                <input
+                  type="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                  required
+                />
+              </div>
 
-        {/* Social Auth */}
-        <div className="grid grid-cols-2 gap-4">
-          <button
-            onClick={() => handleOAuth('oauth_google')}
-            className="flex items-center justify-center border border-gray-200 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-gray-50 transition-colors min-h-[44px]"
-          >
-            Google
-          </button>
-          <button
-            onClick={() => alert('Enterprise SSO login is coming soon.')}
-            className="flex items-center justify-center border border-gray-200 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-gray-50 transition-colors min-h-[44px]"
-          >
-            SSO
-          </button>
-        </div>
+              <div>
+                <div className="flex justify-between items-center mb-1.5">
+                  <label htmlFor="password" className="block text-xs font-bold text-[#141F33]">{t({ en: 'Password', ar: 'كلمة المرور' })}</label>
+                  <Link href="/forgot-password" className="text-[10px] font-bold text-[#2A5CFF] hover:underline">
+                    {t({ en: 'Forgot Password?', ar: 'نسيت كلمة المرور؟' })}
+                  </Link>
+                </div>
+                <input
+                  type="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                  required
+                />
+              </div>
 
-        {/* Footer Link */}
-        <p className="text-center text-xs text-[#718096] font-bold mt-8">
-          {t({ en: "Don't have an account?", ar: 'ليس لديك حساب؟' })}{' '}
-          <Link href="/sign-up" className="text-[#2A5CFF] hover:underline">
-            {t({ en: 'Sign Up', ar: 'إنشاء حساب' })}
-          </Link>
-        </p>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+              >
+                {loading ? t({ en: 'Signing In...', ar: 'جاري تسجيل الدخول...' }) : t({ en: 'Sign In', ar: 'تسجيل الدخول' })}
+              </button>
+            </form>
+
+            {/* Separator */}
+            <div className="relative my-6">
+              <div className="absolute inset-0 flex items-center">
+                <div className="w-full border-t border-gray-200" />
+              </div>
+              <div className="relative flex justify-center text-xs">
+                <span className="bg-white px-3 text-[#718096] font-bold">{t({ en: 'Or continue with', ar: 'أو الاستمرار بواسطة' })}</span>
+              </div>
+            </div>
+
+            {/* Social Auth */}
+            <div className="grid grid-cols-2 gap-4">
+              <button
+                onClick={() => handleOAuth('oauth_google')}
+                className="flex items-center justify-center border border-gray-200 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-gray-50 transition-colors min-h-[44px]"
+              >
+                Google
+              </button>
+              <button
+                onClick={() => alert('Enterprise SSO login is coming soon.')}
+                className="flex items-center justify-center border border-gray-200 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-gray-50 transition-colors min-h-[44px]"
+              >
+                SSO
+              </button>
+            </div>
+
+            {/* Footer Link */}
+            <p className="text-center text-xs text-[#718096] font-bold mt-8">
+              {t({ en: "Don't have an account?", ar: 'ليس لديك حساب؟' })}{' '}
+              <Link href="/sign-up" className="text-[#2A5CFF] hover:underline">
+                {t({ en: 'Sign Up', ar: 'إنشاء حساب' })}
+              </Link>
+            </p>
+          </>
+        )}
 
       </div>
     </div>
