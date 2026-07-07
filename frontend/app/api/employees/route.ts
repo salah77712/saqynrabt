@@ -70,7 +70,7 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    let body: unknown;
+    let body: Record<string, unknown>;
     try {
       body = await req.json();
     } catch {
@@ -80,7 +80,15 @@ export async function PATCH(req: NextRequest) {
       );
     }
 
-    const res = await fetch(`${apiBase}/api/employees`, {
+    const clerkUserId = body?.clerk_user_id;
+    if (!clerkUserId) {
+      return NextResponse.json(
+        { error: "clerk_user_id is required" },
+        { status: 400 }
+      );
+    }
+
+    const res = await fetch(`${apiBase}/api/employees/${clerkUserId}`, {
       method: "PATCH",
       headers: {
         Authorization: `Bearer ${token}`,

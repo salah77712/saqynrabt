@@ -17,6 +17,9 @@ import { handlePrivacyExport, handlePrivacyDelete } from './compliance/dsar-expo
 import { handleLegalAccept, handleCheckAcceptance } from './compliance/legal-accept';
 import { handleConsentAudit } from './compliance/consent-audit';
 import { handleListIncidents, handleCreateIncident, handleUpdateIncident, handleGetIncidentStatus } from './admin/incidents';
+import { handleGetApprovals, handlePostApproval } from './handlers/approvals';
+import { handleGetOnboardingStatus, handlePostOnboarding } from './handlers/onboarding';
+import { handleGetChatHistory } from './handlers/chat-history';
 
 export function createRouter(env: Env) {
   const router = Router<RequestWithContext>({
@@ -79,6 +82,14 @@ export function createRouter(env: Env) {
   router.post('/legal/accept', handleLegalAccept);
 
   router.post('/audit/consent', handleConsentAudit);
+
+  router.get('/approvals', handleGetApprovals);
+  router.post('/approvals', handlePostApproval);
+
+  router.get('/onboarding', handleGetOnboardingStatus);
+  router.post('/onboarding', handlePostOnboarding);
+
+  router.get('/chat/history', handleGetChatHistory);
 
   router.all('*', (request: RequestWithContext) => {
     return new Response(

@@ -53,7 +53,8 @@ export async function DELETE(req: NextRequest) {
     if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
-    const res = await fetch(`${apiBase}/api/documents?id=${id}`, {
+    if (!id) return NextResponse.json({ error: "Document ID is required" }, { status: 400 });
+    const res = await fetch(`${apiBase}/api/documents/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     });
