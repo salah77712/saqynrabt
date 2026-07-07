@@ -5,6 +5,7 @@ import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
+    return NextResponse.json({ diagnostic: "before-safeGetToken" });
     const token = await safeGetToken();
     if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401 });
     const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
