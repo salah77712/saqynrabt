@@ -1,0 +1,29 @@
+# Security.txt – SAQYN RABT
+# RFC 9116 – Vulnerability Disclosure Standard
+# Effective: 2026-07-07
+# Expires: 2027-07-07
+
+# Contact information for security researchers and ethical hackers
+Contact: mailto:security@saqynrabt.com
+
+# Link to vulnerability disclosure policy
+Policy: https://saqynrabt.com/legal/vulnerability-disclosure
+
+# Our preferred language for security reports
+Preferred-Languages: en, ar
+
+# Encryption key for secure communication
+# PGP key fingerprint: (to be added)
+# Encryption: https://saqynrabt.com/.well-known/pgp-key.txt
+
+# Author
+Author: SAQYN RABT Security Team
+
+# Canonical URL
+Canonical: https://saqynrabt.com/security.txt
+
+# Acknowledgments
+Acknowledgments: https://saqynrabt.com/legal/vulnerability-disclosure#acknowledgments
+
+# Hiring
+Hiring: https://saqynrabt.com/careers

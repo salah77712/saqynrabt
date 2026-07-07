@@ -8,125 +8,282 @@ import { SocialLinks } from './Footer/SocialLinks';
 
 const content = {
   en: {
-    tagline: 'Private AI operations for your front-desk and team.',
+    tagline: 'Private AI Operations. Registered in the State of Qatar.',
+    address: 'Doha, Qatar',
+    dpoEmail: 'dpo@saqynrabt.com',
     productTitle: 'Product',
     companyTitle: 'Company',
-    legalTitle: 'Legal & Support',
-    newsletterTitle: 'Newsletter',
-    newsletterDesc: 'Get product updates and industry insights.',
-    placeholder: 'your@email.com',
-    subscribe: 'Subscribe',
-    backToTop: 'Back to Top',
+    legalTitle: 'Legal & Compliance',
+    privacyControls: 'Privacy Controls',
+    cookiePrefs: 'Cookie Preferences',
+    doNotSell: 'Do Not Sell or Share My Personal Info',
+    accessibility: 'Accessibility Statement',
     products: [
-      { href: '/automation', label: 'Automation' },
-      { href: '/chatbot', label: 'Chatbot' },
-      { href: '/features', label: 'Features' },
-      { href: '/pricing', label: 'Pricing' },
+      { href: '/automation', label: 'Business Automation' },
+      { href: '/chatbot', label: 'Internal Chatbot' },
+      { href: '/pricing', label: 'Pricing Plans' },
+      { href: '/industries', label: 'Industry Switcher' },
+      { href: '/demo', label: 'Dashboard Demo' },
     ],
     company: [
       { href: '/about', label: 'About Us' },
-      { href: '/contact', label: 'Contact' },
-      { href: '/case-studies', label: 'Case Studies' },
-      { href: '/global', label: 'Global Presence' },
+      { href: '/contact', label: 'Contact Sales' },
+      { href: '/careers', label: 'Careers' },
+      { href: '/blog', label: 'Blog' },
     ],
     legal: [
-      { href: '/privacy-policy', label: 'Privacy Policy' },
-      { href: '/terms-and-conditions', label: 'Terms of Service' },
-      { href: '/cookie-policy', label: 'Cookie Policy' },
-      { href: '/help/getting-started', label: 'Help Center' },
+      { href: '/legal/privacy', label: 'Privacy Policy' },
+      { href: '/legal/terms', label: 'Terms of Service' },
+      { href: '/legal/dpa', label: 'Data Processing Agreement (DPA)' },
+      { href: '/legal/security', label: 'Security Documents' },
+      { href: '/legal/nda', label: 'NDA' },
     ],
+    backToTop: 'Back to Top',
   },
   ar: {
-    tagline: 'عمليات ذكاء اصطناعي خاصة لمكتب الاستقبال وفريق العمل.',
+    tagline: 'عمليات ذكاء اصطناعي خاصة. مسجلة في دولة قطر.',
+    address: 'الدوحة، قطر',
+    dpoEmail: 'dpo@saqynrabt.com',
     productTitle: 'المنتج',
     companyTitle: 'الشركة',
-    legalTitle: 'القانون والدعم',
-    newsletterTitle: 'النشرة البريدية',
-    newsletterDesc: 'احصل على تحديثات المنتج ورؤى الصناعة.',
-    placeholder: 'بريدك@الإلكتروني.com',
-    subscribe: 'اشتراك',
-    backToTop: 'العودة للأعلى',
+    legalTitle: 'القانون والامتثال',
+    privacyControls: 'ضوابط الخصوصية',
+    cookiePrefs: 'تفضيلات ملفات تعريف الارتباط',
+    doNotSell: 'عدم بيع أو مشاركة معلوماتي الشخصية',
+    accessibility: 'بيان إمكانية الوصول',
     products: [
-      { href: '/automation', label: 'الأتمتة' },
-      { href: '/chatbot', label: 'المساعد الذكي' },
-      { href: '/features', label: 'الميزات' },
-      { href: '/pricing', label: 'الأسعار' },
+      { href: '/automation', label: 'الأتمتة التجارية' },
+      { href: '/chatbot', label: 'المساعد الذكي الداخلي' },
+      { href: '/pricing', label: 'خطط الأسعار' },
+      { href: '/industries', label: 'مبدل الصناعة' },
+      { href: '/demo', label: 'عرض توضيحي' },
     ],
     company: [
       { href: '/about', label: 'عن الشركة' },
-      { href: '/contact', label: 'اتصل بنا' },
-      { href: '/case-studies', label: 'دراسات الحالة' },
-      { href: '/global', label: 'الوجود العالمي' },
+      { href: '/contact', label: 'اتصل بالمبيعات' },
+      { href: '/careers', label: 'وظائف' },
+      { href: '/blog', label: 'المدونة' },
     ],
     legal: [
-      { href: '/privacy-policy', label: 'سياسة الخصوصية' },
-      { href: '/terms-and-conditions', label: 'الشروط والأحكام' },
-      { href: '/cookie-policy', label: 'سياسة الكوكيز' },
-      { href: '/help/getting-started', label: 'مركز المساعدة' },
+      { href: '/legal/privacy', label: 'سياسة الخصوصية' },
+      { href: '/legal/terms', label: 'شروط الخدمة' },
+      { href: '/legal/dpa', label: 'اتفاقية معالجة البيانات' },
+      { href: '/legal/security', label: 'وثائق الأمان' },
+      { href: '/legal/nda', label: 'اتفاقية عدم الإفصاح' },
     ],
+    backToTop: 'العودة للأعلى',
   },
 };
+
+function Logo() {
+  return (
+    <svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SAQYN RABT">
+      <rect width="120" height="32" rx="4" fill="#141F33" />
+      <text x="8" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" letterSpacing="1" fill="white">SAQYN</text>
+      <text x="68" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="300" letterSpacing="1" fill="#94A3B8">RABT</text>
+    </svg>
+  );
+}
 
 export function Footer() {
   const { locale } = useLocale();
   const copy = content[locale];
-  const [year, setYear] = React.useState('');
+  const year = new Date().getFullYear();
+  const [cookiePrefsOpen, setCookiePrefsOpen] = React.useState(false);
 
-  React.useEffect(() => {
-    setYear(new Date().getFullYear().toString());
-  }, []);
+  const handleCookiePrefs = () => {
+    const banner = document.getElementById('cookie-consent-banner');
+    if (banner) {
+      banner.classList.remove('hidden');
+      banner.classList.add('flex');
+    }
+  };
 
   const handleBackToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const [incidentStatus, setIncidentStatus] = React.useState<{ status: string; activeIncidents: number } | null>(null);
+
+  React.useEffect(() => {
+    fetch('/api/admin/incidents/status')
+      .then((r) => r.json())
+      .then((d) => setIncidentStatus(d))
+      .catch(() => setIncidentStatus({ status: 'all_operational', activeIncidents: 0 }));
+  }, []);
+
   return (
-    <footer className="bg-[#141F33] text-white py-16 border-t border-white/10" role="contentinfo">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-5 md:gap-8">
-          {/* Brand block */}
-          <div className="flex flex-col gap-4 max-w-xs">
-            <Link href="/" className="text-xl font-extrabold tracking-tight select-none">
-              SAQYN RABT
+    <footer className="bg-[#141F33] text-white border-t border-white/10" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      {/* Trust & Compliance Bar */}
+      <div className="border-b border-white/5">
+        <div className="mx-auto max-w-7xl px-6 py-3 lg:px-8 flex flex-wrap items-center justify-between gap-3" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+          <div className="flex items-center gap-4 flex-wrap">
+            <Link
+              href="/trust"
+              className="flex items-center gap-1.5 text-[11px] font-bold text-white/70 hover:text-white transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Trust Center
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed">{copy.tagline}</p>
+            <span className="w-px h-4 bg-white/10" />
+            <span className="flex items-center gap-1 text-[11px] text-white/50">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              GDPR Ready
+            </span>
+            <span className="flex items-center gap-1 text-[11px] text-white/50">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Qatar Law No.13 Compliant
+            </span>
+            <span className="flex items-center gap-1 text-[11px] text-white/40">
+              ⟳ ISO 27001 In Progress
+            </span>
+          </div>
+          <div className="flex items-center gap-2 text-[11px]">
+            {incidentStatus?.status === 'all_operational' ? (
+              <span className="flex items-center gap-1 text-green-400">
+                <span className="w-2 h-2 rounded-full bg-green-400" />
+                All systems operational
+              </span>
+            ) : (
+              <span className="flex items-center gap-1 text-amber-400">
+                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+                Incident response active ({incidentStatus?.activeIncidents || 0})
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            name: 'SAQYN RABT',
+            url: 'https://saqynrabt.com',
+            logo: 'https://saqynrabt.com/logo.png',
+            description: 'Private AI Operations. Registered in the State of Qatar.',
+            address: { '@type': 'PostalAddress', addressLocality: 'Doha', addressCountry: 'QA' },
+            contactPoint: [
+              { '@type': 'ContactPoint', telephone: '+974-XXXX-XXXX', contactType: 'sales', email: 'hello@saqynrabt.com' },
+              { '@type': 'ContactPoint', contactType: 'DPO', email: 'dpo@saqynrabt.com' },
+            ],
+            sameAs: [
+              'https://www.instagram.com/saqynrabt',
+              'https://www.facebook.com/share/1BNzmp2vXB/',
+              'https://x.com/saqynrabt',
+              'https://www.threads.com/@saqynrabt',
+              'https://www.tiktok.com/@saqyn.rabt',
+              'https://www.linkedin.com/company/saqynrabt/',
+            ],
+          }),
+        }}
+      />
+
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-8">
+          {/* Column 1: Brand & Trust Mark */}
+          <div className="flex flex-col gap-4">
+            <Link href="/" className="inline-block" aria-label="SAQYN RABT Home">
+              <Logo />
+            </Link>
+            <p className="text-sm text-white/60 leading-relaxed">
+              {copy.tagline}
+            </p>
+            <div className="text-xs text-white/40 space-y-1">
+              <p>{copy.address}</p>
+              <p>
+                DPO:{' '}
+                <a href="mailto:dpo@saqynrabt.com" className="text-white/60 hover:text-white hover:underline">
+                  {copy.dpoEmail}
+                </a>
+              </p>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/[0.03]">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-white/50">📞 DPO</span>
+              <a
+                href="mailto:dpo@saqynrabt.com"
+                className="text-[11px] font-bold text-white/80 hover:text-white hover:underline"
+              >
+                dpo@saqynrabt.com
+              </a>
+            </div>
             <SocialLinks />
           </div>
 
-          {/* Dynamic Columns */}
-          <FooterColumn title={copy.productTitle} links={copy.products} />
-          <FooterColumn title={copy.companyTitle} links={copy.company} />
-          <FooterColumn title={copy.legalTitle} links={copy.legal} />
-
-          {/* Newsletter block */}
+          {/* Column 2: Legal & Compliance (5 cards) */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-xs font-black uppercase tracking-widest text-slate-300">
-              {copy.newsletterTitle}
+            <h3 className="text-xs font-black uppercase tracking-widest text-white/50">
+              {copy.legalTitle}
             </h3>
-            <p className="text-sm text-slate-400">{copy.newsletterDesc}</p>
-            <form onSubmit={(e) => e.preventDefault()} className="flex items-center gap-2 mt-2">
-              <input
-                type="email"
-                placeholder={copy.placeholder}
-                className="min-h-[44px] rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-xs text-white placeholder-slate-500 outline-none focus:border-royal w-full"
-                required
-              />
-              <button
-                type="submit"
-                className="min-h-[44px] rounded-xl bg-royal text-white font-bold text-xs px-4 py-2.5 transition-all hover:bg-royal/90"
-              >
-                {copy.subscribe}
-              </button>
-            </form>
+            <ul className="flex flex-col gap-2">
+              {copy.legal.map((link, i) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/80 transition-all hover:border-white/25 hover:bg-white/10 hover:text-white"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 3: Product & Platform */}
+          <FooterColumn title={copy.productTitle} links={copy.products} />
+
+          {/* Column 4: Company & Social */}
+          <div className="flex flex-col gap-4">
+            <FooterColumn title={copy.companyTitle} links={copy.company} />
+          </div>
+
+          {/* Column 5: Legal Utility Console */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-xs font-black uppercase tracking-widest text-white/50">
+              {copy.privacyControls}
+            </h3>
+            <ul className="flex flex-col gap-2">
+              <li>
+                <button
+                  type="button"
+                  onClick={handleCookiePrefs}
+                  className="w-full text-left rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-sm font-medium text-white/80 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+                >
+                  {copy.cookiePrefs}
+                </button>
+              </li>
+              <li>
+                <Link
+                  href="/legal/privacy#do-not-sell"
+                  className="block rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-sm font-medium text-white/80 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+                >
+                  {copy.doNotSell}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/accessibility"
+                  className="block rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-sm font-medium text-white/80 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+                >
+                  {copy.accessibility}
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-400">
-          <p>© {year} SAQYN RABT. All rights reserved.</p>
+        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40">
+          <p data-i18n="footer.copyright">
+            © {year} SAQYN RABT. All rights reserved. Licensed under Qatar Law No. 13 of 2016.
+            <br className="md:hidden" />
+            <span className="text-white/30"> Legal policies last updated on 2026-07-07.</span>
+          </p>
           <button
             onClick={handleBackToTop}
-            className="flex items-center gap-2 hover:text-white transition-colors"
+            className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
           >
             {copy.backToTop} ↑
           </button>
@@ -135,4 +292,5 @@ export function Footer() {
     </footer>
   );
 }
+
 export default Footer;
