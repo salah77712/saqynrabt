@@ -184,6 +184,37 @@ export async function handlePostApproval(request: RequestWithContext): Promise<R
           VALUES (${company_id}, ${email}, ${name}, 'pending', 'employee')
         `;
       }
+
+      // Fetch inviter and company names for personalizing invitation email
+      let inviterName = 'A colleague';
+      try {
+        const [inviter] = await sql`
+          SELECT first_name, last_name FROM employees WHERE clerk_user_id = ${userId}
+        `;
+        if (inviter) {
+          inviterName = [inviter.first_name, inviter.last_name].filter(Boolean).join(' ').trim() || 'A colleague';
+        }
+      } catch (e) {
+        console.error('Error fetching inviter details:', e);
+      }
+
+      let companyName = 'their company';
+      try {
+        const [company] = await sql`
+          SELECT name FROM companies WHERE id = ${company_id}
+        `;
+        if (company?.name) {
+          companyName = company.name;
+        }
+      } catch (e) {
+        console.error('Error fetching company details:', e);
+      }
+
+      // Send the invitation email in the background
+      request.ctx.waitUntil(
+        sendInvitationEmail(request.env, email, name, inviterName, companyName, 'employee')
+      );
+
       await logAudit(request.env, company_id!, userId, 'invite_employee', { email, name });
       return new Response(JSON.stringify({ success: true }), { headers });
     }
@@ -192,5 +223,62 @@ export async function handlePostApproval(request: RequestWithContext): Promise<R
   } catch (err: any) {
     console.error("Post approval failed:", err);
     return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
+  }
+}
+
+async function sendInvitationEmail(
+  env: any,
+  toEmail: string,
+  toName: string,
+  inviterName: string,
+  companyName: string,
+  role: string
+): Promise<boolean> {
+  const apiKey = env.EMAIL_API_KEY;
+  if (!apiKey) {
+    console.warn('[Resend Email Bypass]: EMAIL_API_KEY is not configured.');
+    return false;
+  }
+
+  try {
+    const response = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${apiKey}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: 'SAQYN RABT <onboarding@resend.dev>',
+        to: [toEmail],
+        subject: `You've been invited to join ${companyName} on SAQYN RABT`,
+        html: `
+          <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
+            <h2 style="color: #141F33; font-weight: 800; margin-bottom: 16px;">Welcome to SAQYN RABT</h2>
+            <p>Hello <strong>${toName}</strong>,</p>
+            <p><strong>${inviterName}</strong> has invited you to join the <strong>${companyName}</strong> workspace on SAQYN RABT as an <strong>${role}</strong>.</p>
+            <p>To accept this invitation and register your account, please click the link below:</p>
+            <div style="margin: 24px 0;">
+              <a href="https://saqynrabt.com/sign-up" style="background-color: #141F33; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
+                Accept Invitation & Sign Up
+              </a>
+            </div>
+            <p style="color: #64748b; font-size: 12px; margin-top: 32px; border-top: 1px solid #e2e8f0; padding-top: 16px;">
+              If you did not expect this invitation, you can safely ignore this email.
+            </p>
+          </div>
+        `
+      })
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('Failed to send invitation email via Resend:', errorText);
+      return false;
+    }
+
+    return true;
+  } catch (error) {
+    console.error('Error sending invitation email:', error);
+    return false;
   }
 }
