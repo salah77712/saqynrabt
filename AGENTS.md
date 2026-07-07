@@ -44,8 +44,9 @@ This repository contains **production code deployed to saqynrabt.com**. AI codin
 - `frontend/app/providers.tsx`
 
 ## ✅ VERIFIED WORKING COMMIT
-- **Commit:** `b045f3f` — All dashboard pages, BFF proxy routes, Clerk auth, middleware, documents API verified working.
-- **Do not revert changes before this commit.** If you need to roll back, this is the last known-good state.
+- **Commit:** `28319542117e901eba449fa00562ebffb583c7aa` — Fully working production code, including document upload, soft deletion, cascading Pinecone/R2 cleanups, aligned Neon database schema, and fixed Next.js BFF proxy routes.
+- **Do not revert changes before this commit.** This is the verified perfect production state.
+- **Strict Rule:** Absolutely no more code modifications are permitted without explicit user instruction.
 
 ### Verification required after any change:
 ```bash
