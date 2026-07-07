@@ -96,7 +96,22 @@ export function Header() {
             </Link>
 
             {isSignedIn ? (
-              <UserButton afterSignOutUrl="/" showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user" />
+              <UserButton afterSignOutUrl="/" showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user">
+                <UserButton.MenuItems>
+                  <UserButton.Link
+                    label={t("Dashboard", "لوحة التحكم")}
+                    labelIcon={
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px' }}>
+                        <rect x="3" y="3" width="7" height="9" />
+                        <rect x="14" y="3" width="7" height="5" />
+                        <rect x="14" y="12" width="7" height="9" />
+                        <rect x="3" y="16" width="7" height="5" />
+                      </svg>
+                    }
+                    href="/dashboard"
+                  />
+                </UserButton.MenuItems>
+              </UserButton>
             ) : (
               <Link href="/sign-in" className="text-xs font-extrabold text-navy hover:underline min-h-[44px] flex items-center px-2">
                 Sign In
