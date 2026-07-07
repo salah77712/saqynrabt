@@ -1,0 +1,209 @@
+# Data Processing Agreement
+
+**Last Updated:** July 7, 2026
+
+---
+
+## 1. Definitions and Parties
+
+### 1.1 Parties
+
+This Data Processing Agreement ("**DPA**") is entered into by and between:
+
+- **SAQYN RABT**, a company registered in the **State of Qatar** ("**Data Processor**"), the provider of AI-powered business automation and RAG chatbot services.
+- **The Client** ("**Data Controller**"), the entity that subscribes to and uses SAQYN RABT's services.
+
+Both parties are referred to individually as a "**Party**" and collectively as the "**Parties.**"
+
+### 1.2 Definitions
+
+For the purposes of this DPA, the following terms shall have the meanings ascribed to them below:
+
+- **"Personal Data":** Any data relating to an identified or identifiable natural person as defined under **Article 2 of Law No. 13 of 2016 on the Protection of Personal Data (Qatar)** and Article 4(1) of the GDPR.
+- **"Processing":** Any operation performed on Personal Data, including collection, recording, organization, storage, adaptation, retrieval, use, disclosure, and erasure, as defined under **Article 2 of Law No. 13 of 2016** and Article 4(2) of the GDPR.
+- **"Data Controller":** The natural or legal person who determines the purposes and means of processing Personal Data, as defined under **Article 2 of Law No. 13 of 2016**.
+- **"Data Processor":** The natural or legal person who processes Personal Data on behalf of the Data Controller, as defined under **Article 2 of Law No. 13 of 2016**.
+- **"Data Subject":** The natural person whose Personal Data is being processed.
+- **"Supervisory Authority":** The competent authority under **Law No. 13 of 2016** or, for EU data subjects, an independent public authority established by an EU Member State pursuant to Article 51 of the GDPR.
+- **"Qatari Data Protection Law":** Law No. 13 of 2016 on the Protection of Personal Data and its executive regulations.
+- **"Purpose":** The provision of RAG Chatbot and Business Automation services as described in the Terms of Service.
+
+---
+
+## 2. Processing of Personal Data
+
+### 2.1 Nature and Purpose of Processing
+
+The Data Processor shall process Personal Data on behalf of the Data Controller for the following purposes:
+
+- Providing the RAG Chatbot service (retrieval-augmented generation based on uploaded documents)
+- Providing Business Automation services (AI-powered customer call handling, booking, and inquiries)
+- Maintaining and improving the platform's performance and security
+- Complying with legal and regulatory obligations under Qatari law
+
+### 2.2 Instructions
+
+The Data Processor shall process Personal Data only on documented instructions from the Data Controller, unless required to do otherwise by applicable law (including under **Article 22 of Law No. 13 of 2016**). The Data Processor shall inform the Data Controller if, in its opinion, an instruction infringes applicable data protection laws.
+
+### 2.3 Prohibition on Unauthorized Disclosure
+
+The Data Processor shall not disclose, transfer, or make available Personal Data to any third party, except:
+
+- To the sub-processors listed in Annex A of this DPA
+- As required by applicable law (in which case the Data Processor shall inform the Data Controller in advance unless legally prohibited)
+
+---
+
+## 3. Data Processor's Obligations
+
+### 3.1 Security Measures
+
+The Data Processor shall implement appropriate technical and organizational measures to ensure a level of security appropriate to the risk, as required under **Articles 21–23 of Law No. 13 of 2016** and **Law No. 14 of 2014 on Cybercrime**. These measures are detailed in the SAQYN RABT Security Document and include:
+
+- Encryption of data at rest (AES-256) and in transit (TLS 1.3)
+- Access controls and authentication mechanisms
+- Regular security testing and vulnerability assessments
+- Incident response procedures
+
+### 3.2 Confidentiality
+
+The Data Processor shall ensure that all employees, agents, and contractors authorized to process Personal Data are bound by contractual or statutory obligations of confidentiality. Access to Personal Data is limited to personnel who require such access to perform the Services.
+
+### 3.3 Assistance to the Data Controller
+
+The Data Processor shall assist the Data Controller in:
+
+- **Responding to Data Subject Requests (DSARs):** The Data Processor shall provide reasonable assistance to enable the Data Controller to respond to requests from Data Subjects exercising their rights under **Law No. 13 of 2016** and the GDPR.
+- **Data Breach Notification:** The Data Processor shall notify the Data Controller within **72 hours** of becoming aware of a personal data breach, as detailed in Section 5.
+- **Data Protection Impact Assessments (DPIAs):** The Data Processor shall provide reasonable assistance to the Data Controller in conducting DPIAs, where required under applicable law.
+
+---
+
+## 4. Sub-Processors
+
+### 4.1 Authorized Sub-Processors
+
+The Data Controller authorizes the Data Processor to engage the following sub-processors in connection with the provision of the Services:
+
+| Sub-Processor | Service Provided | Location |
+|---------------|-----------------|----------|
+| **Cloudflare, Inc.** | R2 Object Storage, Workers Edge Compute, DDoS Protection | Global (Edge Network) |
+| **NeonDB, Inc.** | Serverless PostgreSQL Database | United States / EU |
+| **Pinecone Systems, Inc.** | Vector Database (RAG Indexing) | United States |
+| **Upstash, Inc.** | Redis Caching Layer | United States / EU |
+| **Clerk, Inc.** | Authentication Services | United States / EU |
+| **OpenAI, LLC** | LLM Inference and Embeddings | United States |
+| **Vapi.ai, Inc.** | Voice AI Services | United States |
+| **Resend, Inc.** | Transactional Email Services | United States / EU |
+
+### 4.2 Sub-Processor Obligations
+
+The Data Processor ensures that all sub-processors are bound by written contracts that provide the **same level of data protection standards** as required under this DPA, **Law No. 13 of 2016**, and the GDPR. The Data Processor shall remain fully liable to the Data Controller for the performance of each sub-processor's obligations.
+
+### 4.3 Notification of New Sub-Processors
+
+The Data Processor shall notify the Data Controller at least **30 days prior** to engaging any new sub-processor. The Data Controller may object to the engagement of a new sub-processor within 14 days of notification. If the parties cannot resolve the objection, the Data Controller may terminate the affected services.
+
+---
+
+## 5. Data Breach Notification
+
+### 5.1 Notification Obligation
+
+The Data Processor shall notify the Data Controller **within 72 hours** of becoming aware of a personal data breach affecting Personal Data processed under this DPA, as required under **Article 22 of Law No. 13 of 2016**.
+
+### 5.2 Content of Notification
+
+The notification shall include, to the extent available:
+
+- The nature of the personal data breach, including categories and approximate number of Data Subjects and Personal Data records concerned
+- The likely consequences of the breach
+- The measures taken or proposed to be taken to address the breach and mitigate its possible adverse effects
+- The name and contact details of the Data Processor's data protection officer or other contact point
+
+### 5.3 Cooperation
+
+The Data Processor shall cooperate fully with the Data Controller in investigating and remediating any data breach and in fulfilling the Data Controller's obligations under **Law No. 13 of 2016** and, where applicable, Articles 33 and 34 of the GDPR.
+
+---
+
+## 6. Data Transfers and Cross-Border Flow
+
+### 6.1 International Transfers
+
+The Data Processor may transfer Personal Data to countries outside the **State of Qatar**, including the **United States** and **Europe**, for the purposes of providing the Services. Under **Article 20 of Law No. 13 of 2016**, international transfers are permissible provided that appropriate safeguards are in place.
+
+### 6.2 Transfer Mechanisms
+
+The Data Processor relies on the following mechanisms for international data transfers:
+
+- **Standard Contractual Clauses (SCCs):** As approved by the European Commission (2021/914) for transfers of EU/EEA data subjects' data.
+- **Adequate Safeguards:** The Data Processor has assessed that the receiving jurisdictions maintain data protection standards consistent with **Law No. 13 of 2016**.
+- **Data Processing Agreements:** All sub-processors are bound by contracts that provide equivalent levels of data protection.
+
+### 6.3 Data Localization
+
+The Data Processor notes that certain categories of data may be subject to data localization requirements under Qatari law. Where applicable, the Data Processor shall work with the Data Controller to ensure compliance with such requirements.
+
+---
+
+## 7. Data Deletion and Return
+
+### 7.1 Upon Termination
+
+Upon termination of the Services, the Data Processor shall, at the Data Controller's option:
+
+- Delete all Personal Data processed on behalf of the Data Controller, except as required by applicable law (including Qatari tax record-keeping requirements); or
+- Return all Personal Data to the Data Controller in a commonly used, machine-readable format.
+
+### 7.2 Certification
+
+The Data Processor shall provide written certification to the Data Controller that it has complied with its deletion or return obligations under this Section.
+
+---
+
+## 8. Audit Rights
+
+### 8.1 Right to Audit
+
+The Data Controller may, upon 30 days' written notice and no more than once per calendar year, request information and documentation from the Data Processor to verify compliance with this DPA. Any audit shall be conducted during normal business hours and shall not unreasonably interfere with the Data Processor's operations.
+
+### 8.2 Alternative Compliance
+
+The Data Processor may satisfy its audit obligations by providing the Data Controller with:
+
+- Copies of recent SOC 2 Type II reports (if available)
+- Certifications of compliance with ISO 27001 or equivalent standards (if available)
+- Results of penetration tests and vulnerability assessments
+
+---
+
+## 9. Liability
+
+The Data Processor is liable for damages caused by its processing that violates **Law No. 13 of 2016 on the Protection of Personal Data**. Each Party's liability under this DPA shall otherwise be subject to the limitations of liability set forth in the Terms of Service. Neither Party shall exclude or limit its liability for:
+
+- Death or personal injury caused by its negligence
+- Fraud or fraudulent misrepresentation
+- Breach of confidentiality obligations under this DPA
+- Breach of data protection obligations under applicable law
+
+---
+
+## 10. Governing Law
+
+This DPA shall be governed by and construed in accordance with the **laws of the State of Qatar**, including **Law No. 13 of 2016 on the Protection of Personal Data** and the **Qatari Civil Code (Law No. 22 of 2004)** . Any disputes arising under this DPA shall be resolved exclusively in the **competent courts of Doha, Qatar**.
+
+---
+
+## Annex A: Sub-Processors
+
+| Sub-Processor | Processing Activity | Data Location |
+|---------------|-------------------|---------------|
+| Cloudflare, Inc. | Object storage, CDN, edge compute, DDoS protection | Global edge network |
+| NeonDB, Inc. | Relational database hosting (PII, chat logs, usage data) | US / EU |
+| Pinecone Systems, Inc. | Vector indexing for RAG retrieval | US |
+| Upstash, Inc. | Redis caching for real-time performance | US / EU |
+| Clerk, Inc. | User authentication and session management | US / EU |
+| OpenAI, LLC | LLM inference and text embeddings | US |
+| Vapi.ai, Inc. | Voice AI call processing | US |
+| Resend, Inc. | Transactional and notification emails | US / EU |

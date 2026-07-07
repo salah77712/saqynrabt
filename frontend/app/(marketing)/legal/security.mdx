@@ -1,0 +1,184 @@
+# Security Document
+
+**Last Updated:** July 7, 2026
+
+---
+
+## 1. Infrastructure & Hosting
+
+SAQYN RABT is built on a modern, serverless architecture designed for security, scalability, and performance. Our security posture is aligned with **Law No. 13 of 2016 on the Protection of Personal Data** (Articles 21–23), **Law No. 14 of 2014 on Cybercrime**, and international best practices.
+
+### 1.1 Cloudflare Workers (Edge Compute)
+
+All backend processing is handled by **Cloudflare Workers** running on Cloudflare's global edge network, which spans over 300 cities in more than 100 countries. This architecture provides:
+
+- **Execution Isolation:** Each Worker runs in its own isolated environment, preventing cross-tenant data leakage.
+- **DDoS Protection:** Cloudflare's enterprise-grade DDoS mitigation protects against Layer 3, 4, and 7 attacks.
+- **Low Latency:** Requests are processed at the edge, as close to the user as possible.
+- **Automatic Scaling:** The platform scales horizontally to handle any load without manual intervention.
+
+### 1.2 Database Infrastructure
+
+**NeonDB** (serverless PostgreSQL) serves as our primary database, providing:
+
+- **Automated Daily Backups:** Full backups are taken daily with point-in-time recovery (PITR) capability, allowing restoration to any point within the retention window.
+- **Connection Pooling:** Efficient management of database connections prevents resource exhaustion.
+- **Encryption at Rest:** All data stored in NeonDB is encrypted using AES-256.
+- **Automatic Failover:** High availability configuration ensures minimal downtime.
+
+### 1.3 Object Storage
+
+**Cloudflare R2** is used for document and file storage, providing:
+
+- **AES-256 Server-Side Encryption:** All stored objects are encrypted at rest.
+- **No Egress Fees:** Unlike traditional cloud storage providers, R2 does not charge for data egress.
+- **Global Distribution:** Files are cached at the edge for fast retrieval.
+
+---
+
+## 2. Data Encryption
+
+### 2.1 Encryption In Transit
+
+All data transmitted between the client's browser and SAQYN RABT's servers is secured using **TLS 1.3 encryption** (the latest and most secure version of the TLS protocol). This ensures that:
+
+- Data cannot be intercepted or read by unauthorized parties during transmission
+- The identity of the server is verified through SSL/TLS certificates
+- All API endpoints, web pages, and WebSocket connections are encrypted
+- Compliance with Article 21 of Law No. 13 of 2016 (security of processing)
+
+### 2.2 Encryption At Rest
+
+| Storage Layer | Encryption Standard | Details |
+|---------------|-------------------|---------|
+| Cloudflare R2 (Documents) | **AES-256** | All objects are server-side encrypted |
+| NeonDB (Database) | **AES-256** | Full database encryption at rest |
+| Upstash Redis (Cache) | **AES-256** | Encrypted in-memory caching |
+| Pinecone (Vector DB) | **AES-256** | Encrypted vector index storage |
+
+### 2.3 Secrets Management
+
+Secrets and API keys are **never stored in code, configuration files, or version control**. They are securely injected at runtime via Cloudflare's encrypted environment variables, which are encrypted using Cloudflare's key management infrastructure. This follows the security requirements of **Article 23 of Law No. 13 of 2016**.
+
+---
+
+## 3. Access Control and Authentication
+
+### 3.1 Authentication
+
+SAQYN RABT uses **Clerk** for authentication and user management, implementing:
+
+- **JWT (JSON Web Token) Authentication:** Every API request is authenticated using short-lived JWTs.
+- **Multi-Factor Authentication (MFA):** Available for all accounts and recommended for administrative users.
+- **Session Management:** Sessions are securely managed with HTTP-only, same-site cookies.
+- **Social Login Options:** Google, Microsoft, and email-based authentication.
+
+### 3.2 Authorization and Tenant Isolation
+
+SAQYN RABT implements a **Zero-Trust architecture** where every request is authenticated and authorized:
+
+- **Row-Level Security (RLS):** At the database level, every query is automatically filtered by `company_id`, ensuring that users can only access data belonging to their organization. This provides **strict tenant isolation** in our multi-tenant architecture, preventing unauthorized access under **Law No. 14 of 2014 on Cybercrime**.
+- **Role-Based Access Control (RBAC):** Accounts support multiple roles (Owner, Admin, Member) with granular permissions.
+
+### 3.3 Employee Access
+
+- **Zero Default Access:** SAQYN RABT employees have **no access to client data** by default.
+- **Support Ticket Authorization:** Access to client environments is only granted upon explicit written authorization via a support ticket from an authorized representative of the client.
+- **Audit Logging:** All administrative actions are logged to the `audit_logs` table, including who accessed what data, when, and for what purpose.
+- **Temporary Access:** Any employee access granted is time-limited and automatically revoked.
+
+---
+
+## 4. Incident Response Plan (IRP)
+
+SAQYN RABT maintains a documented Incident Response Plan to handle security incidents promptly and effectively, in compliance with **Article 22 of Law No. 13 of 2016** (breach notification).
+
+### 4.1 Incident Classification
+
+| Severity | Definition | Response Time |
+|----------|------------|---------------|
+| **Critical** | Active data breach, unauthorized access to production systems | Immediate (within 1 hour) |
+| **High** | Suspected breach, vulnerability with active exploit | Within 4 hours |
+| **Medium** | Isolated security issue, non-critical vulnerability | Within 24 hours |
+| **Low** | Best practice improvement, minor finding | Within 7 days |
+
+### 4.2 Response Procedure
+
+**Phase 1: Detection and Analysis**
+- Security alerts are monitored 24/7 via automated monitoring systems
+- All suspicious activity is logged and escalated immediately
+- The security team assesses the scope and impact of the incident
+
+**Phase 2: Containment**
+- Compromised keys, tokens, or credentials are immediately revoked
+- Affected tenants are isolated to prevent lateral movement
+- Affected systems are taken offline or patched if necessary
+
+**Phase 3: Notification**
+- Affected clients are notified **within 72 hours** of confirmation of a data breach (as required by Article 22 of Law No. 13 of 2016)
+- Notification includes the nature of the breach, likely consequences, and mitigation measures
+- Regulatory authorities (Ministry of Justice, Public Prosecution) are notified as required by applicable Qatari law
+
+**Phase 4: Remediation**
+- Root cause analysis is conducted
+- Security patches are deployed
+- Affected systems are restored from clean backups
+
+**Phase 5: Post-Mortem**
+- A detailed post-mortem report is prepared
+- Preventive measures are implemented to prevent recurrence
+- Lessons learned are documented and shared with the engineering team
+
+---
+
+## 5. Third-Party Security Audits
+
+### 5.1 Static Application Security Testing (SAST)
+
+SAQYN RABT integrates **SonarCloud** into our CI/CD pipeline. Every code push to the `main` branch automatically triggers a SAST scan that checks for:
+
+- SQL injection vulnerabilities
+- Cross-site scripting (XSS)
+- Insecure cryptographic storage
+- Security misconfiguration
+- Known vulnerable dependencies
+
+Any critical or high-severity findings must be resolved before deployment is approved.
+
+### 5.2 Dependency Scanning
+
+All third-party dependencies are automatically scanned for known vulnerabilities using automated dependency analysis tools. Outdated or vulnerable packages are flagged and updated as part of the development workflow.
+
+### 5.3 Penetration Testing
+
+SAQYN RABT conducts regular internal penetration tests and engages third-party security researchers for external assessments. Findings are tracked and remediated based on severity.
+
+---
+
+## 6. Compliance and Certifications
+
+### 6.1 Qatari Law Compliance
+
+SAQYN RABT operates in compliance with the following Qatari laws and regulations:
+
+- **Law No. 13 of 2016 on the Protection of Personal Data** — governing data collection, processing, and storage
+- **Law No. 14 of 2014 on Cybercrime** — governing data security, unauthorized access, and cyber incident response
+- **Law No. 8 of 2019 on Electronic Commerce and Transactions** — governing electronic signatures and digital contracts
+- **Law No. 24 of 2018 on Tax** — governing tax record retention
+
+### 6.2 International Compliance
+
+SAQYN RABT complies with the General Data Protection Regulation (GDPR) as a Data Processor where applicable. Our compliance measures include:
+
+- Data Processing Agreement (DPA) available to all clients
+- Standard Contractual Clauses (SCCs) for international data transfers
+- Data Subject Rights request handling
+- Breach notification procedures
+
+---
+
+## 7. Contact
+
+For security-related inquiries, vulnerability disclosures, or to report a security incident, please contact us at **security@saqynrabt.com**.
+
+We encourage responsible disclosure of any security vulnerabilities you discover. We will acknowledge receipt of your report within 24 hours and work with you to address the issue promptly.
