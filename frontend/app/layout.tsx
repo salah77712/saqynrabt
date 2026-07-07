@@ -66,9 +66,9 @@ export default function RootLayout({
             }),
           }}
         />
-        <AnalyticsGate />
       </head>
       <body className="antialiased">
+        <AnalyticsGate />
         <ToastProvider>
           <GlobalStatusBar />
           <Providers>
