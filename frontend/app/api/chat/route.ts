@@ -1,12 +1,11 @@
 // Laws 1, 2, 3, 11, 15, 16 COMPLIANT - supports streaming SSE responses
-import { auth } from "@clerk/nextjs/server";
+import { safeGetToken } from "../../../lib/safe-auth";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
-    const { getToken } = auth();
-    const token = await getToken();
+    const token = await safeGetToken();
 
     if (!token) {
       return NextResponse.json(
