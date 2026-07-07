@@ -13,17 +13,30 @@ export async function handleGetApprovals(request: RequestWithContext): Promise<R
 
   try {
     const sql = neon(request.env.DATABASE_URL);
-    const rows = await sql`
+    
+    // 1. Get signed-up employees
+    const employees = await sql`
       SELECT id, clerk_user_id, email, first_name, last_name, role, is_active
       FROM employees
       WHERE company_id = ${company_id}
       ORDER BY last_name, first_name
     `;
 
+    // 2. Get invited members
+    const invited = await sql`
+      SELECT id, email, name, role, status
+      FROM company_members
+      WHERE company_id = ${company_id} AND status != 'deleted'
+      ORDER BY name
+    `;
+
     const pending: any[] = [];
     const active: any[] = [];
+    const processedEmails = new Set<string>();
 
-    for (const row of rows) {
+    // Process employees first (as they have clerk user ids)
+    for (const row of employees) {
+      if (row.email) processedEmails.add(row.email.toLowerCase());
       const member = {
         id: row.clerk_user_id || String(row.id),
         name: [row.first_name, row.last_name].filter(Boolean).join(' ').trim() || row.email,
@@ -38,8 +51,28 @@ export async function handleGetApprovals(request: RequestWithContext): Promise<R
       }
     }
 
+    // Process invited members who haven't completed sign-up (no employee record yet)
+    for (const row of invited) {
+      if (row.email && processedEmails.has(row.email.toLowerCase())) continue;
+      
+      const member = {
+        id: `invite_${row.id}`,
+        name: row.name || row.email,
+        email: row.email || '',
+        role: row.role || 'employee',
+        status: row.status === 'active' ? 'active' as const : 'pending' as const,
+      };
+
+      if (row.status === 'active') {
+        active.push(member);
+      } else {
+        pending.push(member);
+      }
+    }
+
     return new Response(JSON.stringify({ pending, active }), { headers });
   } catch (err: any) {
+    console.error("GET approvals failed:", err);
     return new Response(JSON.stringify({ error: 'Internal server error', pending: [], active: [] }), { status: 500, headers });
   }
 }
@@ -65,19 +98,71 @@ export async function handlePostApproval(request: RequestWithContext): Promise<R
     const sql = neon(request.env.DATABASE_URL);
 
     if (action === 'approve') {
-      await sql`
-        UPDATE employees SET is_active = TRUE, updated_at = CURRENT_TIMESTAMP
-        WHERE clerk_user_id = ${id} AND company_id = ${company_id}
-      `;
+      if (typeof id === 'string' && id.startsWith('invite_')) {
+        const inviteId = id.replace('invite_', '');
+        await sql`
+          UPDATE company_members SET status = 'active'
+          WHERE id = ${inviteId} AND company_id = ${company_id}
+        `;
+        const [invite] = await sql`
+          SELECT email FROM company_members WHERE id = ${inviteId}
+        `;
+        if (invite?.email) {
+          await sql`
+            UPDATE employees SET is_active = TRUE, updated_at = CURRENT_TIMESTAMP
+            WHERE email = ${invite.email} AND company_id = ${company_id}
+          `;
+        }
+      } else {
+        await sql`
+          UPDATE employees SET is_active = TRUE, updated_at = CURRENT_TIMESTAMP
+          WHERE clerk_user_id = ${id} AND company_id = ${company_id}
+        `;
+        const [emp] = await sql`
+          SELECT email FROM employees WHERE clerk_user_id = ${id}
+        `;
+        if (emp?.email) {
+          await sql`
+            UPDATE company_members SET status = 'active'
+            WHERE email = ${emp.email} AND company_id = ${company_id}
+          `;
+        }
+      }
       await logAudit(request.env, company_id!, userId, 'approve_employee', { employee_id: id });
       return new Response(JSON.stringify({ success: true }), { headers });
     }
 
     if (action === 'suspend') {
-      await sql`
-        UPDATE employees SET is_active = FALSE, updated_at = CURRENT_TIMESTAMP
-        WHERE clerk_user_id = ${id} AND company_id = ${company_id}
-      `;
+      if (typeof id === 'string' && id.startsWith('invite_')) {
+        const inviteId = id.replace('invite_', '');
+        await sql`
+          UPDATE company_members SET status = 'suspended'
+          WHERE id = ${inviteId} AND company_id = ${company_id}
+        `;
+        const [invite] = await sql`
+          SELECT email FROM company_members WHERE id = ${inviteId}
+        `;
+        if (invite?.email) {
+          await sql`
+            UPDATE employees SET is_active = FALSE, updated_at = CURRENT_TIMESTAMP
+            WHERE email = ${invite.email} AND company_id = ${company_id}
+          `;
+        }
+      } else {
+        await sql`
+          UPDATE employees SET is_active = FALSE, updated_at = CURRENT_TIMESTAMP
+          WHERE clerk_user_id = ${id} AND company_id = ${company_id}
+        `;
+        const [emp] = await sql`
+          SELECT email FROM employees WHERE clerk_user_id = ${id}
+        `;
+        if (emp?.email) {
+          await sql`
+            UPDATE company_members SET status = 'suspended'
+            WHERE email = ${emp.email} AND company_id = ${company_id}
+          `;
+        }
+      }
       await logAudit(request.env, company_id!, userId, 'suspend_employee', { employee_id: id });
       return new Response(JSON.stringify({ success: true }), { headers });
     }
@@ -86,17 +171,26 @@ export async function handlePostApproval(request: RequestWithContext): Promise<R
       if (!name || !email) {
         return new Response(JSON.stringify({ error: 'name and email are required for invite' }), { status: 400, headers });
       }
-      await sql`
-        INSERT INTO company_members (company_id, email, name, status, role)
-        VALUES (${company_id}, ${email}, ${name}, 'pending', 'employee')
-        ON CONFLICT (email) DO NOTHING
+      const [existing] = await sql`
+        SELECT id FROM company_members WHERE email = ${email} AND company_id = ${company_id}
       `;
+      if (existing) {
+        await sql`
+          UPDATE company_members SET status = 'pending', name = ${name} WHERE id = ${existing.id}
+        `;
+      } else {
+        await sql`
+          INSERT INTO company_members (company_id, email, name, status, role)
+          VALUES (${company_id}, ${email}, ${name}, 'pending', 'employee')
+        `;
+      }
       await logAudit(request.env, company_id!, userId, 'invite_employee', { email, name });
       return new Response(JSON.stringify({ success: true }), { headers });
     }
 
     return new Response(JSON.stringify({ error: `Unknown action: ${action}` }), { status: 400, headers });
   } catch (err: any) {
+    console.error("Post approval failed:", err);
     return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }

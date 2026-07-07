@@ -20,18 +20,42 @@ export async function handleClerkWebhook(request: RequestWithContext): Promise<R
     const sql = neon(env.DATABASE_URL);
 
     if (type === 'user.created' || type === 'user.updated') {
-      const company_id = data.private_metadata?.company_id || data.public_metadata?.company_id;
+      let company_id = data.private_metadata?.company_id || data.public_metadata?.company_id;
       const clerkUserId = data.id;
       const email = data.email_addresses?.[0]?.email_address || '';
       const firstName = data.first_name || '';
       const lastName = data.last_name || '';
 
+      // Check if there is an invitation in company_members for this email
+      if (email) {
+        const [member] = await sql`
+          SELECT company_id, status FROM company_members WHERE LOWER(email) = LOWER(${email})
+        `;
+        if (member) {
+          if (!company_id) {
+            company_id = member.company_id;
+          }
+          // Link clerk_user_id in company_members
+          await sql`
+            UPDATE company_members
+            SET clerk_user_id = ${clerkUserId}
+            WHERE LOWER(email) = LOWER(${email}) AND clerk_user_id IS NULL
+          `;
+        }
+      }
+
       if (company_id) {
+        // Check if already approved/active in company_members
+        const [memStatus] = await sql`
+          SELECT status FROM company_members WHERE LOWER(email) = LOWER(${email}) AND company_id = ${company_id}
+        `;
+        const isActive = memStatus?.status === 'active';
+
         await sql`
           INSERT INTO employees (company_id, clerk_user_id, email, first_name, last_name, is_active)
-          VALUES (${company_id}, ${clerkUserId}, ${email}, ${firstName}, ${lastName}, true)
+          VALUES (${company_id}, ${clerkUserId}, ${email}, ${firstName}, ${lastName}, ${isActive})
           ON CONFLICT (clerk_user_id)
-          DO UPDATE SET email = ${email}, first_name = ${firstName}, last_name = ${lastName}, updated_at = NOW()
+          DO UPDATE SET company_id = ${company_id}, email = ${email}, first_name = ${firstName}, last_name = ${lastName}, is_active = ${isActive}, updated_at = NOW()
         `;
       }
     } else if (type === 'user.deleted') {
