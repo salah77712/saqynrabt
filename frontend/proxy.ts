@@ -1,5 +1,3 @@
-// LAW 5 COMPLIANT: proxy.ts - Clerk 5.7.2 middleware using clerkMiddleware
-// Public routes explicitly defined. Matcher covers all routes except static assets.
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
@@ -7,6 +5,7 @@ const isPublicRoute = createRouteMatcher([
   "/",
   "/sign-in(.*)",
   "/sign-up(.*)",
+  "/forgot-password(.*)",
   "/about(.*)",
   "/pricing(.*)",
   "/features(.*)",
@@ -22,19 +21,22 @@ const isPublicRoute = createRouteMatcher([
   "/marketplace(.*)",
   "/developers(.*)",
   "/help(.*)",
-  "/terms-and-conditions",
+  "/legal/(.*)",
   "/privacy-policy",
+  "/terms-and-conditions",
   "/cookie-policy",
-  "/portal/privacy",
-  "/forgot-password",
+  "/trust",
   "/thank-you",
   "/global",
   "/onboarding",
+  "/robots.txt",
+  "/sitemap.xml",
+  "/security.txt",
+  "/.well-known(.*)",
+  "/og-image(.*)",
   "/api/webhook",
   "/api/health",
   "/api/wakeup",
-  "/robots.txt",
-  "/sitemap.xml",
 ]);
 
 let handler: any = null;

@@ -26,7 +26,7 @@ export async function handleGetAutomations(request: RequestWithContext): Promise
     await logAudit(env, company_id!, userId, 'view_automations', { count: automations.length }, ip, ua);
     return new Response(JSON.stringify({ automations: automations || [] }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message, automations: [] }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error', automations: [] }), { status: 500, headers });
   }
 }
 
@@ -57,6 +57,6 @@ export async function handleCreateAutomation(request: RequestWithContext): Promi
     await logAudit(env, company_id!, userId, 'create_automation', { name, trigger_event, action_type });
     return new Response(JSON.stringify({ automation: result[0] }), { status: 201, headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }

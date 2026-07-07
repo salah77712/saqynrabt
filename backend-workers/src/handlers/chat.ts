@@ -83,6 +83,6 @@ export async function handleChat(request: RequestWithContext): Promise<Response>
 
     return new Response(JSON.stringify({ response: aiResponse }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }

@@ -22,7 +22,7 @@ export async function handleGetEmployees(request: RequestWithContext): Promise<R
     `;
     return new Response(JSON.stringify({ employees: employees || [] }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message, employees: [] }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error', employees: [] }), { status: 500, headers });
   }
 }
 
@@ -58,10 +58,9 @@ export async function handlePatchEmployee(request: RequestWithContext): Promise<
     const sql = neon(env.DATABASE_URL);
     for (const [field, value] of Object.entries(updates)) {
       const safeField = field.replace(/[^a-z_]/g, '');
-      await (sql as any).unsafe(
-        `UPDATE employees SET ${safeField} = $1 WHERE id = $2 AND company_id = $3`,
-        [value, empId, company_id]
-      );
+      await sql`
+        UPDATE employees SET ${sql(safeField)} = ${value} WHERE id = ${empId} AND company_id = ${company_id}
+      `;
     }
     const result = await sql`
       SELECT id, email, first_name, last_name, role, department, is_active
@@ -70,7 +69,7 @@ export async function handlePatchEmployee(request: RequestWithContext): Promise<
     await logAudit(env, company_id!, userId, 'update_employee', { employee_id: empId, updates });
     return new Response(JSON.stringify({ employee: result[0] }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -91,7 +90,7 @@ export async function handleGetEntitlements(request: RequestWithContext): Promis
     `;
     return new Response(JSON.stringify({ entitlements: entitlements?.[0] || null }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -120,7 +119,7 @@ export async function handleGetUsageStats(request: RequestWithContext): Promise<
       limits: entitlements?.[0] || {},
     }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -146,7 +145,7 @@ export async function handleFeedback(request: RequestWithContext): Promise<Respo
     await logAudit(env, company_id!, userId, 'submit_feedback', { rating, category });
     return new Response(JSON.stringify({ success: true }), { status: 201, headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -173,7 +172,7 @@ export async function handleExportLogs(request: RequestWithContext): Promise<Res
     }
     return new Response(csvRows.join('\n'), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -200,7 +199,7 @@ export async function handleOverageSettings(request: RequestWithContext): Promis
     `;
     return new Response(JSON.stringify({ overage: result[0] }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -226,6 +225,6 @@ export async function handleKnowledgeGaps(request: RequestWithContext): Promise<
     `;
     return new Response(JSON.stringify({ knowledgeGaps: gaps || [] }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message, knowledgeGaps: [] }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error', knowledgeGaps: [] }), { status: 500, headers });
   }
 }

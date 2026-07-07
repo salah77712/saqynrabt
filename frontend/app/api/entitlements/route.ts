@@ -3,23 +3,20 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const isMock = !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 
-                   process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY === 'pk_test_Z3VpZGluZy1jdWItMTcuY2xlcmsuYWNjb3VudHMuZGV2JA';
-
-    let token: string | null = null;
-    if (isMock) {
-      token = 'mock-token-dummy_company-user_admin12345demo-admin';
-    } else {
-      const { getToken } = auth();
-      token = await getToken();
-    }
+    const { getToken } = auth();
+    const token = await getToken();
 
     if (!token) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
+    const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+    if (!apiBase) {
+      return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
+    }
+
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/api/entitlements`,
+      `${apiBase}/api/entitlements`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }

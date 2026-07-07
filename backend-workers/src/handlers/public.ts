@@ -85,6 +85,6 @@ export async function handleAdminMigrate(request: RequestWithContext): Promise<R
 
     return new Response(JSON.stringify({ success: true, message: `Migrations applied: ${migrations.length}`, version: currentVersion + migrations.length }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }

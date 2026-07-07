@@ -62,7 +62,7 @@ export async function handleClerkWebhook(request: RequestWithContext): Promise<R
 
     return new Response(JSON.stringify({ success: true }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -86,7 +86,7 @@ export async function handleVapiWebhook(request: RequestWithContext): Promise<Re
 
     return new Response(JSON.stringify({ success: true }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -108,6 +108,6 @@ export async function handleMessageWebhook(request: RequestWithContext): Promise
 
     return new Response(JSON.stringify({ success: true, received: true }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }

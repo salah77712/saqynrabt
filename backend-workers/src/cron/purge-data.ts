@@ -41,7 +41,7 @@ export async function handlePurgeCron(env: PurgeEnv): Promise<Response> {
     // 1. Purge expired chat messages
     const chatCutoff = new Date(Date.now() - config.chatMessagesDays * 24 * 60 * 60 * 1000);
     const { count: deletedChats } = await sql`
-      DELETE FROM chat_messages WHERE created_at < ${chatCutoff}
+      DELETE FROM chat_history WHERE created_at < ${chatCutoff}
     `;
     results.chatMessagesDeleted = deletedChats;
 
@@ -63,7 +63,7 @@ export async function handlePurgeCron(env: PurgeEnv): Promise<Response> {
     for (const company of cancelledCompanies) {
       const cid = company.company_id;
 
-      await sql`DELETE FROM chat_messages WHERE company_id = ${cid}`;
+      await sql`DELETE FROM chat_history WHERE company_id = ${cid}`;
       await sql`DELETE FROM documents WHERE company_id = ${cid}`;
       await sql`DELETE FROM usage_ledger WHERE company_id = ${cid}`;
       await sql`DELETE FROM audit_logs WHERE company_id = ${cid}`;

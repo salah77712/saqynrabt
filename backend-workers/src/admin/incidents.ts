@@ -132,9 +132,16 @@ export async function handleCreateIncident(request: Request, env: Env): Promise<
   }
 }
 
-export async function handleUpdateIncident(request: Request, env: Env, incidentId: string): Promise<Response> {
+export async function handleUpdateIncident(request: Request, env: Env): Promise<Response> {
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
+
+  const url = new URL(request.url);
+  const segments = url.pathname.split('/').filter(Boolean);
+  const incidentId = segments[segments.length - 1];
+  if (!incidentId) {
+    return new Response(JSON.stringify({ error: 'Incident ID is required' }), { status: 400, headers });
+  }
 
   const authHeader = request.headers.get('Authorization');
   const jwt = await verifyJWT(authHeader, env);
@@ -156,35 +163,37 @@ export async function handleUpdateIncident(request: Request, env: Env, incidentI
   try {
     const sql = neon(env.DATABASE_URL);
 
-    const updates: string[] = [];
-    const values: any[] = [];
+    if (body.timelineAction) {
+      await sql`
+        INSERT INTO incident_timeline (incident_id, action, actor, note)
+        VALUES (${incidentId}, ${body.timelineAction}, ${jwt.email || jwt.sub}, ${body.timelineNote || null})
+      `;
+    }
+
+    const setClauses: string[] = [];
+    const setValues: any[] = [];
+    let paramIndex = 1;
 
     if (body.status) {
-      updates.push(`status = ${body.status}`);
-      values.push(body.status);
-
-      if (body.timelineAction) {
-        await sql`
-          INSERT INTO incident_timeline (incident_id, action, actor, note)
-          VALUES (${incidentId}, ${body.timelineAction}, ${jwt.email || jwt.sub}, ${body.timelineNote || null})
-        `;
-      }
+      setClauses.push(`status = $${paramIndex++}`);
+      setValues.push(body.status);
     }
-
     if (body.assignedTo) {
-      updates.push(`assigned_to = ${body.assignedTo}`);
+      setClauses.push(`assigned_to = $${paramIndex++}`);
+      setValues.push(body.assignedTo);
     }
-
     if (body.clientNotified !== undefined) {
-      updates.push(`client_notified = ${body.clientNotified}`);
-      updates.push(`notified_at = ${body.clientNotified ? new Date() : null}`);
+      setClauses.push(`client_notified = $${paramIndex++}`);
+      setValues.push(body.clientNotified);
+      setClauses.push(`notified_at = $${paramIndex++}`);
+      setValues.push(body.clientNotified ? new Date().toISOString() : null);
     }
 
-    if (updates.length > 0) {
-      updates.push(`updated_at = NOW()`);
-      await sql`
-        UPDATE security_incidents SET ${updates.join(', ')} WHERE id = ${incidentId}
-      `;
+    if (setClauses.length > 0) {
+      setClauses.push(`updated_at = NOW()`);
+      const query = `UPDATE security_incidents SET ${setClauses.join(', ')} WHERE id = $${paramIndex++}`;
+      setValues.push(incidentId);
+      await (sql as any).unsafe(query, setValues);
     }
 
     const [incident] = await sql`SELECT * FROM security_incidents WHERE id = ${incidentId}`;
@@ -249,6 +258,6 @@ export async function handleGetIncidentStatus(request: Request, env: Env): Promi
 
   } catch (err: any) {
     console.error('Failed to get incident status:', err);
-    return new Response(JSON.stringify({ status: 'unknown', error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ status: 'unknown', error: 'Internal server error' }), { status: 500, headers });
   }
 }

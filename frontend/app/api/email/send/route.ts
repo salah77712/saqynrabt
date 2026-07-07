@@ -1,9 +1,15 @@
+import { auth } from "@clerk/nextjs/server";
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
   try {
-    // 1. Check if the API key exists at runtime (not build time)
+    const { getToken } = auth();
+    const token = await getToken();
+    if (!token) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
     const apiKey = process.env.EMAIL_API_KEY;
     if (!apiKey) {
       return NextResponse.json(
@@ -12,16 +18,20 @@ export async function POST(request: Request) {
       );
     }
 
-    // 2. Initialize Resend INSIDE the function call
     const resend = new Resend(apiKey);
 
-    // 3. Parse the request body
     const body = await request.json();
     const { to, subject, html } = body;
 
-    // 4. Send the email
+    if (!to || !subject || !html) {
+      return NextResponse.json(
+        { success: false, error: 'Missing required fields: to, subject, html.' },
+        { status: 400 }
+      );
+    }
+
     const data = await resend.emails.send({
-      from: 'SAQYN RABT <onboarding@resend.dev>', // Use the free resend.dev domain
+      from: 'SAQYN RABT <onboarding@resend.dev>',
       to: [to],
       subject: subject,
       html: html,

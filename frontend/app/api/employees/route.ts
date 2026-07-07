@@ -5,16 +5,8 @@ import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    const isMock = !process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 
-                   process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY === 'pk_test_Z3VpZGluZy1jdWItMTcuY2xlcmsuYWNjb3VudHMuZGV2JA';
-
-    let token: string | null = null;
-    if (isMock) {
-      token = 'mock-token-dummy_company-user_admin12345demo-admin';
-    } else {
-      const { getToken } = auth();
-      token = await getToken();
-    }
+    const { getToken } = auth();
+    const token = await getToken();
 
     if (!token) {
       return NextResponse.json(

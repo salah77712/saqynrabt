@@ -34,6 +34,6 @@ export async function handleVoiceStream(request: RequestWithContext): Promise<Re
 
     return new Response('TTS not configured', { status: 503, headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers: { ...headers, 'Content-Type': 'application/json' } });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers: { ...headers, 'Content-Type': 'application/json' } });
   }
 }

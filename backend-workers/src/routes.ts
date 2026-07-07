@@ -13,6 +13,10 @@ import {
 } from './handlers/employees';
 import { handleClerkWebhook, handleVapiWebhook, handleMessageWebhook } from './handlers/webhooks';
 import { handleVoiceStream } from './handlers/voice';
+import { handlePrivacyExport, handlePrivacyDelete } from './compliance/dsar-export';
+import { handleLegalAccept, handleCheckAcceptance } from './compliance/legal-accept';
+import { handleConsentAudit } from './compliance/consent-audit';
+import { handleListIncidents, handleCreateIncident, handleUpdateIncident, handleGetIncidentStatus } from './admin/incidents';
 
 export function createRouter(env: Env) {
   const router = Router<RequestWithContext>({
@@ -63,6 +67,18 @@ export function createRouter(env: Env) {
   router.post('/message/webhook', handleMessageWebhook);
 
   router.post('/admin/migrate', handleAdminMigrate);
+  router.get('/admin/incidents', handleListIncidents);
+  router.post('/admin/incidents', handleCreateIncident);
+  router.patch('/admin/incidents/:id', handleUpdateIncident);
+  router.get('/admin/incidents/status', handleGetIncidentStatus);
+
+  router.get('/privacy/export', handlePrivacyExport);
+  router.post('/privacy/delete', handlePrivacyDelete);
+
+  router.get('/legal/check-acceptance', handleCheckAcceptance);
+  router.post('/legal/accept', handleLegalAccept);
+
+  router.post('/audit/consent', handleConsentAudit);
 
   router.all('*', (request: RequestWithContext) => {
     return new Response(

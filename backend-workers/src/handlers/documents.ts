@@ -22,7 +22,7 @@ export async function handleGetDocuments(request: RequestWithContext): Promise<R
     `;
     return new Response(JSON.stringify({ documents: documents || [] }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message, documents: [] }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error', documents: [] }), { status: 500, headers });
   }
 }
 
@@ -87,7 +87,7 @@ export async function handleUploadDocument(request: RequestWithContext): Promise
 
     return new Response(JSON.stringify({ document: docResult[0] }), { status: 201, headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -113,7 +113,7 @@ export async function handleDeleteDocument(request: RequestWithContext): Promise
     await sql`DELETE FROM documents WHERE id = ${docId} AND company_id = ${company_id}`;
     return new Response(JSON.stringify({ success: true }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
 
@@ -157,6 +157,6 @@ export async function handleIngest(request: RequestWithContext): Promise<Respons
 
     return new Response(JSON.stringify({ success: true, chunks_processed: chunks.length }), { headers });
   } catch (err: any) {
-    return new Response(JSON.stringify({ error: err.message }), { status: 500, headers });
+    return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }

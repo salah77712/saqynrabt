@@ -5,6 +5,7 @@ import { ToastProvider } from '../lib/toast';
 import { GlobalToast } from '../components/GlobalToast';
 import { GlobalStatusBar } from '../components/GlobalStatusBar';
 import { CookieConsentBanner } from '../components/CookieConsentBanner';
+import { AnalyticsGate } from './analytics-gate';
 
 export const metadata: Metadata = {
   title: 'SAQYN RABT | Staff Hub & Guest Queue Automation',
@@ -62,6 +63,7 @@ export default function RootLayout({
             }),
           }}
         />
+        <AnalyticsGate />
       </head>
       <body className="antialiased">
         <ToastProvider>

@@ -55,10 +55,17 @@ const EntitlementsContext = createContext<EntitlementsContextProps>({
 
 export const useEntitlements = () => useContext(EntitlementsContext);
 
+export function getCookieConsent(): boolean {
+  if (typeof window === 'undefined') return false;
+  return localStorage.getItem('cookie_consent_accepted') === 'accepted';
+}
+
 export function Providers({ children }: { children: React.ReactNode }) {
+  const clerkPublishableKey = process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || "pk_test_Z3VpZGluZy1jdWItMTcuY2xlcmsuYWNjb3VudHMuZGV2JA";
+
   return (
     <QueryClientProvider client={queryClient}>
-      <ClerkProvider publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || 'pk_test_Z3VpZGluZy1jdWItMTcuY2xlcmsuYWNjb3VudHMuZGV2JA'}>
+      <ClerkProvider publishableKey={clerkPublishableKey}>
         <LanguageProvider>
           <EntitlementsProvider>
             {children}
@@ -100,18 +107,16 @@ function EntitlementsProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [mockMode, setMockMode] = useState(false);
 
-  // Initialize mockMode if Clerk keys are missing to ensure smooth running
   useEffect(() => {
-    if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY === 'pk_test_Z3VpZGluZy1jdWItMTcuY2xlcmsuYWNjb3VudHMuZGV2JA') {
+    if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
       setMockMode(true);
-      // set some mock entitlements so the demo works out-of-the-box
       setEntitlements({
         max_employees: 50,
         max_documents: 5,
         max_questions: 1000,
         dept_limit: 3,
         active_employees: 1,
-        active_documents: 1
+        active_documents: 1,
       });
       setLoading(false);
     }
