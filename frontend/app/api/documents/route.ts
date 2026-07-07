@@ -5,20 +5,25 @@ import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    console.log("[/api/documents] step 1: before safeGetToken");
     const token = await safeGetToken();
-    console.log("[/api/documents] step 2: after safeGetToken, token=", !!token);
     if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401 });
     const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
     if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
-    console.log("[/api/documents] step 3: before fetch");
-    const response = await fetch(`${apiBase}/api/documents`, {
-      headers: { Authorization: `Bearer ${token}` },
+    const res = await fetch(`${apiBase}/api/documents`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     });
-    console.log("[/api/documents] step 4: after fetch, status=", response.status);
-    const data = await response.json();
-    console.log("[/api/documents] step 5: after json parse");
-    return NextResponse.json(data, { status: response.status });
+    const text = await res.text();
+    try {
+      const data = JSON.parse(text);
+      return NextResponse.json(data, { status: res.status });
+    } catch {
+      console.error("[/api/documents GET] Invalid JSON from backend:", text);
+      return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 });
+    }
   } catch (err: unknown) {
     console.error("[/api/documents GET CRASH]", err);
     const msg = err instanceof Error ? err.message : String(err);
