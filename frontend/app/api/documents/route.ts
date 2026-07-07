@@ -5,18 +5,16 @@ import type { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
   try {
-    return NextResponse.json({ diagnostic: "before-safeGetToken" });
     const token = await safeGetToken();
     if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401 });
     const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
     if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
-    const res = await fetch(`${apiBase}/api/documents`, {
-      headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+    const response = await fetch(`${apiBase}/api/documents`, {
+      headers: { Authorization: `Bearer ${token}` },
     });
-    const text = await res.text();
-    try { const data = JSON.parse(text); return NextResponse.json(data, { status: res.status }); }
-    catch { return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 }); }
-  } catch (err: unknown) {
+    const data = await response.json();
+    return NextResponse.json(data, { status: response.status });
+  } catch (err) {
     console.error("[/api/documents GET]", err);
     return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
   }
