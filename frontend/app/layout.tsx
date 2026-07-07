@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   alternates: {
     canonical: 'https://saqynrabt.com',
   },
+  icons: {
+    icon: '/favicon.svg',
+  },
 };
 
 export default function RootLayout({
