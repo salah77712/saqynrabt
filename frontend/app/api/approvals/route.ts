@@ -2,7 +2,7 @@
 import { safeGetToken } from "../../../lib/safe-auth";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { Resend } from 'resend';
+import { sendEmail } from "../../../lib/email";
 
 export async function GET(req: NextRequest) {
   try {
@@ -88,15 +88,13 @@ export async function POST(req: NextRequest) {
         const apiKey = process.env.EMAIL_API_KEY;
         if (apiKey && email && name) {
           try {
-            const resend = new Resend(apiKey);
             const companyName = data.companyName || 'SAQYN';
             const inviterName = data.inviterName || 'A colleague';
 
-            await resend.emails.send({
-              from: 'SAQYN RABT <onboarding@resend.dev>',
-              to: [email],
-              subject: `You've been invited to join ${companyName} on SAQYN RABT`,
-              html: `
+            await sendEmail(
+              email,
+              `You've been invited to join ${companyName} on SAQYN RABT`,
+              `
                 <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
                   <h2 style="color: #141F33; font-weight: 800; margin-bottom: 16px;">Welcome to SAQYN RABT</h2>
                   <p>Hello <strong>${name}</strong>,</p>
@@ -112,7 +110,7 @@ export async function POST(req: NextRequest) {
                   </p>
                 </div>
               `
-            });
+            );
           } catch (emailErr) {
             console.error("[/api/approvals POST] Failed to send invitation email:", emailErr);
           }
