@@ -210,13 +210,8 @@ export async function handlePostApproval(request: RequestWithContext): Promise<R
         console.error('Error fetching company details:', e);
       }
 
-      // Send the invitation email in the background
-      request.ctx.waitUntil(
-        sendInvitationEmail(request.env, email, name, inviterName, companyName, 'employee')
-      );
-
       await logAudit(request.env, company_id!, userId, 'invite_employee', { email, name });
-      return new Response(JSON.stringify({ success: true }), { headers });
+      return new Response(JSON.stringify({ success: true, companyName, inviterName }), { headers });
     }
 
     return new Response(JSON.stringify({ error: `Unknown action: ${action}` }), { status: 400, headers });
