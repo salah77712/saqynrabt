@@ -43,6 +43,10 @@ This repository contains **production code deployed to saqynrabt.com**. AI codin
 - `frontend/app/layout.tsx`
 - `frontend/app/providers.tsx`
 
+## ✅ VERIFIED WORKING COMMIT
+- **Commit:** `b045f3f` — All dashboard pages, BFF proxy routes, Clerk auth, middleware, documents API verified working.
+- **Do not revert changes before this commit.** If you need to roll back, this is the last known-good state.
+
 ### Verification required after any change:
 ```bash
 cd frontend; npm run build
