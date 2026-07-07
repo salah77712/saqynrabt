@@ -42,14 +42,13 @@ const isPublicRoute = createRouteMatcher([
 let handler: any = null;
 
 if (process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
-  handler = clerkMiddleware((auth, req) => {
-    const { userId } = auth();
+  handler = clerkMiddleware(async (auth, req) => {
+    const { userId } = await auth();
     const isPublic = isPublicRoute(req);
 
     if (!userId && !isPublic) {
-      const url = new URL(req.url);
       return NextResponse.redirect(
-        new URL("/sign-in?redirect_url=" + encodeURIComponent(url.pathname), req.url)
+        new URL("/sign-in?redirect_url=" + encodeURIComponent(req.nextUrl.pathname), req.url)
       );
     }
   });
