@@ -1,9 +1,11 @@
+import { auth } from "@clerk/nextjs/server";
+
 export async function safeGetToken(): Promise<string | null> {
   try {
-    const { auth } = await import("@clerk/nextjs/server");
     const { getToken } = await auth();
     return await getToken();
-  } catch {
+  } catch (e) {
+    console.error("[safeGetToken] failed:", e);
     return null;
   }
 }
