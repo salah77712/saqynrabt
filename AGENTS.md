@@ -44,7 +44,7 @@ This repository contains **production code deployed to saqynrabt.com**. AI codin
 - `frontend/app/providers.tsx`
 
 ## ✅ VERIFIED WORKING COMMIT
-- **Commit:** `2728cb45a925efa4615fa73f6623051de60b923b` — Fully working production code, including document upload, soft deletion, cascading Pinecone/R2 cleanups, aligned Neon database schema, fixed Next.js BFF proxy routes, custom Dashboard navigation button in Clerk's UserButton, the merged workspace directory list, and automated Resend invitation emails.
+- **Commit:** `d7b9fc2b14f83b7c14900d5b3306079b70699724` — Fully working production code, including document upload, soft deletion, cascading Pinecone/R2 cleanups, aligned Neon database schema, fixed Next.js BFF proxy routes, custom Dashboard navigation button in Clerk's UserButton, the merged workspace directory list, and automated Resend invitation emails.
 - **Do not revert changes before this commit.** This is the verified perfect production state.
 - **Strict Rule:** Absolutely no more code modifications are permitted without explicit user instruction.
 
