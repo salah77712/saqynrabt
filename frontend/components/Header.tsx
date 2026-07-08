@@ -96,26 +96,42 @@ export function Header() {
             </Link>
 
             {isSignedIn ? (
-              <UserButton afterSignOutUrl="/" showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user">
-                <UserButton.MenuItems>
-                  <UserButton.Link
-                    label={t("Dashboard", "لوحة التحكم")}
-                    labelIcon={
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px' }}>
-                        <rect x="3" y="3" width="7" height="9" />
-                        <rect x="14" y="3" width="7" height="5" />
-                        <rect x="14" y="12" width="7" height="9" />
-                        <rect x="3" y="16" width="7" height="5" />
-                      </svg>
-                    }
-                    href="/dashboard"
-                  />
-                </UserButton.MenuItems>
-              </UserButton>
+              <div className="flex items-center gap-3">
+                <Link
+                  href="/dashboard"
+                  className="hidden md:inline-flex bg-[#141F33] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all hover:scale-[1.02] shadow-sm min-h-[40px] items-center"
+                >
+                  {t('Dashboard', 'لوحة التحكم')}
+                </Link>
+                <UserButton afterSignOutUrl="/" showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user">
+                  <UserButton.MenuItems>
+                    <UserButton.Link
+                      label={t("Dashboard", "لوحة التحكم")}
+                      labelIcon={
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px' }}>
+                          <rect x="3" y="3" width="7" height="9" />
+                          <rect x="14" y="3" width="7" height="5" />
+                          <rect x="14" y="12" width="7" height="9" />
+                          <rect x="3" y="16" width="7" height="5" />
+                        </svg>
+                      }
+                      href="/dashboard"
+                    />
+                  </UserButton.MenuItems>
+                </UserButton>
+              </div>
             ) : (
-              <Link href="/sign-in" className="text-xs font-extrabold text-navy hover:underline min-h-[44px] flex items-center px-2">
-                Sign In
-              </Link>
+              <div className="flex items-center gap-2">
+                <Link href="/sign-in" className="text-xs font-extrabold text-[#141F33] hover:underline min-h-[44px] flex items-center px-2">
+                  {t('Sign In', 'تسجيل الدخول')}
+                </Link>
+                <Link
+                  href="/sign-up"
+                  className="hidden md:inline-flex bg-[#141F33] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all hover:scale-[1.02] shadow-sm min-h-[40px] items-center"
+                >
+                  {t('Register', 'سجل الآن')}
+                </Link>
+              </div>
             )}
           </div>
 
