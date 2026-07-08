@@ -9,15 +9,15 @@ interface FooterColumnProps {
 export function FooterColumn({ title, links }: FooterColumnProps) {
   return (
     <div className="flex flex-col gap-4">
-      <h3 className="text-xs font-black uppercase tracking-widest text-slate-300">
+      <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-400">
         {title}
       </h3>
-      <ul className="flex flex-col gap-2.5">
+      <ul className="flex flex-col gap-3">
         {links.map((link) => (
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-sm text-slate-400 font-medium hover:text-white transition-colors"
+              className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#141F33] transition-colors"
             >
               {link.label}
             </Link>

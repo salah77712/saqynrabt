@@ -9,7 +9,7 @@ export default function IndustriesError({ error, reset }: { error: Error & { dig
       <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">S</div>
-          <div className="ml-3"><p className="text-sm font-semibold tracking-[0.2em] text-primary">SAQYN RABT</p><p className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Private AI operations</p></div>
+          <div className="ml-3"><p className="text-sm font-semibold tracking-[0.2em] text-primary">SAQYN RABT</p><p className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Connecting teams, automating workflows</p></div>
         </div>
       </header>
       <div className="flex-1 flex items-center justify-center px-6 py-20">

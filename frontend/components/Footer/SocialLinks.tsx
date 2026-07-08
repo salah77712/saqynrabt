@@ -68,7 +68,7 @@ const links = [
 
 export function SocialLinks() {
   return (
-    <div className="flex items-center gap-5 mt-2" role="list" aria-label="Social media links">
+    <div className="flex items-center gap-2 mt-2" role="list" aria-label="Social media links">
       {links.map(({ href, label, svg }) => (
         <a
           key={label}
@@ -76,9 +76,11 @@ export function SocialLinks() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="text-slate-400 hover:text-white transition-colors duration-200 block"
+          className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-slate-400 hover:text-slate-700 hover:border-slate-300 hover:bg-slate-50 transition-all duration-200 shrink-0"
         >
-          {svg}
+          <span className="w-4.5 h-4.5 flex items-center justify-center [&>svg]:w-4 [&>svg]:h-4">
+            {svg}
+          </span>
         </a>
       ))}
     </div>

@@ -8,7 +8,7 @@ import { SocialLinks } from './Footer/SocialLinks';
 
 const content = {
   en: {
-    tagline: 'Private AI Operations. Registered in the State of Qatar.',
+    tagline: 'Connecting teams and automating workflows. Registered in the State of Qatar.',
     address: 'Doha, Qatar',
     dpoEmail: 'dpo@saqynrabt.com',
     productTitle: 'Product',
@@ -41,7 +41,7 @@ const content = {
     backToTop: 'Back to Top',
   },
   ar: {
-    tagline: 'عمليات ذكاء اصطناعي خاصة. مسجلة في دولة قطر.',
+    tagline: 'ربط فرق العمل وتبسيط مسارات العمل. مسجلة في دولة قطر.',
     address: 'الدوحة، قطر',
     dpoEmail: 'dpo@saqynrabt.com',
     productTitle: 'المنتج',
@@ -87,6 +87,7 @@ function Logo() {
 
 export function Footer() {
   const { locale } = useLocale();
+  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
   const copy = content[locale];
   const year = new Date().getFullYear();
   const [cookiePrefsOpen, setCookiePrefsOpen] = React.useState(false);
@@ -113,40 +114,40 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-[#141F33] text-white border-t border-white/10" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <footer className="bg-white text-slate-800 border-t border-gray-200" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       {/* Trust & Compliance Bar */}
-      <div className="border-b border-white/5">
+      <div className="border-b border-gray-100 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-6 py-3 lg:px-8 flex flex-wrap items-center justify-between gap-3" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
           <div className="flex items-center gap-4 flex-wrap">
             <Link
               href="/trust"
-              className="flex items-center gap-1.5 text-[11px] font-bold text-white/70 hover:text-white transition-colors"
+              className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500 hover:text-[#141F33] transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               Trust Center
             </Link>
-            <span className="w-px h-4 bg-white/10" />
-            <span className="flex items-center gap-1 text-[11px] text-white/50">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span className="w-px h-4 bg-gray-200" />
+            <span className="flex items-center gap-1 text-[11px] text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               GDPR Ready
             </span>
-            <span className="flex items-center gap-1 text-[11px] text-white/50">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            <span className="flex items-center gap-1 text-[11px] text-slate-400">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               Qatar Law No.13 Compliant
             </span>
-            <span className="flex items-center gap-1 text-[11px] text-white/40">
+            <span className="flex items-center gap-1 text-[11px] text-slate-400/80">
               ⟳ ISO 27001 In Progress
             </span>
           </div>
-          <div className="flex items-center gap-2 text-[11px]">
+          <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500">
             {incidentStatus?.status === 'all_operational' ? (
-              <span className="flex items-center gap-1 text-green-400">
-                <span className="w-2 h-2 rounded-full bg-green-400" />
+              <span className="flex items-center gap-1.5 text-emerald-600">
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
                 All systems operational
               </span>
             ) : (
-              <span className="flex items-center gap-1 text-amber-400">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
+              <span className="flex items-center gap-1.5 text-amber-600">
+                <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
                 Incident response active ({incidentStatus?.activeIncidents || 0})
               </span>
             )}
@@ -163,7 +164,7 @@ export function Footer() {
             name: 'SAQYN RABT',
             url: 'https://saqynrabt.com',
             logo: 'https://saqynrabt.com/logo.png',
-            description: 'Private AI Operations. Registered in the State of Qatar.',
+            description: 'Connecting teams and automating workflows. Registered in the State of Qatar.',
             address: { '@type': 'PostalAddress', addressLocality: 'Doha', addressCountry: 'QA' },
             contactPoint: [
               { '@type': 'ContactPoint', telephone: '+974-XXXX-XXXX', contactType: 'sales', email: 'hello@saqynrabt.com' },
@@ -189,68 +190,49 @@ export function Footer() {
             <Link href="/" className="inline-block" aria-label="SAQYN RABT Home">
               <Logo />
             </Link>
-            <p className="text-sm text-white/60 leading-relaxed">
+            <p className="text-xs text-slate-500 font-semibold leading-relaxed">
               {copy.tagline}
             </p>
-            <div className="text-xs text-white/40 space-y-1">
+            <div className="text-[11px] text-slate-400 font-semibold space-y-1">
               <p>{copy.address}</p>
               <p>
                 DPO:{' '}
-                <a href="mailto:dpo@saqynrabt.com" className="text-white/60 hover:text-white hover:underline">
+                <a href="mailto:dpo@saqynrabt.com" className="text-slate-500 hover:text-[#141F33] hover:underline">
                   {copy.dpoEmail}
                 </a>
               </p>
             </div>
-            <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-white/10 bg-white/[0.03]">
-              <span className="text-[10px] font-bold uppercase tracking-wider text-white/50">📞 DPO</span>
+            <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-slate-50 w-fit">
+              <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">📞 DPO</span>
               <a
                 href="mailto:dpo@saqynrabt.com"
-                className="text-[11px] font-bold text-white/80 hover:text-white hover:underline"
+                className="text-[11px] font-extrabold text-slate-700 hover:text-[#141F33] hover:underline"
               >
                 dpo@saqynrabt.com
               </a>
             </div>
-            <SocialLinks />
           </div>
 
-          {/* Column 2: Legal & Compliance (5 cards) */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-xs font-black uppercase tracking-widest text-white/50">
-              {copy.legalTitle}
-            </h3>
-            <ul className="flex flex-col gap-2">
-              {copy.legal.map((link, i) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-white/80 transition-all hover:border-white/25 hover:bg-white/10 hover:text-white"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Column 2: Legal & Compliance */}
+          <FooterColumn title={copy.legalTitle} links={copy.legal} />
 
           {/* Column 3: Product & Platform */}
           <FooterColumn title={copy.productTitle} links={copy.products} />
 
           {/* Column 4: Company & Social */}
-          <div className="flex flex-col gap-4">
-            <FooterColumn title={copy.companyTitle} links={copy.company} />
-          </div>
+          <FooterColumn title={copy.companyTitle} links={copy.company} />
 
           {/* Column 5: Legal Utility Console */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-xs font-black uppercase tracking-widest text-white/50">
+            <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-400">
               {copy.privacyControls}
             </h3>
-            <ul className="flex flex-col gap-2">
+            <ul className="flex flex-col gap-3">
               <li>
                 <button
                   type="button"
                   onClick={handleCookiePrefs}
-                  className="w-full text-left rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-sm font-medium text-white/80 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#141F33] transition-colors text-left"
                 >
                   {copy.cookiePrefs}
                 </button>
@@ -258,7 +240,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/legal/privacy#do-not-sell"
-                  className="block rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-sm font-medium text-white/80 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#141F33] transition-colors block"
                 >
                   {copy.doNotSell}
                 </Link>
@@ -266,7 +248,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/accessibility"
-                  className="block rounded-xl border border-white/5 bg-white/[0.02] px-4 py-2.5 text-sm font-medium text-white/80 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#141F33] transition-colors block"
                 >
                   {copy.accessibility}
                 </Link>
@@ -276,18 +258,22 @@ export function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-white/10 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-white/40">
-          <p data-i18n="footer.copyright">
-            © {year} SAQYN RABT. All rights reserved. Licensed under Qatar Law No. 13 of 2016.
-            <br className="md:hidden" />
-            <span className="text-white/30"> Legal policies last updated on 2026-07-07.</span>
+        <div className="border-t border-gray-100 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-slate-400">
+          <p className="uppercase tracking-wider">
+            © {year} SAQYN RABT. ALL RIGHTS RESERVED. LICENSED UNDER QATAR LAW NO. 13 OF 2016.
           </p>
-          <button
-            onClick={handleBackToTop}
-            className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
-          >
-            {copy.backToTop} ↑
-          </button>
+
+          <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">
+            <Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t('SITEMAP', 'خريطة الموقع')}</Link>
+            <span>|</span>
+            <Link href="/legal/terms" className="hover:text-[#141F33] transition-colors">{t('TERMS', 'الشروط')}</Link>
+            <span>|</span>
+            <Link href="/legal/privacy" className="hover:text-[#141F33] transition-colors">{t('PRIVACY POLICY', 'سياسة الخصوصية')}</Link>
+            <span>|</span>
+            <Link href="/trust" className="hover:text-[#141F33] transition-colors">{t('TRUST CENTER', 'مركز الثقة')}</Link>
+          </div>
+
+          <SocialLinks />
         </div>
       </div>
     </footer>

@@ -18,7 +18,7 @@ export default function TermsError({
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-white">S</div>
           <div className="ml-3">
             <p className="text-sm font-semibold tracking-[0.2em] text-primary">SAQYN RABT</p>
-            <p className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Private AI operations</p>
+            <p className="text-[10px] uppercase tracking-[0.35em] text-slate-500">Connecting teams, automating workflows</p>
           </div>
         </div>
       </header>

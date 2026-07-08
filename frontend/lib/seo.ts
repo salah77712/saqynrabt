@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 export const site = {
   name: 'SAQYN RABT',
   url: 'https://saqynrabt.com',
-  defaultTitle: 'SAQYN RABT | AI Operations for Modern Teams',
+  defaultTitle: 'SAQYN RABT | Intelligent Staff Hub & Queue Automation',
   defaultDescription:
     'Secure AI-powered automation for guest intake, staff knowledge, and business operations across Qatar and the Middle East.',
   defaultImage: '/og-image.png',
