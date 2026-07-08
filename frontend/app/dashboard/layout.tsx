@@ -54,7 +54,7 @@ export default function DashboardLayout({
     { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: '📞' },
     { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: '💬' },
     { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: '📄' },
-    { name: { en: 'Approvals', ar: 'الموافقات' }, path: '/dashboard/approvals', icon: '👥', badge: true },
+    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: '👥', badge: true },
     { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: '⚙️' },
   ];
 
