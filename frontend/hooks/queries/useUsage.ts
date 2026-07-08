@@ -11,6 +11,8 @@ export interface UsageData {
   questions_limit: number;
   employees_used: number;
   employees_limit: number;
+  documents_used: number;
+  documents_limit: number;
 }
 
 async function fetchUsage(): Promise<UsageData> {

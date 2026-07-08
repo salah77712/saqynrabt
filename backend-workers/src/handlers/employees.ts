@@ -127,12 +127,18 @@ export async function handleGetUsageStats(request: RequestWithContext): Promise<
       FROM usage_ledger WHERE company_id = ${company_id}
     `;
     const entitlements = await sql`
-      SELECT max_questions, automation_texts_limit, voice_minutes_limit, auto_overage_enabled
+      SELECT max_questions, automation_texts_limit, voice_minutes_limit, max_documents, max_employees, auto_overage_enabled
       FROM company_entitlements WHERE company_id = ${company_id}
     `;
+    const docCountRow = await sql`
+      SELECT COUNT(*)::integer AS count FROM documents WHERE company_id = ${company_id} AND status = 'active'
+    `;
+    const documents_used = docCountRow[0]?.count ?? 0;
+
     return new Response(JSON.stringify({
       usage: usage?.[0] || {},
       limits: entitlements?.[0] || {},
+      documents_used,
     }), { headers });
   } catch (err: any) {
     return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });

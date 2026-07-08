@@ -56,6 +56,18 @@ export async function handlePostOnboarding(request: RequestWithContext): Promise
       WHERE clerk_user_id = ${userId} AND company_id = ${company_id}
     `;
 
+    await sql`
+      INSERT INTO company_entitlements (company_id, max_employees, max_documents, max_questions, dept_limit, automation_texts_limit, voice_minutes_limit, auto_overage_enabled)
+      VALUES (${company_id}, 50, 1, 15, 3, 300, 5, FALSE)
+      ON CONFLICT (company_id) DO UPDATE SET max_documents = 1, max_questions = 15, voice_minutes_limit = 5
+    `;
+
+    await sql`
+      INSERT INTO usage_ledger (company_id, questions_used, questions_count, automation_texts_used, voice_minutes_used)
+      VALUES (${company_id}, 0, 0, 0, 0)
+      ON CONFLICT (company_id) DO NOTHING
+    `;
+
     await logAudit(request.env, company_id!, userId, 'complete_onboarding', { companyName, industry, size, setupPreference });
     return new Response(JSON.stringify({ success: true, company_id }), { headers });
   } catch (err: any) {
