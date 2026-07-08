@@ -34,16 +34,29 @@ export default function TeamDashboardPage() {
   const pending = data?.pending ?? [];
   const active = data?.active ?? [];
 
-  const handleAction = useCallback(async (id: string, action: 'approve' | 'suspend') => {
+  const handleAction = useCallback(async (id: string, action: 'approve' | 'suspend' | 'toggle-admin', currentRole?: string) => {
     try {
-      await fetch('/api/approvals', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id, action }),
-      });
+      if (action === 'toggle-admin') {
+        const newRole = currentRole === 'admin' ? 'employee' : 'admin';
+        const res = await fetch('/api/employees', {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ clerk_user_id: id, role: newRole }),
+        });
+        if (!res.ok) {
+          const data = await res.json();
+          alert(data.error || 'Failed to update employee role');
+        }
+      } else {
+        await fetch('/api/approvals', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ id, action }),
+        });
+      }
       refetch();
     } catch (err) {
-      console.error('Approval action failed:', err);
+      console.error('Action failed:', err);
     }
   }, [refetch]);
 
@@ -85,12 +98,24 @@ export default function TeamDashboardPage() {
             Approve
           </button>
         ) : (
-          <button
-            onClick={() => handleAction(m.id, 'suspend')}
-            className="flex-1 min-h-[44px] rounded-lg bg-red-50 border border-red-200 text-red-600 font-bold text-xs"
-          >
-            Suspend
-          </button>
+          <>
+            <button
+              onClick={() => handleAction(m.id, 'toggle-admin', m.role)}
+              className={`flex-1 min-h-[44px] rounded-lg border font-bold text-xs ${
+                m.role === 'admin' 
+                  ? 'bg-amber-50 border-amber-200 text-amber-700' 
+                  : 'bg-blue-50 border-blue-200 text-blue-700'
+              }`}
+            >
+              {m.role === 'admin' ? 'Demote' : 'Make Admin'}
+            </button>
+            <button
+              onClick={() => handleAction(m.id, 'suspend')}
+              className="flex-1 min-h-[44px] rounded-lg bg-red-50 border border-red-200 text-red-600 font-bold text-xs"
+            >
+              Suspend
+            </button>
+          </>
         )}
       </div>
     </div>

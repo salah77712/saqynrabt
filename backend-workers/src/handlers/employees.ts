@@ -56,6 +56,22 @@ export async function handlePatchEmployee(request: RequestWithContext): Promise<
     }
 
     const sql = neon(env.DATABASE_URL);
+    if (updates.role === 'admin') {
+      const currentEmpRow = await sql`
+        SELECT role FROM employees WHERE id = ${empId} AND company_id = ${company_id}
+      `;
+      const currentRole = currentEmpRow[0]?.role;
+      if (currentRole !== 'admin') {
+        const adminCountRow = await sql`
+          SELECT COUNT(*)::integer AS count FROM employees WHERE company_id = ${company_id} AND role = 'admin'
+        `;
+        const adminCount = adminCountRow[0]?.count ?? 0;
+        if (adminCount >= 2) {
+          return new Response(JSON.stringify({ error: 'A company can have at most 2 administrators.' }), { status: 400, headers });
+        }
+      }
+    }
+
     for (const [field, value] of Object.entries(updates)) {
       const safeField = field.replace(/[^a-z_]/g, '');
       await sql`

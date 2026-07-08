@@ -11,7 +11,7 @@ interface Employee {
 
 interface TeamTableProps {
   members: Employee[];
-  onAction?: (id: string, action: 'approve' | 'suspend') => void;
+  onAction?: (id: string, action: 'approve' | 'suspend' | 'toggle-admin', role?: string) => void;
 }
 
 export function TeamTable({ members, onAction }: TeamTableProps) {
@@ -40,21 +40,35 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
               </td>
               {onAction && (
                 <td className="p-4 text-right">
-                  {m.status === 'pending' ? (
-                    <button
-                      onClick={() => onAction(m.id, 'approve')}
-                      className="text-xs font-bold text-emerald-500 hover:text-emerald-700"
-                    >
-                      Approve
-                    </button>
-                  ) : (
-                    <button
-                      onClick={() => onAction(m.id, 'suspend')}
-                      className="text-xs font-bold text-red-500 hover:text-red-700"
-                    >
-                      Suspend
-                    </button>
-                  )}
+                  <div className="flex justify-end gap-3.5">
+                    {m.status === 'pending' ? (
+                      <button
+                        onClick={() => onAction(m.id, 'approve')}
+                        className="text-xs font-bold text-emerald-500 hover:text-emerald-700"
+                      >
+                        Approve
+                      </button>
+                    ) : (
+                      <>
+                        <button
+                          onClick={() => onAction(m.id, 'toggle-admin', m.role)}
+                          className={`text-xs font-bold ${
+                            m.role === 'admin' 
+                              ? 'text-amber-500 hover:text-amber-700' 
+                              : 'text-blue-600 hover:text-blue-800'
+                          }`}
+                        >
+                          {m.role === 'admin' ? 'Demote' : 'Make Admin'}
+                        </button>
+                        <button
+                          onClick={() => onAction(m.id, 'suspend')}
+                          className="text-xs font-bold text-red-500 hover:text-red-700"
+                        >
+                          Suspend
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </td>
               )}
             </tr>

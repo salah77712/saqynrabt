@@ -56,16 +56,18 @@ export default function SignUpPage() {
     setError('');
 
     try {
-      // Verify if this email address is actually invited
-      const inviteCheckRes = await fetch(`/api/check-invite?email=${encodeURIComponent(email)}`);
-      const inviteCheckData = await inviteCheckRes.json();
-      if (!inviteCheckRes.ok || !inviteCheckData.invited) {
-        setError(t({
-          en: 'This email address has not been invited. Only invited employees can register.',
-          ar: 'لم يتم دعوة هذا البريد الإلكتروني. يمكن للموظفين المدعوين فقط التسجيل.'
-        }));
-        setLoading(false);
-        return;
+      // Verify invitation if the URL contains an email parameter
+      if (emailParam) {
+        const inviteCheckRes = await fetch(`/api/check-invite?email=${encodeURIComponent(email)}`);
+        const inviteCheckData = await inviteCheckRes.json();
+        if (!inviteCheckRes.ok || !inviteCheckData.invited) {
+          setError(t({
+            en: 'This invitation is no longer valid or has expired.',
+            ar: 'هذه الدعوة لم تعد صالحة أو انتهت صلاحيتها.'
+          }));
+          setLoading(false);
+          return;
+        }
       }
 
       await signUp.create({
@@ -181,6 +183,39 @@ export default function SignUpPage() {
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6">
             ⚠️ {error}
+          </div>
+        )}
+
+        {/* Dynamic Role & Account Type Notices */}
+        {emailParam ? (
+          <div className="mb-6 p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100/80 text-indigo-900 flex items-start gap-3.5 shadow-sm">
+            <span className="text-xl select-none mt-0.5">🔒</span>
+            <div>
+              <h4 className="text-xs font-black tracking-wide uppercase text-indigo-700">
+                {t({ en: "Invited Workspace Account", ar: "حساب مساحة عمل مدعو" })}
+              </h4>
+              <p className="text-[11px] leading-relaxed font-semibold text-indigo-800/90 mt-1">
+                {t({
+                  en: "You are registering as an invited employee. Your email address is locked to the address invited by your administrator.",
+                  ar: "أنت تسجل كموظف مدعو. عنوان بريدك الإلكتروني مقفل على العنوان الذي دعاك إليه مسؤول النظام."
+                })}
+              </p>
+            </div>
+          </div>
+        ) : (
+          <div className="mb-6 p-4 rounded-2xl bg-emerald-50/50 border border-emerald-100/80 text-emerald-900 flex items-start gap-3.5 shadow-sm">
+            <span className="text-xl select-none mt-0.5">💼</span>
+            <div>
+              <h4 className="text-xs font-black tracking-wide uppercase text-emerald-700">
+                {t({ en: "New Business Workspace", ar: "مساحة عمل جديدة للشركة" })}
+              </h4>
+              <p className="text-[11px] leading-relaxed font-semibold text-emerald-800/90 mt-1">
+                {t({
+                  en: "Creating a new business workspace? The email you register with will automatically receive the Administrator role with full dashboard access.",
+                  ar: "هل تقوم بإنشاء مساحة عمل جديدة للشركة؟ سيتلقى البريد الإلكتروني الذي تسجل به تلقائياً دور المسؤول مع إمكانية الوصول الكامل للوحة التحكم."
+                })}
+              </p>
+            </div>
           </div>
         )}
 
