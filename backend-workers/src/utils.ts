@@ -98,8 +98,9 @@ export async function verifyJWT(authHeader: string | null, env: Env): Promise<JW
   }
   try {
     const payload = await verifyToken(token, { secretKey: env.CLERK_SECRET_KEY });
-    const company_id = (payload as any).company_id || (payload as any).org_id || 'dummy_company';
-    return { ...(payload as any), company_id };
+    const company_id = (payload as any).company_id || (payload as any).public_metadata?.company_id || (payload as any).org_id || 'dummy_company';
+    const role = (payload as any).role || (payload as any).public_metadata?.role || 'employee';
+    return { ...(payload as any), company_id, role };
   } catch { return null; }
 }
 

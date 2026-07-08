@@ -13,10 +13,21 @@ const navItems = [
   { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: '⚙️' },
 ];
 
-export function MobileBottomNav() {
+interface MobileBottomNavProps {
+  userRole?: string;
+}
+
+export function MobileBottomNav({ userRole = 'employee' }: MobileBottomNavProps) {
   const pathname = usePathname();
   const { locale } = useLocale();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+
+  const filteredNavItems = userRole === 'employee'
+    ? [
+        { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: '💬' },
+        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: '⚡' },
+      ]
+    : navItems;
 
   return (
     <nav
@@ -25,7 +36,7 @@ export function MobileBottomNav() {
       style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)', height: 'calc(64px + env(safe-area-inset-bottom, 0px))' }}
     >
       <div className="flex justify-around items-center h-16 px-2">
-        {navItems.map((item) => {
+        {filteredNavItems.map((item) => {
           const isActive = pathname === item.path || (item.path !== '/dashboard' && pathname.startsWith(item.path));
           return (
             <Link

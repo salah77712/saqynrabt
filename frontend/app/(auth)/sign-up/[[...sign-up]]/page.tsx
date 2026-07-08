@@ -2,17 +2,19 @@
 
 import React, { useState } from 'react';
 import { useSignUp } from '@clerk/nextjs';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useLocale } from '../../../providers';
 
 export default function SignUpPage() {
   const { isLoaded, signUp, setActive } = useSignUp();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const emailParam = searchParams.get('email') || '';
   const { locale } = useLocale();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(emailParam);
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agree, setAgree] = useState(false);
@@ -54,6 +56,18 @@ export default function SignUpPage() {
     setError('');
 
     try {
+      // Verify if this email address is actually invited
+      const inviteCheckRes = await fetch(`/api/check-invite?email=${encodeURIComponent(email)}`);
+      const inviteCheckData = await inviteCheckRes.json();
+      if (!inviteCheckRes.ok || !inviteCheckData.invited) {
+        setError(t({
+          en: 'This email address has not been invited. Only invited employees can register.',
+          ar: 'لم يتم دعوة هذا البريد الإلكتروني. يمكن للموظفين المدعوين فقط التسجيل.'
+        }));
+        setLoading(false);
+        return;
+      }
+
       await signUp.create({
         emailAddress: email,
         password,
@@ -179,7 +193,8 @@ export default function SignUpPage() {
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              disabled={!!emailParam}
+              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] disabled:opacity-70 disabled:cursor-not-allowed"
               required
             />
           </div>

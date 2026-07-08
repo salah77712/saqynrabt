@@ -30,6 +30,8 @@ export default function DashboardLayout({
   const [resending, setResending] = useState(false);
   const [resendStatus, setResendStatus] = useState('');
   const [pendingCount, setPendingCount] = useState(0);
+  const [userRole, setUserRole] = useState<string>('employee');
+  const [roleLoaded, setRoleLoaded] = useState(false);
 
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
@@ -58,10 +60,25 @@ export default function DashboardLayout({
     { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: '⚙️' },
   ];
 
+  const currentRole = mockMode ? 'admin' : userRole;
+
+  const filteredMenuItems = currentRole === 'employee'
+    ? [
+        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: '💬' },
+        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: '⚡' },
+      ]
+    : menuItems;
+
+  const isEmployeeAllowedPath = (path: string) => {
+    return path.startsWith('/dashboard/chat') || path.startsWith('/dashboard/workflows');
+  };
+
+  const hasAccess = currentRole !== 'employee' || isEmployeeAllowedPath(pathname);
+
   const currentTitle = pathname === '/dashboard'
     ? t(dashboardContent.overview)
-    : menuItems.find((item) => item.path !== '/dashboard' && pathname.startsWith(item.path))
-      ? t(menuItems.find((item) => item.path !== '/dashboard' && pathname.startsWith(item.path))!.name)
+    : filteredMenuItems.find((item) => item.path !== '/dashboard' && pathname.startsWith(item.path))
+      ? t(filteredMenuItems.find((item) => item.path !== '/dashboard' && pathname.startsWith(item.path))!.name)
       : t(dashboardContent.clientDashboard);
 
   const handleVerifyEmail = async (e: React.FormEvent) => {
@@ -169,18 +186,32 @@ export default function DashboardLayout({
   }
 
   useEffect(() => {
+    if (!user) return;
     fetch('/api/employees')
       .then(res => res.json())
       .then((data: any) => {
         const list = Array.isArray(data) ? data : data?.employees || [];
         const pending = list.filter((e: any) => e.status === 'pending').length;
         setPendingCount(pending);
+
+        const currentEmp = list.find((e: any) => e.clerk_user_id === user.id);
+        if (currentEmp) {
+          setUserRole(currentEmp.role || 'employee');
+        }
+        setRoleLoaded(true);
       })
       .catch(err => {
         console.warn('Failed to load pending count, using mock:', err);
         setPendingCount(2);
+        setRoleLoaded(true);
       });
-  }, []);
+  }, [user]);
+
+  useEffect(() => {
+    if (roleLoaded && currentRole === 'employee' && pathname === '/dashboard') {
+      router.push('/dashboard/chat');
+    }
+  }, [roleLoaded, currentRole, pathname, router]);
 
   const swipeHandlers = useSwipe({
     onSwipeLeft: () => {
@@ -229,7 +260,7 @@ export default function DashboardLayout({
             </div>
 
             <nav className="px-3 py-6 space-y-1.5 flex-1">
-              {menuItems.map((item) => {
+              {filteredMenuItems.map((item) => {
                 const isActive = pathname === item.path || (item.path !== '/dashboard' && pathname.startsWith(item.path));
                 return (
                   <Link
@@ -370,12 +401,22 @@ export default function DashboardLayout({
           <div className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-8"
             style={{ WebkitOverflowScrolling: 'touch' }}>
             <div className="max-w-7xl mx-auto w-full">
-              {children}
+              {!hasAccess ? (
+                <div className="py-12 flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
+                  <span className="text-4xl mb-4">⚠️</span>
+                  <h2 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h2>
+                  <p className="text-xs text-[#718096] font-semibold mt-1">
+                    {t({ en: 'You do not have permission to access this page.', ar: 'ليس لديك صلاحية للوصول إلى هذه الصفحة.' })}
+                  </p>
+                </div>
+              ) : (
+                children
+              )}
             </div>
           </div>
 
           <FeedbackWidget />
-          <MobileBottomNav />
+          <MobileBottomNav userRole={currentRole} />
         </main>
       </div>
     </div>

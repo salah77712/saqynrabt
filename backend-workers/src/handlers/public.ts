@@ -88,3 +88,23 @@ export async function handleAdminMigrate(request: RequestWithContext): Promise<R
     return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });
   }
 }
+
+export async function handleCheckInvite(request: RequestWithContext): Promise<Response> {
+  const headers = corsHeaders(request, request.env);
+  headers['Content-Type'] = 'application/json';
+  try {
+    const url = new URL(request.url);
+    const email = url.searchParams.get('email');
+    if (!email) {
+      return new Response(JSON.stringify({ invited: false, error: 'Email required' }), { status: 400, headers });
+    }
+    const sql = neon(request.env.DATABASE_URL);
+    const [member] = await sql`
+      SELECT id FROM company_members WHERE LOWER(email) = LOWER(${email}) AND status = 'pending'
+    `;
+    return new Response(JSON.stringify({ invited: !!member }), { headers });
+  } catch (err: any) {
+    console.error('Check invite failed:', err);
+    return new Response(JSON.stringify({ invited: false, error: 'Internal server error' }), { status: 500, headers });
+  }
+}

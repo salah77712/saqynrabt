@@ -101,7 +101,7 @@ export async function POST(req: NextRequest) {
                   <p><strong>${inviterName}</strong> has invited you to join the <strong>${companyName}</strong> workspace on SAQYN RABT as an <strong>employee</strong>.</p>
                   <p>To accept this invitation and register your account, please click the link below:</p>
                   <div style="margin: 24px 0;">
-                    <a href="https://saqynrabt.com/sign-up" style="background-color: #141F33; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
+                    <a href="https://saqynrabt.com/sign-up?email=${encodeURIComponent(email)}" style="background-color: #141F33; color: white; padding: 12px 24px; text-decoration: none; border-radius: 8px; font-weight: bold; display: inline-block;">
                       Accept Invitation & Sign Up
                     </a>
                   </div>

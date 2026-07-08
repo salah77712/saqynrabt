@@ -45,6 +45,30 @@ export async function handleClerkWebhook(request: RequestWithContext): Promise<R
       }
 
       if (company_id) {
+        // Sync company_id and role to Clerk public metadata if not already present
+        if (!data.public_metadata?.company_id) {
+          try {
+            const clerkRes = await fetch(`https://api.clerk.com/v1/users/${clerkUserId}/metadata`, {
+              method: 'POST',
+              headers: {
+                'Authorization': `Bearer ${env.CLERK_SECRET_KEY}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                public_metadata: {
+                  company_id: company_id,
+                  role: 'employee'
+                }
+              })
+            });
+            if (!clerkRes.ok) {
+              console.error('Failed to update Clerk user metadata:', await clerkRes.text());
+            }
+          } catch (clerkErr) {
+            console.error('Error updating Clerk user metadata:', clerkErr);
+          }
+        }
+
         // Check if already approved/active in company_members
         const [memStatus] = await sql`
           SELECT status FROM company_members WHERE LOWER(email) = LOWER(${email}) AND company_id = ${company_id}

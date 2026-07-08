@@ -1,7 +1,7 @@
 import { Router } from 'itty-router';
 import type { RequestWithContext, Env } from './utils';
 import { corsHeaders, verifyJWT } from './utils';
-import { handleWakeup, handleHealth, handleAdminMigrate } from './handlers/public';
+import { handleWakeup, handleHealth, handleAdminMigrate, handleCheckInvite } from './handlers/public';
 import { handleChat } from './handlers/chat';
 import { handleGetAutomations, handleCreateAutomation } from './handlers/automation';
 import { handleGetDocuments, handleUploadDocument, handleDeleteDocument, handleIngest } from './handlers/documents';
@@ -40,6 +40,7 @@ export function createRouter(env: Env) {
 
   router.get('/wakeup', handleWakeup);
   router.get('/health', handleHealth);
+  router.get('/public/check-invite', handleCheckInvite);
 
   router.post('/chat', handleChat);
 
