@@ -176,6 +176,7 @@ export function Footer() {
               'https://www.threads.com/@saqynrabt',
               'https://www.tiktok.com/@saqyn.rabt',
               'https://www.linkedin.com/company/saqynrabt/',
+              'https://youtube.com/@saqynrabt',
             ],
           }),
         }}
