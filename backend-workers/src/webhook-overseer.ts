@@ -5,7 +5,8 @@ export async function dispatchWebhookWithRetry(
   url: string,
   event: string,
   payload: any,
-  maxAttempts = 5
+  maxAttempts = 5,
+  signingSecret = ''
 ): Promise<boolean> {
   let attempt = 1;
   let delay = 1000; // start with 1 second delay
@@ -13,18 +14,22 @@ export async function dispatchWebhookWithRetry(
   while (attempt <= maxAttempts) {
     try {
       console.log(`[Webhook Overseer] Sending ${event} to ${url}. Attempt ${attempt}/${maxAttempts}`);
+      const encoder = new TextEncoder();
+      const payloadStr = JSON.stringify({ event, payload, timestamp: new Date().toISOString(), attempt });
+      let signature = '';
+      if (signingSecret) {
+        const key = await crypto.subtle.importKey('raw', encoder.encode(signingSecret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
+        const sigBuffer = await crypto.subtle.sign('HMAC', key, encoder.encode(payloadStr));
+        const sigArray = Array.from(new Uint8Array(sigBuffer));
+        signature = sigArray.map(b => b.toString(16).padStart(2, '0')).join('');
+      }
       const res = await fetch(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-Saqyn-Signature': `sha256=${Math.random().toString(36).substring(2, 18)}`
+          'X-Saqyn-Signature': signature ? `sha256=${signature}` : '',
         },
-        body: JSON.stringify({
-          event,
-          payload,
-          timestamp: new Date().toISOString(),
-          attempt
-        })
+        body: payloadStr,
       });
 
       if (res.status >= 200 && res.status < 300) {

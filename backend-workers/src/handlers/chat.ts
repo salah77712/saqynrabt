@@ -1,6 +1,7 @@
 import { neon } from '@neondatabase/serverless';
 import type { RequestWithContext, Env } from '../utils';
 import { corsHeaders, initRedis, checkRateLimit, checkUsageLimit, logAudit, generateEmbedding, chunkText } from '../utils';
+import { runInputGuardrails } from '../guardrails';
 
 export async function handleChat(request: RequestWithContext): Promise<Response> {
   const headers = corsHeaders(request, request.env);
@@ -39,10 +40,23 @@ export async function handleChat(request: RequestWithContext): Promise<Response>
       return new Response(JSON.stringify({ error: 'Message is required' }), { status: 400, headers });
     }
 
+    // Run security guardrails
+    const guardrailConfig = {
+      pii_redaction_enabled: true,
+      jailbreak_detection_enabled: true,
+      toxicity_filter_enabled: true,
+    };
+    const guardrailResult = await runInputGuardrails(message, guardrailConfig);
+    if (!guardrailResult.passed) {
+      await logAudit(env, company_id!, userId, 'guardrail_blocked', { reason: guardrailResult.reason, message_length: message.length }, ip, ua);
+      return new Response(JSON.stringify({ error: 'Message blocked by security filters.', reason: guardrailResult.reason }), { status: 403, headers });
+    }
+    const safeMessage = guardrailResult.cleanQuery;
+
     let retrievedContext = '';
     if (env.OPENAI_API_KEY) {
       try {
-        const queryEmb = await generateEmbedding(message, env.OPENAI_API_KEY);
+        const queryEmb = await generateEmbedding(safeMessage, env.OPENAI_API_KEY);
         const pineconeHost = env.PINECONE_INDEX_HOST || 'saqyn-index';
         const pineconeRes = await fetch(`https://${pineconeHost}/query`, {
           method: 'POST',
@@ -68,15 +82,15 @@ export async function handleChat(request: RequestWithContext): Promise<Response>
         model: 'gpt-4o-mini',
         messages: [
           { role: 'system', content: systemPrompt },
-          { role: 'user', content: `${ragContext}User question: ${message}` }
+          { role: 'user', content: `${ragContext}User question: ${safeMessage}` }
         ],
         max_tokens: 500,
       }),
     });
     const aiData: any = await aiRes.json();
-    aiResponse = aiData.choices?.[0]?.message?.content || `Echo: "${message}" (AI service responded)`;
+    aiResponse = aiData.choices?.[0]?.message?.content || `Echo: "${safeMessage}" (AI service responded)`;
 
-    await logAudit(env, company_id!, userId, 'chat_message', { message_length: message.length, response_length: aiResponse.length }, ip, ua);
+    await logAudit(env, company_id!, userId, 'chat_message', { message_length: safeMessage.length, response_length: aiResponse.length }, ip, ua);
     request.ctx?.waitUntil(
       sql`UPDATE usage_ledger SET questions_used = questions_used + 1, questions_count = questions_count + 1 WHERE company_id = ${company_id}`
     );

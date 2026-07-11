@@ -93,6 +93,7 @@ export async function verifyJWT(authHeader: string | null, env: Env): Promise<JW
   const token = authHeader.split(' ')[1];
   if (token.startsWith('mock-token-')) {
     if (env.NODE_ENV === 'production' || env.ALLOW_MOCK_TOKENS !== 'true') return null;
+    console.warn('[WARN] ALLOW_MOCK_TOKENS is enabled! Auth bypass is active. This should never be set in production.');
     const parts = token.split('-');
     return { company_id: parts[2] || 'dummy_company', sub: parts[3] || 'user_admin12345demo', email: 'demo@saqynrabt.com', role: parts[4] || 'admin' };
   }

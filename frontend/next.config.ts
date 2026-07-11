@@ -3,7 +3,7 @@ import { withSentryConfig } from "@sentry/nextjs";
 
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://clerk.saqynrabt.com https://challenges.cloudflare.com https://static.cloudflareinsights.com",
+  "script-src 'self' 'unsafe-inline' https://clerk.saqynrabt.com https://challenges.cloudflare.com https://static.cloudflareinsights.com",
   "worker-src 'self' blob:",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https://img.clerk.com",
