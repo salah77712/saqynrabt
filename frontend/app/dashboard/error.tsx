@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { WarningIcon } from '../../components/ui/Icons';
 
 export default function DashboardError({
   error,
@@ -17,7 +18,7 @@ export default function DashboardError({
     <div className="flex items-center justify-center py-20">
       <div className="text-center max-w-md">
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50">
-          <span className="text-3xl">⚠️</span>
+          <WarningIcon className="w-6 h-6 text-red-500" />
         </div>
         <h2 className="text-2xl font-bold text-primary mb-3">Dashboard error</h2>
         <p className="text-slate-500 mb-8 leading-relaxed">

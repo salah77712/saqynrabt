@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useLocale } from '../../providers';
 import { Footer } from '../../../components/Footer';
 import { MarketingHeader } from '../../../components/MarketingHeader';
+import { PhoneIcon, ChatIcon, AmbulanceIcon, ClipboardIcon, BarChartIcon, GlobeIcon, CheckIcon } from '../../../components/ui/Icons';
+import * as React from 'react';
 
 const automationTiers = [
   {
@@ -45,22 +47,31 @@ const automationTiers = [
   },
 ];
 
+const useCaseIcons: Record<string, React.ReactNode> = {
+  phone: <PhoneIcon className="w-5 h-5 text-slate-600" />,
+  chat: <ChatIcon className="w-5 h-5 text-slate-600" />,
+  alert: <AmbulanceIcon className="w-5 h-5 text-slate-600" />,
+  clipboard: <ClipboardIcon className="w-5 h-5 text-slate-600" />,
+  chart: <BarChartIcon className="w-5 h-5 text-slate-600" />,
+  globe: <GlobeIcon className="w-5 h-5 text-slate-600" />,
+};
+
 const useCases = {
   en: [
-    { icon: '📞', title: 'Call Answering 24/7', desc: 'AI answers every incoming call, even at 3 AM, with natural voice.' },
-    { icon: '💬', title: 'WhatsApp & SMS Parsing', desc: 'Automatically reads and categorises inbound messages from any channel.' },
-    { icon: '🚨', title: 'Complaint Routing', desc: 'Flags urgent issues and routes them to the correct manager instantly.' },
-    { icon: '📋', title: 'Booking Capture', desc: 'Captures reservations, orders, and appointments without human input.' },
-    { icon: '📊', title: 'Live Transcripts', desc: 'Every call logged in real-time on your dashboard for full audit trail.' },
-    { icon: '🌐', title: 'Multi-Language Support', desc: 'Handles Arabic and English simultaneously across all channels.' },
+    { icon: 'phone', title: 'Call Answering 24/7', desc: 'AI answers every incoming call, even at 3 AM, with natural voice.' },
+    { icon: 'chat', title: 'WhatsApp & SMS Parsing', desc: 'Automatically reads and categorises inbound messages from any channel.' },
+    { icon: 'alert', title: 'Complaint Routing', desc: 'Flags urgent issues and routes them to the correct manager instantly.' },
+    { icon: 'clipboard', title: 'Booking Capture', desc: 'Captures reservations, orders, and appointments without human input.' },
+    { icon: 'chart', title: 'Live Transcripts', desc: 'Every call logged in real-time on your dashboard for full audit trail.' },
+    { icon: 'globe', title: 'Multi-Language Support', desc: 'Handles Arabic and English simultaneously across all channels.' },
   ],
   ar: [
-    { icon: '📞', title: 'الرد على المكالمات 24/7', desc: 'يجيب الذكاء الاصطناعي على كل مكالمة واردة، حتى في الساعة 3 صباحاً، بصوت طبيعي.' },
-    { icon: '💬', title: 'تحليل واتساب والرسائل النصية', desc: 'يقرأ ويصنف الرسائل الواردة تلقائياً من أي قناة.' },
-    { icon: '🚨', title: 'توجيه الشكاوى', desc: 'يحدد المشكلات العاجلة ويوجهها إلى المدير المناسب فوراً.' },
-    { icon: '📋', title: 'التقاط الحجوزات', desc: 'يلتقط الحجوزات والطلبات والمواعيد دون تدخل بشري.' },
-    { icon: '📊', title: 'النصوص الحية', desc: 'يتم تسجيل كل مكالمة في الوقت الفعلي على لوحة التحكم لسجل تدقيق كامل.' },
-    { icon: '🌐', title: 'دعم متعدد اللغات', desc: 'يتعامل مع العربية والإنجليزية في وقت واحد عبر جميع القنوات.' },
+    { icon: 'phone', title: 'الرد على المكالمات 24/7', desc: 'يجيب الذكاء الاصطناعي على كل مكالمة واردة، حتى في الساعة 3 صباحاً، بصوت طبيعي.' },
+    { icon: 'chat', title: 'تحليل واتساب والرسائل النصية', desc: 'يقرأ ويصنف الرسائل الواردة تلقائياً من أي قناة.' },
+    { icon: 'alert', title: 'توجيه الشكاوى', desc: 'يحدد المشكلات العاجلة ويوجهها إلى المدير المناسب فوراً.' },
+    { icon: 'clipboard', title: 'التقاط الحجوزات', desc: 'يلتقط الحجوزات والطلبات والمواعيد دون تدخل بشري.' },
+    { icon: 'chart', title: 'النصوص الحية', desc: 'يتم تسجيل كل مكالمة في الوقت الفعلي على لوحة التحكم لسجل تدقيق كامل.' },
+    { icon: 'globe', title: 'دعم متعدد اللغات', desc: 'يتعامل مع العربية والإنجليزية في وقت واحد عبر جميع القنوات.' },
   ],
 };
 
@@ -207,7 +218,7 @@ export default function AutomationPage() {
                     className="flex items-start gap-4 bg-white border border-gray-100 rounded-xl p-5 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
-                    <span className="text-2xl mt-0.5 shrink-0">{uc.icon}</span>
+                    <span className="text-2xl mt-0.5 shrink-0">{useCaseIcons[uc.icon] || <PhoneIcon className="w-5 h-5 text-slate-600" />}</span>
                     <div>
                       <p className="font-extrabold text-slate-800 text-sm">{uc.title}</p>
                       <p className="text-[#718096] text-xs mt-0.5 leading-relaxed">{uc.desc}</p>
@@ -283,7 +294,7 @@ export default function AutomationPage() {
                 <ul className="flex flex-col gap-2 mb-6 flex-1">
                   {tier.features.map((f, idx) => (
                     <li key={idx} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
-                      <span className="text-[#10B981] font-bold text-base leading-none">✓</span>
+                      <span className="text-[#10B981]"><CheckIcon className="w-4 h-4 text-emerald-500" /></span>
                       {f}
                     </li>
                   ))}

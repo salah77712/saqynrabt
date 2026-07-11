@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { useLocale } from '../../app/providers';
 import { LanguageSwitcher } from '../LanguageSwitcher';
+import { XIcon } from '../ui/Icons';
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -31,7 +32,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
             className="text-slate-500 hover:text-slate-800 dark:hover:text-white text-lg font-bold p-1"
             aria-label="Close menu"
           >
-            ✕
+            <XIcon className="w-4 h-4" />
           </button>
         </div>
 

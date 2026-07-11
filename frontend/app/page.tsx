@@ -6,6 +6,7 @@ import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import Link from 'next/link';
+import { SparklesIcon, BoltIcon, PhoneIcon, ChatIcon, MailIcon, CheckIcon } from '../components/ui/Icons';
 
 const industries = [
   { id: 'default', label: 'Every Business', headline: 'Empower Every Team Member. Automate Every Guest Request.', copy: 'The secure 24/7 AI front-desk and private staff knowledge hub for any industry. No missed calls. No repetitive questions.' },
@@ -150,7 +151,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                🤖 {t({ en: 'Automation', ar: 'الأتمتة' })}
+                <SparklesIcon className="w-4 h-4" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
               </button>
               <button
                 type="button"
@@ -161,7 +162,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                🧠 {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
+                <BoltIcon className="w-4 h-4" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
               </button>
             </div>
 
@@ -222,7 +223,7 @@ export default function MarketingPage() {
                       <div key={i} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-xl">
                         <div className="flex items-center gap-2 min-w-0">
                           <div className="w-7 h-7 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
-                            {['📞', '💬', '✉️'][i]}
+                            {i === 0 ? <PhoneIcon className="w-3.5 h-3.5" /> : i === 1 ? <ChatIcon className="w-3.5 h-3.5" /> : <MailIcon className="w-3.5 h-3.5" />}
                           </div>
                           <p className="text-xs font-semibold text-slate-700 truncate">{item.label}</p>
                         </div>
@@ -411,7 +412,7 @@ export default function MarketingPage() {
               
               <div className="border-b-2 border-[#2A5CFF]/30 pb-4 mb-2">
                 <h3 className="text-lg font-extrabold text-[#141F33] tracking-wider uppercase flex items-center gap-3">
-                  <span>🤖</span> {t({ en: 'BUSINESS AUTOMATION', ar: 'أتمتة الأعمال' })}
+                  <SparklesIcon className="w-5 h-5" /> {t({ en: 'BUSINESS AUTOMATION', ar: 'أتمتة الأعمال' })}
                 </h3>
                 <p className="text-xs text-[#718096] font-medium mt-1">
                   {t({ en: 'Handle incoming calls, bookings & guest complaints 24/7.', ar: 'إدارة المكالمات الواردة، الحجوزات وشكاوى النزلاء على مدار الساعة.' })}
@@ -450,7 +451,7 @@ export default function MarketingPage() {
                     <ul className="mt-6 flex flex-col gap-2.5 border-t border-gray-100 pt-6">
                       {tier.features.map((feature, idx) => (
                         <li key={idx} className="flex items-center gap-2.5 text-xs font-semibold text-slate-600">
-                          <span className="text-[#10B981] font-bold shrink-0">✓</span> {feature}
+                          <CheckIcon className="w-3.5 h-3.5 text-emerald-500 shrink-0" /> {feature}
                         </li>
                       ))}
                     </ul>
@@ -473,7 +474,7 @@ export default function MarketingPage() {
 
               <div className="border-b-2 border-[#10B981]/30 pb-4 mb-2">
                 <h3 className="text-lg font-extrabold text-[#141F33] tracking-wider uppercase flex items-center gap-3">
-                  <span>🧠</span> {t({ en: 'INTERNAL CHATBOT', ar: 'المساعد الذكي الداخلي' })}
+                  <BoltIcon className="w-5 h-5" /> {t({ en: 'INTERNAL CHATBOT', ar: 'المساعد الذكي الداخلي' })}
                 </h3>
                 <p className="text-xs text-[#718096] font-medium mt-1">
                   {t({ en: 'Private RAG-powered assistant for HR, manuals, policies & SOPs.', ar: 'مساعد RAG خاص وموثوق لأدلة الموارد البشرية والسياسات وإجراءات التشغيل.' })}
@@ -518,7 +519,7 @@ export default function MarketingPage() {
                     <ul className="mt-6 flex flex-col gap-2.5 border-t border-gray-100 pt-6">
                       {(chatbotFeatures[tier.id] || []).map((feature, idx) => (
                         <li key={idx} className="flex items-center gap-2.5 text-xs font-semibold text-slate-600">
-                          <span className="text-[#10B981] font-bold shrink-0">✓</span> {feature}
+                          <CheckIcon className="w-3.5 h-3.5 text-emerald-500 shrink-0" /> {feature}
                         </li>
                       ))}
                     </ul>

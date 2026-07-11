@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../providers';
 import Link from 'next/link';
+import { DocumentIcon } from '../../../components/ui/Icons';
 
 export default function OnboardingWizardPage() {
   const { locale } = useLocale();
@@ -205,7 +206,7 @@ export default function OnboardingWizardPage() {
                       className="h-4 w-4 text-[#141F33] focus:ring-[#141F33]"
                     />
                     <div>
-                      <p className="text-xs font-bold text-[#141F33]">🤖 {t({ en: 'Set up Business Automation', ar: 'تهيئة أتمتة الأعمال' })}</p>
+                      <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Set up Business Automation', ar: 'تهيئة أتمتة الأعمال' })}</p>
                       <p className="text-[10px] text-[#718096] font-medium mt-0.5">{t({ en: 'Automate guest phone bookings & complaints.', ar: 'أتمتة حجوزات الهاتف وشكاوى الضيوف.' })}</p>
                     </div>
                   </label>
@@ -220,7 +221,7 @@ export default function OnboardingWizardPage() {
                       className="h-4 w-4 text-[#141F33] focus:ring-[#141F33]"
                     />
                     <div>
-                      <p className="text-xs font-bold text-[#141F33]">🧠 {t({ en: 'Set up Staff Knowledge Chatbot', ar: 'تهيئة مساعد معرفة الموظفين' })}</p>
+                      <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Set up Staff Knowledge Chatbot', ar: 'تهيئة مساعد معرفة الموظفين' })}</p>
                       <p className="text-[10px] text-[#718096] font-medium mt-0.5">{t({ en: 'Train AI on internal policies and handbook.', ar: 'تدريب الذكاء الاصطناعي على السياسات والكتيب الداخلي.' })}</p>
                     </div>
                   </label>
@@ -235,7 +236,7 @@ export default function OnboardingWizardPage() {
                       className="h-4 w-4 text-[#141F33] focus:ring-[#141F33]"
                     />
                     <div>
-                      <p className="text-xs font-bold text-[#141F33]">⚡ {t({ en: 'Set up Both Products', ar: 'تهيئة كلا المنتجين' })}</p>
+                      <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Set up Both Products', ar: 'تهيئة كلا المنتجين' })}</p>
                       <p className="text-[10px] text-[#718096] font-medium mt-0.5">{t({ en: 'Unify internal knowledge and front-desk call automation.', ar: 'توحيد المعرفة الداخلية وأتمتة مكالمات الاستقبال.' })}</p>
                     </div>
                   </label>
@@ -281,7 +282,7 @@ export default function OnboardingWizardPage() {
                 </p>
 
                 <div className="border-2 border-dashed border-gray-200 rounded-xl p-8 bg-slate-50 flex flex-col items-center justify-center text-center">
-                  <span className="text-3xl mb-2">📄</span>
+                  <DocumentIcon className="w-8 h-8 text-primary mb-2" />
                   <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Drop policy PDF here to start', ar: 'اسقط ملف PDF للسياسة هنا للبدء' })}</p>
                   <span className="text-[10px] text-[#718096] font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'أو اضغط أدناه للتصفح (اختياري)' })}</span>
                 </div>

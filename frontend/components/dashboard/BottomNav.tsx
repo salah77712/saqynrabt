@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '../../app/providers';
+import { HomeIcon, PhoneIcon, ChatIcon, TeamIcon, SettingsIcon } from '../ui/Icons';
 
 export function BottomNav() {
   const pathname = usePathname();
@@ -11,11 +12,11 @@ export function BottomNav() {
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
 
   const navItems = [
-    { name: { en: 'Overview', ar: 'نظرة عامة' }, path: '/dashboard', icon: '🏠' },
-    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: '📞' },
-    { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: '💬' },
-    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: '👥' },
-    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: '⚙️' },
+    { name: { en: 'Overview', ar: 'نظرة عامة' }, path: '/dashboard', icon: <HomeIcon className="w-5 h-5" /> },
+    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <PhoneIcon className="w-5 h-5" /> },
+    { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
+    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <TeamIcon className="w-5 h-5" /> },
+    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <SettingsIcon className="w-5 h-5" /> },
   ];
 
   return (
@@ -30,7 +31,7 @@ export function BottomNav() {
               isActive ? 'text-royal' : 'text-slate-400'
             }`}
           >
-            <span className="text-xl mb-1">{item.icon}</span>
+            {item.icon}
             <span className="text-[9px] font-bold uppercase tracking-wider">
               {t(item.name.en, item.name.ar)}
             </span>

@@ -43,17 +43,17 @@ export default function DevelopersLandingPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 border-t border-gray-200 text-start">
           <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <h3 className="text-sm font-extrabold text-[#141F33]">📦 JavaScript SDK</h3>
+            <h3 className="text-sm font-extrabold text-[#141F33]">JavaScript SDK</h3>
             <p className="text-xs text-[#718096] font-semibold mt-2">Install our lightweight npm package to run chat streams and log telemetry audits directly.</p>
           </div>
 
           <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <h3 className="text-sm font-extrabold text-[#141F33]">🐍 Python Library</h3>
+            <h3 className="text-sm font-extrabold text-[#141F33]">Python Library</h3>
             <p className="text-xs text-[#718096] font-semibold mt-2">Fetch company request queues and automate data ingestion processes using our PyPI helper client.</p>
           </div>
 
           <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <h3 className="text-sm font-extrabold text-[#141F33]">🔗 Outbound Webhooks</h3>
+            <h3 className="text-sm font-extrabold text-[#141F33]">Outbound Webhooks</h3>
             <p className="text-xs text-[#718096] font-semibold mt-2">Subscribe to real-time webhook dispatches to notify your Slack or customized backend servers on events.</p>
           </div>
         </div>

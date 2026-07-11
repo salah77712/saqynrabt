@@ -1,6 +1,7 @@
 'use client';
 
 import * as React from 'react';
+import { XIcon } from './Icons';
 
 export interface ToastProps {
   message: string;
@@ -34,7 +35,7 @@ export function Toast({ message, type = 'success', onClose }: ToastProps) {
           className="text-white opacity-80 hover:opacity-100 font-bold text-xs"
           aria-label="Dismiss toast"
         >
-          ✕
+          <XIcon className="w-4 h-4" />
         </button>
       )}
     </div>

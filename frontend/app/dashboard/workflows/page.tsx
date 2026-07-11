@@ -5,6 +5,7 @@ import { useLocale } from '../../providers';
 import { Card } from '../../../components/ui/Card';
 import { Button } from '../../../components/ui/Button';
 import { Badge } from '../../../components/ui/Badge';
+import { ArrowRightIcon } from '../../../components/ui/Icons';
 
 interface WorkflowNode {
   id: string;
@@ -60,7 +61,7 @@ export default function WorkflowsPage() {
               <p className="text-[10px] text-slate-500 mt-1">{node.desc}</p>
             </Card>
             {index < nodes.length - 1 && (
-              <span className="text-2xl text-slate-400 rotate-90 md:rotate-0">➡️</span>
+              <ArrowRightIcon className="w-6 h-6 text-slate-400 rotate-90 md:rotate-0" />
             )}
           </React.Fragment>
         ))}

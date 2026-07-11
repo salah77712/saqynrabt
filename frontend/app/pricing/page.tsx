@@ -5,6 +5,7 @@ import { useLocale } from '../providers';
 import { MarketingHeader } from '../../components/MarketingHeader';
 import { Footer } from '../../components/Footer';
 import { PricingCards } from '../../components/PricingCards';
+import { CheckIcon, PhoneIcon, ArrowRightIcon } from '../../components/ui/Icons';
 import { PRICING_TIERS } from '../../lib/pricing-config';
 
 export default function PricingPage() {
@@ -32,14 +33,14 @@ export default function PricingPage() {
 
       <div className="bg-emerald-50 border-y border-emerald-200 py-4 px-6 text-center">
         <p className="text-emerald-700 font-semibold text-sm">
-          {t({ en: '✅ No surprise bills. Fixed monthly price. Overages only if you enable them.', ar: '✅ لا فواتير مفاجئة. سعر شهري ثابت. الاستخدام الزائد فقط إذا فعّلته.' })}
+          <span><CheckIcon className="w-4 h-4 text-emerald-600 inline" /> {t({ en: 'No surprise bills. Fixed monthly price. Overages only if you enable them.', ar: 'لا فواتير مفاجئة. سعر شهري ثابت. الاستخدام الزائد فقط إذا فعّلته.' })}</span>
         </p>
       </div>
 
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-6">
           <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-blue-600">
-            <span className="text-2xl">📞</span>
+            <PhoneIcon className="w-6 h-6 text-slate-600" />
             <div>
               <h2 className="text-xl font-extrabold text-primary">
                 {t({ en: 'Platform Pricing', ar: 'أسعار المنصة' })}
@@ -49,7 +50,7 @@ export default function PricingPage() {
               </p>
             </div>
             <Link href="/features" className="ml-auto text-xs text-blue-600 font-semibold hover:underline whitespace-nowrap">
-              {t({ en: 'View features →', ar: 'عرض الميزات ←' })}
+              {t({ en: 'View features', ar: 'عرض الميزات' })} <ArrowRightIcon className="w-3.5 h-3.5 inline" />
             </Link>
           </div>
           <PricingCards tiers={PRICING_TIERS} />

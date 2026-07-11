@@ -3,6 +3,7 @@
 import * as Sentry from '@sentry/nextjs';
 import NextError from 'next/error';
 import { useEffect } from 'react';
+import { WarningIcon } from '../components/ui/Icons';
 
 export default function GlobalError({
   error,
@@ -36,7 +37,7 @@ export default function GlobalError({
             textAlign: 'center',
             boxShadow: '0 4px 24px rgba(0,0,0,0.08)',
           }}>
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>⚠️</div>
+            <div style={{ fontSize: '48px', marginBottom: '16px' }}><WarningIcon className="w-6 h-6 text-red-500" /></div>
             <h1 style={{
               fontSize: '24px',
               fontWeight: 800,

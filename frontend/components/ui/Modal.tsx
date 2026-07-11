@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { createPortal } from 'react-dom';
+import { XIcon } from './Icons';
 
 export interface ModalProps {
   isOpen: boolean;
@@ -46,7 +47,7 @@ export function Modal({ isOpen, onClose, title, children }: ModalProps) {
             className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 transition-colors text-lg"
             aria-label="Close modal"
           >
-            ✕
+            <XIcon className="w-4 h-4" />
           </button>
         </div>
         <div className="text-sm text-slate-600 dark:text-slate-300">{children}</div>

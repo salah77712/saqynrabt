@@ -31,7 +31,9 @@ export default function HealthPage() {
             <div key={key} className="flex justify-between border-b p-2">
               <span className="font-mono text-lg">{key.toUpperCase()}</span>
               <span className={`px-3 py-1 rounded-full text-sm ${val === 'online' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
-                {val === 'online' ? `🟢 ${t({en: 'Live', ar: 'نشط'})}` : `🔴 ${t({en: 'Offline', ar: 'غير متصل'})}`}
+                {val === 'online'
+                  ? <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-emerald-500" />{t({en: 'Live', ar: 'نشط'})}</span>
+                  : <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500" />{t({en: 'Offline', ar: 'غير متصل'})}</span>}
               </span>
             </div>
           ))}

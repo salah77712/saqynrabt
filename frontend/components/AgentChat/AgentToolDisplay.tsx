@@ -28,7 +28,7 @@ export function AgentToolDisplay({ steps }: AgentToolDisplayProps) {
           <div key={idx} className="text-xs space-y-1.5 border-l border-slate-200 pl-4 relative">
             {/* Thought Node */}
             <div className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-slate-300" />
-            <p className="font-semibold text-slate-700">💭 {step.thought}</p>
+            <p className="font-semibold text-slate-700">{step.thought}</p>
             
             {/* Tool Action Details */}
             {step.tool && (

@@ -121,7 +121,7 @@ export default function SignInPage() {
 
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6">
-            ⚠️ {error}
+            {error}
           </div>
         )}
 

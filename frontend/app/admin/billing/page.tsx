@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../../providers';
+import { CheckIcon } from '../../../components/ui/Icons';
 
 interface InvoiceItem {
   id: string;
@@ -84,7 +85,7 @@ export default function AdminBillingPage() {
                         {t({ en: 'Mark as Paid', ar: 'تحديد كمدفوع' })}
                       </button>
                     ) : (
-                      <span className="text-[10px] text-slate-400 font-bold">✓</span>
+                      <CheckIcon className="w-3 h-3 text-slate-400" />
                     )}
                   </td>
                 </tr>

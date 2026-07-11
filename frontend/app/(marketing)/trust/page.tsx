@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
+import { CheckIcon, ArrowRightIcon } from '../../../components/ui/Icons';
 
 interface Badge {
   label: string;
@@ -153,7 +154,7 @@ export default function TrustPage() {
                                 : 'bg-amber-50 text-amber-700'
                             }`}
                           >
-                            {b.status === 'in-progress' ? '⟳ ' : '✓ '}
+                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-amber-600 border-t-transparent rounded-full animate-spin mr-1" /> : <CheckIcon className="w-2.5 h-2.5 text-green-700 inline mr-0.5" />}
                             {b.label}
                           </span>
                         ))}
@@ -171,7 +172,7 @@ export default function TrustPage() {
                       href={card.href!}
                       className="inline-flex items-center text-xs font-bold text-[#2A5CFF] hover:text-[#141F33] transition-colors"
                     >
-                      Read Full {card.title} →
+                      Read Full {card.title} <ArrowRightIcon className="w-3 h-3 inline" />
                     </Link>
                   )}
                 </div>

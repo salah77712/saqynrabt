@@ -18,7 +18,7 @@ export const industryList: IndustryCopy[] = [
   },
   {
     id: 'healthcare',
-    label: '🏥 Healthcare',
+    label: 'Healthcare',
     headline: 'Empower Your Medical Team. Automate Patient Intake.',
     headlineAr: 'تمكين فريقك الطبي. أتمتة استقبال المرضى.',
     copy: 'Reduce front-desk workload by automating patient bookings and triage inquiries.',
@@ -26,7 +26,7 @@ export const industryList: IndustryCopy[] = [
   },
   {
     id: 'law',
-    label: '⚖️ Law Firms',
+    label: 'Law Firms',
     headline: 'Empower Your Legal Team. Automate Client Intake.',
     headlineAr: 'تمكين فريقك القانوني. أتمتة استقبال العملاء.',
     copy: 'Respond to standard retainer inquiries and case status updates instantly.',
@@ -34,7 +34,7 @@ export const industryList: IndustryCopy[] = [
   },
   {
     id: 'hospitality',
-    label: '🏨 Hospitality',
+    label: 'Hospitality',
     headline: 'Empower Your Hospitality Staff. Coordinate Guest Services.',
     headlineAr: 'تمكين موظفي الضيافة. تنسيق خدمات النزلاء.',
     copy: 'Manage room requests, check-in rules, and booking questions with no delays.',
@@ -42,7 +42,7 @@ export const industryList: IndustryCopy[] = [
   },
   {
     id: 'retail',
-    label: '🛍️ Retail Stores',
+    label: 'Retail Stores',
     headline: 'Empower Your Retail Staff. Automate Customer Orders.',
     headlineAr: 'تمكين موظفي التجزئة. أتمتة طلبات العملاء.',
     copy: 'Handle product stock checks and shipping updates without picking up a phone.',

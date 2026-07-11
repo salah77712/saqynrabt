@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { UserButton, useUser } from '@clerk/nextjs';
 import { useLocale } from '../providers';
+import { ForbiddenIcon, BuildingIcon, BarChartIcon, DollarIcon, ShieldIcon, MenuIcon } from '../../components/ui/Icons';
 
 export default function AdminLayout({
   children,
@@ -34,7 +35,7 @@ export default function AdminLayout({
   if (!isAdmin) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F9FB] px-6 text-center">
-        <span className="text-5xl mb-4">🚫</span>
+        <ForbiddenIcon className="w-10 h-10 text-red-400 mb-4" />
         <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h1>
         <p className="text-xs font-semibold text-[#718096] max-w-sm mt-3 leading-relaxed">
           {t({
@@ -61,10 +62,10 @@ export default function AdminLayout({
   }
 
   const menuItems = [
-    { name: { en: 'Companies', ar: 'الشركات' }, path: '/admin/companies', icon: '🏢' },
-    { name: { en: 'Usage Analytics', ar: 'تحليلات الاستخدام' }, path: '/admin/usage', icon: '📈' },
-    { name: { en: 'Billing & Invoices', ar: 'الفوترة والفواتير' }, path: '/admin/billing', icon: '💵' },
-    { name: { en: 'Audit Security Logs', ar: 'سجلات التدقيق الأمني' }, path: '/admin/audit', icon: '🛡️' },
+    { name: { en: 'Companies', ar: 'الشركات' }, path: '/admin/companies', icon: <BuildingIcon className="w-5 h-5" /> },
+    { name: { en: 'Usage Analytics', ar: 'تحليلات الاستخدام' }, path: '/admin/usage', icon: <BarChartIcon className="w-5 h-5" /> },
+    { name: { en: 'Billing & Invoices', ar: 'الفوترة والفواتير' }, path: '/admin/billing', icon: <DollarIcon className="w-5 h-5" /> },
+    { name: { en: 'Audit Security Logs', ar: 'سجلات التدقيق الأمني' }, path: '/admin/audit', icon: <ShieldIcon className="w-5 h-5" /> },
   ];
 
   return (
@@ -80,7 +81,7 @@ export default function AdminLayout({
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 text-[#141F33] min-h-[44px] min-w-[44px]"
         >
-          <span className="text-lg">☰</span>
+          <MenuIcon className="w-5 h-5" />
         </button>
       </header>
 
@@ -120,7 +121,7 @@ export default function AdminLayout({
                     }`}
                     style={{ minHeight: '44px' }}
                   >
-                    <span className="text-lg">{item.icon}</span>
+                    <span className="shrink-0">{item.icon}</span>
                     <span>{t(item.name)}</span>
                   </Link>
                 );

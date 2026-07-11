@@ -19,8 +19,8 @@ const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 const API_URL = process.env.API_URL || 'http://localhost:8787';
 const CLERK_TOKEN = process.env.CLERK_TEST_TOKEN || '';
 
-const PASS = '\x1b[32m✓\x1b[0m';
-const FAIL = '\x1b[31m✗\x1b[0m';
+const PASS = '\x1b[32m[OK]\x1b[0m';
+const FAIL = '\x1b[31m[FAIL]\x1b[0m';
 
 let exitCode = 0;
 
@@ -48,7 +48,7 @@ async function fetchJson(url, options = {}) {
 }
 
 async function main() {
-  console.log('\n🔍 SAQYN RABT - Live Data Validation');
+  console.log('\n[SEARCH] SAQYN RABT - Live Data Validation');
   console.log('======================================\n');
 
   // 1. Check Usage endpoint
@@ -125,9 +125,9 @@ async function main() {
   // Summary
   console.log('======================================');
   if (exitCode === 0) {
-    console.log('\x1b[32m✅ All live data checks passed!\x1b[0m\n');
+    console.log('\x1b[32m[DONE] All live data checks passed!\x1b[0m\n');
   } else {
-    console.log('\x1b[31m❌ Some checks failed. Review output above.\x1b[0m\n');
+    console.log('\x1b[31m[ERROR] Some checks failed. Review output above.\x1b[0m\n');
   }
 
   process.exit(exitCode);

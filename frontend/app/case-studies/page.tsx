@@ -3,23 +3,24 @@
 import { useLocale } from '../providers';
 import { MarketingHeader } from '../../components/MarketingHeader';
 import { Footer } from '../../components/Footer';
+import { CheckIcon } from '../../components/ui/Icons';
 
 const cases = {
   en: [
     {
-      industry: '🏨 Hospitality',
+      industry: 'Hospitality',
       title: '5-Star Doha Hotel Cuts Front-Desk Calls by 60%',
       result: 'Automated late check-ins, room service requests, and complaint routing. Staff now focus on guest experience instead of phone duty.',
-      metrics: ['60% fewer front-desk calls', '4.8★ guest satisfaction', '24/7 call coverage'],
+      metrics: ['60% fewer front-desk calls', '4.8 Star guest satisfaction', '24/7 call coverage'],
     },
     {
-      industry: '🏥 Healthcare',
+      industry: 'Healthcare',
       title: 'Private Clinic in Dubai Handles 2× More Patient Intake',
       result: 'AI answers booking inquiries, triages urgent cases, and routes prescriptions to the pharmacy — all without a receptionist.',
       metrics: ['2× patient intake', 'Zero missed calls', '15-min avg response time'],
     },
     {
-      industry: '🔧 Home Services',
+      industry: 'Home Services',
       title: 'Kuwait HVAC Company Captures 100% of After-Hours Leads',
       result: 'Emergency calls are answered by AI, dispatch is triggered automatically, and technicians arrive on time every time.',
       metrics: ['100% lead capture', '30-min avg dispatch', '40% revenue increase'],
@@ -27,19 +28,19 @@ const cases = {
   ],
   ar: [
     {
-      industry: '🏨 الضيافة',
+      industry: 'الضيافة',
       title: 'فندق 5 نجوم في الدوحة يخفض مكالمات مكتب الاستقبال بنسبة 60%',
       result: 'أتمتة تسجيلات الوصول المتأخرة وطلبات خدمة الغرف وتوجيه الشكاوى. يركز الموظفون الآن على تجربة الضيوف بدلاً من مهام الهاتف.',
-      metrics: ['60% مكالمات أقل لمكتب الاستقبال', '4.8★ رضا النزلاء', 'تغطية مكالمات 24/7'],
+      metrics: ['60% مكالمات أقل لمكتب الاستقبال', '4.8 Star رضا النزلاء', 'تغطية مكالمات 24/7'],
     },
     {
-      industry: '🏥 الرعاية الصحية',
+      industry: 'الرعاية الصحية',
       title: 'عيادة خاصة في دبي تعالج ضعف عدد المرضى',
       result: 'يجيب الذكاء الاصطناعي على استفسارات الحجز ويفرز الحالات العاجلة ويوجه الوصفات إلى الصيدلية — كل ذلك بدون موظف استقبال.',
       metrics: ['ضعف عدد المرضى', 'صفر مكالمات فائتة', 'متوسط وقت الرد 15 دقيقة'],
     },
     {
-      industry: '🔧 الخدمات المنزلية',
+      industry: 'الخدمات المنزلية',
       title: 'شركة تكييف كويتية تلتقط 100% من العملاء المحتملين بعد ساعات العمل',
       result: 'يجيب الذكاء الاصطناعي على مكالمات الطوارئ، ويتم تفعيل التوجيه تلقائياً، ويصل الفنيون في الوقت المحدد في كل مرة.',
       metrics: ['100% التقاط العملاء المحتملين', 'متوسط التوجيه 30 دقيقة', 'زيادة الإيرادات 40%'],
@@ -85,7 +86,7 @@ export default function CaseStudiesPage() {
                   <ul className="space-y-2">
                     {c.metrics.map((m) => (
                       <li key={m} className="flex items-center gap-2 text-sm font-medium text-primary">
-                        <span className="text-emerald-500">✓</span>{m}
+                        <CheckIcon className="w-4 h-4 text-emerald-500 inline" />{m}
                       </li>
                     ))}
                   </ul>

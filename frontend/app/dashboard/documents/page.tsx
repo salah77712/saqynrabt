@@ -7,6 +7,7 @@ import { Card } from '../../../components/ui/Card';
 import { Input } from '../../../components/ui/Input';
 import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry, EmptyDocumentsState } from '../../../components/ui/EmptyState';
+import { FolderIcon } from '../../../components/ui/Icons';
 import { useDocuments } from '../../../hooks/queries/useDocuments';
 
 export default function DocumentsDashboardPage() {
@@ -109,7 +110,7 @@ export default function DocumentsDashboardPage() {
 
       <label className="block">
         <div className="border-2 border-dashed border-gray-300 rounded-2xl p-6 md:p-12 bg-white flex flex-col items-center justify-center text-center transition-colors hover:border-[#141F33] group relative overflow-hidden cursor-pointer">
-          <span className="text-2xl md:text-4xl mb-2 md:mb-4 group-hover:scale-110 transition-transform">📁</span>
+          <FolderIcon className="w-8 h-8 md:w-10 md:h-10 text-slate-500 group-hover:scale-110 transition-transform mb-2 md:mb-4" />
           <h3 className="text-xs md:text-sm font-extrabold text-[#141F33]">
             {t('Tap to upload PDFs', 'اضغط لرفع ملفات PDF')}
           </h3>

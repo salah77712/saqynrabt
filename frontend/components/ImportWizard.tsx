@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../app/providers';
+import { DocumentIcon } from './ui/Icons';
 
 export function ImportWizard() {
   const { locale } = useLocale();
@@ -70,7 +71,7 @@ export function ImportWizard() {
       ) : (
         <div className="space-y-4">
           <label className="flex flex-col items-center justify-center border-2 border-dashed border-gray-200 rounded-xl p-8 hover:bg-gray-50/50 cursor-pointer transition-all">
-            <span className="text-2xl mb-2">📄</span>
+            <DocumentIcon className="w-6 h-6 text-slate-500 mb-2" />
             <span className="text-xs font-bold text-navy">
               {file ? file.name : t('Select CSV file', 'اختر ملف CSV')}
             </span>

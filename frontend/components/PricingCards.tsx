@@ -2,6 +2,7 @@
 
 import React from 'react';
 import type { PricingTier } from '../lib/pricing-config';
+import { CheckIcon, ArrowRightIcon } from './ui/Icons';
 
 interface PricingCardsProps {
   tiers: PricingTier[];
@@ -40,7 +41,7 @@ export function PricingCards({ tiers, ctaLabel = 'Book a Demo →', ctaHref, pop
             {tier.features.map((f) => (
               <li key={f.text} className="flex items-center gap-2 text-slate-600 text-sm">
                 <span className={`font-bold ${f.included ? 'text-emerald-500' : 'text-slate-300'}`}>
-                  {f.included ? '✓' : '—'}
+                  {f.included ? <CheckIcon className="w-3.5 h-3.5 text-emerald-500" /> : '—'}
                 </span>
                 {f.text}
               </li>
@@ -56,7 +57,7 @@ export function PricingCards({ tiers, ctaLabel = 'Book a Demo →', ctaHref, pop
                 : 'bg-primary text-white hover:opacity-90'
             }`}
           >
-            {tier.cta} →
+            {tier.cta} <ArrowRightIcon className="w-3.5 h-3.5 inline" />
           </a>
         </div>
       ))}

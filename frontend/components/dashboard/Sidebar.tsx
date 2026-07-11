@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '../../app/providers';
+import { HomeIcon, PhoneIcon, ChatIcon, DocumentIcon, TeamIcon, SettingsIcon, ArrowRightIcon, ArrowLeftIcon } from '../ui/Icons';
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -17,12 +18,12 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
 
   const menuItems = [
-    { name: { en: 'Overview', ar: 'نظرة عامة' }, path: '/dashboard', icon: '🏠' },
-    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: '📞' },
-    { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: '💬' },
-    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: '📄' },
-    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: '👥', badge: true },
-    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: '⚙️' },
+    { name: { en: 'Overview', ar: 'نظرة عامة' }, path: '/dashboard', icon: <HomeIcon className="w-5 h-5" /> },
+    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <PhoneIcon className="w-5 h-5" /> },
+    { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
+    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <DocumentIcon className="w-5 h-5" /> },
+    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <TeamIcon className="w-5 h-5" />, badge: true },
+    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <SettingsIcon className="w-5 h-5" /> },
   ];
 
   return (
@@ -54,7 +55,7 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
                 }`}
                 style={{ minHeight: '44px' }}
               >
-                <span className="text-lg">{item.icon}</span>
+                {item.icon}
                 {!isCollapsed && <span className="truncate">{t(item.name.en, item.name.ar)}</span>}
 
                 {item.badge && pendingCount > 0 && (
@@ -75,7 +76,7 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
           onClick={onToggle}
           className="h-8 w-8 rounded-lg border border-gray-200 dark:border-slate-700 flex items-center justify-center text-slate-400"
         >
-          {isCollapsed ? '→' : '←'}
+          {isCollapsed ? <ArrowRightIcon className="w-4 h-4" /> : <ArrowLeftIcon className="w-4 h-4" />}
         </button>
       </div>
     </aside>

@@ -11,10 +11,10 @@ export default function ChatbotHelpPage() {
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const sidebarLinks = [
-    { name: { en: '🚀 Getting Started', ar: '🚀 دليل البداية' }, path: '/help/getting-started' },
-    { name: { en: '🤖 Call Automation', ar: '🤖 أتمتة المكالمات' }, path: '/help/automation' },
-    { name: { en: '🧠 RAG Chatbot Help', ar: '🧠 مساعدة المساعد الذكي' }, path: '/help/chatbot' },
-    { name: { en: '💳 Pricing & Billing', ar: '💳 الأسعار والفوترة' }, path: '/help/billing' },
+    { name: { en: 'Getting Started', ar: 'دليل البداية' }, path: '/help/getting-started' },
+    { name: { en: 'Call Automation', ar: 'أتمتة المكالمات' }, path: '/help/automation' },
+    { name: { en: 'RAG Chatbot Help', ar: 'مساعدة المساعد الذكي' }, path: '/help/chatbot' },
+    { name: { en: 'Pricing & Billing', ar: 'الأسعار والفوترة' }, path: '/help/billing' },
   ];
 
   return (

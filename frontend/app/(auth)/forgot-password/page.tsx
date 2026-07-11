@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useSignIn } from '@clerk/nextjs';
 import Link from 'next/link';
 import { useLocale } from '../../providers';
+import { MailIcon } from '../../../components/ui/Icons';
 
 export default function ForgotPasswordPage() {
   const { isLoaded, signIn } = useSignIn();
@@ -50,8 +51,8 @@ export default function ForgotPasswordPage() {
 
         {success ? (
           <div className="text-center space-y-4">
-            <div className="h-12 w-12 rounded-full bg-emerald-50 text-emerald-600 text-xl flex items-center justify-center mx-auto">
-              ✉️
+            <div className="h-12 w-12 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
+              <MailIcon className="w-6 h-6 text-emerald-600" />
             </div>
             <h2 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Check your email', ar: 'تحقق من بريدك الإلكتروني' })}</h2>
             <p className="text-xs font-semibold text-[#718096] leading-relaxed">
@@ -70,7 +71,7 @@ export default function ForgotPasswordPage() {
           <>
             {error && (
               <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6">
-                ⚠️ {error}
+                {error}
               </div>
             )}
 

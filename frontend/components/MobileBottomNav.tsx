@@ -4,13 +4,14 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '../app/providers';
+import { HomeIcon, PhoneIcon, ChatIcon, TeamIcon, SettingsIcon, BoltIcon } from './ui/Icons';
 
 const navItems = [
-  { name: { en: 'Home', ar: 'الرئيسية' }, path: '/dashboard', icon: '🏠' },
-  { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: '📞' },
-  { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: '💬' },
-  { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: '👥' },
-  { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: '⚙️' },
+  { name: { en: 'Home', ar: 'الرئيسية' }, path: '/dashboard', icon: <HomeIcon className="w-5 h-5" /> },
+  { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <PhoneIcon className="w-5 h-5" /> },
+  { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
+  { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <TeamIcon className="w-5 h-5" /> },
+  { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <SettingsIcon className="w-5 h-5" /> },
 ];
 
 interface MobileBottomNavProps {
@@ -24,8 +25,8 @@ export function MobileBottomNav({ userRole = 'employee' }: MobileBottomNavProps)
 
   const filteredNavItems = userRole === 'employee'
     ? [
-        { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: '💬' },
-        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: '⚡' },
+        { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
+        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <BoltIcon className="w-5 h-5" /> },
       ]
     : navItems;
 
@@ -50,7 +51,7 @@ export function MobileBottomNav({ userRole = 'employee' }: MobileBottomNavProps)
               {isActive && (
                 <span className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#141F33]" />
               )}
-              <span className="text-xl leading-none">{item.icon}</span>
+              {item.icon}
               <span className={`text-[9px] font-bold uppercase tracking-wider ${
                 isActive ? 'text-[#141F33]' : 'text-gray-400'
               }`}>

@@ -1,8 +1,10 @@
 'use client';
 
+import * as React from 'react';
 import { useLocale } from '../providers';
 import { MarketingHeader } from '../../components/MarketingHeader';
 import { Footer } from '../../components/Footer';
+import { GlobeIcon, ClockIcon, DollarIcon, BoxIcon } from '../../components/ui/Icons';
 
 const steps = {
   en: [
@@ -21,22 +23,32 @@ const steps = {
   ],
 };
 
+const flagIcons: Record<string, React.ReactNode> = {
+  globe: <GlobeIcon className="w-8 h-8 text-primary" />,
+  clock: <ClockIcon className="w-8 h-8 text-primary" />,
+  language: <GlobeIcon className="w-8 h-8 text-primary" />,
+  currency: <DollarIcon className="w-8 h-8 text-primary" />,
+  data: <BoxIcon className="w-8 h-8 text-primary" />,
+};
+
 const globalItems = {
   en: [
-    { flag: '🌍', title: 'Global Reach', desc: 'Headquartered in Doha, Qatar — serving clients across the Middle East, Asia, Europe, Africa, and the Americas.' },
-    { flag: '🕐', title: '24/7 Across Time Zones', desc: 'Your AI front-desk never sleeps. Handle inquiries from any time zone without hiring night staff.' },
-    { flag: '🌐', title: 'Multi-Language by Default', desc: 'Arabic, English, and more — your AI speaks your customers\' language, wherever they are.' },
-    { flag: '💰', title: 'Multi-Currency Billing', desc: 'Invoiced in QAR, USD, EUR, or GBP. No hidden conversion fees.' },
-    { flag: '📦', title: 'Data Residency Options', desc: 'Choose your data region: Middle East, Europe, or United States. Compliance-ready for local regulations.' },
+    { flag: 'globe', title: 'Global Reach', desc: 'Headquartered in Doha, Qatar — serving clients across the Middle East, Asia, Europe, Africa, and the Americas.' },
+    { flag: 'clock', title: '24/7 Across Time Zones', desc: 'Your AI front-desk never sleeps. Handle inquiries from any time zone without hiring night staff.' },
+    { flag: 'language', title: 'Multi-Language by Default', desc: 'Arabic, English, and more — your AI speaks your customers\' language, wherever they are.' },
+    { flag: 'currency', title: 'Multi-Currency Billing', desc: 'Invoiced in QAR, USD, EUR, or GBP. No hidden conversion fees.' },
+    { flag: 'data', title: 'Data Residency Options', desc: 'Choose your data region: Middle East, Europe, or United States. Compliance-ready for local regulations.' },
   ],
   ar: [
-    { flag: '🌍', title: 'وصول عالمي', desc: 'المقر الرئيسي في الدوحة، قطر — نخدم عملاء عبر الشرق الأوسط وآسيا وأوروبا وأفريقيا والأمريكتين.' },
-    { flag: '🕐', title: '24/7 عبر المناطق الزمنية', desc: 'مكتب الاستقبال الذكي لا ينام أبداً. تعامل مع الاستفسارات من أي منطقة زمنية دون توظيف موظفين ليليين.' },
-    { flag: '🌐', title: 'متعدد اللغات افتراضياً', desc: 'العربية والإنجليزية والمزيد — ذكاؤك الاصطناعي يتحدث لغة عملائك أينما كانوا.' },
-    { flag: '💰', title: 'فوترة متعددة العملات', desc: 'الفواتير بالريال القطري أو الدولار أو اليورو أو الجنيه الإسترليني. لا رسوم تحويل خفية.' },
-    { flag: '📦', title: 'خيارات إقامة البيانات', desc: 'اختر منطقة بياناتك: الشرق الأوسط أو أوروبا أو الولايات المتحدة. جاهز للامتثال للوائح المحلية.' },
+    { flag: 'globe', title: 'وصول عالمي', desc: 'المقر الرئيسي في الدوحة، قطر — نخدم عملاء عبر الشرق الأوسط وآسيا وأوروبا وأفريقيا والأمريكتين.' },
+    { flag: 'clock', title: '24/7 عبر المناطق الزمنية', desc: 'مكتب الاستقبال الذكي لا ينام أبداً. تعامل مع الاستفسارات من أي منطقة زمنية دون توظيف موظفين ليليين.' },
+    { flag: 'language', title: 'متعدد اللغات افتراضياً', desc: 'العربية والإنجليزية والمزيد — ذكاؤك الاصطناعي يتحدث لغة عملائك أينما كانوا.' },
+    { flag: 'currency', title: 'فوترة متعددة العملات', desc: 'الفواتير بالريال القطري أو الدولار أو اليورو أو الجنيه الإسترليني. لا رسوم تحويل خفية.' },
+    { flag: 'data', title: 'خيارات إقامة البيانات', desc: 'اختر منطقة بياناتك: الشرق الأوسط أو أوروبا أو الولايات المتحدة. جاهز للامتثال للوائح المحلية.' },
   ],
 };
+
+
 
 export default function HowItWorksPage() {
   const { locale } = useLocale();
@@ -86,7 +98,7 @@ export default function HowItWorksPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {global.map((g) => (
               <div key={g.title} className="border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <span className="text-3xl mb-3 block">{g.flag}</span>
+                <span className="text-3xl mb-3 block">{flagIcons[g.flag] || <GlobeIcon className="w-8 h-8 text-primary" />}</span>
                 <h3 className="text-lg font-bold text-primary mb-2">{g.title}</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">{g.desc}</p>
               </div>

@@ -86,7 +86,7 @@ export function CookieConsentBanner() {
             <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
               <div className="flex-1 text-sm text-[#718096] leading-relaxed">
                 <p className="font-bold text-[#141F33] mb-1">
-                  {t({ en: '🍪 We respect your privacy.', ar: '🍪 نحن نحترم خصوصيتك.' })}
+                  {t({ en: 'We respect your privacy.', ar: 'نحن نحترم خصوصيتك.' })}
                 </p>
                 <p>
                   {t({

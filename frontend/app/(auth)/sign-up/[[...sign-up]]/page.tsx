@@ -5,6 +5,7 @@ import { useSignUp } from '@clerk/nextjs';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useLocale } from '../../../providers';
+import { MailIcon, LockIcon, BriefcaseIcon } from '../../../../components/ui/Icons';
 
 export default function SignUpPage() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -127,7 +128,7 @@ export default function SignUpPage() {
             </Link>
           </div>
 
-          <div className="text-4xl mb-4">✉️</div>
+          <div className="text-4xl mb-4"><MailIcon className="w-10 h-10 text-primary inline-block" /></div>
           <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
             {t({ en: 'Verify Your Email', ar: 'تأكيد بريدك الإلكتروني' })}
           </h2>
@@ -140,7 +141,7 @@ export default function SignUpPage() {
 
           {error && (
             <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-              ⚠️ {error}
+              {error}
             </div>
           )}
 
@@ -182,14 +183,14 @@ export default function SignUpPage() {
 
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6">
-            ⚠️ {error}
+            {error}
           </div>
         )}
 
         {/* Dynamic Role & Account Type Notices */}
         {emailParam ? (
           <div className="mb-6 p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100/80 text-indigo-900 flex items-start gap-3.5 shadow-sm">
-            <span className="text-xl select-none mt-0.5">🔒</span>
+            <LockIcon className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
             <div>
               <h4 className="text-xs font-black tracking-wide uppercase text-indigo-700">
                 {t({ en: "Invited Workspace Account", ar: "حساب مساحة عمل مدعو" })}
@@ -204,7 +205,7 @@ export default function SignUpPage() {
           </div>
         ) : (
           <div className="mb-6 p-4 rounded-2xl bg-emerald-50/50 border border-emerald-100/80 text-emerald-900 flex items-start gap-3.5 shadow-sm">
-            <span className="text-xl select-none mt-0.5">💼</span>
+            <BriefcaseIcon className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
             <div>
               <h4 className="text-xs font-black tracking-wide uppercase text-emerald-700">
                 {t({ en: "New Business Workspace", ar: "مساحة عمل جديدة للشركة" })}

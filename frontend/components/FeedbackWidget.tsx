@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Card } from './ui/Card';
 import { Button } from './ui/Button';
+import { XIcon, StarIcon } from './ui/Icons';
 
 export function FeedbackWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,8 +35,8 @@ export function FeedbackWidget() {
         <Card className="w-80 shadow-2xl border border-gray-200 p-6 animate-slideUp">
           <div className="flex justify-between items-center mb-4">
             <h4 className="font-bold text-navy dark:text-white text-sm">Rate Your Experience</h4>
-            <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600 text-xs">
-              ✕
+            <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600">
+              <XIcon className="w-4 h-4" />
             </button>
           </div>
 
@@ -48,11 +49,11 @@ export function FeedbackWidget() {
                   <button
                     key={star}
                     onClick={() => setRating(star)}
-                    className={`text-2xl transition-transform hover:scale-125 ${
+                    className={`transition-transform hover:scale-125 ${
                       rating && rating >= star ? 'text-amber-500' : 'text-slate-200'
                     }`}
                   >
-                    ★
+                    <StarIcon className="w-5 h-5" />
                   </button>
                 ))}
               </div>

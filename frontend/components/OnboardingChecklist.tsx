@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { Card } from './ui/Card';
 import { Badge } from './ui/Badge';
+import { CheckIcon } from './ui/Icons';
 
 export function OnboardingChecklist() {
   const [tasks, setTasks] = useState([
@@ -28,7 +29,7 @@ export function OnboardingChecklist() {
             <span className={`h-4 w-4 rounded-full border flex items-center justify-center text-[10px] ${
               task.done ? 'bg-emerald-500 border-emerald-500 text-white' : 'border-gray-300'
             }`}>
-              {task.done ? '✓' : ''}
+              {task.done ? <CheckIcon className="w-4 h-4 text-emerald-500" /> : ''}
             </span>
             <span className={`font-semibold ${task.done ? 'line-through text-slate-400' : 'text-navy dark:text-slate-300'}`}>
               {task.label}

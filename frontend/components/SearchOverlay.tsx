@@ -246,7 +246,7 @@ export function SearchOverlay({ isOpen, onClose }: SearchOverlayProps) {
               {t('Navigate', 'تنقل')}
             </span>
             <span className="flex items-center gap-1">
-              <kbd className="rounded border border-gray-200 bg-white px-1.5 py-0.5">↵</kbd>
+              <kbd className="rounded border border-gray-200 bg-white px-1.5 py-0.5">Enter</kbd>
               {t('Open', 'افتح')}
             </span>
           </div>

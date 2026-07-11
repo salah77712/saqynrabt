@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../app/providers';
+import { BellIcon, ChatIcon } from './ui/Icons';
 
 interface Notification {
   id: string;
@@ -37,7 +38,7 @@ export function NotificationCenter() {
         className="relative inline-flex items-center justify-center p-2 rounded-full hover:bg-slate-100 transition-colors"
         aria-label="Open notifications"
       >
-        <span className="text-xl">🔔</span>
+        <BellIcon className="w-5 h-5 text-slate-600" />
         {unreadCount > 0 && (
           <span className="absolute top-0.5 right-0.5 bg-red-500 text-white text-[9px] font-black h-4 w-4 rounded-full flex items-center justify-center border border-white">
             {unreadCount}
@@ -68,7 +69,7 @@ export function NotificationCenter() {
                   item.read ? 'opacity-70' : 'bg-royal/5'
                 }`}
               >
-                <span className="text-sm mt-0.5">{item.read ? '💬' : '🔵'}</span>
+                <span className="text-sm mt-0.5">{item.read ? <ChatIcon className="w-4 h-4 text-slate-300" /> : <BellIcon className="w-4 h-4 text-blue-500" />}</span>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-bold text-navy leading-normal">
                     {t(item.title, item.titleAr)}

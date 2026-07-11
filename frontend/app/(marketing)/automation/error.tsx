@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { WarningIcon } from '../../../components/ui/Icons';
 
 export default function AutomationError({
   error,
@@ -24,7 +25,7 @@ export default function AutomationError({
       </header>
       <div className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="text-center max-w-md">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-3xl">⚠️</div>
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50"><WarningIcon className="w-6 h-6 text-red-500" /></div>
           <h1 className="text-2xl font-bold text-primary mb-2">Unable to load this page</h1>
           <p className="text-slate-500 mb-2">We couldn&apos;t retrieve the automation content. This may be a temporary issue.</p>
           <p className="text-sm text-slate-400 mb-8">Please try again or go back to the homepage.</p>

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Button } from './Button';
+import { WarningIcon, DocumentIcon, BellOffIcon, TeamIcon } from './Icons';
 
 interface EmptyStateAction {
   label: string;
@@ -7,7 +8,7 @@ interface EmptyStateAction {
 }
 
 interface EmptyStateProps {
-  icon?: string;
+  icon?: React.ReactNode;
   title: string;
   description?: string;
   actionText?: string;
@@ -18,7 +19,7 @@ interface EmptyStateProps {
 }
 
 export function EmptyState({
-  icon = "⚠️",
+  icon = undefined,
   title,
   description = "",
   actionText,
@@ -33,8 +34,8 @@ export function EmptyState({
 
   return (
     <div className={containerClass}>
-      <span className={compact ? 'text-3xl mb-3' : 'text-4xl mb-4'} role="img" aria-hidden="true">
-        {icon}
+      <span className={compact ? 'text-3xl mb-3' : 'text-4xl mb-4'}>
+        {icon || <WarningIcon className="w-10 h-10 text-slate-300" />}
       </span>
       <h3 className={`font-bold text-navy dark:text-white ${compact ? 'text-sm' : 'text-base'} mb-1`}>
         {title}
@@ -67,7 +68,7 @@ export function EmptyStateWithRetry({
 }) {
   return (
     <EmptyState
-      icon="⚠️"
+      icon={<WarningIcon className="w-10 h-10 text-slate-300" />}
       title="Something went wrong"
       description={message}
       actionText="Retry"
@@ -79,7 +80,7 @@ export function EmptyStateWithRetry({
 export function EmptyDocumentsState({ onUpload }: { onUpload: () => void }) {
   return (
     <EmptyState
-      icon="📄"
+      icon={<DocumentIcon className="w-10 h-10 text-slate-300" />}
       title="No documents yet"
       description="Upload your first SOP or policy PDF to expand your chatbot knowledge."
       actionText="Upload Document"
@@ -91,7 +92,7 @@ export function EmptyDocumentsState({ onUpload }: { onUpload: () => void }) {
 export function EmptyAutomationState() {
   return (
     <EmptyState
-      icon="🔕"
+      icon={<BellOffIcon className="w-10 h-10 text-slate-300" />}
       title="No automation requests"
       description="All clear! There are no pending automation requests."
       compact
@@ -102,7 +103,7 @@ export function EmptyAutomationState() {
 export function EmptyTeamState({ onInvite }: { onInvite: () => void }) {
   return (
     <EmptyState
-      icon="👥"
+      icon={<TeamIcon className="w-10 h-10 text-slate-300" />}
       title="No team members"
       description="Invite your colleagues to collaborate on the platform."
       actionText="Invite Colleague"

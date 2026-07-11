@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale } from '../providers';
 import { MarketingHeader } from '../../components/MarketingHeader';
 import { Footer } from '../../components/Footer';
+import { MapPinIcon, MailIcon, PhoneIcon } from '../../components/ui/Icons';
 
 export default function ContactPage() {
   const { locale } = useLocale();
@@ -188,7 +189,7 @@ export default function ContactPage() {
 
             <div className="space-y-6 pt-6 border-t border-gray-200">
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
-                <span className="text-xl">📍</span>
+                <MapPinIcon className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'Office Address', ar: 'عنوان المكتب' })}</p>
                   <p className="text-[#718096] mt-0.5">Doha, Qatar</p>
@@ -196,7 +197,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
-                <span className="text-xl">📧</span>
+                <MailIcon className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'General Inquiry', ar: 'البريد الإلكتروني' })}</p>
                   <p className="text-[#718096] mt-0.5">hello@saqynrabt.com</p>
@@ -204,7 +205,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
-                <span className="text-xl">📞</span>
+                <PhoneIcon className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'Support Hotline', ar: 'خط الدعم' })}</p>
                   <p className="text-[#718096] mt-0.5">+974 5500 0000</p>

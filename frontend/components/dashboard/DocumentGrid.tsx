@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
+import { DocumentIcon, XIcon } from '../ui/Icons';
 
 interface DocItem {
   id: string;
@@ -21,13 +22,13 @@ export function DocumentGrid({ docs, onDelete }: DocumentGridProps) {
         <Card key={doc.id} className="flex flex-col justify-between p-6">
           <div>
             <div className="flex justify-between items-start gap-4 mb-3">
-              <span className="text-2xl">📄</span>
+              <DocumentIcon className="w-6 h-6 text-slate-500" />
               <button
                 onClick={() => onDelete(doc.id)}
                 className="text-xs text-red-500 hover:text-red-700 font-bold px-2 py-1"
                 aria-label={`Delete ${doc.name}`}
               >
-                ✕
+                <XIcon className="w-4 h-4" />
               </button>
             </div>
             <h4 className="font-bold text-navy dark:text-white text-sm truncate" title={doc.name}>

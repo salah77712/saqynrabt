@@ -3,6 +3,7 @@
 import { useLocale } from '../providers';
 import { MarketingHeader } from '../../components/MarketingHeader';
 import { Footer } from '../../components/Footer';
+import { GlobeIcon } from '../../components/ui/Icons';
 
 const highlights = {
   en: [
@@ -23,17 +24,23 @@ const regions = {
   en: [
     { name: 'Middle East', flag: '🇶🇦', cities: 'Doha, Dubai, Riyadh, Kuwait City, Muscat, Manama', desc: 'Our home base. Deep understanding of regional hospitality, healthcare, and service industry needs.' },
     { name: 'Europe', flag: '🇪🇺', cities: 'London, Berlin, Paris, Amsterdam, Madrid', desc: 'GDPR-compliant data hosting. Serving hotels, clinics, and service businesses across the EU.' },
-    { name: 'Asia', flag: '🌏', cities: 'Singapore, Tokyo, Dubai, Mumbai, Bangkok', desc: 'Fast-growing presence in Southeast Asia and the subcontinent. Multi-language support included.' },
-    { name: 'Africa', flag: '🌍', cities: 'Cairo, Nairobi, Cape Town, Lagos, Casablanca', desc: 'Expanding across the continent with Arabic, English, and French language support.' },
-    { name: 'Americas', flag: '🌎', cities: 'New York, Toronto, São Paulo, Mexico City', desc: 'US-East and US-West data regions available. Serving clients from Canada to Brazil.' },
+    { name: 'Asia', flag: 'asia', cities: 'Singapore, Tokyo, Dubai, Mumbai, Bangkok', desc: 'Fast-growing presence in Southeast Asia and the subcontinent. Multi-language support included.' },
+    { name: 'Africa', flag: 'africa', cities: 'Cairo, Nairobi, Cape Town, Lagos, Casablanca', desc: 'Expanding across the continent with Arabic, English, and French language support.' },
+    { name: 'Americas', flag: 'americas', cities: 'New York, Toronto, São Paulo, Mexico City', desc: 'US-East and US-West data regions available. Serving clients from Canada to Brazil.' },
   ],
   ar: [
     { name: 'الشرق الأوسط', flag: '🇶🇦', cities: 'الدوحة، دبي، الرياض، مدينة الكويت، مسقط، المنامة', desc: 'قاعدتنا الرئيسية. فهم عميق لاحتياجات قطاعات الضيافة والرعاية الصحية والخدمات الإقليمية.' },
     { name: 'أوروبا', flag: '🇪🇺', cities: 'لندن، برلين، باريس، أمستردام، مدريد', desc: 'استضافة بيانات متوافقة مع GDPR. نخدم الفنادق والعيادات وشركات الخدمات في جميع أنحاء الاتحاد الأوروبي.' },
-    { name: 'آسيا', flag: '🌏', cities: 'سنغافورة، طوكيو، دبي، مومباي، بانكوك', desc: 'وجود سريع النمو في جنوب شرق آسيا وشبه القارة الهندية. دعم متعدد اللغات مشمول.' },
-    { name: 'أفريقيا', flag: '🌍', cities: 'القاهرة، نيروبي، كيب تاون، لاغوس، الدار البيضاء', desc: 'نتوسع عبر القارة بدعم اللغات العربية والإنجليزية والفرنسية.' },
-    { name: 'الأمريكتان', flag: '🌎', cities: 'نيويورك، تورونتو، ساو باولو، مكسيكو سيتي', desc: 'مناطق بيانات US-East و US-West متاحة. نخدم عملاء من كندا إلى البرازيل.' },
+    { name: 'آسيا', flag: 'asia', cities: 'سنغافورة، طوكيو، دبي، مومباي، بانكوك', desc: 'وجود سريع النمو في جنوب شرق آسيا وشبه القارة الهندية. دعم متعدد اللغات مشمول.' },
+    { name: 'أفريقيا', flag: 'africa', cities: 'القاهرة، نيروبي، كيب تاون، لاغوس، الدار البيضاء', desc: 'نتوسع عبر القارة بدعم اللغات العربية والإنجليزية والفرنسية.' },
+    { name: 'الأمريكتان', flag: 'americas', cities: 'نيويورك، تورونتو، ساو باولو، مكسيكو سيتي', desc: 'مناطق بيانات US-East و US-West متاحة. نخدم عملاء من كندا إلى البرازيل.' },
   ],
+};
+
+const flagIconMap: Record<string, React.ReactNode> = {
+  asia: <GlobeIcon className="w-8 h-8 text-primary" />,
+  africa: <GlobeIcon className="w-8 h-8 text-primary" />,
+  americas: <GlobeIcon className="w-8 h-8 text-primary" />,
 };
 
 export default function GlobalPage() {
@@ -79,7 +86,7 @@ export default function GlobalPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {regionList.map((r) => (
               <div key={r.name} className="border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
-                <span className="text-4xl mb-3 block">{r.flag}</span>
+                <span className="text-4xl mb-3 block">{flagIconMap[r.flag] || <GlobeIcon className="w-8 h-8 text-primary" />}</span>
                 <h3 className="text-xl font-bold text-primary mb-1">{r.name}</h3>
                 <p className="text-xs text-slate-400 mb-3">{r.cities}</p>
                 <p className="text-sm text-slate-500 leading-relaxed">{r.desc}</p>

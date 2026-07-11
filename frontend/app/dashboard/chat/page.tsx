@@ -12,6 +12,7 @@ import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry } from '../../../components/ui/EmptyState';
 import { useChatHistory } from '../../../hooks/queries/useChatHistory';
 import { PullToRefresh } from '../../../components/PullToRefresh';
+import { ClipboardIcon } from '../../../components/ui/Icons';
 
 interface KnowledgeGap {
   id: string;
@@ -140,7 +141,7 @@ export default function ChatbotDashboardPage() {
                   aria-label={t('Show knowledge gaps', 'عرض فجوات المعرفة')}
                   className="xl:hidden w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 min-h-[44px] min-w-[44px]"
                 >
-                  <span className="text-sm">📋</span>
+                  <ClipboardIcon className="w-4 h-4 text-slate-500" />
                 </button>
               </div>
             </div>

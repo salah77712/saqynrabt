@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { useLocale } from '../../providers';
 import { Footer } from '../../../components/Footer';
 import { MarketingHeader } from '../../../components/MarketingHeader';
+import { DocumentIcon, SearchIcon, LockIcon, TeamIcon, BarChartIcon, CheckIcon } from '../../../components/ui/Icons';
+import * as React from 'react';
 
 const chatbotTiers = [
   {
@@ -46,22 +48,31 @@ const chatbotTiers = [
   },
 ];
 
+const capabilityIcons: Record<string, React.ReactNode> = {
+  doc: <DocumentIcon className="w-5 h-5 text-slate-600" />,
+  search: <SearchIcon className="w-5 h-5 text-slate-600" />,
+  gap: <SearchIcon className="w-5 h-5 text-slate-600" />,
+  lock: <LockIcon className="w-5 h-5 text-slate-600" />,
+  team: <TeamIcon className="w-5 h-5 text-slate-600" />,
+  chart: <BarChartIcon className="w-5 h-5 text-slate-600" />,
+};
+
 const capabilities = {
   en: [
-    { icon: '📄', title: 'PDF & Document Upload', desc: 'Upload your HR handbook, SOPs, and policies. The AI learns from them instantly.' },
-    { icon: '🔍', title: 'RAG-Powered Q&A', desc: 'Employees ask questions in plain language, the AI finds the exact answer from your documents.' },
-    { icon: '🕵️', title: 'Knowledge Gap Tracking', desc: 'See every question the AI couldn\'t answer — so you know exactly what documents to add.' },
-    { icon: '🔐', title: 'Private & Isolated', desc: 'Your data never trains the model. It\'s locked to your company\'s knowledge base only.' },
-    { icon: '👤', title: 'Employee Login & Roles', desc: 'Each employee has their own login. Admins manage access and document permissions.' },
-    { icon: '📈', title: 'Onboarding Accelerator', desc: 'New hires get instant answers to standard onboarding questions on day one.' },
+    { icon: 'doc', title: 'PDF & Document Upload', desc: 'Upload your HR handbook, SOPs, and policies. The AI learns from them instantly.' },
+    { icon: 'search', title: 'RAG-Powered Q&A', desc: 'Employees ask questions in plain language, the AI finds the exact answer from your documents.' },
+    { icon: 'gap', title: 'Knowledge Gap Tracking', desc: 'See every question the AI couldn\'t answer — so you know exactly what documents to add.' },
+    { icon: 'lock', title: 'Private & Isolated', desc: 'Your data never trains the model. It\'s locked to your company\'s knowledge base only.' },
+    { icon: 'team', title: 'Employee Login & Roles', desc: 'Each employee has their own login. Admins manage access and document permissions.' },
+    { icon: 'chart', title: 'Onboarding Accelerator', desc: 'New hires get instant answers to standard onboarding questions on day one.' },
   ],
   ar: [
-    { icon: '📄', title: 'رفع PDF والمستندات', desc: 'ارفع دليل الموظفين وسياساتك. يتعلم الذكاء الاصطناعي منها فوراً.' },
-    { icon: '🔍', title: 'أسئلة وأجوبة بتقنية RAG', desc: 'يسأل الموظفون بلغة بسيطة، ويجد الذكاء الاصطناعي الإجابة الدقيقة من مستنداتك.' },
-    { icon: '🕵️', title: 'تتبع الفجوات المعرفية', desc: 'رؤية كل سؤال لم يتمكن الذكاء الاصطناعي من الإجابة عليه - لتعرف بالضبط أي المستندات تحتاج لإضافتها.' },
-    { icon: '🔐', title: 'خاص ومعزول', desc: 'بياناتك لا تدرب النموذج أبداً. مقفلة على قاعدة معرفة شركتك فقط.' },
-    { icon: '👤', title: 'دخول الموظفين والأدوار', desc: 'لكل موظف دخول خاص. المدراء يديرون الوصول وصلاحيات المستندات.' },
-    { icon: '📈', title: 'مسرع التوظيف', desc: 'يحصل الموظفون الجدد على إجابات فورية لأسئلة التوظيف الأساسية من اليوم الأول.' },
+    { icon: 'doc', title: 'رفع PDF والمستندات', desc: 'ارفع دليل الموظفين وسياساتك. يتعلم الذكاء الاصطناعي منها فوراً.' },
+    { icon: 'search', title: 'أسئلة وأجوبة بتقنية RAG', desc: 'يسأل الموظفون بلغة بسيطة، ويجد الذكاء الاصطناعي الإجابة الدقيقة من مستنداتك.' },
+    { icon: 'gap', title: 'تتبع الفجوات المعرفية', desc: 'رؤية كل سؤال لم يتمكن الذكاء الاصطناعي من الإجابة عليه - لتعرف بالضبط أي المستندات تحتاج لإضافتها.' },
+    { icon: 'lock', title: 'خاص ومعزول', desc: 'بياناتك لا تدرب النموذج أبداً. مقفلة على قاعدة معرفة شركتك فقط.' },
+    { icon: 'team', title: 'دخول الموظفين والأدوار', desc: 'لكل موظف دخول خاص. المدراء يديرون الوصول وصلاحيات المستندات.' },
+    { icon: 'chart', title: 'مسرع التوظيف', desc: 'يحصل الموظفون الجدد على إجابات فورية لأسئلة التوظيف الأساسية من اليوم الأول.' },
   ],
 };
 
@@ -192,7 +203,7 @@ export default function ChatbotPage() {
                     className="flex items-start gap-4 bg-white border border-gray-100 rounded-xl p-5 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
-                    <span className="text-2xl mt-0.5 shrink-0">{cap.icon}</span>
+                    <span className="text-2xl mt-0.5 shrink-0">{capabilityIcons[cap.icon] || <DocumentIcon className="w-5 h-5 text-slate-600" />}</span>
                     <div>
                       <p className="font-extrabold text-slate-800 text-sm">{cap.title}</p>
                       <p className="text-[#718096] text-xs mt-0.5 leading-relaxed">{cap.desc}</p>
@@ -288,7 +299,7 @@ export default function ChatbotPage() {
                 <ul className="flex flex-col gap-2 mb-6 flex-1">
                   {tier.features.map((f, idx) => (
                     <li key={idx} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
-                      <span className="text-[#10B981] font-bold text-base leading-none">✓</span>
+                      <span className="text-[#10B981]"><CheckIcon className="w-4 h-4 text-emerald-500" /></span>
                       {f}
                     </li>
                   ))}

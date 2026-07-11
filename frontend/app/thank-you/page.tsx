@@ -5,6 +5,7 @@ import { useLocale } from '../providers';
 import Link from 'next/link';
 import { MarketingHeader } from '../../components/MarketingHeader';
 import { Footer } from '../../components/Footer';
+import { ConfettiIcon } from '../../components/ui/Icons';
 
 export default function ThankYouPage() {
   const { locale } = useLocale();
@@ -17,8 +18,8 @@ export default function ThankYouPage() {
       <main className="flex-1 flex flex-col items-center justify-center py-24 px-6 text-center max-w-2xl mx-auto animate-fadeIn">
         
         {/* Confetti SVG Icon */}
-        <div className="h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center text-5xl mb-8 animate-bounce shadow-sm">
-          🎉
+        <div className="h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center mb-8 animate-bounce shadow-sm">
+          <ConfettiIcon className="w-12 h-12 text-blue-500" />
         </div>
 
         <span className="text-xs font-extrabold tracking-widest text-[#10B981] uppercase">{t({ en: 'Submission Received', ar: 'تم استلام الطلب' })}</span>

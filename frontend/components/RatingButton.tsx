@@ -54,19 +54,19 @@ export function RatingButton({ chatMessageId }: RatingButtonProps) {
             className="hover:text-green-600 transition-colors p-1 border border-slate-200 hover:border-green-200 rounded"
             title="Good Answer"
           >
-            👍 {t({ en: 'Yes', ar: 'نعم' })}
+            {t({ en: 'Yes', ar: 'نعم' })}
           </button>
           <button
             onClick={() => handleRate(1)}
             className="hover:text-red-600 transition-colors p-1 border border-slate-200 hover:border-red-200 rounded"
             title="Bad Answer"
           >
-            👎 {t({ en: 'No', ar: 'لا' })}
+            {t({ en: 'No', ar: 'لا' })}
           </button>
         </div>
       ) : (
         <span className="text-emerald-600 font-extrabold flex items-center gap-1">
-          ✓ {t({ en: 'Thank you for your feedback!', ar: 'نشكرك على تقييمك!' })}
+          {t({ en: 'Thank you for your feedback!', ar: 'نشكرك على تقييمك!' })}
         </span>
       )}
 

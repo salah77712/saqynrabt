@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { WarningIcon } from '../../components/ui/Icons';
 
 export default function FeaturesError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => { console.error(error); }, [error]);
@@ -14,7 +15,7 @@ export default function FeaturesError({ error, reset }: { error: Error & { diges
       </header>
       <div className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="text-center max-w-md">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50 text-3xl">⚠️</div>
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50"><WarningIcon className="w-6 h-6 text-red-500" /></div>
           <h1 className="text-2xl font-bold text-primary mb-2">Features unavailable</h1>
           <p className="text-slate-500 mb-8">We couldn&apos;t load the features page. Please try again.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

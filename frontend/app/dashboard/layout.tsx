@@ -6,6 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { UserButton, useUser } from '@clerk/nextjs';
 import { useEntitlements, useLocale } from '../providers';
 import { LanguageSwitcher } from '../../components/LanguageSwitcher';
+import { HomeIcon, PhoneIcon, ChatIcon, DocumentIcon, TeamIcon, SettingsIcon, BoltIcon, MailIcon, WarningIcon, CheckIcon, ArrowRightIcon, ArrowLeftIcon } from '../../components/ui/Icons';
 import { DarkModeToggle } from '../../components/DarkModeToggle';
 import { FeedbackWidget } from '../../components/FeedbackWidget';
 import { MobileBottomNav } from '../../components/MobileBottomNav';
@@ -52,20 +53,20 @@ export default function DashboardLayout({
   };
 
   const menuItems = [
-    { name: dashboardContent.overview, path: '/dashboard', icon: '🏠' },
-    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: '📞' },
-    { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: '💬' },
-    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: '📄' },
-    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: '👥', badge: true },
-    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: '⚙️' },
+    { name: dashboardContent.overview, path: '/dashboard', icon: <HomeIcon className="w-5 h-5" /> },
+    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <PhoneIcon className="w-5 h-5" /> },
+    { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
+    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <DocumentIcon className="w-5 h-5" /> },
+    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <TeamIcon className="w-5 h-5" />, badge: true },
+    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <SettingsIcon className="w-5 h-5" /> },
   ];
 
   const currentRole = mockMode ? 'admin' : userRole;
 
   const filteredMenuItems = currentRole === 'employee'
     ? [
-        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: '💬' },
-        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: '⚡' },
+        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
+        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <BoltIcon className="w-5 h-5" /> },
       ]
     : menuItems;
 
@@ -124,7 +125,7 @@ export default function DashboardLayout({
     return (
       <div className="min-h-screen bg-[#F8F9FB] flex items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
         <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 w-full max-w-md animate-fadeIn text-center">
-          <div className="text-4xl mb-4">✉️</div>
+          <div className="mb-4"><MailIcon className="w-8 h-8 text-slate-400" /></div>
           <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
             {t({ en: 'Verify Your Email', ar: 'تأكيد بريدك الإلكتروني' })}
           </h2>
@@ -137,13 +138,13 @@ export default function DashboardLayout({
 
           {verifError && (
             <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-              ⚠️ {verifError}
+              <WarningIcon className="w-4 h-4 text-red-500 inline mr-1" /> {verifError}
             </div>
           )}
 
           {resendStatus && (
             <div className="bg-emerald-50 border border-emerald-200 text-emerald-600 rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-              ✅ {resendStatus}
+              <CheckIcon className="w-4 h-4 text-emerald-500 inline mr-1" /> {resendStatus}
             </div>
           )}
 
@@ -300,7 +301,7 @@ export default function DashboardLayout({
               className="h-8 w-8 rounded-lg border border-gray-200 flex items-center justify-center text-slate-400 hover:text-[#141F33] hover:bg-slate-50 transition-colors"
               title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
             >
-              {isCollapsed ? '→' : '←'}
+              {isCollapsed ? <ArrowRightIcon className="w-4 h-4" /> : <ArrowLeftIcon className="w-4 h-4" />}
             </button>
           </div>
 
@@ -403,7 +404,7 @@ export default function DashboardLayout({
             <div className="max-w-7xl mx-auto w-full">
               {!hasAccess ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
-                  <span className="text-4xl mb-4">⚠️</span>
+                  <WarningIcon className="w-10 h-10 text-slate-300 mb-4" />
                   <h2 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h2>
                   <p className="text-xs text-[#718096] font-semibold mt-1">
                     {t({ en: 'You do not have permission to access this page.', ar: 'ليس لديك صلاحية للوصول إلى هذه الصفحة.' })}

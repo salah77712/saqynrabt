@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useLocale } from '../app/providers';
 import { FooterColumn } from './Footer/FooterColumn';
 import { SocialLinks } from './Footer/SocialLinks';
+import { MailIcon } from './ui/Icons';
 
 const content = {
   en: {
@@ -15,28 +16,28 @@ const content = {
     companyTitle: 'Company',
     legalTitle: 'Legal & Compliance',
     privacyControls: 'Privacy Controls',
-    cookiePrefs: 'Cookie Preferences',
-    doNotSell: 'Do Not Sell or Share My Personal Info',
-    accessibility: 'Accessibility Statement',
+    cookiePrefs: 'Manage Cookie Preferences',
+    doNotSell: 'Your Privacy Rights',
+    accessibility: 'Accessibility',
     products: [
-      { href: '/automation', label: 'Business Automation' },
-      { href: '/chatbot', label: 'Internal Chatbot' },
-      { href: '/pricing', label: 'Pricing Plans' },
-      { href: '/industries', label: 'Industry Switcher' },
-      { href: '/demo', label: 'Dashboard Demo' },
+      { href: '/automation', label: 'Explore Business Automation' },
+      { href: '/chatbot', label: 'See the Internal Chatbot' },
+      { href: '/pricing', label: 'View Pricing Plans' },
+      { href: '/industries', label: 'Browse by Industry' },
+      { href: '/demo', label: 'Try the Dashboard Demo' },
     ],
     company: [
-      { href: '/about', label: 'About Us' },
-      { href: '/contact', label: 'Contact Sales' },
-      { href: '/careers', label: 'Careers' },
-      { href: '/blog', label: 'Blog' },
+      { href: '/about', label: 'Learn About Us' },
+      { href: '/contact', label: 'Talk to Sales' },
+      { href: '/careers', label: 'Join Our Team' },
+      { href: '/blog', label: 'Read Our Blog' },
     ],
     legal: [
-      { href: '/legal/privacy', label: 'Privacy Policy' },
+      { href: '/legal/privacy', label: 'Our Privacy Policy' },
       { href: '/legal/terms', label: 'Terms of Service' },
       { href: '/legal/dpa', label: 'Data Processing Agreement (DPA)' },
-      { href: '/legal/security', label: 'Security Documents' },
-      { href: '/legal/nda', label: 'NDA' },
+      { href: '/legal/security', label: 'See Security Documents' },
+      { href: '/legal/nda', label: 'Non-Disclosure Agreement' },
     ],
     backToTop: 'Back to Top',
   },
@@ -48,27 +49,27 @@ const content = {
     companyTitle: 'الشركة',
     legalTitle: 'القانون والامتثال',
     privacyControls: 'ضوابط الخصوصية',
-    cookiePrefs: 'تفضيلات ملفات تعريف الارتباط',
-    doNotSell: 'عدم بيع أو مشاركة معلوماتي الشخصية',
-    accessibility: 'بيان إمكانية الوصول',
+    cookiePrefs: 'إدارة تفضيلات الكوكيز',
+    doNotSell: 'حقوق الخصوصية الخاصة بك',
+    accessibility: 'إمكانية الوصول',
     products: [
-      { href: '/automation', label: 'الأتمتة التجارية' },
-      { href: '/chatbot', label: 'المساعد الذكي الداخلي' },
-      { href: '/pricing', label: 'خطط الأسعار' },
-      { href: '/industries', label: 'مبدل الصناعة' },
-      { href: '/demo', label: 'عرض توضيحي' },
+      { href: '/automation', label: 'استكشف الأتمتة التجارية' },
+      { href: '/chatbot', label: 'شاهد المساعد الذكي' },
+      { href: '/pricing', label: 'اطلع على الأسعار' },
+      { href: '/industries', label: 'تصفح حسب القطاع' },
+      { href: '/demo', label: 'جرّب العرض التوضيحي' },
     ],
     company: [
-      { href: '/about', label: 'عن الشركة' },
-      { href: '/contact', label: 'اتصل بالمبيعات' },
-      { href: '/careers', label: 'وظائف' },
-      { href: '/blog', label: 'المدونة' },
+      { href: '/about', label: 'تعرف علينا' },
+      { href: '/contact', label: 'تحدث مع المبيعات' },
+      { href: '/careers', label: 'انضم إلى فريقنا' },
+      { href: '/blog', label: 'اقرأ مدونتنا' },
     ],
     legal: [
-      { href: '/legal/privacy', label: 'سياسة الخصوصية' },
+      { href: '/legal/privacy', label: 'سياسة الخصوصية لدينا' },
       { href: '/legal/terms', label: 'شروط الخدمة' },
       { href: '/legal/dpa', label: 'اتفاقية معالجة البيانات' },
-      { href: '/legal/security', label: 'وثائق الأمان' },
+      { href: '/legal/security', label: 'اطلع على وثائق الأمان' },
       { href: '/legal/nda', label: 'اتفاقية عدم الإفصاح' },
     ],
     backToTop: 'العودة للأعلى',
@@ -203,7 +204,8 @@ export function Footer() {
               </p>
             </div>
             <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-slate-50 w-fit">
-              <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">📞 DPO</span>
+              <MailIcon className="w-3 h-3 text-slate-400" />
+              <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">DPO</span>
               <a
                 href="mailto:dpo@saqynrabt.com"
                 className="text-[11px] font-extrabold text-slate-700 hover:text-[#141F33] hover:underline"
@@ -264,13 +266,13 @@ export function Footer() {
           </p>
 
           <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">
-            <Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t('SITEMAP', 'خريطة الموقع')}</Link>
+            <Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t('Site Map', 'خريطة الموقع')}</Link>
             <span>|</span>
-            <Link href="/legal/terms" className="hover:text-[#141F33] transition-colors">{t('TERMS', 'الشروط')}</Link>
+            <Link href="/legal/terms" className="hover:text-[#141F33] transition-colors">{t('Terms', 'الشروط')}</Link>
             <span>|</span>
-            <Link href="/legal/privacy" className="hover:text-[#141F33] transition-colors">{t('PRIVACY POLICY', 'سياسة الخصوصية')}</Link>
+            <Link href="/legal/privacy" className="hover:text-[#141F33] transition-colors">{t('Privacy', 'سياسة الخصوصية')}</Link>
             <span>|</span>
-            <Link href="/trust" className="hover:text-[#141F33] transition-colors">{t('TRUST CENTER', 'مركز الثقة')}</Link>
+            <Link href="/trust" className="hover:text-[#141F33] transition-colors">{t('Trust Center', 'مركز الثقة')}</Link>
           </div>
 
           <SocialLinks />

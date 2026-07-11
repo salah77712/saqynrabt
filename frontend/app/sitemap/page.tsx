@@ -3,6 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useLocale } from '../providers';
+import { ArrowRightIcon, ArrowLeftIcon } from '../../components/ui/Icons';
 
 export default function VisualSitemapPage() {
   const { locale } = useLocale();
@@ -80,7 +81,7 @@ export default function VisualSitemapPage() {
           className="group inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-slate-400 hover:text-[#141F33] transition-colors mb-12"
         >
           <span className="transition-transform group-hover:-translate-x-1 duration-150 inline-block">
-            {locale === 'ar' ? '➔' : '←'}
+            {locale === 'ar' ? <ArrowRightIcon className="w-4 h-4" /> : <ArrowLeftIcon className="w-4 h-4" />}
           </span>
           {t('Back to Home', 'العودة للرئيسية')}
         </Link>

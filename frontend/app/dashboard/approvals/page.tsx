@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLocale, useEntitlements } from '../../providers';
+import { TeamIcon } from '../../../components/ui/Icons';
 
 interface EmployeeItem {
   clerk_user_id: string;
@@ -120,14 +121,14 @@ export default function ApprovalsDashboardPage() {
         {/* Limit Warning Badge */}
         <div className="mt-4 p-4 rounded-xl border flex items-center justify-between gap-4 text-xs font-semibold bg-white">
           <div className="flex items-center gap-2">
-            <span>👥</span>
+            <TeamIcon className="w-5 h-5 text-slate-500" />
             <span className="text-[#141F33]">
               {t({ en: 'Plan Active Limits:', ar: 'حدود الموظفين النشطين:' })} <strong>{activeCount} / {maxEmployees}</strong>
             </span>
           </div>
           {isLimitReached && (
             <span className="text-amber-600 font-extrabold flex items-center gap-1">
-              ⚠️ {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول إلى الحد الأقصى للموظفين. قم بالترقية.' })}
+              {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول إلى الحد الأقصى للموظفين. قم بالترقية.' })}
             </span>
           )}
         </div>
@@ -145,7 +146,7 @@ export default function ApprovalsDashboardPage() {
           </div>
         ) : pendingEmployees.length === 0 ? (
           <div className="py-12 flex flex-col items-center justify-center text-center">
-            <span className="text-3xl opacity-40 mb-3">👥</span>
+            <TeamIcon className="w-8 h-8 text-slate-400 opacity-40 mb-3" />
             <p className="text-sm font-bold text-[#718096]">
               {t({ en: 'No pending access requests.', ar: 'لا توجد طلبات دخول معلقة.' })}
             </p>

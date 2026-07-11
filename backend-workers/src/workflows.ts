@@ -64,7 +64,7 @@ async function sendSlackAlert(
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        text: `⚡ *SAQYN WORKFLOW: ${ruleName}*\nEvent details: ${JSON.stringify(payload)}`
+        text: `[!] *SAQYN WORKFLOW: ${ruleName}*\nEvent details: ${JSON.stringify(payload)}`
       })
     });
   } catch (err) {
