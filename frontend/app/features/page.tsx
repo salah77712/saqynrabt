@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useLocale } from '../providers';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 import Link from 'next/link';
 import { MarketingHeader } from '../../components/MarketingHeader';
 import { Footer } from '../../components/Footer';
@@ -9,19 +10,20 @@ import { PhoneIcon, SparklesIcon, WrenchIcon, BarChartIcon } from '../../compone
 
 export default function FeaturesPage() {
   const { locale } = useLocale();
+  const { ref: featureGridRef, isVisible: featureGridVisible } = useScrollReveal<HTMLDivElement>();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const content = {
-    title: { en: 'One Platform. Two Powerful Products.', ar: 'منصة واحدة. منتجان قويان.' },
-    subtitle: { en: 'Secure, private, and automated business operations designed for Qatar and the Middle East.', ar: 'عمليات تجارية آمنة وخاصة ومؤتمتة مصممة لدولة قطر والشرق الأوسط.' },
-    automationTitle: { en: '24/7 Call & Booking Handling', ar: 'إدارة المكالمات والحجوزات على مدار الساعة' },
-    automationDesc: { en: 'Capture every customer inquiry, route complaints, and automate bookings without missing a single call.', ar: 'التقط كل استفسار من العملاء، ووجه الشكاوى، وأتمت الحجوزات دون تفويت أي مكالمة.' },
-    chatbotTitle: { en: 'RAG-Powered Staff Assistant', ar: 'مساعد موظفين مدعوم بالـ RAG' },
-    chatbotDesc: { en: 'Upload your SOPs, HR policies, and vacation rules. Employees ask questions; the AI answers strictly from your knowledge base.', ar: 'قم بتحميل إجراءات التشغيل والسياسات. يطرح الموظفون الأسئلة ويجيب الذكاء الاصطناعي بدقة من قاعدة المعرفة.' },
-    customTitle: { en: 'Tailored Workflows', ar: 'سير عمل مخصص بالكامل' },
-    customDesc: { en: 'Need custom routing or specialized integrations? We build bespoke automation for any operational need.', ar: 'هل تحتاج إلى توجيه مخصص أو تكاملات متخصصة؟ نحن نبني أتمتة مخصصة لأي حاجة تشغيلية.' },
-    reportingTitle: { en: 'Live Usage & Audit', ar: 'مراقبة الاستخدام المباشر والتدقيق' },
-    reportingDesc: { en: 'Monitor voice minutes, text requests, and employee adoption directly from your dashboard.', ar: 'راقب دقائق الصوت وطلبات النصوص واعتماد الموظفين مباشرة من لوحة التحكم.' },
+    title: { en: 'Two tools. One platform. Zero missed calls.', ar: 'أداتان. منصة واحدة. بدون مكالمات ضائعة.' },
+    subtitle: { en: 'Handle calls, messages, and employee questions automatically — built for how teams in Qatar and the Middle East actually work.', ar: 'تعامل مع المكالمات والرسائل وأسئلة الموظفين تلقائياً — مبني لكيفية عمل الفرق في قطر والشرق الأوسط.' },
+    automationTitle: { en: 'Never miss a call or booking', ar: 'لا تفوت أي مكالمة أو حجز' },
+    automationDesc: { en: 'Your AI front-desk answers calls, reads messages, and routes requests to the right person — even at 3 AM.', ar: 'مكتب الاستقبال الذكي لديك يرد على المكالمات، يقرأ الرسائل، ويوجه الطلبات للشخص المناسب — حتى في الثالثة فجراً.' },
+    chatbotTitle: { en: 'Your documents, now searchable by your team', ar: 'مستنداتك، قابلة للبحث الآن من قبل فريقك' },
+    chatbotDesc: { en: 'Upload your handbooks, policies, and manuals. Staff ask questions in plain language — the AI answers from your documents only.', ar: 'حمّل كتيباتك وسياساتك وأدلتك. يسأل الموظفون بلغة بسيطة — والذكاء الاصطناعي يجيب من مستنداتك فقط.' },
+    customTitle: { en: 'Built for your specific needs', ar: 'مبني لاحتياجاتك الخاصة' },
+    customDesc: { en: 'Custom routing, private integrations, unique workflows — we build what your operations actually require.', ar: 'توجيه مخصص، تكاملات خاصة، سير عمل فريدة — نبني ما تحتاجه عملياتك فعلاً.' },
+    reportingTitle: { en: "See what's happening, in real time", ar: 'شاهد ما يحدث في الوقت الفعلي' },
+    reportingDesc: { en: 'Track calls, messages, and team activity from one dashboard. No spreadsheets needed.', ar: 'تتبع المكالمات والرسائل ونشاط الفريق من لوحة تحكم واحدة. لا حاجة لجداول البيانات.' },
   };
 
   return (
@@ -41,7 +43,7 @@ export default function FeaturesPage() {
         </div>
 
         {/* 2x2 Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
+        <div ref={featureGridRef} className={`grid grid-cols-1 md:grid-cols-2 gap-8 w-full animate-stagger ${featureGridVisible ? 'revealed' : ''}`}>
           {/* Card 1: Automation */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
             <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6"><PhoneIcon className="w-6 h-6 text-blue-600" /></div>

@@ -20,9 +20,9 @@ export default function DashboardError({
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50">
           <WarningIcon className="w-6 h-6 text-red-500" />
         </div>
-        <h2 className="text-2xl font-bold text-primary mb-3">Dashboard error</h2>
+        <h2 className="text-2xl font-bold text-primary mb-3">Something hiccupped</h2>
         <p className="text-slate-500 mb-8 leading-relaxed">
-          Something went wrong loading this section. Your data is safe.
+          This section didn't load properly. Don't worry — your data hasn't gone anywhere.
         </p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button

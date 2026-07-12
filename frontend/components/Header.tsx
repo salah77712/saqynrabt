@@ -40,7 +40,7 @@ export function Header() {
               {locale === 'ar' ? 'سقن' : 'SAQYN'}
             </span>
             <span className="hidden md:block text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mt-0.5">
-              PRIVATE AI OPS
+              Operations Platform
             </span>
           </div>
         </Link>

@@ -11,11 +11,11 @@ export default function AboutPage() {
 
   const content = {
     eyebrow: { en: 'Our Mission', ar: 'مهمتنا' },
-    title: { en: 'Built for the Front-Desk. Trusted by the Team.', ar: 'صممت لمكاتب الاستقبال. موثوقة من قبل الفريق.' },
+    title: { en: 'Built for the people answering calls and running operations.', ar: 'مبني للأشخاص الذين يردون على المكالمات ويديرون العمليات.' },
     storyTitle: { en: 'The Story & Mission', ar: 'القصة والمهمة' },
     storyBody: {
-      en: 'We believe AI should be invisible, private, and controlled by the business owner — not the other way around. SAQYN RABT was built in Doha, Qatar, to give hospitality operators, healthcare clinics, and operations managers a reliable tool that secures data locally and handles redundant queries without breaking budget limits.',
-      ar: 'نعتقد أن الذكاء الاصطناعي يجب أن يكون خفياً، خاصاً، وخاضعاً لسيطرة صاحب العمل. تم بناء SAQYN RABT في الدوحة، قطر، لمنح مشغلي الفنادق والعيادات الطبية ومديري العمليات أداة موثوقة تؤمن البيانات محلياً وتتعامل مع الاستفسارات المكررة دون تجاوز حدود الميزانية.'
+      en: 'SAQYN RABT started in Doha with a simple observation: front desks were drowning in repetitive calls, and off-the-shelf tools weren\'t built for how businesses in the region actually operate. So we built our own. Our platform handles the calls, messages, and routine questions that eat up your team\'s day — while keeping your data in-region and under your control.',
+      ar: 'بدأت SAQYN RABT في الدوحة بملاحظة بسيطة: مكاتب الاستقبال تغرق في المكالمات المتكررة، والأدوات الجاهزة لم تُصمم لكيفية عمل الشركات في المنطقة. لذا بنينا حلنا الخاص. منصتنا تدير المكالمات والرسائل والاستفسارات الروتينية التي تستهلك وقت فريقك — مع بقاء بياناتك داخل المنطقة وتحت سيطرتك.'
     },
     teamTitle: { en: 'Meet Our Leadership', ar: 'فريق القيادة' },
     badgeSecure: { en: 'Secure Encryption', ar: 'تشفير آمن' },

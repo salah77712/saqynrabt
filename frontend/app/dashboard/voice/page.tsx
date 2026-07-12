@@ -16,9 +16,9 @@ export default function VoicePage() {
   return (
     <div className="max-w-4xl mx-auto space-y-8" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className="border-b border-dark-700 pb-6">
-        <h1 className="text-2xl font-bold text-white">{t({en: 'Voice Dispatch Hub', ar: 'مركز توزيع الصوت'})}</h1>
+        <h1 className="text-2xl font-bold text-white">{t({en: 'Voice Calls', ar: 'مركز توزيع الصوت'})}</h1>
         <p className="text-sm text-slate-400 mt-1">
-          {t({en: 'Monitor active voice calls and stream caller transcripts live to the dispatch console.', ar: 'مراقبة المكالمات الصوتية النشطة وبث نصوص المتصلين مباشرة إلى لوحة التحكم.'})}
+          {t({en: 'Monitor live calls and read transcripts as they happen.', ar: 'مراقبة المكالمات الصوتية النشطة وبث نصوص المتصلين مباشرة إلى لوحة التحكم.'})}
         </p>
       </div>
 

@@ -52,7 +52,7 @@ export default function AutomationDashboardPage() {
   if (isError || error) return <EmptyState title="Could not load requests" retry={refetch} />;
 
   if (data && data.requests?.length === 0 && data.activeCalls?.length === 0) {
-    return <EmptyState title="Live guest queue" description="All clear. No pending requests." />;
+    return <EmptyState title="Live guest queue" description="No pending requests. Everything's running smoothly." />;
   }
 
   return (
@@ -61,10 +61,10 @@ export default function AutomationDashboardPage() {
         <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div>
             <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-white tracking-tight">
-              {t('Operations Automation Hub', 'مركز أتمتة العمليات')}
+              {t('Automation', 'مركز أتمتة العمليات')}
             </h1>
             <p className="text-[10px] md:text-xs text-slate-500 font-bold">
-              {t('Manage live calls, dispatch tasks, and coordinate response channels.', 'إدارة المكالمات المباشرة، وتوزيع المهام، وتنسيق قنوات الاستجابة.')}
+              {t('Live calls, dispatch tasks, and channel activity.', 'إدارة المكالمات المباشرة، وتوزيع المهام، وتنسيق قنوات الاستجابة.')}
             </p>
           </div>
         </div>

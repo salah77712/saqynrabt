@@ -36,8 +36,8 @@ export default function HitlQueuePage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Human-in-the-Loop Review Queue', ar: 'طابور المراجعة البشرية HITL' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Review low-confidence chatbot outputs and override responses.', ar: 'مراجعة مخرجات المساعد الذكي منخفضة الثقة وتعديلها يدويًا.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Review Queue', ar: 'طابور المراجعة البشرية HITL' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Check and override AI responses that need a human touch.', ar: 'مراجعة مخرجات المساعد الذكي منخفضة الثقة وتعديلها يدويًا.' })}</p>
       </div>
 
       {/* Queue list */}
@@ -45,7 +45,7 @@ export default function HitlQueuePage() {
         <h3 className="text-xs font-extrabold text-[#718096] uppercase tracking-wider mb-4">{t({ en: 'Pending Review Tasks', ar: 'مهام المراجعة المعلقة' })}</h3>
 
         {tasks.length === 0 ? (
-          <p className="text-xs text-slate-400 font-semibold text-center py-6">All tasks resolved. You are up to date!</p>
+          <p className="text-xs text-slate-400 font-semibold text-center py-6">Nothing needs review right now.</p>
         ) : (
           <div className="divide-y divide-gray-100">
             {tasks.map((task) => (

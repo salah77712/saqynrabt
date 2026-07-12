@@ -95,8 +95,8 @@ export default function BrandingSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'White-Label Branding Settings', ar: 'إعدادات الهوية البصرية للعميل' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Customize logos, primary theme colors, and the AI assistant avatar.', ar: 'تخصيص الشعارات، الألوان الأساسية، وصورة المساعد الذكي.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Branding', ar: 'إعدادات الهوية البصرية للعميل' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Your logo, your colors, your AI assistant\'s look.', ar: 'تخصيص الشعارات، الألوان الأساسية، وصورة المساعد الذكي.' })}</p>
       </div>
 
       {loading ? (

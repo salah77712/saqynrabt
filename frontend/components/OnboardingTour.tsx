@@ -11,8 +11,8 @@ export function OnboardingTour() {
   if (!visible) return null;
 
   const steps = [
-    { title: 'Welcome to SAQYN', body: 'The consolidated AI command center for your business operations.' },
-    { title: 'Knowledge Base Catalog', body: 'Upload standard operating files to train your private RAG assistant.' },
+    { title: 'Welcome to SAQYN', body: 'Your AI operations hub — all in one place.' },
+    { title: 'Knowledge Base Catalog', body: 'Upload your documents so your AI can answer team questions.' },
     { title: 'Client Identity Sync', body: 'Configure enterprise single sign-on properties under Settings.' },
   ];
 

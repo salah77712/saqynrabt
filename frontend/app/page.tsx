@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
@@ -9,22 +10,22 @@ import Link from 'next/link';
 import { SparklesIcon, BoltIcon, PhoneIcon, ChatIcon, MailIcon, CheckIcon } from '../components/ui/Icons';
 
 const industries = [
-  { id: 'default', label: 'Every Business', headline: 'Empower Every Team Member. Automate Every Guest Request.', copy: 'The secure 24/7 AI front-desk and private staff knowledge hub for any industry. No missed calls. No repetitive questions.' },
-  { id: 'healthcare', label: 'Healthcare', headline: 'Empower Your Medical Staff. Automate Patient Intake.', copy: 'Reduce front-desk workload by automating patient bookings and triaging emergencies.' },
-  { id: 'hospitality', label: 'Hospitality', headline: 'Empower Your Hospitality Staff. Coordinate Guest Services.', copy: 'Never miss a booking inquiry. Handle late check-ins automatically.' },
-  { id: 'homeservices', label: 'Home Services', headline: 'Empower Your Service Crew. Capture Every Emergency Call.', copy: 'Capture urgent calls 24/7 and dispatch technicians to the job instantly.' },
-  { id: 'realestate', label: 'Real Estate', headline: 'Empower Your Management Team. Streamline Maintenance.', copy: 'Route urgent tenant maintenance requests straight to your on-site crew.' },
-  { id: 'automotive', label: 'Automotive', headline: 'Empower Your Mechanics. Automate Repair Quotes.', copy: 'Handle quote inquiries instantly so your mechanics can focus on fixing cars.' },
-  { id: 'food', label: 'Food & Beverage', headline: 'Empower Your Front-of-House. Book Reservations 24/7.', copy: 'Automate table reservations and takeout orders during peak rush hours.' },
-  { id: 'towing', label: 'Towing & Roadside', headline: 'Empower Your Fleet Operators. Coordinate Emergency Roadside Rescue.', copy: 'Capture stranded drivers, get GPS data, and dispatch trucks rapidly.' },
-  { id: 'veterinary', label: 'Veterinary', headline: 'Empower Your Veterinary Staff. Triage Pet Emergencies.', copy: 'Triage emergency pet visits and route to the nurse instantly.' },
-  { id: 'plumbing', label: 'Plumbing & HVAC', headline: 'Empower Your Field Plumbers. Streamline Repair Dispatches.', copy: 'Stop losing money from missed after-hours repair calls.' },
-  { id: 'boutiquehotel', label: 'Boutique Hotels', headline: 'Empower Your Boutique Staff. Automate Guest Key Codes.', copy: 'Let guests auto-assign digital door codes at midnight.' },
-  { id: 'catering', label: 'Restaurants & Catering', headline: 'Empower Your Catering Crew. Standardize Large Event Bookings.', copy: 'Quote and book catering orders with no phone tag.' },
-  { id: 'dealership', label: 'Auto Dealerships', headline: 'Empower Your Sales Team. Automate Vehicle Inventory Inquiries.', copy: 'Answer real-time inventory questions about used cars.' },
-  { id: 'construction', label: 'Construction & Contracting', headline: 'Empower Your Construction Crew. Streamline Site Work Permits.', copy: 'Keep subcontractors updated on material delivery times.' },
-  { id: 'law', label: 'Law Firms', headline: 'Empower Your Case Associates. Streamline Client Intake Audits.', copy: 'Auto-answer retainer fee and intake form questions.' },
-  { id: 'accounting', label: 'Accounting & Tax', headline: 'Empower Your Tax Advisors. Standardize Audit Management.', copy: 'Handle tax season refund status checks without a receptionist.' },
+  { id: 'default', label: 'Every Business', headline: 'Catch every call. Support every team member.', copy: 'The secure 24/7 AI front-desk and private staff knowledge hub for any industry. No missed calls. No repetitive questions.' },
+  { id: 'healthcare', label: 'Healthcare', headline: 'More time with patients, less time on the phone.', copy: 'Reduce front-desk workload by automating patient bookings and triaging emergencies.' },
+  { id: 'hospitality', label: 'Hospitality', headline: 'Check-ins, check-outs, room service — handled.', copy: 'Never miss a booking inquiry. Handle late check-ins automatically.' },
+  { id: 'homeservices', label: 'Home Services', headline: 'Every emergency call captured. Every technician dispatched.', copy: 'Capture urgent calls 24/7 and dispatch technicians to the job instantly.' },
+  { id: 'realestate', label: 'Real Estate', headline: 'Maintenance requests routed before the tenant hangs up.', copy: 'Route urgent tenant maintenance requests straight to your on-site crew.' },
+  { id: 'automotive', label: 'Automotive', headline: 'Repair quotes answered while your crew keeps working.', copy: 'Handle quote inquiries instantly so your mechanics can focus on fixing cars.' },
+  { id: 'food', label: 'Food & Beverage', headline: 'Reservations and takeout handled — even at full capacity.', copy: 'Automate table reservations and takeout orders during peak rush hours.' },
+  { id: 'towing', label: 'Towing & Roadside', headline: 'Stranded drivers connected to your fleet in seconds.', copy: 'Capture stranded drivers, get GPS data, and dispatch trucks rapidly.' },
+  { id: 'veterinary', label: 'Veterinary', headline: 'Pet emergencies triaged the moment the phone rings.', copy: 'Triage emergency pet visits and route to the nurse instantly.' },
+  { id: 'plumbing', label: 'Plumbing & HVAC', headline: 'After-hours calls turned into booked jobs — automatically.', copy: 'Stop losing money from missed after-hours repair calls.' },
+  { id: 'boutiquehotel', label: 'Boutique Hotels', headline: 'Midnight check-ins. Digital keys. Zero staff needed.', copy: 'Let guests auto-assign digital door codes at midnight.' },
+  { id: 'catering', label: 'Restaurants & Catering', headline: 'Event quotes and bookings, minus the phone tag.', copy: 'Quote and book catering orders with no phone tag.' },
+  { id: 'dealership', label: 'Auto Dealerships', headline: 'Inventory questions answered on the first ring.', copy: 'Answer real-time inventory questions about used cars.' },
+  { id: 'construction', label: 'Construction & Contracting', headline: 'Permits, materials, crew dispatch — from one call.', copy: 'Keep subcontractors updated on material delivery times.' },
+  { id: 'law', label: 'Law Firms', headline: 'Retainer questions and case updates, handled instantly.', copy: 'Auto-answer retainer fee and intake form questions.' },
+  { id: 'accounting', label: 'Accounting & Tax', headline: 'Tax season status checks, automated.', copy: 'Handle tax season refund status checks without a receptionist.' },
 ];
 
 const GOLDMINE_INDUSTRIES = industries.filter(i =>
@@ -68,6 +69,11 @@ export default function MarketingPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale } = useLocale();
 
+  const { ref: industryRef, isVisible: industryVisible } = useScrollReveal<HTMLDivElement>();
+  const { ref: testimonialRef, isVisible: testimonialVisible } = useScrollReveal<HTMLDivElement>();
+  const { ref: pricingRef, isVisible: pricingVisible } = useScrollReveal<HTMLDivElement>();
+  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal<HTMLDivElement>();
+
   const t = (obj: { en: string; ar: string }) => locale === 'ar' ? obj.ar : obj.en;
 
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
@@ -106,13 +112,13 @@ export default function MarketingPage() {
   const currentIndustry = industries.find(i => i.id === activeIndustry) || industries[0];
 
   const chatbotIndustryHeadlines: Record<string, { en: string; ar: string }> = {
-    default: { en: 'Empower Every Team Member with Private AI Knowledge.', ar: 'مكّن كل عضو في الفريق بمعرفة الذكاء الاصطناعي الخاصة.' },
-    healthcare: { en: 'Empower Your Medical Staff. Access SOPs Instantly.', ar: 'مكّن طاقمك الطبي. احصل على إجراءات التشغيل فورًا.' },
-    hospitality: { en: 'Empower Your Hospitality Staff. Standardize Hotel SOPs.', ar: 'مكّن موظفي الضيافة. وحد إجراءات تشغيل الفندق.' },
-    homeservices: { en: 'Empower Your Service Crew. Access Safety Manuals 24/7.', ar: 'مكّن طاقم الخدمة. احصل على أدلة السلامة على مدار الساعة.' },
-    realestate: { en: 'Empower Your Management Team. Access Property SOPs.', ar: 'مكّن فريق الإدارة. احصل على إجراءات تشغيل العقار.' },
-    automotive: { en: 'Empower Your Mechanics. Access Diagnostic Standards.', ar: 'مكّن الفنيين لديك. احصل على معايير التشخيص.' },
-    food: { en: 'Empower Your Kitchen & Staff. Standardize Hygiene Manuals.', ar: 'مكّن مطبخك وموظفيك. وحد أدلة النظافة.' }
+    default: { en: 'Every company policy, answered instantly.', ar: 'سياسة كل شركة، يتم الرد عليها فوراً.' },
+    healthcare: { en: 'Clinical SOPs and protocols at your staff\'s fingertips.', ar: 'إجراءات التشغيل السريرية في متناول يد موظفيك.' },
+    hospitality: { en: 'Hotel policies, room configs, guest rules — ask and get.', ar: 'سياسات الفندق وتجهيزات الغرف وقواعد النزلاء.' },
+    homeservices: { en: 'Safety manuals and pricing guides on every phone.', ar: 'أدلة السلامة وأدلة الأسعار على كل هاتف.' },
+    realestate: { en: 'Building handbooks and lease templates, always searchable.', ar: 'كتيبات المباني ونماذج الإيجار، قابلة للبحث دائماً.' },
+    automotive: { en: 'Diagnostic standards and shop policies, instantly.', ar: 'معايير التشخيص وسياسات الورشة، فوراً.' },
+    food: { en: 'Kitchen guidelines and allergy policies, always current.', ar: 'إرشادات المطبخ وسياسات الحساسية، محدثة دائماً.' }
   };
 
   const chatbotIndustryCopies: Record<string, { en: string; ar: string }> = {
@@ -262,7 +268,7 @@ export default function MarketingPage() {
       </section>
 
       {/* ── Industry Switcher & Social Proof ──────────────── */}
-      <section id="industries" className="bg-white border-y border-gray-100 py-16 lg:py-24">
+      <section ref={industryRef} id="industries" className={`bg-white border-y border-gray-100 py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
           
           <p className="text-xs font-extrabold tracking-widest text-[#718096] uppercase mb-8 text-center animate-fadeIn">
@@ -357,7 +363,7 @@ export default function MarketingPage() {
       </section>
 
       {/* ── Testimonials Section ─────────────────────────── */}
-      <section className="bg-[#F8F9FB] py-20 lg:py-28">
+      <section ref={testimonialRef} className={`bg-[#F8F9FB] py-20 lg:py-28 animate-reveal ${testimonialVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-14">
             <p className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase mb-3">
@@ -367,7 +373,7 @@ export default function MarketingPage() {
               {t({ en: 'Trusted by Operations Teams Across Qatar', ar: 'موثوق به من قبل فرق العمليات في قطر' })}
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 animate-stagger ${testimonialVisible ? 'revealed' : ''}`}>
             {testimonials.map((item, i) => (
               <div
                 key={i}
@@ -393,15 +399,15 @@ export default function MarketingPage() {
       </section>
 
       {/* ── Pricing Section ─────────────────────────────────── */}
-      <section id="pricing" className="py-24 lg:py-32 bg-white">
+      <section ref={pricingRef} id="pricing" className={`py-24 lg:py-32 bg-white animate-reveal ${pricingVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           
           <div className="text-center mb-16 animate-fadeIn">
             <h2 className="text-4xl lg:text-5xl font-extrabold text-[#141F33] mb-4">
-              {t({ en: 'Transparent pricing. No hidden costs.', ar: 'أسعار شفافة. بدون تكاليف خفية.' })}
+              {t({ en: 'Simple pricing for every business.', ar: 'أسعار بسيطة لكل الأعمال.' })}
             </h2>
-            <p className="text-base lg:text-lg text-[#10B981] font-semibold tracking-wide uppercase">
-              {t({ en: 'Auto-overage is OFF by default. You control your budget.', ar: 'خيار تجاوز الحد التلقائي مغلق افتراضيًا. أنت من يتحكم بميزانيتك.' })}
+            <p className="text-base lg:text-lg text-[#10B981] font-semibold">
+              {t({ en: 'Fixed monthly price. No surprise bills. Overages only if you turn them on.', ar: 'سعر شهري ثابت. لا فواتير مفاجئة. الاستخدام الزائد فقط إذا فعّلته.' })}
             </p>
           </div>
 
@@ -543,15 +549,15 @@ export default function MarketingPage() {
       </section>
 
       {/* ── Custom Solution CTA Banner ────────────────────── */}
-      <section className="bg-gradient-to-r from-[#141F33] to-[#2A5CFF] py-20 px-6 text-white border-t border-gray-800">
+      <section ref={ctaRef} className={`bg-gradient-to-r from-[#141F33] to-[#2A5CFF] py-20 px-6 text-white border-t border-gray-800 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-            {t({ en: 'Need a customized operational workflow?', ar: 'هل تحتاج إلى سير عمل تشغيلي مخصص بالكامل؟' })}
+            {t({ en: 'Need something more tailored?', ar: 'هل تحتاج إلى شيء أكثر تخصيصاً؟' })}
           </h2>
           <p className="text-blue-100 max-w-xl text-base font-medium leading-relaxed">
             {t({
-              en: 'We design bespoke local AI pipelines for multi-location enterprises, integrating private systems, custom security policies, and custom voice nodes.',
-              ar: 'نقوم بتصميم مسارات ذكاء اصطناعي محلية مخصصة للمؤسسات متعددة الفروع.'
+              en: 'We build custom AI workflows for multi-location teams with unique security or integration needs. Tell us what you need.',
+              ar: 'نبني مسارات ذكاء اصطناعي مخصصة للفرق متعددة الفروع ذات احتياجات الأمان أو التكامل الفريدة. أخبرنا بما تحتاجه.'
             })}
           </p>
           <button
@@ -572,7 +578,7 @@ export default function MarketingPage() {
           <div className="bg-white border border-gray-200 rounded-2xl max-w-md w-full p-8 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             
             <h3 className="text-xl font-extrabold text-[#141F33] mb-3">
-              {isCustomModal ? t({ en: 'Request a Custom Demo', ar: 'طلب عرض مخصص' }) : `${t({ en: 'Configure Plan —', ar: 'تكوين الخطة —' })} ${selectedPlanName}`}
+              {isCustomModal ? t({ en: 'Request a Custom Demo', ar: 'طلب عرض مخصص' }) : `${t({ en: 'Set Up', ar: 'إعداد' })} ${selectedPlanName}`}
             </h3>
             
             <p className="text-sm font-semibold text-[#718096] mb-8 leading-relaxed">
@@ -582,8 +588,8 @@ export default function MarketingPage() {
                     ar: 'أخبرنا عن عمليات عملك. كل ما نحتاجه هو استشارة مدتها 15 دقيقة.'
                   })
                 : t({
-                    en: 'Book a 15-minute setup call with our technical team to allocate your private workspace and configure billing preferences.',
-                    ar: 'احجز مكالمة إعداد مدتها 15 دقيقة مع فريقنا الفني.'
+                    en: 'Pick a time that works for you and we\'ll walk you through the setup.',
+                    ar: 'اختر وقتاً يناسبك وسنرشدك خلال عملية الإعداد.'
                   })}
             </p>
 

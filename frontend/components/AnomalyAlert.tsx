@@ -13,7 +13,7 @@ export function AnomalyAlert() {
   if (!visible) return null;
 
   return (
-    <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex justify-between items-center gap-4 animate-shake">
+    <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex justify-between items-center gap-4 animate-slideDown">
       <div className="flex items-center gap-2">
         <WarningIcon className="w-5 h-5 text-amber-500" />
         <div>

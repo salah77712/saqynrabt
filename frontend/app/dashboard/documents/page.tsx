@@ -91,10 +91,10 @@ export default function DocumentsDashboardPage() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-white tracking-tight">
-            {t('Private Knowledge Documents', 'مستندات المعرفة الخاصة')}
+            {t('Document Library', 'مستندات المعرفة الخاصة')}
           </h1>
           <p className="text-[10px] md:text-xs text-slate-500 font-bold">
-            {t('Upload and index PDFs to expand your internal chatbot knowledge.', 'تحميل وفهرسة ملفات PDF لتوسيع معرفة المساعد الذكي.')}
+            {t('Upload PDFs so your AI can answer questions from your policies and manuals.', 'تحميل وفهرسة ملفات PDF لتوسيع معرفة المساعد الذكي.')}
           </p>
         </div>
 

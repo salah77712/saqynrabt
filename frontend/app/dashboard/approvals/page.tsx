@@ -112,10 +112,10 @@ export default function ApprovalsDashboardPage() {
       {/* Header and Info Bar */}
       <div>
         <h1 className="text-2xl font-extrabold text-[#141F33] tracking-tight">
-          {t({ en: 'Staff Access Approvals', ar: 'موافقات دخول الموظفين' })}
+          {t({ en: 'Approvals', ar: 'موافقات دخول الموظفين' })}
         </h1>
         <p className="text-sm font-semibold text-[#718096] mt-0.5">
-          {t({ en: 'Approve pending employee requests and manage active credentials.', ar: 'الموافقة على طلبات الموظفين المعلقة وإدارة الحسابات النشطة.' })}
+          {t({ en: 'Review and approve teammate access requests.', ar: 'الموافقة على طلبات الموظفين المعلقة وإدارة الحسابات النشطة.' })}
         </p>
 
         {/* Limit Warning Badge */}
@@ -137,7 +137,7 @@ export default function ApprovalsDashboardPage() {
       {/* Pending Employees List */}
       <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-gray-100 bg-white">
-          <h2 className="text-sm font-extrabold text-[#718096] uppercase tracking-widest">{t({ en: 'Pending Access Requests', ar: 'طلبات الدخول المعلقة' })}</h2>
+          <h2 className="text-sm font-extrabold text-[#718096] uppercase tracking-widest">{t({ en: 'Pending Requests', ar: 'طلبات الدخول المعلقة' })}</h2>
         </div>
 
         {loading ? (

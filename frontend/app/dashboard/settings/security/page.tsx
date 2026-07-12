@@ -12,9 +12,9 @@ export default function SecuritySettingsPage() {
 
   return (
     <Card className="space-y-4 max-w-md">
-      <h3 className="font-bold text-navy dark:text-white text-base">{t({en: 'Account Security Policies', ar: 'سياسات أمان الحساب'})}</h3>
+      <h3 className="font-bold text-navy dark:text-white text-base">{t({en: 'Security', ar: 'سياسات أمان الحساب'})}</h3>
       <p className="text-xs text-slate-500 leading-relaxed">
-        {t({en: 'Verify identity verification settings, device logs, and two-factor configurations.', ar: 'التحقق من إعدادات التحقق من الهوية وسجلات الأجهزة وتكوينات المصادقة الثنائية.'})}
+        {t({en: 'Manage login security, devices, and two-factor authentication.', ar: 'التحقق من إعدادات التحقق من الهوية وسجلات الأجهزة وتكوينات المصادقة الثنائية.'})}
       </p>
 
       <div className="flex justify-between items-center py-2 border-b border-gray-100">

@@ -22,15 +22,15 @@ const highlights = {
 
 const regions = {
   en: [
-    { name: 'Middle East', flag: '🇶🇦', cities: 'Doha, Dubai, Riyadh, Kuwait City, Muscat, Manama', desc: 'Our home base. Deep understanding of regional hospitality, healthcare, and service industry needs.' },
-    { name: 'Europe', flag: '🇪🇺', cities: 'London, Berlin, Paris, Amsterdam, Madrid', desc: 'GDPR-compliant data hosting. Serving hotels, clinics, and service businesses across the EU.' },
+    { name: 'Middle East', flag: 'middleeast', cities: 'Doha, Dubai, Riyadh, Kuwait City, Muscat, Manama', desc: 'Our home base. Deep understanding of regional hospitality, healthcare, and service industry needs.' },
+    { name: 'Europe', flag: 'europe', cities: 'London, Berlin, Paris, Amsterdam, Madrid', desc: 'GDPR-compliant data hosting. Serving hotels, clinics, and service businesses across the EU.' },
     { name: 'Asia', flag: 'asia', cities: 'Singapore, Tokyo, Dubai, Mumbai, Bangkok', desc: 'Fast-growing presence in Southeast Asia and the subcontinent. Multi-language support included.' },
     { name: 'Africa', flag: 'africa', cities: 'Cairo, Nairobi, Cape Town, Lagos, Casablanca', desc: 'Expanding across the continent with Arabic, English, and French language support.' },
     { name: 'Americas', flag: 'americas', cities: 'New York, Toronto, São Paulo, Mexico City', desc: 'US-East and US-West data regions available. Serving clients from Canada to Brazil.' },
   ],
   ar: [
-    { name: 'الشرق الأوسط', flag: '🇶🇦', cities: 'الدوحة، دبي، الرياض، مدينة الكويت، مسقط، المنامة', desc: 'قاعدتنا الرئيسية. فهم عميق لاحتياجات قطاعات الضيافة والرعاية الصحية والخدمات الإقليمية.' },
-    { name: 'أوروبا', flag: '🇪🇺', cities: 'لندن، برلين، باريس، أمستردام، مدريد', desc: 'استضافة بيانات متوافقة مع GDPR. نخدم الفنادق والعيادات وشركات الخدمات في جميع أنحاء الاتحاد الأوروبي.' },
+    { name: 'الشرق الأوسط', flag: 'middleeast', cities: 'الدوحة، دبي، الرياض، مدينة الكويت، مسقط، المنامة', desc: 'قاعدتنا الرئيسية. فهم عميق لاحتياجات قطاعات الضيافة والرعاية الصحية والخدمات الإقليمية.' },
+    { name: 'أوروبا', flag: 'europe', cities: 'لندن، برلين، باريس، أمستردام، مدريد', desc: 'استضافة بيانات متوافقة مع GDPR. نخدم الفنادق والعيادات وشركات الخدمات في جميع أنحاء الاتحاد الأوروبي.' },
     { name: 'آسيا', flag: 'asia', cities: 'سنغافورة، طوكيو، دبي، مومباي، بانكوك', desc: 'وجود سريع النمو في جنوب شرق آسيا وشبه القارة الهندية. دعم متعدد اللغات مشمول.' },
     { name: 'أفريقيا', flag: 'africa', cities: 'القاهرة، نيروبي، كيب تاون، لاغوس، الدار البيضاء', desc: 'نتوسع عبر القارة بدعم اللغات العربية والإنجليزية والفرنسية.' },
     { name: 'الأمريكتان', flag: 'americas', cities: 'نيويورك، تورونتو، ساو باولو، مكسيكو سيتي', desc: 'مناطق بيانات US-East و US-West متاحة. نخدم عملاء من كندا إلى البرازيل.' },
@@ -38,6 +38,8 @@ const regions = {
 };
 
 const flagIconMap: Record<string, React.ReactNode> = {
+  middleeast: <svg className="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2a15 15 0 0 0 0 20 15 15 0 0 0 0-20z" /><path d="M2 12h20" /></svg>,
+  europe: <svg className="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2v20M2 12h20" /><path d="M5 5l14 14M19 5l-14 14" /></svg>,
   asia: <GlobeIcon className="w-8 h-8 text-primary" />,
   africa: <GlobeIcon className="w-8 h-8 text-primary" />,
   americas: <GlobeIcon className="w-8 h-8 text-primary" />,

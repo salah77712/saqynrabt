@@ -54,8 +54,8 @@ export default function RolesSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Team Access Roles & RBAC', ar: 'أدوار الفريق وصلاحيات الدخول' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Define custom access roles and assign granular system permissions.', ar: 'تحديد أدوار الوصول المخصصة وتعيين صلاحيات النظام.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Roles & Permissions', ar: 'أدوار الفريق وصلاحيات الدخول' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Control what each team member can see and do.', ar: 'تحديد أدوار الوصول المخصصة وتعيين صلاحيات النظام.' })}</p>
       </div>
 
       {/* Form Custom Role */}

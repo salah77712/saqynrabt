@@ -9,7 +9,7 @@ import { MailIcon } from './ui/Icons';
 
 const content = {
   en: {
-    tagline: 'Connecting teams and automating workflows. Registered in the State of Qatar.',
+    tagline: 'AI-powered operations for front desks and teams across Qatar and beyond.',
     address: 'Doha, Qatar',
     dpoEmail: 'dpo@saqynrabt.com',
     productTitle: 'Product',
@@ -42,7 +42,7 @@ const content = {
     backToTop: 'Back to Top',
   },
   ar: {
-    tagline: 'ربط فرق العمل وتبسيط مسارات العمل. مسجلة في دولة قطر.',
+    tagline: 'عمليات مدعومة بالذكاء الاصطناعي لمكاتب الاستقبال والفرق في قطر وخارجها.',
     address: 'الدوحة، قطر',
     dpoEmail: 'dpo@saqynrabt.com',
     productTitle: 'المنتج',
@@ -165,7 +165,7 @@ export function Footer() {
             name: 'SAQYN RABT',
             url: 'https://saqynrabt.com',
             logo: 'https://saqynrabt.com/logo.png',
-            description: 'Connecting teams and automating workflows. Registered in the State of Qatar.',
+            description: 'AI-powered operations for front desks and teams across Qatar and beyond.',
             address: { '@type': 'PostalAddress', addressLocality: 'Doha', addressCountry: 'QA' },
             contactPoint: [
               { '@type': 'ContactPoint', telephone: '+974-XXXX-XXXX', contactType: 'sales', email: 'hello@saqynrabt.com' },

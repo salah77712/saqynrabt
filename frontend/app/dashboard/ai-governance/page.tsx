@@ -13,8 +13,8 @@ export default function AIGovernancePage() {
     <main id="main-content" className="p-6 space-y-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'AI Governance & Transparency', ar: 'حوكمة الذكاء الاصطناعي والشفافية'})}</h1>
-          <p className="text-xs text-slate-500 font-bold">{t({en: 'Track compliance alignment, model auditing, and pipeline fairness metrics.', ar: 'تتبع توافق الامتثال وتدقيق النماذج ومقاييس عدالة الأنابيب.'})}</p>
+          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Model Oversight', ar: 'حوكمة الذكاء الاصطناعي والشفافية'})}</h1>
+          <p className="text-xs text-slate-500 font-bold">{t({en: 'Track model performance, audit decisions, and check for bias.', ar: 'تتبع توافق الامتثال وتدقيق النماذج ومقاييس عدالة الأنابيب.'})}</p>
         </div>
         <Badge variant="success">{t({en: 'ISO 42001 Standard', ar: 'معيار ISO 42001'})}</Badge>
       </div>
@@ -60,16 +60,16 @@ export default function AIGovernancePage() {
           <h3 className="font-bold text-navy dark:text-white text-sm mb-2">{t({en: 'Bias Evaluation', ar: 'تقييم التحيز'})}</h3>
           <ul className="space-y-2 text-xs">
             <li className="flex justify-between border-b border-gray-100 pb-1">
-              <span className="text-slate-500">{t({en: 'Fairness Rating', ar: 'تصنيف العدالة'})}</span>
-              <span className="font-bold text-emerald-500">AAA (99.8%)</span>
+              <span className="text-slate-500">{t({en: 'Fairness Score', ar: 'تصنيف العدالة'})}</span>
+              <span className="font-bold text-emerald-500">99.8%</span>
             </li>
             <li className="flex justify-between border-b border-gray-100 pb-1">
-              <span className="text-slate-500">{t({en: 'Gender Parity', ar: 'التكافؤ بين الجنسين'})}</span>
-              <span className="font-bold">{t({en: '1.0 (Neutral)', ar: '1.0 (محايد)'})}</span>
+              <span className="text-slate-500">{t({en: 'Gender Balance', ar: 'التكافؤ بين الجنسين'})}</span>
+              <span className="font-bold">{t({en: 'Neutral', ar: '1.0 (محايد)'})}</span>
             </li>
             <li className="flex justify-between">
-              <span className="text-slate-500">{t({en: 'Age Invariance', ar: 'ثبات العمر'})}</span>
-              <span className="font-bold">{t({en: '1.0 (Neutral)', ar: '1.0 (محايد)'})}</span>
+              <span className="text-slate-500">{t({en: 'Age Balance', ar: 'ثبات العمر'})}</span>
+              <span className="font-bold">{t({en: 'Neutral', ar: '1.0 (محايد)'})}</span>
             </li>
           </ul>
         </Card>

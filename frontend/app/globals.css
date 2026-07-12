@@ -46,14 +46,6 @@
   .card-hover {
     @apply transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-[#141F33];
   }
-  .section-fade {
-    opacity: 0;
-    animation: fadeIn 0.5s ease-out forwards;
-  }
-  .section-slide {
-    opacity: 0;
-    animation: slideUp 0.5s ease-out forwards;
-  }
 }
 
 /* ── Global animation keyframes ─────────────────────────── */
@@ -102,6 +94,59 @@
 
 .animate-scaleIn {
   animation: scaleIn 0.3s ease-out forwards;
+}
+
+.animate-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.animate-reveal-left {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-reveal-left.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.animate-reveal-right {
+  opacity: 0;
+  transform: translateX(24px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-reveal-right.revealed {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.animate-stagger > * {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.animate-stagger.revealed > *:nth-child(1) { transition-delay: 0ms; }
+.animate-stagger.revealed > *:nth-child(2) { transition-delay: 80ms; }
+.animate-stagger.revealed > *:nth-child(3) { transition-delay: 160ms; }
+.animate-stagger.revealed > *:nth-child(4) { transition-delay: 240ms; }
+.animate-stagger.revealed > *:nth-child(5) { transition-delay: 320ms; }
+.animate-stagger.revealed > *:nth-child(6) { transition-delay: 400ms; }
+.animate-stagger.revealed > *:nth-child(7) { transition-delay: 480ms; }
+.animate-stagger.revealed > *:nth-child(8) { transition-delay: 560ms; }
+
+.animate-stagger.revealed > * {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ── Reduced motion ─────────────────────────────────────── */

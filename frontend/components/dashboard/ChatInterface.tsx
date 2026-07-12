@@ -12,7 +12,7 @@ interface Message {
 
 export function ChatInterface() {
   const [list, setList] = useState<Message[]>([
-    { id: '1', sender: 'assistant', text: 'Hello! I am your internal assistant. How can I help you today?' },
+    { id: '1', sender: 'assistant', text: 'Hi, I\'m your team assistant. Ask me anything from your documents.' },
   ]);
   const [query, setQuery] = useState('');
   const [typing, setTyping] = useState(false);
@@ -29,7 +29,7 @@ export function ChatInterface() {
       const assistantMsg: Message = {
         id: (Date.now() + 1).toString(),
         sender: 'assistant',
-        text: 'This is a mocked response based on your indexed operational PDF manuals.',
+        text: 'Here\'s what I found in your documents.',
       };
       setList((prev) => [...prev, assistantMsg]);
     }, 1200);

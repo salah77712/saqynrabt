@@ -34,8 +34,8 @@ export default function ReportBuilderSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Custom BI Report Builder', ar: 'منشئ تقارير ذكاء الأعمال المخصصة' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Aggregate workspace activities and export telemetry logs as CSV.', ar: 'تجميع أنشطة مساحة العمل وتصدير سجلات القياس بصيغة CSV.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Reports', ar: 'منشئ تقارير ذكاء الأعمال المخصصة' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Combine activity data and export as CSV.', ar: 'تجميع أنشطة مساحة العمل وتصدير سجلات القياس بصيغة CSV.' })}</p>
       </div>
 
       {/* Form Report Parameter Builder */}

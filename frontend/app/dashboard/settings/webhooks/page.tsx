@@ -141,8 +141,8 @@ export default function WebhooksSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Outgoing Webhook Integration', ar: 'تكاملات الويب هوك الصادرة' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Register HTTP endpoints to receive real-time updates for workspace events.', ar: 'تسجيل روابط الويب هوك لاستلام تحديثات فورية حول أحداث مساحة العمل.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Webhooks', ar: 'تكاملات الويب هوك الصادرة' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Send real-time updates to your own systems.', ar: 'تسجيل روابط الويب هوك لاستلام تحديثات فورية حول أحداث مساحة العمل.' })}</p>
       </div>
 
       {/* Form Register */}

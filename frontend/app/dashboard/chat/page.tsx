@@ -127,7 +127,7 @@ export default function ChatbotDashboardPage() {
                   {t('Staff Knowledge Assistant', 'مساعد معرفة الموظفين')}
                 </h2>
                 <p className="text-[9px] md:text-[10px] text-slate-500 font-bold mt-0.5 truncate">
-                  {t('RAG-powered verified answers only', 'إجابات موثوقة ومستخرجة من المستندات فقط')}
+                  {t('Answers from your documents only', 'إجابات موثوقة ومستخرجة من المستندات فقط')}
                 </p>
               </div>
               <div className="flex items-center gap-2">
@@ -195,10 +195,10 @@ export default function ChatbotDashboardPage() {
             <div className="space-y-4">
               <div className="pb-3 border-b border-gray-100">
                 <h3 className="text-sm font-black text-[#141F33] uppercase tracking-wide">
-                  {t('Staff Knowledge Gaps', 'فجوات معرفة الموظفين')}
+                  {t('Unanswered Questions', 'فجوات معرفة الموظفين')}
                 </h3>
                 <p className="text-[10px] text-slate-500 font-bold mt-1">
-                  {t('Unanswered queries that staff asked. Update SOPs to cover them.', 'استفسارات الموظفين غير المجابة. يرجى تحديث الإجراءات لتغطيتها.')}
+                  {t('Questions your team asked that the AI couldn\'t answer. Upload docs to fill the gaps.', 'استفسارات الموظفين غير المجابة. يرجى تحديث الإجراءات لتغطيتها.')}
                 </p>
               </div>
 
@@ -308,7 +308,7 @@ export default function ChatbotDashboardPage() {
           </div>
           <div className="flex gap-3">
             <Button variant="primary" className="flex-1 min-h-[44px]" onClick={() => setIsGapModalOpen(false)}>
-              Upload Fix PDF
+              Upload Document
             </Button>
             <Button variant="outline" className="min-h-[44px]" onClick={() => setIsGapModalOpen(false)}>
               Cancel

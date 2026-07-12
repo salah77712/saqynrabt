@@ -27,8 +27,8 @@ export default function PromptsSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'System Prompt Engineering', ar: 'هندسة النصوص والتعليمات البرمجية' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Edit system prompts, few-shot examples, and parameters for LLM outputs.', ar: 'تعديل التعليمات والتعليمات الفرعية وبارامترات مخرجات الذكاء الاصطناعي.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'AI Prompts', ar: 'هندسة النصوص والتعليمات البرمجية' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Customize how your AI assistant responds to questions.', ar: 'تعديل التعليمات والتعليمات الفرعية وبارامترات مخرجات الذكاء الاصطناعي.' })}</p>
       </div>
 
       {/* Editor */}

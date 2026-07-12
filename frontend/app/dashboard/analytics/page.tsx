@@ -74,10 +74,10 @@ export default function AnalyticsPage() {
     <main id="main-content" className="p-6 space-y-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Admin Operations Console', ar: 'وحدة تحكم العمليات الإدارية'})}</h1>
-          <p className="text-xs text-slate-500 font-bold">{t({en: 'Real-time metrics, active client billing and ARR tracking.', ar: 'مقاييس فورية، فواتير العملاء النشطين وتتبع الإيرادات السنوية.'})}</p>
+          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Analytics', ar: 'وحدة تحكم العمليات الإدارية'})}</h1>
+          <p className="text-xs text-slate-500 font-bold">{t({en: 'Usage stats, billing overview, and key metrics.', ar: 'مقاييس فورية، فواتير العملاء النشطين وتتبع الإيرادات السنوية.'})}</p>
         </div>
-        <Badge variant="success">{t({en: 'Edge Nodes Active', ar: 'العقد الطرفية نشطة'})}</Badge>
+        <Badge variant="success">{t({en: 'Active Nodes', ar: 'العقد الطرفية نشطة'})}</Badge>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -104,7 +104,7 @@ export default function AnalyticsPage() {
       </div>
 
       <Card className="mt-6">
-        <h3 className="font-bold text-navy dark:text-white mb-4">{t({en: 'Traffic & AI Spikes (Last 24 Hours)', ar: 'حركة المرور وارتفاعات الذكاء الاصطناعي (آخر 24 ساعة)'})}</h3>
+        <h3 className="font-bold text-navy dark:text-white mb-4">{t({en: 'Traffic (Last 24 Hours)', ar: 'حركة المرور وارتفاعات الذكاء الاصطناعي (آخر 24 ساعة)'})}</h3>
         <div className="h-64 flex items-end justify-between gap-2 bg-slate-50 dark:bg-slate-800 p-4 rounded-xl border border-gray-100 dark:border-gray-700">
           {[40, 65, 30, 85, 45, 95, 70, 55, 90, 100, 35, 60].map((h, i) => (
             <div key={i} className="flex-1 flex flex-col items-center gap-1.5 h-full justify-end">

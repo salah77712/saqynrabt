@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'SAQYN RABT | AI Staff Hub & Guest Queue Automation',
-  description: "Explore SAQYN RABT's AI-powered automation and private RAG chatbot solutions for hospitality, healthcare, and service teams across Qatar and the Middle East.",
+  title: 'SAQYN RABT | AI Call Answering & Staff Knowledge Base',
+  description: "SAQYN RABT handles your incoming calls, bookings, and staff questions — so your team can focus on what matters. Built in Doha, trusted across the Middle East.",
   openGraph: {
-    title: 'SAQYN RABT | AI Staff Hub & Guest Queue Automation',
-    description: 'Secure AI-powered automation for guest intake, staff knowledge, and business operations.',
+    title: 'SAQYN RABT | AI Call Answering & Staff Knowledge Base',
+    description: 'Handle calls, bookings, and staff questions automatically. Built in Qatar.',
     url: 'https://saqynrabt.com',
     siteName: 'SAQYN RABT',
     type: 'website',
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SAQYN RABT | AI Staff Hub & Guest Queue Automation',
-    description: 'Secure AI-powered automation for guest intake, staff knowledge, and business operations.',
+    title: 'SAQYN RABT | AI Call Answering & Staff Knowledge Base',
+    description: 'Handle calls, bookings, and staff questions automatically. Built in Qatar.',
     images: ['https://saqynrabt.com/og-image'],
   },
 };

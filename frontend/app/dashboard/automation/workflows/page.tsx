@@ -53,8 +53,8 @@ export default function AutomationWorkflowsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Custom Workflow Builder', ar: 'منشئ مسارات العمل المخصصة' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Configure actions and notifications triggered by automation events.', ar: 'تهيئة الإجراءات والتنبيهات الناتجة عن أحداث الأتمتة.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Workflows', ar: 'منشئ مسارات العمل المخصصة' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Set up actions and notifications for automation events.', ar: 'تهيئة الإجراءات والتنبيهات الناتجة عن أحداث الأتمتة.' })}</p>
       </div>
 
       {/* Form Builder */}

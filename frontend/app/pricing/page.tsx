@@ -23,17 +23,17 @@ export default function PricingPage() {
             {t({ en: 'Pricing', ar: 'الأسعار' })}
           </span>
           <h1 className="text-4xl md:text-5xl font-bold text-primary leading-tight max-w-3xl mx-auto">
-            {t({ en: 'Transparent Pricing for Every Business', ar: 'أسعار شفافة لكل الأعمال' })}
+            {t({ en: 'Pricing that grows with you', ar: 'أسعار تنمو معك' })}
           </h1>
           <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-            {t({ en: 'Three tiers. Unlimited potential. No hidden fees.', ar: 'ثلاث خطط. إمكانيات غير محدودة. لا رسوم خفية.' })}
+            {t({ en: 'Three plans. Pick the one that fits. No lock-in contracts.', ar: 'ثلاث خطط. اختر ما يناسبك. بدون عقود إلزامية.' })}
           </p>
         </div>
       </section>
 
       <div className="bg-emerald-50 border-y border-emerald-200 py-4 px-6 text-center">
         <p className="text-emerald-700 font-semibold text-sm">
-          <span><CheckIcon className="w-4 h-4 text-emerald-600 inline" /> {t({ en: 'No surprise bills. Fixed monthly price. Overages only if you enable them.', ar: 'لا فواتير مفاجئة. سعر شهري ثابت. الاستخدام الزائد فقط إذا فعّلته.' })}</span>
+          <span><CheckIcon className="w-4 h-4 text-emerald-600 inline" /> {t({ en: 'No surprise bills. Everything\'s fixed monthly. Overages only if you want them.', ar: 'لا فواتير مفاجئة. سعر شهري ثابت. الاستخدام الزائد فقط إذا فعّلته.' })}</span>
         </p>
       </div>
 
@@ -46,7 +46,7 @@ export default function PricingPage() {
                 {t({ en: 'Platform Pricing', ar: 'أسعار المنصة' })}
               </h2>
               <p className="text-xs text-slate-400 mt-0.5">
-                {t({ en: 'Call automation, chatbot RAG, and team management.', ar: 'أتمتة المكالمات، المساعد الذكي RAG، وإدارة الفريق.' })}
+                {t({ en: 'Call handling, staff knowledge base, and team tools — all included.', ar: 'إدارة المكالمات، قاعدة معارف الموظفين، وأدوات الفريق — كلها مشمولة.' })}
               </p>
             </div>
             <Link href="/features" className="ml-auto text-xs text-blue-600 font-semibold hover:underline whitespace-nowrap">

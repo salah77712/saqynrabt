@@ -180,10 +180,10 @@ export default function ContactPage() {
             <div>
               <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Get in touch', ar: 'تواصل معنا' })}</span>
               <h1 className="text-4xl font-extrabold text-[#141F33] tracking-tight mt-3">
-                {t({ en: "Let's build the right workflow for your team.", ar: 'دعنا نبني سير عمل مناسب لفريقك.' })}
+                {t({ en: 'Tell us what you need.', ar: 'أخبرنا بما تحتاجه.' })}
               </h1>
               <p className="text-sm font-semibold text-[#718096] mt-4 leading-relaxed max-w-md mx-auto lg:mx-0">
-                {t({ en: 'Have operational bottlenecks? Ask for a custom demo or detailed local deployment plan.', ar: 'هل تواجه عقبات تشغيلية؟ اطلب عرضًا توضيحيًا مخصصًا أو خطة نشر محلية مفصلة.' })}
+                {t({ en: 'Bottlenecks in your operations? Questions about setup? Fill in the form and we\'ll get back to you within 24 hours.', ar: 'عقبات في عملياتك؟ أسئلة حول الإعداد؟ املأ النموذج وسنعود إليك خلال 24 ساعة.' })}
               </p>
             </div>
 

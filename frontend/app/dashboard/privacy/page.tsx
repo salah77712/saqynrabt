@@ -77,7 +77,7 @@ export default function PrivacyDashboardPage() {
     <div className="space-y-6 max-w-2xl">
       <div>
         <h1 className="text-xl font-bold text-[#141F33]">
-          {t({ en: 'Data Privacy & Compliance', ar: 'خصوصية البيانات والامتثال' })}
+          {t({ en: 'Privacy', ar: 'خصوصية البيانات والامتثال' })}
         </h1>
         <p className="text-sm text-[#718096] mt-1">
           {t({
@@ -98,7 +98,7 @@ export default function PrivacyDashboardPage() {
             </h2>
             <p className="text-xs text-[#718096] mt-1">
               {t({
-                en: 'Download a complete archive of your company\'s data, including uploaded documents, chat history, and account information.',
+                en: 'Download all your company data — documents, chat history, and account info — in one archive.',
                 ar: 'قم بتنزيل أرشيف كامل لبيانات شركتك، بما في ذلك المستندات المرفوعة وسجل المحادثات ومعلومات الحساب.',
               })}
             </p>

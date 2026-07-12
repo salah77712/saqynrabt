@@ -147,10 +147,10 @@ export default function TeamDashboardPage() {
       <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
         <div>
           <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-white">
-            {t('Workspace Directory', 'دليل مساحة العمل')}
+            {t('Team', 'دليل مساحة العمل')}
           </h1>
           <p className="text-[10px] md:text-xs text-slate-500 font-bold">
-            {t('Manage team access controls and coordinate staff approvals.', 'إدارة ضوابط الوصول للفريق وتنسيق موافقات الموظفين.')}
+            {t('Invite teammates, manage roles, and approve access requests.', 'إدارة ضوابط الوصول للفريق وتنسيق موافقات الموظفين.')}
           </p>
         </div>
         <Button variant="primary" onClick={() => setInviteModalOpen(true)} className="min-h-[44px] text-xs md:text-sm w-full md:w-auto">

@@ -60,8 +60,8 @@ export default function GuardrailsSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'AI Safety Guardrails Console', ar: 'لوحة التحكم في أمان الذكاء الاصطناعي' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Enable filters to redact PII, restrict prompt injections, and filter toxicity.', ar: 'تفعيل المرشحات لحجب البيانات الشخصية، ومنع الاختراقات، وتصفية المحتوى الضار.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Safety Filters', ar: 'لوحة التحكم في أمان الذكاء الاصطناعي' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Redact personal data, block harmful prompts, and filter unsafe content.', ar: 'تفعيل المرشحات لحجب البيانات الشخصية، ومنع الاختراقات، وتصفية المحتوى الضار.' })}</p>
       </div>
 
       {/* Config Form */}

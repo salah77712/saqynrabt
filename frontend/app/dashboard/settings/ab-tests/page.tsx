@@ -35,8 +35,8 @@ export default function ABTestingSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Model A/B Split Testing', ar: 'اختبارات A/B للموديلات' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Configure traffic splits between standard and fine-tuned models.', ar: 'تكوين تقسيم الزوار بين الموديل القياسي والموديل المخصص.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'A/B Testing', ar: 'اختبارات A/B للموديلات' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Compare model versions by splitting traffic between them.', ar: 'تكوين تقسيم الزوار بين الموديل القياسي والموديل المخصص.' })}</p>
       </div>
 
       {/* Form config */}

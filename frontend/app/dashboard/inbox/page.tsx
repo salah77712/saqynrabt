@@ -50,8 +50,8 @@ export default function OmnichannelInboxPage() {
 
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Unified Omnichannel Inbox', ar: 'صندوق البريد الموحد للقنوات' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Aggregate client messages from WhatsApp, SMS, Web Chat, and Email.', ar: 'تجميع رسائل العملاء من الواتساب، الرسائل النصية، المحادثات، والبريد الإلكتروني.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Inbox', ar: 'صندوق البريد الموحد للقنوات' })}</h1>
+        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'WhatsApp, SMS, web chat, and email — all in one place.', ar: 'تجميع رسائل العملاء من الواتساب، الرسائل النصية، المحادثات، والبريد الإلكتروني.' })}</p>
       </div>
 
       {error && (

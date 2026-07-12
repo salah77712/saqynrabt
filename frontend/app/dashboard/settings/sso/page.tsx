@@ -23,8 +23,8 @@ export default function SSOPage() {
     <main id="main-content" className="p-6 space-y-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Enterprise Single Sign-On (SSO)', ar: 'تسجيل الدخول الموحد للمؤسسات (SSO)'})}</h1>
-          <p className="text-xs text-slate-500 font-bold">{t({en: 'Configure corporate identity integrations (SAML 2.0 / OIDC).', ar: 'تكوين تكاملات الهوية المؤسسية (SAML 2.0 / OIDC).'})}</p>
+          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Single Sign-On (SSO)', ar: 'تسجيل الدخول الموحد للمؤسسات (SSO)'})}</h1>
+          <p className="text-xs text-slate-500 font-bold">{t({en: 'Connect your company\'s identity system for one-click login.', ar: 'تكوين تكاملات الهوية المؤسسية (SAML 2.0 / OIDC).'})}</p>
         </div>
         <Badge variant={samlEnabled ? 'success' : 'primary'}>
           {samlEnabled ? t({en: 'SSO Active', ar: 'SSO نشط'}) : t({en: 'SSO Inactive', ar: 'SSO غير نشط'})}

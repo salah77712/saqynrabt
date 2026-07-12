@@ -65,10 +65,10 @@ export default function HowItWorksPage() {
           {t({ en: 'How It Works', ar: 'كيف يعمل' })}
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-primary leading-tight max-w-4xl mx-auto">
-          {t({ en: 'From First Call to Live Operations in 5 Days', ar: 'من أول مكالمة إلى التشغيل الفعلي في 5 أيام' })}
+          {t({ en: 'From your first call to go-live in under a week', ar: 'من أول مكالمة إلى التشغيل الفعلي في أقل من أسبوع' })}
         </h1>
         <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-          {t({ en: 'Simple setup, minimal training, immediate impact — anywhere in the world.', ar: 'إعداد بسيط، تدريب بسيط، تأثير فوري — في أي مكان في العالم.' })}
+          {t({ en: 'Quick setup, minimal training, immediate results — anywhere you operate.', ar: 'إعداد سريع، تدريب بسيط، نتائج فورية — أينما كنت.' })}
         </p>
       </section>
 

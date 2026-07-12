@@ -142,10 +142,10 @@ export default function SettingsDashboardPage() {
     <div className="space-y-6 md:space-y-8 animate-fadeIn max-w-4xl">
       <div>
         <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-white tracking-tight">
-          {t('Usage Limits & Settings', 'حدود الاستخدام والإعدادات')}
+          {t('Settings', 'حدود الاستخدام والإعدادات')}
         </h1>
         <p className="text-[10px] md:text-xs text-slate-500 font-bold mt-0.5">
-          {t('Configure billing parameters, export log datasets, and edit parameters.', 'تكوين خيارات الفوترة، تصدير سجلات البيانات، وتعديل المعلمات.')}
+          {t('Billing, exports, and account preferences.', 'تكوين خيارات الفوترة، تصدير سجلات البيانات، وتعديل المعلمات.')}
         </p>
       </div>
 
