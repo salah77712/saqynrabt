@@ -23,6 +23,9 @@ export default function VisualSitemapPage() {
         { href: '/careers', label: t('Careers', 'الوظائف') },
         { href: '/blog', label: t('Blog', 'المدونة') },
         { href: '/trust', label: t('Trust Center', 'مركز الثقة') },
+        { href: '/faq', label: t('FAQ', 'الأسئلة الشائعة') },
+        { href: '/changelog', label: t('Changelog', 'سجل التغييرات') },
+        { href: '/sitemap', label: t('Sitemap', 'خريطة الموقع') },
       ],
     },
     {
@@ -37,7 +40,11 @@ export default function VisualSitemapPage() {
         { href: '/chatbot', label: t('Internal Chatbot', 'المساعد الذكي الداخلي') },
         { href: '/pricing', label: t('Pricing Plans', 'خطط الأسعار') },
         { href: '/industries', label: t('Industry Switcher', 'مبدل القطاعات') },
-        { href: '/dashboard', label: t('Dashboard Demo', 'عرض لوحة التحكم') },
+        { href: '/features', label: t('Features', 'المميزات') },
+        { href: '/how-it-works', label: t('How It Works', 'كيف يعمل') },
+        { href: '/case-studies', label: t('Case Studies', 'دراسات حالة') },
+        { href: '/global', label: t('Global', 'عالمي') },
+        { href: '/marketplace', label: t('Marketplace', 'السوق') },
       ],
     },
     {
@@ -48,11 +55,14 @@ export default function VisualSitemapPage() {
         </svg>
       ),
       links: [
+        { href: '/developers', label: t('Developers', 'المطورون') },
         { href: '/developers/api-docs', label: t('API Docs', 'وثائق API') },
         { href: '/developers/cli', label: t('CLI Tool', 'أداة CLI') },
         { href: '/developers/plugins', label: t('Plugins', 'الإضافات') },
-        { href: '/help/getting-started', label: t('Help Center', 'مركز المساعدة') },
-        { href: '/changelog', label: t('Changelog', 'سجل التغييرات') },
+        { href: '/help/getting-started', label: t('Getting Started', 'بدء الاستخدام') },
+        { href: '/help/automation', label: t('Automation Guide', 'دليل الأتمتة') },
+        { href: '/help/chatbot', label: t('Chatbot Guide', 'دليل المساعد الذكي') },
+        { href: '/help/billing', label: t('Billing Guide', 'دليل الفوترة') },
       ],
     },
     {
@@ -68,6 +78,9 @@ export default function VisualSitemapPage() {
         { href: '/legal/dpa', label: t('Data Processing Agreement (DPA)', 'اتفاقية معالجة البيانات') },
         { href: '/legal/security', label: t('Security Documents', 'وثائق الأمان') },
         { href: '/legal/nda', label: t('NDA', 'اتفاقية عدم الإفصاح') },
+        { href: '/legal/vulnerability-disclosure', label: t('Vulnerability Disclosure', 'الإبلاغ عن الثغرات') },
+        { href: '/cookie-policy', label: t('Cookie Policy', 'سياسة الكوكيز') },
+        { href: '/accessibility', label: t('Accessibility', 'إمكانية الوصول') },
       ],
     },
   ];

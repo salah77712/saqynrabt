@@ -39,14 +39,6 @@ const routes: { path: string; priority: string; changefreq: string }[] = [
   { path: '/terms-and-conditions', priority: '0.4', changefreq: 'yearly' },
   { path: '/cookie-policy', priority: '0.4', changefreq: 'yearly' },
 
-  // Dashboard (lower priority for crawlers, but included for completeness)
-  { path: '/dashboard', priority: '0.5', changefreq: 'daily' },
-  { path: '/dashboard/automation', priority: '0.4', changefreq: 'daily' },
-  { path: '/dashboard/chat', priority: '0.4', changefreq: 'daily' },
-  { path: '/dashboard/documents', priority: '0.4', changefreq: 'daily' },
-  { path: '/dashboard/approvals', priority: '0.4', changefreq: 'daily' },
-  { path: '/dashboard/settings', priority: '0.3', changefreq: 'monthly' },
-  { path: '/dashboard/voice', priority: '0.3', changefreq: 'monthly' },
 ];
 
 export async function GET() {
