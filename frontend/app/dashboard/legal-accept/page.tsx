@@ -18,7 +18,7 @@ interface AcceptanceStatus {
 export default function LegalAcceptPage() {
   const { locale } = useLocale();
   const router = useRouter();
-  const t = (obj: Record<string, string>) => (locale === 'ar' ? obj.ar : obj.en);
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [status, setStatus] = useState<AcceptanceStatus | null>(null);
   const [loading, setLoading] = useState(true);

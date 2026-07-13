@@ -17,7 +17,7 @@ interface CompanyItem {
 export default function AdminCompaniesPage() {
   const { locale } = useLocale();
   const { addToast } = useGlobalToast();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [search, setSearch] = useState('');
   const [page, setPage] = useState(1);

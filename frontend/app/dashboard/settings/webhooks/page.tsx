@@ -15,7 +15,7 @@ export default function WebhooksSettingsPage() {
   const { locale } = useLocale();
   const { mockMode } = useEntitlements();
   const { getToken, isLoaded: authLoaded } = useAuth();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [webhooks, setWebhooks] = useState<WebhookItem[]>([]);

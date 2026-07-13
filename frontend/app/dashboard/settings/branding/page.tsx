@@ -10,7 +10,7 @@ export default function BrandingSettingsPage() {
   const { mockMode } = useEntitlements();
   const { getToken, isLoaded: authLoaded } = useAuth();
   const { addToast } = useGlobalToast();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);

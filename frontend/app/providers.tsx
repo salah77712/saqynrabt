@@ -14,7 +14,7 @@ const queryClient = new QueryClient({
   },
 });
 
-export type Locale = 'en' | 'ar';
+export type Locale = 'en' | 'fr' | 'ar' | 'hi';
 
 interface LanguageContextProps {
   locale: Locale;
@@ -77,17 +77,20 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 
 function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<string>('en');
+  const [locale, setLocaleState] = useState<Locale>('en');
+  const validLocales: Locale[] = ['en', 'fr', 'ar', 'hi'];
 
   const setLocale = (value: string) => {
-    setLocaleState(value);
+    if (validLocales.includes(value as Locale)) {
+      setLocaleState(value as Locale);
+    }
   };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const savedLocale = window.localStorage.getItem('saqyn-locale') || '';
-      if (savedLocale) {
-        setLocaleState(savedLocale);
+      if (savedLocale && validLocales.includes(savedLocale as Locale)) {
+        setLocaleState(savedLocale as Locale);
       }
     }
   }, []);
@@ -99,7 +102,7 @@ function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, [locale]);
 
   return (
-    <LanguageContext.Provider value={{ locale: locale as Locale, setLocale }}>
+    <LanguageContext.Provider value={{ locale, setLocale }}>
       {children}
     </LanguageContext.Provider>
   );

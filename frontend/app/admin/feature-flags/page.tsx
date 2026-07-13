@@ -11,7 +11,7 @@ interface FlagItem {
 
 export default function AdminFeatureFlagsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [flags, setFlags] = useState<FlagItem[]>([
     { id: 'f-1', name: 'voice_ai_enabled', enabled: true },

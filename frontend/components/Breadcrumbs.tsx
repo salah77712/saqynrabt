@@ -5,46 +5,45 @@ import { usePathname } from 'next/navigation';
 import { useLocale } from '../app/providers';
 
 /** Human-readable labels for known segments */
-const segmentLabels: Record<string, { en: string; ar: string }> = {
-  dashboard: { en: 'Dashboard', ar: 'لوحة التحكم' },
-  automation: { en: 'Automation', ar: 'الأتمتة' },
-  chat: { en: 'Chat', ar: 'المحادثة' },
-  documents: { en: 'Documents', ar: 'المستندات' },
-  approvals: { en: 'Approvals', ar: 'الموافقات' },
-  settings: { en: 'Settings', ar: 'الإعدادات' },
-  voice: { en: 'Voice', ar: 'الصوت' },
-  features: { en: 'Features', ar: 'الميزات' },
-  industries: { en: 'Industries', ar: 'الصناعات' },
-  'how-it-works': { en: 'How It Works', ar: 'كيف يعمل' },
-  pricing: { en: 'Pricing', ar: 'الأسعار' },
-  faq: { en: 'FAQ', ar: 'الأسئلة الشائعة' },
-  about: { en: 'About', ar: 'عنا' },
-  contact: { en: 'Contact', ar: 'اتصل بنا' },
-  help: { en: 'Help Center', ar: 'مركز المساعدة' },
-  'getting-started': { en: 'Getting Started', ar: 'البدء' },
-  billing: { en: 'Billing', ar: 'الفوترة' },
-  chatbot: { en: 'Chatbot', ar: 'المساعد الذكي' },
-  global: { en: 'Global', ar: 'العالمية' },
-  'case-studies': { en: 'Case Studies', ar: 'دراسات الحالة' },
-  developers: { en: 'Developers', ar: 'المطورين' },
-  'api-docs': { en: 'API Docs', ar: 'وثائق API' },
-  plugins: { en: 'Plugins', ar: 'الإضافات' },
-  cli: { en: 'CLI', ar: 'سطر الأوامر' },
-  changelog: { en: 'Changelog', ar: 'سجل التغييرات' },
-  marketplace: { en: 'Marketplace', ar: 'السوق' },
-  'privacy-policy': { en: 'Privacy Policy', ar: 'سياسة الخصوصية' },
-  'terms-and-conditions': { en: 'Terms & Conditions', ar: 'الشروط والأحكام' },
-  'cookie-policy': { en: 'Cookie Policy', ar: 'سياسة ملفات تعريف الارتباط' },
-  admin: { en: 'Admin', ar: 'المشرف' },
-  portal: { en: 'Portal', ar: 'البوابة' },
-  privacy: { en: 'Privacy', ar: 'الخصوصية' },
-  'thank-you': { en: 'Thank You', ar: 'شكرًا لك' },
+const segmentLabels: Record<string, Record<string, string>> = {
+  dashboard: { en: 'Dashboard', fr: 'Tableau de Bord', ar: 'لوحة التحكم', hi: 'डैशबोर्ड' },
+  automation: { en: 'Automation', fr: 'Automatisation', ar: 'الأتمتة', hi: 'स्वचालन' },
+  chat: { en: 'Chat', fr: 'Chat', ar: 'المحادثة', hi: 'चैट' },
+  documents: { en: 'Documents', fr: 'Documents', ar: 'المستندات', hi: 'दस्तावेज़' },
+  approvals: { en: 'Approvals', fr: 'Approbations', ar: 'الموافقات', hi: 'स्वीकृतियां' },
+  settings: { en: 'Settings', fr: 'Paramètres', ar: 'الإعدادات', hi: 'सेटिंग्स' },
+  voice: { en: 'Voice', fr: 'Voix', ar: 'الصوت', hi: 'आवाज़' },
+  features: { en: 'Features', fr: 'Fonctionnalités', ar: 'الميزات', hi: 'विशेषताएँ' },
+  industries: { en: 'Industries', fr: 'Industries', ar: 'الصناعات', hi: 'उद्योग' },
+  'how-it-works': { en: 'How It Works', fr: 'Comment ça Marche', ar: 'كيف يعمل', hi: 'यह कैसे काम करता है' },
+  pricing: { en: 'Pricing', fr: 'Tarifs', ar: 'الأسعار', hi: 'मूल्य निर्धारण' },
+  faq: { en: 'FAQ', fr: 'FAQ', ar: 'الأسئلة الشائعة', hi: 'सामान्य प्रश्न' },
+  about: { en: 'About', fr: 'À Propos', ar: 'عنا', hi: 'हमारे बारे में' },
+  contact: { en: 'Contact', fr: 'Contact', ar: 'اتصل بنا', hi: 'संपर्क करें' },
+  help: { en: 'Help Center', fr: "Centre d'Aide", ar: 'مركز المساعدة', hi: 'सहायता केंद्र' },
+  'getting-started': { en: 'Getting Started', fr: 'Pour Commencer', ar: 'البدء', hi: 'आरंभ करना' },
+  billing: { en: 'Billing', fr: 'Facturation', ar: 'الفوترة', hi: 'बिलिंग' },
+  chatbot: { en: 'Chatbot', fr: 'Chatbot', ar: 'المساعد الذكي', hi: 'चैटबॉट' },
+  global: { en: 'Global', fr: 'Mondial', ar: 'العالمية', hi: 'वैश्विक' },
+  'case-studies': { en: 'Case Studies', fr: 'Études de Cas', ar: 'دراسات الحالة', hi: 'केस स्टडीज' },
+  developers: { en: 'Developers', fr: 'Développeurs', ar: 'المطورين', hi: 'डेवलपर्स' },
+  'api-docs': { en: 'API Docs', fr: 'Docs API', ar: 'وثائق API', hi: 'API दस्तावेज़' },
+  plugins: { en: 'Plugins', fr: 'Plugins', ar: 'الإضافات', hi: 'प्लगइन्स' },
+  cli: { en: 'CLI', fr: 'CLI', ar: 'سطر الأوامر', hi: 'CLI' },
+  changelog: { en: 'Changelog', fr: 'Journal des Modifications', ar: 'سجل التغييرات', hi: 'परिवर्तन लॉग' },
+  marketplace: { en: 'Marketplace', fr: 'Marketplace', ar: 'السوق', hi: 'मार्केटप्लेस' },
+  'privacy-policy': { en: 'Privacy Policy', fr: 'Politique de Confidentialité', ar: 'سياسة الخصوصية', hi: 'गोपनीयता नीति' },
+  'terms-and-conditions': { en: 'Terms & Conditions', fr: "Conditions d'Utilisation", ar: 'الشروط والأحكام', hi: 'नियम और शर्तें' },
+  'cookie-policy': { en: 'Cookie Policy', fr: 'Politique de Cookies', ar: 'سياسة ملفات تعريف الارتباط', hi: 'कुकी नीति' },
+  admin: { en: 'Admin', fr: 'Admin', ar: 'المشرف', hi: 'व्यवस्थापक' },
+  portal: { en: 'Portal', fr: 'Portail', ar: 'البوابة', hi: 'पोर्टल' },
+  privacy: { en: 'Privacy', fr: 'Confidentialité', ar: 'الخصوصية', hi: 'गोपनीयता' },
+  'thank-you': { en: 'Thank You', fr: 'Merci', ar: 'شكرًا لك', hi: 'धन्यवाद' },
 };
 
-function formatSegment(segment: string, locale: 'en' | 'ar'): string {
+function formatSegment(segment: string, locale: string): string {
   const labels = segmentLabels[segment];
-  if (labels) return locale === 'ar' ? labels.ar : labels.en;
-  // Fallback: capitalize and replace hyphens
+  if (labels) return labels[locale] || labels.en || segment;
   return segment
     .split('-')
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
@@ -84,6 +83,7 @@ export function Breadcrumbs({ currentLabel, className = '' }: BreadcrumbsProps) 
   return (
     <nav
       aria-label={locale === 'ar' ? 'مسار التنقل' : 'Breadcrumb'}
+      dir={locale === 'ar' ? 'rtl' : 'ltr'}
       className={`text-sm ${className}`}
     >
       <ol className="flex flex-wrap items-center gap-1.5 text-muted">
@@ -93,7 +93,7 @@ export function Breadcrumbs({ currentLabel, className = '' }: BreadcrumbsProps) 
             href="/"
             className="text-muted hover:text-navy transition-colors font-medium"
           >
-            {locale === 'ar' ? 'الرئيسية' : 'Home'}
+            {formatSegment('home', locale) || (locale === 'ar' ? 'الرئيسية' : 'Home')}
           </Link>
           <ChevronIcon />
         </li>

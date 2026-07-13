@@ -4,12 +4,9 @@ import { useLocale } from '../app/providers';
 
 const languages = [
   { code: 'en', label: 'English', native: 'English' },
-  { code: 'ar', label: 'Arabic', native: 'العربية' },
-  { code: 'fil', label: 'Filipino', native: 'Filipino' },
   { code: 'fr', label: 'French', native: 'Français' },
+  { code: 'ar', label: 'Arabic', native: 'العربية' },
   { code: 'hi', label: 'Hindi', native: 'हिन्दी' },
-  { code: 'ms', label: 'Malay', native: 'Bahasa Melayu' },
-  { code: 'ur', label: 'Urdu', native: 'اردو' },
 ] as const;
 
 export function LanguageSwitcher() {

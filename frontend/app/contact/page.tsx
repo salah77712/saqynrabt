@@ -10,7 +10,7 @@ import { MapPinIcon, MailIcon, PhoneIcon } from '../../components/ui/Icons';
 export default function ContactPage() {
   const { locale } = useLocale();
   const router = useRouter();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [formData, setFormData] = useState({
     name: '',

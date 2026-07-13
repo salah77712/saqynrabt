@@ -16,7 +16,7 @@ export default function DashboardOverviewPage() {
   const { locale } = useLocale();
   const { mockMode } = useEntitlements();
   const { isLoaded, isSignedIn, user } = useUser();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
   const { data: usage, isLoading, isError, error, refetch } = useUsage(mockMode || !!user);
 
   const isAuth = mockMode || (isLoaded && isSignedIn);

@@ -13,13 +13,18 @@ export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isSignedIn } = useAuth();
 
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, fr: string, ar: string, hi: string) => {
+    if (locale === 'ar') return ar || en;
+    if (locale === 'fr') return fr || en;
+    if (locale === 'hi') return hi || en;
+    return en;
+  };
 
   const navLinks = [
-    { label: { en: 'Features', ar: 'الميزات' }, href: '/features' },
-    { label: { en: 'Industries', ar: 'الصناعات' }, href: '/industries' },
-    { label: { en: 'How It Works', ar: 'آلية العمل' }, href: '/how-it-works' },
-    { label: { en: 'Pricing', ar: 'الأسعار' }, href: '/pricing' },
+    { label: { en: 'Features', fr: 'Fonctionnalités', ar: 'الميزات', hi: 'विशेषताएँ' }, href: '/features' },
+    { label: { en: 'Industries', fr: 'Industries', ar: 'الصناعات', hi: 'उद्योग' }, href: '/industries' },
+    { label: { en: 'How It Works', fr: 'Comment ça Marche', ar: 'آلية العمل', hi: 'यह कैसे काम करता है' }, href: '/how-it-works' },
+    { label: { en: 'Pricing', fr: 'Tarifs', ar: 'الأسعار', hi: 'मूल्य निर्धारण' }, href: '/pricing' },
   ];
 
   const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
@@ -52,7 +57,7 @@ export function Header() {
                   isActive ? 'text-[#141F33]' : 'text-gray-600'
                 }`}
               >
-                {t(link.label.en, link.label.ar)}
+                    {t(link.label.en, link.label.fr, link.label.ar, link.label.hi)}
                 {isActive && (
                   <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#141F33] rounded-full scale-x-100" />
                 )}
@@ -69,7 +74,7 @@ export function Header() {
               href="/contact"
               className="hidden md:inline-flex bg-[#141F33] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all hover:scale-[1.02] shadow-sm min-h-[44px] items-center"
             >
-              {t('See how it works', 'شاهد كيف يعمل')}
+              {t('See how it works', 'Voir comment ça marche', 'شاهد كيف يعمل', 'यह कैसे काम करता है देखें')}
             </Link>
 
             {isSignedIn ? (
@@ -78,12 +83,12 @@ export function Header() {
                   href="/dashboard"
                   className="hidden md:inline-flex bg-[#141F33] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all hover:scale-[1.02] shadow-sm min-h-[40px] items-center"
                 >
-                  {t('Dashboard', 'لوحة التحكم')}
+                  {t('Dashboard', 'Tableau de Bord', 'لوحة التحكم', 'डैशबोर्ड')}
                 </Link>
                 <UserButton afterSignOutUrl="/" showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user">
                   <UserButton.MenuItems>
                     <UserButton.Link
-                      label={t("Dashboard", "لوحة التحكم")}
+                      label={t("Dashboard", "Tableau de Bord", "لوحة التحكم", "डैशबोर्ड")}
                       labelIcon={
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px' }}>
                           <rect x="3" y="3" width="7" height="9" />
@@ -100,13 +105,13 @@ export function Header() {
             ) : (
               <div className="flex items-center gap-2">
                 <Link href="/sign-in" className="text-xs font-extrabold text-[#141F33] hover:underline min-h-[44px] flex items-center px-2">
-                  {t('Sign In', 'تسجيل الدخول')}
+                  {t('Sign In', 'Connexion', 'تسجيل الدخول', 'साइन इन करें')}
                 </Link>
                 <Link
                   href="/sign-up"
                   className="hidden md:inline-flex bg-[#141F33] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all hover:scale-[1.02] shadow-sm min-h-[40px] items-center"
                 >
-                  {t('Register', 'سجل الآن')}
+                  {t('Register', 'S\'inscrire', 'سجل الآن', 'पंजीकरण करें')}
                 </Link>
               </div>
             )}
@@ -150,7 +155,7 @@ export function Header() {
           >
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
               <span className="text-sm font-extrabold text-[#141F33] uppercase tracking-wider">
-                {t('Menu', 'القائمة')}
+                {t('Menu', 'Menu', 'القائمة', 'मेन्यू')}
               </span>
               <button
                 onClick={closeMenu}
@@ -178,7 +183,7 @@ export function Header() {
                         : 'text-gray-700 hover:text-[#141F33] hover:bg-gray-50'
                     }`}
                   >
-                    {t(link.label.en, link.label.ar)}
+                {t(link.label.en, link.label.fr, link.label.ar, link.label.hi)}
                   </Link>
                 );
               })}
@@ -186,7 +191,7 @@ export function Header() {
 
             <div className="px-4 py-4 border-t border-gray-100 space-y-3">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-gray-500">{t('Language', 'اللغة')}</span>
+                <span className="text-xs font-bold text-gray-500">{t('Language', 'Langue', 'اللغة', 'भाषा')}</span>
                 <LanguageSwitcher />
               </div>
 
@@ -195,7 +200,7 @@ export function Header() {
                 onClick={closeMenu}
                 className="flex min-h-[44px] w-full items-center justify-center rounded-xl bg-[#141F33] text-white font-bold text-sm py-3"
               >
-                {t('See how it works', 'شاهد كيف يعمل')}
+                {t('See how it works', 'Voir comment ça marche', 'شاهد كيف يعمل', 'यह कैसे काम करता है देखें')}
               </Link>
             </div>
           </div>

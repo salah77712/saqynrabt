@@ -13,7 +13,7 @@ export function CookieConsentBanner() {
   const [visible, setVisible] = useState(false);
   const [showPrefs, setShowPrefs] = useState(false);
 
-  const t = (obj: { en: string; ar: string }) => (locale === 'ar' ? obj.ar : obj.en);
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   useEffect(() => {
     const stored = localStorage.getItem(COOKIE_CONSENT_KEY) as ConsentStatus;

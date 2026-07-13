@@ -15,7 +15,7 @@ interface PluginItem {
 
 export default function PluginsMarketplacePage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [plugins, setPlugins] = useState<PluginItem[]>([
     { id: 'p-1', name: 'Slack Workspaces Sync', desc: 'Dispatches active queue dispatches and call summaries to Slack channels.', author: 'SAQYN core', installed: false },

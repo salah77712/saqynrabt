@@ -12,7 +12,7 @@ export default function SignInPage() {
   const router = useRouter();
   const { locale } = useLocale();
   const { addToast } = useGlobalToast();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

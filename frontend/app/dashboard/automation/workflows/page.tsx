@@ -13,7 +13,7 @@ interface WorkflowItem {
 
 export default function AutomationWorkflowsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [workflows, setWorkflows] = useState<WorkflowItem[]>([
     { id: 'w-1', name: 'Alert Reception on Bookings', trigger: 'booking.created', action: 'Send Slack Notification', active: true },

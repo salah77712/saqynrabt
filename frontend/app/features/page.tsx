@@ -11,7 +11,7 @@ import { PhoneIcon, SparklesIcon, WrenchIcon, BarChartIcon } from '../../compone
 export default function FeaturesPage() {
   const { locale } = useLocale();
   const { ref: featureGridRef, isVisible: featureGridVisible } = useScrollReveal<HTMLDivElement>();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const content = {
     title: { en: 'Two tools. One platform. Zero missed calls.', ar: 'أداتان. منصة واحدة. بدون مكالمات ضائعة.' },

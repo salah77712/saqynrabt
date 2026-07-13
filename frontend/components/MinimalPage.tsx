@@ -7,7 +7,7 @@ import { Footer } from './Footer';
 
 const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
 
-type Localized = { en: string; ar: string };
+type Localized = Record<string, string>;
 
 export default function MinimalPage({
   eyebrow,
@@ -25,7 +25,7 @@ export default function MinimalPage({
   jsonLd?: any;
 }) {
   const { locale } = useLocale();
-  const t = (obj?: Localized) => (obj ? (locale === 'ar' ? obj.ar : obj.en) : '');
+  const t = (obj?: Localized) => (obj ? (obj[locale] || obj.en || '') : '');
 
   return (
     <div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-slate-900">

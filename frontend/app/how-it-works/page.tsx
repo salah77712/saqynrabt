@@ -52,9 +52,9 @@ const globalItems = {
 
 export default function HowItWorksPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
-  const stepList = steps[locale];
-  const global = globalItems[locale];
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  const stepList = steps[locale as keyof typeof steps] || steps.en;
+  const global = globalItems[locale as keyof typeof globalItems] || globalItems.en;
 
   return (
     <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>

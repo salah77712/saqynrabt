@@ -8,7 +8,7 @@ import { MarketplaceCard } from '../../components/MarketplaceCard';
 
 export default function GlobalMarketplacePage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const plugins = [
     { name: 'Slack Sync', desc: 'Dispatches chat messages and summaries to custom Slack channel targets.', developer: 'SAQYN core' },

@@ -11,7 +11,7 @@ interface RoleItem {
 
 export default function RolesSettingsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [roles, setRoles] = useState<RoleItem[]>([
     { name: 'Admin', permissions: ['view_automation', 'edit_automation', 'view_chatbot', 'edit_chatbot', 'manage_users', 'view_billing'], userCount: 1 },

@@ -9,7 +9,7 @@ function AlertTriangleSvg() { return <svg xmlns="http://www.w3.org/2000/svg" wid
 
 export default function BillingSettingsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => (locale === 'ar' ? obj.ar : obj.en);
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
     <div className="space-y-6 max-w-2xl">

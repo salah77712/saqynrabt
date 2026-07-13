@@ -5,7 +5,7 @@ import { useLocale } from '../../providers';
 
 export default function AdminMetricsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [metrics, setMetrics] = useState({
     requestsPerSecond: 1.4,

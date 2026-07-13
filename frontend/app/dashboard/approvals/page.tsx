@@ -17,7 +17,7 @@ export default function ApprovalsDashboardPage() {
   const { locale } = useLocale();
   const { mockMode } = useEntitlements();
   const { addToast } = useGlobalToast();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [employees, setEmployees] = useState<EmployeeItem[]>([]);
   const [maxEmployees, setMaxEmployees] = useState(50);

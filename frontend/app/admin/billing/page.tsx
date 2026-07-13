@@ -17,7 +17,7 @@ interface InvoiceItem {
 
 export default function AdminBillingPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [invoices, setInvoices] = useState<InvoiceItem[]>([
     { id: 'inv-101', company: 'Al-Safa Hospitality Group', plan: 'Enterprise Bundle', monthlyFee: 2999, setupFee: 9500, totalPaid: 12499, lastInvoiceDate: '2026-07-01', status: 'paid' },

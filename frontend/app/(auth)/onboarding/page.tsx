@@ -11,7 +11,7 @@ export default function OnboardingWizardPage() {
   const { locale } = useLocale();
   const router = useRouter();
   const { getToken, isSignedIn } = useAuth();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({

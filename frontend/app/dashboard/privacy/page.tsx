@@ -13,7 +13,7 @@ function LoaderSvg() { return <svg xmlns="http://www.w3.org/2000/svg" width="16"
 
 export default function PrivacyDashboardPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => (locale === 'ar' ? obj.ar : obj.en);
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [exporting, setExporting] = useState(false);
   const [exportDone, setExportDone] = useState(false);

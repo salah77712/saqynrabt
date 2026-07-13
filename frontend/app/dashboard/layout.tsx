@@ -30,7 +30,7 @@ export default function DashboardLayout({
   const [userRole, setUserRole] = useState<string>('employee');
   const [roleLoaded, setRoleLoaded] = useState(false);
 
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
     overview: { en: 'Overview', ar: 'نظرة عامة' },

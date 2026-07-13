@@ -23,7 +23,7 @@ interface KnowledgeGap {
 
 export default function SettingsDashboardPage() {
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
   const { data: usage, isLoading: usageLoading, isError: usageError, error: usageErrorObj, refetch: refetchUsage } = useUsage();
 
   const [activeTab, setActiveTab] = useState('general');

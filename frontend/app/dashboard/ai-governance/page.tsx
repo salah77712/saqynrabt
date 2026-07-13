@@ -7,7 +7,7 @@ import { Badge } from '../../../components/ui/Badge';
 
 export default function AIGovernancePage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
     <main id="main-content" className="p-6 space-y-6">

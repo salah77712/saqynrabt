@@ -5,7 +5,7 @@ import { useLocale } from '../../../providers';
 
 export default function ReportBuilderSettingsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [metric, setMetric] = useState('automation_calls');
   const [period, setPeriod] = useState('last_30_days');

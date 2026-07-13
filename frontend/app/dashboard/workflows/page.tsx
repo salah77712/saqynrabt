@@ -16,7 +16,7 @@ interface WorkflowNode {
 
 export default function WorkflowsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [nodes, setNodes] = useState<WorkflowNode[]>([
     { id: '1', type: 'trigger', label: t({en: 'Incoming Guest Phone Call', ar: 'مكالمة هاتفية واردة من ضيف'}), desc: t({en: 'Fires when Vapi webhook detects call.', ar: 'يتم تشغيله عند اكتشاف webhook Vapi للمكالمة.'}) },

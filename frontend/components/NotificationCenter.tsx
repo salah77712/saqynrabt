@@ -14,7 +14,7 @@ interface Notification {
 
 export function NotificationCenter() {
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
   const [isOpen, setIsOpen] = useState(false);
   const [list, setList] = useState<Notification[]>([

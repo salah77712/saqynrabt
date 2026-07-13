@@ -10,7 +10,7 @@ interface CSATWidgetProps {
 
 export function CSATWidget({ requestId, onSubmitted }: CSATWidgetProps) {
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
   const [rating, setRating] = useState<number | null>(null);
   const [submitted, setSubmitted] = useState(false);

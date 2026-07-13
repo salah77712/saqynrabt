@@ -25,7 +25,7 @@ interface Employee {
 export default function TeamDashboardPage() {
   const { locale } = useLocale();
   const { addToast } = useGlobalToast();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
   const { data, isLoading, isError, error, refetch } = usePendingApprovals();
   const isMobile = useMediaQuery('(max-width: 767px)');
 

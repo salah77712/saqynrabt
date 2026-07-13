@@ -11,7 +11,7 @@ interface DashboardMobileHeaderProps {
 
 export function DashboardMobileHeader({ isSidebarOpen, onToggleSidebar }: DashboardMobileHeaderProps) {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
     live: { en: 'Live', ar: 'مباشر' },

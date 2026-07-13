@@ -5,7 +5,7 @@ import { useLocale } from '../../providers';
 
 export default function AdminUsagePage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const cards = [
     { title: t({ en: 'Total Active Tenants', ar: 'إجمالي الشركات النشطة' }), value: '184', change: '+12%', color: 'text-blue-600 bg-blue-50' },

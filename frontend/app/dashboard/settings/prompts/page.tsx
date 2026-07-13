@@ -7,7 +7,7 @@ import { useGlobalToast } from '../../../../lib/toast';
 export default function PromptsSettingsPage() {
   const { locale } = useLocale();
   const { addToast } = useGlobalToast();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [prompt, setPrompt] = useState(
     "You are a private AI assistant for Al-Safa Hospitality. Answer queries using the provided handbook context. If you do not know the answer, respond with 'Low confidence'."

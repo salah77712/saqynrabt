@@ -12,7 +12,7 @@ interface HitlTask {
 
 export default function HitlQueuePage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [tasks, setTasks] = useState<HitlTask[]>([
     { id: 't-1', request: 'Can I get a discount for my 10-day booking?', context: 'AI suggested 5% off, but confidence score is 0.52', status: 'pending' },

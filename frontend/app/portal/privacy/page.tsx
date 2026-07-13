@@ -9,7 +9,7 @@ import { useGlobalToast } from '../../../lib/toast';
 export default function PublicPrivacyPortalPage() {
   const { locale } = useLocale();
   const { addToast } = useGlobalToast();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [email, setEmail] = useState('');
   const [requestType, setRequestType] = useState('access');

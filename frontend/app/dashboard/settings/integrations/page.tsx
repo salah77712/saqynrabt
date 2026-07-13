@@ -8,7 +8,7 @@ import { Badge } from '../../../../components/ui/Badge';
 
 export default function IntegrationsSettingsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const integrations = [
     { id: 'slack', name: 'Slack Workspace', desc: t({en: 'Sync alert channels.', ar: 'مزامنة قنوات التنبيهات.'}), active: true },

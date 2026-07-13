@@ -6,7 +6,7 @@ import { DocumentIcon } from './ui/Icons';
 
 export function ImportWizard() {
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
   const [file, setFile] = useState<File | null>(null);
   const [importing, setImporting] = useState(false);

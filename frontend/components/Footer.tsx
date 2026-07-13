@@ -40,6 +40,38 @@ const content = {
     ],
     backToTop: 'Back to Top',
   },
+  fr: {
+    tagline: "Opérations alimentées par l'IA pour les bureaux d'accueil et les équipes au Qatar et au-delà.",
+    address: 'Doha, Qatar',
+    dpoEmail: 'saqynrabt@gmail.com',
+    productTitle: 'Produit',
+    companyTitle: 'Entreprise',
+    legalTitle: 'Juridique et Conformité',
+    privacyControls: 'Contrôles de Confidentialité',
+    cookiePrefs: 'Gérer les Préférences de Cookies',
+    doNotSell: 'Vos Droits à la Confidentialité',
+    accessibility: 'Accessibilité',
+    products: [
+      { href: '/automation', label: 'Explorer l\'Automatisation' },
+      { href: '/chatbot', label: 'Voir le Chatbot Interne' },
+      { href: '/how-it-works', label: 'Comment ça Marche' },
+      { href: '/case-studies', label: 'Études de Cas' },
+      { href: '/pricing', label: 'Voir les Tarifs' },
+    ],
+    company: [
+      { href: '/about', label: 'À Propos' },
+      { href: '/contact', label: 'Contactez-nous' },
+      { href: '/help/getting-started', label: 'Centre d\'Aide' },
+      { href: '/faq', label: 'FAQ' },
+    ],
+    legal: [
+      { href: '/privacy-policy', label: 'Politique de Confidentialité' },
+      { href: '/terms-and-conditions', label: "Conditions d'Utilisation" },
+      { href: '/cookie-policy', label: 'Politique de Cookies' },
+      { href: '/trust', label: 'Centre de Confiance' },
+    ],
+    backToTop: 'Retour en Haut',
+  },
   ar: {
     tagline: 'عمليات مدعومة بالذكاء الاصطناعي لمكاتب الاستقبال والفرق في قطر وخارجها.',
     address: 'الدوحة، قطر',
@@ -72,6 +104,38 @@ const content = {
     ],
     backToTop: 'العودة للأعلى',
   },
+  hi: {
+    tagline: 'क़तर और उससे आगे फ्रंट डेस्क और टीमों के लिए AI-संचालित संचालन।',
+    address: 'दोहा, क़तर',
+    dpoEmail: 'saqynrabt@gmail.com',
+    productTitle: 'उत्पाद',
+    companyTitle: 'कंपनी',
+    legalTitle: 'कानूनी और अनुपालन',
+    privacyControls: 'गोपनीयता नियंत्रण',
+    cookiePrefs: 'कुकी प्राथमिकताएँ प्रबंधित करें',
+    doNotSell: 'आपके गोपनीयता अधिकार',
+    accessibility: 'अभिगम्यता',
+    products: [
+      { href: '/automation', label: 'व्यावसायिक ऑटोमेशन देखें' },
+      { href: '/chatbot', label: 'आंतरिक चैटबॉट देखें' },
+      { href: '/how-it-works', label: 'यह कैसे काम करता है' },
+      { href: '/case-studies', label: 'केस स्टडीज' },
+      { href: '/pricing', label: 'मूल्य योजनाएँ देखें' },
+    ],
+    company: [
+      { href: '/about', label: 'हमारे बारे में जानें' },
+      { href: '/contact', label: 'हमसे बात करें' },
+      { href: '/help/getting-started', label: 'सहायता केंद्र' },
+      { href: '/faq', label: 'अक्सर पूछे जाने वाले प्रश्न' },
+    ],
+    legal: [
+      { href: '/privacy-policy', label: 'गोपनीयता नीति' },
+      { href: '/terms-and-conditions', label: 'सेवा की शर्तें' },
+      { href: '/cookie-policy', label: 'कुकी नीति' },
+      { href: '/trust', label: 'विश्वास केंद्र' },
+    ],
+    backToTop: 'शीर्ष पर वापस जाएँ',
+  },
 };
 
 function Logo() {
@@ -86,8 +150,13 @@ function Logo() {
 
 export function Footer() {
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
-  const copy = content[locale];
+  const t = (en: string, fr: string, ar: string, hi: string) => {
+    if (locale === 'ar') return ar || en;
+    if (locale === 'fr') return fr || en;
+    if (locale === 'hi') return hi || en;
+    return en;
+  };
+  const copy = content[locale] || content.en;
   const year = new Date().getFullYear();
   const [cookiePrefsOpen, setCookiePrefsOpen] = React.useState(false);
 
@@ -264,13 +333,13 @@ export function Footer() {
           </p>
 
           <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">
-            <Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t('Site Map', 'خريطة الموقع')}</Link>
+            <Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t('Site Map', 'Plan du Site', 'خريطة الموقع', 'साइट मैप')}</Link>
             <span>|</span>
-            <Link href="/terms-and-conditions" className="hover:text-[#141F33] transition-colors">{t('Terms', 'الشروط')}</Link>
+            <Link href="/terms-and-conditions" className="hover:text-[#141F33] transition-colors">{t('Terms', 'Conditions', 'الشروط', 'शर्तें')}</Link>
             <span>|</span>
-            <Link href="/privacy-policy" className="hover:text-[#141F33] transition-colors">{t('Privacy', 'سياسة الخصوصية')}</Link>
+            <Link href="/privacy-policy" className="hover:text-[#141F33] transition-colors">{t('Privacy', 'Confidentialité', 'سياسة الخصوصية', 'गोपनीयता')}</Link>
             <span>|</span>
-            <Link href="/trust" className="hover:text-[#141F33] transition-colors">{t('Trust Center', 'مركز الثقة')}</Link>
+            <Link href="/trust" className="hover:text-[#141F33] transition-colors">{t('Trust Center', 'Centre de Confiance', 'مركز الثقة', 'विश्वास केंद्र')}</Link>
           </div>
 
           <SocialLinks />

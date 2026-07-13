@@ -9,7 +9,7 @@ import { MailIcon, WarningIcon, CheckIcon } from '../ui/Icons';
 export function EmailVerificationGate() {
   const { locale } = useLocale();
   const { user, isLoaded: userLoaded } = useUser();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [verificationCode, setVerificationCode] = useState('');
   const [verifying, setVerifying] = useState(false);

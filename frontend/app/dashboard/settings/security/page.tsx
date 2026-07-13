@@ -8,7 +8,7 @@ import { Badge } from '../../../../components/ui/Badge';
 
 export default function SecuritySettingsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
     <Card className="space-y-4 max-w-md">

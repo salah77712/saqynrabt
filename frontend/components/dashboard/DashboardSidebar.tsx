@@ -23,7 +23,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
   const router = useRouter();
   const { locale } = useLocale();
   const { mockMode, setMockMode } = useEntitlements();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
     clientPortal: { en: 'Client Portal', ar: 'بوابة العميل' },

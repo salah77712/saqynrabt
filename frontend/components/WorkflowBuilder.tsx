@@ -12,7 +12,7 @@ interface StepNode {
 
 export function WorkflowBuilder() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [nodes, setNodes] = useState<StepNode[]>([
     { id: '1', type: 'trigger', label: 'incoming_call_created' },

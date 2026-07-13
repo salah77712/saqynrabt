@@ -14,7 +14,7 @@ import { PhoneIcon } from '../../../components/ui/Icons';
 
 export default function AutomationDashboardPage() {
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
   const { data, isLoading, isError, error, refetch } = useAutomationRequests();
 
   const [filter, setFilter] = useState('all');

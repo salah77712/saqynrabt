@@ -16,7 +16,7 @@ interface ClientItem {
 
 export default function ClientSuccessPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const clients: ClientItem[] = [
     { id: '1', name: 'Qatar Medical Center', score: 94, status: 'active', usage: '82% quota' },

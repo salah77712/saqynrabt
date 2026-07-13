@@ -13,7 +13,7 @@ export default function SignUpPage() {
   const searchParams = useSearchParams();
   const emailParam = searchParams.get('email') || '';
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [email, setEmail] = useState(emailParam);
   const [password, setPassword] = useState('');

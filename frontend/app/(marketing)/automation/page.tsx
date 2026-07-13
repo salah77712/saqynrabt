@@ -158,18 +158,18 @@ function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boo
 
 export default function AutomationPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
   const [isModalOpen, setIsModalOpen] = useState(false);
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
 
-  const cases = useCases[locale];
-  const faqList = faqs[locale];
-  const queue = queueItems[locale];
+  const cases = useCases[locale as keyof typeof useCases] || useCases.en;
+  const faqList = faqs[locale as keyof typeof faqs] || faqs.en;
+  const queue = queueItems[locale as keyof typeof queueItems] || queueItems.en;
   const tiers = automationTiers.map((tier) => ({
     ...tier,
     title: t(tier.title),
     subtitle: t(tier.subtitle),
-    features: tier.features[locale],
+    features: tier.features[locale as keyof typeof tier.features] || tier.features.en,
   }));
 
   return (

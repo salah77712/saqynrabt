@@ -13,7 +13,7 @@ export function NavLinks({ navItems }: NavLinksProps) {
   const pathname = usePathname();
   const { locale } = useLocale();
 
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
   const isActive = (href: string) => pathname === href || (href !== '/' && pathname.startsWith(href));
 
   return (

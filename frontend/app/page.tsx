@@ -74,7 +74,7 @@ export default function MarketingPage() {
   const { ref: pricingRef, isVisible: pricingVisible } = useScrollReveal<HTMLDivElement>();
   const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal<HTMLDivElement>();
 
-  const t = (obj: { en: string; ar: string }) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
 

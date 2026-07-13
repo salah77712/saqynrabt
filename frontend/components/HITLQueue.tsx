@@ -5,7 +5,7 @@ import { useLocale } from '../app/providers';
 
 export function HITLQueue() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const demoTasks = [
     { request: 'Discount query', status: 'Pending Review' },

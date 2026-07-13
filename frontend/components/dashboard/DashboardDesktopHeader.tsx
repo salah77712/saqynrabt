@@ -11,7 +11,7 @@ interface DashboardDesktopHeaderProps {
 
 export function DashboardDesktopHeader({ currentTitle }: DashboardDesktopHeaderProps) {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
     clientDashboard: { en: 'Client Dashboard', ar: 'لوحة تحكم العميل' },

@@ -10,7 +10,7 @@ import { Toast } from '../../../../components/ui/Toast';
 
 export default function SSOPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
   const [samlEnabled, setSamlEnabled] = useState(false);
   const [metadataUrl, setMetadataUrl] = useState('');
   const [toastMsg, setToastMsg] = useState<string | null>(null);

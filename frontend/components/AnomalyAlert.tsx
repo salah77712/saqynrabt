@@ -6,7 +6,7 @@ import { WarningIcon, XIcon } from './ui/Icons';
 
 export function AnomalyAlert() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [visible, setVisible] = useState(true);
 

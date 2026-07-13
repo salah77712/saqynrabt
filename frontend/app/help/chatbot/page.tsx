@@ -8,7 +8,7 @@ import { Footer } from '../../../components/Footer';
 
 export default function ChatbotHelpPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const sidebarLinks = [
     { name: { en: 'Getting Started', ar: 'دليل البداية' }, path: '/help/getting-started' },

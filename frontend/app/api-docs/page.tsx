@@ -7,7 +7,7 @@ import { Footer } from '../../components/Footer';
 
 export default function ApiDocsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const endpoints = [
     {

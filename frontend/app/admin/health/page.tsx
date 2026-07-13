@@ -4,7 +4,7 @@ import { useLocale } from '../../providers';
 
 export default function HealthPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
   const [status, setStatus] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
 

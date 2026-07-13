@@ -7,7 +7,7 @@ import { Footer } from '../../../components/Footer';
 
 export default function DevelopersCliDocsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const commands = [
     { cmd: 'saqyn login', desc: t({ en: 'Authenticate CLI with your Clerk developer account credentials.', ar: 'تسجيل الدخول للمطور باستخدام بيانات Clerk.' }) },

@@ -15,7 +15,7 @@ interface SidebarProps {
 export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProps) {
   const pathname = usePathname();
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
   const menuItems = [
     { name: { en: 'Overview', ar: 'نظرة عامة' }, path: '/dashboard', icon: <HomeIcon className="w-5 h-5" /> },

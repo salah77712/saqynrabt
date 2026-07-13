@@ -13,7 +13,7 @@ interface ClientItem {
 
 export default function AdminClientsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [clients, setClients] = useState<ClientItem[]>([
     { id: 'c-1', name: 'Al-Safa Hospitality', plan: 'Enterprise Plus', status: 'active', healthScore: 94 },

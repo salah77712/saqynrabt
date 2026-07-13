@@ -14,7 +14,7 @@ import { useDocuments } from '../../../hooks/queries/useDocuments';
 export default function DocumentsDashboardPage() {
   const { locale } = useLocale();
   const { addToast } = useGlobalToast();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
   const { data, isLoading, isError, error, refetch } = useDocuments();
 
   const [searchQuery, setSearchQuery] = useState('');

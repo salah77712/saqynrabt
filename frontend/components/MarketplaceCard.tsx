@@ -11,7 +11,7 @@ interface MarketplaceCardProps {
 
 export function MarketplaceCard({ name, desc, developer }: MarketplaceCardProps) {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [installed, setInstalled] = useState(false);
 

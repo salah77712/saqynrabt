@@ -24,7 +24,7 @@ interface KnowledgeGap {
 export default function ChatbotDashboardPage() {
   const { locale } = useLocale();
   const { addToast } = useGlobalToast();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
   const [gaps, setGaps] = useState<KnowledgeGap[]>([]);
   const [gapsLoading, setGapsLoading] = useState(true);

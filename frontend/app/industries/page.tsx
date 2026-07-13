@@ -68,8 +68,8 @@ const industries = {
 
 export default function IndustriesPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
-  const list = industries[locale];
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  const list = industries[locale as keyof typeof industries] || industries.en;
 
   return (
     <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>

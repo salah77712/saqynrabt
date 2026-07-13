@@ -10,7 +10,7 @@ type Format = 'PDF' | 'CSV' | 'EXCEL';
 
 export default function ReportsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
   const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
   const [loading, setLoading] = useState<Format | null>(null);
 

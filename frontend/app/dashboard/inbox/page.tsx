@@ -18,7 +18,7 @@ const MOCK_MESSAGES: OmnichannelMessage[] = [
 
 export default function OmnichannelInboxPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [messages, setMessages] = useState<OmnichannelMessage[]>([]);
   const [loading, setLoading] = useState(true);

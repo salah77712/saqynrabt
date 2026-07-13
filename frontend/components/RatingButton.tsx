@@ -9,7 +9,7 @@ interface RatingButtonProps {
 
 export function RatingButton({ chatMessageId }: RatingButtonProps) {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [rating, setRating] = useState<number | null>(null);
   const [comment, setComment] = useState('');

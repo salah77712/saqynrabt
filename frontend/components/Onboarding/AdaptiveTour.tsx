@@ -5,7 +5,7 @@ import { useLocale } from '../../app/providers';
 
 export function AdaptiveTour() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [steps, setSteps] = useState([
     { id: '1', label: t({ en: 'Configure system prompt templates', ar: 'تهيئة قوالب نصوص النظام' }), checked: true },

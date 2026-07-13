@@ -11,7 +11,7 @@ interface IndustrySwitcherProps {
 
 export function IndustrySwitcher({ activeId, onChange }: IndustrySwitcherProps) {
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
   return (
     <div className="flex flex-col items-center gap-6">

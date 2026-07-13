@@ -16,7 +16,7 @@ export default function AdminLayout({
   const router = useRouter();
   const { user, isLoaded } = useUser();
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 

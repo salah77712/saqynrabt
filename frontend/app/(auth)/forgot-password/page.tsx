@@ -9,7 +9,7 @@ import { MailIcon } from '../../../components/ui/Icons';
 export default function ForgotPasswordPage() {
   const { isLoaded, signIn } = useSignIn();
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [email, setEmail] = useState('');
   const [success, setSuccess] = useState(false);

@@ -12,7 +12,7 @@ interface IncidentItem {
 
 export default function AdminIncidentsPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [incidents, setIncidents] = useState<IncidentItem[]>([
     { id: 'i-1', title: 'Stripe webhook retry timeouts', severity: 'Medium', status: 'Investigating' },

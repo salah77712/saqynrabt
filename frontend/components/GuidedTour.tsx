@@ -5,7 +5,7 @@ import { useLocale } from '../app/providers';
 
 export function GuidedTour() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(1);

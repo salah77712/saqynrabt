@@ -47,9 +47,9 @@ const flagIconMap: Record<string, React.ReactNode> = {
 
 export default function GlobalPage() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
-  const highlightList = highlights[locale];
-  const regionList = regions[locale];
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  const highlightList = highlights[locale as keyof typeof highlights] || highlights.en;
+  const regionList = regions[locale as keyof typeof regions] || regions.en;
 
   return (
     <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>

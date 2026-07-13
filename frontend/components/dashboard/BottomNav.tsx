@@ -9,7 +9,7 @@ import { HomeIcon, PhoneIcon, ChatIcon, TeamIcon, SettingsIcon } from '../ui/Ico
 export function BottomNav() {
   const pathname = usePathname();
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
   const navItems = [
     { name: { en: 'Overview', ar: 'نظرة عامة' }, path: '/dashboard', icon: <HomeIcon className="w-5 h-5" /> },

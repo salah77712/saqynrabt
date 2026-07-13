@@ -11,7 +11,7 @@ interface CustomField {
 
 export function CustomFieldBuilder() {
   const { locale } = useLocale();
-  const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
+  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
   const [fields, setFields] = useState<CustomField[]>([
     { id: '1', name: 'Customer ID', type: 'text' },
