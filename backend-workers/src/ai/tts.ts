@@ -3,7 +3,7 @@ export async function generateTextToSpeech(
   text: string,
   voice: string = 'alloy'
 ): Promise<ArrayBuffer> {
-  const url = 'https://api.openai.com/1/audio/speech';
+  const url = 'https://api.openai.com/v1/audio/speech';
 
   const payload = {
     model: 'tts-1',

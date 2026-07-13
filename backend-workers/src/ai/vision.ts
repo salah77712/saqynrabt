@@ -3,7 +3,7 @@ export async function analyzeImage(
   imageBuffer: ArrayBuffer,
   prompt: string
 ): Promise<string> {
-  const url = 'https://api.openai.com/1/chat/completions';
+  const url = 'https://api.openai.com/v1/chat/completions';
   
   // Base64 encode array buffer for JSON payload integration
   const base64Image = btoa(

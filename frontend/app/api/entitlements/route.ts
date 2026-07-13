@@ -1,10 +1,15 @@
+import { auth } from "@clerk/nextjs/server";
 import { safeGetToken } from "../../../lib/safe-auth";
 import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const token = await safeGetToken();
+    const { userId } = await auth();
+    if (!userId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
 
+    const token = await safeGetToken();
     if (!token) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }

@@ -5,18 +5,17 @@ import { useLocale } from '../app/providers';
 
 export function GuidedTour() {
   const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
-
   const [isOpen, setIsOpen] = useState(false);
   const [step, setStep] = useState(1);
 
   useEffect(() => {
-    // Check local storage so it triggers only on first signup onboarding
     const completed = localStorage.getItem('saqyn_tour_completed');
     if (!completed) {
       setIsOpen(true);
     }
   }, []);
+
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const handleNext = () => {
     if (step < 3) {

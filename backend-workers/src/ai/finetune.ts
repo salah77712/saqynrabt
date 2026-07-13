@@ -3,7 +3,7 @@ export async function initiateFinetuningJob(
   trainingFileId: string,
   baseModel: string = 'gpt-4o-mini'
 ): Promise<{ jobId: string; status: string }> {
-  const url = 'https://api.openai.com/1/fine_tuning/jobs';
+  const url = 'https://api.openai.com/v1/fine_tuning/jobs';
 
   const payload = {
     training_file: trainingFileId,

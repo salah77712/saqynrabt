@@ -2,7 +2,7 @@ export async function generateAiImage(
   apiKey: string,
   prompt: string
 ): Promise<string> {
-  const url = 'https://api.openai.com/1/images/generations';
+  const url = 'https://api.openai.com/v1/images/generations';
   
   const payload = {
     model: 'dall-e-3',

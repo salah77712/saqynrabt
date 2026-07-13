@@ -1,6 +1,7 @@
 import { neon } from '@neondatabase/serverless';
 import { Redis } from '@upstash/redis';
 import { verifyToken } from '@clerk/backend';
+import type { IRequest } from 'itty-router';
 
 export interface Env {
   OPENAI_API_KEY: string;
@@ -32,7 +33,7 @@ export interface JWTPayload {
   [key: string]: any;
 }
 
-export interface RequestWithContext extends Request {
+export interface RequestWithContext extends IRequest {
   env: Env;
   ctx: ExecutionContext;
   jwt?: JWTPayload;

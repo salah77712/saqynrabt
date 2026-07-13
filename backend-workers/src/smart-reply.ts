@@ -3,7 +3,7 @@ export async function generateSmartReply(
   messageContext: string,
   sopContext: string
 ): Promise<string> {
-  const url = 'https://api.openai.com/1/chat/completions';
+  const url = 'https://api.openai.com/v1/chat/completions';
 
   const payload = {
     model: 'gpt-4o-mini',

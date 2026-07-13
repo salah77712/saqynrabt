@@ -1,4 +1,5 @@
 import { Router } from 'itty-router';
+import type { IRequest } from 'itty-router';
 import type { RequestWithContext, Env } from './utils';
 import { corsHeaders, verifyJWT } from './utils';
 import { handleWakeup, handleHealth, handleAdminMigrate, handleCheckInvite } from './handlers/public';
@@ -22,7 +23,7 @@ import { handleGetOnboardingStatus, handlePostOnboarding } from './handlers/onbo
 import { handleGetChatHistory } from './handlers/chat-history';
 
 export function createRouter(env: Env) {
-  const router = Router<RequestWithContext>({
+  const router = Router<RequestWithContext, any[], Response>({
     base: '/api',
   });
 

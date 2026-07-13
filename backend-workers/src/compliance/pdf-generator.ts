@@ -18,7 +18,7 @@ const DOC_TITLES: Record<LegalDoc, string> = {
 export async function generateLegalPdf(
   doc: string,
   htmlContent: string,
-  env: { BUCKET: R2Bucket }
+  env: { BUCKET: R2Bucket; BUCKET_PUBLIC_URL?: string }
 ): Promise<{ url: string; expiresAt: Date }> {
   if (!LEGAL_DOCUMENTS.includes(doc as LegalDoc)) {
     throw new Error(`Unknown document: ${doc}. Must be one of: ${LEGAL_DOCUMENTS.join(', ')}`);
@@ -67,12 +67,13 @@ export async function generateLegalPdf(
     },
   });
 
-  const url = `${env.BUCKET.publicUrl}/${key}`;
+  const publicBase = env.BUCKET_PUBLIC_URL || `https://pub-${crypto.randomUUID()}.r2.dev`;
+  const url = `${publicBase}/${key}`;
   return { url, expiresAt };
 }
 
 export async function generateCompliancePack(
-  env: { BUCKET: R2Bucket; DATABASE_URL: string }
+  env: { BUCKET: R2Bucket; DATABASE_URL: string; BUCKET_PUBLIC_URL?: string }
 ): Promise<{ url: string; expiresAt: Date }> {
   const key = `compliance-pack/${crypto.randomUUID()}.zip`;
   const expiresAt = new Date(Date.now() + 60 * 60 * 1000);
@@ -107,6 +108,7 @@ export async function generateCompliancePack(
     },
   });
 
-  const url = `${env.BUCKET.publicUrl}/${key}`;
+  const publicBase = env.BUCKET_PUBLIC_URL || `https://pub-${crypto.randomUUID()}.r2.dev`;
+  const url = `${publicBase}/${key}`;
   return { url, expiresAt };
 }
