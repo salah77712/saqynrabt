@@ -2,9 +2,11 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../../../providers';
+import { useGlobalToast } from '../../../../lib/toast';
 
 export default function PromptsSettingsPage() {
   const { locale } = useLocale();
+  const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const [prompt, setPrompt] = useState(
@@ -18,7 +20,7 @@ export default function PromptsSettingsPage() {
 
     setTimeout(() => {
       setSaving(false);
-      alert('System prompt configurations updated successfully!');
+      addToast('System prompt configurations updated successfully!', 'success');
     }, 800);
   };
 

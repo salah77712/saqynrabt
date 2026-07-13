@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { useLocale } from '../../providers';
+import { useGlobalToast } from '../../../lib/toast';
 import { DocumentGrid } from '../../../components/dashboard/DocumentGrid';
 import { Card } from '../../../components/ui/Card';
 import { Input } from '../../../components/ui/Input';
@@ -12,6 +13,7 @@ import { useDocuments } from '../../../hooks/queries/useDocuments';
 
 export default function DocumentsDashboardPage() {
   const { locale } = useLocale();
+  const { addToast } = useGlobalToast();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
   const { data, isLoading, isError, error, refetch } = useDocuments();
 
@@ -38,7 +40,7 @@ export default function DocumentsDashboardPage() {
   const handleFileUpload = useCallback(async (file: File) => {
     if (!file) return;
     if (file.type !== 'application/pdf') {
-      alert(t('Only PDF documents are allowed.', 'يسمح بملفات PDF فقط.'));
+      addToast(t('Only PDF documents are allowed.', 'يسمح بملفات PDF فقط.'), 'warning');
       return;
     }
 

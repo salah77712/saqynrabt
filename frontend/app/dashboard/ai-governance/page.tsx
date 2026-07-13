@@ -47,7 +47,7 @@ export default function AIGovernancePage() {
             </li>
             <li className="flex justify-between border-b border-gray-100 pb-1">
               <span className="text-slate-500">{t({en: 'Safety Policy Matches', ar: 'مطابقات سياسة السلامة'})}</span>
-              <span className="font-bold text-emerald-500">{t({en: '100% Passed', ar: '100% ناجح'})}</span>
+              <span className="font-bold text-emerald-500">{t({en: 'All Passed', ar: 'جميعها ناجحة'})}</span>
             </li>
             <li className="flex justify-between">
               <span className="text-slate-500">{t({en: 'Average Confidence', ar: 'متوسط الثقة'})}</span>

@@ -135,7 +135,7 @@ export default function MarketingPage() {
   const chatbotCopy = chatbotIndustryCopies[activeIndustry] || chatbotIndustryCopies.default;
 
   return (
-    <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans selection:bg-[#3B5B9B] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       
       <Header />
 
@@ -195,7 +195,7 @@ export default function MarketingPage() {
                 onClick={openCustomModal}
                 className="btn-secondary px-8 py-4"
               >
-                {t({ en: 'Book a Demo', ar: 'احجز عرضًا' })}
+                {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </button>
             </div>
           </div>
@@ -203,7 +203,7 @@ export default function MarketingPage() {
           {/* Right Column — Dashboard Preview */}
           <div className="lg:w-1/2 w-full animate-slideUp" style={{ animationDelay: '0.3s' }}>
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#2A5CFF]/10 to-[#10B981]/10 rounded-3xl blur-2xl opacity-70" />
+              <div className="absolute -inset-4 bg-gradient-to-br from-[#3B5B9B]/10 to-[#10B981]/10 rounded-3xl blur-2xl opacity-70" />
               <div className="relative bg-white rounded-2xl border border-gray-200 shadow-xl p-5 overflow-hidden">
                 <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                   <div className="flex items-center gap-2">
@@ -315,7 +315,7 @@ export default function MarketingPage() {
 
           {/* Dynamic Headline Panel */}
           <div className="mt-12 text-center bg-[#F8F9FB] p-8 rounded-2xl border border-gray-100 max-w-3xl w-full animate-slideUp" style={{ animationDelay: '0.2s' }}>
-            <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{currentIndustry.label}</span>
+            <span className="text-xs font-extrabold tracking-widest text-[#3B5B9B] uppercase">{currentIndustry.label}</span>
             <h2 className="text-2xl md:text-3xl font-extrabold text-[#141F33] leading-tight mt-3">
               {currentIndustry.headline}
             </h2>
@@ -366,18 +366,18 @@ export default function MarketingPage() {
       <section ref={testimonialRef} className={`bg-[#F8F9FB] py-20 lg:py-28 animate-reveal ${testimonialVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-14">
-            <p className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase mb-3">
+            <p className="text-xs font-extrabold tracking-widest text-[#3B5B9B] uppercase mb-3">
               {t({ en: 'Testimonials', ar: 'شهادات العملاء' })}
             </p>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33]">
               {t({ en: 'Trusted by Operations Teams Across Qatar', ar: 'موثوق به من قبل فرق العمليات في قطر' })}
             </h2>
           </div>
-          <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 animate-stagger ${testimonialVisible ? 'revealed' : ''}`}>
+          <div className={`flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none animate-stagger ${testimonialVisible ? 'revealed' : ''}`}>
             {testimonials.map((item, i) => (
               <div
                 key={i}
-                className="bg-white border border-gray-200/80 rounded-2xl p-8 shadow-sm card-hover animate-slideUp"
+                className="min-w-[300px] md:min-w-[380px] snap-start bg-white border border-gray-200/80 rounded-2xl p-8 shadow-sm card-hover"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="flex gap-1 mb-5">
@@ -416,7 +416,7 @@ export default function MarketingPage() {
             {/* Left Column: Automation */}
             <div className="flex flex-col gap-8">
               
-              <div className="border-b-2 border-[#2A5CFF]/30 pb-4 mb-2">
+              <div className="border-b-2 border-[#3B5B9B]/30 pb-4 mb-2">
                 <h3 className="text-lg font-extrabold text-[#141F33] tracking-wider uppercase flex items-center gap-3">
                   <SparklesIcon className="w-5 h-5" /> {t({ en: 'BUSINESS AUTOMATION', ar: 'أتمتة الأعمال' })}
                 </h3>
@@ -467,7 +467,7 @@ export default function MarketingPage() {
                       onClick={() => openPlanModal(`Automation - ${tier.title}`)}
                       className="btn-primary mt-8 w-full py-4"
                     >
-                      {t({ en: 'Book a Demo', ar: 'احجز عرضًا' })}
+                      {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
                     </button>
                   </div>
                 ))}
@@ -535,7 +535,7 @@ export default function MarketingPage() {
                       onClick={() => openPlanModal(`Chatbot - ${tier.title}`)}
                       className="btn-primary mt-8 w-full py-4"
                     >
-                      {tier.cta === 'Contact Sales' ? t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' }) : t({ en: 'Book a Demo', ar: 'احجز عرضًا' })}
+                      {tier.cta === 'Contact Sales' ? t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' }) : t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
                     </button>
                   </div>
                 ))}
@@ -549,7 +549,7 @@ export default function MarketingPage() {
       </section>
 
       {/* ── Custom Solution CTA Banner ────────────────────── */}
-      <section ref={ctaRef} className={`bg-gradient-to-r from-[#141F33] to-[#2A5CFF] py-20 px-6 text-white border-t border-gray-800 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
+      <section ref={ctaRef} className={`bg-gradient-to-r from-[#141F33] to-[#3B5B9B] py-20 px-6 text-white border-t border-gray-800 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
             {t({ en: 'Need something more tailored?', ar: 'هل تحتاج إلى شيء أكثر تخصيصاً؟' })}
@@ -578,7 +578,7 @@ export default function MarketingPage() {
           <div className="bg-white border border-gray-200 rounded-2xl max-w-md w-full p-8 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             
             <h3 className="text-xl font-extrabold text-[#141F33] mb-3">
-              {isCustomModal ? t({ en: 'Request a Custom Demo', ar: 'طلب عرض مخصص' }) : `${t({ en: 'Set Up', ar: 'إعداد' })} ${selectedPlanName}`}
+              {isCustomModal ? t({ en: 'Request a consultation', ar: 'طلب استشارة' }) : `${t({ en: 'Get started with', ar: 'ابدأ مع' })} ${selectedPlanName}`}
             </h3>
             
             <p className="text-sm font-semibold text-[#718096] mb-8 leading-relaxed">
@@ -600,7 +600,7 @@ export default function MarketingPage() {
                 rel="noopener noreferrer"
                 className="btn-primary text-sm"
               >
-                {t({ en: 'Confirm Call Time', ar: 'تأكيد وقت المكالمة' })}
+                {t({ en: 'Pick a time', ar: 'اختر وقتاً' })}
               </a>
               <button
                 type="button"

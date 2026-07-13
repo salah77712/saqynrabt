@@ -16,7 +16,7 @@ export default function AdminIncidentsPage() {
 
   const [incidents, setIncidents] = useState<IncidentItem[]>([
     { id: 'i-1', title: 'Stripe webhook retry timeouts', severity: 'Medium', status: 'Investigating' },
-    { id: 'i-2', title: 'Pinecone query payload overflow', severity: 'High', status: 'Resolved' },
+    { id: 'i-2', title: 'Vector query payload overflow', severity: 'High', status: 'Resolved' },
   ]);
 
   const handleResolve = (id: string) => {

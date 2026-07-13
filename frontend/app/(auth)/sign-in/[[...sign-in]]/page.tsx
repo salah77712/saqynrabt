@@ -5,11 +5,13 @@ import { useSignIn } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useLocale } from '../../../providers';
+import { useGlobalToast } from '../../../../lib/toast';
 
 export default function SignInPage() {
   const { isLoaded, signIn, setActive } = useSignIn();
   const router = useRouter();
   const { locale } = useLocale();
+  const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const [email, setEmail] = useState('');
@@ -229,7 +231,7 @@ export default function SignInPage() {
                 Google
               </button>
               <button
-                onClick={() => alert('Enterprise SSO login is coming soon.')}
+                onClick={() => addToast('Enterprise SSO login is coming soon.', 'info')}
                 className="flex items-center justify-center border border-gray-200 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-gray-50 transition-colors min-h-[44px]"
               >
                 SSO

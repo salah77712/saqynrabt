@@ -40,7 +40,7 @@ export function GuidedTour() {
       body: t({ en: 'Access your Overview metrics, Call Automation triggers, RAG Chatbot support, and Documents catalog.', ar: 'الوصول إلى مقاييس لوحة التحكم، أتمتة المكالمات، المساعد الذكي، والمستندات.' }),
     },
     {
-      title: t({ en: '2. Upload Documents to Pinecone', ar: '2. تحميل المستندات لـ Pinecone' }),
+      title: t({ en: '2. Upload Your Documents', ar: '2. تحميل المستندات الخاصة بك' }),
       body: t({ en: 'Drag policy manuals into the Documents zone. The system indexes text blocks so the assistant can answer correctly.', ar: 'اسحب كتيبات السياسات في قسم المستندات. يقوم النظام بفهرستها ليتمكن المساعد من الإجابة.' }),
     },
     {

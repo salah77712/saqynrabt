@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLocale, useEntitlements } from '../../providers';
+import { useGlobalToast } from '../../../lib/toast';
 import { TeamIcon } from '../../../components/ui/Icons';
 
 interface EmployeeItem {
@@ -15,6 +16,7 @@ interface EmployeeItem {
 export default function ApprovalsDashboardPage() {
   const { locale } = useLocale();
   const { mockMode } = useEntitlements();
+  const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const [employees, setEmployees] = useState<EmployeeItem[]>([]);
@@ -67,7 +69,7 @@ export default function ApprovalsDashboardPage() {
   // Employee Approval Handler
   const handleApprove = (clerkUserId: string) => {
     if (isLimitReached) {
-      alert(t({ en: 'Plan limit reached. Upgrade to add more active employees.', ar: 'تم الوصول إلى الحد الأقصى للموظفين. قم بترقية الخطة لإضافة المزيد.' }));
+      addToast(t({ en: 'Plan limit reached. Upgrade to add more active employees.', ar: 'تم الوصول إلى الحد الأقصى للموظفين. قم بترقية الخطة لإضافة المزيد.' }), 'warning');
       return;
     }
 
@@ -91,7 +93,7 @@ export default function ApprovalsDashboardPage() {
       })
       .catch(err => {
         if (err.message === 'LIMIT_REACHED') {
-          alert(t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول إلى الحد الأقصى للموظفين.' }));
+          addToast(t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول إلى الحد الأقصى للموظفين.' }), 'warning');
         } else {
           console.error('Approve failed, simulating fallback:', err);
           // Fallback simulation

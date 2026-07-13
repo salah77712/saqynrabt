@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { useLocale } from '../../providers';
 import { Footer } from '../../../components/Footer';
-import { MarketingHeader } from '../../../components/MarketingHeader';
+import { Header } from '../../../components/Header';
 import { PhoneIcon, ChatIcon, AmbulanceIcon, ClipboardIcon, BarChartIcon, GlobeIcon, CheckIcon } from '../../../components/ui/Icons';
 import * as React from 'react';
 
@@ -174,7 +174,7 @@ export default function AutomationPage() {
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       {/* Hero */}
       <section className="relative overflow-hidden py-20 md:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
@@ -186,7 +186,7 @@ export default function AutomationPage() {
             {t({ en: 'Never Miss a Customer Call, Booking, or Complaint Again.', ar: 'لا تفوت مكالمة عميل أو حجز أو شكوى مرة أخرى.' })}
           </h1>
           <p className="mt-6 text-lg md:text-xl text-[#718096] max-w-2xl mx-auto leading-relaxed font-medium animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-            {t({ en: 'The 24/7 AI front-desk that handles external inquiries, routes requests, and streamlines your guest experience.', ar: 'مكتب استقبال ذكاء اصطناعي 24/7 يتعامل مع الاستفسارات الخارجية ويوجه الطلبات ويبسط تجربة الضيوف.' })}
+            {t({ en: 'The 24/7 AI front-desk that handles external inquiries, routes requests, and manages your guest experience.', ar: 'مكتب استقبال ذكاء اصطناعي 24/7 يتعامل مع الاستفسارات الخارجية ويوجه الطلبات وينظم تجربة الضيوف.' })}
           </p>
           <div className="mt-10 flex flex-wrap gap-4 justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
             <button
@@ -194,7 +194,7 @@ export default function AutomationPage() {
               onClick={() => setIsModalOpen(true)}
               className="btn-primary text-sm px-8 py-4"
             >
-              {t({ en: 'Book a Demo', ar: 'احجز عرضاً توضيحياً' })}
+              {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </button>
             <Link href="/#pricing" className="btn-secondary text-sm px-8 py-4">
               {t({ en: 'View Pricing', ar: 'عرض الأسعار' })}
@@ -335,10 +335,10 @@ export default function AutomationPage() {
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
           <div className="bg-white border border-gray-200 rounded-2xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
             <h3 className="text-xl font-extrabold text-[#141F33] mb-2">
-              {t({ en: 'Book a Demo', ar: 'احجز عرضاً توضيحياً' })}
+              {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </h3>
             <p className="text-sm font-medium text-[#718096] mb-6 leading-relaxed">
-              {t({ en: 'Book a 15-minute setup call with our team to configure your automation workspace.', ar: 'احجز مكالمة إعداد مدتها 15 دقيقة مع فريقنا لتكوين مساحة عمل الأتمتة الخاصة بك.' })}
+              {t({ en: 'We\'ll walk you through setup in a 15-minute call.', ar: 'سنرشدك خلال الإعداد في مكالمة مدتها 15 دقيقة.' })}
             </p>
             <div className="flex flex-col gap-3">
               <a
@@ -347,7 +347,7 @@ export default function AutomationPage() {
                 rel="noopener noreferrer"
                 className="btn-primary text-sm"
               >
-                {t({ en: 'Book a Demo', ar: 'احجز عرضاً توضيحياً' })}
+                {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </a>
               <button
                 type="button"

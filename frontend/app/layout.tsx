@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { GeistSans, GeistMono } from 'geist/font';
 import './globals.css';
 import { Providers } from './providers';
 import { ToastProvider } from '../lib/toast';
@@ -45,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <script
           type="application/ld+json"

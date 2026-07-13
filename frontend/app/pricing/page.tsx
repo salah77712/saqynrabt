@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { useLocale } from '../providers';
-import { MarketingHeader } from '../../components/MarketingHeader';
+import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { PricingCards } from '../../components/PricingCards';
 import { CheckIcon, PhoneIcon, ArrowRightIcon } from '../../components/ui/Icons';
@@ -15,7 +15,7 @@ export default function PricingPage() {
 
   return (
     <div className="bg-white min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <section className="bg-gradient-to-b from-slate-50 to-white py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 text-center">

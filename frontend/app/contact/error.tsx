@@ -27,7 +27,7 @@ export default function ContactError({
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50"><WarningIcon className="w-6 h-6 text-red-500" /></div>
         <h1 className="text-2xl font-bold text-primary mb-2">Contact page unavailable</h1>
         <p className="text-slate-500 mb-2">We couldn&apos;t load the contact form.</p>
-        <p className="text-sm text-slate-400 mb-8">Please email us directly at hello@saqynrabt.com while we fix this.</p>
+        <p className="text-sm text-slate-400 mb-8">Please email us directly at saqynrabt@gmail.com while we fix this.</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white hover:opacity-90 transition-all">Try again</button>
           <a href="/" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-primary hover:bg-slate-50 transition-all">Back to Home</a>

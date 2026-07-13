@@ -73,7 +73,7 @@ export default function ReportsPage() {
           <div>
             <h3 className="font-bold text-navy dark:text-white text-base">{t({en: 'Chat History CSV', ar: 'سجل المحادثات CSV'})}</h3>
             <p className="text-xs text-slate-500 mt-2 leading-relaxed">
-              {t({en: 'Export comprehensive RAG assistant transcripts to CSV formats for offline review.', ar: 'تصدير نصوص مساعد RAG الشاملة بتنسيق CSV مناسب للمراجعة المحلية.'})}
+              {t({en: 'Export RAG assistant transcripts to CSV formats for offline review.', ar: 'تصدير نصوص مساعد RAG الشاملة بتنسيق CSV مناسب للمراجعة المحلية.'})}
             </p>
           </div>
           <Button variant="outline" className="mt-6 w-full" disabled={loading !== null} onClick={() => handleExport('CSV')}>

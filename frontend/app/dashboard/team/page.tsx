@@ -12,6 +12,7 @@ import { Skeleton, SkeletonCard, SkeletonTable } from '../../../components/ui/Sk
 import { EmptyStateWithRetry, EmptyTeamState } from '../../../components/ui/EmptyState';
 import { usePendingApprovals } from '../../../hooks/queries/usePendingApprovals';
 import { useMediaQuery } from '../../../hooks/useMediaQuery';
+import { useGlobalToast } from '../../../lib/toast';
 
 interface Employee {
   id: string;
@@ -23,6 +24,7 @@ interface Employee {
 
 export default function TeamDashboardPage() {
   const { locale } = useLocale();
+  const { addToast } = useGlobalToast();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
   const { data, isLoading, isError, error, refetch } = usePendingApprovals();
   const isMobile = useMediaQuery('(max-width: 767px)');
@@ -45,7 +47,7 @@ export default function TeamDashboardPage() {
         });
         if (!res.ok) {
           const data = await res.json();
-          alert(data.error || 'Failed to update employee role');
+          addToast(data.error || 'Failed to update employee role', 'error');
         }
       } else {
         await fetch('/api/approvals', {

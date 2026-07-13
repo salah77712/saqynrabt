@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../../../providers';
+import { useGlobalToast } from '../../../../lib/toast';
 
 interface TestRecord {
   id: string;
@@ -13,6 +14,7 @@ interface TestRecord {
 
 export default function ABTestingSettingsPage() {
   const { locale } = useLocale();
+  const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const [activeTest, setActiveTest] = useState({
@@ -27,7 +29,7 @@ export default function ABTestingSettingsPage() {
 
   const handleUpdate = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('A/B traffic split settings updated successfully!');
+    addToast('A/B traffic split settings updated successfully!', 'success');
   };
 
   return (

@@ -3,7 +3,7 @@
 import React from 'react';
 import { useLocale } from '../providers';
 import Link from 'next/link';
-import { MarketingHeader } from '../../components/MarketingHeader';
+import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { ConfettiIcon } from '../../components/ui/Icons';
 
@@ -13,7 +13,7 @@ export default function ThankYouPage() {
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <main className="flex-1 flex flex-col items-center justify-center py-24 px-6 text-center max-w-2xl mx-auto animate-fadeIn">
         

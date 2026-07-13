@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLocale } from '../providers';
-import { MarketingHeader } from '../../components/MarketingHeader';
+import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 
 export default function AboutPage() {
@@ -32,7 +32,7 @@ export default function AboutPage() {
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <main className="flex-1 max-w-4xl mx-auto py-24 px-6 flex flex-col items-center">
         {/* Hero */}

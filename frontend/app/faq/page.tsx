@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useLocale } from '../providers';
-import { MarketingHeader } from '../../components/MarketingHeader';
+import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 
 const categories = {
@@ -104,7 +104,7 @@ export default function FAQPage() {
 
   return (
     <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <section className="max-w-4xl mx-auto px-6 py-20 md:py-28 text-center">
         <span className="inline-block bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">

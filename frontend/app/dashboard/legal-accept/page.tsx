@@ -163,7 +163,7 @@ export default function LegalAcceptPage() {
                   })}
                 </p>
                 <Link
-                  href="/legal/terms"
+                  href="/terms-and-conditions"
                   target="_blank"
                   className="text-xs font-bold text-[#2A5CFF] hover:underline mt-1 inline-block"
                 >
@@ -192,7 +192,7 @@ export default function LegalAcceptPage() {
                   })}
                 </p>
                 <Link
-                  href="/legal/dpa"
+                  href="/terms-and-conditions"
                   target="_blank"
                   className="text-xs font-bold text-[#2A5CFF] hover:underline mt-1 inline-block"
                 >

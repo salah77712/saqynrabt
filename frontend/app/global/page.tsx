@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale } from '../providers';
-import { MarketingHeader } from '../../components/MarketingHeader';
+import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { GlobeIcon } from '../../components/ui/Icons';
 
@@ -53,7 +53,7 @@ export default function GlobalPage() {
 
   return (
     <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
         <span className="inline-block bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
@@ -63,7 +63,7 @@ export default function GlobalPage() {
           {t({ en: 'Based in Qatar. Serving the World.', ar: 'مقرنا في قطر. نخدم العالم.' })}
         </h1>
         <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-          {t({ en: 'Headquartered in Doha, we bring enterprise AI operations to businesses across every continent.', ar: 'مقرنا الرئيسي في الدوحة، نقدم عمليات الذكاء الاصطناعي للمؤسسات في جميع القارات.' })}
+          {t({ en: 'Headquartered in Doha, we bring AI-powered tools to businesses across every continent.', ar: 'مقرنا الرئيسي في الدوحة، نقدم عمليات الذكاء الاصطناعي للمؤسسات في جميع القارات.' })}
         </p>
       </section>
 
@@ -112,7 +112,7 @@ export default function GlobalPage() {
             rel="noopener noreferrer"
             className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-white text-primary px-6 py-3 text-sm font-semibold hover:bg-blue-50 transition-all"
           >
-            {t({ en: 'Book a Demo', ar: 'احجز عرضاً توضيحياً' })}
+            {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
           </a>
         </div>
       </section>

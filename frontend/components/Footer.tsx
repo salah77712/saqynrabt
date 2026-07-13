@@ -11,7 +11,7 @@ const content = {
   en: {
     tagline: 'AI-powered operations for front desks and teams across Qatar and beyond.',
     address: 'Doha, Qatar',
-    dpoEmail: 'dpo@saqynrabt.com',
+    dpoEmail: 'saqynrabt@gmail.com',
     productTitle: 'Product',
     companyTitle: 'Company',
     legalTitle: 'Legal & Compliance',
@@ -22,29 +22,28 @@ const content = {
     products: [
       { href: '/automation', label: 'Explore Business Automation' },
       { href: '/chatbot', label: 'See the Internal Chatbot' },
+      { href: '/how-it-works', label: 'How It Works' },
+      { href: '/case-studies', label: 'Case Studies' },
       { href: '/pricing', label: 'View Pricing Plans' },
-      { href: '/industries', label: 'Browse by Industry' },
-      { href: '/demo', label: 'Try the Dashboard Demo' },
     ],
     company: [
       { href: '/about', label: 'Learn About Us' },
-      { href: '/contact', label: 'Talk to Sales' },
-      { href: '/careers', label: 'Join Our Team' },
-      { href: '/blog', label: 'Read Our Blog' },
+      { href: '/contact', label: 'Talk to Us' },
+      { href: '/help/getting-started', label: 'Help Center' },
+      { href: '/faq', label: 'FAQ' },
     ],
     legal: [
-      { href: '/legal/privacy', label: 'Our Privacy Policy' },
-      { href: '/legal/terms', label: 'Terms of Service' },
-      { href: '/legal/dpa', label: 'Data Processing Agreement (DPA)' },
-      { href: '/legal/security', label: 'See Security Documents' },
-      { href: '/legal/nda', label: 'Non-Disclosure Agreement' },
+      { href: '/privacy-policy', label: 'Privacy Policy' },
+      { href: '/terms-and-conditions', label: 'Terms of Service' },
+      { href: '/cookie-policy', label: 'Cookie Policy' },
+      { href: '/trust', label: 'Trust Center' },
     ],
     backToTop: 'Back to Top',
   },
   ar: {
     tagline: 'عمليات مدعومة بالذكاء الاصطناعي لمكاتب الاستقبال والفرق في قطر وخارجها.',
     address: 'الدوحة، قطر',
-    dpoEmail: 'dpo@saqynrabt.com',
+    dpoEmail: 'saqynrabt@gmail.com',
     productTitle: 'المنتج',
     companyTitle: 'الشركة',
     legalTitle: 'القانون والامتثال',
@@ -55,22 +54,21 @@ const content = {
     products: [
       { href: '/automation', label: 'استكشف الأتمتة التجارية' },
       { href: '/chatbot', label: 'شاهد المساعد الذكي' },
+      { href: '/how-it-works', label: 'كيف يعمل' },
+      { href: '/case-studies', label: 'دراسات الحالة' },
       { href: '/pricing', label: 'اطلع على الأسعار' },
-      { href: '/industries', label: 'تصفح حسب القطاع' },
-      { href: '/demo', label: 'جرّب العرض التوضيحي' },
     ],
     company: [
       { href: '/about', label: 'تعرف علينا' },
-      { href: '/contact', label: 'تحدث مع المبيعات' },
-      { href: '/careers', label: 'انضم إلى فريقنا' },
-      { href: '/blog', label: 'اقرأ مدونتنا' },
+      { href: '/contact', label: 'تحدث معنا' },
+      { href: '/help/getting-started', label: 'مركز المساعدة' },
+      { href: '/faq', label: 'الأسئلة الشائعة' },
     ],
     legal: [
-      { href: '/legal/privacy', label: 'سياسة الخصوصية لدينا' },
-      { href: '/legal/terms', label: 'شروط الخدمة' },
-      { href: '/legal/dpa', label: 'اتفاقية معالجة البيانات' },
-      { href: '/legal/security', label: 'اطلع على وثائق الأمان' },
-      { href: '/legal/nda', label: 'اتفاقية عدم الإفصاح' },
+      { href: '/privacy-policy', label: 'سياسة الخصوصية' },
+      { href: '/terms-and-conditions', label: 'شروط الخدمة' },
+      { href: '/cookie-policy', label: 'سياسة الكوكيز' },
+      { href: '/trust', label: 'مركز الثقة' },
     ],
     backToTop: 'العودة للأعلى',
   },
@@ -168,8 +166,8 @@ export function Footer() {
             description: 'AI-powered operations for front desks and teams across Qatar and beyond.',
             address: { '@type': 'PostalAddress', addressLocality: 'Doha', addressCountry: 'QA' },
             contactPoint: [
-              { '@type': 'ContactPoint', telephone: '+974-XXXX-XXXX', contactType: 'sales', email: 'hello@saqynrabt.com' },
-              { '@type': 'ContactPoint', contactType: 'DPO', email: 'dpo@saqynrabt.com' },
+              { '@type': 'ContactPoint', telephone: '+974-XXXX-XXXX', contactType: 'sales', email: 'saqynrabt@gmail.com' },
+              { '@type': 'ContactPoint', contactType: 'DPO', email: 'saqynrabt@gmail.com' },
             ],
             sameAs: [
               'https://www.instagram.com/saqynrabt',
@@ -198,7 +196,7 @@ export function Footer() {
               <p>{copy.address}</p>
               <p>
                 DPO:{' '}
-                <a href="mailto:dpo@saqynrabt.com" className="text-slate-500 hover:text-[#141F33] hover:underline">
+                <a href="mailto:saqynrabt@gmail.com" className="text-slate-500 hover:text-[#141F33] hover:underline">
                   {copy.dpoEmail}
                 </a>
               </p>
@@ -207,10 +205,10 @@ export function Footer() {
               <MailIcon className="w-3 h-3 text-slate-400" />
               <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">DPO</span>
               <a
-                href="mailto:dpo@saqynrabt.com"
+                href="mailto:saqynrabt@gmail.com"
                 className="text-[11px] font-extrabold text-slate-700 hover:text-[#141F33] hover:underline"
               >
-                dpo@saqynrabt.com
+                saqynrabt@gmail.com
               </a>
             </div>
           </div>
@@ -241,7 +239,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/legal/privacy#do-not-sell"
+                  href="/privacy-policy#do-not-sell"
                   className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#141F33] transition-colors block"
                 >
                   {copy.doNotSell}
@@ -249,7 +247,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/accessibility"
+                  href="/help/getting-started"
                   className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#141F33] transition-colors block"
                 >
                   {copy.accessibility}
@@ -268,9 +266,9 @@ export function Footer() {
           <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">
             <Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t('Site Map', 'خريطة الموقع')}</Link>
             <span>|</span>
-            <Link href="/legal/terms" className="hover:text-[#141F33] transition-colors">{t('Terms', 'الشروط')}</Link>
+            <Link href="/terms-and-conditions" className="hover:text-[#141F33] transition-colors">{t('Terms', 'الشروط')}</Link>
             <span>|</span>
-            <Link href="/legal/privacy" className="hover:text-[#141F33] transition-colors">{t('Privacy', 'سياسة الخصوصية')}</Link>
+            <Link href="/privacy-policy" className="hover:text-[#141F33] transition-colors">{t('Privacy', 'سياسة الخصوصية')}</Link>
             <span>|</span>
             <Link href="/trust" className="hover:text-[#141F33] transition-colors">{t('Trust Center', 'مركز الثقة')}</Link>
           </div>

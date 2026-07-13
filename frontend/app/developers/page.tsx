@@ -3,7 +3,7 @@
 import React from 'react';
 import { useLocale } from '../providers';
 import Link from 'next/link';
-import { MarketingHeader } from '../../components/MarketingHeader';
+import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 
 export default function DevelopersLandingPage() {
@@ -12,7 +12,7 @@ export default function DevelopersLandingPage() {
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <main className="flex-1 max-w-4xl mx-auto py-24 px-6 text-center space-y-8 animate-fadeIn">
         
@@ -44,7 +44,7 @@ export default function DevelopersLandingPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 border-t border-gray-200 text-start">
           <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
             <h3 className="text-sm font-extrabold text-[#141F33]">JavaScript SDK</h3>
-            <p className="text-xs text-[#718096] font-semibold mt-2">Install our lightweight npm package to run chat streams and log telemetry audits directly.</p>
+            <p className="text-xs text-[#718096] font-semibold mt-2">Install our lightweight npm package to run chat streams and log usage data directly.</p>
           </div>
 
           <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">

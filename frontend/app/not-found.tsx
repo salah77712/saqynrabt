@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { MarketingHeader } from '../components/MarketingHeader';
+import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
 
@@ -22,7 +22,7 @@ export default function NotFound() {
       className="bg-surface min-h-screen flex flex-col font-sans"
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
     >
-      <MarketingHeader />
+      <Header />
 
       <main
         id="main-content"

@@ -18,7 +18,7 @@ export type Locale = 'en' | 'ar';
 
 interface LanguageContextProps {
   locale: Locale;
-  setLocale: (value: Locale) => void;
+  setLocale: (value: string) => void;
 }
 
 const LanguageContext = createContext<LanguageContextProps>({
@@ -77,13 +77,17 @@ export function Providers({ children }: { children: React.ReactNode }) {
 }
 
 function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = useState<Locale>('en');
+  const [locale, setLocaleState] = useState<string>('en');
+
+  const setLocale = (value: string) => {
+    setLocaleState(value);
+  };
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      const savedLocale = window.localStorage.getItem('saqyn-locale') as Locale | null;
-      if (savedLocale === 'en' || savedLocale === 'ar') {
-        setLocale(savedLocale);
+      const savedLocale = window.localStorage.getItem('saqyn-locale') || '';
+      if (savedLocale) {
+        setLocaleState(savedLocale);
       }
     }
   }, []);
@@ -95,7 +99,7 @@ function LanguageProvider({ children }: { children: React.ReactNode }) {
   }, [locale]);
 
   return (
-    <LanguageContext.Provider value={{ locale, setLocale }}>
+    <LanguageContext.Provider value={{ locale: locale as Locale, setLocale }}>
       {children}
     </LanguageContext.Provider>
   );

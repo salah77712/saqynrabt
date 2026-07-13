@@ -3,11 +3,13 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { useLocale, useEntitlements } from '../../../providers';
+import { useGlobalToast } from '../../../../lib/toast';
 
 export default function BrandingSettingsPage() {
   const { locale } = useLocale();
   const { mockMode } = useEntitlements();
   const { getToken, isLoaded: authLoaded } = useAuth();
+  const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const [jwtToken, setJwtToken] = useState<string | null>(null);
@@ -76,11 +78,11 @@ export default function BrandingSettingsPage() {
     })
       .then(res => res.json())
       .then(() => {
-        alert(t({ en: 'Branding options updated successfully!', ar: 'تم تحديث خيارات الهوية البصرية بنجاح!' }));
+        addToast(t({ en: 'Branding options updated successfully!', ar: 'تم تحديث خيارات الهوية البصرية بنجاح!' }), 'success');
       })
       .catch(err => {
         console.error('Failed to save branding:', err);
-        alert(t({ en: 'Failed to update branding settings.', ar: 'فشل حفظ إعدادات الهوية البصرية.' }));
+        addToast(t({ en: 'Failed to update branding settings.', ar: 'فشل حفظ إعدادات الهوية البصرية.' }), 'error');
       })
       .finally(() => setSaving(false));
   };

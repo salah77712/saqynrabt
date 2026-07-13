@@ -3,7 +3,7 @@
 import React from 'react';
 import { useLocale } from '../../providers';
 import Link from 'next/link';
-import { MarketingHeader } from '../../../components/MarketingHeader';
+import { Header } from '../../../components/Header';
 import { Footer } from '../../../components/Footer';
 
 export default function ChatbotHelpPage() {
@@ -19,7 +19,7 @@ export default function ChatbotHelpPage() {
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <main className="flex-1 max-w-6xl mx-auto py-16 px-6 w-full flex flex-col md:flex-row gap-12">
         {/* Help Center Sidebar */}
@@ -61,7 +61,7 @@ export default function ChatbotHelpPage() {
           <div className="border-t border-gray-100 pt-6 space-y-6 text-xs text-slate-700 font-semibold leading-relaxed">
             <div>
               <h2 className="text-sm font-extrabold text-[#141F33] mb-2">How RAG Retrieval Works</h2>
-              <p>When employees query the chatbot, the platform embeds their question and fetches the most relevant text chunks from the Pinecone vector database. This prevents hallucinations by ensuring all answers strictly cite your uploaded documents.</p>
+              <p>When employees query the chatbot, the platform embeds their question and fetches the most relevant text from your indexed documents. This prevents hallucinations by ensuring all answers strictly cite your uploaded files.</p>
             </div>
 
             <div>

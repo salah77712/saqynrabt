@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLocale } from '../app/providers';
-import { MarketingHeader } from './MarketingHeader';
+import { Header } from './Header';
 import { Footer } from './Footer';
 
 const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
@@ -29,7 +29,7 @@ export default function MinimalPage({
 
   return (
     <div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-slate-900">
-      <MarketingHeader />
+      <Header />
       <main className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
         {eyebrow && <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary">{t(eyebrow)}</p>}
         <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">{t(title)}</h1>

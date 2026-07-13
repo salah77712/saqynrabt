@@ -3,7 +3,7 @@
 import React from 'react';
 import { useLocale } from '../../providers';
 import Link from 'next/link';
-import { MarketingHeader } from '../../../components/MarketingHeader';
+import { Header } from '../../../components/Header';
 import { Footer } from '../../../components/Footer';
 
 export default function AutomationHelpPage() {
@@ -19,7 +19,7 @@ export default function AutomationHelpPage() {
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <main className="flex-1 max-w-6xl mx-auto py-16 px-6 w-full flex flex-col md:flex-row gap-12">
         {/* Help Center Sidebar */}
@@ -61,7 +61,7 @@ export default function AutomationHelpPage() {
           <div className="border-t border-gray-100 pt-6 space-y-6 text-xs text-slate-700 font-semibold leading-relaxed">
             <div>
               <h2 className="text-sm font-extrabold text-[#141F33] mb-2">Voice Call Dispatch Routing</h2>
-              <p>SAQYN RABT utilizes advanced Vapi VoIP integrations to answer incoming customer phone bookings. The voice agent listens in real-time, matches queries against company handbook context, and schedules bookings automatically.</p>
+              <p>SAQYN RABT uses Vapi VoIP integrations to answer incoming customer phone bookings. The voice agent listens in real-time, matches queries against company handbook context, and schedules bookings automatically.</p>
             </div>
 
             <div>

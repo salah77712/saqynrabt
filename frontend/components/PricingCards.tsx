@@ -11,7 +11,7 @@ interface PricingCardsProps {
   popularLabel?: string;
 }
 
-export function PricingCards({ tiers, ctaLabel = 'Book a Demo', ctaHref, popularLabel = 'Most popular' }: PricingCardsProps) {
+export function PricingCards({ tiers, ctaLabel = 'See how it works', ctaHref, popularLabel = 'Most popular' }: PricingCardsProps) {
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
 
   return (

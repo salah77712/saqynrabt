@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale } from '../providers';
-import { MarketingHeader } from '../../components/MarketingHeader';
+import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { CheckIcon } from '../../components/ui/Icons';
 
@@ -21,9 +21,9 @@ const cases = {
     },
     {
       industry: 'Home Services',
-      title: 'Kuwait HVAC Company Captures 100% of After-Hours Leads',
+      title: 'Kuwait HVAC Company Captures Every After-Hours Lead',
       result: 'Emergency calls are answered by AI, dispatch is triggered automatically, and technicians arrive on time every time.',
-      metrics: ['100% lead capture', '30-min avg dispatch', '40% revenue increase'],
+      metrics: ['Full lead capture', '30-min avg dispatch', '40% revenue increase'],
     },
   ],
   ar: [
@@ -41,9 +41,9 @@ const cases = {
     },
     {
       industry: 'الخدمات المنزلية',
-      title: 'شركة تكييف كويتية تلتقط 100% من العملاء المحتملين بعد ساعات العمل',
+      title: 'شركة تكييف كويتية تلتقط كل العملاء المحتملين بعد ساعات العمل',
       result: 'يجيب الذكاء الاصطناعي على مكالمات الطوارئ، ويتم تفعيل التوجيه تلقائياً، ويصل الفنيون في الوقت المحدد في كل مرة.',
-      metrics: ['100% التقاط العملاء المحتملين', 'متوسط التوجيه 30 دقيقة', 'زيادة الإيرادات 40%'],
+      metrics: ['التقاط كامل للعملاء المحتملين', 'متوسط التوجيه 30 دقيقة', 'زيادة الإيرادات 40%'],
     },
   ],
 };
@@ -55,7 +55,7 @@ export default function CaseStudiesPage() {
 
   return (
     <div className="bg-white text-slate-900 min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
         <span className="inline-block bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
@@ -111,7 +111,7 @@ export default function CaseStudiesPage() {
             rel="noopener noreferrer"
             className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white hover:opacity-90 transition-all"
           >
-            {t({ en: 'Book a Demo', ar: 'احجز عرضاً توضيحياً' })}
+            {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
           </a>
         </div>
       </section>

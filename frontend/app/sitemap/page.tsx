@@ -20,8 +20,6 @@ export default function VisualSitemapPage() {
       links: [
         { href: '/about', label: t('About Us', 'عنا') },
         { href: '/contact', label: t('Contact Sales', 'اتصل بالمبيعات') },
-        { href: '/careers', label: t('Careers', 'الوظائف') },
-        { href: '/blog', label: t('Blog', 'المدونة') },
         { href: '/trust', label: t('Trust Center', 'مركز الثقة') },
         { href: '/faq', label: t('FAQ', 'الأسئلة الشائعة') },
         { href: '/changelog', label: t('Changelog', 'سجل التغييرات') },
@@ -73,14 +71,10 @@ export default function VisualSitemapPage() {
         </svg>
       ),
       links: [
-        { href: '/legal/privacy', label: t('Privacy Policy', 'سياسة الخصوصية') },
-        { href: '/legal/terms', label: t('Terms of Service', 'شروط الخدمة') },
-        { href: '/legal/dpa', label: t('Data Processing Agreement (DPA)', 'اتفاقية معالجة البيانات') },
-        { href: '/legal/security', label: t('Security Documents', 'وثائق الأمان') },
-        { href: '/legal/nda', label: t('NDA', 'اتفاقية عدم الإفصاح') },
-        { href: '/legal/vulnerability-disclosure', label: t('Vulnerability Disclosure', 'الإبلاغ عن الثغرات') },
+        { href: '/privacy-policy', label: t('Privacy Policy', 'سياسة الخصوصية') },
+        { href: '/terms-and-conditions', label: t('Terms of Service', 'شروط الخدمة') },
         { href: '/cookie-policy', label: t('Cookie Policy', 'سياسة الكوكيز') },
-        { href: '/accessibility', label: t('Accessibility', 'إمكانية الوصول') },
+        { href: '/trust', label: t('Trust Center', 'مركز الثقة') },
       ],
     },
   ];

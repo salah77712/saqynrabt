@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { useLocale, useEntitlements } from '../../../providers';
+import { useGlobalToast } from '../../../../lib/toast';
 
 interface ApiKeyItem {
   id: string;
@@ -15,6 +16,7 @@ export default function ApiKeysSettingsPage() {
   const { locale } = useLocale();
   const { mockMode } = useEntitlements();
   const { getToken, isLoaded: authLoaded } = useAuth();
+  const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const [jwtToken, setJwtToken] = useState<string | null>(null);
@@ -159,7 +161,7 @@ export default function ApiKeysSettingsPage() {
             <button
               onClick={() => {
                 navigator.clipboard.writeText(newKeyVal);
-                alert('Copied to clipboard');
+                addToast('Copied to clipboard', 'success');
               }}
               className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-4 py-2 rounded-xl text-xs"
             >

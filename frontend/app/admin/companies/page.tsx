@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../../providers';
+import { useGlobalToast } from '../../../lib/toast';
 
 interface CompanyItem {
   id: string;
@@ -15,6 +16,7 @@ interface CompanyItem {
 
 export default function AdminCompaniesPage() {
   const { locale } = useLocale();
+  const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const [search, setSearch] = useState('');
@@ -107,7 +109,7 @@ export default function AdminCompaniesPage() {
                   <td className="px-6 py-4 text-center">
                     <div className="flex justify-center gap-2">
                       <button
-                        onClick={() => alert(`Viewing detailed logs for ${company.name}`)}
+                        onClick={() => addToast(`Viewing detailed logs for ${company.name}`, 'info')}
                         className="bg-gray-50 border border-gray-200 text-slate-600 hover:text-[#141F33] hover:bg-slate-100 font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px]"
                       >
                         {t({ en: 'View', ar: 'عرض' })}

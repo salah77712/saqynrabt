@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useLocale } from '../providers';
-import { MarketingHeader } from '../../components/MarketingHeader';
+import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { MapPinIcon, MailIcon, PhoneIcon } from '../../components/ui/Icons';
 
@@ -62,7 +62,7 @@ export default function ContactPage() {
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <main className="flex-1 max-w-6xl mx-auto py-24 px-6 lg:px-12 w-full">
         
@@ -200,7 +200,7 @@ export default function ContactPage() {
                 <MailIcon className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'General Inquiry', ar: 'البريد الإلكتروني' })}</p>
-                  <p className="text-[#718096] mt-0.5">hello@saqynrabt.com</p>
+                  <p className="text-[#718096] mt-0.5">saqynrabt@gmail.com</p>
                 </div>
               </div>
 

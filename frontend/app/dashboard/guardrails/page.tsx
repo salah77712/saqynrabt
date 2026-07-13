@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLocale } from '../../providers';
+import { useGlobalToast } from '../../../lib/toast';
 
 interface KnowledgeGap {
   question: string;
@@ -18,6 +19,7 @@ const MOCK_KNOWLEDGE_GAPS: KnowledgeGap[] = [
 
 export default function GuardrailsSettingsPage() {
   const { locale } = useLocale();
+  const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => locale === 'ar' ? obj.ar : obj.en;
 
   const [settings, setSettings] = useState({
@@ -52,7 +54,7 @@ export default function GuardrailsSettingsPage() {
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
-    alert('Guardrails configurations updated successfully!');
+    addToast('Guardrails configurations updated successfully!', 'success');
   };
 
   return (

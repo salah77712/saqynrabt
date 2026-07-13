@@ -3,7 +3,7 @@
 import React from 'react';
 import { useLocale } from '../../providers';
 import Link from 'next/link';
-import { MarketingHeader } from '../../../components/MarketingHeader';
+import { Header } from '../../../components/Header';
 import { Footer } from '../../../components/Footer';
 
 export default function GettingStartedHelpPage() {
@@ -19,7 +19,7 @@ export default function GettingStartedHelpPage() {
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <MarketingHeader />
+      <Header />
 
       <main className="flex-1 max-w-6xl mx-auto py-16 px-6 w-full flex flex-col md:flex-row gap-12">
         {/* Help Center Sidebar */}
@@ -54,19 +54,19 @@ export default function GettingStartedHelpPage() {
               {t({ en: 'Getting Started Guide', ar: 'دليل البداية السريع' })}
             </h1>
             <p className="text-xs font-semibold text-[#718096] mt-2">
-              {t({ en: 'Learn how to configure your SAQYN RABT tenant workspace in less than 5 minutes.', ar: 'تعرف على كيفية تهيئة مساحة العمل الخاصة بك في أقل من 5 دقائق.' })}
+              {t({ en: 'Learn how to set up your SAQYN RABT workspace in less than 5 minutes.', ar: 'تعرف على كيفية تهيئة مساحة العمل الخاصة بك في أقل من 5 دقائق.' })}
             </p>
           </div>
 
           <div className="border-t border-gray-100 pt-6 space-y-6 text-xs text-slate-700 font-semibold leading-relaxed">
             <div>
               <h2 className="text-sm font-extrabold text-[#141F33] mb-2">1. Access Your Workspace Dashboard</h2>
-              <p>Sign in using your Clerk credentials at the sign-in portal. Once authenticated, you will be automatically redirected to your custom company dashboard control deck.</p>
+              <p>Sign in using your account at the sign-in portal. Once authenticated, you will be redirected to your company dashboard.</p>
             </div>
 
             <div>
               <h2 className="text-sm font-extrabold text-[#141F33] mb-2">2. Upload Operational SOPs</h2>
-              <p>Navigate to the *Documents* tab. Drag and drop any corporate policy, staff FAQ handbook, or scheduling PDF files. The engine will chunk and index files into Pinecone database collections for RAG support.</p>
+              <p>Navigate to the *Documents* tab. Drag and drop any corporate policy, staff FAQ handbook, or scheduling PDF files. The engine will process and index your files for AI search.</p>
             </div>
 
             <div>

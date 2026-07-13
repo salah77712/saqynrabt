@@ -1,42 +1,10 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
-const isPublicRoute = createRouteMatcher([
-  "/",
-  "/sign-in(.*)",
-  "/sign-up(.*)",
-  "/forgot-password(.*)",
-  "/about(.*)",
-  "/pricing(.*)",
-  "/features(.*)",
-  "/how-it-works(.*)",
-  "/contact(.*)",
-  "/api-docs(.*)",
-  "/changelog(.*)",
-  "/faq(.*)",
-  "/automation(.*)",
-  "/chatbot(.*)",
-  "/industries(.*)",
-  "/case-studies(.*)",
-  "/marketplace(.*)",
-  "/developers(.*)",
-  "/help(.*)",
-  "/legal/(.*)",
-  "/privacy-policy",
-  "/terms-and-conditions",
-  "/cookie-policy",
-  "/trust",
-  "/thank-you",
-  "/global",
-  "/onboarding",
-  "/robots.txt",
-  "/sitemap.xml",
-  "/security.txt",
-  "/.well-known(.*)",
-  "/og-image(.*)",
-  "/api/webhook",
-  "/api/health",
-  "/api/wakeup",
+const isProtectedRoute = createRouteMatcher([
+  "/dashboard(.*)",
+  "/admin(.*)",
+  "/api(.*)",
 ]);
 
 let handler: any = null;
@@ -44,9 +12,8 @@ let handler: any = null;
 if (process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
   handler = clerkMiddleware(async (auth, req) => {
     const { userId } = await auth();
-    const isPublic = isPublicRoute(req);
 
-    if (!userId && !isPublic) {
+    if (!userId && isProtectedRoute(req)) {
       return NextResponse.redirect(
         new URL("/sign-in?redirect_url=" + encodeURIComponent(req.nextUrl.pathname), req.url)
       );

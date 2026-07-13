@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UserButton, useAuth } from '@clerk/nextjs';
 import { useLocale } from '../app/providers';
+import { LanguageSwitcher } from './LanguageSwitcher';
 
 export function Header() {
   const pathname = usePathname();
@@ -35,14 +36,9 @@ export function Header() {
           <div className="w-7 h-7 md:w-8 md:h-8 bg-[#141F33] rounded-md flex items-center justify-center text-white font-bold text-sm md:text-base shrink-0">
             S
           </div>
-          <div className="flex flex-col leading-none">
-            <span className="text-[#141F33] font-black text-sm md:text-lg tracking-[0.05em]">
-              {locale === 'ar' ? 'سقن' : 'SAQYN'}
-            </span>
-            <span className="hidden md:block text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] mt-0.5">
-              Operations Platform
-            </span>
-          </div>
+          <span className="text-[#141F33] font-black text-sm md:text-lg tracking-[0.05em]">
+            {locale === 'ar' ? 'سقن' : 'SAQYN'}
+          </span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-1">
@@ -66,33 +62,14 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2 md:gap-4">
-          <div className="hidden sm:flex border border-gray-200 rounded-full overflow-hidden divide-x divide-gray-200">
-            <button
-              onClick={() => setLocale('en')}
-              aria-label="Switch to English"
-              className={`px-3 py-1 text-xs font-bold transition-all min-h-[44px] ${
-                locale === 'en' ? 'bg-[#141F33] text-white' : 'hover:bg-gray-50 text-slate-500'
-              }`}
-            >
-              EN
-            </button>
-            <button
-              onClick={() => setLocale('ar')}
-              aria-label="Switch to Arabic"
-              className={`px-3 py-1 text-xs font-bold transition-all min-h-[44px] ${
-                locale === 'ar' ? 'bg-[#141F33] text-white' : 'hover:bg-gray-50 text-slate-500'
-              }`}
-            >
-              AR
-            </button>
-          </div>
+          <LanguageSwitcher />
 
           <div className="flex items-center gap-2">
             <Link
               href="/contact"
               className="hidden md:inline-flex bg-[#141F33] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all hover:scale-[1.02] shadow-sm min-h-[44px] items-center"
             >
-              Book a 15-Min Demo
+              {t('See how it works', 'شاهد كيف يعمل')}
             </Link>
 
             {isSignedIn ? (
@@ -210,24 +187,7 @@ export function Header() {
             <div className="px-4 py-4 border-t border-gray-100 space-y-3">
               <div className="flex items-center justify-between">
                 <span className="text-xs font-bold text-gray-500">{t('Language', 'اللغة')}</span>
-                <div className="flex border border-gray-200 rounded-full overflow-hidden divide-x divide-gray-200">
-                  <button
-                    onClick={() => { setLocale('en'); closeMenu(); }}
-                    className={`px-3 py-1.5 text-xs font-bold transition-all min-h-[44px] ${
-                      locale === 'en' ? 'bg-[#141F33] text-white' : 'text-slate-500'
-                    }`}
-                  >
-                    EN
-                  </button>
-                  <button
-                    onClick={() => { setLocale('ar'); closeMenu(); }}
-                    className={`px-3 py-1.5 text-xs font-bold transition-all min-h-[44px] ${
-                      locale === 'ar' ? 'bg-[#141F33] text-white' : 'text-slate-500'
-                    }`}
-                  >
-                    AR
-                  </button>
-                </div>
+                <LanguageSwitcher />
               </div>
 
               <Link
@@ -235,7 +195,7 @@ export function Header() {
                 onClick={closeMenu}
                 className="flex min-h-[44px] w-full items-center justify-center rounded-xl bg-[#141F33] text-white font-bold text-sm py-3"
               >
-                {t('Book a 15-Min Demo', 'احجز عرضاً توضيحياً')}
+                {t('See how it works', 'شاهد كيف يعمل')}
               </Link>
             </div>
           </div>

@@ -73,7 +73,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
           onClick={onClose}
           className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] dark:bg-royal text-white font-bold text-sm text-center py-3"
         >
-          {t('Book a Demo', 'احجز عرضًا')}
+          {t('See how it works', 'شاهد كيف يعمل')}
         </a>
       </div>
     </div>

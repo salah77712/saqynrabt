@@ -13,6 +13,7 @@ import { EmptyStateWithRetry } from '../../../components/ui/EmptyState';
 import { useChatHistory } from '../../../hooks/queries/useChatHistory';
 import { PullToRefresh } from '../../../components/PullToRefresh';
 import { ClipboardIcon } from '../../../components/ui/Icons';
+import { useGlobalToast } from '../../../lib/toast';
 
 interface KnowledgeGap {
   id: string;
@@ -22,6 +23,7 @@ interface KnowledgeGap {
 
 export default function ChatbotDashboardPage() {
   const { locale } = useLocale();
+  const { addToast } = useGlobalToast();
   const t = (en: string, ar: string) => (locale === 'ar' ? ar : en);
 
   const [gaps, setGaps] = useState<KnowledgeGap[]>([]);
@@ -84,7 +86,7 @@ export default function ChatbotDashboardPage() {
 
   const copyToClipboard = useCallback((text: string) => {
     navigator.clipboard.writeText(text).then(() => {
-      alert(t('Copied to clipboard', 'تم النسخ إلى الحافظة'));
+      addToast(t('Copied to clipboard', 'تم النسخ إلى الحافظة'), 'success');
     });
   }, [t]);
 

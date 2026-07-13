@@ -3,28 +3,36 @@
 import { useLocale } from '../app/providers';
 
 const languages = [
-  { code: 'en', label: 'EN' },
-  { code: 'ar', label: 'العربية' },
+  { code: 'en', label: 'English', native: 'English' },
+  { code: 'ar', label: 'Arabic', native: 'العربية' },
+  { code: 'fil', label: 'Filipino', native: 'Filipino' },
+  { code: 'fr', label: 'French', native: 'Français' },
+  { code: 'hi', label: 'Hindi', native: 'हिन्दी' },
+  { code: 'ms', label: 'Malay', native: 'Bahasa Melayu' },
+  { code: 'ur', label: 'Urdu', native: 'اردو' },
 ] as const;
 
 export function LanguageSwitcher() {
   const { locale, setLocale } = useLocale();
 
   return (
-    <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-2 py-1 shadow-sm">
+    <select
+      value={locale}
+      onChange={(e) => setLocale(e.target.value)}
+      aria-label="Select language"
+      className="appearance-none bg-white border border-gray-200 rounded-lg px-3 py-1.5 text-xs font-bold text-slate-700 cursor-pointer hover:border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#141F33] min-h-[36px] pr-7"
+      style={{
+        backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 20 20'%3E%3Cpath fill='%234B5563' fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E")`,
+        backgroundPosition: 'right 0.5rem center',
+        backgroundSize: '0.85rem',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
       {languages.map((item) => (
-        <button
-          key={item.code}
-          onClick={() => setLocale(item.code)}
-          className={`rounded-full px-3 py-1.5 text-sm font-semibold transition-all ${
-            locale === item.code
-              ? 'bg-primary text-white'
-              : 'text-slate-600 hover:bg-slate-100'
-          }`}
-        >
-          {item.label}
-        </button>
+        <option key={item.code} value={item.code}>
+          {item.native}
+        </option>
       ))}
-    </div>
+    </select>
   );
 }
