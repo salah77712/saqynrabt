@@ -69,7 +69,7 @@ export default function PricingPage() {
                 productTab === 'automation' ? 'bg-white text-navy shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
-              <Zap className={`w-4 h-4 ${productTab === 'automation' ? 'text-emerald-500' : 'text-slate-500'}`} />
+              <Zap className={`w-4 h-4 ${productTab === 'automation' ? 'text-royal' : 'text-slate-500'}`} />
               {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
             </button>
             <button
@@ -79,7 +79,7 @@ export default function PricingPage() {
                 productTab === 'chatbot' ? 'bg-white text-navy shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
-              <Sparkles className={`w-4 h-4 ${productTab === 'chatbot' ? 'text-emerald-500' : 'text-slate-500'}`} />
+              <Sparkles className={`w-4 h-4 ${productTab === 'chatbot' ? 'text-royal' : 'text-slate-500'}`} />
               {t({ en: 'Internal Chatbot', ar: 'المساعد الداخلي' })}
             </button>
           </div>
