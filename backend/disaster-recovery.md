@@ -29,7 +29,7 @@ To redeploy the workers, ensure your Environment secrets are loaded:
 .opencode\load-env.ps1
 
 # Build and deploy
-cd backend-workers
+cd backend
 npx wrangler deploy
 ```
 

@@ -33,7 +33,7 @@ resource "cloudflare_r2_bucket" "knowledge_bucket" {
 resource "cloudflare_worker_script" "backend_worker" {
   account_id = var.cloudflare_account_id
   name       = "saqyn-backend-worker"
-  content    = file("../backend-workers/index.ts")
+    content    = file("../index.ts")
 
   r2_bucket_binding {
     name        = "BUCKET"

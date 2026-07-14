@@ -1,6 +1,6 @@
 node_modules/
-backend-workers/.dev.vars
-backend-workers/wrangler.toml
+backend/.dev.vars
+backend/wrangler.toml
 .opencode/
 
 # SAQYN RABT – ABSOLUTE SECURITY BLOCKLIST

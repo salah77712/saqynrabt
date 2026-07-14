@@ -20,5 +20,5 @@ jobs:
           args: >
             -Dsonar.organization=salah77712
             -Dsonar.projectKey=salah77712_saqynrabt
-            -Dsonar.sources=frontend,backend-workers
+            -Dsonar.sources=frontend,backend
             -Dsonar.exclusions=**/node_modules/**,**/dist/**,**/build/**,**/.next/**,**/.wrangler/**

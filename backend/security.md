@@ -4,14 +4,14 @@ This document outlines the guidelines to verify safety, perform package audits, 
 
 ## 1. Package Dependency Audits
 
-Ensure all JavaScript dependencies in `frontend` and `backend-workers` are checked for vulnerabilities:
+Ensure all JavaScript dependencies in `frontend` and `backend` are checked for vulnerabilities:
 ```bash
 # Frontend Audits
 cd frontend
 npm audit
 
 # Backend Audits
-cd backend-workers
+cd backend
 npm audit
 ```
 
@@ -25,7 +25,7 @@ snyk test
 Perform regular dynamic application security testing (DAST) against endpoints using tools like OWASP ZAP. Ensure that:
 * Clerk authorization headers are validated on every request.
 * Outgoing webhook URLs are validated before being registered to prevent SSRF.
-* SQL queries inside `backend-workers/index.ts` utilize tagged template literals (`sql` helper) to prevent SQL Injection.
+* SQL queries inside `backend/index.ts` utilize tagged template literals (`sql` helper) to prevent SQL Injection.
 * User inputs are escaped before rendering in chatbot bubbles to avoid XSS.
 
 ## 3. Web Application Firewall (WAF) Configurations
