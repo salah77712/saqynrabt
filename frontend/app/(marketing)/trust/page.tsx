@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
-import { CheckIcon, ArrowRightIcon } from '../../../components/ui/Icons';
+import { Shield, FileText, Lock, Handshake, BadgeCheck, Download, Check, ArrowRight } from 'lucide-react';
 
 interface Badge {
   label: string;
@@ -17,36 +17,12 @@ interface TrustCard {
   actionLabel?: string;
 }
 
-const ShieldSvg = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-);
-
-const FileTextSvg = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-);
-
-const LockSvg = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-);
-
-const HandshakeSvg = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
-);
-
-const BadgeCheckSvg = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-);
-
-const DownloadSvg = () => (
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-);
-
-const iconMap: Record<string, () => React.ReactNode> = {
-  filetext: FileTextSvg,
-  shield: ShieldSvg,
-  lock: LockSvg,
-  handshake: HandshakeSvg,
-  badgecheck: BadgeCheckSvg,
+const iconMap: Record<string, React.ReactNode> = {
+  shield: <Shield className="w-5 h-5" />,
+  filetext: <FileText className="w-5 h-5" />,
+  lock: <Lock className="w-5 h-5" />,
+  handshake: <Handshake className="w-5 h-5" />,
+  badgecheck: <BadgeCheck className="w-5 h-5" />,
 };
 
 const trustCards: TrustCard[] = [
@@ -120,15 +96,14 @@ export default function TrustPage() {
         <div className="mx-auto max-w-7xl">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {trustCards.map((card, i) => {
-              const Icon = iconMap[card.icon] || ShieldSvg;
               return (
                 <div
                   key={i}
-                  className="rounded-2xl border border-gray-200 bg-white p-6 flex flex-col gap-4 shadow-sm hover:shadow-md transition-shadow"
+                  className="rounded-2xl border border-gray-200 bg-white p-6 flex flex-col gap-4 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all"
                 >
                   <div className="flex items-start justify-between">
                     <div className="w-10 h-10 rounded-xl bg-[#141F33]/5 flex items-center justify-center">
-                      <Icon />
+                      {iconMap[card.icon] || <Shield className="w-5 h-5" />}
                     </div>
                     {card.badge && (
                       <span className="text-[10px] font-bold uppercase tracking-wider text-[#2A5CFF] bg-blue-50 px-2 py-1 rounded-full">
@@ -154,25 +129,25 @@ export default function TrustPage() {
                                 : 'bg-amber-50 text-amber-700'
                             }`}
                           >
-                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-amber-600 border-t-transparent rounded-full animate-spin mr-1" /> : <CheckIcon className="w-2.5 h-2.5 text-green-700 inline mr-0.5" />}
+                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-amber-600 border-t-transparent rounded-full animate-spin mr-1" /> : <Check className="w-2.5 h-2.5 text-green-700 inline mr-0.5" />}
                             {b.label}
                           </span>
                         ))}
                       </div>
                       <button
                         type="button"
-                        className="inline-flex items-center gap-2 text-xs font-bold text-[#141F33] bg-[#141F33]/5 px-4 py-2.5 rounded-xl hover:bg-[#141F33]/10 transition-colors"
+                        className="inline-flex items-center gap-2 text-xs font-bold text-[#141F33] bg-[#141F33]/5 px-4 py-2.5 rounded-xl hover:bg-[#141F33]/10 transition-all hover:scale-[1.01] hover:shadow-md"
                       >
-                        <DownloadSvg />
+                        <Download className="w-4 h-4" />
                         {card.actionLabel}
                       </button>
                     </div>
                   ) : (
                     <Link
                       href={card.href!}
-                      className="inline-flex items-center text-xs font-bold text-[#2A5CFF] hover:text-[#141F33] transition-colors"
+                      className="inline-flex items-center text-xs font-bold text-[#2A5CFF] hover:text-[#141F33] transition-all hover:scale-[1.01]"
                     >
-                      Read Full {card.title} <ArrowRightIcon className="w-3 h-3 inline" />
+                      Read Full {card.title} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
                 </div>
@@ -191,7 +166,7 @@ export default function TrustPage() {
           <div className="mt-6 flex items-center justify-center gap-4">
             <a
               href="mailto:dpo@saqynrabt.com"
-              className="inline-flex items-center gap-2 bg-[#141F33] text-white text-sm font-bold px-6 py-3 rounded-xl hover:bg-[#141F33]/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-[#141F33] text-white text-sm font-bold px-6 py-3 rounded-xl hover:bg-[#141F33]/90 transition-all hover:scale-[1.01] hover:shadow-md"
             >
               Contact DPO: dpo@saqynrabt.com
             </a>

@@ -32,7 +32,7 @@ export function MarketplaceCard({ name, desc, developer }: MarketplaceCardProps)
 
         <button
           onClick={() => setInstalled(!installed)}
-          className={`font-bold px-4 py-2 rounded-xl text-xs ${
+          className={`font-bold px-4 py-2 rounded-xl text-xs transition-all hover:scale-[1.01] hover:shadow-md ${
             installed ? 'bg-red-50 text-red-600' : 'bg-[#141F33] text-white'
           }`}
         >

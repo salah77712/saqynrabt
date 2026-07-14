@@ -5,6 +5,7 @@ import { useLocale } from '../providers';
 import Link from 'next/link';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
+import { Code, Terminal, Radio } from 'lucide-react';
 
 export default function DevelopersLandingPage() {
   const { locale } = useLocale();
@@ -29,30 +30,39 @@ export default function DevelopersLandingPage() {
         <div className="flex gap-4 justify-center">
           <Link
             href="/developers/api-docs"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-xs font-bold text-white shadow-md hover:opacity-95 transition-all hover:scale-[1.02]"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-xs font-bold text-white shadow-md hover:opacity-95 transition-all hover:scale-[1.01] hover:shadow-md"
           >
             {t({ en: 'API Reference Swagger', ar: 'مرجع واجهة التطبيقات Swagger' })}
           </Link>
           <Link
             href="/dashboard"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-white border border-gray-200 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-slate-50 transition-all hover:scale-[1.02]"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-white border border-gray-200 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-slate-50 transition-all hover:scale-[1.01] hover:shadow-md"
           >
             {t({ en: 'Manage API Keys', ar: 'إدارة مفاتيح الـ API' })}
           </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 border-t border-gray-200 text-start">
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
+            <div className="w-10 h-10 rounded-xl bg-[#141F33]/5 flex items-center justify-center mb-4">
+              <Code className="w-5 h-5 text-[#141F33]" />
+            </div>
             <h3 className="text-sm font-extrabold text-[#141F33]">JavaScript SDK</h3>
             <p className="text-xs text-[#718096] font-semibold mt-2">Install our lightweight npm package to run chat streams and log usage data directly.</p>
           </div>
 
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
+            <div className="w-10 h-10 rounded-xl bg-[#141F33]/5 flex items-center justify-center mb-4">
+              <Terminal className="w-5 h-5 text-[#141F33]" />
+            </div>
             <h3 className="text-sm font-extrabold text-[#141F33]">Python Library</h3>
             <p className="text-xs text-[#718096] font-semibold mt-2">Fetch company request queues and automate data ingestion processes using our PyPI helper client.</p>
           </div>
 
-          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+          <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
+            <div className="w-10 h-10 rounded-xl bg-[#141F33]/5 flex items-center justify-center mb-4">
+              <Radio className="w-5 h-5 text-[#141F33]" />
+            </div>
             <h3 className="text-sm font-extrabold text-[#141F33]">Outbound Webhooks</h3>
             <p className="text-xs text-[#718096] font-semibold mt-2">Subscribe to real-time webhook dispatches to notify your Slack or customized backend servers on events.</p>
           </div>
