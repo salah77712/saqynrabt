@@ -6,7 +6,7 @@ import { useScrollReveal } from '../../hooks/useScrollReveal';
 import Link from 'next/link';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { Zap, Sparkles, Wrench, BarChart3 } from 'lucide-react';
+import { Zap, MessageSquare, Wrench, BarChart3 } from 'lucide-react';
 
 export default function FeaturesPage() {
   const { locale } = useLocale();
@@ -53,7 +53,7 @@ export default function FeaturesPage() {
 
           {/* Card 2: Chatbot */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
-            <div className="h-12 w-12 rounded-xl bg-indigo-50 flex items-center justify-center mb-6"><Sparkles className="w-6 h-6 text-indigo-600" /></div>
+            <div className="h-12 w-12 rounded-xl bg-indigo-50 flex items-center justify-center mb-6"><MessageSquare className="w-6 h-6 text-indigo-600" /></div>
             <h3 className="text-xl font-extrabold text-navy">{t(content.chatbotTitle)}</h3>
             <p className="text-xs font-normal text-slate-500 leading-relaxed mt-3">{t(content.chatbotDesc)}</p>
           </div>

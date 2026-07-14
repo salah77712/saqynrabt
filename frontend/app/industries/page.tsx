@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { Building2, HeartPulse, Wrench, Car, Sparkles, Ambulance, DollarSign, Bell, Flag, Construction, Scale, BarChart3, ShoppingBag } from 'lucide-react';
+import { Building2, HeartPulse, Wrench, Car, Utensils, Ambulance, DollarSign, Bell, Flag, Construction, Scale, BarChart3, ShoppingBag } from 'lucide-react';
 
 const industryIcons: Record<string, React.ReactNode> = {
   hospitality: <Building2 className="w-8 h-8 text-primary" />,
@@ -12,12 +12,12 @@ const industryIcons: Record<string, React.ReactNode> = {
   homeServices: <Wrench className="w-8 h-8 text-primary" />,
   realEstate: <Building2 className="w-8 h-8 text-primary" />,
   automotive: <Car className="w-8 h-8 text-primary" />,
-  food: <Sparkles className="w-8 h-8 text-primary" />,
+  food: <Utensils className="w-8 h-8 text-primary" />,
   towing: <Ambulance className="w-8 h-8 text-primary" />,
-  veterinary: <Sparkles className="w-8 h-8 text-primary" />,
+  veterinary: <HeartPulse className="w-8 h-8 text-primary" />,
   plumbing: <DollarSign className="w-8 h-8 text-primary" />,
   boutique: <Bell className="w-8 h-8 text-primary" />,
-  catering: <Sparkles className="w-8 h-8 text-primary" />,
+  catering: <Utensils className="w-8 h-8 text-primary" />,
   dealerships: <Flag className="w-8 h-8 text-primary" />,
   construction: <Construction className="w-8 h-8 text-primary" />,
   law: <Scale className="w-8 h-8 text-primary" />,

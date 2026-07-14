@@ -7,7 +7,7 @@ import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import Link from 'next/link';
-import { Sparkles, Zap, Mail, Check } from 'lucide-react';
+import { MessageSquare, Zap, Mail, Check } from 'lucide-react';
 import { RainbowButton } from '../components/shadcn/rainbow-button';
 
 const industries = [
@@ -134,7 +134,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                <Sparkles className="w-5 h-5 text-emerald-500 inline mr-1" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
+                <MessageSquare className="w-5 h-5 text-royal inline mr-1" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
               </button>
             </div>
 
@@ -172,7 +172,7 @@ export default function MarketingPage() {
           <div className="lg:w-1/2 w-full animate-slideUp" style={{ animationDelay: '0.3s' }}>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-[#3B5B9B]/10 to-[#10B981]/10 rounded-3xl blur-2xl opacity-70" />
-              <div className="relative bg-white rounded-2xl border border-gray-200 shadow-xl p-5 overflow-hidden animate-float">
+              <div className="relative bg-white rounded-2xl border border-gray-200 shadow-xl p-5 overflow-hidden">
                 <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -197,7 +197,7 @@ export default function MarketingPage() {
                       <div key={i} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-xl">
                         <div className="flex items-center gap-2 min-w-0">
                           <div className="w-7 h-7 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
-                            {i === 0 ? <Zap className="w-4 h-4 text-royal" aria-hidden="true" /> : i === 1 ? <Sparkles className="w-4 h-4 text-emerald-500" aria-hidden="true" /> : <Mail className="w-4 h-4 text-slate-500" aria-hidden="true" />}
+                            {i === 0 ? <Zap className="w-4 h-4 text-royal" aria-hidden="true" /> : i === 1 ? <MessageSquare className="w-4 h-4 text-royal" aria-hidden="true" /> : <Mail className="w-4 h-4 text-slate-500" aria-hidden="true" />}
                           </div>
                           <p className="text-xs font-semibold text-slate-700 truncate">{item.label}</p>
                         </div>
@@ -419,7 +419,7 @@ export default function MarketingPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-royal/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-royal/10 rounded-xl flex items-center justify-center mb-5">
-                  <Sparkles className="w-6 h-6 text-royal" aria-hidden="true" />
+                  <MessageSquare className="w-6 h-6 text-royal" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Internal Chatbot', ar: 'المساعد الذكي الداخلي' })}

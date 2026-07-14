@@ -5,7 +5,7 @@ import { useUser } from '@clerk/nextjs';
 import { useLocale, useEntitlements } from '../providers';
 import { OverviewMetrics } from '../../components/dashboard/OverviewMetrics';
 import { QuickActions } from '../../components/dashboard/QuickActions';
-import { Sparkles, FileText, Users, BarChart3, Check, Zap, ArrowRight } from 'lucide-react';
+import { MessageSquare, FileText, Users, BarChart3, Check, Zap, ArrowRight } from 'lucide-react';
 import { UsageCard } from '../../components/dashboard/UsageCard';
 import { SkeletonMetricGrid, SkeletonCard } from '../../components/ui/Skeleton';
 import { useUsage } from '../../hooks/queries/useUsage';
@@ -54,7 +54,7 @@ export default function DashboardOverviewPage() {
   ];
 
   const quickActions = [
-    { href: '/dashboard/chat', label: t('New Chat', 'محادثة جديدة'), icon: <Sparkles className="w-5 h-5" /> },
+    { href: '/dashboard/chat', label: t('New Chat', 'محادثة جديدة'), icon: <MessageSquare className="w-5 h-5" /> },
     { href: '/dashboard/documents', label: t('Upload PDF', 'تحميل ملف PDF'), icon: <FileText className="w-5 h-5" /> },
     { href: '/dashboard/team', label: t('Manage Team', 'إدارة الفريق'), icon: <Users className="w-5 h-5" /> },
     { href: '/dashboard/reports', label: t('View Reports', 'عرض التقارير'), icon: <BarChart3 className="w-5 h-5" /> },
@@ -220,7 +220,7 @@ export default function DashboardOverviewPage() {
         />
         <UsageCard
           title={t('Employee Knowledge Hub', 'مركز معرفة الموظفين')}
-          icon={<Sparkles className="w-5 h-5" />}
+          icon={<MessageSquare className="w-5 h-5" />}
           used={usage?.questions_used ?? 0}
           limit={usage?.questions_limit ?? 2000}
           label={t('RAG Questions Answered', 'الأسئلة المجابة')}

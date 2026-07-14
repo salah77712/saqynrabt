@@ -6,7 +6,7 @@ import { useLocale } from '../../providers';
 import { Footer } from '../../../components/Footer';
 import { Header } from '../../../components/Header';
 import { PricingCards } from '../../../components/PricingCards';
-import { Zap, Sparkles, Ambulance, ClipboardList, BarChart3, Globe, Check } from 'lucide-react';
+import { Zap, MessageSquare, Ambulance, ClipboardList, BarChart3, Globe, Check } from 'lucide-react';
 import { AUTOMATION_TIERS } from '../../../lib/pricing-config';
 import * as React from 'react';
 
@@ -16,7 +16,7 @@ const GULF_TZ_KEYWORDS = ['Doha', 'Riyadh', 'Kuwait', 'Dubai', 'Cairo', 'Bahrain
 
 const useCaseIcons: Record<string, React.ReactNode> = {
   phone: <Zap className="w-5 h-5 text-slate-600" />,
-  chat: <Sparkles className="w-5 h-5 text-slate-600" />,
+  chat: <MessageSquare className="w-5 h-5 text-slate-600" />,
   alert: <Ambulance className="w-5 h-5 text-slate-600" />,
   clipboard: <ClipboardList className="w-5 h-5 text-slate-600" />,
   chart: <BarChart3 className="w-5 h-5 text-slate-600" />,

@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../app/providers';
-import { Bell, Sparkles } from 'lucide-react';
+import { Bell, Check } from 'lucide-react';
 
 interface Notification {
   id: string;
@@ -69,7 +69,7 @@ export function NotificationCenter() {
                   item.read ? 'opacity-70' : 'bg-royal/5'
                 }`}
               >
-                <span className="text-sm mt-0.5">{item.read ? <Sparkles className="w-4 h-4 text-slate-300" /> : <Bell className="w-4 h-4 text-blue-500" />}</span>
+                <span className="text-sm mt-0.5">{item.read ? <Check className="w-4 h-4 text-slate-300" /> : <Bell className="w-4 h-4 text-blue-500" />}</span>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs font-bold text-navy leading-normal">
                     {t(item.title, item.titleAr)}

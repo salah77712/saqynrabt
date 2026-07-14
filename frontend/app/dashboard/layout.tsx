@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { useEntitlements, useLocale } from '../providers';
-import { Home, Zap, Sparkles, FileText, Users, Settings, AlertTriangle } from 'lucide-react';
+import { Home, Zap, MessageSquare, FileText, Users, Settings, AlertTriangle } from 'lucide-react';
 import { FeedbackWidget } from '../../components/FeedbackWidget';
 import { MobileBottomNav } from '../../components/MobileBottomNav';
 import { useSwipe } from '../../hooks/useSwipe';
@@ -40,7 +40,7 @@ export default function DashboardLayout({
   const menuItems = [
     { name: dashboardContent.overview, path: '/dashboard', icon: <Home className="w-5 h-5" /> },
     { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <Zap className="w-5 h-5" /> },
-    { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <Sparkles className="w-5 h-5" /> },
+    { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
     { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <FileText className="w-5 h-5" /> },
     { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" />, badge: true },
     { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
@@ -50,7 +50,7 @@ export default function DashboardLayout({
 
   const filteredMenuItems = currentRole === 'employee'
     ? [
-        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <Sparkles className="w-5 h-5" /> },
+        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
         { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <Zap className="w-5 h-5" /> },
       ]
     : menuItems;
