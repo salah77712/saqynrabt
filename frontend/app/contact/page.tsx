@@ -71,17 +71,17 @@ export default function ContactPage() {
           
           {/* Left Column: Contact Form */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
-            <h2 className="text-2xl font-extrabold text-[#141F33] mb-2">
+            <h2 className="text-2xl font-extrabold text-navy mb-2">
               {t({ en: 'Send us a message', ar: 'أرسل لنا رسالة' })}
             </h2>
-            <p className="text-xs font-semibold text-[#718096] mb-6">
+            <p className="text-xs font-semibold text-slate-500 mb-6">
               {t({ en: 'Fill out the form below and our team will get back to you shortly.', ar: 'املأ النموذج أدناه وسيتصل بك فريقنا قريبًا.' })}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Name', ar: 'الاسم' })}</label>
+                <label htmlFor="name" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Name', ar: 'الاسم' })}</label>
                 <input
                   type="text"
                   id="name"
@@ -89,7 +89,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   aria-invalid={!!errors.name}
-                  className={`w-full min-h-[44px] bg-slate-50 border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] ${
+                  className={`w-full min-h-[44px] bg-slate-50 border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-navy ${
                     errors.name ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
@@ -98,7 +98,7 @@ export default function ContactPage() {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
+                <label htmlFor="email" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
                 <input
                   type="email"
                   id="email"
@@ -106,7 +106,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   aria-invalid={!!errors.email}
-                  className={`w-full min-h-[44px] bg-slate-50 border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] ${
+                  className={`w-full min-h-[44px] bg-slate-50 border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-navy ${
                     errors.email ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
@@ -115,7 +115,7 @@ export default function ContactPage() {
 
               {/* Phone */}
               <div>
-                <label htmlFor="phone" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Phone Number', ar: 'رقم الهاتف' })}</label>
+                <label htmlFor="phone" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Phone Number', ar: 'رقم الهاتف' })}</label>
                 <input
                   type="text"
                   id="phone"
@@ -123,7 +123,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   aria-invalid={!!errors.phone}
-                  className={`w-full min-h-[44px] bg-slate-50 border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] ${
+                  className={`w-full min-h-[44px] bg-slate-50 border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-navy ${
                     errors.phone ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
@@ -132,13 +132,13 @@ export default function ContactPage() {
 
               {/* Subject */}
               <div>
-                <label htmlFor="subject" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Subject', ar: 'الموضوع' })}</label>
+                <label htmlFor="subject" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Subject', ar: 'الموضوع' })}</label>
                 <select
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                  className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-bold text-navy focus:outline-none focus:ring-2 focus:ring-navy"
                 >
                   <option value="Demo Request">{t({ en: 'Demo Request', ar: 'طلب عرض توضيحي' })}</option>
                   <option value="Support">{t({ en: 'Support', ar: 'الدعم الفني' })}</option>
@@ -149,7 +149,7 @@ export default function ContactPage() {
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Message', ar: 'الرسالة' })}</label>
+                <label htmlFor="message" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Message', ar: 'الرسالة' })}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -157,7 +157,7 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleChange}
                   aria-invalid={!!errors.message}
-                  className={`w-full bg-slate-50 border rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] resize-none ${
+                  className={`w-full bg-slate-50 border rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-navy resize-none ${
                     errors.message ? 'border-red-500' : 'border-gray-200'
                   }`}
                 />
@@ -168,7 +168,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+                className="w-full bg-navy text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
               >
                 {submitting ? t({ en: 'Submitting...', ar: 'جاري الإرسال...' }) : t({ en: 'Submit Message', ar: 'إرسال الرسالة' })}
               </button>
@@ -179,10 +179,10 @@ export default function ContactPage() {
           <div className="space-y-8 lg:pt-8 text-center lg:text-start">
             <div>
               <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Get in touch', ar: 'تواصل معنا' })}</span>
-              <h1 className="text-4xl font-extrabold text-[#141F33] tracking-tight mt-3">
+              <h1 className="text-4xl font-extrabold text-navy tracking-tight mt-3">
                 {t({ en: 'Tell us what you need.', ar: 'أخبرنا بما تحتاجه.' })}
               </h1>
-              <p className="text-sm font-semibold text-[#718096] mt-4 leading-relaxed max-w-md mx-auto lg:mx-0">
+              <p className="text-sm font-semibold text-slate-500 mt-4 leading-relaxed max-w-md mx-auto lg:mx-0">
                 {t({ en: 'Bottlenecks in your operations? Questions about setup? Fill in the form and we\'ll get back to you within 24 hours.', ar: 'عقبات في عملياتك؟ أسئلة حول الإعداد؟ املأ النموذج وسنعود إليك خلال 24 ساعة.' })}
               </p>
             </div>
@@ -191,24 +191,24 @@ export default function ContactPage() {
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
                 <MapPin className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-[#141F33]">{t({ en: 'Office Address', ar: 'عنوان المكتب' })}</p>
-                  <p className="text-[#718096] mt-0.5">Global Operations</p>
+                  <p className="text-navy">{t({ en: 'Office Address', ar: 'عنوان المكتب' })}</p>
+                  <p className="text-slate-500 mt-0.5">Global Operations</p>
                 </div>
               </div>
 
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
                 <Mail className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-[#141F33]">{t({ en: 'General Inquiry', ar: 'البريد الإلكتروني' })}</p>
-                  <p className="text-[#718096] mt-0.5">saqynrabt@gmail.com</p>
+                  <p className="text-navy">{t({ en: 'General Inquiry', ar: 'البريد الإلكتروني' })}</p>
+                  <p className="text-slate-500 mt-0.5">saqynrabt@gmail.com</p>
                 </div>
               </div>
 
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
                 <Phone className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-[#141F33]">{t({ en: 'Support Hotline', ar: 'خط الدعم' })}</p>
-                  <p className="text-[#718096] mt-0.5">+974 5500 0000</p>
+                  <p className="text-navy">{t({ en: 'Support Hotline', ar: 'خط الدعم' })}</p>
+                  <p className="text-slate-500 mt-0.5">+974 5500 0000</p>
                 </div>
               </div>
             </div>

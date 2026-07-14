@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { Shield, FileText, Lock, Handshake, BadgeCheck, Download, Check, ArrowRight } from 'lucide-react';
+import { Header } from '../../../components/Header';
+import { Footer } from '../../../components/Footer';
 
 interface Badge {
   label: string;
@@ -76,7 +78,9 @@ const trustCards: TrustCard[] = [
 
 export default function TrustPage() {
   return (
-    <>
+    <div className="min-h-screen flex flex-col font-sans bg-white selection:bg-[#2A5CFF] selection:text-white" dir="ltr">
+      <Header />
+
       <section className="bg-[#141F33] text-white py-24 px-6">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
@@ -173,6 +177,8 @@ export default function TrustPage() {
           </div>
         </div>
       </section>
-    </>
+
+      <Footer />
+    </div>
   );
 }

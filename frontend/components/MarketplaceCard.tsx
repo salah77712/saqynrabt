@@ -25,7 +25,7 @@ export function MarketplaceCard({ name, desc, developer }: MarketplaceCardProps)
 
       <div className="mt-6 pt-4 border-t border-gray-150 flex items-center justify-between">
         <span className={`text-[8px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
-          installed ? 'bg-emerald-105 text-emerald-800' : 'bg-slate-100 text-slate-700'
+          installed ? 'bg-emerald-50 text-emerald-800' : 'bg-slate-100 text-slate-700'
         }`}>
           {installed ? 'Active' : 'Available'}
         </span>

@@ -5,6 +5,8 @@ import { useLocale } from '../../providers';
 import { useGlobalToast } from '../../../lib/toast';
 import { DocumentGrid } from '../../../components/dashboard/DocumentGrid';
 import { Card } from '@/components/shadcn/card';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/shadcn/dialog';
+import { Button } from '@/components/shadcn/button';
 import { Input } from '../../../components/ui/Input';
 import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry, EmptyDocumentsState } from '../../../components/ui/EmptyState';
@@ -23,19 +25,24 @@ export default function DocumentsDashboardPage() {
 
   const documents = data?.documents ?? [];
 
-  const handleDelete = useCallback(async (id: string) => {
-    if (!confirm(t('Are you sure you want to delete this document?', 'هل أنت متأكد من حذف هذا المستند؟'))) {
-      return;
-    }
+  const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
 
+  const handleDelete = useCallback((id: string) => {
+    setDeleteTargetId(id);
+  }, []);
+
+  const confirmDelete = useCallback(async () => {
+    if (!deleteTargetId) return;
     try {
-      await fetch(`/api/documents?id=${id}`, { method: 'DELETE' });
+      await fetch(`/api/documents?id=${deleteTargetId}`, { method: 'DELETE' });
       refetch();
     } catch (err) {
       console.error('Delete failed:', err);
       refetch();
+    } finally {
+      setDeleteTargetId(null);
     }
-  }, [refetch, t]);
+  }, [deleteTargetId, refetch]);
 
   const handleFileUpload = useCallback(async (file: File) => {
     if (!file) return;
@@ -149,6 +156,35 @@ export default function DocumentsDashboardPage() {
       ) : (
         <DocumentGrid docs={filteredDocs} onDelete={handleDelete} />
       )}
+
+      <Dialog open={deleteTargetId !== null} onOpenChange={(open) => !open && setDeleteTargetId(null)}>
+        <DialogContent className="sm:max-w-md bg-white border border-gray-200 shadow-2xl rounded-2xl p-6">
+          <DialogHeader>
+            <DialogTitle className="text-lg font-extrabold text-[#141F33]">
+              {t('Delete Document', 'حذف المستند')}
+            </DialogTitle>
+            <DialogDescription className="text-xs text-slate-500 font-medium mt-2">
+              {t('Are you sure you want to delete this document? This action cannot be undone.', 'هل أنت متأكد من رغبتك في حذف هذا المستند؟ لا يمكن التراجع عن هذا الإجراء.')}
+            </DialogDescription>
+          </DialogHeader>
+          <div className="flex items-center justify-end gap-3 mt-6">
+            <Button
+              variant="outline"
+              onClick={() => setDeleteTargetId(null)}
+              className="min-h-[44px] rounded-xl text-xs font-semibold px-4 border-gray-200"
+            >
+              {t('Cancel', 'إلغاء')}
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={confirmDelete}
+              className="min-h-[44px] rounded-xl text-xs font-semibold px-4 bg-red-600 hover:bg-red-700 text-white"
+            >
+              {t('Delete', 'حذف')}
+            </Button>
+          </div>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

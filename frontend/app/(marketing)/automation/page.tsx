@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { useLocale } from '../../providers';
 import { Footer } from '../../../components/Footer';
@@ -129,6 +129,48 @@ export default function AutomationPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currency, setCurrency] = useState<Currency>('USD');
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
+  const modalRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+
+  const handleModalKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      setIsModalOpen(false);
+      return;
+    }
+    if (e.key === 'Tab') {
+      const modal = modalRef.current;
+      if (!modal) return;
+      const focusable = modal.querySelectorAll<HTMLElement>('a, button, [tabindex]:not([tabindex="-1"])');
+      if (focusable.length === 0) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      previousFocusRef.current = document.activeElement as HTMLElement;
+      const modal = modalRef.current;
+      if (modal) {
+        const focusable = modal.querySelectorAll<HTMLElement>('a, button, [tabindex]:not([tabindex="-1"])');
+        if (focusable.length > 0) focusable[0].focus();
+      }
+    } else if (previousFocusRef.current) {
+      previousFocusRef.current.focus();
+      previousFocusRef.current = null;
+    }
+  }, [isModalOpen]);
 
   useEffect(() => {
     try {
@@ -249,7 +291,7 @@ export default function AutomationPage() {
             >
               <span
                 className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform ${
-                  currency === 'QAR' ? 'translate-x-6' : 'translate-x-0.5'
+                  currency === 'QAR' ? 'ltr:translate-x-6 rtl:translate-x-0.5' : 'ltr:translate-x-0.5 rtl:translate-x-6'
                 }`}
               />
             </button>
@@ -278,7 +320,10 @@ export default function AutomationPage() {
       <Footer />
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
+        <div
+          ref={modalRef}
+          onKeyDown={handleModalKeyDown}
+          className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
           <div className="bg-white border border-gray-200 rounded-2xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
             <h3 className="text-xl font-extrabold text-[#141F33] mb-2">
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}

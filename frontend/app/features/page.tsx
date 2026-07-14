@@ -34,10 +34,10 @@ export default function FeaturesPage() {
         {/* Hero Section */}
         <div className="text-center max-w-2xl mb-16">
           <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Features & Capabilities', ar: 'الميزات والقدرات' })}</span>
-          <h1 className="text-4xl lg:text-5xl font-extrabold text-[#141F33] leading-tight tracking-tight mt-3">
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-navy leading-tight tracking-tight mt-3">
             {t(content.title)}
           </h1>
-          <p className="text-sm font-medium text-[#718096] mt-4 leading-relaxed">
+          <p className="text-sm font-medium text-slate-500 mt-4 leading-relaxed">
             {t(content.subtitle)}
           </p>
         </div>
@@ -47,29 +47,29 @@ export default function FeaturesPage() {
           {/* Card 1: Automation */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
             <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6"><Phone className="w-6 h-6 text-blue-600" /></div>
-            <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.automationTitle)}</h3>
-            <p className="text-xs font-normal text-[#718096] leading-relaxed mt-3">{t(content.automationDesc)}</p>
+            <h3 className="text-xl font-extrabold text-navy">{t(content.automationTitle)}</h3>
+            <p className="text-xs font-normal text-slate-500 leading-relaxed mt-3">{t(content.automationDesc)}</p>
           </div>
 
           {/* Card 2: Chatbot */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
             <div className="h-12 w-12 rounded-xl bg-indigo-50 flex items-center justify-center mb-6"><Sparkles className="w-6 h-6 text-indigo-600" /></div>
-            <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.chatbotTitle)}</h3>
-            <p className="text-xs font-normal text-[#718096] leading-relaxed mt-3">{t(content.chatbotDesc)}</p>
+            <h3 className="text-xl font-extrabold text-navy">{t(content.chatbotTitle)}</h3>
+            <p className="text-xs font-normal text-slate-500 leading-relaxed mt-3">{t(content.chatbotDesc)}</p>
           </div>
 
           {/* Card 3: Custom */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
             <div className="h-12 w-12 rounded-xl bg-violet-50 flex items-center justify-center mb-6"><Wrench className="w-6 h-6 text-violet-600" /></div>
-            <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.customTitle)}</h3>
-            <p className="text-xs font-normal text-[#718096] leading-relaxed mt-3">{t(content.customDesc)}</p>
+            <h3 className="text-xl font-extrabold text-navy">{t(content.customTitle)}</h3>
+            <p className="text-xs font-normal text-slate-500 leading-relaxed mt-3">{t(content.customDesc)}</p>
           </div>
 
           {/* Card 4: Reporting */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
             <div className="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center mb-6"><BarChart3 className="w-6 h-6 text-emerald-600" /></div>
-            <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.reportingTitle)}</h3>
-            <p className="text-xs font-normal text-[#718096] leading-relaxed mt-3">{t(content.reportingDesc)}</p>
+            <h3 className="text-xl font-extrabold text-navy">{t(content.reportingTitle)}</h3>
+            <p className="text-xs font-normal text-slate-500 leading-relaxed mt-3">{t(content.reportingDesc)}</p>
           </div>
         </div>
       </main>

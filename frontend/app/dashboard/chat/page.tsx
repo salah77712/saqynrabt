@@ -121,8 +121,7 @@ export default function ChatbotDashboardPage() {
     <PullToRefresh onRefresh={handleRefresh}>
       <div className="animate-fadeIn">
         <div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-4 md:gap-8">
-          <Card className="flex flex-col overflow-hidden p-0"
-            style={{ height: 'calc(100vh - 280px)', minHeight: '400px', maxHeight: '700px' }}>
+          <Card className="flex flex-col overflow-hidden p-0 h-[500px] xl:h-[650px]">
             <div className="px-4 md:px-6 py-3 md:py-4 border-b border-gray-100 bg-white flex items-center justify-between shrink-0">
               <div className="flex-1 min-w-0">
                 <h2 className="text-xs md:text-sm font-black text-[#141F33] uppercase truncate">
@@ -155,7 +154,9 @@ export default function ChatbotDashboardPage() {
             </div>
 
             <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 bg-slate-50/50"
-              style={{ WebkitOverflowScrolling: 'touch' }}>
+              style={{ WebkitOverflowScrolling: 'touch' }}
+              aria-live="polite"
+              aria-label={t('Chat messages', 'رسائل المحادثة')}>
               {messages.filter((m) => m.role !== 'system').map((msg) => (
                 <div
                   key={msg.id}
@@ -233,6 +234,15 @@ export default function ChatbotDashboardPage() {
                         setSelectedGap(gap.question);
                         setIsGapModalOpen(true);
                       }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setSelectedGap(gap.question);
+                          setIsGapModalOpen(true);
+                        }
+                      }}
+                      role="button"
+                      tabIndex={0}
                       className="bg-slate-50 border border-gray-100 rounded-xl p-3.5 hover:border-royal transition-all cursor-pointer flex items-start justify-between gap-3"
                     >
                       <p className="text-xs font-bold text-slate-700 leading-normal">
@@ -282,6 +292,15 @@ export default function ChatbotDashboardPage() {
                         setSelectedGap(gap.question);
                         setIsGapModalOpen(true);
                       }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          setSelectedGap(gap.question);
+                          setIsGapModalOpen(true);
+                        }
+                      }}
+                      role="button"
+                      tabIndex={0}
                       className="bg-slate-50 border border-gray-100 rounded-xl p-3.5 flex items-start justify-between gap-3"
                     >
                       <p className="text-xs font-bold text-slate-700 leading-normal">
