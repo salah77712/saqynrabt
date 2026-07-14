@@ -37,9 +37,30 @@ const OTHER_INDUSTRIES = industries.filter(i =>
 );
 
 const testimonials = [
-  { quote: 'Setup took one call. We went from 12 missed calls a day to zero in 48 hours.', name: 'Operations Director', org: 'Boutique Hotel Group' },
-  { quote: 'Our front desk used to spend 3 hours a day answering the same questions. Now the chatbot handles it all.', name: 'HR Manager', org: 'Al Wakra Medical Group' },
-  { quote: 'The ROI was immediate. Guest complaints used to sit for hours — now they are routed in seconds.', name: 'General Manager', org: 'West Bay Hospitality' },
+  { 
+    quote: {
+      en: 'Setup took one call. We went from 12 missed calls a day to zero in 48 hours.',
+      ar: 'استغرق الإعداد مكالمة واحدة. انتقلنا من 12 مكالمة فائتة يومياً إلى صفر في غضون 48 ساعة.'
+    },
+    name: { en: 'Operations Director', ar: 'مدير العمليات' },
+    org: { en: 'Boutique Hotel Group', ar: 'مجموعة الفنادق الفاخرة' }
+  },
+  { 
+    quote: {
+      en: 'Our HR team used to spend 3 hours a day answering the same policy questions. Now the chatbot handles it all.',
+      ar: 'كان فريق الموارد البشرية لدينا يقضي 3 ساعات يومياً في الإجابة على نفس الأسئلة المتعلقة بالسياسات. الآن يتولى المساعد الذكي كل شيء.'
+    },
+    name: { en: 'HR Manager', ar: 'مدير الموارد البشرية' },
+    org: { en: 'Al Wakra Medical Group', ar: 'مجموعة الوكرة الطبية' }
+  },
+  { 
+    quote: {
+      en: 'The ROI was immediate. Guest complaints used to sit for hours — now they are routed in seconds.',
+      ar: 'كان العائد على الاستثمار فورياً. كانت شكاوى الضيوف تنتظر لساعات — الآن يتم توجيهها في ثوانٍ.'
+    },
+    name: { en: 'General Manager', ar: 'المدير العام' },
+    org: { en: 'West Bay Hospitality', ar: 'شركة الخليج الغربي للضيافة' }
+  },
 ];
 
 export default function MarketingPage() {
@@ -106,7 +127,7 @@ export default function MarketingPage() {
       <Header />
 
       {/* ── Hero Section ─────────────────────────────────── */}
-      <section className="bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
+      <section className="bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)] pt-20 md:pt-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
           {/* Left Column */}
@@ -117,7 +138,7 @@ export default function MarketingPage() {
               <button
                 type="button"
                 onClick={() => setActiveProduct('automation')}
-                className={`min-h-[38px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
+                className={`min-h-[44px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
 activeProduct === 'automation'
 ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'
@@ -128,7 +149,7 @@ activeProduct === 'automation'
               <button
                 type="button"
                 onClick={() => setActiveProduct('chatbot')}
-                className={`min-h-[38px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
+                className={`min-h-[44px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
 activeProduct === 'chatbot'
 ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'
@@ -355,10 +376,10 @@ activeProduct === 'chatbot'
                     </svg>
                   ))}
                 </div>
-                <p className="text-sm text-[#141F33] leading-relaxed mb-6">&ldquo;{item.quote}&rdquo;</p>
+                <p className="text-sm text-[#141F33] leading-relaxed mb-6">&ldquo;{t(item.quote)}&rdquo;</p>
                 <div className="border-t border-[#141F33]/10 pt-4">
-                  <p className="text-sm font-extrabold text-[#141F33]">{item.name}</p>
-                  <p className="text-xs font-medium text-[#141F33]">{item.org}</p>
+                  <p className="text-sm font-extrabold text-[#141F33]">{t(item.name)}</p>
+                  <p className="text-xs font-medium text-[#141F33]">{t(item.org)}</p>
                 </div>
               </div>
             ))}
@@ -467,7 +488,7 @@ activeProduct === 'chatbot'
           <button
             type="button"
             onClick={openCustomModal}
-            className="min-h-[48px] inline-flex items-center justify-center rounded-xl bg-[#F8F9FB] text-[#141F33] font-bold px-8 py-4 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+            className="btn-primary"
           >
             {t({ en: 'Request a Custom Solution', ar: 'طلب حل مخصص' })}
           </button>
