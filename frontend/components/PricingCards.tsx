@@ -4,6 +4,9 @@ import React from 'react';
 import Link from 'next/link';
 import type { ProductTier } from '../lib/pricing-config';
 import { CheckIcon } from './ui/Icons';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/shadcn/card';
+import { RainbowButton } from '@/components/shadcn/rainbow-button';
+import { cn } from '@/lib/utils';
 
 interface PricingCardsProps {
   tiers: ProductTier[];
@@ -29,93 +32,96 @@ export function PricingCards({ tiers, currency, locale }: PricingCardsProps) {
       {tiers.map((tier, i) => {
         const price = currency === 'USD' ? tier.priceUSD : tier.priceQAR;
         const setup = currency === 'USD' ? tier.setupUSD : tier.setupQAR;
-        const customLabel = t({
-          en: currency === 'USD' ? 'Custom' : 'مخصص',
-          ar: currency === 'USD' ? 'مخصص' : 'Custom',
-        });
+        const isPopular = tier.popular;
 
         return (
-          <div
+          <Card
             key={tier.id}
-            className={`relative bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm card-hover flex flex-col animate-slideUp ${isCustom(tier) ? 'opacity-90' : ''}`}
+            className={cn(
+              'relative flex flex-col animate-slideUp transition-all duration-300 hover:shadow-xl hover:-translate-y-1',
+              isCustom(tier) && 'opacity-90',
+              isPopular && 'ring-2 ring-accent shadow-lg scale-[1.02] z-10'
+            )}
             style={{ animationDelay: `${i * 0.1}s` }}
           >
-            {tier.popular && (
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm">
+            {isPopular && (
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-white text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
                 {t({ en: 'Popular', ar: 'الأكثر طلباً' })}
               </span>
             )}
 
-            <h3 className="text-xl font-extrabold text-[#141F33]">
-              {isAr ? tier.nameAr : tier.name}
-            </h3>
-            <p className="text-xs text-[#718096] font-medium mt-0.5 mb-4">
-              {isAr ? tier.descriptionAr : tier.description}
-            </p>
+            <CardHeader className="text-center border-b border-gray-100 pb-4">
+              <CardTitle className="text-xl font-extrabold text-navy">
+                {isAr ? tier.nameAr : tier.name}
+              </CardTitle>
+              <p className="text-xs text-muted-foreground font-medium mt-0.5">
+                {isAr ? tier.descriptionAr : tier.description}
+              </p>
+            </CardHeader>
 
-            {isCustom(tier) ? (
-              <>
-                <div className="mb-1">
-                  <span className="text-4xl font-extrabold text-[#141F33]">
+            <CardContent className="flex-1">
+              <div className="text-center mb-5">
+                {isCustom(tier) ? (
+                  <div className="text-4xl font-extrabold text-navy">
                     {t({ en: 'Custom', ar: 'مخصص' })}
-                  </span>
-                </div>
-                <p className="text-[#10B981] font-bold text-sm mb-5">
-                  {t({ en: 'Custom setup fee', ar: 'رسوم إعداد مخصصة' })}
-                </p>
-              </>
-            ) : (
-              <>
-                <div className="mb-1">
-                  <span className="text-4xl font-extrabold text-[#141F33]">
-                    {formatPrice(price, currency)}
-                  </span>
-                  <span className="text-[#718096] text-sm font-bold mr-1">
-                    /{t({ en: 'mo', ar: 'شهر' })}
-                  </span>
-                </div>
-                <p className="text-[#10B981] font-bold text-sm mb-5">
-                  + {formatPrice(setup, currency)} {t({ en: 'setup fee', ar: 'رسوم إعداد' })}
-                </p>
-              </>
-            )}
+                  </div>
+                ) : (
+                  <>
+                    <div className="text-4xl font-extrabold text-navy">
+                      {formatPrice(price, currency)}
+                      <span className="text-muted-foreground text-sm font-bold mr-1">
+                        /{t({ en: 'mo', ar: 'شهر' })}
+                      </span>
+                    </div>
+                    <p className="text-accent font-bold text-sm mt-1">
+                      + {formatPrice(setup, currency)} {t({ en: 'setup fee', ar: 'رسوم إعداد' })}
+                    </p>
+                  </>
+                )}
+              </div>
 
-            <ul className="flex flex-col gap-2 mb-6 flex-1">
-              {tier.features[locale as keyof typeof tier.features]?.map((f, idx) => (
-                <li key={idx} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
-                  <span className="text-[#10B981]">
-                    <CheckIcon className="w-4 h-4 text-emerald-500" />
-                  </span>
-                  {f}
-                </li>
-              )) || tier.features.en.map((f, idx) => (
-                <li key={idx} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
-                  <span className="text-[#10B981]">
-                    <CheckIcon className="w-4 h-4 text-emerald-500" />
-                  </span>
-                  {f}
-                </li>
-              ))}
-            </ul>
+              <ul className="flex flex-col gap-2">
+                {(tier.features[locale as keyof typeof tier.features] || tier.features.en).map((f, idx) => (
+                  <li key={idx} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
+                    <span className="text-accent shrink-0">
+                      <CheckIcon className="w-4 h-4 text-emerald-500" />
+                    </span>
+                    {f}
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
 
-            {isCustom(tier) ? (
-              <Link
-                href="/contact"
-                className="w-full border border-gray-200 bg-white text-[#141F33] py-3.5 rounded-xl font-bold text-sm transition-all min-h-[44px] hover:bg-gray-50 hover:scale-[1.02] hover:shadow-lg active:scale-95 text-center block"
-              >
-                {isAr ? tier.ctaAr : tier.cta}
-              </Link>
-            ) : (
-              <a
-                href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full bg-[#141F33] text-white py-3.5 rounded-xl font-bold text-sm transition-all min-h-[44px] hover:scale-[1.02] hover:shadow-lg active:scale-95 text-center block"
-              >
-                {isAr ? tier.ctaAr : tier.cta}
-              </a>
-            )}
-          </div>
+            <CardFooter className="px-0 pb-0 pt-4 flex-col">
+              {isCustom(tier) ? (
+                <Link
+                  href="/contact"
+                  className="w-full border border-gray-200 bg-white text-navy py-3.5 rounded-xl font-bold text-sm transition-all duration-300 min-h-[44px] hover:bg-gray-50 hover:scale-[1.02] hover:shadow-lg active:scale-95 text-center block"
+                >
+                  {isAr ? tier.ctaAr : tier.cta}
+                </Link>
+              ) : isPopular ? (
+                <RainbowButton asChild className="w-full py-3.5">
+                  <a
+                    href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {isAr ? tier.ctaAr : tier.cta}
+                  </a>
+                </RainbowButton>
+              ) : (
+                <a
+                  href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full bg-navy text-white py-3.5 rounded-xl font-bold text-sm transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-lg active:scale-95 text-center block"
+                >
+                  {isAr ? tier.ctaAr : tier.cta}
+                </a>
+              )}
+            </CardFooter>
+          </Card>
         );
       })}
     </div>

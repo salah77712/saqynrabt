@@ -34,6 +34,7 @@ module.exports = {
         'pulse-soft': 'pulseSoft 2s cubic-bezier(0.4,0,0.6,1) infinite',
         'float': 'float 3s ease-in-out infinite',
         'spring-in': 'springIn 0.5s cubic-bezier(0.34,1.56,0.64,1) forwards',
+        'rainbow': 'rainbow var(--speed, 2s) infinite linear',
       },
       keyframes: {
         fadeIn: {
@@ -63,6 +64,10 @@ module.exports = {
         springIn: {
           '0%': { opacity: '0', transform: 'scale(0.95)' },
           '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        rainbow: {
+          '0%': { backgroundPosition: '0%' },
+          '100%': { backgroundPosition: '200%' },
         },
       },
     },

@@ -6,8 +6,9 @@ import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { PricingCards } from '../../components/PricingCards';
-import { CheckIcon, PhoneIcon, ChatIcon, ArrowRightIcon } from '../../components/ui/Icons';
+import { CheckIcon, PhoneIcon, ChatIcon } from '../../components/ui/Icons';
 import { AUTOMATION_TIERS, CHATBOT_TIERS } from '../../lib/pricing-config';
+import { RainbowButton } from '@/components/shadcn/rainbow-button';
 
 type Currency = 'USD' | 'QAR';
 type ProductTab = 'automation' | 'chatbot';
@@ -65,7 +66,7 @@ export default function PricingPage() {
               type="button"
               onClick={() => setProductTab('automation')}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
-                productTab === 'automation' ? 'bg-white text-[#141F33] shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                productTab === 'automation' ? 'bg-white text-navy shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               <PhoneIcon className="w-4 h-4" />
@@ -75,7 +76,7 @@ export default function PricingPage() {
               type="button"
               onClick={() => setProductTab('chatbot')}
               className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
-                productTab === 'chatbot' ? 'bg-white text-[#141F33] shadow-sm' : 'text-slate-500 hover:text-slate-700'
+                productTab === 'chatbot' ? 'bg-white text-navy shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
               <ChatIcon className="w-4 h-4" />
@@ -85,12 +86,12 @@ export default function PricingPage() {
 
           {/* Currency Toggle */}
           <div className="flex items-center gap-3">
-            <span className={`text-xs font-bold ${currency === 'USD' ? 'text-[#141F33]' : 'text-slate-400'}`}>USD</span>
+            <span className={`text-xs font-bold ${currency === 'USD' ? 'text-navy' : 'text-slate-400'}`}>USD</span>
             <button
               type="button"
               onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
               className={`relative w-12 h-6 rounded-full transition-colors ${
-                currency === 'QAR' ? 'bg-[#141F33]' : 'bg-slate-300'
+                currency === 'QAR' ? 'bg-navy' : 'bg-slate-300'
               }`}
             >
               <span
@@ -99,7 +100,7 @@ export default function PricingPage() {
                 }`}
               />
             </button>
-            <span className={`text-xs font-bold ${currency === 'QAR' ? 'text-[#141F33]' : 'text-slate-400'}`}>QAR</span>
+            <span className={`text-xs font-bold ${currency === 'QAR' ? 'text-navy' : 'text-slate-400'}`}>QAR</span>
           </div>
         </div>
       </section>
@@ -119,12 +120,11 @@ export default function PricingPage() {
           <p className="text-slate-500 mb-8">
             {t({ en: 'Enterprise pricing, dedicated infrastructure, custom SLAs, and tailored onboarding for larger teams.', ar: 'أسعار المؤسسات، بنية تحتية مخصصة، اتفاقيات مستوى خدمة مخصصة، وإعداد مصمم للفرق الأكبر.' })}
           </p>
-          <Link
-            href="/contact"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white hover:opacity-90 transition-all"
-          >
-            {t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' })}
-          </Link>
+          <RainbowButton asChild>
+            <Link href="/contact">
+              {t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' })}
+            </Link>
+          </RainbowButton>
         </div>
       </section>
 
