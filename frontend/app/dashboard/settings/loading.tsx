@@ -1,4 +1,4 @@
-export default function SettingsLoading() {
+﻿export default function SettingsLoading() {
   return (
     <div className="space-y-6">
       <div className="h-6 w-40 bg-[#F8F9FB] rounded animate-pulse mb-2" />
@@ -16,3 +16,4 @@ export default function SettingsLoading() {
     </div>
   );
 }
+

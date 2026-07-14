@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@clerk/nextjs';
@@ -115,7 +115,7 @@ export default function BrandingSettingsPage() {
 
       {loading ? (
         <div className="py-12 flex justify-center">
-          <span className="h-8 w-8 rounded-full border-4 border-gray-200 border-t-[#141F33] animate-spin" />
+          <span className="h-8 w-8 rounded-full border-4 border-[#141F33]/10 border-t-[#141F33] animate-spin" />
         </div>
       ) : (
         <form ref={formRef} onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
@@ -130,7 +130,7 @@ export default function BrandingSettingsPage() {
               value={branding.logo_url}
               onChange={handleChange}
               placeholder="https://alsafa.qa/logo.png"
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
             />
           </div>
 
@@ -151,7 +151,7 @@ export default function BrandingSettingsPage() {
                   name="primary_color_hex"
                   value={branding.primary_color_hex}
                   onChange={handleChange}
-                  className="flex-1 min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-mono font-bold"
+                  className="flex-1 min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold"
                 />
               </div>
             </div>
@@ -172,14 +172,14 @@ export default function BrandingSettingsPage() {
                   name="secondary_color_hex"
                   value={branding.secondary_color_hex}
                   onChange={handleChange}
-                  className="flex-1 min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-mono font-bold"
+                  className="flex-1 min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold"
                 />
               </div>
             </div>
           </div>
 
           {/* AI Persona */}
-          <div className="pt-4 border-t border-gray-100 space-y-4">
+          <div className="pt-4 border-t border-[#141F33]/10 space-y-4">
             <h3 className="text-xs font-extrabold text-[#141F33]/60 uppercase tracking-wider">{t({ en: 'AI Persona Config', ar: 'إعدادات شخصية المساعد' })}</h3>
 
             <div className="grid grid-cols-2 gap-4">
@@ -192,7 +192,7 @@ export default function BrandingSettingsPage() {
                   value={branding.chat_bot_name}
                   onChange={handleChange}
                   placeholder="SAQYN Assistant"
-                  className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold"
+                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold"
                 />
               </div>
 
@@ -205,7 +205,7 @@ export default function BrandingSettingsPage() {
                   value={branding.chat_bot_avatar_url}
                   onChange={handleChange}
                   placeholder="https://alsafa.qa/avatar.png"
-                  className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold"
+                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold"
                 />
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function BrandingSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
           >
             {saving ? t({ en: 'Updating...', ar: 'جاري الحفظ...' }) : t({ en: 'Save Branding Options', ar: 'حفظ إعدادات الهوية البصرية' })}
           </button>
@@ -230,3 +230,5 @@ export default function BrandingSettingsPage() {
     </div>
   );
 }
+
+

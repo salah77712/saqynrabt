@@ -4,10 +4,11 @@ import { useState } from 'react';
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { Check, ChevronLeft, ChevronRight, Mail, MapPin } from 'lucide-react';
+import { Check, ChevronLeft, ChevronRight, MapPin } from 'lucide-react';
 import Link from 'next/link';
 
 interface CaseStudy {
+  slug: string;
   industry: string;
   title: string;
   result: string;
@@ -21,6 +22,7 @@ interface CaseStudy {
 const cases = {
   en: [
     {
+      slug: 'hotel-doha',
       industry: 'Hospitality',
       title: '5-Star Hotel Cuts Front-Desk Calls by 60%',
       result: 'Automated late check-ins, room service requests, and complaint routing. Staff now focus on guest experience instead of phone duty.',
@@ -31,6 +33,7 @@ const cases = {
       meta: '450 Rooms • 12 Staff Saved'
     },
     {
+      slug: 'clinic-dubai',
       industry: 'Healthcare',
       title: 'Private Clinic in Dubai Handles 2× Patient Intake',
       result: 'AI answers booking inquiries, triages urgent cases, and routes prescriptions to the pharmacy — all without a receptionist.',
@@ -41,6 +44,7 @@ const cases = {
       meta: '12 Doctors • 24/7 Triage'
     },
     {
+      slug: 'hvac-kuwait',
       industry: 'Home Services',
       title: 'Kuwait HVAC Company Captures Every Lead',
       result: 'Emergency calls are answered by AI, dispatch is triggered automatically, and technicians arrive on time every time.',
@@ -50,9 +54,142 @@ const cases = {
       location: 'Kuwait City, Kuwait',
       meta: '25 Technicians • 0% Lead Waste'
     },
+    {
+      slug: 'realestate-riyadh',
+      industry: 'Real Estate',
+      title: 'Property Firm Automates Lead Response within 60s',
+      result: 'AI answers buyer queries, qualifies leads based on budget, and schedules viewing sessions with agents automatically.',
+      metrics: ['60-second response time', '3.8× conversion boost', 'Automated agent scheduling'],
+      image: '/images/hotel_case_study.png',
+      flag: '🇸🇦',
+      location: 'Riyadh, KSA',
+      meta: '1,500+ Properties • Instant Qualify'
+    },
+    {
+      slug: 'ecommerce-abudhabi',
+      industry: 'E-commerce',
+      title: 'Retailer Automates WhatsApp Support, Conversion up 35%',
+      result: 'Automated order status checking, returns management, and personalized checkout reminders via WhatsApp Business API.',
+      metrics: ['35% conversion increase', '90% automated support', '24/7 tracking availability'],
+      image: '/images/clinic_case_study.png',
+      flag: '🇦🇪',
+      location: 'Abu Dhabi, UAE',
+      meta: '40k Monthly Orders • Zero Backlog'
+    },
+    {
+      slug: 'logistics-alrayyan',
+      industry: 'Logistics',
+      title: 'Delivery Firm Cuts Support Workload by 45%',
+      result: 'Customers check delivery status, schedule pickups, and resolve address issues instantly through an automated web agent.',
+      metrics: ['45% support workload cut', '99% address verification', '12-sec average load'],
+      image: '/images/home_case_study.png',
+      flag: '🇶🇦',
+      location: 'Al Rayyan, Qatar',
+      meta: '150 Delivery Vehicles • Real-time status'
+    },
+    {
+      slug: 'legal-manama',
+      industry: 'Legal Services',
+      title: 'Law Firm Captures 40% More Consultation Bookings',
+      result: 'AI handles intake filtering, queries legal specializations, and books qualified consultations directly to lawyers calendars.',
+      metrics: ['40% more consultations', '100% HIPAA/Privacy compliant', 'Instant intake filtering'],
+      image: '/images/hotel_case_study.png',
+      flag: '🇧🇭',
+      location: 'Manama, Bahrain',
+      meta: '8 Partners • Zero missed legal intakes'
+    },
+    {
+      slug: 'rental-muscat',
+      industry: 'Automotive',
+      title: 'Muscat Car Rental Agency Cuts Booking Time by 70%',
+      result: 'AI scans driver licenses, processes rental requests, and routes billing details to payments backend automatically.',
+      metrics: ['70% booking time saved', 'Instant license scan', '85% repeat customers'],
+      image: '/images/clinic_case_study.png',
+      flag: '🇴🇲',
+      location: 'Muscat, Oman',
+      meta: '250 Vehicles • Fully digital intake'
+    },
+    {
+      slug: 'education-jeddah',
+      industry: 'Education',
+      title: 'Jeddah Institute Automatically Coordinates 1,500 Students',
+      result: 'AI acts as a study assistant, answers schedule queries, and manages student onboarding processes for multiple campuses.',
+      metrics: ['1,500 students supported', '80% fewer admin calls', 'Instant schedule checks'],
+      image: '/images/home_case_study.png',
+      flag: '🇸🇦',
+      location: 'Jeddah, KSA',
+      meta: '3 Campuses • Multi-course coordination'
+    },
+    {
+      slug: 'fintech-sharjah',
+      industry: 'SaaS & Fintech',
+      title: 'Sharjah Startup Reduces Onboarding Friction by 50%',
+      result: 'AI guides new business customers through KYC verification, documentation checks, and setup queries automatically.',
+      metrics: ['50% friction reduction', 'Instant KYC checklist guidance', '24/7 technical setup'],
+      image: '/images/hotel_case_study.png',
+      flag: '🇦🇪',
+      location: 'Sharjah, UAE',
+      meta: 'B2B Client Portal • Secure sandbox guidance'
+    },
+    {
+      slug: 'dental-alwakrah',
+      industry: 'Healthcare',
+      title: 'Al Wakrah Dental Center Cuts No-Shows by 80%',
+      result: 'Automated appointment confirmation, late cancellation warnings, and standby queue routing over WhatsApp.',
+      metrics: ['80% fewer no-shows', 'Full standby queue fill', '98% patient feedback'],
+      image: '/images/clinic_case_study.png',
+      flag: '🇶🇦',
+      location: 'Al Wakrah, Qatar',
+      meta: '5 Surgery Rooms • 24/7 Standby routing'
+    },
+    {
+      slug: 'spa-salmiya',
+      industry: 'Beauty & Wellness',
+      title: 'Salmiya Spa Increases Weekday Bookings by 30%',
+      result: 'AI targets low-occupancy slots, proposes custom weekday packages, and handles reservations instantly.',
+      metrics: ['30% more weekday bookings', 'Automated package upsell', 'Zero double bookings'],
+      image: '/images/home_case_study.png',
+      flag: '🇰🇼',
+      location: 'Salmiya, Kuwait',
+      meta: '12 Treatment Rooms • Occupancy target focus'
+    },
+    {
+      slug: 'travel-salalah',
+      industry: 'Tourism',
+      title: 'Salalah Tour Operator Boosts Bookings 2.5×',
+      result: 'AI answers queries about tour availability, local weather updates, and automates hotel booking voucher delivery.',
+      metrics: ['2.5× booking increase', 'Automated voucher delivery', 'Multi-language translation'],
+      image: '/images/hotel_case_study.png',
+      flag: '🇴🇲',
+      location: 'Salalah, Oman',
+      meta: 'Khareef Season Specialist • Instant dispatch'
+    },
+    {
+      slug: 'kitchen-dammam',
+      industry: 'Food & Beverage',
+      title: 'Dammam Cloud Kitchen Network Automates Phone Orders',
+      result: 'AI answers high-volume customer orders, queries diet preferences, and syncs directly with kitchen POS terminals.',
+      metrics: ['95% call answer rate', 'Direct kitchen POS sync', 'Zero order input error'],
+      image: '/images/clinic_case_study.png',
+      flag: '🇸🇦',
+      location: 'Dammam, KSA',
+      meta: '8 Kitchen Hubs • 5,000 Orders/day'
+    },
+    {
+      slug: 'gym-ajman',
+      industry: 'Fitness',
+      title: 'Ajman Gym Chain Automates Membership Renewals by 90%',
+      result: 'AI reminds members before expiry, manages payment links, and answers gym facility hours and trainer queries.',
+      metrics: ['90% renewal automation', 'Instant billing links', '24/7 member inquiry answers'],
+      image: '/images/home_case_study.png',
+      flag: '🇦🇪',
+      location: 'Ajman, UAE',
+      meta: '4 Locations • 3,200 Members supported'
+    },
   ] as CaseStudy[],
   ar: [
     {
+      slug: 'hotel-doha',
       industry: 'الضيافة',
       title: 'فندق 5 نجوم يخفض مكالمات مكتب الاستقبال بنسبة 60%',
       result: 'أتمتة تسجيلات الوصول المتأخرة وطلبات خدمة الغرف وتوجيه الشكاوى. يركز الموظفون الآن على تجربة الضيوف بدلاً من الهاتف.',
@@ -63,6 +200,7 @@ const cases = {
       meta: '450 غرفة • توفير 12 موظفاً'
     },
     {
+      slug: 'clinic-dubai',
       industry: 'الرعاية الصحية',
       title: 'عيادة خاصة في دبي تعالج ضعف عدد المرضى',
       result: 'يجيب الذكاء الاصطناعي على استفسارات الحجز ويفرز الحالات العاجلة ويوجه الوصفات إلى الصيدلية — كل ذلك بدون موظف استقبال.',
@@ -73,6 +211,7 @@ const cases = {
       meta: '12 طبيب • فرز حالات 24/7'
     },
     {
+      slug: 'hvac-kuwait',
       industry: 'الخدمات المنزلية',
       title: 'شركة تكييف كويتية تلتقط كل العملاء المحتملين',
       result: 'يجيب الذكاء الاصطناعي على مكالمات الطوارئ، ويتم تفعيل التوجيه تلقائياً، ويصل الفنيون في الوقت المحدد في كل مرة.',
@@ -81,6 +220,138 @@ const cases = {
       flag: '🇰🇼',
       location: 'الكويت، الكويت',
       meta: '25 فني • 0% ضياع عملاء'
+    },
+    {
+      slug: 'realestate-riyadh',
+      industry: 'العقارات',
+      title: 'شركة عقارية تؤتمت الرد على العملاء خلال 60 ثانية',
+      result: 'يجيب الذكاء الاصطناعي على استفسارات المشترين، ويؤهلهم حسب الميزانية، وينظم مواعيد المعاينة مع الوكلاء تلقائياً.',
+      metrics: ['رد في 60 ثانية', 'زيادة التحويلات 3.8 ضعف', 'مواعيد معاينة مؤتمتة'],
+      image: '/images/hotel_case_study.png',
+      flag: '🇸🇦',
+      location: 'الرياض، السعودية',
+      meta: '1,500+ عقار • تأهيل فوري'
+    },
+    {
+      slug: 'ecommerce-abudhabi',
+      industry: 'التجارة الإلكترونية',
+      title: 'متجر تجزئة يؤتمت دعم واتساب ويرفع التحويل 35%',
+      result: 'تتبع الطلبات المؤتمت، وإدارة المرتجعات، وتذكير السلات المتروكة بشكل مخصص عبر واتساب بيزنس.',
+      metrics: ['زيادة التحويل 35%', 'أتمتة الدعم بنسبة 90%', 'تتبع متاح 24/7'],
+      image: '/images/clinic_case_study.png',
+      flag: '🇦🇪',
+      location: 'أبوظبي، الإمارات',
+      meta: '40 ألف طلب شهرياً • صفر تراكم'
+    },
+    {
+      slug: 'logistics-alrayyan',
+      industry: 'الخدمات اللوجستية',
+      title: 'شركة توصيل تخفض عبء الدعم بنسبة 45%',
+      result: 'يتتبع العملاء شحناتهم، ويجدولون مواعيد الاستلام، ويحلون مشاكل العناوين فوراً عبر مساعد ويب ذكي.',
+      metrics: ['خفض الدعم بنسبة 45%', 'تحقق من العناوين 99%', 'متوسط تحميل 12 ثانية'],
+      image: '/images/home_case_study.png',
+      flag: '🇶🇦',
+      location: 'الريان، قطر',
+      meta: '150 سيارة توصيل • حالة شحن فورية'
+    },
+    {
+      slug: 'legal-manama',
+      industry: 'الخدمات القانونية',
+      title: 'مكتب محاماة يلتقط 40% أكثر من حجوزات الاستشارات',
+      result: 'يقوم الذكاء الاصطناعي بفرز الاستفسارات وتحديد الاختصاصات وحجز الاستشارات مباشرة على تقويم المحامين.',
+      metrics: ['40% استشارات أكثر', 'متوافق مع الخصوصية 100%', 'فرز فوري للطلبات'],
+      image: '/images/hotel_case_study.png',
+      flag: '🇧🇭',
+      location: 'المنامة، البحرين',
+      meta: '8 شركاء • صفر ضياع طلبات استشارة'
+    },
+    {
+      slug: 'rental-muscat',
+      industry: 'السيارات',
+      title: 'وكالة تأجير سيارات بمسقط تخفض وقت الحجز 70%',
+      result: 'يقوم المساعد بمسح رخص القيادة ضوئياً، ومعالجة طلبات الإيجار، وتوجيه بيانات الدفع تلقائياً.',
+      metrics: ['توفير 70% من وقت الحجز', 'مسح رخصة فوري', '85% عملاء متكررين'],
+      image: '/images/clinic_case_study.png',
+      flag: '🇴🇲',
+      location: 'مسقط، عمان',
+      meta: '250 مركبة • تسجيل رقمي بالكامل'
+    },
+    {
+      slug: 'education-jeddah',
+      industry: 'التعليم',
+      title: 'معهد بجدة ينسق شؤون 1,500 طالب تلقائياً',
+      result: 'مساعد تعليمي ذكي يجيب على استفسارات الجداول الدراسية وينظم عملية تسجيل الطلاب للفروع المتعددة.',
+      metrics: ['مساعدة 1,500 طالب', 'مكالمات إدارية أقل 80%', 'فحص فوري للجداول'],
+      image: '/images/home_case_study.png',
+      flag: '🇸🇦',
+      location: 'جدة، السعودية',
+      meta: '3 فروع • تنسيق مساقات متعددة'
+    },
+    {
+      slug: 'fintech-sharjah',
+      industry: 'الشركات الناشئة',
+      title: 'شركة ناشئة بالشارقة تخفض عوائق التسجيل 50%',
+      result: 'يساعد الذكاء الاصطناعي العملاء في خطوات التحقق من الهوية، وفحص المستندات، واستفسارات الإعداد.',
+      metrics: ['خفض عوائق التسجيل 50%', 'مساعدة فورية بمتطلبات الهوية', 'إعداد تقني 24/7'],
+      image: '/images/hotel_case_study.png',
+      flag: '🇦🇪',
+      location: 'الشارقة، الإمارات',
+      meta: 'بوابة عملاء B2B • مساعدة إعداد آمنة'
+    },
+    {
+      slug: 'dental-alwakrah',
+      industry: 'الرعاية الصحية',
+      title: 'مركز طب أسنان بالوكرة يخفض الغيابات بنسبة 80%',
+      result: 'تأكيد المواعيد المؤتمت، وتنبيهات الإلغاء المتأخر، وجدولة طابور الانتظار عبر واتساب.',
+      metrics: ['غيابات أقل بنسبة 80%', 'ملء طابور الاحتياط بالكامل', '98% تقييم المرضى'],
+      image: '/images/clinic_case_study.png',
+      flag: '🇶🇦',
+      location: 'الوكرة، قطر',
+      meta: '5 غرف علاج • تنظيم طابور انتظار 24/7'
+    },
+    {
+      slug: 'spa-salmiya',
+      industry: 'العناية والجمال',
+      title: 'سبا بالسالمية يرفع حجوزات أيام الأسبوع بنسبة 30%',
+      result: 'يستهدف الذكاء الاصطناعي الأوقات ذات الإشغال المنخفض، ويعرض باقات مخصصة، وينجز الحجز فوراً.',
+      metrics: ['حجوزات أكثر 30%', 'عرض باقات مكملة مؤتمت', 'صفر حجوزات مزدوجة'],
+      image: '/images/home_case_study.png',
+      flag: '🇰🇼',
+      location: 'السالمية، الكويت',
+      meta: '12 غرفة علاج • تركيز على فترات الركود'
+    },
+    {
+      slug: 'travel-salalah',
+      industry: 'السياحة',
+      title: 'منظم رحلات بصلالة يضاعف الحجوزات 2.5 مرة',
+      result: 'يجيب الذكاء الاصطناعي على استفسارات الرحلات وأحوال الطقس، ويؤتمت إرسال قسائم الفنادق.',
+      metrics: ['زيادة الحجوزات 2.5 ضعف', 'تسليم قسائم مؤتمت', 'ترجمة لغات متعددة'],
+      image: '/images/hotel_case_study.png',
+      flag: '🇴🇲',
+      location: 'صلالة، عمان',
+      meta: 'مختص بموسم الخريف • إرسال فوري للقسائم'
+    },
+    {
+      slug: 'kitchen-dammam',
+      industry: 'الأغذية والمشروبات',
+      title: 'مطبخ سحابي بالدمام يؤتمت طلبات الهاتف',
+      result: 'يجيب المساعد على مكالمات الطلبات المرتفعة، ويسجل الملاحظات الغذائية، ويزامنها مع نظام المطبخ.',
+      metrics: ['إجابة مكالمات 95%', 'مزامنة فورية مع الكاشير', 'صفر أخطاء في تدوين الطلبات'],
+      image: '/images/clinic_case_study.png',
+      flag: '🇸🇦',
+      location: 'الدمام، السعودية',
+      meta: '8 مطابخ مركزية • 5,000 طلب يومياً'
+    },
+    {
+      slug: 'gym-ajman',
+      industry: 'اللياقة البدنية',
+      title: 'نادي رياضي بعجمان يؤتمت تجديد الاشتراكات بنسبة 90%',
+      result: 'يذكر المساعد الأعضاء قبل انتهاء الاشتراك، ويدير روابط الدفع، ويجيب على مواعيد الحصص.',
+      metrics: ['أتمتة التجديد بنسبة 90%', 'روابط دفع فورية', 'إجابات على أسئلة الأعضاء 24/7'],
+      image: '/images/home_case_study.png',
+      flag: '🇦🇪',
+      location: 'عجمان، الإمارات',
+      meta: '4 مواقع • مساعدة 3,200 عضو'
     },
   ] as CaseStudy[],
 };
@@ -251,14 +522,14 @@ export default function CaseStudiesPage() {
                         {item.result}
                       </p>
 
-                      {/* Explore Button */}
-                      <button
-                        type="button"
+                      {/* Explore Link */}
+                      <Link
+                        href={`/case-studies/${item.slug}`}
                         className="w-full flex items-center justify-between min-h-[44px] bg-white/10 backdrop-blur-md hover:bg-white/20 text-white font-bold text-xs px-5 py-3 rounded-2xl border border-white/20 transition-all duration-300"
                       >
                         <span>{t({ en: 'Explore Case Study', ar: 'استعرض دراسة الحالة' })}</span>
                         <span>{locale === 'ar' ? '←' : '→'}</span>
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 );
@@ -277,7 +548,7 @@ export default function CaseStudiesPage() {
             </button>
             
             {/* Dots */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 max-w-xs md:max-w-md overflow-x-auto py-2">
               {list.map((_, i) => (
                 <button
                   key={i}
@@ -285,7 +556,7 @@ export default function CaseStudiesPage() {
                     setCurrentIndex(i);
                     triggerEffects();
                   }}
-                  className={`min-h-0 rounded-full transition-all duration-300 ${
+                  className={`min-h-0 rounded-full transition-all duration-300 shrink-0 ${
                     i === currentIndex ? 'w-6 h-2 bg-royal' : 'w-2 h-2 bg-slate-300'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}

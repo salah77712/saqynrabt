@@ -10,56 +10,56 @@ const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.co
 type Localized = Record<string, string>;
 
 export default function MinimalPage({
-  eyebrow,
-  title,
-  description,
-  sections,
-  cta,
-  jsonLd,
+eyebrow,
+title,
+description,
+sections,
+cta,
+jsonLd,
 }: {
-  eyebrow?: Localized;
-  title: Localized;
-  description?: Localized;
-  sections?: { title: Localized; body: Localized }[];
-  cta?: { label: Localized; href: string };
-  jsonLd?: any;
+eyebrow?: Localized;
+title: Localized;
+description?: Localized;
+sections?: { title: Localized; body: Localized }[];
+cta?: { label: Localized; href: string };
+jsonLd?: any;
 }) {
-  const { locale } = useLocale();
-  const t = (obj?: Localized) => (obj ? (obj[locale] || obj.en || '') : '');
+const { locale } = useLocale();
+const t = (obj?: Localized) => (obj ? (obj[locale] || obj.en || '') : '');
 
-  return (
-    <div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="min-h-screen bg-white text-slate-900">
-      <Header />
-      <main className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
-        {eyebrow && <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary">{t(eyebrow)}</p>}
-        <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">{t(title)}</h1>
-        {description && <p className="mt-6 text-lg leading-8 text-slate-600">{t(description)}</p>}
+return (
+<div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="min-h-screen bg-[#F8F9FB] text-[#141F33]">
+<Header />
+<main className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
+{eyebrow && <p className="text-sm font-semibold uppercase tracking-[0.35em] text-[#141F33]">{t(eyebrow)}</p>}
+<h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">{t(title)}</h1>
+{description && <p className="mt-6 text-lg leading-8 text-[#141F33]/70">{t(description)}</p>}
 
-        {sections && (
-          <div className="mt-10 space-y-8">
-            {sections.map((s, i) => (
-              <section key={i}>
-                <h2 className="text-2xl font-semibold text-slate-900">{t(s.title)}</h2>
-                <p className="mt-3 text-slate-600">{t(s.body)}</p>
-              </section>
-            ))}
-          </div>
-        )}
+{sections && (
+<div className="mt-10 space-y-8">
+{sections.map((s, i) => (
+<section key={i}>
+<h2 className="text-2xl font-semibold text-[#141F33]">{t(s.title)}</h2>
+<p className="mt-3 text-[#141F33]/70">{t(s.body)}</p>
+</section>
+))}
+</div>
+)}
 
-        {cta && (
-          <div className="mt-10">
-            <a href={cta.href} className="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white hover:opacity-90">
-              {t(cta.label)}
-            </a>
-          </div>
-        )}
-      </main>
+{cta && (
+<div className="mt-10">
+<a href={cta.href} className="inline-flex rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-white hover:opacity-90">
+{t(cta.label)}
+</a>
+</div>
+)}
+</main>
 
-      <Footer />
+<Footer />
 
-      {jsonLd && (
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      )}
-    </div>
-  );
+{jsonLd && (
+<script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+)}
+</div>
+);
 }

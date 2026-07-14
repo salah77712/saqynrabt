@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
@@ -172,7 +172,7 @@ export default function WebhooksSettingsPage() {
                   onChange={() => handleToggleEvent(event)}
                   className="h-4 w-4 rounded border-gray-300 text-[#141F33] focus:ring-[#141F33]"
                 />
-                <span className="font-mono text-[10px] text-slate-700">{event}</span>
+                <span className="font-mono text-[10px] text-[#141F33]">{event}</span>
               </label>
             ))}
           </div>
@@ -181,7 +181,7 @@ export default function WebhooksSettingsPage() {
         <button
           type="submit"
           disabled={registering}
-          className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
         >
           {registering ? t({ en: 'Registering...', ar: 'جاري التسجيل...' }) : t({ en: 'Register Destination Webhook', ar: 'تسجيل الويب هوك الصادر' })}
         </button>
@@ -190,14 +190,14 @@ export default function WebhooksSettingsPage() {
 
       {/* Webhooks List */}
       <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
-        <h3 className="text-xs font-extrabold text-[#718096] uppercase tracking-wider mb-4">{t({ en: 'Active Webhook Endpoints', ar: 'روابط الويب هوك النشطة' })}</h3>
+        <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Active Webhook Endpoints', ar: 'روابط الويب هوك النشطة' })}</h3>
 
         {loading ? (
           <div className="py-6 flex justify-center">
-            <span className="h-6 w-6 rounded-full border-4 border-gray-200 border-t-[#141F33] animate-spin" />
+            <span className="h-6 w-6 rounded-full border-4 border-[#141F33]/10 border-t-[#141F33] animate-spin" />
           </div>
         ) : webhooks.length === 0 ? (
-          <p className="text-xs text-[#718096] font-semibold text-center py-6">{t({ en: 'No outgoing webhooks registered.', ar: 'لا توجد روابط ويب هوك صادرة حاليًا.' })}</p>
+          <p className="text-xs text-[#141F33] font-semibold text-center py-6">{t({ en: 'No outgoing webhooks registered.', ar: 'لا توجد روابط ويب هوك صادرة حاليًا.' })}</p>
         ) : (
           <div className="divide-y divide-gray-100">
             {webhooks.map((w) => (
@@ -206,7 +206,7 @@ export default function WebhooksSettingsPage() {
                   <p className="text-xs font-bold text-[#141F33] truncate">{w.url}</p>
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {w.events.map((e) => (
-                      <span key={e} className="bg-slate-100 text-slate-600 font-mono text-[8px] font-extrabold px-2 py-0.5 rounded-full border border-slate-200">
+                      <span key={e} className="bg-[#F8F9FB] text-[#141F33] font-mono text-[8px] font-extrabold px-2 py-0.5 rounded-full border border-[#141F33]/10">
                         {e}
                       </span>
                     ))}
@@ -214,7 +214,7 @@ export default function WebhooksSettingsPage() {
                 </div>
                 <button
                   onClick={() => handleDelete(w.id)}
-                  className="text-[10px] font-bold text-red-600 hover:bg-red-50 px-3 py-1.5 rounded-lg border border-red-100 shrink-0"
+                  className="text-[10px] font-bold text-[#141F33] hover:bg-[#F8F9FB] px-3 py-1.5 rounded-lg border border-red-100 shrink-0"
                 >
                   {t({ en: 'Delete', ar: 'حذف' })}
                 </button>
@@ -227,3 +227,5 @@ export default function WebhooksSettingsPage() {
     </div>
   );
 }
+
+

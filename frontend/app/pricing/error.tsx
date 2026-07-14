@@ -14,7 +14,7 @@ export default function PricingError({
 
   return (
     <div className="min-h-screen bg-[#F8F9FB] flex flex-col">
-      <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 w-full border-b border-[#141F33]/10 bg-[#F8F9FB]/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#141F33] text-sm font-semibold text-[#F8F9FB]">S</div>
           <div className="ml-3">

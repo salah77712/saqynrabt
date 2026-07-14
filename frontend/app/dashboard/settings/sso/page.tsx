@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../../../providers';
@@ -23,8 +23,8 @@ export default function SSOPage() {
     <main id="main-content" className="p-6 space-y-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Single Sign-On (SSO)', ar: 'تسجيل الدخول الموحد للمؤسسات (SSO)'})}</h1>
-          <p className="text-xs text-slate-500 font-bold">{t({en: 'Connect your company\'s identity system for one-click login.', ar: 'تكوين تكاملات الهوية المؤسسية (SAML 2.0 / OIDC).'})}</p>
+          <h1 className="text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Single Sign-On (SSO)', ar: 'تسجيل الدخول الموحد للمؤسسات (SSO)'})}</h1>
+          <p className="text-xs text-[#141F33] font-bold">{t({en: 'Connect your company\'s identity system for one-click login.', ar: 'تكوين تكاملات الهوية المؤسسية (SAML 2.0 / OIDC).'})}</p>
         </div>
         <Badge variant={samlEnabled ? 'success' : 'primary'}>
           {samlEnabled ? t({en: 'SSO Active', ar: 'SSO نشط'}) : t({en: 'SSO Inactive', ar: 'SSO غير نشط'})}
@@ -33,13 +33,13 @@ export default function SSOPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card className="space-y-4">
-          <h3 className="font-bold text-navy dark:text-white text-base">{t({en: 'SSO Gateway Details', ar: 'تفاصيل بوابة SSO'})}</h3>
-          <p className="text-xs text-slate-500 leading-relaxed">
+          <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'SSO Gateway Details', ar: 'تفاصيل بوابة SSO'})}</h3>
+          <p className="text-xs text-[#141F33] leading-relaxed">
             {t({en: 'Integrate SAQYN authentication directly with enterprise credential stores like Okta, Azure AD, or Ping Identity.', ar: 'دمج مصادقة SAQYN مباشرة مع مخازن بيانات الاعتماد المؤسسية مثل Okta أو Azure AD أو Ping Identity.'})}
           </p>
 
-          <div className="flex items-center justify-between py-2 border-b border-gray-100">
-            <span className="text-xs font-bold text-navy dark:text-white">{t({en: 'Enable SAML Authentication', ar: 'تمكين مصادقة SAML'})}</span>
+          <div className="flex items-center justify-between py-2 border-b border-[#141F33]/10">
+            <span className="text-xs font-bold text-navy dark:text-[#F8F9FB]">{t({en: 'Enable SAML Authentication', ar: 'تمكين مصادقة SAML'})}</span>
             <input
               type="checkbox"
               checked={samlEnabled}
@@ -49,7 +49,7 @@ export default function SSOPage() {
           </div>
 
           <div className="space-y-1">
-            <label className="block text-[10px] font-bold text-slate-400 uppercase">{t({en: 'SAML Metadata XML URL', ar: 'رابط XML بيانات SAML الوصفية'})}</label>
+            <label className="block text-[10px] font-bold text-[#141F33] uppercase">{t({en: 'SAML Metadata XML URL', ar: 'رابط XML بيانات SAML الوصفية'})}</label>
             <Input
               value={metadataUrl}
               onChange={(e) => setMetadataUrl(e.target.value)}
@@ -63,8 +63,8 @@ export default function SSOPage() {
         </Card>
 
         <Card className="space-y-4">
-          <h3 className="font-bold text-navy dark:text-white text-base">{t({en: 'Metadata Downloads', ar: 'تنزيل البيانات الوصفية'})}</h3>
-          <p className="text-xs text-slate-500 leading-relaxed">
+          <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'Metadata Downloads', ar: 'تنزيل البيانات الوصفية'})}</h3>
+          <p className="text-xs text-[#141F33] leading-relaxed">
             {t({en: 'To configure SSO in your Identity Provider (IdP) administration portal, download our service provider config properties.', ar: 'لتكوين SSO في بوابة إدارة موفر الهوية (IdP)، قم بتنزيل خصائص تكوين موفر الخدمة لدينا.'})}
           </p>
           <Button variant="outline" className="w-full">
@@ -77,3 +77,5 @@ export default function SSOPage() {
     </main>
   );
 }
+
+

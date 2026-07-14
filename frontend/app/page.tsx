@@ -101,7 +101,7 @@ export default function MarketingPage() {
   const chatbotCopy = chatbotIndustryCopies[activeIndustry] || chatbotIndustryCopies.default;
 
   return (
-    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#3B5B9B] selection:text-[#F8F9FB]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       
       <Header />
 
@@ -171,7 +171,7 @@ activeProduct === 'chatbot'
           {/* Right Column — Dashboard Preview */}
           <div className="lg:w-1/2 w-full animate-slideUp" style={{ animationDelay: '0.3s' }}>
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#3B5B9B]/10 to-[#10B981]/10 rounded-3xl blur-2xl opacity-70" />
+              <div className="absolute -inset-4 bg-gradient-to-br from-[#141F33]/10 to-[#F8F9FB]/30 rounded-3xl blur-2xl opacity-70" />
               <div className="relative bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 shadow-xl p-5 overflow-hidden">
                 <div className="flex items-center justify-between pb-3 border-b border-[#141F33]/10">
                   <div className="flex items-center gap-2">
@@ -283,7 +283,7 @@ activeProduct === 'chatbot'
 
           {/* Dynamic Headline Panel */}
           <div className="mt-12 text-center bg-[#F8F9FB] p-8 rounded-2xl border border-[#141F33]/10 max-w-3xl w-full animate-slideUp" style={{ animationDelay: '0.2s' }}>
-            <span className="text-xs font-extrabold tracking-widest text-[#3B5B9B] uppercase">{currentIndustry.label}</span>
+            <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{currentIndustry.label}</span>
             <h2 className="text-2xl md:text-3xl font-extrabold text-[#141F33] leading-tight mt-3">
               {currentIndustry.headline}
             </h2>
@@ -334,7 +334,7 @@ activeProduct === 'chatbot'
       <section ref={testimonialRef} className={`bg-[#F8F9FB] py-20 lg:py-28 animate-reveal ${testimonialVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-14">
-            <p className="text-xs font-extrabold tracking-widest text-[#3B5B9B] uppercase mb-3">
+            <p className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase mb-3">
               {t({ en: 'Testimonials', ar: 'شهادات العملاء' })}
             </p>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33]">
@@ -453,7 +453,7 @@ activeProduct === 'chatbot'
       </section>
 
       {/* ── Custom Solution CTA Banner ────────────────────── */}
-      <section ref={ctaRef} className={`bg-gradient-to-r from-[#141F33] to-[#3B5B9B] py-20 px-6 text-[#F8F9FB] border-t border-[#141F33]/20 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
+      <section ref={ctaRef} className={`bg-gradient-to-r from-[#141F33] to-[#2A5CFF] py-20 px-6 text-[#F8F9FB] border-t border-[#141F33]/20 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
             {t({ en: 'Need something more tailored?', ar: 'هل تحتاج إلى شيء أكثر تخصيصاً؟' })}

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../../../providers';
@@ -38,11 +38,11 @@ export default function ABTestingSettingsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'A/B Testing', ar: 'اختبارات A/B للموديلات' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Compare model versions by splitting traffic between them.', ar: 'تكوين تقسيم الزوار بين الموديل القياسي والموديل المخصص.' })}</p>
+        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Compare model versions by splitting traffic between them.', ar: 'تكوين تقسيم الزوار بين الموديل القياسي والموديل المخصص.' })}</p>
       </div>
 
       {/* Form config */}
-      <form onSubmit={handleUpdate} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+      <form onSubmit={handleUpdate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
         
         <div className="grid grid-cols-2 gap-4">
           <div>
@@ -51,7 +51,7 @@ export default function ABTestingSettingsPage() {
               id="model_a"
               value={activeTest.model_a}
               onChange={(e) => setActiveTest(prev => ({ ...prev, model_a: e.target.value }))}
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33]"
             >
               <option value="gpt-4o-mini">gpt-4o-mini</option>
               <option value="gpt-4o">gpt-4o</option>
@@ -64,7 +64,7 @@ export default function ABTestingSettingsPage() {
               id="model_b"
               value={activeTest.model_b}
               onChange={(e) => setActiveTest(prev => ({ ...prev, model_b: e.target.value }))}
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33]"
             >
               <option value="gpt-4o-mini-finetuned-alsafa">gpt-4o-mini-finetuned-alsafa</option>
               <option value="gpt-4o-finetuned">gpt-4o-finetuned</option>
@@ -81,9 +81,9 @@ export default function ABTestingSettingsPage() {
             max="100"
             value={activeTest.split_pct_a}
             onChange={(e) => setActiveTest(prev => ({ ...prev, split_pct_a: parseInt(e.target.value) }))}
-            className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#141F33]"
+            className="w-full h-2 bg-[#F8F9FB] rounded-lg appearance-none cursor-pointer accent-[#141F33]"
           />
-          <div className="flex justify-between text-[10px] text-slate-400 font-bold mt-1">
+          <div className="flex justify-between text-[10px] text-[#141F33] font-bold mt-1">
             <span>Model A: {activeTest.split_pct_a}%</span>
             <span>Model B: {100 - activeTest.split_pct_a}%</span>
           </div>
@@ -91,7 +91,7 @@ export default function ABTestingSettingsPage() {
 
         <button
           type="submit"
-          className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
         >
           {t({ en: 'Update Split Testing Settings', ar: 'تحديث إعدادات تقسيم الزوار' })}
         </button>
@@ -99,17 +99,17 @@ export default function ABTestingSettingsPage() {
       </form>
 
       {/* History */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-        <h3 className="text-xs font-extrabold text-[#718096] uppercase tracking-wider mb-4">{t({ en: 'Evaluation History & Results', ar: 'سجل التقييم والنتائج' })}</h3>
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+        <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Evaluation History & Results', ar: 'سجل التقييم والنتائج' })}</h3>
 
         <div className="divide-y divide-gray-100">
           {history.map((h) => (
             <div key={h.id} className="py-3 first:pt-0 last:pb-0 space-y-1.5">
               <div className="flex justify-between text-xs font-extrabold text-[#141F33]">
                 <span>{h.metric}</span>
-                <span className="text-emerald-600">{h.result}</span>
+                <span className="text-[#2A5CFF]">{h.result}</span>
               </div>
-              <p className="text-[10px] text-slate-400 font-semibold">
+              <p className="text-[10px] text-[#141F33] font-semibold">
                 Control: {h.modelA} | Treatment: {h.modelB}
               </p>
             </div>
@@ -120,3 +120,5 @@ export default function ABTestingSettingsPage() {
     </div>
   );
 }
+
+

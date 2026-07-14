@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocale } from '../../providers';
@@ -173,7 +173,7 @@ export default function SettingsDashboardPage() {
             <h2 className="text-[10px] md:text-xs font-black text-[#141F33]/60 uppercase tracking-widest mb-3 md:mb-4">
               {t('Overage Protection', 'حماية التجاوز التلقائي')}
             </h2>
-            <label className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-gray-100 bg-[#F8F9FB] cursor-pointer">
+            <label className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] cursor-pointer">
               <input
                 type="checkbox"
                 checked={autoOverage}
@@ -190,26 +190,26 @@ export default function SettingsDashboardPage() {
           </Card>
 
           <Card className="p-4 md:p-6 space-y-4 md:space-y-6">
-            <h2 className="text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-widest">
+            <h2 className="text-[10px] md:text-xs font-black text-[#141F33] uppercase tracking-widest">
               {t('Usage Limits', 'حدود الاستخدام')}
             </h2>
             <div className="space-y-4">
               <div>
-                <div className="flex justify-between text-[10px] md:text-xs font-bold text-slate-500 mb-1.5">
+                <div className="flex justify-between text-[10px] md:text-xs font-bold text-[#141F33] mb-1.5">
                   <span>{t('Automation Texts', 'نصوص الأتمتة')}</span>
                   <span>{metrics.textsUsed} / {metrics.textsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.textsLimit > 0 ? (metrics.textsUsed / metrics.textsLimit) * 100 : 0} />
               </div>
               <div>
-                <div className="flex justify-between text-[10px] md:text-xs font-bold text-slate-500 mb-1.5">
+                <div className="flex justify-between text-[10px] md:text-xs font-bold text-[#141F33] mb-1.5">
                   <span>{t('Voice Minutes', 'دقائق الصوت')}</span>
                   <span>{metrics.voiceMinsUsed} / {metrics.voiceMinsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.voiceMinsLimit > 0 ? (metrics.voiceMinsUsed / metrics.voiceMinsLimit) * 100 : 0} />
               </div>
               <div>
-                <div className="flex justify-between text-[10px] md:text-xs font-bold text-slate-500 mb-1.5">
+                <div className="flex justify-between text-[10px] md:text-xs font-bold text-[#141F33] mb-1.5">
                   <span>{t('RAG Questions', 'أسئلة RAG')}</span>
                   <span>{metrics.questionsUsed} / {metrics.questionsLimit}</span>
                 </div>
@@ -237,7 +237,7 @@ export default function SettingsDashboardPage() {
       {activeTab === 'billing' && (
         <Card className="p-4 md:p-6 space-y-4">
           <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-sm md:text-base">{t('Subscription Plan', 'خطة الاشتراك')}</h3>
-          <p className="text-[10px] md:text-xs text-slate-500 leading-relaxed">
+          <p className="text-[10px] md:text-xs text-[#141F33] leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
           </p>
           <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
@@ -252,3 +252,5 @@ export default function SettingsDashboardPage() {
     </div>
   );
 }
+
+

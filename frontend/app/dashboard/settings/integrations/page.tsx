@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useLocale } from '../../../providers';
@@ -22,12 +22,12 @@ export default function IntegrationsSettingsPage() {
         <Card key={int.id} className="flex flex-col justify-between p-6">
           <div>
             <div className="flex justify-between items-start gap-4 mb-2">
-              <h4 className="font-bold text-navy dark:text-white text-sm">{int.name}</h4>
+              <h4 className="font-bold text-navy dark:text-[#F8F9FB] text-sm">{int.name}</h4>
               <Badge variant={int.active ? 'success' : 'primary'}>
                 {int.active ? t({en: 'Connected', ar: 'متصل'}) : t({en: 'Configure', ar: 'تكوين'})}
               </Badge>
             </div>
-            <p className="text-[10px] text-slate-500 mt-1 leading-relaxed">
+            <p className="text-[10px] text-[#141F33] mt-1 leading-relaxed">
               {int.desc}
             </p>
           </div>
@@ -39,3 +39,5 @@ export default function IntegrationsSettingsPage() {
     </div>
   );
 }
+
+

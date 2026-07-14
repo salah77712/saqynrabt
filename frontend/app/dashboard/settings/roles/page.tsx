@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../../../providers';
@@ -55,11 +55,11 @@ export default function RolesSettingsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Roles & Permissions', ar: 'أدوار الفريق وصلاحيات الدخول' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Control what each team member can see and do.', ar: 'تحديد أدوار الوصول المخصصة وتعيين صلاحيات النظام.' })}</p>
+        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Control what each team member can see and do.', ar: 'تحديد أدوار الوصول المخصصة وتعيين صلاحيات النظام.' })}</p>
       </div>
 
       {/* Form Custom Role */}
-      <form onSubmit={handleCreate} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+      <form onSubmit={handleCreate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
         <div>
           <label htmlFor="name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Custom Role Title', ar: 'مسمى الدور المخصص' })}</label>
           <input
@@ -68,7 +68,7 @@ export default function RolesSettingsPage() {
             value={newRole.name}
             onChange={(e) => setNewRole(prev => ({ ...prev, name: e.target.value }))}
             placeholder="E.g. Assistant Operations Manager"
-            className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
+            className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
             required
           />
         </div>
@@ -77,7 +77,7 @@ export default function RolesSettingsPage() {
           <label className="block text-xs font-bold text-[#141F33] mb-3">{t({ en: 'Grant Permissions', ar: 'منح الصلاحيات' })}</label>
           <div className="space-y-2 text-xs font-semibold">
             {availablePermissions.map((perm) => (
-              <label key={perm.key} className="flex items-start gap-3 p-3 border border-slate-100 rounded-xl bg-slate-50 cursor-pointer hover:border-[#141F33] transition-all">
+              <label key={perm.key} className="flex items-start gap-3 p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] cursor-pointer hover:border-[#141F33] transition-all">
                 <input
                   type="checkbox"
                   checked={newRole.permissions.includes(perm.key)}
@@ -86,7 +86,7 @@ export default function RolesSettingsPage() {
                 />
                 <div>
                   <p className="text-xs font-bold text-[#141F33]">{perm.key}</p>
-                  <p className="text-[10px] text-[#718096] font-medium mt-0.5">{perm.label}</p>
+                  <p className="text-[10px] text-[#141F33] font-medium mt-0.5">{perm.label}</p>
                 </div>
               </label>
             ))}
@@ -95,28 +95,28 @@ export default function RolesSettingsPage() {
 
         <button
           type="submit"
-          className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
         >
           {t({ en: 'Create Custom Access Role', ar: 'إنشاء دور وصول مخصص' })}
         </button>
       </form>
 
       {/* Roles list */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-        <h3 className="text-xs font-extrabold text-[#718096] uppercase tracking-wider mb-4">{t({ en: 'Configured Access Roles', ar: 'أدوار الوصول المهيأة' })}</h3>
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+        <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Configured Access Roles', ar: 'أدوار الوصول المهيأة' })}</h3>
 
         <div className="divide-y divide-gray-100">
           {roles.map((r) => (
             <div key={r.name} className="py-4 first:pt-0 last:pb-0 space-y-2">
               <div className="flex justify-between items-center">
                 <p className="text-xs font-extrabold text-[#141F33]">{r.name}</p>
-                <span className="bg-slate-100 text-slate-600 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">
+                <span className="bg-[#F8F9FB] text-[#141F33] text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">
                   {r.userCount} {t({ en: 'members', ar: 'أعضاء' })}
                 </span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {r.permissions.map((p) => (
-                  <span key={p} className="bg-blue-50 text-[#2A5CFF] border border-blue-100 font-mono text-[8px] font-extrabold px-2 py-0.5 rounded-full">
+                  <span key={p} className="bg-[#F8F9FB] text-[#2A5CFF] border border-[#2A5CFF]/10 font-mono text-[8px] font-extrabold px-2 py-0.5 rounded-full">
                     {p}
                   </span>
                 ))}
@@ -129,3 +129,5 @@ export default function RolesSettingsPage() {
     </div>
   );
 }
+
+

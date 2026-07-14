@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useRef } from 'react';
 import { useLocale } from '../../../providers';
@@ -41,11 +41,11 @@ export default function PromptsSettingsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'AI Prompts', ar: 'هندسة النصوص والتعليمات البرمجية' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Customize how your AI assistant responds to questions.', ar: 'تعديل التعليمات والتعليمات الفرعية وبارامترات مخرجات الذكاء الاصطناعي.' })}</p>
+        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Customize how your AI assistant responds to questions.', ar: 'تعديل التعليمات والتعليمات الفرعية وبارامترات مخرجات الذكاء الاصطناعي.' })}</p>
       </div>
 
       {/* Editor */}
-      <form ref={formRef} onSubmit={handleSave} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+      <form ref={formRef} onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
         
         <div>
           <label htmlFor="prompt" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Core System Prompt Instruction', ar: 'التعليمات الأساسية للنظام' })}</label>
@@ -54,7 +54,7 @@ export default function PromptsSettingsPage() {
             value={prompt}
             onChange={(e) => { setPrompt(e.target.value); setDirty(true); }}
             rows={6}
-            className="w-full bg-slate-50 border border-gray-200 rounded-xl p-4 text-xs font-mono font-bold text-[#141F33] focus:outline-none focus:ring-1 focus:ring-[#141F33]"
+            className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 text-xs font-mono font-bold text-[#141F33] focus:outline-none focus:ring-1 focus:ring-[#141F33]"
             required
           />
         </div>
@@ -62,7 +62,7 @@ export default function PromptsSettingsPage() {
         <button
           type="submit"
           disabled={saving}
-          className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
         >
           {saving ? t({ en: 'Saving...', ar: 'جاري الحفظ...' }) : t({ en: 'Save System Prompt overrides', ar: 'حفظ تعديلات تعليمات النظام' })}
         </button>
@@ -77,3 +77,5 @@ export default function PromptsSettingsPage() {
     </div>
   );
 }
+
+

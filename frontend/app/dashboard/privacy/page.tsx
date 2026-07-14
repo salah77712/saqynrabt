@@ -12,218 +12,218 @@ function CheckCircleSvg() { return <svg xmlns="http://www.w3.org/2000/svg" width
 function LoaderSvg() { return <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="animate-spin"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg>; }
 
 export default function PrivacyDashboardPage() {
-  const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+const { locale } = useLocale();
+const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
-  const [exporting, setExporting] = useState(false);
-  const [exportDone, setExportDone] = useState(false);
-  const [exportError, setExportError] = useState('');
-  const [deletionError, setDeletionError] = useState('');
-  const [deletionRequested, setDeletionRequested] = useState(false);
-  const [confirmDelete, setConfirmDelete] = useState(false);
-  const [deleting, setDeleting] = useState(false);
-  const [deletionConfirmed, setDeletionConfirmed] = useState(false);
+const [exporting, setExporting] = useState(false);
+const [exportDone, setExportDone] = useState(false);
+const [exportError, setExportError] = useState('');
+const [deletionError, setDeletionError] = useState('');
+const [deletionRequested, setDeletionRequested] = useState(false);
+const [confirmDelete, setConfirmDelete] = useState(false);
+const [deleting, setDeleting] = useState(false);
+const [deletionConfirmed, setDeletionConfirmed] = useState(false);
 
-  const handleExport = async () => {
-    setExporting(true);
-    setExportError('');
-    try {
-      const res = await fetch('/api/privacy/export', {
-        headers: { Authorization: `Bearer ${await window.Clerk?.session?.getToken()}` },
-      });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || 'Export failed');
-      }
-      const blob = await res.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `saqynrabt-data-export-${new Date().toISOString().split('T')[0]}.zip`;
-      a.click();
-      window.URL.revokeObjectURL(url);
-      setExportDone(true);
-    } catch (err: any) {
-      setExportError(err.message);
-    } finally {
-      setExporting(false);
-    }
-  };
+const handleExport = async () => {
+setExporting(true);
+setExportError('');
+try {
+const res = await fetch('/api/privacy/export', {
+headers: { Authorization: `Bearer ${await window.Clerk?.session?.getToken()}` },
+});
+if (!res.ok) {
+const err = await res.json();
+throw new Error(err.error || 'Export failed');
+}
+const blob = await res.blob();
+const url = window.URL.createObjectURL(blob);
+const a = document.createElement('a');
+a.href = url;
+a.download = `saqynrabt-data-export-${new Date().toISOString().split('T')[0]}.zip`;
+a.click();
+window.URL.revokeObjectURL(url);
+setExportDone(true);
+} catch (err: any) {
+setExportError(err.message);
+} finally {
+setExporting(false);
+}
+};
 
-  const handleDeleteRequest = async () => {
-    if (!confirmDelete) return;
-    setDeleting(true);
-    try {
-      const res = await fetch('/api/privacy/delete', {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${await window.Clerk?.session?.getToken()}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ confirm: true }),
-      });
-      if (!res.ok) {
-        const err = await res.json();
-        throw new Error(err.error || 'Deletion request failed');
-      }
-      setDeletionConfirmed(true);
-    } catch (err: any) {
-      setDeletionError(err.message);
-    } finally {
-      setDeleting(false);
-    }
-  };
+const handleDeleteRequest = async () => {
+if (!confirmDelete) return;
+setDeleting(true);
+try {
+const res = await fetch('/api/privacy/delete', {
+method: 'POST',
+headers: {
+Authorization: `Bearer ${await window.Clerk?.session?.getToken()}`,
+'Content-Type': 'application/json',
+},
+body: JSON.stringify({ confirm: true }),
+});
+if (!res.ok) {
+const err = await res.json();
+throw new Error(err.error || 'Deletion request failed');
+}
+setDeletionConfirmed(true);
+} catch (err: any) {
+setDeletionError(err.message);
+} finally {
+setDeleting(false);
+}
+};
 
-  return (
-    <div className="space-y-6 max-w-2xl">
-      <div>
-        <h1 className="text-xl font-bold text-[#141F33]">
-          {t({ en: 'Privacy', ar: 'خصوصية البيانات والامتثال' })}
-        </h1>
-        <p className="text-sm text-[#718096] mt-1">
-          {t({
-            en: 'Manage your personal data rights under Qatari Law No. 13 of 2016.',
-            ar: 'إدارة حقوق بياناتك الشخصية بموجب قانون قطر رقم 13 لسنة 2016.',
-          })}
-        </p>
-      </div>
+return (
+<div className="space-y-6 max-w-2xl">
+<div>
+<h1 className="text-xl font-bold text-[#141F33]">
+{t({ en: 'Privacy', ar: 'خصوصية البيانات والامتثال' })}
+</h1>
+<p className="text-sm text-[#718096] mt-1">
+{t({
+en: 'Manage your personal data rights under Qatari Law No. 13 of 2016.',
+ar: 'إدارة حقوق بياناتك الشخصية بموجب قانون قطر رقم 13 لسنة 2016.',
+})}
+</p>
+</div>
 
-      <Card className="p-6">
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0 text-blue-600">
-            <DownloadSvg />
-          </div>
-          <div className="flex-1">
-            <h2 className="text-sm font-bold text-[#141F33]">
-              {t({ en: 'Export My Data', ar: 'تصدير بياناتي' })}
-            </h2>
-            <p className="text-xs text-[#718096] mt-1">
-              {t({
-                en: 'Download all your company data — documents, chat history, and account info — in one archive.',
-                ar: 'قم بتنزيل أرشيف كامل لبيانات شركتك، بما في ذلك المستندات المرفوعة وسجل المحادثات ومعلومات الحساب.',
-              })}
-            </p>
+<Card className="p-6">
+<div className="flex items-start gap-4">
+<div className="w-10 h-10 rounded-xl bg-[#F8F9FB] flex items-center justify-center shrink-0 text-[#2A5CFF]">
+<DownloadSvg />
+</div>
+<div className="flex-1">
+<h2 className="text-sm font-bold text-[#141F33]">
+{t({ en: 'Export My Data', ar: 'تصدير بياناتي' })}
+</h2>
+<p className="text-xs text-[#718096] mt-1">
+{t({
+en: 'Download all your company data — documents, chat history, and account info — in one archive.',
+ar: 'قم بتنزيل أرشيف كامل لبيانات شركتك، بما في ذلك المستندات المرفوعة وسجل المحادثات ومعلومات الحساب.',
+})}
+</p>
 
-            {exportDone ? (
-              <div className="mt-3 flex items-center gap-2 text-green-700 text-xs">
-                <CheckCircleSvg />
-                {t({ en: 'Export completed successfully.', ar: 'تم التصدير بنجاح.' })}
-              </div>
-            ) : (
-              <Button
-                variant="default"
-                className="mt-3"
-                onClick={handleExport}
-                disabled={exporting}
-              >
-                {exporting ? (
-                  <span className="flex items-center gap-2">
-                    <LoaderSvg />
-                    {t({ en: 'Exporting...', ar: 'جاري التصدير...' })}
-                  </span>
-                ) : (
-                  t({ en: 'Export My Data', ar: 'تصدير بياناتي' })
-                )}
-              </Button>
-            )}
+{exportDone ? (
+<div className="mt-3 flex items-center gap-2 text-[#2A5CFF] text-xs">
+<CheckCircleSvg />
+{t({ en: 'Export completed successfully.', ar: 'تم التصدير بنجاح.' })}
+</div>
+) : (
+<Button
+variant="default"
+className="mt-3"
+onClick={handleExport}
+disabled={exporting}
+>
+{exporting ? (
+<span className="flex items-center gap-2">
+<LoaderSvg />
+{t({ en: 'Exporting...', ar: 'جاري التصدير...' })}
+</span>
+) : (
+t({ en: 'Export My Data', ar: 'تصدير بياناتي' })
+)}
+</Button>
+)}
 
-            {exportError && (
-              <p className="mt-2 text-xs text-red-600">{exportError}</p>
-            )}
-          </div>
-        </div>
-      </Card>
+{exportError && (
+<p className="mt-2 text-xs text-[#141F33]">{exportError}</p>
+)}
+</div>
+</div>
+</Card>
 
-      <Card className="p-6 border-red-100">
-        <div className="flex items-start gap-4">
-          <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center shrink-0 text-red-600">
-            <TrashSvg />
-          </div>
-          <div className="flex-1">
-            <h2 className="text-sm font-bold text-[#141F33]">
-              {t({ en: 'Request Account Deletion', ar: 'طلب حذف الحساب' })}
-            </h2>
-            <p className="text-xs text-[#718096] mt-1">
-              {t({
-                en: 'Request permanent deletion of your account and all associated data. A 30-day grace period applies under Qatari Civil Code Article 190 before data is permanently erased.',
-                ar: 'طلب حذف دائم لحسابك وجميع البيانات المرتبطة به. تنطبق فترة سماح مدتها 30 يوماً بموجب المادة 190 من القانون المدني القطري قبل محو البيانات نهائياً.',
-              })}
-            </p>
+<Card className="p-6 border-[#141F33]/10">
+<div className="flex items-start gap-4">
+<div className="w-10 h-10 rounded-xl bg-[#F8F9FB] flex items-center justify-center shrink-0 text-[#141F33]">
+<TrashSvg />
+</div>
+<div className="flex-1">
+<h2 className="text-sm font-bold text-[#141F33]">
+{t({ en: 'Request Account Deletion', ar: 'طلب حذف الحساب' })}
+</h2>
+<p className="text-xs text-[#718096] mt-1">
+{t({
+en: 'Request permanent deletion of your account and all associated data. A 30-day grace period applies under Qatari Civil Code Article 190 before data is permanently erased.',
+ar: 'طلب حذف دائم لحسابك وجميع البيانات المرتبطة به. تنطبق فترة سماح مدتها 30 يوماً بموجب المادة 190 من القانون المدني القطري قبل محو البيانات نهائياً.',
+})}
+</p>
 
-            {deletionConfirmed ? (
-              <div className="mt-3 flex items-start gap-2 text-amber-700 text-xs bg-amber-50 p-3 rounded-xl">
-                <AlertTriangleSvg />
-                <div>
-                  <p className="font-bold">
-                    {t({ en: 'Deletion Request Submitted', ar: 'تم تقديم طلب الحذف' })}
-                  </p>
-                  <p className="mt-1">
-                    {t({
-                      en: 'Your request has been received. A 30-day grace period is now in effect. Your account will be permanently deleted after this period unless you cancel the request.',
-                      ar: 'تم استلام طلبك. فترة سماح مدتها 30 يوماً سارية الآن. سيتم حذف حسابك نهائياً بعد هذه الفترة ما لم تلغي الطلب.',
-                    })}
-                  </p>
-                </div>
-              </div>
-            ) : deletionRequested ? (
-              <div className="mt-3 space-y-2">
-                <label className="flex items-center gap-2 text-xs text-[#718096]">
-                  <input
-                    type="checkbox"
-                    checked={confirmDelete}
-                    onChange={(e) => setConfirmDelete(e.target.checked)}
-                    className="accent-red-600"
-                  />
-                  {t({
-                    en: 'I confirm that I want to delete my account and all associated data. I understand there is a 30-day grace period.',
-                    ar: 'أؤكد أنني أرغب في حذف حسابي وجميع البيانات المرتبطة به. أفهم أن هناك فترة سماح مدتها 30 يوماً.',
-                  })}
-                </label>
-                <div className="flex gap-2">
-                  <Button
-                    variant="destructive"
-                    onClick={handleDeleteRequest}
-                    disabled={!confirmDelete || deleting}
-                  >
-                    {deleting ? (
-                      <span className="flex items-center gap-2">
-                        <LoaderSvg />
-                        {t({ en: 'Processing...', ar: 'جاري المعالجة...' })}
-                      </span>
-                    ) : (
-                      t({ en: 'Confirm Deletion', ar: 'تأكيد الحذف' })
-                    )}
-                  </Button>
-                  <Button variant="outline" onClick={() => setDeletionRequested(false)}>
-                    {t({ en: 'Cancel', ar: 'إلغاء' })}
-                  </Button>
-                </div>
-              </div>
-            ) : (
-              <Button
-                variant="outline"
-                className="mt-3 border-red-200 text-red-600 hover:bg-red-50"
-                onClick={() => setDeletionRequested(true)}
-              >
-                {t({ en: 'Request Account Deletion', ar: 'طلب حذف الحساب' })}
-              </Button>
-            )}
+{deletionConfirmed ? (
+<div className="mt-3 flex items-start gap-2 text-[#2A5CFF] text-xs bg-[#F8F9FB] border border-[#141F33]/10 p-3 rounded-xl">
+<AlertTriangleSvg />
+<div>
+<p className="font-bold">
+{t({ en: 'Deletion Request Submitted', ar: 'تم تقديم طلب الحذف' })}
+</p>
+<p className="mt-1">
+{t({
+en: 'Your request has been received. A 30-day grace period is now in effect. Your account will be permanently deleted after this period unless you cancel the request.',
+ar: 'تم استلام طلبك. فترة سماح مدتها 30 يوماً سارية الآن. سيتم حذف حسابك نهائياً بعد هذه الفترة ما لم تلغي الطلب.',
+})}
+</p>
+</div>
+</div>
+) : deletionRequested ? (
+<div className="mt-3 space-y-2">
+<label className="flex items-center gap-2 text-xs text-[#718096]">
+<input
+type="checkbox"
+checked={confirmDelete}
+onChange={(e) => setConfirmDelete(e.target.checked)}
+className="accent-[#141F33]"
+/>
+{t({
+en: 'I confirm that I want to delete my account and all associated data. I understand there is a 30-day grace period.',
+ar: 'أؤكد أنني أرغب في حذف حسابي وجميع البيانات المرتبطة به. أفهم أن هناك فترة سماح مدتها 30 يوماً.',
+})}
+</label>
+<div className="flex gap-2">
+<Button
+variant="destructive"
+onClick={handleDeleteRequest}
+disabled={!confirmDelete || deleting}
+>
+{deleting ? (
+<span className="flex items-center gap-2">
+<LoaderSvg />
+{t({ en: 'Processing...', ar: 'جاري المعالجة...' })}
+</span>
+) : (
+t({ en: 'Confirm Deletion', ar: 'تأكيد الحذف' })
+)}
+</Button>
+<Button variant="outline" onClick={() => setDeletionRequested(false)}>
+{t({ en: 'Cancel', ar: 'إلغاء' })}
+</Button>
+</div>
+</div>
+) : (
+<Button
+variant="outline"
+className="mt-3 border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5"
+onClick={() => setDeletionRequested(true)}
+>
+{t({ en: 'Request Account Deletion', ar: 'طلب حذف الحساب' })}
+</Button>
+)}
 
-            {deletionError && (
-              <p className="mt-2 text-xs text-red-600">{deletionError}</p>
-            )}
-          </div>
-        </div>
-      </Card>
+{deletionError && (
+<p className="mt-2 text-xs text-[#141F33]">{deletionError}</p>
+)}
+</div>
+</div>
+</Card>
 
-      <div className="text-xs text-[#718096] border-t border-gray-100 pt-4">
-        <p>
-          {t({
-            en: 'Under Qatari Law No. 13 of 2016, you have the right to access, rectify, and erase your personal data. Requests are processed within 30 days. For assistance, contact dpo@saqynrabt.com.',
-            ar: 'بموجب قانون قطر رقم 13 لسنة 2016، لديك الحق في الوصول إلى بياناتك الشخصية وتصحيحها ومحوها. تتم معالجة الطلبات في غضون 30 يوماً. للمساعدة، اتصل على dpo@saqynrabt.com.',
-          })}
-        </p>
-      </div>
-    </div>
-  );
+<div className="text-xs text-[#718096] border-t border-[#141F33]/10 pt-4">
+<p>
+{t({
+en: 'Under Qatari Law No. 13 of 2016, you have the right to access, rectify, and erase your personal data. Requests are processed within 30 days. For assistance, contact dpo@saqynrabt.com.',
+ar: 'بموجب قانون قطر رقم 13 لسنة 2016، لديك الحق في الوصول إلى بياناتك الشخصية وتصحيحها ومحوها. تتم معالجة الطلبات في غضون 30 يوماً. للمساعدة، اتصل على dpo@saqynrabt.com.',
+})}
+</p>
+</div>
+</div>
+);
 }

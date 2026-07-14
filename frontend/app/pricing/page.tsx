@@ -58,7 +58,7 @@ export default function PricingPage() {
       </div>
 
       {/* Product Tabs + Currency Toggle */}
-      <section className="py-10 bg-white border-b border-gray-100">
+      <section className="bg-[#F8F9FB] py-10 border-b border-[#141F33]/10">
         <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Product Tabs */}
           <div className="flex bg-slate-100 rounded-xl p-1 gap-1">
