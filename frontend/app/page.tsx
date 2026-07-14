@@ -175,14 +175,14 @@ export default function MarketingPage() {
               <div className="relative bg-white rounded-2xl border border-gray-200 shadow-xl p-5 overflow-hidden">
                 <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-red-400" />
-                    <div className="w-3 h-3 rounded-full bg-amber-400" />
-                    <div className="w-3 h-3 rounded-full bg-emerald-400" />
+                    <div className="w-3 h-3 rounded-full bg-slate-200" />
+                    <div className="w-3 h-3 rounded-full bg-slate-200" />
+                    <div className="w-3 h-3 rounded-full bg-slate-200" />
                   </div>
                   <span className="text-[10px] font-bold text-[#718096] uppercase tracking-wider">
                     {activeProduct === 'automation' ? t({ en: 'Live Queue', ar: 'قائمة مباشرة' }) : t({ en: 'Company Assistant', ar: 'مساعد الشركة' })}
                   </span>
-                  <span className="text-[10px] bg-emerald-50 text-emerald-700 font-bold px-2 py-0.5 rounded-full border border-emerald-200">
+                  <span className="text-[10px] bg-royal/10 text-royal font-bold px-2 py-0.5 rounded-full border border-royal/20">
                     ● {t({ en: 'Live', ar: 'مباشر' })}
                   </span>
                 </div>
@@ -190,9 +190,9 @@ export default function MarketingPage() {
                 {activeProduct === 'automation' ? (
                   <div className="space-y-2 mt-3">
                     {[
-                      { label: 'Incoming Call — Room 204', dept: 'Housekeeping', status: 'Routed', color: 'text-emerald-700' },
-                      { label: 'WhatsApp — Late checkout', dept: 'Front Desk', status: 'Approved', color: 'text-blue-700' },
-                      { label: 'SMS — Airport transfer', dept: 'Concierge', status: 'Captured', color: 'text-violet-700' },
+                      { label: 'Incoming Call — Room 204', dept: 'Housekeeping', status: 'Routed', color: 'text-royal' },
+                      { label: 'WhatsApp — Late checkout', dept: 'Front Desk', status: 'Approved', color: 'text-royal' },
+                      { label: 'SMS — Airport transfer', dept: 'Concierge', status: 'Captured', color: 'text-[#141F33]' },
                     ].map((item, i) => (
                       <div key={i} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-xl">
                         <div className="flex items-center gap-2 min-w-0">
@@ -400,7 +400,7 @@ export default function MarketingPage() {
                     { en: 'Multi-language (Arabic & English)', ar: 'متعدد اللغات (العربية والإنجليزية)' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                      <Check className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
+                      <Check className="w-5 h-5 text-royal shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
                   ))}
@@ -435,7 +435,7 @@ export default function MarketingPage() {
                     { en: 'Knowledge gap tracking', ar: 'تتبع الفجوات المعرفية' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                      <Check className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
+                      <Check className="w-5 h-5 text-royal shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
                   ))}
