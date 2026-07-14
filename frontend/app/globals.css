@@ -97,11 +97,54 @@
 
 @layer utilities {
   .btn-primary {
-    @apply inline-flex items-center justify-center min-h-[44px] rounded-xl bg-[#141F33] px-6 py-3 font-bold text-white shadow-sm transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95 focus-visible:outline-2 focus-visible:outline-[#3B5B9B];
+    @apply relative overflow-hidden inline-flex items-center justify-center min-h-[44px] rounded-xl bg-[#141F33] px-6 py-3 font-bold text-white shadow-sm transition-all duration-300 hover:scale-[1.02] hover:shadow-lg active:scale-95 focus-visible:outline-2 focus-visible:outline-[#3B5B9B];
   }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.25) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    transform: skewX(-25deg);
+    transition: left 0.75s ease-in-out;
+  }
+  .btn-primary:hover::after {
+    left: 150%;
+  }
+  .btn-primary:hover {
+    box-shadow: 0 0 22px rgba(42, 92, 255, 0.4);
+  }
+
   .btn-secondary {
-    @apply inline-flex items-center justify-center min-h-[44px] rounded-xl border border-[#141F33] bg-white px-6 py-3 font-bold text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95;
+    @apply relative overflow-hidden inline-flex items-center justify-center min-h-[44px] rounded-xl border border-[#141F33] bg-white px-6 py-3 font-bold text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95;
   }
+  .btn-secondary::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(20, 31, 51, 0) 0%,
+      rgba(20, 31, 51, 0.05) 50%,
+      rgba(20, 31, 51, 0) 100%
+    );
+    transform: skewX(-25deg);
+    transition: left 0.75s ease-in-out;
+  }
+  .btn-secondary:hover::after {
+    left: 150%;
+  }
+
   .btn-ghost {
     @apply inline-flex items-center justify-center min-h-[44px] rounded-xl bg-gray-100 px-5 py-2.5 text-sm font-bold text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95;
   }
