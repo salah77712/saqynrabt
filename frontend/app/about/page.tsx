@@ -8,27 +8,29 @@ import { Footer } from '../../components/Footer';
 export default function AboutPage() {
   const { locale } = useLocale();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  const ta = (obj: Record<string, string[]>) => obj[locale] || obj.en || [];
 
   const content = {
     eyebrow: { en: 'Our Mission', ar: 'مهمتنا' },
     title: { en: 'Built for the people answering calls and running operations.', ar: 'مبني للأشخاص الذين يردون على المكالمات ويديرون العمليات.' },
     storyTitle: { en: 'The Story & Mission', ar: 'القصة والمهمة' },
     storyBody: {
-      en: 'SAQYN RABT started with a simple observation: front desks everywhere were drowning in repetitive calls, and off-the-shelf tools weren\'t built for how businesses actually operate. So we built our own. Our platform handles the calls, messages, and routine questions that eat up your team\'s day — while keeping your data secure and under your control.',
-      ar: 'بدأت SAQYN RABT بملاحظة بسيطة: مكاتب الاستقبال في كل مكان تغرق في المكالمات المتكررة، والأدوات الجاهزة لم تُصمم لكيفية عمل الشركات فعلاً. لذا بنينا حلنا الخاص. منصتنا تدير المكالمات والرسائل والاستفسارات الروتينية التي تستهلك وقت فريقك — مع بقاء بياناتك آمنة وتحت سيطرتك.'
+      en: [
+        'SAQYN RABT was born from a fundamental truth we encountered across dozens of industries: businesses are held together by people answering phones, routing requests, and keeping operations moving — yet the tools available to them were built for massive call centres, not real-world teams. We set out to change that. Our mission is to equip every front desk, service desk, and operations team with enterprise-grade AI that feels personal, not impersonal. We bridge the gap between human judgment and machine efficiency, so your people can focus on what matters instead of repeating the same answers all day.',
+        'On the engineering side, we are a B2B platform first. Every feature we build starts with a question from a real operations manager or a front-desk lead. Our AI stack is designed for integration — it plugs into existing CRMs, ticketing systems, and telephony infrastructure without requiring a rip-and-replace. We prioritise latency, reliability, and data residency above all else, because we know that in B2B operations, a five-second delay or a misrouted inquiry can cost a deal or frustrate a client. Our inference layer runs on dedicated infrastructure with regional failover, and our voice pipelines are tuned for the dialects, cadences, and professional contexts our customers actually work in.',
+        'Operational excellence is not a buzzword for us — it is the metric we wake up to every morning. From automated quality assurance on every AI interaction to real-time dashboards that surface bottlenecks before they become emergencies, we obsess over the details that keep businesses running smoothly. Our support team works alongside customers during onboarding, not after. Our SLAs reflect real-world uptime requirements. And our product roadmap is公开 and driven by customer feedback, not by what is trendy. SAQYN RABT exists to make your operations invisible — so your team can be visible, responsive, and extraordinary.'
+      ],
+      ar: [
+        'وُلدت SAQYN RABT من حقيقة أساسية لمسناها عبر عشرات القطاعات: الشركات تُدار بأشخاص يردون على الهواتف ويوجّهون الطلبات ويُبقون العمليات قيد التشغيل — لكن الأدوات المتاحة لهم صُممت لمراكات الاتصال الضخمة، وليس للفرق الحقيقية. قررنا تغيير ذلك. مهمتنا هي تجهيز كل مكتب استقبال وفريق خدمات وعمليات بأدوات ذكاء اصطناعي على مستوى المؤسسات لكنها تشعر بأنها شخصية، لا آلية. نسد الفجوة بين الحكم البشري والكفاءة الآلية، ليتمكن فريقك من التركيز على ما يهم حقاً بدلاً من تكرار نفس الإجابات طوال اليوم.',
+        'على صعيد الهندسة، نحن منصة B2B أولاً. كل ميزة نبنيها تبدأ بسؤال من مدير عمليات حقيقي أو رئيس مكتب استقبال. حزمة الذكاء الاصطناعي لدينا صُممت للتكامل — تتصل بأنظمة CRM وأنظمة التذاكر والبنية التحتية للاتصالات الهاتفية دون الحاجة لاستبدال أي نظام قائم. نعطي الأولوية القصوى لسرعة الاستجابة والموثوقية ومكان تخزين البيانات، لأننا نعلم أنه في عمليات B2B، تأخير خمس ثوانٍ أو توجيه خاطئ لاستفسار قد يكلف صفقة أو يُحبط عميلاً. طبقة الاستدلال لدينا تعمل على بنية تحتية مخصصة مع تجاوز الفشل إقليمياً، وخطوط الصوت لدينا مضبوطة على اللهجات والإيقاعات والسياقات المهنية التي يعمل بها عملاؤنا فعلاً.',
+        'التميز التشغيلي ليس مجرد شعار بالنسبة لنا — بل هو المؤشر الذي نستيقظ عليه كل صباح. من ضمان الجودة الآلي لكل تفاعل ذكي إلى لوحات القيادة الفورية التي تكشف الاختناقات قبل أن تتحول إلى أزمات، نولع بالتفاصيل التي تُبقي الأعمال تعمل بسلاسة. فريق الدعم لدينا يعمل جنباً إلى جنب مع العملاء أثناء مرحلة الإعداد، وليس بعدها. اتفاقيات مستوى الخدمة لدينا تعكس متطلبات وقت التشغيل الفعلية. وخارطة طريق منتجنا مفتوحة ويقودها ملاحظات العملاء، وليس ما هو رائج. SAQYN RABT موجودة لجعل عملياتك غير مرئية — ليكون فريقك مرئياً ومتجاوباً واستثنائياً.'
+      ]
     },
-    teamTitle: { en: 'Meet Our Leadership', ar: 'فريق القيادة' },
     badgeSecure: { en: 'Secure Encryption', ar: 'تشفير آمن' },
     badgePrivate: { en: 'Strict Data Privacy', ar: 'خصوصية بيانات صارمة' },
     badgeLive: { en: 'Available 24/7', ar: 'متاح 24/7' },
     badgeLocal: { en: 'Global Operations', ar: 'عمليات عالمية' }
   };
-
-  const team = [
-    { name: 'Salah Al-Qahtani', role: t({ en: 'Founder & CEO', ar: 'المؤسس والرئيس التنفيذي' }), initial: 'S' },
-    { name: 'Dr. Karim Mansour', role: t({ en: 'Head of AI Engineering', ar: 'رئيس هندسة الذكاء الاصطناعي' }), initial: 'K' },
-    { name: 'Fatima Al-Jaber', role: t({ en: 'Customer Success Director', ar: 'مدير نجاح العملاء' }), initial: 'F' }
-  ];
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -46,23 +48,9 @@ export default function AboutPage() {
         {/* Story Section */}
         <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm w-full mb-12 text-center md:text-start">
           <h2 className="text-xl font-extrabold text-[#141F33] mb-4">{t(content.storyTitle)}</h2>
-          <p className="text-sm font-semibold text-[#718096] leading-relaxed">
-            {t(content.storyBody)}
-          </p>
-        </div>
-
-        {/* Team Section */}
-        <div className="w-full mb-16">
-          <h2 className="text-2xl font-extrabold text-[#141F33] text-center mb-10">{t(content.teamTitle)}</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {team.map((member, idx) => (
-              <div key={idx} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col items-center text-center">
-                <div className="h-16 w-16 rounded-full bg-[#141F33]/5 text-[#141F33] text-xl font-bold flex items-center justify-center mb-4">
-                  {member.initial}
-                </div>
-                <h3 className="text-base font-extrabold text-[#141F33]">{member.name}</h3>
-                <p className="text-xs font-semibold text-[#718096] mt-1">{member.role}</p>
-              </div>
+          <div className="space-y-4">
+            {ta(content.storyBody).map((paragraph: string, i: number) => (
+              <p key={i} className="text-sm font-semibold text-[#718096] leading-relaxed">{paragraph}</p>
             ))}
           </div>
         </div>
