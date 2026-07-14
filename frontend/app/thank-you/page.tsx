@@ -8,51 +8,51 @@ import { Footer } from '../../components/Footer';
 import { PartyPopper } from 'lucide-react';
 
 export default function ThankYouPage() {
-  const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+const { locale } = useLocale();
+const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
-  return (
-    <div className="bg-surface text-navy dark:text-[#F8F9FB] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <Header />
+return (
+<div className="bg-[#F8F9FB] text-[#141F33] dark:text-[#F8F9FB] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<Header />
 
-      <main className="flex-1 flex flex-col items-center justify-center py-24 px-6 text-center max-w-2xl mx-auto animate-fadeIn">
-        
-        {/* Confetti SVG Icon */}
-        <div className="h-24 w-24 rounded-full bg-royal/10 flex items-center justify-center mb-8 animate-bounce shadow-sm">
-          <PartyPopper className="w-12 h-12 text-royal" />
-        </div>
+<main className="flex-1 flex flex-col items-center justify-center py-24 px-6 text-center max-w-2xl mx-auto animate-fadeIn">
 
-        <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Submission Received', ar: 'تم استلام الطلب' })}</span>
-        
-        <h1 className="text-4xl lg:text-5xl font-extrabold text-navy dark:text-white leading-tight tracking-tight mt-3">
-          {t({ en: "We'll be in touch shortly.", ar: 'سنتواصل معك قريبًا.' })}
-        </h1>
-        
-        <p className="text-sm font-semibold text-muted mt-4 leading-relaxed max-w-md mx-auto">
-          {t({
-            en: 'A member of the SAQYN RABT team will contact you within 24 hours to schedule your customized operational workflow demo.',
-            ar: 'سيتصل بك ممثل من فريق SAQYN RABT خلال 24 ساعة لجدولة العرض التوضيحي المخصص لسير العمل الخاص بك.'
-          })}
-        </p>
+{/* Confetti SVG Icon */}
+<div className="h-24 w-24 rounded-full bg-[#141F33]/10 flex items-center justify-center mb-8 animate-bounce shadow-sm">
+<PartyPopper className="w-12 h-12 text-[#2A5CFF]" />
+</div>
 
-        <div className="mt-10 flex gap-4">
-          <Link
-            href="/"
-            className="btn-primary text-xs"
-          >
-            {t({ en: 'Back to Home', ar: 'العودة للرئيسية' })}
-          </Link>
-          <Link
-            href="/dashboard"
-            className="btn-secondary text-xs"
-          >
-            {t({ en: 'Explore Dashboard', ar: 'استكشف لوحة التحكم' })}
-          </Link>
-        </div>
+<span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Submission Received', ar: 'تم استلام الطلب' })}</span>
 
-      </main>
+<h1 className="text-4xl lg:text-5xl font-extrabold text-[#141F33] dark:text-[#F8F9FB] leading-tight tracking-tight mt-3">
+{t({ en: "We'll be in touch shortly.", ar: 'سنتواصل معك قريبًا.' })}
+</h1>
 
-      <Footer />
-    </div>
-  );
+<p className="text-sm font-semibold text-[#141F33]/70 mt-4 leading-relaxed max-w-md mx-auto">
+{t({
+en: 'A member of the SAQYN RABT team will contact you within 24 hours to schedule your customized operational workflow demo.',
+ar: 'سيتصل بك ممثل من فريق SAQYN RABT خلال 24 ساعة لجدولة العرض التوضيحي المخصص لسير العمل الخاص بك.'
+})}
+</p>
+
+<div className="mt-10 flex gap-4">
+<Link
+href="/"
+className="btn-primary text-xs"
+>
+{t({ en: 'Back to Home', ar: 'العودة للرئيسية' })}
+</Link>
+<Link
+href="/dashboard"
+className="btn-secondary text-xs"
+>
+{t({ en: 'Explore Dashboard', ar: 'استكشف لوحة التحكم' })}
+</Link>
+</div>
+
+</main>
+
+<Footer />
+</div>
+);
 }
