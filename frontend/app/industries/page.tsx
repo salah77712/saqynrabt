@@ -116,7 +116,7 @@ export default function IndustriesPage() {
           {t({ en: 'Industries', fr: 'Secteurs d\'activité', ar: 'القطاعات', hi: 'उद्योग' })}
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-[#141F33] leading-tight max-w-4xl mx-auto">
-          {t({ en: 'Built for 16 Industries ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â Worldwide', ar: 'ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚ÂµÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦ ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ 16 ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â·ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â§ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â§ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¹ ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â­ÃƒÆ’Ã¢â€žÂ¢Ãƒâ€¹Ã¢â‚¬Â ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â§ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â¹ÃƒÆ’Ã‹Å“Ãƒâ€šÃ‚Â§ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾ÃƒÆ’Ã¢â€žÂ¢ÃƒÂ¢Ã¢â€šÂ¬Ã‚Â¦' })}
+          {t({ en: 'Built for 16 Industries — Worldwide', fr: 'Conçu pour 16 secteurs — Dans le monde entier', ar: 'مصمم لـ 16 قطاعاً — حول العالم', hi: '16 उद्योगों के लिए निर्मित — दुनिया भर में' })}
         </h1>
         <p className="mt-4 text-lg text-[#141F33] max-w-2xl mx-auto">
           {t({ en: 'Global headquarters with local expertise. Our platform adapts to your industry, language, and time zone.', fr: 'Siège mondial avec expertise locale. Notre plateforme s\'adapte à votre secteur, votre langue et votre fuseau horaire.', ar: 'مقر عالمي مع خبرة محلية. منصتنا تتكيف مع قطاعك ولغتك ومنطقتك الزمنية.', hi: 'स्थानीय विशेषज्ञता के साथ वैश्विक मुख्यालय। हमारा मंच आपके उद्योग, भाषा और समय क्षेत्र के अनुकूल है।' })}

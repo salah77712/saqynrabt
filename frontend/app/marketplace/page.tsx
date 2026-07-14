@@ -14,12 +14,12 @@ export default function GlobalMarketplacePage() {
     { 
       name: t({ en: 'Slack Sync', fr: 'Synchronisation Slack', ar: 'مزامنة سلاك', hi: 'स्लैक सिंक' }), 
       desc: t({ en: 'Dispatches chat messages and summaries to custom Slack channel targets.', fr: 'Distribue les messages de discussion et les résumés vers des canaux Slack personnalisés.', ar: 'يرسل رسائل المحادثة والملخصات إلى قنوات سلاك المخصصة.', hi: 'चैट संदेशों और सारांशों को कस्टम स्लैक चैनल लक्ष्यों पर भेजता है।' }), 
-      developer: t({ en: 'SAQYN core', fr: 'SAQYN core', ar: 'نواة ساكن', hi: 'SAQYN कोर' }) 
+      developer: t({ en: 'SAQYN core', fr: 'SAQYN core', ar: 'نواة ساكن', hi: 'SAQYN كور' }) 
     },
     { 
       name: t({ en: 'BambooHR Connector', fr: 'Connecteur BambooHR', ar: 'رابط BambooHR', hi: 'BambooHR कनेक्टर' }), 
       desc: t({ en: 'Automatically syncs employee lists and leaves balances to active company tables.', fr: 'Synchronise automatiquement les listes d\'employés et les soldes de congés avec les tables actives de l\'entreprise.', ar: 'يحدث تلقائياً قوائم الموظفين وأرصدة الإجازات لجداول الشركة النشطة.', hi: 'कर्मचारी सूचियों और छुट्टी शेष को सक्रिय कंपनी तालिकाओं में स्वचालित रूप से सिंक करता है।' }), 
-      developer: t({ en: 'SAQYN core', fr: 'SAQYN core', ar: 'نواة ساكن', hi: 'SAQYN कोर' }) 
+      developer: t({ en: 'SAQYN core', fr: 'SAQYN core', ar: 'نواة ساكن', hi: 'SAQYN كور' }) 
     },
   ];
 
