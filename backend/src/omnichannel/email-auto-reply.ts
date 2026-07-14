@@ -1,26 +1,28 @@
-/**
- * AI-powered Email Autoreply generator
- */
 export async function generateEmailAutoreply(
-  senderEmail: string,
   incomingSubject: string,
-  incomingBody: string,
-  env: any
+  incomingBody: string
 ): Promise<{ subject: string; body: string }> {
+  if (!incomingSubject) {
+    throw new Error('Incoming subject is required');
+  }
+  if (!incomingBody) {
+    throw new Error('Incoming body is required');
+  }
+
   const responseSubject = `Re: ${incomingSubject}`;
-  
-  // Custom response template
-  const responseBody = `
-Dear customer,
+  const preview = incomingBody.length > 100 ? `${incomingBody.slice(0, 100)}...` : incomingBody;
 
-Thank you for contacting our customer support team. 
-We have registered your inquiry: "${incomingBody.slice(0, 100)}...".
-
-Our staff is currently evaluating your request and will follow up shortly.
-
-Best regards,
-Customer Success Operations
-  `;
+  const responseBody = [
+    'Dear customer,',
+    '',
+    'Thank you for contacting our customer support team.',
+    `We have registered your inquiry: "${preview}".`,
+    '',
+    'Our staff is currently evaluating your request and will follow up shortly.',
+    '',
+    'Best regards,',
+    'Customer Success Operations',
+  ].join('\n');
 
   return { subject: responseSubject, body: responseBody };
 }

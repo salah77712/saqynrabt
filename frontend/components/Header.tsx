@@ -51,7 +51,7 @@ export function Header() {
     <header
       role="banner"
       aria-label="Main navigation"
-      className={`sticky top-0 z-50 h-14 md:h-16 bg-white border-b border-gray-100 shadow-sm shrink-0 transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}
+      className={`sticky top-0 z-50 h-14 md:h-16 bg-white/70 backdrop-blur-xl shadow-lg border-b border-white/20 shrink-0 transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}
       style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between w-full h-full">

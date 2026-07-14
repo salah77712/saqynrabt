@@ -6,7 +6,7 @@ import { useLocale } from '../../providers';
 import { Footer } from '../../../components/Footer';
 import { Header } from '../../../components/Header';
 import { PricingCards } from '../../../components/PricingCards';
-import { DocumentIcon, SearchIcon, LockIcon, TeamIcon, BarChartIcon, CheckIcon } from '../../../components/ui/Icons';
+import { FileText, Search, Lock, Users, BarChart3, Check } from 'lucide-react';
 import { CHATBOT_TIERS } from '../../../lib/pricing-config';
 import * as React from 'react';
 
@@ -15,12 +15,12 @@ type Currency = 'USD' | 'QAR';
 const GULF_TZ_KEYWORDS = ['Doha', 'Riyadh', 'Kuwait', 'Dubai', 'Cairo', 'Bahrain', 'Muscat', 'Baghdad', 'Damascus'];
 
 const capabilityIcons: Record<string, React.ReactNode> = {
-  doc: <DocumentIcon className="w-5 h-5 text-slate-600" />,
-  search: <SearchIcon className="w-5 h-5 text-slate-600" />,
-  gap: <SearchIcon className="w-5 h-5 text-slate-600" />,
-  lock: <LockIcon className="w-5 h-5 text-slate-600" />,
-  team: <TeamIcon className="w-5 h-5 text-slate-600" />,
-  chart: <BarChartIcon className="w-5 h-5 text-slate-600" />,
+  doc: <FileText className="w-5 h-5 text-slate-600" />,
+  search: <Search className="w-5 h-5 text-slate-600" />,
+  gap: <Search className="w-5 h-5 text-slate-600" />,
+  lock: <Lock className="w-5 h-5 text-slate-600" />,
+  team: <Users className="w-5 h-5 text-slate-600" />,
+  chart: <BarChart3 className="w-5 h-5 text-slate-600" />,
 };
 
 const capabilities = {
@@ -171,7 +171,7 @@ export default function ChatbotPage() {
                     className="flex items-start gap-4 bg-white border border-gray-100 rounded-xl p-5 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
-                    <span className="text-2xl mt-0.5 shrink-0">{capabilityIcons[cap.icon] || <DocumentIcon className="w-5 h-5 text-slate-600" />}</span>
+                    <span className="text-2xl mt-0.5 shrink-0">{capabilityIcons[cap.icon] || <FileText className="w-5 h-5 text-slate-600" />}</span>
                     <div>
                       <p className="font-extrabold text-slate-800 text-sm">{cap.title}</p>
                       <p className="text-[#718096] text-xs mt-0.5 leading-relaxed">{cap.desc}</p>

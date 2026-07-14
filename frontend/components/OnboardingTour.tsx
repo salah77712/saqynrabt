@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card } from './ui/Card';
-import { Button } from './ui/Button';
+import { Card } from '@/components/shadcn/card';
+import { Button } from '@/components/shadcn/button';
 
 export function OnboardingTour() {
   const [step, setStep] = useState(1);
@@ -37,7 +37,7 @@ export function OnboardingTour() {
           <button className="text-[10px] font-extrabold text-slate-400 hover:text-slate-600" onClick={() => setVisible(false)}>
             Dismiss
           </button>
-          <Button variant="primary" size="sm" onClick={handleNext}>
+          <Button variant="default" size="sm" onClick={handleNext}>
             {step === steps.length ? 'Finish' : 'Next'}
           </Button>
         </div>

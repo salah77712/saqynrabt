@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { WarningIcon } from '../../components/ui/Icons';
+import { AlertTriangle } from 'lucide-react';
 
 export default function CookieError({
   error,
@@ -24,7 +24,7 @@ export default function CookieError({
         </div>
       </header>
       <main className="mx-auto max-w-4xl px-6 py-20 lg:px-8 w-full text-center">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50"><WarningIcon className="w-6 h-6 text-red-500" /></div>
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50"><AlertTriangle className="w-6 h-6 text-red-500" /></div>
         <h1 className="text-2xl font-bold text-primary mb-2">Cookie policy unavailable</h1>
         <p className="text-slate-500 mb-2">We couldn&apos;t load the cookie policy.</p>
         <p className="text-sm text-slate-400 mb-8">Please try again.</p>

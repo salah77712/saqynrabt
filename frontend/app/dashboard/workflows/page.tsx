@@ -2,10 +2,10 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../../providers';
-import { Card } from '../../../components/ui/Card';
-import { Button } from '../../../components/ui/Button';
+import { Card } from '@/components/shadcn/card';
+import { Button } from '@/components/shadcn/button';
+import { ArrowRight } from 'lucide-react';
 import { Badge } from '../../../components/ui/Badge';
-import { ArrowRightIcon } from '../../../components/ui/Icons';
 
 interface WorkflowNode {
   id: string;
@@ -46,7 +46,7 @@ export default function WorkflowsPage() {
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ قرار'})}</Button>
-          <Button variant="primary" size="sm" onClick={() => handleAddNode('action')}>{t({en: '+ Action', ar: '+ إجراء'})}</Button>
+          <Button variant="default" size="sm" onClick={() => handleAddNode('action')}>{t({en: '+ Action', ar: '+ إجراء'})}</Button>
         </div>
       </div>
 
@@ -61,7 +61,7 @@ export default function WorkflowsPage() {
               <p className="text-[10px] text-slate-500 mt-1">{node.desc}</p>
             </Card>
             {index < nodes.length - 1 && (
-              <ArrowRightIcon className="w-6 h-6 text-slate-400 rotate-90 md:rotate-0" />
+              <ArrowRight className="w-6 h-6 text-slate-400 rotate-90 md:rotate-0" />
             )}
           </React.Fragment>
         ))}

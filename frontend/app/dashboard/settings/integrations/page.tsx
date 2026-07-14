@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { useLocale } from '../../../providers';
-import { Card } from '../../../../components/ui/Card';
-import { Button } from '../../../../components/ui/Button';
+import { Card } from '@/components/shadcn/card';
+import { Button } from '@/components/shadcn/button';
 import { Badge } from '../../../../components/ui/Badge';
 
 export default function IntegrationsSettingsPage() {

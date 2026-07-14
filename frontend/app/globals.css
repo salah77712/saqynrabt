@@ -88,7 +88,7 @@
     border-radius: 4px;
   }
   .theme {
-    --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
+    --animate-rainbow: rainbow var(--speed, 4s) infinite linear;
   }
 }
 

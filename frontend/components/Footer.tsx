@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useLocale } from '../app/providers';
 import { FooterColumn } from './Footer/FooterColumn';
 import { SocialLinks } from './Footer/SocialLinks';
-import { MailIcon } from './ui/Icons';
+import { Mail } from 'lucide-react';
 
 const content = {
   en: {
@@ -196,11 +196,11 @@ export function Footer() {
             </Link>
             <span className="w-px h-4 bg-gray-200" />
             <span className="flex items-center gap-1 text-[11px] text-slate-400">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-green-500" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-[#C9A84C]" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               GDPR Ready
             </span>
             <span className="flex items-center gap-1 text-[11px] text-slate-400">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-green-500" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-[#C9A84C]" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               Global Compliance Ready
             </span>
             <span className="flex items-center gap-1 text-[11px] text-slate-400/80">
@@ -209,8 +209,8 @@ export function Footer() {
           </div>
           <div className="flex items-center gap-2 text-[11px] font-semibold text-slate-500">
             {incidentStatus?.status === 'all_operational' ? (
-              <span className="flex items-center gap-1.5 text-emerald-600">
-                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+              <span className="flex items-center gap-1.5 text-[#C9A84C]">
+                <span className="w-2 h-2 rounded-full bg-[#C9A84C]" />
                 All systems operational
               </span>
             ) : (
@@ -262,18 +262,18 @@ export function Footer() {
               {copy.tagline}
             </p>
             <div className="flex items-center gap-2 text-[11px] text-slate-400 font-semibold">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
+              <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] shrink-0" />
               <p>{copy.address}</p>
             </div>
-            <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-emerald-100 bg-emerald-50/60 w-full shadow-sm hover:shadow-md hover:border-emerald-200 transition-all duration-200">
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-100 text-emerald-600 shrink-0">
-                <MailIcon className="w-4 h-4" aria-hidden="true" />
+            <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-[#C9A84C]/30 bg-[#C9A84C]/10 w-full shadow-sm hover:shadow-md hover:border-[#C9A84C]/50 transition-all duration-200">
+              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-[#C9A84C]/20 text-[#C9A84C] shrink-0">
+                <Mail className="w-4 h-4" aria-hidden="true" />
               </div>
               <div className="flex flex-col min-w-0">
-                <span className="text-[9px] font-black uppercase tracking-widest text-emerald-500">DPO Contact</span>
+                <span className="text-[9px] font-black uppercase tracking-widest text-[#C9A84C]">DPO Contact</span>
                 <a
                   href="mailto:saqynrabt@gmail.com"
-                  className="text-[12px] font-extrabold text-slate-800 hover:text-emerald-600 hover:underline truncate transition-colors"
+                  className="text-[12px] font-extrabold text-slate-800 hover:text-[#C9A84C] hover:underline truncate transition-colors"
                 >
                   saqynrabt@gmail.com
                 </a>

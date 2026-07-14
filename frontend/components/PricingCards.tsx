@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import type { ProductTier } from '../lib/pricing-config';
-import { CheckIcon } from './ui/Icons';
+import { Check } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/shadcn/card';
 import { RainbowButton } from '@/components/shadcn/rainbow-button';
 import { cn } from '@/lib/utils';
@@ -84,7 +84,7 @@ export function PricingCards({ tiers, currency, locale }: PricingCardsProps) {
                 {(tier.features[locale as keyof typeof tier.features] || tier.features.en).map((f, idx) => (
                   <li key={idx} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
                     <span className="text-accent shrink-0">
-                      <CheckIcon className="w-4 h-4 text-emerald-500" />
+                      <Check className="w-4 h-4 text-emerald-500" />
                     </span>
                     {f}
                   </li>

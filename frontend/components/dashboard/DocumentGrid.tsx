@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Card } from '../ui/Card';
+import { Card } from '@/components/shadcn/card';
 import { Badge } from '../ui/Badge';
 import { FileText, Trash2 } from 'lucide-react';
 

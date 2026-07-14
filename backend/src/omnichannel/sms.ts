@@ -1,32 +1,34 @@
-/**
- * SMS Webhook Gateway
- */
 export async function handleSMSIncoming(
-  request: Request,
-  env: any,
-  sql: any
+  request: Request
 ): Promise<Response> {
+  const xmlHeaders: Record<string, string> = { 'Content-Type': 'application/xml' };
+
   try {
+    const contentType = request.headers.get('content-type') || '';
+    if (!contentType.includes('application/x-www-form-urlencoded')) {
+      return new Response(
+        '<Response><Message>Invalid content type</Message></Response>',
+        { status: 400, headers: xmlHeaders }
+      );
+    }
+
     const formData = await request.formData();
     const from = formData.get('From')?.toString() || '';
     const body = formData.get('Body')?.toString() || '';
 
     console.log(`[SMS Incoming] Message from ${from}: "${body}"`);
 
-    const xmlResponse = `
-      <Response>
-        <Message>SAQYN Response: Thank you for your inquiry.</Message>
-      </Response>
-    `;
+    const xmlResponse = '<Response><Message>SAQYN Response: Thank you for your inquiry.</Message></Response>';
 
     return new Response(xmlResponse, {
       status: 200,
-      headers: { 'Content-Type': 'application/xml' }
+      headers: xmlHeaders,
     });
-  } catch (err: any) {
-    return new Response(`<Response><Message>Error: ${err.message}</Message></Response>`, {
-      status: 500,
-      headers: { 'Content-Type': 'application/xml' }
-    });
+  } catch (err) {
+    console.error('[SMS] Error processing incoming message:', err);
+    return new Response(
+      '<Response><Message>An error occurred processing your message</Message></Response>',
+      { status: 500, headers: xmlHeaders }
+    );
   }
 }

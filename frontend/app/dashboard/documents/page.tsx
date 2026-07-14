@@ -4,7 +4,7 @@ import React, { useState, useCallback } from 'react';
 import { useLocale } from '../../providers';
 import { useGlobalToast } from '../../../lib/toast';
 import { DocumentGrid } from '../../../components/dashboard/DocumentGrid';
-import { Card } from '../../../components/ui/Card';
+import { Card } from '@/components/shadcn/card';
 import { Input } from '../../../components/ui/Input';
 import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry, EmptyDocumentsState } from '../../../components/ui/EmptyState';

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { GlobeIcon, ClockIcon, DollarIcon, BoxIcon } from '../../components/ui/Icons';
+import { Globe, Clock, DollarSign, Package } from 'lucide-react';
 
 const steps = {
   en: [
@@ -24,11 +24,11 @@ const steps = {
 };
 
 const flagIcons: Record<string, React.ReactNode> = {
-  globe: <GlobeIcon className="w-8 h-8 text-primary" />,
-  clock: <ClockIcon className="w-8 h-8 text-primary" />,
-  language: <GlobeIcon className="w-8 h-8 text-primary" />,
-  currency: <DollarIcon className="w-8 h-8 text-primary" />,
-  data: <BoxIcon className="w-8 h-8 text-primary" />,
+  globe: <Globe className="w-8 h-8 text-primary" />,
+  clock: <Clock className="w-8 h-8 text-primary" />,
+  language: <Globe className="w-8 h-8 text-primary" />,
+  currency: <DollarSign className="w-8 h-8 text-primary" />,
+  data: <Package className="w-8 h-8 text-primary" />,
 };
 
 const globalItems = {
@@ -98,7 +98,7 @@ export default function HowItWorksPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {global.map((g) => (
               <div key={g.title} className="border border-slate-200 rounded-2xl p-6 shadow-sm">
-                <span className="text-3xl mb-3 block">{flagIcons[g.flag] || <GlobeIcon className="w-8 h-8 text-primary" />}</span>
+                <span className="text-3xl mb-3 block">{flagIcons[g.flag] || <Globe className="w-8 h-8 text-primary" />}</span>
                 <h3 className="text-lg font-bold text-primary mb-2">{g.title}</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">{g.desc}</p>
               </div>

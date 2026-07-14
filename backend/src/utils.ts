@@ -30,6 +30,7 @@ export interface JWTPayload {
   email?: string;
   name?: string;
   role?: string;
+  permissions?: string[];
   [key: string]: any;
 }
 
@@ -97,7 +98,8 @@ export async function verifyJWT(authHeader: string | null, env: Env): Promise<JW
     const payload = await verifyToken(token, { secretKey: env.CLERK_SECRET_KEY });
     const company_id = (payload as any).company_id || (payload as any).public_metadata?.company_id || (payload as any).org_id || 'dummy_company';
     const role = (payload as any).role || (payload as any).public_metadata?.role || 'employee';
-    return { ...(payload as any), company_id, role };
+    const permissions = (payload as any).public_metadata?.permissions || (payload as any).org_role === 'org:admin' ? ['documents:create', 'documents:read', 'documents:update', 'documents:delete', 'employees:create', 'employees:read', 'employees:update', 'employees:delete', 'billing:read', 'billing:update', 'settings:read', 'settings:update'] : ['documents:read', 'documents:create'];
+    return { ...(payload as any), company_id, role, permissions };
   } catch { return null; }
 }
 

@@ -2,8 +2,8 @@
 
 import React, { useState, useCallback } from 'react';
 import { useLocale } from '../../providers';
-import { Card } from '../../../components/ui/Card';
-import { Button } from '../../../components/ui/Button';
+import { Card } from '@/components/shadcn/card';
+import { Button } from '@/components/shadcn/button';
 import { Toast } from '../../../components/ui/Toast';
 
 type Format = 'PDF' | 'CSV' | 'EXCEL';
@@ -64,7 +64,7 @@ export default function ReportsPage() {
               {t({en: 'Generate a formal operations PDF including current workspace metrics and redacting PII details.', ar: 'إنشاء PDF رسمي للعمليات يتضمن مقاييس مساحة العمل الحالية مع إخفاء تفاصيل المعلومات الشخصية.'})}
             </p>
           </div>
-          <Button variant="primary" className="mt-6 w-full" disabled={loading !== null} onClick={() => handleExport('PDF')}>
+          <Button variant="default" className="mt-6 w-full" disabled={loading !== null} onClick={() => handleExport('PDF')}>
             {loading === 'PDF' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export PDF Report', ar: 'تصدير تقرير PDF'})}
           </Button>
         </Card>

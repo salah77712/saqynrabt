@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '../../app/providers';
-import { HomeIcon, PhoneIcon, ChatIcon, DocumentIcon, TeamIcon, SettingsIcon, ArrowRightIcon, ArrowLeftIcon } from '../ui/Icons';
+import { Home, Phone, MessageSquare, FileText, Users, Settings, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -18,12 +18,12 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
   const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
   const menuItems = [
-    { name: { en: 'Overview', ar: 'نظرة عامة' }, path: '/dashboard', icon: <HomeIcon className="w-5 h-5" /> },
-    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <PhoneIcon className="w-5 h-5" /> },
-    { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
-    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <DocumentIcon className="w-5 h-5" /> },
-    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <TeamIcon className="w-5 h-5" />, badge: true },
-    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <SettingsIcon className="w-5 h-5" /> },
+    { name: { en: 'Overview', ar: 'نظرة عامة' }, path: '/dashboard', icon: <Home className="w-5 h-5" /> },
+    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <Phone className="w-5 h-5" /> },
+    { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <FileText className="w-5 h-5" /> },
+    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" />, badge: true },
+    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
   ];
 
   return (
@@ -76,7 +76,7 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
           onClick={onToggle}
           className="h-8 w-8 rounded-lg border border-gray-200 dark:border-slate-700 flex items-center justify-center text-slate-400"
         >
-          {isCollapsed ? <ArrowRightIcon className="w-4 h-4" /> : <ArrowLeftIcon className="w-4 h-4" />}
+          {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
         </button>
       </div>
     </aside>

@@ -5,20 +5,17 @@
  */
 
 import { neon } from '@neondatabase/serverless';
-import { corsHeaders, verifyJWT } from '../utils';
-import type { Env } from '../utils';
+import { corsHeaders } from '../utils';
+import type { RequestWithContext } from '../utils';
 
 interface ConsentBody {
   consent: 'accepted' | 'declined';
 }
 
-export async function handleConsentAudit(request: Request, env: Env): Promise<Response> {
+export async function handleConsentAudit(request: RequestWithContext): Promise<Response> {
+  const env = request.env;
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
-
-  if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
-  }
 
   let body: ConsentBody;
   try {
@@ -34,18 +31,8 @@ export async function handleConsentAudit(request: Request, env: Env): Promise<Re
   const ipAddress = request.headers.get('cf-connecting-ip') || '127.0.0.1';
   const userAgent = request.headers.get('user-agent') || 'Unknown';
 
-  // Try to extract user identity from JWT if available (logged-in users), else record as anonymous
-  const authHeader = request.headers.get('Authorization');
-  let userId: string | null = null;
-  let companyId: string | null = null;
-
-  if (authHeader) {
-    const jwt = await verifyJWT(authHeader, env);
-    if (jwt) {
-      userId = jwt.sub;
-      companyId = jwt.company_id || null;
-    }
-  }
+  const userId = request.jwt?.sub || null;
+  const companyId = request.jwt?.company_id || null;
 
   try {
     const sql = neon(env.DATABASE_URL);

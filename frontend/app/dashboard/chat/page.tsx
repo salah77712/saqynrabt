@@ -4,10 +4,10 @@ import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { X, ClipboardList } from 'lucide-react';
 import { useChat } from 'ai/react';
 import { useLocale } from '../../providers';
-import { Button } from '../../../components/ui/Button';
-import { Card } from '../../../components/ui/Card';
+import { Button } from '@/components/shadcn/button';
+import { Card } from '@/components/shadcn/card';
 import { Input } from '../../../components/ui/Input';
-import { Modal } from '../../../components/ui/Modal';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/shadcn/dialog';
 import { Badge } from '../../../components/ui/Badge';
 import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry } from '../../../components/ui/EmptyState';
@@ -299,27 +299,32 @@ export default function ChatbotDashboardPage() {
           </div>
         )}
 
-        <Modal isOpen={isGapModalOpen} onClose={() => setIsGapModalOpen(false)} title="Resolve Knowledge Gap">
-          <p className="text-xs text-slate-500 mb-4 leading-relaxed">
-            {t(
-              'The following query was not answered by the current indexed documents. Upload a PDF containing the correct policy details to fix this.',
-              'تم طرح هذا السؤال من قبل الموظفين ولكن تعذر الإجابة عليه بناءً على المستندات الحالية.'
-            )}
-          </p>
-          <div className="bg-[#F8F9FB] border border-gray-200 rounded-xl p-4 mb-6">
-            <p className="text-sm font-bold text-slate-700">
-              &ldquo;{selectedGap || (gaps.length > 0 ? gaps[0].question : t('No question selected', 'لم يتم تحديد سؤال'))}&rdquo;
+        <Dialog open={isGapModalOpen} onOpenChange={(open) => !open && setIsGapModalOpen(false)}>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Resolve Knowledge Gap</DialogTitle>
+            </DialogHeader>
+            <p className="text-xs text-slate-500 mb-4 leading-relaxed">
+              {t(
+                'The following query was not answered by the current indexed documents. Upload a PDF containing the correct policy details to fix this.',
+                'تم طرح هذا السؤال من قبل الموظفين ولكن تعذر الإجابة عليه بناءً على المستندات الحالية.'
+              )}
             </p>
-          </div>
-          <div className="flex gap-3">
-            <Button variant="primary" className="flex-1 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
-              Upload Document
-            </Button>
-            <Button variant="outline" className="min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
-              Cancel
-            </Button>
-          </div>
-        </Modal>
+            <div className="bg-[#F8F9FB] border border-gray-200 rounded-xl p-4 mb-6">
+              <p className="text-sm font-bold text-slate-700">
+                &ldquo;{selectedGap || (gaps.length > 0 ? gaps[0].question : t('No question selected', 'لم يتم تحديد سؤال'))}&rdquo;
+              </p>
+            </div>
+            <div className="flex gap-3">
+              <Button variant="default" className="flex-1 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
+                Upload Document
+              </Button>
+              <Button variant="outline" className="min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
+                Cancel
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </PullToRefresh>
   );

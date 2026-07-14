@@ -5,7 +5,7 @@ import { useLocale } from '../providers';
 import Link from 'next/link';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { ConfettiIcon } from '../../components/ui/Icons';
+import { PartyPopper } from 'lucide-react';
 
 export default function ThankYouPage() {
   const { locale } = useLocale();
@@ -19,7 +19,7 @@ export default function ThankYouPage() {
         
         {/* Confetti SVG Icon */}
         <div className="h-24 w-24 rounded-full bg-blue-50 flex items-center justify-center mb-8 animate-bounce shadow-sm">
-          <ConfettiIcon className="w-12 h-12 text-blue-500" />
+          <PartyPopper className="w-12 h-12 text-blue-500" />
         </div>
 
         <span className="text-xs font-extrabold tracking-widest text-[#10B981] uppercase">{t({ en: 'Submission Received', ar: 'تم استلام الطلب' })}</span>

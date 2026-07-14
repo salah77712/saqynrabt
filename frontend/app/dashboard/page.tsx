@@ -5,7 +5,7 @@ import { useUser } from '@clerk/nextjs';
 import { useLocale, useEntitlements } from '../providers';
 import { OverviewMetrics } from '../../components/dashboard/OverviewMetrics';
 import { QuickActions } from '../../components/dashboard/QuickActions';
-import { ChatIcon, DocumentIcon, TeamIcon, BarChartIcon, CheckIcon, PhoneIcon, ArrowRightIcon } from '../../components/ui/Icons';
+import { MessageSquare, FileText, Users, BarChart3, Check, Phone, ArrowRight } from 'lucide-react';
 import { UsageCard } from '../../components/dashboard/UsageCard';
 import { SkeletonMetricGrid, SkeletonCard } from '../../components/ui/Skeleton';
 import { useUsage } from '../../hooks/queries/useUsage';
@@ -51,10 +51,10 @@ export default function DashboardOverviewPage() {
   ];
 
   const quickActions = [
-    { href: '/dashboard/chat', label: t('New Chat', 'محادثة جديدة'), icon: <ChatIcon className="w-5 h-5" /> },
-    { href: '/dashboard/documents', label: t('Upload PDF', 'تحميل ملف PDF'), icon: <DocumentIcon className="w-5 h-5" /> },
-    { href: '/dashboard/team', label: t('Manage Team', 'إدارة الفريق'), icon: <TeamIcon className="w-5 h-5" /> },
-    { href: '/dashboard/reports', label: t('View Reports', 'عرض التقارير'), icon: <BarChartIcon className="w-5 h-5" /> },
+    { href: '/dashboard/chat', label: t('New Chat', 'محادثة جديدة'), icon: <MessageSquare className="w-5 h-5" /> },
+    { href: '/dashboard/documents', label: t('Upload PDF', 'تحميل ملف PDF'), icon: <FileText className="w-5 h-5" /> },
+    { href: '/dashboard/team', label: t('Manage Team', 'إدارة الفريق'), icon: <Users className="w-5 h-5" /> },
+    { href: '/dashboard/reports', label: t('View Reports', 'عرض التقارير'), icon: <BarChart3 className="w-5 h-5" /> },
   ];
 
   const isTrial = usage?.questions_limit === 15;
@@ -121,7 +121,7 @@ export default function DashboardOverviewPage() {
               {/* Step 1 */}
               <div className="flex items-start gap-3.5 p-3 rounded-xl border border-gray-50 hover:bg-slate-50/50 transition-colors">
                 <span className="text-lg leading-none mt-0.5 select-none">
-                  {step1Completed ? <CheckIcon className="w-5 h-5 text-emerald-500" /> : <span className="font-black text-slate-400 text-lg">1</span>}
+                  {step1Completed ? <Check className="w-5 h-5 text-emerald-500" /> : <span className="font-black text-slate-400 text-lg">1</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
@@ -137,7 +137,7 @@ export default function DashboardOverviewPage() {
                   </p>
                   {!step1Completed && (
                     <Link href="/dashboard/documents" className="inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
-                      {t('Upload PDF Document', 'تحميل مستند PDF')} <ArrowRightIcon className="w-3 h-3 inline" />
+                      {t('Upload PDF Document', 'تحميل مستند PDF')} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
                 </div>
@@ -146,7 +146,7 @@ export default function DashboardOverviewPage() {
               {/* Step 2 */}
               <div className="flex items-start gap-3.5 p-3 rounded-xl border border-gray-50 hover:bg-slate-50/50 transition-colors">
                 <span className="text-lg leading-none mt-0.5 select-none">
-                  {step2Completed ? <CheckIcon className="w-5 h-5 text-emerald-500" /> : <span className="font-black text-slate-400 text-lg">2</span>}
+                  {step2Completed ? <Check className="w-5 h-5 text-emerald-500" /> : <span className="font-black text-slate-400 text-lg">2</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
@@ -162,7 +162,7 @@ export default function DashboardOverviewPage() {
                   </p>
                   {!step2Completed && (
                     <Link href="/dashboard/chat" className="inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
-                      {t('Open Knowledge Chatbot', 'فتح مساعد المعرفة')} <ArrowRightIcon className="w-3 h-3 inline" />
+                      {t('Open Knowledge Chatbot', 'فتح مساعد المعرفة')} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
                 </div>
@@ -171,7 +171,7 @@ export default function DashboardOverviewPage() {
               {/* Step 3 */}
               <div className="flex items-start gap-3.5 p-3 rounded-xl border border-gray-50 hover:bg-slate-50/50 transition-colors">
                 <span className="text-lg leading-none mt-0.5 select-none">
-                  {step3Completed ? <CheckIcon className="w-5 h-5 text-emerald-500" /> : <span className="font-black text-slate-400 text-lg">3</span>}
+                  {step3Completed ? <Check className="w-5 h-5 text-emerald-500" /> : <span className="font-black text-slate-400 text-lg">3</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
@@ -187,7 +187,7 @@ export default function DashboardOverviewPage() {
                   </p>
                   {!step3Completed && (
                     <Link href="/dashboard/automation" className="inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
-                      {t('Configure Voice Setup', 'تهيئة إعداد الصوت')} <ArrowRightIcon className="w-3 h-3 inline" />
+                      {t('Configure Voice Setup', 'تهيئة إعداد الصوت')} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
                 </div>
@@ -210,14 +210,14 @@ export default function DashboardOverviewPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         <UsageCard
           title={t('Customer Automation', 'أتمتة العملاء')}
-          icon={<PhoneIcon className="w-5 h-5" />}
+          icon={<Phone className="w-5 h-5" />}
           used={usage?.voice_minutes_used ?? 0}
           limit={usage?.voice_minutes_limit ?? 250}
           label={t('Voice Minutes Used', 'دقائق الصوت المستخدمة')}
         />
         <UsageCard
           title={t('Employee Knowledge Hub', 'مركز معرفة الموظفين')}
-          icon={<ChatIcon className="w-5 h-5" />}
+          icon={<MessageSquare className="w-5 h-5" />}
           used={usage?.questions_used ?? 0}
           limit={usage?.questions_limit ?? 2000}
           label={t('RAG Questions Answered', 'الأسئلة المجابة')}

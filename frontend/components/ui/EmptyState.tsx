@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Button } from './Button';
-import { WarningIcon, DocumentIcon, BellOffIcon, TeamIcon } from './Icons';
+import { Button } from '@/components/shadcn/button';
+import { AlertTriangle, FileText, BellOff, Users } from 'lucide-react';
 
 interface EmptyStateAction {
   label: string;
@@ -35,7 +35,7 @@ export function EmptyState({
   return (
     <div className={containerClass}>
       <span className={compact ? 'text-3xl mb-3' : 'text-4xl mb-4'}>
-        {icon || <WarningIcon className="w-10 h-10 text-slate-300" />}
+        {icon || <AlertTriangle className="w-10 h-10 text-slate-300" />}
       </span>
       <h3 className={`font-bold text-navy dark:text-white ${compact ? 'text-sm' : 'text-base'} mb-1`}>
         {title}
@@ -45,7 +45,7 @@ export function EmptyState({
       </p>
       <div className={`flex ${secondaryAction ? 'gap-3' : ''}`}>
         {((actionText && onAction) || retry) && (
-          <Button variant="primary" size="sm" onClick={onAction || retry}>
+          <Button variant="default" size="sm" onClick={onAction || retry}>
             {actionText || "Retry"}
           </Button>
         )}
@@ -68,7 +68,7 @@ export function EmptyStateWithRetry({
 }) {
   return (
     <EmptyState
-      icon={<WarningIcon className="w-10 h-10 text-slate-300" />}
+      icon={<AlertTriangle className="w-10 h-10 text-slate-300" />}
       title="Something went wrong"
       description={message}
       actionText="Retry"
@@ -80,7 +80,7 @@ export function EmptyStateWithRetry({
 export function EmptyDocumentsState({ onUpload }: { onUpload: () => void }) {
   return (
     <EmptyState
-      icon={<DocumentIcon className="w-10 h-10 text-slate-300" />}
+      icon={<FileText className="w-10 h-10 text-slate-300" />}
       title="No documents yet"
       description="Upload your first SOP or policy PDF to expand your chatbot knowledge."
       actionText="Upload Document"
@@ -92,7 +92,7 @@ export function EmptyDocumentsState({ onUpload }: { onUpload: () => void }) {
 export function EmptyAutomationState() {
   return (
     <EmptyState
-      icon={<BellOffIcon className="w-10 h-10 text-slate-300" />}
+      icon={<BellOff className="w-10 h-10 text-slate-300" />}
       title="No automation requests"
       description="All clear! There are no pending automation requests."
       compact
@@ -103,7 +103,7 @@ export function EmptyAutomationState() {
 export function EmptyTeamState({ onInvite }: { onInvite: () => void }) {
   return (
     <EmptyState
-      icon={<TeamIcon className="w-10 h-10 text-slate-300" />}
+      icon={<Users className="w-10 h-10 text-slate-300" />}
       title="No team members"
       description="Invite your colleagues to collaborate on the platform."
       actionText="Invite Colleague"

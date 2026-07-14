@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../app/providers';
-import { TrashIcon, ArrowDownIcon } from './ui/Icons';
+import { Trash2, ArrowDown } from 'lucide-react';
 
 interface StepNode {
   id: string;
@@ -71,14 +71,14 @@ export function WorkflowBuilder() {
                   onClick={() => handleRemoveNode(node.id)}
                   className="text-xs text-slate-300 hover:text-red-600 transition-colors"
                 >
-                  <TrashIcon className="w-4 h-4 text-slate-300 hover:text-red-500" />
+                  <Trash2 className="w-4 h-4 text-slate-300 hover:text-red-500" />
                 </button>
               )}
             </div>
 
             {/* Connecting Arrow */}
             {idx < nodes.length - 1 && (
-              <ArrowDownIcon className="w-5 h-5 text-slate-300" />
+              <ArrowDown className="w-5 h-5 text-slate-300" />
             )}
 
           </React.Fragment>

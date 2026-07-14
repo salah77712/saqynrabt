@@ -5,8 +5,8 @@
  */
 
 import { neon } from '@neondatabase/serverless';
-import { verifyJWT, corsHeaders, logAudit } from '../utils';
-import type { Env } from '../utils';
+import { corsHeaders, logAudit } from '../utils';
+import type { RequestWithContext } from '../utils';
 
 interface CreateIncidentBody {
   incidentType: 'data_breach' | 'system_outage' | 'unauthorised_access' | 'vulnerability' | 'other';
@@ -25,19 +25,10 @@ interface UpdateIncidentBody {
   timelineNote?: string;
 }
 
-export async function handleListIncidents(request: Request, env: Env): Promise<Response> {
+export async function handleListIncidents(request: RequestWithContext): Promise<Response> {
+  const env = request.env;
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
-
-  const authHeader = request.headers.get('Authorization');
-  const jwt = await verifyJWT(authHeader, env);
-  if (!jwt) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
-  }
-
-  if (jwt.role !== 'admin') {
-    return new Response(JSON.stringify({ error: 'Forbidden: admin access required' }), { status: 403, headers });
-  }
 
   const url = new URL(request.url);
   const statusFilter = url.searchParams.get('status');
@@ -65,19 +56,11 @@ export async function handleListIncidents(request: Request, env: Env): Promise<R
   }
 }
 
-export async function handleCreateIncident(request: Request, env: Env): Promise<Response> {
+export async function handleCreateIncident(request: RequestWithContext): Promise<Response> {
+  const env = request.env;
+  const jwt = request.jwt!;
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
-
-  const authHeader = request.headers.get('Authorization');
-  const jwt = await verifyJWT(authHeader, env);
-  if (!jwt || jwt.role !== 'admin') {
-    return new Response(JSON.stringify({ error: 'Forbidden: admin access required' }), { status: 403, headers });
-  }
-
-  if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
-  }
 
   let body: CreateIncidentBody;
   try {
@@ -107,7 +90,6 @@ export async function handleCreateIncident(request: Request, env: Env): Promise<
       RETURNING *
     `;
 
-    // Add initial timeline entry
     await sql`
       INSERT INTO incident_timeline (incident_id, action, actor, note)
       VALUES (${incident.id}, 'Incident created', ${jwt.email || jwt.sub}, ${`Reported as ${body.severity} ${body.incidentType}`})
@@ -119,7 +101,6 @@ export async function handleCreateIncident(request: Request, env: Env): Promise<
       severity: body.severity,
     });
 
-    // If critical/high data breach, trigger notification workflow
     if (body.severity === 'critical' || (body.severity === 'high' && body.incidentType === 'data_breach')) {
       triggerBreachNotification(incident, env);
     }
@@ -132,7 +113,9 @@ export async function handleCreateIncident(request: Request, env: Env): Promise<
   }
 }
 
-export async function handleUpdateIncident(request: Request, env: Env): Promise<Response> {
+export async function handleUpdateIncident(request: RequestWithContext): Promise<Response> {
+  const env = request.env;
+  const jwt = request.jwt!;
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
 
@@ -141,16 +124,6 @@ export async function handleUpdateIncident(request: Request, env: Env): Promise<
   const incidentId = segments[segments.length - 1];
   if (!incidentId) {
     return new Response(JSON.stringify({ error: 'Incident ID is required' }), { status: 400, headers });
-  }
-
-  const authHeader = request.headers.get('Authorization');
-  const jwt = await verifyJWT(authHeader, env);
-  if (!jwt || jwt.role !== 'admin') {
-    return new Response(JSON.stringify({ error: 'Forbidden: admin access required' }), { status: 403, headers });
-  }
-
-  if (request.method !== 'PATCH') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
   }
 
   let body: UpdateIncidentBody;
@@ -211,7 +184,7 @@ export async function handleUpdateIncident(request: Request, env: Env): Promise<
   }
 }
 
-async function triggerBreachNotification(incident: any, env: Env): Promise<void> {
+async function triggerBreachNotification(incident: any, env: any): Promise<void> {
   try {
     console.log('Triggering breach notification for incident:', incident.id);
 
@@ -236,7 +209,8 @@ async function triggerBreachNotification(incident: any, env: Env): Promise<void>
   }
 }
 
-export async function handleGetIncidentStatus(request: Request, env: Env): Promise<Response> {
+export async function handleGetIncidentStatus(request: RequestWithContext): Promise<Response> {
+  const env = request.env;
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
 

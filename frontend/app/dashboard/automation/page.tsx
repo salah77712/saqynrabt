@@ -4,7 +4,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useLocale } from '../../providers';
 import { AutomationQueue } from '../../../components/dashboard/AutomationQueue';
 import { AutomationFilters } from '../../../components/dashboard/AutomationFilters';
-import { Card } from '../../../components/ui/Card';
+import { Card } from '@/components/shadcn/card';
 import { Badge } from '../../../components/ui/Badge';
 import { SkeletonCard, SkeletonTable } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry, EmptyAutomationState, EmptyState } from '../../../components/ui/EmptyState';

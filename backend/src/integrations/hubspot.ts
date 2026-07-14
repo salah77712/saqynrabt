@@ -1,27 +1,28 @@
-/**
- * HubSpot Integration Connector
- */
 export async function syncHubspotContacts(
-  accessToken: string,
-  sql: any,
-  companyId: string
+  accessToken: string
 ): Promise<{ success: boolean; count: number }> {
+  if (!accessToken) {
+    throw new Error('HubSpot access token is required');
+  }
+
   try {
     const response = await fetch('https://api.hubapi.com/crm/v3/objects/contacts', {
       headers: {
-        'Authorization': `Bearer ${accessToken}`,
-        'Content-Type': 'application/json'
-      }
+        Authorization: `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      },
     });
 
-    if (!response.ok) throw new Error('HubSpot API rejected request');
-    const data: any = await response.json();
-    const list = data.results || [];
+    if (!response.ok) {
+      console.error('HubSpot API rejected:', await response.text());
+      throw new Error('HubSpot API rejected request');
+    }
 
-    // Sync mock insertion loops
+    const data: { results?: unknown[] } = await response.json();
+    const list = data.results || [];
     return { success: true, count: list.length };
   } catch (err) {
-    console.error('Hubspot sync failed:', err);
-    return { success: false, count: 0 };
+    console.error('HubSpot sync failed:', err);
+    throw err;
   }
 }

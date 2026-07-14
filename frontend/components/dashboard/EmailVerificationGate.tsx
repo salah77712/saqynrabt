@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { UserButton } from '@clerk/nextjs';
 import { useLocale } from '../../app/providers';
-import { MailIcon, WarningIcon, CheckIcon } from '../ui/Icons';
+import { Mail, AlertTriangle, Check } from 'lucide-react';
 
 export function EmailVerificationGate() {
   const { locale } = useLocale();
@@ -61,7 +61,7 @@ export function EmailVerificationGate() {
   return (
     <div className="min-h-screen bg-[#F8F9FB] flex items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 w-full max-w-md animate-fadeIn text-center">
-        <div className="mb-4"><MailIcon className="w-8 h-8 text-slate-400" /></div>
+        <div className="mb-4"><Mail className="w-8 h-8 text-slate-400" /></div>
         <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
           {t({ en: 'Verify Your Email', ar: 'تأكيد بريدك الإلكتروني' })}
         </h2>
@@ -74,13 +74,13 @@ export function EmailVerificationGate() {
 
         {verifError && (
           <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-            <WarningIcon className="w-4 h-4 text-red-500 inline mr-1" /> {verifError}
+            <AlertTriangle className="w-4 h-4 text-red-500 inline mr-1" /> {verifError}
           </div>
         )}
 
         {resendStatus && (
           <div className="bg-emerald-50 border border-emerald-200 text-emerald-600 rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-            <CheckIcon className="w-4 h-4 text-emerald-500 inline mr-1" /> {resendStatus}
+            <Check className="w-4 h-4 text-emerald-500 inline mr-1" /> {resendStatus}
           </div>
         )}
 

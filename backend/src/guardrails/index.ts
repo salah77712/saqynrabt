@@ -13,13 +13,14 @@ export interface GuardrailsConfig {
  */
 export async function runInputGuardrails(
   query: string,
-  config: GuardrailsConfig
+  config: GuardrailsConfig,
+  apiKey: string
 ): Promise<{ passed: boolean; cleanQuery: string; reason?: string }> {
   let cleanQuery = query;
 
   // 1. Jailbreak attempt detection
   if (config.jailbreak_detection_enabled) {
-    const isJailbreak = detectJailbreak(query);
+    const isJailbreak = await detectJailbreak(query, apiKey);
     if (isJailbreak) {
       return { passed: false, cleanQuery, reason: 'PROMPT_INJECTION_DETECTED' };
     }
@@ -32,7 +33,7 @@ export async function runInputGuardrails(
 
   // 3. Toxicity filter
   if (config.toxicity_filter_enabled) {
-    const isToxic = detectToxicity(cleanQuery);
+    const isToxic = await detectToxicity(cleanQuery, apiKey);
     if (isToxic) {
       return { passed: false, cleanQuery, reason: 'TOXIC_CONTENT_BLOCKED' };
     }

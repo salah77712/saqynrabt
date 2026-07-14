@@ -3,7 +3,7 @@
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { CheckIcon } from '../../components/ui/Icons';
+import { Check } from 'lucide-react';
 
 const cases = {
   en: [
@@ -86,7 +86,7 @@ export default function CaseStudiesPage() {
                   <ul className="space-y-2">
                     {c.metrics.map((m) => (
                       <li key={m} className="flex items-center gap-2 text-sm font-medium text-primary">
-                        <CheckIcon className="w-4 h-4 text-emerald-500 inline" />{m}
+                        <Check className="w-4 h-4 text-emerald-500 inline" />{m}
                       </li>
                     ))}
                   </ul>

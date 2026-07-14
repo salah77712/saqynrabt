@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
-import { XIcon } from './ui/Icons';
+import { X } from 'lucide-react';
 
 interface KeyboardShortcutsModalProps {
   isOpen: boolean;
@@ -54,7 +54,7 @@ export function KeyboardShortcutsModal({ isOpen, onClose }: KeyboardShortcutsMod
             Keyboard Shortcuts Console
           </h3>
           <button onClick={onClose} className="text-slate-400 hover:text-slate-600 text-xs">
-            <XIcon className="w-4 h-4" />
+            <X className="w-4 h-4" />
           </button>
         </div>
 

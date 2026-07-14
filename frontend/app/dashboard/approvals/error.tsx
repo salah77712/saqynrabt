@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { WarningIcon } from '../../../components/ui/Icons';
+import { AlertTriangle } from 'lucide-react';
 
 export default function ApprovalsError({
   error,
@@ -15,7 +15,7 @@ export default function ApprovalsError({
   return (
     <div className="flex items-center justify-center py-20">
       <div className="text-center max-w-md">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50"><WarningIcon className="w-6 h-6 text-red-500" /></div>
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50"><AlertTriangle className="w-6 h-6 text-red-500" /></div>
         <h2 className="text-2xl font-bold text-primary mb-2">Approvals didn't load</h2>
         <p className="text-slate-500 mb-2">We couldn't fetch the pending approvals list.</p>
         <p className="text-sm text-slate-400 mb-8">Nothing's been lost. Try again to reload.</p>

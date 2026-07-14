@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../app/providers';
-import { WarningIcon, XIcon } from './ui/Icons';
+import { AlertTriangle, X } from 'lucide-react';
 
 export function AnomalyAlert() {
   const { locale } = useLocale();
@@ -15,7 +15,7 @@ export function AnomalyAlert() {
   return (
     <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex justify-between items-center gap-4 animate-slideDown">
       <div className="flex items-center gap-2">
-        <WarningIcon className="w-5 h-5 text-amber-500" />
+        <AlertTriangle className="w-5 h-5 text-amber-500" />
         <div>
           <p className="text-xs font-bold text-amber-800">{t({ en: 'Suspicious API Usage Spike Detected', ar: 'تم رصد قفزة مشبوهة في استخدام الـ API' })}</p>
           <p className="text-[10px] text-amber-600 font-semibold mt-0.5">
@@ -28,7 +28,7 @@ export function AnomalyAlert() {
         onClick={() => setVisible(false)}
         className="text-[10px] font-bold text-amber-600 hover:text-amber-800"
       >
-        <XIcon className="w-4 h-4" />
+        <X className="w-4 h-4" />
       </button>
     </div>
   );

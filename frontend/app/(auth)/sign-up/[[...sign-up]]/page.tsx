@@ -5,7 +5,7 @@ import { useSignUp } from '@clerk/nextjs';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useLocale } from '../../../providers';
-import { MailIcon, LockIcon, BriefcaseIcon } from '../../../../components/ui/Icons';
+import { Mail, Lock, Briefcase } from 'lucide-react';
 
 export default function SignUpPage() {
   const { isLoaded, signUp, setActive } = useSignUp();
@@ -128,7 +128,7 @@ export default function SignUpPage() {
             </Link>
           </div>
 
-          <div className="text-4xl mb-4"><MailIcon className="w-10 h-10 text-primary inline-block" /></div>
+          <div className="text-4xl mb-4"><Mail className="w-10 h-10 text-primary inline-block" /></div>
           <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
             {t({ en: 'Verify Your Email', ar: 'تأكيد بريدك الإلكتروني' })}
           </h2>
@@ -190,7 +190,7 @@ export default function SignUpPage() {
         {/* Dynamic Role & Account Type Notices */}
         {emailParam ? (
           <div className="mb-6 p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100/80 text-indigo-900 flex items-start gap-3.5 shadow-sm">
-            <LockIcon className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
+            <Lock className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
             <div>
               <h4 className="text-xs font-black tracking-wide uppercase text-indigo-700">
                 {t({ en: "Invited Workspace Account", ar: "حساب مساحة عمل مدعو" })}
@@ -205,7 +205,7 @@ export default function SignUpPage() {
           </div>
         ) : (
           <div className="mb-6 p-4 rounded-2xl bg-emerald-50/50 border border-emerald-100/80 text-emerald-900 flex items-start gap-3.5 shadow-sm">
-            <BriefcaseIcon className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
+            <Briefcase className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
             <div>
               <h4 className="text-xs font-black tracking-wide uppercase text-emerald-700">
                 {t({ en: "New Business Workspace", ar: "مساحة عمل جديدة للشركة" })}

@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { MapPinIcon, MailIcon, PhoneIcon } from '../../components/ui/Icons';
+import { MapPin, Mail, Phone } from 'lucide-react';
 
 export default function ContactPage() {
   const { locale } = useLocale();
@@ -189,7 +189,7 @@ export default function ContactPage() {
 
             <div className="space-y-6 pt-6 border-t border-gray-200">
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
-                <MapPinIcon className="w-5 h-5 text-primary" />
+                <MapPin className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'Office Address', ar: 'عنوان المكتب' })}</p>
                   <p className="text-[#718096] mt-0.5">Global Operations</p>
@@ -197,7 +197,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
-                <MailIcon className="w-5 h-5 text-primary" />
+                <Mail className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'General Inquiry', ar: 'البريد الإلكتروني' })}</p>
                   <p className="text-[#718096] mt-0.5">saqynrabt@gmail.com</p>
@@ -205,7 +205,7 @@ export default function ContactPage() {
               </div>
 
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
-                <PhoneIcon className="w-5 h-5 text-primary" />
+                <Phone className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'Support Hotline', ar: 'خط الدعم' })}</p>
                   <p className="text-[#718096] mt-0.5">+974 5500 0000</p>

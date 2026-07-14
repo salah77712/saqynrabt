@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { WarningIcon } from '../../components/ui/Icons';
+import { AlertTriangle } from 'lucide-react';
 
 export default function CaseStudiesError({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   useEffect(() => { console.error(error); }, [error]);
@@ -15,7 +15,7 @@ export default function CaseStudiesError({ error, reset }: { error: Error & { di
       </header>
       <div className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="text-center max-w-md">
-          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50"><WarningIcon className="w-6 h-6 text-red-500" /></div>
+          <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50"><AlertTriangle className="w-6 h-6 text-red-500" /></div>
           <h1 className="text-2xl font-bold text-primary mb-2">Case studies unavailable</h1>
           <p className="text-slate-500 mb-8">We couldn&apos;t load the case studies. Please try again.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">

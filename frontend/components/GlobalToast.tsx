@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useGlobalToast } from '../lib/toast';
-import { CheckIcon, XIcon, WarningIcon, InfoIcon } from './ui/Icons';
+import { Check, X, AlertTriangle, Info } from 'lucide-react';
 
 export function GlobalToast() {
   const { toasts, removeToast } = useGlobalToast();
@@ -17,7 +17,7 @@ export function GlobalToast() {
           className="flex items-center gap-4 bg-white dark:bg-slate-900 border border-gray-200 dark:border-slate-800 shadow-xl rounded-xl p-4 transition-all animate-slideUp"
         >
           <span className="text-base">
-            {t.type === 'success' ? <CheckIcon className="text-emerald-500 w-4 h-4" /> : t.type === 'error' ? <XIcon className="text-red-500 w-4 h-4" /> : t.type === 'warning' ? <WarningIcon className="text-amber-500 w-4 h-4" /> : <InfoIcon className="text-blue-500 w-4 h-4" />}
+            {t.type === 'success' ? <Check className="text-emerald-500 w-4 h-4" /> : t.type === 'error' ? <X className="text-red-500 w-4 h-4" /> : t.type === 'warning' ? <AlertTriangle className="text-amber-500 w-4 h-4" /> : <Info className="text-blue-500 w-4 h-4" />}
           </span>
           <p className="text-xs font-semibold text-slate-700 dark:text-slate-200 flex-1 leading-relaxed">
             {t.message}
@@ -38,7 +38,7 @@ export function GlobalToast() {
             className="text-xs font-bold text-slate-400 hover:text-slate-600"
             aria-label="Close notification"
           >
-            <XIcon className="w-3 h-3" />
+            <X className="w-3 h-3" />
           </button>
         </div>
       ))}

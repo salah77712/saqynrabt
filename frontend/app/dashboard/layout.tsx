@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { useEntitlements, useLocale } from '../providers';
-import { HomeIcon, PhoneIcon, ChatIcon, DocumentIcon, TeamIcon, SettingsIcon, BoltIcon, WarningIcon } from '../../components/ui/Icons';
+import { Home, Phone, MessageSquare, FileText, Users, Settings, Zap, AlertTriangle } from 'lucide-react';
 import { FeedbackWidget } from '../../components/FeedbackWidget';
 import { MobileBottomNav } from '../../components/MobileBottomNav';
 import { useSwipe } from '../../hooks/useSwipe';
@@ -38,20 +38,20 @@ export default function DashboardLayout({
   };
 
   const menuItems = [
-    { name: dashboardContent.overview, path: '/dashboard', icon: <HomeIcon className="w-5 h-5" /> },
-    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <PhoneIcon className="w-5 h-5" /> },
-    { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
-    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <DocumentIcon className="w-5 h-5" /> },
-    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <TeamIcon className="w-5 h-5" />, badge: true },
-    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <SettingsIcon className="w-5 h-5" /> },
+    { name: dashboardContent.overview, path: '/dashboard', icon: <Home className="w-5 h-5" /> },
+    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <Phone className="w-5 h-5" /> },
+    { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <FileText className="w-5 h-5" /> },
+    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" />, badge: true },
+    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
   ];
 
   const currentRole = mockMode ? 'admin' : userRole;
 
   const filteredMenuItems = currentRole === 'employee'
     ? [
-        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
-        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <BoltIcon className="w-5 h-5" /> },
+        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <Zap className="w-5 h-5" /> },
       ]
     : menuItems;
 
@@ -149,7 +149,7 @@ export default function DashboardLayout({
             <div className="max-w-7xl mx-auto w-full">
               {!hasAccess ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
-                  <WarningIcon className="w-10 h-10 text-slate-300 mb-4" />
+                  <AlertTriangle className="w-10 h-10 text-slate-300 mb-4" />
                   <h2 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h2>
                   <p className="text-xs text-[#718096] font-semibold mt-1">
                     {t({ en: 'You do not have permission to access this page.', ar: 'ليس لديك صلاحية للوصول إلى هذه الصفحة.' })}

@@ -5,27 +5,19 @@
  */
 
 import { neon } from '@neondatabase/serverless';
-import { verifyJWT, corsHeaders, logAudit } from '../utils';
-import type { Env, JWTPayload } from '../utils';
+import { corsHeaders, logAudit } from '../utils';
+import type { RequestWithContext } from '../utils';
 
 interface AcceptRequest {
   documentType: 'tos' | 'dpa';
   versionHash: string;
 }
 
-export async function handleLegalAccept(request: Request, env: Env): Promise<Response> {
+export async function handleLegalAccept(request: RequestWithContext): Promise<Response> {
+  const env = request.env;
+  const jwt = request.jwt!;
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
-
-  const authHeader = request.headers.get('Authorization');
-  const jwt = await verifyJWT(authHeader, env);
-  if (!jwt || !jwt.company_id) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
-  }
-
-  if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
-  }
 
   let body: AcceptRequest;
   try {
@@ -47,7 +39,6 @@ export async function handleLegalAccept(request: Request, env: Env): Promise<Res
     const ipAddress = request.headers.get('cf-connecting-ip') || '127.0.0.1';
     const userAgent = request.headers.get('user-agent') || 'Unknown';
 
-    // Verify the version hash exists in legal_versions
     const [version] = await sql`
       SELECT id FROM legal_versions
       WHERE document_name = ${body.documentType === 'tos' ? 'tos' : 'dpa'}
@@ -59,7 +50,6 @@ export async function handleLegalAccept(request: Request, env: Env): Promise<Res
       return new Response(JSON.stringify({ error: 'Invalid or outdated version hash' }), { status: 400, headers });
     }
 
-    // Deactivate any prior acceptances for this user + document type
     await sql`
       UPDATE legal_acceptances
       SET is_active = FALSE
@@ -68,14 +58,13 @@ export async function handleLegalAccept(request: Request, env: Env): Promise<Res
       AND is_active = TRUE
     `;
 
-    // Insert new acceptance
     const [acceptance] = await sql`
       INSERT INTO legal_acceptances (company_id, user_id, document_type, version_hash, ip_address, user_agent)
       VALUES (${jwt.company_id}, ${jwt.sub}, ${body.documentType}, ${body.versionHash}, ${ipAddress}, ${userAgent})
       RETURNING id, accepted_at
     `;
 
-    await logAudit(env, jwt.company_id, jwt.sub, 'legal_accept', {
+    await logAudit(env, jwt.company_id!, jwt.sub, 'legal_accept', {
       documentType: body.documentType,
       versionHash: body.versionHash,
       acceptanceId: acceptance.id,
@@ -95,15 +84,11 @@ export async function handleLegalAccept(request: Request, env: Env): Promise<Res
   }
 }
 
-export async function handleCheckAcceptance(request: Request, env: Env): Promise<Response> {
+export async function handleCheckAcceptance(request: RequestWithContext): Promise<Response> {
+  const env = request.env;
+  const jwt = request.jwt!;
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
-
-  const authHeader = request.headers.get('Authorization');
-  const jwt = await verifyJWT(authHeader, env);
-  if (!jwt || !jwt.company_id) {
-    return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
-  }
 
   try {
     const sql = neon(env.DATABASE_URL);

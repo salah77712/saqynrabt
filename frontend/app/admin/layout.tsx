@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { UserButton, useUser } from '@clerk/nextjs';
 import { useLocale } from '../providers';
-import { ForbiddenIcon, BuildingIcon, BarChartIcon, DollarIcon, ShieldIcon, MenuIcon } from '../../components/ui/Icons';
+import { Ban, Building2, BarChart3, DollarSign, Shield, Menu } from 'lucide-react';
 
 export default function AdminLayout({
   children,
@@ -35,7 +35,7 @@ export default function AdminLayout({
   if (!isAdmin) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F9FB] px-6 text-center">
-        <ForbiddenIcon className="w-10 h-10 text-red-400 mb-4" />
+        <Ban className="w-10 h-10 text-red-400 mb-4" />
         <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h1>
         <p className="text-xs font-semibold text-[#718096] max-w-sm mt-3 leading-relaxed">
           {t({
@@ -62,10 +62,10 @@ export default function AdminLayout({
   }
 
   const menuItems = [
-    { name: { en: 'Companies', ar: 'الشركات' }, path: '/admin/companies', icon: <BuildingIcon className="w-5 h-5" /> },
-    { name: { en: 'Usage Analytics', ar: 'تحليلات الاستخدام' }, path: '/admin/usage', icon: <BarChartIcon className="w-5 h-5" /> },
-    { name: { en: 'Billing & Invoices', ar: 'الفوترة والفواتير' }, path: '/admin/billing', icon: <DollarIcon className="w-5 h-5" /> },
-    { name: { en: 'Audit Security Logs', ar: 'سجلات التدقيق الأمني' }, path: '/admin/audit', icon: <ShieldIcon className="w-5 h-5" /> },
+    { name: { en: 'Companies', ar: 'الشركات' }, path: '/admin/companies', icon: <Building2 className="w-5 h-5" /> },
+    { name: { en: 'Usage Analytics', ar: 'تحليلات الاستخدام' }, path: '/admin/usage', icon: <BarChart3 className="w-5 h-5" /> },
+    { name: { en: 'Billing & Invoices', ar: 'الفوترة والفواتير' }, path: '/admin/billing', icon: <DollarSign className="w-5 h-5" /> },
+    { name: { en: 'Audit Security Logs', ar: 'سجلات التدقيق الأمني' }, path: '/admin/audit', icon: <Shield className="w-5 h-5" /> },
   ];
 
   return (
@@ -81,7 +81,7 @@ export default function AdminLayout({
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 text-[#141F33] min-h-[44px] min-w-[44px]"
         >
-          <MenuIcon className="w-5 h-5" />
+          <Menu className="w-5 h-5" />
         </button>
       </header>
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
-import { WarningIcon } from '../components/ui/Icons';
+import { AlertTriangle } from 'lucide-react';
 
 export default function Error({
   error,
@@ -18,7 +18,7 @@ export default function Error({
     <div className="min-h-screen bg-white flex items-center justify-center px-6" dir="auto">
       <div className="text-center max-w-md">
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-red-50">
-          <WarningIcon className="w-6 h-6 text-red-500" />
+          <AlertTriangle className="w-6 h-6 text-red-500" />
         </div>
         <h1 className="text-3xl font-bold text-primary mb-4 leading-snug">
           <span lang="en">Something went wrong</span>

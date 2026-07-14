@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../providers';
 import Link from 'next/link';
-import { DocumentIcon } from '../../../components/ui/Icons';
+import { FileText } from 'lucide-react';
 
 export default function OnboardingWizardPage() {
   const { locale } = useLocale();
@@ -282,7 +282,7 @@ export default function OnboardingWizardPage() {
                 </p>
 
                 <div className="border-2 border-dashed border-gray-200 rounded-xl p-8 bg-slate-50 flex flex-col items-center justify-center text-center">
-                  <DocumentIcon className="w-8 h-8 text-primary mb-2" />
+                  <FileText className="w-8 h-8 text-primary mb-2" />
                   <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Drop policy PDF here to start', ar: 'اسقط ملف PDF للسياسة هنا للبدء' })}</p>
                   <span className="text-[10px] text-[#718096] font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'أو اضغط أدناه للتصفح (اختياري)' })}</span>
                 </div>

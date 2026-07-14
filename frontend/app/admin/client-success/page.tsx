@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useLocale } from '../../providers';
-import { Card } from '../../../components/ui/Card';
+import { Card } from '@/components/shadcn/card';
 import { Badge } from '../../../components/ui/Badge';
 import { HealthScore } from '../../../components/HealthScore';
 

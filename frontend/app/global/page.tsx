@@ -3,7 +3,7 @@
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { GlobeIcon } from '../../components/ui/Icons';
+import { Globe } from 'lucide-react';
 
 const highlights = {
   en: [
@@ -40,9 +40,9 @@ const regions = {
 const flagIconMap: Record<string, React.ReactNode> = {
   middleeast: <svg className="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2a15 15 0 0 0 0 20 15 15 0 0 0 0-20z" /><path d="M2 12h20" /></svg>,
   europe: <svg className="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2v20M2 12h20" /><path d="M5 5l14 14M19 5l-14 14" /></svg>,
-  asia: <GlobeIcon className="w-8 h-8 text-primary" />,
-  africa: <GlobeIcon className="w-8 h-8 text-primary" />,
-  americas: <GlobeIcon className="w-8 h-8 text-primary" />,
+  asia: <Globe className="w-8 h-8 text-primary" />,
+  africa: <Globe className="w-8 h-8 text-primary" />,
+  americas: <Globe className="w-8 h-8 text-primary" />,
 };
 
 export default function GlobalPage() {
@@ -88,7 +88,7 @@ export default function GlobalPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {regionList.map((r) => (
               <div key={r.name} className="border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
-                <span className="text-4xl mb-3 block">{flagIconMap[r.flag] || <GlobeIcon className="w-8 h-8 text-primary" />}</span>
+                <span className="text-4xl mb-3 block">{flagIconMap[r.flag] || <Globe className="w-8 h-8 text-primary" />}</span>
                 <h3 className="text-xl font-bold text-primary mb-1">{r.name}</h3>
                 <p className="text-xs text-slate-400 mb-3">{r.cities}</p>
                 <p className="text-sm text-slate-500 leading-relaxed">{r.desc}</p>

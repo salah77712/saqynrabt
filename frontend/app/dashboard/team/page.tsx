@@ -2,11 +2,11 @@
 
 import React, { useState, useCallback } from 'react';
 import { useLocale } from '../../providers';
-import { Card } from '../../../components/ui/Card';
-import { Button } from '../../../components/ui/Button';
+import { Card } from '@/components/shadcn/card';
+import { Button } from '@/components/shadcn/button';
 import { Badge } from '../../../components/ui/Badge';
 import { TeamTable } from '../../../components/dashboard/TeamTable';
-import { Modal } from '../../../components/ui/Modal';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/shadcn/dialog';
 import { Input } from '../../../components/ui/Input';
 import { Skeleton, SkeletonCard, SkeletonTable } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry, EmptyTeamState } from '../../../components/ui/EmptyState';
@@ -155,7 +155,7 @@ export default function TeamDashboardPage() {
             {t('Invite teammates, manage roles, and approve access requests.', 'إدارة ضوابط الوصول للفريق وتنسيق موافقات الموظفين.')}
           </p>
         </div>
-        <Button variant="primary" onClick={() => setInviteModalOpen(true)} className="min-h-[44px] text-xs md:text-sm w-full md:w-auto">
+        <Button variant="default" onClick={() => setInviteModalOpen(true)} className="min-h-[44px] text-xs md:text-sm w-full md:w-auto">
           {t('Invite Colleague', 'دعوة زميل')}
         </Button>
       </div>
@@ -197,21 +197,26 @@ export default function TeamDashboardPage() {
         </div>
       </div>
 
-      <Modal isOpen={inviteModalOpen} onClose={() => setInviteModalOpen(false)} title={t('Invite Colleague', 'دعوة زميل')}>
-        <div className="space-y-4">
-          <div>
-            <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">{t('Full Name', 'الاسم الكامل')}</label>
-            <Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] text-sm" />
+      <Dialog open={inviteModalOpen} onOpenChange={(open) => !open && setInviteModalOpen(false)}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{t('Invite Colleague', 'دعوة زميل')}</DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            <div>
+              <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">{t('Full Name', 'الاسم الكامل')}</label>
+              <Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] text-sm" />
+            </div>
+            <div>
+              <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">{t('Email Address', 'البريد الإلكتروني')}</label>
+              <Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] text-sm" />
+            </div>
+            <Button variant="default" className="w-full min-h-[44px]" onClick={handleSendInvite}>
+              {t('Send Invitation', 'إرسال الدعوة')}
+            </Button>
           </div>
-          <div>
-            <label className="block text-[10px] font-bold text-slate-400 uppercase mb-1">{t('Email Address', 'البريد الإلكتروني')}</label>
-            <Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] text-sm" />
-          </div>
-          <Button variant="primary" className="w-full min-h-[44px]" onClick={handleSendInvite}>
-            {t('Send Invitation', 'إرسال الدعوة')}
-          </Button>
-        </div>
-      </Modal>
+        </DialogContent>
+      </Dialog>
     </main>
   );
 }

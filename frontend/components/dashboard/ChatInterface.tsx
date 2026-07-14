@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Button } from '../ui/Button';
+import { Button } from '@/components/shadcn/button';
 import { Input } from '../ui/Input';
 
 interface Message {
@@ -89,7 +89,7 @@ export function ChatInterface() {
             if (e.key === 'Enter') handleSend();
           }}
         />
-        <Button variant="primary" onClick={handleSend}>
+        <Button variant="default" onClick={handleSend}>
           Send
         </Button>
       </div>

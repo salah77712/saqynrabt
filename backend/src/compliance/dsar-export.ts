@@ -6,21 +6,18 @@
  */
 
 import { neon } from '@neondatabase/serverless';
-import { verifyJWT, corsHeaders, logAudit } from '../utils';
-import type { Env } from '../utils';
+import { corsHeaders, logAudit } from '../utils';
+import type { RequestWithContext } from '../utils';
 
-export async function handlePrivacyExport(request: Request, env: Env): Promise<Response> {
+export async function handlePrivacyExport(request: RequestWithContext): Promise<Response> {
+  const env = request.env;
+  const jwt = request.jwt!;
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
 
-  const authHeader = request.headers.get('Authorization');
-  const jwt = await verifyJWT(authHeader, env);
-  if (!jwt || !jwt.company_id) {
+  const cid = jwt.company_id;
+  if (!cid) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
-  }
-
-  if (request.method !== 'GET') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
   }
 
   const ipAddress = request.headers.get('cf-connecting-ip') || '127.0.0.1';
@@ -28,7 +25,6 @@ export async function handlePrivacyExport(request: Request, env: Env): Promise<R
 
   try {
     const sql = neon(env.DATABASE_URL);
-    const cid = jwt.company_id;
 
     // Fetch company data — strictly filtered by company_id
     const [company] = await sql`SELECT * FROM companies WHERE company_id = ${cid}`;
@@ -129,18 +125,15 @@ export async function handlePrivacyExport(request: Request, env: Env): Promise<R
   }
 }
 
-export async function handlePrivacyDelete(request: Request, env: Env): Promise<Response> {
+export async function handlePrivacyDelete(request: RequestWithContext): Promise<Response> {
+  const env = request.env;
+  const jwt = request.jwt!;
   const headers = corsHeaders(request, env);
   headers['Content-Type'] = 'application/json';
 
-  const authHeader = request.headers.get('Authorization');
-  const jwt = await verifyJWT(authHeader, env);
-  if (!jwt || !jwt.company_id) {
+  const cid = jwt.company_id;
+  if (!cid) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
-  }
-
-  if (request.method !== 'POST') {
-    return new Response(JSON.stringify({ error: 'Method not allowed' }), { status: 405, headers });
   }
 
   const ipAddress = request.headers.get('cf-connecting-ip') || '127.0.0.1';
@@ -148,9 +141,7 @@ export async function handlePrivacyDelete(request: Request, env: Env): Promise<R
 
   try {
     const sql = neon(env.DATABASE_URL);
-    const cid = jwt.company_id;
 
-    // Set cancellation_date — initiates 30-day grace period (Qatari Civil Code Article 190)
     await sql`
       UPDATE companies SET cancellation_date = NOW() WHERE company_id = ${cid}
     `;

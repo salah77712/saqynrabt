@@ -6,7 +6,7 @@ import remarkGfm from 'remark-gfm';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import Link from 'next/link';
-import { ArrowLeftIcon } from './ui/Icons';
+import { ArrowLeft } from 'lucide-react';
 
 export default function LegalPage({ title, content }: { title: string; content: string }) {
   return (
@@ -18,7 +18,7 @@ export default function LegalPage({ title, content }: { title: string; content: 
           className="group inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-slate-400 hover:text-[#141F33] transition-colors mb-12"
         >
           <span className="transition-transform group-hover:-translate-x-1 duration-150 inline-block">
-            <ArrowLeftIcon className="w-4 h-4" />
+            <ArrowLeft className="w-4 h-4" />
           </span>
           Back to Trust Center
         </Link>

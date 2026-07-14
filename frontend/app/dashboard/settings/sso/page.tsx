@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../../../providers';
-import { Card } from '../../../../components/ui/Card';
-import { Button } from '../../../../components/ui/Button';
+import { Card } from '@/components/shadcn/card';
+import { Button } from '@/components/shadcn/button';
 import { Input } from '../../../../components/ui/Input';
 import { Badge } from '../../../../components/ui/Badge';
 import { Toast } from '../../../../components/ui/Toast';
@@ -57,7 +57,7 @@ export default function SSOPage() {
             />
           </div>
 
-          <Button variant="primary" className="w-full" onClick={handleSave}>
+          <Button variant="default" className="w-full" onClick={handleSave}>
             {t({en: 'Save SSO Settings', ar: 'حفظ إعدادات SSO'})}
           </Button>
         </Card>

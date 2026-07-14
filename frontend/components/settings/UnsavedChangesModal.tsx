@@ -1,7 +1,7 @@
 'use client';
 
 import { createPortal } from 'react-dom';
-import { WarningIcon } from '../ui/Icons';
+import { AlertTriangle } from 'lucide-react';
 
 interface UnsavedChangesModalProps {
   isOpen: boolean;
@@ -23,7 +23,7 @@ export function UnsavedChangesModal({ isOpen, onConfirm, onCancel }: UnsavedChan
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-3 mb-4">
-          <WarningIcon className="w-6 h-6 text-amber-500 shrink-0" />
+          <AlertTriangle className="w-6 h-6 text-amber-500 shrink-0" />
           <h3 className="text-lg font-bold text-slate-900 dark:text-white">
             Unsaved Changes
           </h3>

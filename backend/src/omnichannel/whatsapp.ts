@@ -1,36 +1,36 @@
-/**
- * WhatsApp Integration Gateway (Twilio endpoint)
- */
 export async function handleWhatsAppIncoming(
-  request: Request,
-  env: any,
-  sql: any
+  request: Request
 ): Promise<Response> {
+  const xmlHeaders: Record<string, string> = { 'Content-Type': 'application/xml' };
+
   try {
+    const contentType = request.headers.get('content-type') || '';
+    if (!contentType.includes('application/x-www-form-urlencoded')) {
+      return new Response(
+        '<Response><Message>Invalid content type</Message></Response>',
+        { status: 400, headers: xmlHeaders }
+      );
+    }
+
     const formData = await request.formData();
     const from = formData.get('From')?.toString() || '';
     const body = formData.get('Body')?.toString() || '';
 
     console.log(`[WhatsApp Incoming] Message from ${from}: "${body}"`);
 
-    // Fetch answer from chatbot RAG (simulated)
     const replyMessage = `Hello from SAQYN. You asked: "${body}". We are processing your request.`;
 
-    // Dispatch reply using Twilio API (XML format)
-    const xmlResponse = `
-      <Response>
-        <Message>${replyMessage}</Message>
-      </Response>
-    `;
+    const xmlResponse = `<Response><Message>${replyMessage}</Message></Response>`;
 
     return new Response(xmlResponse, {
       status: 200,
-      headers: { 'Content-Type': 'application/xml' }
+      headers: xmlHeaders,
     });
-  } catch (err: any) {
-    return new Response(`<Response><Message>Error: ${err.message}</Message></Response>`, {
-      status: 500,
-      headers: { 'Content-Type': 'application/xml' }
-    });
+  } catch (err) {
+    console.error('[WhatsApp] Error processing incoming message:', err);
+    return new Response(
+      '<Response><Message>An error occurred processing your message</Message></Response>',
+      { status: 500, headers: xmlHeaders }
+    );
   }
 }

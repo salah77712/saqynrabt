@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { UserButton } from '@clerk/nextjs';
 import { useLocale } from '../../app/providers';
 import { useEntitlements } from '../../app/providers';
-import { HomeIcon, PhoneIcon, ChatIcon, DocumentIcon, TeamIcon, SettingsIcon, ArrowRightIcon, ArrowLeftIcon } from '../ui/Icons';
+import { Home, Phone, MessageSquare, FileText, Users, Settings, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface DashboardSidebarProps {
   isCollapsed: boolean;
@@ -105,7 +105,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
           className="h-8 w-8 rounded-lg border border-gray-200 flex items-center justify-center text-slate-400 hover:text-[#141F33] hover:bg-slate-50 transition-colors"
           title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >
-          {isCollapsed ? <ArrowRightIcon className="w-4 h-4" /> : <ArrowLeftIcon className="w-4 h-4" />}
+          {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
         </button>
       </div>
 

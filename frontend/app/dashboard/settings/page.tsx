@@ -3,10 +3,9 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocale } from '../../providers';
 import { SettingsTabs } from '../../../components/dashboard/SettingsTabs';
-import { Card } from '../../../components/ui/Card';
-import { Button } from '../../../components/ui/Button';
+import { Card } from '@/components/shadcn/card';
+import { Button } from '@/components/shadcn/button';
 import { Badge } from '../../../components/ui/Badge';
-import { Modal } from '../../../components/ui/Modal';
 import { ProgressBar } from '../../../components/ui/ProgressBar';
 import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry } from '../../../components/ui/EmptyState';
@@ -228,7 +227,7 @@ export default function SettingsDashboardPage() {
                 {t('Download employee RAG chatbot logs and question histories in .csv format.', 'تنزيل جميع سجلات المساعد الذكي وتاريخ الأسئلة بصيغة .csv للتدقيق.')}
               </p>
             </div>
-            <Button variant="primary" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs">
+            <Button variant="default" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs">
               {t('Export Logs', 'تصدير السجلات')}
             </Button>
           </Card>
@@ -241,7 +240,7 @@ export default function SettingsDashboardPage() {
           <p className="text-[10px] md:text-xs text-slate-500 leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
           </p>
-          <Button variant="primary" className="min-h-[44px] text-xs w-full md:w-auto">
+          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto">
             {t('Manage Subscription', 'إدارة الاشتراك')}
           </Button>
         </Card>

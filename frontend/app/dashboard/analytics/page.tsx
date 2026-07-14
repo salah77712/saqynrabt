@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import { useLocale } from '../../providers';
-import { Card } from '../../../components/ui/Card';
+import { Card } from '@/components/shadcn/card';
 import { Badge } from '../../../components/ui/Badge';
-import { TrendingUpIcon } from '../../../components/ui/Icons';
+import { TrendingUp } from 'lucide-react';
 
 interface UsageStats {
   mrr: number;
@@ -84,12 +84,12 @@ export default function AnalyticsPage() {
         <Card>
           <p className="text-[10px] uppercase font-bold text-slate-400">{t({en: 'Monthly Recurring Revenue', ar: 'الإيرادات الشهرية المتكررة'})}</p>
           <p className="text-3xl font-black text-[#141F33] dark:text-white mt-1">QAR {formatNumber(s.mrr)}</p>
-          <p className="text-xs text-emerald-500 font-bold mt-2"><TrendingUpIcon className="w-3.5 h-3.5 inline text-emerald-500" /> {s.mrr_growth}% {t({en: 'from last month', ar: 'عن الشهر الماضي'})}</p>
+          <p className="text-xs text-emerald-500 font-bold mt-2"><TrendingUp className="w-3.5 h-3.5 inline text-emerald-500" /> {s.mrr_growth}% {t({en: 'from last month', ar: 'عن الشهر الماضي'})}</p>
         </Card>
         <Card>
           <p className="text-[10px] uppercase font-bold text-slate-400">{t({en: 'Annual Run Rate', ar: 'معدل التشغيل السنوي'})}</p>
           <p className="text-3xl font-black text-[#141F33] dark:text-white mt-1">QAR {formatArr(s.arr)}</p>
-          <p className="text-xs text-emerald-500 font-bold mt-2"><TrendingUpIcon className="w-3.5 h-3.5 inline text-emerald-500" /> {s.arr_growth}% {t({en: 'YoY growth', ar: 'نمو سنوي'})}</p>
+          <p className="text-xs text-emerald-500 font-bold mt-2"><TrendingUp className="w-3.5 h-3.5 inline text-emerald-500" /> {s.arr_growth}% {t({en: 'YoY growth', ar: 'نمو سنوي'})}</p>
         </Card>
         <Card>
           <p className="text-[10px] uppercase font-bold text-slate-400">{t({en: 'Active Companies', ar: 'الشركات النشطة'})}</p>

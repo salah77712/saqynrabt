@@ -4,14 +4,14 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '../app/providers';
-import { HomeIcon, PhoneIcon, ChatIcon, TeamIcon, SettingsIcon, BoltIcon } from './ui/Icons';
+import { Home, Phone, MessageSquare, Users, Settings, Zap } from 'lucide-react';
 
 const navItems = [
-  { name: { en: 'Home', ar: 'الرئيسية' }, path: '/dashboard', icon: <HomeIcon className="w-5 h-5" /> },
-  { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <PhoneIcon className="w-5 h-5" /> },
-  { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
-  { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <TeamIcon className="w-5 h-5" /> },
-  { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <SettingsIcon className="w-5 h-5" /> },
+  { name: { en: 'Home', ar: 'الرئيسية' }, path: '/dashboard', icon: <Home className="w-5 h-5" /> },
+  { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <Phone className="w-5 h-5" /> },
+  { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+  { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" /> },
+  { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
 ];
 
 interface MobileBottomNavProps {
@@ -25,8 +25,8 @@ export function MobileBottomNav({ userRole = 'employee' }: MobileBottomNavProps)
 
   const filteredNavItems = userRole === 'employee'
     ? [
-        { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <ChatIcon className="w-5 h-5" /> },
-        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <BoltIcon className="w-5 h-5" /> },
+        { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <Zap className="w-5 h-5" /> },
       ]
     : navItems;
 

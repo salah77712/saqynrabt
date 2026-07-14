@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card } from './ui/Card';
-import { Button } from './ui/Button';
-import { XIcon, StarIcon } from './ui/Icons';
+import { Card } from '@/components/shadcn/card';
+import { Button } from '@/components/shadcn/button';
+import { X, Star } from 'lucide-react';
 
 export function FeedbackWidget() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,7 @@ export function FeedbackWidget() {
           <div className="flex justify-between items-center mb-4">
             <h4 className="font-bold text-navy dark:text-white text-sm">Rate Your Experience</h4>
             <button onClick={() => setIsOpen(false)} className="text-slate-400 hover:text-slate-600">
-              <XIcon className="w-4 h-4" />
+              <X className="w-4 h-4" />
             </button>
           </div>
 
@@ -53,7 +53,7 @@ export function FeedbackWidget() {
                       rating && rating >= star ? 'text-amber-500' : 'text-slate-200'
                     }`}
                   >
-                    <StarIcon className="w-5 h-5" />
+                    <Star className="w-5 h-5" />
                   </button>
                 ))}
               </div>
@@ -64,7 +64,7 @@ export function FeedbackWidget() {
                 className="w-full text-xs p-2.5 border border-gray-200 rounded-xl focus:ring-1 focus:ring-navy focus:outline-none dark:bg-slate-800 dark:border-slate-700"
                 rows={3}
               />
-              <Button variant="primary" className="w-full" onClick={handleSubmit} disabled={!rating}>
+              <Button variant="default" className="w-full" onClick={handleSubmit} disabled={!rating}>
                 Submit Review
               </Button>
             </div>

@@ -4,25 +4,25 @@ import * as React from 'react';
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { BuildingIcon, HealthcareIcon, WrenchIcon, CarIcon, SparklesIcon, AmbulanceIcon, DollarIcon, BellIcon, FlagIcon, ConstructionIcon, LawIcon, BarChartIcon, ShoppingBagIcon } from '../../components/ui/Icons';
+import { Building2, HeartPulse, Wrench, Car, Sparkles, Ambulance, DollarSign, Bell, Flag, Construction, Scale, BarChart3, ShoppingBag } from 'lucide-react';
 
 const industryIcons: Record<string, React.ReactNode> = {
-  hospitality: <BuildingIcon className="w-8 h-8 text-primary" />,
-  healthcare: <HealthcareIcon className="w-8 h-8 text-primary" />,
-  homeServices: <WrenchIcon className="w-8 h-8 text-primary" />,
-  realEstate: <BuildingIcon className="w-8 h-8 text-primary" />,
-  automotive: <CarIcon className="w-8 h-8 text-primary" />,
-  food: <SparklesIcon className="w-8 h-8 text-primary" />,
-  towing: <AmbulanceIcon className="w-8 h-8 text-primary" />,
-  veterinary: <SparklesIcon className="w-8 h-8 text-primary" />,
-  plumbing: <DollarIcon className="w-8 h-8 text-primary" />,
-  boutique: <BellIcon className="w-8 h-8 text-primary" />,
-  catering: <SparklesIcon className="w-8 h-8 text-primary" />,
-  dealerships: <FlagIcon className="w-8 h-8 text-primary" />,
-  construction: <ConstructionIcon className="w-8 h-8 text-primary" />,
-  law: <LawIcon className="w-8 h-8 text-primary" />,
-  accounting: <BarChartIcon className="w-8 h-8 text-primary" />,
-  retail: <ShoppingBagIcon className="w-8 h-8 text-primary" />,
+  hospitality: <Building2 className="w-8 h-8 text-primary" />,
+  healthcare: <HeartPulse className="w-8 h-8 text-primary" />,
+  homeServices: <Wrench className="w-8 h-8 text-primary" />,
+  realEstate: <Building2 className="w-8 h-8 text-primary" />,
+  automotive: <Car className="w-8 h-8 text-primary" />,
+  food: <Sparkles className="w-8 h-8 text-primary" />,
+  towing: <Ambulance className="w-8 h-8 text-primary" />,
+  veterinary: <Sparkles className="w-8 h-8 text-primary" />,
+  plumbing: <DollarSign className="w-8 h-8 text-primary" />,
+  boutique: <Bell className="w-8 h-8 text-primary" />,
+  catering: <Sparkles className="w-8 h-8 text-primary" />,
+  dealerships: <Flag className="w-8 h-8 text-primary" />,
+  construction: <Construction className="w-8 h-8 text-primary" />,
+  law: <Scale className="w-8 h-8 text-primary" />,
+  accounting: <BarChart3 className="w-8 h-8 text-primary" />,
+  retail: <ShoppingBag className="w-8 h-8 text-primary" />,
 };
 
 const industries = {
@@ -92,7 +92,7 @@ export default function IndustriesPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {list.map((ind) => (
               <div key={ind.title} className="bg-white border border-slate-200 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
-                <span className="text-3xl mb-3 block">{industryIcons[ind.icon] || <BuildingIcon className="w-8 h-8 text-primary" />}</span>
+                <span className="text-3xl mb-3 block">{industryIcons[ind.icon] || <Building2 className="w-8 h-8 text-primary" />}</span>
                 <h3 className="text-lg font-bold text-primary mb-2">{ind.title}</h3>
                 <p className="text-sm text-slate-500 leading-relaxed">{ind.desc}</p>
               </div>

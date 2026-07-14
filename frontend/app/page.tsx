@@ -7,7 +7,7 @@ import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import Link from 'next/link';
-import { SparklesIcon, BoltIcon, PhoneIcon, ChatIcon, MailIcon, CheckIcon } from '../components/ui/Icons';
+import { Sparkles, Bolt, Phone, MessageSquare, Mail, Check } from 'lucide-react';
 import { RainbowButton } from '../components/shadcn/rainbow-button';
 
 const industries = [
@@ -123,7 +123,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                <SparklesIcon className="w-5 h-5 text-[#3B5B9B]" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
+                <Sparkles className="w-5 h-5 text-[#3B5B9B]" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
               </button>
               <button
                 type="button"
@@ -134,7 +134,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                <BoltIcon className="w-5 h-5 text-[#10B981]" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
+                <Bolt className="w-5 h-5 text-[#10B981]" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
               </button>
             </div>
 
@@ -172,7 +172,7 @@ export default function MarketingPage() {
           <div className="lg:w-1/2 w-full animate-slideUp" style={{ animationDelay: '0.3s' }}>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-[#3B5B9B]/10 to-[#10B981]/10 rounded-3xl blur-2xl opacity-70" />
-              <div className="relative bg-white rounded-2xl border border-gray-200 shadow-xl p-5 overflow-hidden">
+              <div className="relative bg-white rounded-2xl border border-gray-200 shadow-xl p-5 overflow-hidden animate-float">
                 <div className="flex items-center justify-between pb-3 border-b border-gray-100">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-red-400" />
@@ -197,7 +197,7 @@ export default function MarketingPage() {
                       <div key={i} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-xl">
                         <div className="flex items-center gap-2 min-w-0">
                           <div className="w-7 h-7 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
-                            {i === 0 ? <PhoneIcon className="w-4 h-4 text-[#3B5B9B]" aria-hidden="true" /> : i === 1 ? <ChatIcon className="w-4 h-4 text-[#10B981]" aria-hidden="true" /> : <MailIcon className="w-4 h-4 text-[#718096]" aria-hidden="true" />}
+                            {i === 0 ? <Phone className="w-4 h-4 text-[#3B5B9B]" aria-hidden="true" /> : i === 1 ? <MessageSquare className="w-4 h-4 text-[#10B981]" aria-hidden="true" /> : <Mail className="w-4 h-4 text-[#718096]" aria-hidden="true" />}
                           </div>
                           <p className="text-xs font-semibold text-slate-700 truncate">{item.label}</p>
                         </div>
@@ -236,7 +236,7 @@ export default function MarketingPage() {
       </section>
 
       {/* ── Industry Switcher & Social Proof ──────────────── */}
-      <section ref={industryRef} id="industries" className={`bg-white border-y border-gray-100 py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
+      <section ref={industryRef} id="industries" className={`bg-gradient-to-b from-[#F8F9FB] via-white to-[#F8F9FB] py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
           
           <p className="text-xs font-extrabold tracking-widest text-[#718096] uppercase mb-8 text-center animate-fadeIn">
@@ -350,7 +350,7 @@ export default function MarketingPage() {
               >
                 <div className="flex gap-1 mb-5">
                   {[...Array(5)].map((_, s) => (
-                    <svg key={s} className="w-4 h-4 text-[#10B981]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                    <svg key={s} className="w-4 h-4 text-[#C9A84C]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
@@ -384,7 +384,7 @@ export default function MarketingPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#3B5B9B]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-[#141F33] rounded-xl flex items-center justify-center mb-5">
-                  <SparklesIcon className="w-6 h-6 text-white" aria-hidden="true" />
+                  <Sparkles className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
@@ -400,7 +400,7 @@ export default function MarketingPage() {
                     { en: 'Multi-language (Arabic & English)', ar: 'متعدد اللغات (العربية والإنجليزية)' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                      <CheckIcon className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
+                      <Check className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
                   ))}
@@ -419,7 +419,7 @@ export default function MarketingPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-5">
-                  <BoltIcon className="w-6 h-6 text-white" aria-hidden="true" />
+                  <Bolt className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Internal Chatbot', ar: 'المساعد الذكي الداخلي' })}
@@ -435,7 +435,7 @@ export default function MarketingPage() {
                     { en: 'Knowledge gap tracking', ar: 'تتبع الفجوات المعرفية' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                      <CheckIcon className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
+                      <Check className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
                   ))}

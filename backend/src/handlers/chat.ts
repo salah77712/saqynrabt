@@ -2,6 +2,8 @@ import { neon } from '@neondatabase/serverless';
 import type { RequestWithContext, Env } from '../utils';
 import { corsHeaders, initRedis, checkRateLimit, checkUsageLimit, logAudit, generateEmbedding, chunkText } from '../utils';
 import { runInputGuardrails } from '../guardrails';
+import { rerankWithCrossEncoder } from '../rerank';
+import type { ChunkResult } from '../rerank';
 
 export async function handleChat(request: RequestWithContext): Promise<Response> {
   const headers = corsHeaders(request, request.env);
@@ -46,7 +48,7 @@ export async function handleChat(request: RequestWithContext): Promise<Response>
       jailbreak_detection_enabled: true,
       toxicity_filter_enabled: true,
     };
-    const guardrailResult = await runInputGuardrails(message, guardrailConfig);
+    const guardrailResult = await runInputGuardrails(message, guardrailConfig, env.OPENAI_API_KEY);
     if (!guardrailResult.passed) {
       await logAudit(env, company_id!, userId, 'guardrail_blocked', { reason: guardrailResult.reason, message_length: message.length }, ip, ua);
       return new Response(JSON.stringify({ error: 'Message blocked by security filters.', reason: guardrailResult.reason }), { status: 403, headers });
@@ -61,11 +63,23 @@ export async function handleChat(request: RequestWithContext): Promise<Response>
         const pineconeRes = await fetch(`https://${pineconeHost}/query`, {
           method: 'POST',
           headers: { 'Api-Key': env.PINECONE_API_KEY, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ vector: queryEmb, topK: 3, includeMetadata: true }),
+          body: JSON.stringify({ vector: queryEmb, topK: 10, includeMetadata: true }),
         });
         if (pineconeRes.ok) {
           const pineconeData: any = await pineconeRes.json();
-          retrievedContext = (pineconeData.matches || []).filter((m: any) => m.score > 0.7).map((m: any) => m.metadata?.text || '').join('\n\n');
+          const matches: ChunkResult[] = (pineconeData.matches || [])
+            .filter((m: any) => m.score > 0.7)
+            .map((m: any) => ({
+              id: m.id,
+              document_id: m.metadata?.docId || '',
+              content: m.metadata?.text || '',
+              metadata: m.metadata || {},
+              score: m.score,
+            }));
+          if (matches.length > 0) {
+            const best = await rerankWithCrossEncoder(env, safeMessage, matches);
+            retrievedContext = best?.content || matches[0].content;
+          }
         }
       } catch { /* context retrieval failure is non-fatal */ }
     }
