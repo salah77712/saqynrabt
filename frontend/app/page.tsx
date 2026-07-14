@@ -381,10 +381,10 @@ export default function MarketingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Automation Card */}
             <div className="relative bg-gradient-to-br from-[#F8F9FB] to-white border border-gray-200 rounded-3xl p-8 shadow-sm card-hover group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#3B5B9B]/5 rounded-bl-[100px] rounded-tr-3xl" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-royal/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
-                <div className="w-12 h-12 bg-[#141F33] rounded-xl flex items-center justify-center mb-5">
-                  <Zap className="w-6 h-6 text-white" aria-hidden="true" />
+                <div className="w-12 h-12 bg-royal/10 rounded-xl flex items-center justify-center mb-5">
+                  <Zap className="w-6 h-6 text-royal" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
@@ -416,10 +416,10 @@ export default function MarketingPage() {
 
             {/* Chatbot Card */}
             <div className="relative bg-gradient-to-br from-[#F8F9FB] to-white border border-gray-200 rounded-3xl p-8 shadow-sm card-hover group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-[100px] rounded-tr-3xl" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-royal/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
-                <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-5">
-                  <Sparkles className="w-6 h-6 text-white" aria-hidden="true" />
+                <div className="w-12 h-12 bg-royal/10 rounded-xl flex items-center justify-center mb-5">
+                  <Sparkles className="w-6 h-6 text-royal" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Internal Chatbot', ar: 'المساعد الذكي الداخلي' })}
