@@ -41,15 +41,15 @@ export default function AdminBillingPage() {
       {/* Page Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Billing & Invoice Ledger', ar: 'دفتر الفواتير والحسابات' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Track tenant invoices, monthly subscription charges, and manual payments.', ar: 'متابعة فواتير الشركات، الاشتراكات الشهرية، والمدفوعات اليدوية.' })}</p>
+        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Track tenant invoices, monthly subscription charges, and manual payments.', ar: 'متابعة فواتير الشركات، الاشتراكات الشهرية، والمدفوعات اليدوية.' })}</p>
       </div>
 
       {/* Invoices List */}
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
-              <tr className="bg-slate-50 border-b border-gray-200 text-xs font-extrabold text-[#718096] uppercase tracking-wider">
+              <tr className="bg-[#F8F9FB] border-b border-[#141F33]/10 text-xs font-extrabold text-[#141F33] uppercase tracking-wider">
                 <th className="px-6 py-4">{t({ en: 'Company', ar: 'الشركة' })}</th>
                 <th className="px-6 py-4">{t({ en: 'Plan', ar: 'الباقة' })}</th>
                 <th className="px-6 py-4">{t({ en: 'Monthly Fee', ar: 'الرسوم الشهرية' })}</th>
@@ -60,14 +60,14 @@ export default function AdminBillingPage() {
                 <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'الإجراءات' })}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 text-xs font-semibold text-slate-700">
-              {invoices.map((inv) => (
-                <tr key={inv.id} className="hover:bg-slate-50/50 transition-colors">
+            <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-[#141F33]">
+{invoices.map((inv) => (
+  <tr key={inv.id} className="hover:bg-[#141F33]/5 transition-colors">
                   <td className="px-6 py-4 font-bold text-[#141F33]">{inv.company}</td>
                   <td className="px-6 py-4">{inv.plan}</td>
                   <td className="px-6 py-4 font-bold text-slate-900">{inv.monthlyFee} QAR</td>
                   <td className="px-6 py-4 text-slate-500">{inv.setupFee} QAR</td>
-                  <td className="px-6 py-4 font-black text-royal">{inv.totalPaid} QAR</td>
+                  <td className="px-6 py-4 font-black text-[#2A5CFF]">{inv.totalPaid} QAR</td>
                   <td className="px-6 py-4 text-slate-400 font-bold">{inv.lastInvoiceDate}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${
@@ -85,7 +85,7 @@ export default function AdminBillingPage() {
                         {t({ en: 'Mark as Paid', ar: 'تحديد كمدفوع' })}
                       </button>
                     ) : (
-                      <Check className="w-3 h-3 text-slate-400" />
+                      <Check className="w-3 h-3 text-[#141F33]" />
                     )}
                   </td>
                 </tr>

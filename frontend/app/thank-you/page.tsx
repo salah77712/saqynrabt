@@ -12,7 +12,7 @@ export default function ThankYouPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
-    <div className="bg-surface text-navy dark:text-white min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-navy dark:text-[#F8F9FB] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <main className="flex-1 flex flex-col items-center justify-center py-24 px-6 text-center max-w-2xl mx-auto animate-fadeIn">

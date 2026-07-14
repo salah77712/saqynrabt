@@ -61,7 +61,7 @@ export default function AdminCompaniesPage() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Client Workspace Directory', ar: 'دليل مساحات عمل العملاء' })}</h1>
-          <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Monitor client limits, suspend services, and manage tenants.', ar: 'مراقبة حدود العملاء، تعليق الخدمات، وإدارة الحسابات.' })}</p>
+          <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Monitor client limits, suspend services, and manage tenants.', ar: 'مراقبة حدود العملاء، تعليق الخدمات، وإدارة الحسابات.' })}</p>
         </div>
 
         <div>
@@ -73,17 +73,17 @@ export default function AdminCompaniesPage() {
               setSearch(e.target.value);
               setPage(1);
             }}
-            className="min-h-[44px] bg-white border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] w-64 shadow-sm"
+            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] w-64 shadow-sm"
           />
         </div>
       </div>
 
       {/* Companies Table */}
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
-              <tr className="bg-slate-50 border-b border-gray-200 text-xs font-extrabold text-[#718096] uppercase tracking-wider">
+              <tr className="bg-[#F8F9FB] border-b border-[#141F33]/10 text-xs font-extrabold text-[#141F33] uppercase tracking-wider">
                 <th className="px-6 py-4">{t({ en: 'Company Name', ar: 'اسم الشركة' })}</th>
                 <th className="px-6 py-4">{t({ en: 'Plan Tier', ar: 'باقة الاشتراك' })}</th>
                 <th className="px-6 py-4 text-center">{t({ en: 'Employees', ar: 'الموظفون' })}</th>
@@ -92,15 +92,15 @@ export default function AdminCompaniesPage() {
                 <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'الإجراءات' })}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 text-xs font-semibold text-slate-700">
+            <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-[#141F33]">
               {paginated.map((company) => (
-                <tr key={company.id} className="hover:bg-slate-50/50 transition-colors">
+                <tr key={company.id} className="hover:bg-[#141F33]/5 transition-colors">
                   <td className="px-6 py-4 font-bold text-[#141F33]">{company.name}</td>
                   <td className="px-6 py-4">{company.plan}</td>
                   <td className="px-6 py-4 text-center">{company.employees} / {company.maxEmployees}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${
-                      company.status === 'active' ? 'bg-emerald-100 text-emerald-800' : 'bg-red-100 text-red-800'
+                      company.status === 'active' ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#141F33]'
                     }`}>
                       {company.status === 'active' ? t({ en: 'Active', ar: 'نشط' }) : t({ en: 'Suspended', ar: 'معلق' })}
                     </span>
@@ -110,7 +110,7 @@ export default function AdminCompaniesPage() {
                     <div className="flex justify-center gap-2">
                       <button
                         onClick={() => addToast(`Viewing detailed logs for ${company.name}`, 'info')}
-                        className="bg-gray-50 border border-gray-200 text-slate-600 hover:text-[#141F33] hover:bg-slate-100 font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px]"
+                        className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5 font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px]"
                       >
                         {t({ en: 'View', ar: 'عرض' })}
                       </button>
@@ -118,7 +118,7 @@ export default function AdminCompaniesPage() {
                         onClick={() => handleSuspend(company.id)}
                         className={`font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px] transition-all ${
                           company.status === 'active' 
-                            ? 'bg-slate-250 text-navy hover:bg-slate-300' 
+                            ? 'bg-[#F8F9FB] text-navy hover:bg-[#141F33]/5' 
                             : 'btn-primary text-white'
                         }`}
                       >
@@ -126,7 +126,7 @@ export default function AdminCompaniesPage() {
                       </button>
                       <button
                         onClick={() => handleDelete(company.id)}
-                        className="bg-slate-100 text-red-650 hover:bg-red-50 border border-red-200 font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px] transition-all"
+                        className="bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 hover:bg-[#141F33]/5 font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px] transition-all"
                       >
                         {t({ en: 'Delete', ar: 'حذف' })}
                       </button>
@@ -141,11 +141,11 @@ export default function AdminCompaniesPage() {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-between items-center bg-white border border-gray-200 rounded-xl p-4 shadow-sm text-xs font-bold text-[#718096]">
+        <div className="flex justify-between items-center bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm text-xs font-bold text-[#141F33]">
           <button
             onClick={() => setPage(prev => Math.max(prev - 1, 1))}
             disabled={page === 1}
-            className="bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-4 py-2 min-h-[36px] transition-colors disabled:opacity-40"
+            className="bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 rounded-lg px-4 py-2 min-h-[36px] transition-colors disabled:opacity-40"
           >
             {t({ en: 'Previous', ar: 'السابق' })}
           </button>
@@ -155,7 +155,7 @@ export default function AdminCompaniesPage() {
           <button
             onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
             disabled={page === totalPages}
-            className="bg-gray-50 hover:bg-gray-100 border border-gray-200 rounded-lg px-4 py-2 min-h-[36px] transition-colors disabled:opacity-40"
+            className="bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 rounded-lg px-4 py-2 min-h-[36px] transition-colors disabled:opacity-40"
           >
             {t({ en: 'Next', ar: 'التالي' })}
           </button>

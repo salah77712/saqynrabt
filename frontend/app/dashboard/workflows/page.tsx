@@ -42,7 +42,7 @@ export default function WorkflowsPage() {
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Workflow Builder', ar: 'لوحة أتمتة سير العمل'})}</h1>
-          <p className="text-xs text-slate-500 font-bold">{t({en: 'Design routing for calls, chats, and escalations.', ar: 'تصميم منطق التوجيه للهاتف والمحادثة والتصعيد.'})}</p>
+          <p className="text-xs text-[#141F33]">{t({en: 'Design routing for calls, chats, and escalations.', ar: 'تصميم منطق التوجيه للهاتف والمحادثة والتصعيد.'})}</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ قرار'})}</Button>

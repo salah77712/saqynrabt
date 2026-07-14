@@ -37,7 +37,7 @@ export default function HitlQueuePage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Review Queue', ar: 'طابور المراجعة البشرية HITL' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Check and override AI responses that need a human touch.', ar: 'مراجعة مخرجات المساعد الذكي منخفضة الثقة وتعديلها يدويًا.' })}</p>
+        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Check and override AI responses that need a human touch.', ar: 'مراجعة مخرجات المساعد الذكي منخفضة الثقة وتعديلها يدويًا.' })}</p>
       </div>
 
       {/* Queue list */}

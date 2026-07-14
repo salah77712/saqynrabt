@@ -31,12 +31,12 @@ export default function AdminIncidentsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Active System Incidents', ar: 'الحوادث والتقارير الفنية النشطة' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'SAQYN operations console. Track outages and runtime errors.', ar: 'شاشة العمليات لمتابعة الأعطال وتصحيح الأخطاء التشغيلية.' })}</p>
+        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'SAQYN operations console. Track outages and runtime errors.', ar: 'شاشة العمليات لمتابعة الأعطال وتصحيح الأخطاء التشغيلية.' })}</p>
       </div>
 
       {/* Incidents List */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-        <div className="divide-y divide-gray-100">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+        <div className="divide-y divide-[#141F33]/10">
           {incidents.map((inc) => (
             <div key={inc.id} className="py-4 flex justify-between items-center gap-4 first:pt-0 last:pb-0">
               <div>
@@ -44,7 +44,7 @@ export default function AdminIncidentsPage() {
                 <div className="flex gap-2 items-center mt-1">
                   <span className="text-[10px] text-slate-400 font-bold">Severity: {inc.severity}</span>
                   <span className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
-                    inc.status === 'Resolved' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800'
+                    inc.status === 'Resolved' ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#2A5CFF]'
                   }`}>
                     {inc.status}
                   </span>

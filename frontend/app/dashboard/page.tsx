@@ -24,8 +24,8 @@ export default function DashboardOverviewPage() {
     return (
       <div className="space-y-6 md:space-y-8 animate-fadeIn">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 dark:bg-slate-800 rounded-lg w-72 mb-2" />
-          <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded-lg w-96" />
+<div className="h-8 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-72 mb-2" />
+<div className="h-4 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-96" />
         </div>
         <SkeletonMetricGrid />
         <SkeletonCard />
@@ -71,16 +71,16 @@ export default function DashboardOverviewPage() {
     <div className="space-y-6 md:space-y-8 animate-fadeIn">
       <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-[#141F33] dark:text-white tracking-tight">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
             {t('Dashboard', 'لوحة التحكم')}
           </h1>
-          <p className="text-xs md:text-sm font-semibold text-[#718096] mt-1">
+          <p className="text-xs md:text-sm font-semibold text-[#141F33] mt-1">
             {t('Live data from your active services.', 'بيانات حية من خدماتك النشطة.')}
           </p>
         </div>
         {isTrial && (
-          <div className="flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-4 py-1.5 text-xs font-bold text-amber-700 self-start md:self-auto">
-            <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
+<div className="flex items-center gap-2 rounded-full border border-[#2A5CFF]/30 bg-[#F8F9FB] px-4 py-1.5 text-xs font-bold text-[#2A5CFF] self-start md:self-auto">
+<span className="h-2 w-2 rounded-full bg-[#2A5CFF] animate-pulse" />
             {t('Free Trial Mode', 'وضع التجربة المجانية')}
           </div>
         )}
@@ -89,19 +89,19 @@ export default function DashboardOverviewPage() {
       {isTrial && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Trial Balance & Status Card */}
-          <div className="lg:col-span-1 p-6 rounded-2xl bg-gradient-to-br from-[#141F33] to-[#1E2E4A] text-white shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+          <div className="lg:col-span-1 p-6 rounded-2xl bg-gradient-to-br from-[#141F33] to-[#141F33] text-white shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[220px]">
             <div className="absolute right-0 top-0 translate-x-1/4 -translate-y-1/4 w-32 h-32 bg-[#2A5CFF]/10 rounded-full blur-xl pointer-events-none" />
             <div>
               <div className="flex justify-between items-center mb-4">
-                <span className="text-[9px] font-black uppercase tracking-widest bg-amber-500/25 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-md">
+                <span className="text-[9px] font-black uppercase tracking-widest bg-[#2A5CFF]/25 text-[#2A5CFF] border border-[#2A5CFF]/30 px-2 py-0.5 rounded-md">
                   {t('Free Trial Active', 'النسخة التجريبية نشطة')}
                 </span>
-                <span className="text-[10px] font-bold text-slate-400">{t('Illusion Balance', 'رصيد وهمي')}</span>
+                <span className="text-[10px] font-bold text-[#141F33]">{t('Illusion Balance', 'رصيد وهمي')}</span>
               </div>
-              <h3 className="text-xs text-slate-300 font-bold uppercase tracking-wider">{t('Trial Credit', 'الرصيد التجريبي')}</h3>
-              <p className="text-4xl font-black mt-1.5 font-mono">${trialBalance} <span className="text-sm font-bold text-slate-400">USD</span></p>
+<h3 className="text-xs text-[#141F33] font-bold uppercase tracking-wider">{t('Trial Credit', 'الرصيد التجريبي')}</h3>
+<p className="text-4xl font-black mt-1.5 font-mono">${trialBalance} <span className="text-sm font-bold text-[#141F33]">USD</span></p>
             </div>
-            <div className="mt-4 pt-4 border-t border-white/10 space-y-1 text-slate-300 text-[10px] font-bold">
+            <div className="mt-4 pt-4 border-t border-[#141F33]/10 space-y-1 text-[#141F33] text-[10px] font-bold">
               <div className="flex justify-between">
                 <span>{t('Chat Messages:', 'رسائل المحادثة:')}</span>
                 <span>{usage?.questions_used ?? 0} / 15</span>
@@ -114,7 +114,7 @@ export default function DashboardOverviewPage() {
           </div>
 
           {/* Step-by-Step Trial Checklist Guide */}
-          <div className="lg:col-span-2 p-6 rounded-2xl bg-white border border-gray-200 shadow-sm space-y-4">
+          <div className="lg:col-span-2 p-6 rounded-2xl bg-[#F8F9FB] border border-[#141F33]/10 shadow-sm space-y-4">
             <div>
               <h3 className="text-sm font-black text-[#141F33] uppercase tracking-wide">{t('Trial Onboarding: Step-by-Step Guide', 'إرشاد التجربة: خطوة بخطوة')}</h3>
               <p className="text-[10px] text-[#718096] font-semibold mt-0.5">{t('Follow these 3 steps to configure and test your AI platform.', 'اتبع هذه الخطوات الـ 3 لتهيئة واختبار منصة الذكاء الاصطناعي الخاصة بك.')}</p>
@@ -128,10 +128,10 @@ export default function DashboardOverviewPage() {
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
-                    <h4 className={`text-xs font-bold ${step1Completed ? 'text-slate-400 line-through font-semibold' : 'text-[#141F33]'}`}>
+                    <h4 className={`text-xs font-bold ${step1Completed ? 'text-[#141F33] line-through font-semibold' : 'text-[#141F33]'}`}>
                       {t('Train Your Chatbot (Upload 1 Document)', 'تدريب روبوت المحادثة (تحميل مستند 1)')}
                     </h4>
-                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${step1Completed ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-amber-50 text-amber-600 border border-amber-100'}`}>
+                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${step1Completed ? 'bg-[#F8F9FB] text-[#2A5CFF] border border-[#2A5CFF]/10' : 'bg-[#F8F9FB] text-[#2A5CFF] border border-[#2A5CFF]/10'}`}>
                       {step1Completed ? t('Completed', 'مكتمل') : t('Action Required', 'مطلوب إجراء')}
                     </span>
                   </div>
@@ -153,10 +153,10 @@ export default function DashboardOverviewPage() {
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
-                    <h4 className={`text-xs font-bold ${step2Completed ? 'text-slate-400 line-through font-semibold' : 'text-[#141F33]'}`}>
+                    <h4 className={`text-xs font-bold ${step2Completed ? 'text-[#141F33] line-through font-semibold' : 'text-[#141F33]'}`}>
                       {t('Ask Chatbot Questions (15 Trial Messages)', 'اسأل روبوت المحادثة (15 رسالة تجريبية)')}
                     </h4>
-                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${step2Completed ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-amber-50 text-amber-600 border border-amber-100'}`}>
+                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${step2Completed ? 'bg-[#F8F9FB] text-[#2A5CFF] border border-[#2A5CFF]/10' : 'bg-[#F8F9FB] text-[#2A5CFF] border border-[#2A5CFF]/10'}`}>
                       {step2Completed ? t('Completed', 'مكتمل') : t('Action Required', 'مطلوب إجراء')}
                     </span>
                   </div>
@@ -178,10 +178,10 @@ export default function DashboardOverviewPage() {
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
-                    <h4 className={`text-xs font-bold ${step3Completed ? 'text-slate-400 line-through font-semibold' : 'text-[#141F33]'}`}>
+                    <h4 className={`text-xs font-bold ${step3Completed ? 'text-[#141F33] line-through font-semibold' : 'text-[#141F33]'}`}>
                       {t('Try Voice Calls (5 Trial Minutes)', 'تجربة المكالمات الصوتية (5 دقائق تجريبية)')}
                     </h4>
-                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${step3Completed ? 'bg-emerald-50 text-emerald-600 border border-emerald-100' : 'bg-amber-50 text-amber-600 border border-amber-100'}`}>
+                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${step3Completed ? 'bg-[#F8F9FB] text-[#2A5CFF] border border-[#2A5CFF]/10' : 'bg-[#F8F9FB] text-[#2A5CFF] border border-[#2A5CFF]/10'}`}>
                       {step3Completed ? t('Completed', 'مكتمل') : t('Action Required', 'مطلوب إجراء')}
                     </span>
                   </div>
@@ -204,7 +204,7 @@ export default function DashboardOverviewPage() {
       <OverviewMetrics metrics={metrics} />
 
       <div className="space-y-3">
-        <h3 className="text-[10px] md:text-xs font-black uppercase tracking-wider text-slate-400">
+        <h3 className="text-[10px] md:text-xs font-black uppercase tracking-wider text-[#141F33]">
           {t('Quick Actions', 'إجراءات سريعة')}
         </h3>
         <QuickActions actions={quickActions} />

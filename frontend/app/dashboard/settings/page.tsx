@@ -110,8 +110,8 @@ export default function SettingsDashboardPage() {
     return (
       <div className="space-y-6 md:space-y-8 animate-fadeIn max-w-4xl">
         <div className="animate-pulse">
-          <div className="h-8 bg-gray-200 dark:bg-slate-800 rounded-lg w-72 mb-2" />
-          <div className="h-4 bg-gray-200 dark:bg-slate-800 rounded-lg w-96" />
+          <div className="h-8 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-72 mb-2" />
+          <div className="h-4 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-96" />
         </div>
         <SkeletonCard />
         <SkeletonCard />
@@ -143,7 +143,7 @@ export default function SettingsDashboardPage() {
         <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-white tracking-tight">
           {t('Settings', 'حدود الاستخدام والإعدادات')}
         </h1>
-        <p className="text-[10px] md:text-xs text-slate-500 font-bold mt-0.5">
+        <p className="text-[10px] md:text-xs text-[#141F33] font-bold mt-0.5">
           {t('Billing, exports, and account preferences.', 'تكوين خيارات الفوترة، تصدير سجلات البيانات، وتعديل المعلمات.')}
         </p>
       </div>

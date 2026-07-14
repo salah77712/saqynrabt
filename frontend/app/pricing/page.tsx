@@ -34,7 +34,7 @@ export default function PricingPage() {
   const activeTiers = productTab === 'automation' ? AUTOMATION_TIERS : CHATBOT_TIERS;
 
   return (
-    <div className="bg-white min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-[#F8F9FB] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <section className="bg-gradient-to-b from-slate-50 to-white py-20 md:py-28">

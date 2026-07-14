@@ -285,7 +285,7 @@ export default function AutomationPage() {
             <button
               type="button"
               onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
-              className={`relative w-12 h-6 rounded-full transition-colors ${
+              className={`relative w-12 h-6 min-h-0 rounded-full transition-colors ${
                 currency === 'QAR' ? 'bg-[#141F33]' : 'bg-slate-300'
               }`}
             >

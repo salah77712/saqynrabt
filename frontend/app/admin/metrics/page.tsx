@@ -44,7 +44,7 @@ export default function AdminMetricsPage() {
           <p className="text-[10px] font-extrabold uppercase text-[#718096] tracking-wider">{t({ en: 'Requests / Sec', ar: 'الطلبات في الثانية' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.requestsPerSecond}</span>
-            <span className="text-[9px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-wider">{t({ en: 'Healthy', ar: 'سليم' })}</span>
+            <span className="text-[9px] font-extrabold text-[#2A5CFF] bg-[#F8F9FB] px-2 py-0.5 rounded-full uppercase tracking-wider">{t({ en: 'Healthy', ar: 'سليم' })}</span>
           </div>
         </div>
 
@@ -62,7 +62,7 @@ export default function AdminMetricsPage() {
           <p className="text-[10px] font-extrabold uppercase text-[#718096] tracking-wider">{t({ en: 'Active DB Pools', ar: 'اتصالات قاعدة البيانات النشطة' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.dbConnections}</span>
-            <span className="text-[9px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full uppercase tracking-wider">Neon Serverless</span>
+            <span className="text-[9px] font-extrabold text-[#2A5CFF] bg-[#F8F9FB] px-2 py-0.5 rounded-full uppercase tracking-wider">Neon Serverless</span>
           </div>
         </div>
 
@@ -71,7 +71,7 @@ export default function AdminMetricsPage() {
           <p className="text-[10px] font-extrabold uppercase text-[#718096] tracking-wider">{t({ en: 'Response Delay', ar: 'تأخر الاستجابة' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.responseTimeMs} ms</span>
-            <span className="text-[9px] font-extrabold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full uppercase tracking-wider">Avg Latency</span>
+            <span className="text-[9px] font-extrabold text-[#2A5CFF] bg-[#F8F9FB] px-2 py-0.5 rounded-full uppercase tracking-wider">Avg Latency</span>
           </div>
         </div>
 

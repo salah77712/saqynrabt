@@ -34,8 +34,8 @@ export default function AdminLayout({
   // Access Denied Fallback Layout
   if (!isAdmin) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F9FB] px-6 text-center">
-        <Ban className="w-10 h-10 text-red-400 mb-4" />
+<div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F9FB] px-6 text-center">
+  <Ban className="w-10 h-10 text-[#141F33] mb-4" />
         <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h1>
         <p className="text-xs font-semibold text-[#718096] max-w-sm mt-3 leading-relaxed">
           {t({
@@ -69,10 +69,10 @@ export default function AdminLayout({
   ];
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] text-[#1A202C] flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-[#F8F9FB] text-[#141F33] flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       
       {/* Mobile Top Header */}
-      <header className="flex h-16 w-full items-center justify-between border-b border-gray-200 bg-white px-6 md:hidden sticky top-0 z-40 shadow-sm">
+      <header className="flex h-16 w-full items-center justify-between border-b border-[#141F33]/10 bg-[#F8F9FB] px-6 md:hidden sticky top-0 z-40 shadow-sm">
         <Link href="/" className="flex items-baseline gap-2">
           <span className="text-[#141F33] font-extrabold text-lg tracking-tight">SAQYN ADMIN</span>
         </Link>
@@ -88,7 +88,7 @@ export default function AdminLayout({
       <div className="flex flex-1 relative h-screen overflow-hidden">
         
         {/* Sidebar */}
-        <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col justify-between transition-transform duration-300 md:translate-x-0 md:static md:h-screen ${
+        <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-[#F8F9FB] border-r border-[#141F33]/10 flex flex-col justify-between transition-transform duration-300 md:translate-x-0 md:static md:h-screen ${
           isSidebarOpen
             ? locale === 'ar'
               ? 'translate-x-0 right-0 left-auto'
@@ -99,7 +99,7 @@ export default function AdminLayout({
         }`}>
           
           <div className="flex flex-col">
-            <div className="flex items-center justify-between px-6 py-6 border-b border-gray-100 min-h-[80px]">
+            <div className="flex items-center justify-between px-6 py-6 border-b border-[#141F33]/10 min-h-[80px]">
               <Link href="/" className="flex flex-col items-start gap-0.5">
                 <span className="text-[#141F33] font-extrabold text-xl tracking-tight">SAQYN ADMIN</span>
                 <span className="text-[9px] uppercase tracking-widest text-[#718096] font-bold">{t({ en: 'Staff Operations', ar: 'عمليات الموظفين' })}</span>
@@ -117,7 +117,7 @@ export default function AdminLayout({
                     className={`flex items-center gap-3.5 px-4 rounded-xl text-sm font-bold transition-all ${
                       isActive
                         ? 'bg-[#141F33]/5 border-l-4 border-[#141F33] text-[#141F33]'
-                        : 'text-[#718096] hover:bg-slate-50 hover:text-[#141F33]'
+                        : 'text-[#718096] hover:bg-[#141F33]/5 hover:text-[#141F33]'
                     }`}
                     style={{ minHeight: '44px' }}
                   >
@@ -130,13 +130,13 @@ export default function AdminLayout({
           </div>
 
           {/* Profile bottom */}
-          <div className="p-4 border-t border-gray-100 bg-white flex items-center gap-3">
+          <div className="p-4 border-t border-[#141F33]/10 bg-[#F8F9FB] flex items-center gap-3">
             <UserButton afterSignOutUrl="/" />
             <div className="flex-1 min-w-0">
               <p className="text-xs font-extrabold text-[#141F33] truncate">{user?.fullName || 'Staff Administrator'}</p>
-              <span className="inline-block mt-1 text-[8px] font-extrabold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                SAQYN ADMIN
-              </span>
+<span className="inline-block mt-1 text-[8px] font-extrabold uppercase tracking-widest text-[#2A5CFF] bg-[#F8F9FB] px-2 py-0.5 rounded-full border border-[#141F33]/10">
+  SAQYN ADMIN
+</span>
             </div>
           </div>
 
@@ -152,7 +152,7 @@ export default function AdminLayout({
 
         {/* Main Content */}
         <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
-          <header className="border-b border-gray-200 bg-white px-8 py-5 sticky top-0 z-30 shadow-sm shrink-0 flex items-center justify-between">
+          <header className="border-b border-[#141F33]/10 bg-[#F8F9FB] px-8 py-5 sticky top-0 z-30 shadow-sm shrink-0 flex items-center justify-between">
             <div>
               <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#718096]">{t({ en: 'Internal Control Centre', ar: 'مركز التحكم الداخلي' })}</p>
               <h2 className="text-2xl font-extrabold text-[#141F33] tracking-tight mt-0.5">{t({ en: 'Staff Console', ar: 'لوحة تحكم الموظفين' })}</h2>

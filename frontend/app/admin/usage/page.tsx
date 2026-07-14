@@ -8,10 +8,10 @@ export default function AdminUsagePage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const cards = [
-    { title: t({ en: 'Total Active Tenants', ar: 'إجمالي الشركات النشطة' }), value: '184', change: '+12%', color: 'text-blue-600 bg-blue-50' },
-    { title: t({ en: 'Daily Chat Requests', ar: 'طلبات المحادثة اليومية' }), value: '8,402', change: '+18%', color: 'text-indigo-600 bg-indigo-50' },
-    { title: t({ en: 'Daily Voice Minutes', ar: 'دقائق الصوت اليومية' }), value: '3,892', change: '+5%', color: 'text-violet-600 bg-violet-50' },
-    { title: t({ en: 'Average Text API Loads', ar: 'متوسط استهلاك النصوص' }), value: '420', change: '-2%', color: 'text-emerald-600 bg-emerald-50' },
+    { title: t({ en: 'Total Active Tenants', ar: 'إجمالي الشركات النشطة' }), value: '184', change: '+12%', color: 'text-[#2A5CFF] bg-[#F8F9FB]' },
+    { title: t({ en: 'Daily Chat Requests', ar: 'طلبات المحادثة اليومية' }), value: '8,402', change: '+18%', color: 'text-[#2A5CFF] bg-[#F8F9FB]' },
+    { title: t({ en: 'Daily Voice Minutes', ar: 'دقائق الصوت اليومية' }), value: '3,892', change: '+5%', color: 'text-[#2A5CFF] bg-[#F8F9FB]' },
+    { title: t({ en: 'Average Text API Loads', ar: 'متوسط استهلاك النصوص' }), value: '420', change: '-2%', color: 'text-[#2A5CFF] bg-[#F8F9FB]' },
   ];
 
   // Last 7 days usage data points (for SVG Chart)
@@ -31,18 +31,18 @@ export default function AdminUsagePage() {
       {/* Page Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Live Platform Usage & Telemetry', ar: 'استهلاك المنصة وقياس العمليات' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Track system API loads, active voice channels, and monthly trends.', ar: 'تتبع أحمال واجهة برمجة التطبيقات، قنوات الصوت، والاتجاهات الشهرية.' })}</p>
+        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Track system API loads, active voice channels, and monthly trends.', ar: 'تتبع أحمال واجهة برمجة التطبيقات، قنوات الصوت، والاتجاهات الشهرية.' })}</p>
       </div>
 
       {/* Grid Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card, idx) => (
-          <div key={idx} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-            <p className="text-[10px] font-extrabold uppercase text-[#718096] tracking-wider">{card.title}</p>
+          <div key={idx} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+            <p className="text-[10px] font-extrabold uppercase text-[#141F33] tracking-wider">{card.title}</p>
             <div className="flex items-baseline justify-between mt-3">
               <span className="text-2xl font-black text-[#141F33]">{card.value}</span>
               <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
-                card.change.startsWith('+') ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'
+                <code>card.change.startsWith('+') ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#141F33]'</code>
               }`}>
                 {card.change}
               </span>
@@ -52,20 +52,20 @@ export default function AdminUsagePage() {
       </div>
 
       {/* Premium SVG/CSS Line Chart */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-sm font-extrabold text-[#141F33]">{t({ en: '7-Day Platform Request Load', ar: 'أحمال طلبات المنصة خلال 7 أيام' })}</h3>
           <span className="text-[10px] font-bold text-[#2A5CFF]">{t({ en: 'Updated 2 min ago', ar: 'تم التحديث منذ دقيقتين' })}</span>
         </div>
 
         {/* SVG Vector Graph */}
-        <div className="relative w-full h-64 border-b border-l border-gray-100 flex items-end">
+        <div className="relative w-full h-64 border-b border-l border-[#141F33]/10 flex items-end">
           
           <svg className="absolute inset-0 w-full h-full p-4" viewBox="0 0 700 200" preserveAspectRatio="none">
             {/* Background Grid Lines */}
-            <line x1="0" y1="50" x2="700" y2="50" stroke="#f1f5f9" strokeWidth="1" />
-            <line x1="0" y1="100" x2="700" y2="100" stroke="#f1f5f9" strokeWidth="1" />
-            <line x1="0" y1="150" x2="700" y2="150" stroke="#f1f5f9" strokeWidth="1" />
+<line x1="0" y1="50" x2="700" y2="50" stroke="#F8F9FB" strokeWidth="1" />
+<line x1="0" y1="100" x2="700" y2="100" stroke="#F8F9FB" strokeWidth="1" />
+<line x1="0" y1="150" x2="700" y2="150" stroke="#F8F9FB" strokeWidth="1" />
 
             {/* Smooth Spline Vector Curve path */}
             <path
@@ -84,7 +84,7 @@ export default function AdminUsagePage() {
           </svg>
 
           {/* X Axis Labels */}
-          <div className="absolute inset-x-0 bottom-0 flex justify-between px-6 transform translate-y-6 text-[10px] font-extrabold text-[#718096] uppercase tracking-widest">
+          <div className="absolute inset-x-0 bottom-0 flex justify-between px-6 transform translate-y-6 text-[10px] font-extrabold text-[#141F33] uppercase tracking-widest">
             {chartData.map((d, idx) => (
               <span key={idx}>{d.day}</span>
             ))}

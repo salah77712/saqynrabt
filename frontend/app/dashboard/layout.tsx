@@ -112,7 +112,7 @@ export default function DashboardLayout({
   });
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] text-[#1A202C] flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-[#F8F9FB] text-[#141F33] flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className="flex flex-1 relative" style={{ minHeight: 'calc(100vh - env(safe-area-inset-top, 0px))' }}>
 
         <DashboardSidebar
@@ -128,7 +128,7 @@ export default function DashboardLayout({
         {isSidebarOpen && (
           <div
             onClick={() => setIsSidebarOpen(false)}
-            className="fixed inset-0 z-40 bg-slate-900/40 md:hidden backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-[#141F33]/40 md:hidden backdrop-blur-sm"
           />
         )}
 
@@ -148,10 +148,10 @@ export default function DashboardLayout({
             style={{ WebkitOverflowScrolling: 'touch' }}>
             <div className="max-w-7xl mx-auto w-full">
               {!hasAccess ? (
-                <div className="py-12 flex flex-col items-center justify-center text-center bg-white border border-gray-200 rounded-2xl shadow-sm p-8">
-                  <AlertTriangle className="w-10 h-10 text-slate-300 mb-4" />
+                <div className="py-12 flex flex-col items-center justify-center text-center bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl shadow-sm p-8">
+                  <AlertTriangle className="w-10 h-10 text-[#141F33] mb-4" />
                   <h2 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h2>
-                  <p className="text-xs text-[#718096] font-semibold mt-1">
+                  <p className="text-xs text-[#141F33] font-semibold mt-1">
                     {t({ en: 'You do not have permission to access this page.', ar: 'ليس لديك صلاحية للوصول إلى هذه الصفحة.' })}
                   </p>
                 </div>

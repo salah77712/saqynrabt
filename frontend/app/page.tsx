@@ -101,26 +101,26 @@ export default function MarketingPage() {
   const chatbotCopy = chatbotIndustryCopies[activeIndustry] || chatbotIndustryCopies.default;
 
   return (
-    <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans selection:bg-[#3B5B9B] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#3B5B9B] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       
       <Header />
 
       {/* ── Hero Section ─────────────────────────────────── */}
-      <section className="relative overflow-hidden py-20 lg:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
+      <section className="bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           
           {/* Left Column */}
           <div className="flex flex-col items-start gap-6 lg:w-1/2">
             
             {/* Two-Product Toggle */}
-            <div className="inline-flex rounded-full bg-white p-1 border border-gray-200/80 shadow-sm animate-fadeIn">
+            <div className="inline-flex rounded-full bg-[#F8F9FB] p-1 border border-[#141F33]/10 shadow-sm animate-fadeIn">
               <button
                 type="button"
                 onClick={() => setActiveProduct('automation')}
                 className={`min-h-[38px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
-                  activeProduct === 'automation'
-                    ? 'bg-[#141F33] text-white shadow-sm'
-                    : 'bg-transparent text-[#718096] hover:text-[#141F33]'
+activeProduct === 'automation'
+? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
+: 'bg-transparent text-[#141F33] hover:text-[#141F33]'
                 }`}
               >
                 <Zap className="w-5 h-5 text-royal inline mr-1" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
@@ -129,9 +129,9 @@ export default function MarketingPage() {
                 type="button"
                 onClick={() => setActiveProduct('chatbot')}
                 className={`min-h-[38px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
-                  activeProduct === 'chatbot'
-                    ? 'bg-[#141F33] text-white shadow-sm'
-                    : 'bg-transparent text-[#718096] hover:text-[#141F33]'
+activeProduct === 'chatbot'
+? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
+: 'bg-transparent text-[#141F33] hover:text-[#141F33]'
                 }`}
               >
                 <MessageSquare className="w-5 h-5 text-royal inline mr-1" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}

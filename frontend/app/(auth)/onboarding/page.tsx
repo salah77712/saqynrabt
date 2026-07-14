@@ -84,10 +84,10 @@ export default function OnboardingWizardPage() {
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4 py-12" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-white rounded-2xl shadow-xl border border-gray-200 w-full max-w-lg overflow-hidden animate-fadeIn flex flex-col justify-between min-h-[500px]">
+      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl border border-[#141F33]/10 w-full max-w-lg overflow-hidden animate-fadeIn flex flex-col justify-between min-h-[500px]">
         
         {/* Progress Bar */}
-        <div className="w-full bg-gray-100 h-2">
+        <div className="w-full bg-[#F8F9FB] h-2">
           <div
             className="bg-[#2A5CFF] h-2 rounded-r transition-all duration-300"
             style={{ width: `${getProgressPercentage()}%` }}
@@ -98,7 +98,7 @@ export default function OnboardingWizardPage() {
           <div>
             {/* Header info */}
             <div className="flex justify-between items-center mb-8">
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#718096]">
+              <span className="text-[10px] font-extrabold uppercase tracking-widest text-[#141F33]">
                 {t({ en: `Step ${step} of 5`, ar: `الخطوة ${step} من 5` })}
               </span>
               <span className="text-xs font-bold text-[#2A5CFF]">{getProgressPercentage()}%</span>
@@ -110,7 +110,7 @@ export default function OnboardingWizardPage() {
                 <h2 className="text-2xl font-extrabold text-[#141F33] leading-tight">
                   {t({ en: 'Welcome to SAQYN RABT', ar: 'مرحباً بك في SAQYN RABT' })}
                 </h2>
-                <p className="text-xs font-semibold text-[#718096] leading-relaxed">
+                <p className="text-xs font-semibold text-[#141F33] leading-relaxed">
                   {t({ en: "Let's personalize your workspace dashboard. What is your full name?", ar: 'دعنا نخصص لوحة التحكم الخاصة بك. ما هو اسمك الكامل؟' })}
                 </p>
                 <div>
@@ -122,11 +122,12 @@ export default function OnboardingWizardPage() {
                     value={formData.userName}
                     onChange={handleChange}
                     placeholder="Salah Al-Qahtani"
-                    className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
-                  />
-                </div>
-              </div>
-            )}
+className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+      />
+</div>
+</div>
+</div>
+)}
 
             {/* Step 2: Company Details */}
             {step === 2 && (
@@ -134,7 +135,7 @@ export default function OnboardingWizardPage() {
                 <h2 className="text-2xl font-extrabold text-[#141F33] leading-tight">
                   {t({ en: 'Company Details', ar: 'تفاصيل الشركة' })}
                 </h2>
-                <p className="text-xs font-semibold text-[#718096] leading-relaxed">
+                <p className="text-xs font-semibold text-[#141F33] leading-relaxed">
                   {t({ en: 'Tell us a bit about your organization to set up your workspace.', ar: 'أخبرنا قليلاً عن شركتك لتهيئة مساحة العمل.' })}
                 </p>
                 
@@ -193,7 +194,7 @@ export default function OnboardingWizardPage() {
                 <h2 className="text-2xl font-extrabold text-[#141F33] leading-tight">
                   {t({ en: 'Product Preferences', ar: 'تفضيلات المنتجات' })}
                 </h2>
-                <p className="text-xs font-semibold text-[#718096] leading-relaxed">
+                <p className="text-xs font-semibold text-[#141F33] leading-relaxed">
                   {t({ en: 'Choose which product workspace we should configure first.', ar: 'اختر مساحة عمل المنتج التي ترغب في تهيئتها أولاً.' })}
                 </p>
 
@@ -209,7 +210,7 @@ export default function OnboardingWizardPage() {
                     />
                     <div>
                       <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Set up Business Automation', ar: 'تهيئة أتمتة الأعمال' })}</p>
-                      <p className="text-[10px] text-[#718096] font-medium mt-0.5">{t({ en: 'Automate guest phone bookings & complaints.', ar: 'أتمتة حجوزات الهاتف وشكاوى الضيوف.' })}</p>
+                      <p className="text-[10px] text-[#141F33] font-medium mt-0.5">{t({ en: 'Automate guest phone bookings & complaints.', ar: 'أتمتة حجوزات الهاتف وشكاوى الضيوف.' })}</p>
                     </div>
                   </label>
 
@@ -224,7 +225,7 @@ export default function OnboardingWizardPage() {
                     />
                     <div>
                       <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Set up Staff Knowledge Chatbot', ar: 'تهيئة مساعد معرفة الموظفين' })}</p>
-                      <p className="text-[10px] text-[#718096] font-medium mt-0.5">{t({ en: 'Train AI on internal policies and handbook.', ar: 'تدريب الذكاء الاصطناعي على السياسات والكتيب الداخلي.' })}</p>
+                      <p className="text-[10px] text-[#141F33] font-medium mt-0.5">{t({ en: 'Train AI on internal policies and handbook.', ar: 'تدريب الذكاء الاصطناعي على السياسات والكتيب الداخلي.' })}</p>
                     </div>
                   </label>
 
@@ -239,7 +240,7 @@ export default function OnboardingWizardPage() {
                     />
                     <div>
                       <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Set up Both Products', ar: 'تهيئة كلا المنتجين' })}</p>
-                      <p className="text-[10px] text-[#718096] font-medium mt-0.5">{t({ en: 'Unify internal knowledge and front-desk call automation.', ar: 'توحيد المعرفة الداخلية وأتمتة مكالمات الاستقبال.' })}</p>
+                      <p className="text-[10px] text-[#141F33] font-medium mt-0.5">{t({ en: 'Unify internal knowledge and front-desk call automation.', ar: 'توحيد المعرفة الداخلية وأتمتة مكالمات الاستقبال.' })}</p>
                     </div>
                   </label>
                 </div>
@@ -252,7 +253,7 @@ export default function OnboardingWizardPage() {
                 <h2 className="text-2xl font-extrabold text-[#141F33] leading-tight">
                   {t({ en: 'Invite Your Team', ar: 'دعوة فريقك' })}
                 </h2>
-                <p className="text-xs font-semibold text-[#718096] leading-relaxed">
+                <p className="text-xs font-semibold text-[#141F33] leading-relaxed">
                   {t({ en: 'Add your staff members now so they can start accessing knowledge handbooks.', ar: 'أضف موظفيك الآن ليتمكنوا من الوصول لكتيبات المعرفة.' })}
                 </p>
                 
@@ -279,14 +280,14 @@ export default function OnboardingWizardPage() {
                 <h2 className="text-2xl font-extrabold text-[#141F33] leading-tight">
                   {t({ en: 'First Policy Document', ar: 'مستند السياسة الأول' })}
                 </h2>
-                <p className="text-xs font-semibold text-[#718096] leading-relaxed">
+                <p className="text-xs font-semibold text-[#141F33] leading-relaxed">
                   {t({ en: 'Upload your first SOP or employee handbook to train your RAG assistant immediately.', ar: 'قم بتحميل دليل الموظفين أو إجراء التشغيل لتدريب المساعد فورًا.' })}
                 </p>
 
                 <div className="border-2 border-dashed border-gray-200 rounded-xl p-8 bg-slate-50 flex flex-col items-center justify-center text-center">
                   <FileText className="w-8 h-8 text-primary mb-2" />
                   <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Drop policy PDF here to start', ar: 'اسقط ملف PDF للسياسة هنا للبدء' })}</p>
-                  <span className="text-[10px] text-[#718096] font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'أو اضغط أدناه للتصفح (اختياري)' })}</span>
+                  <span className="text-[10px] text-[#141F33] font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'أو اضغط أدناه للتصفح (اختياري)' })}</span>
                 </div>
               </div>
             )}

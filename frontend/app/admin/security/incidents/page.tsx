@@ -27,19 +27,19 @@ interface Incident {
 }
 
 const severityColors: Record<string, string> = {
-  critical: 'bg-red-100 text-red-800',
-  high: 'bg-orange-100 text-orange-800',
-  medium: 'bg-amber-100 text-amber-800',
-  low: 'bg-green-100 text-green-800',
+  critical: 'bg-[#F8F9FB] text-[#141F33]',
+  high: 'bg-[#F8F9FB] text-[#141F33]',
+  medium: 'bg-[#F8F9FB] text-[#2A5CFF]',
+  low: 'bg-[#F8F9FB] text-[#2A5CFF]',
 };
 
 const statusColors: Record<string, string> = {
-  new: 'bg-blue-100 text-blue-800',
-  investigation: 'bg-purple-100 text-purple-800',
-  containment: 'bg-orange-100 text-orange-800',
-  eradication: 'bg-amber-100 text-amber-800',
-  recovery: 'bg-teal-100 text-teal-800',
-  closed: 'bg-gray-100 text-gray-800',
+  new: 'bg-[#F8F9FB] text-[#2A5CFF]',
+  investigation: 'bg-[#F8F9FB] text-[#2A5CFF]',
+  containment: 'bg-[#F8F9FB] text-[#141F33]',
+  eradication: 'bg-[#F8F9FB] text-[#2A5CFF]',
+  recovery: 'bg-[#F8F9FB] text-[#2A5CFF]',
+  closed: 'bg-[#F8F9FB] text-[#141F33]',
 };
 
 export default function AdminIncidentsPage() {
@@ -128,7 +128,7 @@ export default function AdminIncidentsPage() {
           <h1 className="text-xl font-bold text-[#141F33] flex items-center gap-2">
             <ShieldSvg /> Security Incidents
           </h1>
-          <p className="text-sm text-[#718096] mt-1">
+          <p className="text-sm text-[#141F33] mt-1">
             Incident management for Qatari Law No. 13 of 2016 compliance
           </p>
         </div>
@@ -141,21 +141,21 @@ export default function AdminIncidentsPage() {
         </button>
       </div>
 
-      {error && (
-        <div className="flex items-center gap-2 text-red-700 text-xs bg-red-50 p-3 rounded-xl">
-          <AlertTriangleSvg /> {error}
-        </div>
-      )}
+{error && (
+  <div className="flex items-center gap-2 text-[#141F33] text-xs bg-[#F8F9FB] p-3 rounded-xl border border-[#141F33]/10">
+    <AlertTriangleSvg /> {error}
+  </div>
+)}
 
       {showCreate && (
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-4">
+        <div className="bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 p-6 space-y-4">
           <h2 className="text-sm font-bold text-[#141F33]">Log New Incident</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <input
               placeholder="Incident Title"
               value={newIncident.title}
               onChange={(e) => setNewIncident({ ...newIncident, title: e.target.value })}
-              className="col-span-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
+              className="col-span-full rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
             />
             <textarea
               placeholder="Description"
@@ -166,7 +166,7 @@ export default function AdminIncidentsPage() {
             <select
               value={newIncident.incidentType}
               onChange={(e) => setNewIncident({ ...newIncident, incidentType: e.target.value as any })}
-              className="rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
+              className="rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
             >
               <option value="data_breach">Data Breach</option>
               <option value="system_outage">System Outage</option>
@@ -177,7 +177,7 @@ export default function AdminIncidentsPage() {
             <select
               value={newIncident.severity}
               onChange={(e) => setNewIncident({ ...newIncident, severity: e.target.value as any })}
-              className="rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
+              className="rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
             >
               <option value="critical">Critical</option>
               <option value="high">High</option>
@@ -188,14 +188,14 @@ export default function AdminIncidentsPage() {
               placeholder="Affected Resources"
               value={newIncident.affectedResources}
               onChange={(e) => setNewIncident({ ...newIncident, affectedResources: e.target.value })}
-              className="rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
+              className="rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
             />
           </div>
           <div className="flex gap-2 justify-end">
             <button
               type="button"
               onClick={() => setShowCreate(false)}
-              className="px-4 py-2.5 rounded-xl border border-gray-200 text-xs font-bold text-[#718096] hover:bg-gray-50"
+              className="px-4 py-2.5 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#718096] hover:bg-[#141F33]/5"
             >
               Cancel
             </button>
@@ -211,12 +211,12 @@ export default function AdminIncidentsPage() {
       )}
 
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"><SearchSvg /></span>
+        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#141F33]"><SearchSvg /></span>
         <input
           placeholder="Filter incidents..."
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm outline-none focus:border-[#141F33]"
+          className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#141F33]/10 text-sm outline-none focus:border-[#141F33]"
         />
       </div>
 
@@ -227,17 +227,17 @@ export default function AdminIncidentsPage() {
       ) : (
         <div className="space-y-3">
           {filteredIncidents.map((inc) => (
-            <div key={inc.id} className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+            <div key={inc.id} className="bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 overflow-hidden">
               <button
                 type="button"
                 onClick={() => setExpandedId(expandedId === inc.id ? null : inc.id)}
-                className="w-full flex items-center justify-between p-4 hover:bg-gray-50 transition-colors text-left"
+                className="w-full flex items-center justify-between p-4 hover:bg-[#141F33]/5 transition-colors text-left"
               >
                 <div className="flex items-center gap-3 flex-1 min-w-0">
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase ${severityColors[inc.severity] || 'bg-gray-100 text-gray-800'}`}>
+                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase ${severityColors[inc.severity] || 'bg-[#F8F9FB] text-[#141F33]'}`}>
                     {inc.severity}
                   </span>
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase ${statusColors[inc.status] || 'bg-gray-100 text-gray-800'}`}>
+                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase ${statusColors[inc.status] || 'bg-[#F8F9FB] text-[#141F33]'}`}>
                     {inc.status}
                   </span>
                   <span className="text-sm font-medium text-[#141F33] truncate">{inc.title}</span>
@@ -250,7 +250,7 @@ export default function AdminIncidentsPage() {
               </button>
 
               {expandedId === inc.id && (
-                <div className="px-4 pb-4 border-t border-gray-100 pt-3 space-y-3">
+                <div className="px-4 pb-4 border-t border-[#141F33]/10 pt-3 space-y-3">
                   <p className="text-sm text-[#718096]">{inc.description}</p>
                   {inc.affected_resources && (
                     <p className="text-xs text-[#718096]"><span className="font-bold">Affected:</span> {inc.affected_resources}</p>
@@ -267,8 +267,8 @@ export default function AdminIncidentsPage() {
                         onClick={() => handleStatusUpdate(inc.id, s)}
                         className={`text-[10px] font-bold px-2.5 py-1.5 rounded-full uppercase transition-colors ${
                           inc.status === s
-                            ? 'bg-[#141F33] text-white'
-                            : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
+? 'bg-[#141F33] text-[#F8F9FB]'
+: 'bg-[#F8F9FB] text-[#141F33] hover:bg-[#141F33]/5'
                         }`}
                       >
                         {s}

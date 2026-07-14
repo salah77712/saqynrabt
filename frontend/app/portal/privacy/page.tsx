@@ -29,7 +29,7 @@ export default function PublicPrivacyPortalPage() {
   };
 
   return (
-    <div className="bg-surface text-navy dark:text-white min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-navy dark:text-[#F8F9FB] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <main className="flex-1 max-w-xl mx-auto py-24 px-6 w-full space-y-8 animate-fadeIn">
@@ -45,7 +45,7 @@ export default function PublicPrivacyPortalPage() {
         </div>
 
         {/* Form request */}
-        <form onSubmit={handleSubmit} className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm space-y-4">
+        <form onSubmit={handleSubmit} className="bg-[#F8F9FB] border-[#141F33]/10 rounded-2xl p-8 shadow-sm space-y-4">
           
           <div>
             <label htmlFor="email" className="block text-xs font-bold text-navy dark:text-white mb-1.5">{t({ en: 'Your Email Address', ar: 'البريد الإلكتروني الخاص بك' })}</label>

@@ -35,7 +35,7 @@ export default function AdminAuditPage() {
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
           <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Security & Audit Logs', ar: 'سجلات الأمن والتدقيق' })}</h1>
-          <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Audit all platform events, tenant activity, and security changes.', ar: 'مراجعة جميع أحداث المنصة، نشاط الشركات، والتغييرات الأمنية.' })}</p>
+          <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Audit all platform events, tenant activity, and security changes.', ar: 'مراجعة جميع أحداث المنصة، نشاط الشركات، والتغييرات الأمنية.' })}</p>
         </div>
 
         <div>
@@ -44,30 +44,30 @@ export default function AdminAuditPage() {
             placeholder={t({ en: 'Filter logs...', ar: 'تصفية السجلات...' })}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="min-h-[44px] bg-white border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] w-64 shadow-sm"
+            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] w-64 shadow-sm"
           />
         </div>
       </div>
 
       {/* Audit Log Table */}
-      <div className="bg-white border border-gray-200 rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
-              <tr className="bg-slate-50 border-b border-gray-200 text-xs font-extrabold text-[#718096] uppercase tracking-wider">
+              <tr className="bg-[#F8F9FB] border-b border-[#141F33]/10 text-xs font-extrabold text-[#141F33] uppercase tracking-wider">
                 <th className="px-6 py-4">{t({ en: 'Timestamp', ar: 'الوقت والشبكة' })}</th>
                 <th className="px-6 py-4">{t({ en: 'Operator User', ar: 'المستخدم المشغل' })}</th>
                 <th className="px-6 py-4">{t({ en: 'Action Performed', ar: 'الإجراء المنفذ' })}</th>
                 <th className="px-6 py-4">{t({ en: 'IP Address', ar: 'عنوان الـ IP' })}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100 text-xs font-semibold text-slate-700">
-              {filteredLogs.map((log) => (
-                <tr key={log.id} className="hover:bg-slate-50/50 transition-colors">
-                  <td className="px-6 py-4 text-slate-400 font-bold">{new Date(log.timestamp).toLocaleString()}</td>
-                  <td className="px-6 py-4 font-bold text-[#141F33]">{log.user}</td>
-                  <td className="px-6 py-4 text-slate-600">{log.action}</td>
-                  <td className="px-6 py-4 font-mono text-slate-400 font-bold">{log.ipAddress}</td>
+            <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-[#141F33]">
+{filteredLogs.map((log) => (
+  <tr key={log.id} className="hover:bg-[#141F33]/5 transition-colors">
+    <td className="px-6 py-4 text-[#141F33] font-bold">{new Date(log.timestamp).toLocaleString()}</td>
+    <td className="px-6 py-4 font-bold text-[#141F33]">{log.user}</td>
+    <td className="px-6 py-4 text-[#141F33]">{log.action}</td>
+    <td className="px-6 py-4 font-mono text-[#141F33] font-bold">{log.ipAddress}</td>
                 </tr>
               ))}
             </tbody>

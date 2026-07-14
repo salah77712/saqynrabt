@@ -1,7 +1,7 @@
 export default function PricingLoading() {
   return (
-    <div className="min-h-screen bg-white flex flex-col">
-      <header className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/80 backdrop-blur-xl">
+    <div className="min-h-screen bg-[#F8F9FB] flex flex-col">
+      <header className="sticky top-0 z-50 w-full border-b border-[#141F33]/10 bg-[#F8F9FB]/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-full bg-slate-200 animate-pulse" />
@@ -12,9 +12,9 @@ export default function PricingLoading() {
           </div>
         </div>
       </header>
-      <section className="bg-gradient-to-b from-slate-50 to-white py-20 md:py-28">
+      <section className="bg-[#F8F9FB] to-[#F8F9FB] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 text-center">
-          <div className="mx-auto h-6 w-24 bg-slate-200 rounded-full animate-pulse mb-6" />
+          <div className="mx-auto h-6 w-24 bg-[#141F33]/10 rounded-full animate-pulse mb-6" />
           <div className="mx-auto h-10 w-1/2 bg-slate-200 rounded-lg animate-pulse mb-4" />
           <div className="mx-auto h-5 w-1/3 bg-slate-100 rounded animate-pulse" />
         </div>
