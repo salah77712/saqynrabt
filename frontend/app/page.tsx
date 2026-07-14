@@ -380,7 +380,7 @@ export default function MarketingPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Automation Card */}
-            <div className="relative bg-gradient-to-br from-[#F8F9FB] to-white border border-gray-200 rounded-3xl p-8 shadow-sm card-hover group">
+            <div className="relative p-8 card-premium group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-royal/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-royal/10 rounded-xl flex items-center justify-center mb-5">
@@ -407,7 +407,7 @@ export default function MarketingPage() {
                 </ul>
                 <Link
                   href="/automation"
-                  className="inline-flex w-full items-center justify-center rounded-xl bg-[#141F33] text-white font-bold text-sm py-4 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                  className="btn-primary w-full py-4"
                 >
                   {t({ en: 'Explore Automation →', ar: 'استكشف الأتمتة ←' })}
                 </Link>
@@ -415,7 +415,7 @@ export default function MarketingPage() {
             </div>
 
             {/* Chatbot Card */}
-            <div className="relative bg-gradient-to-br from-[#F8F9FB] to-white border border-gray-200 rounded-3xl p-8 shadow-sm card-hover group">
+            <div className="relative p-8 card-premium group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-royal/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-royal/10 rounded-xl flex items-center justify-center mb-5">
@@ -442,7 +442,7 @@ export default function MarketingPage() {
                 </ul>
                 <Link
                   href="/chatbot"
-                  className="inline-flex w-full items-center justify-center rounded-xl bg-emerald-600 text-white font-bold text-sm py-4 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                  className="btn-primary w-full py-4"
                 >
                   {t({ en: 'Explore Chatbot →', ar: 'استكشف المساعد الذكي ←' })}
                 </Link>
