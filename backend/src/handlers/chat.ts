@@ -91,9 +91,7 @@ export async function handleChat(request: RequestWithContext): Promise<Response>
     aiResponse = aiData.choices?.[0]?.message?.content || `Echo: "${safeMessage}" (AI service responded)`;
 
     await logAudit(env, company_id!, userId, 'chat_message', { message_length: safeMessage.length, response_length: aiResponse.length }, ip, ua);
-    request.ctx?.waitUntil(
-      sql`UPDATE usage_ledger SET questions_used = questions_used + 1, questions_count = questions_count + 1 WHERE company_id = ${company_id}`
-    );
+    await sql`UPDATE usage_ledger SET questions_used = questions_used + 1 WHERE company_id = ${company_id}`;
 
     return new Response(JSON.stringify({ response: aiResponse }), { headers });
   } catch (err: any) {

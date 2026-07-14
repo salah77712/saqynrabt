@@ -125,7 +125,10 @@ export async function handleVapiWebhook(request: RequestWithContext): Promise<Re
     // Verify Vapi webhook signature
     const vapiSig = request.headers.get('x-vapi-signature') || '';
     const vapiSecret = env.VAPI_WEBHOOK_SECRET;
-    if (vapiSecret && vapiSig) {
+    if (vapiSecret) {
+      if (!vapiSig) {
+        return new Response(JSON.stringify({ error: 'Missing signature' }), { status: 401, headers });
+      }
       try {
         const encoder = new TextEncoder();
         const key = await crypto.subtle.importKey('raw', encoder.encode(vapiSecret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']);
@@ -168,7 +171,10 @@ export async function handleMessageWebhook(request: RequestWithContext): Promise
     // Verify Message webhook signature
     const msgSig = request.headers.get('x-message-signature') || '';
     const msgSecret = env.MESSAGE_WEBHOOK_SECRET;
-    if (msgSecret && msgSig) {
+    if (msgSecret) {
+      if (!msgSig) {
+        return new Response(JSON.stringify({ error: 'Missing signature' }), { status: 401, headers });
+      }
       try {
         const encoder = new TextEncoder();
         const key = await crypto.subtle.importKey('raw', encoder.encode(msgSecret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']);

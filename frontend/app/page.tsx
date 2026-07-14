@@ -66,13 +66,6 @@ export default function MarketingPage() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    fetch('/api/wakeup', { method: 'GET' })
-      .then(res => res.json())
-      .then(data => console.log('Database pre-warmed:', data))
-      .catch(err => console.warn('Pre-warming ping bypassed:', err.message));
-  }, []);
-
   const openCustomModal = () => {
     setIsModalOpen(true);
   };
