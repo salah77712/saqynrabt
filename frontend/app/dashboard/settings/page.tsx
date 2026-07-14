@@ -152,9 +152,9 @@ export default function SettingsDashboardPage() {
         <select
           value={activeTab}
           onChange={(e) => setActiveTab(e.target.value)}
-          className="w-full min-h-[44px] rounded-xl border border-gray-200 bg-white px-4 py-2 text-sm font-bold text-[#141F33] appearance-none"
+          className="w-full min-h-[44px] rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 py-2 text-sm font-bold text-[#141F33] appearance-none"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23718096' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
+            backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23141F33' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'no-repeat',
             backgroundPosition: 'right 12px center',
           }}
@@ -170,7 +170,7 @@ export default function SettingsDashboardPage() {
       {activeTab === 'general' && (
         <div className="space-y-4 md:space-y-6">
           <Card className="p-4 md:p-6">
-            <h2 className="text-[10px] md:text-xs font-black text-slate-400 uppercase tracking-widest mb-3 md:mb-4">
+            <h2 className="text-[10px] md:text-xs font-black text-[#141F33]/60 uppercase tracking-widest mb-3 md:mb-4">
               {t('Overage Protection', 'حماية التجاوز التلقائي')}
             </h2>
             <label className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-gray-100 bg-[#F8F9FB] cursor-pointer">
@@ -223,7 +223,7 @@ export default function SettingsDashboardPage() {
               <h3 className="text-[11px] md:text-xs font-bold text-[#141F33]">
                 {t('Export Chat Log Audit', 'تصدير سجل التدقيق للمحادثات')}
               </h3>
-              <p className="text-[9px] md:text-[10px] text-slate-400 mt-1">
+              <p className="text-[9px] md:text-[10px] text-[#141F33]/60 mt-1">
                 {t('Download employee RAG chatbot logs and question histories in .csv format.', 'تنزيل جميع سجلات المساعد الذكي وتاريخ الأسئلة بصيغة .csv للتدقيق.')}
               </p>
             </div>
@@ -236,7 +236,7 @@ export default function SettingsDashboardPage() {
 
       {activeTab === 'billing' && (
         <Card className="p-4 md:p-6 space-y-4">
-          <h3 className="font-bold text-navy dark:text-white text-sm md:text-base">{t('Subscription Plan', 'خطة الاشتراك')}</h3>
+          <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-sm md:text-base">{t('Subscription Plan', 'خطة الاشتراك')}</h3>
           <p className="text-[10px] md:text-xs text-slate-500 leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
           </p>

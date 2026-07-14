@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useLocale } from '../app/providers';
 import { FooterColumn } from './Footer/FooterColumn';
 import { SocialLinks } from './Footer/SocialLinks';
-import { Mail } from 'lucide-react';
+import { Mail, Check } from 'lucide-react';
 
 const content = {
   en: {
@@ -15,28 +15,18 @@ const content = {
     productTitle: 'Product',
     companyTitle: 'Company',
     legalTitle: 'Legal & Compliance',
-    privacyControls: 'Privacy Controls',
-    cookiePrefs: 'Manage Cookie Preferences',
-    doNotSell: 'Your Privacy Rights',
-    accessibility: 'Accessibility',
     products: [
-      { href: '/automation', label: 'Explore Business Automation' },
-      { href: '/chatbot', label: 'See the Internal Chatbot' },
-      { href: '/how-it-works', label: 'How It Works' },
+      { href: '/features', label: 'Features' },
       { href: '/case-studies', label: 'Case Studies' },
-      { href: '/pricing', label: 'View Pricing Plans' },
+      { href: '/pricing', label: 'Pricing Plans' },
     ],
     company: [
-      { href: '/about', label: 'Learn About Us' },
-      { href: '/contact', label: 'Talk to Us' },
-      { href: '/help/getting-started', label: 'Help Center' },
-      { href: '/faq', label: 'FAQ' },
+      { href: '/about', label: 'About Us' },
+      { href: '/contact', label: 'Contact Us' },
     ],
     legal: [
       { href: '/privacy-policy', label: 'Privacy Policy' },
       { href: '/terms-and-conditions', label: 'Terms of Service' },
-      { href: '/cookie-policy', label: 'Cookie Policy' },
-      { href: '/trust', label: 'Trust Center' },
     ],
     backToTop: 'Back to Top',
   },
@@ -47,28 +37,18 @@ const content = {
     productTitle: 'Produit',
     companyTitle: 'Entreprise',
     legalTitle: 'Juridique et Conformité',
-    privacyControls: 'Contrôles de Confidentialité',
-    cookiePrefs: 'Gérer les Préférences de Cookies',
-    doNotSell: 'Vos Droits à la Confidentialité',
-    accessibility: 'Accessibilité',
     products: [
-      { href: '/automation', label: 'Explorer l\'Automatisation' },
-      { href: '/chatbot', label: 'Voir le Chatbot Interne' },
-      { href: '/how-it-works', label: 'Comment ça Marche' },
+      { href: '/features', label: 'Fonctionnalités' },
       { href: '/case-studies', label: 'Études de Cas' },
-      { href: '/pricing', label: 'Voir les Tarifs' },
+      { href: '/pricing', label: 'Tarifs' },
     ],
     company: [
       { href: '/about', label: 'À Propos' },
       { href: '/contact', label: 'Contactez-nous' },
-      { href: '/help/getting-started', label: 'Centre d\'Aide' },
-      { href: '/faq', label: 'FAQ' },
     ],
     legal: [
       { href: '/privacy-policy', label: 'Politique de Confidentialité' },
       { href: '/terms-and-conditions', label: "Conditions d'Utilisation" },
-      { href: '/cookie-policy', label: 'Politique de Cookies' },
-      { href: '/trust', label: 'Centre de Confiance' },
     ],
     backToTop: 'Retour en Haut',
   },
@@ -79,28 +59,18 @@ const content = {
     productTitle: 'المنتج',
     companyTitle: 'الشركة',
     legalTitle: 'القانون والامتثال',
-    privacyControls: 'ضوابط الخصوصية',
-    cookiePrefs: 'إدارة تفضيلات الكوكيز',
-    doNotSell: 'حقوق الخصوصية الخاصة بك',
-    accessibility: 'إمكانية الوصول',
     products: [
-      { href: '/automation', label: 'استكشف الأتمتة التجارية' },
-      { href: '/chatbot', label: 'شاهد المساعد الذكي' },
-      { href: '/how-it-works', label: 'كيف يعمل' },
+      { href: '/features', label: 'المميزات' },
       { href: '/case-studies', label: 'دراسات الحالة' },
-      { href: '/pricing', label: 'اطلع على الأسعار' },
+      { href: '/pricing', label: 'خطط الأسعار' },
     ],
     company: [
-      { href: '/about', label: 'تعرف علينا' },
-      { href: '/contact', label: 'تحدث معنا' },
-      { href: '/help/getting-started', label: 'مركز المساعدة' },
-      { href: '/faq', label: 'الأسئلة الشائعة' },
+      { href: '/about', label: 'من نحن' },
+      { href: '/contact', label: 'اتصل بنا' },
     ],
     legal: [
       { href: '/privacy-policy', label: 'سياسة الخصوصية' },
       { href: '/terms-and-conditions', label: 'شروط الخدمة' },
-      { href: '/cookie-policy', label: 'سياسة الكوكيز' },
-      { href: '/trust', label: 'مركز الثقة' },
     ],
     backToTop: 'العودة للأعلى',
   },
@@ -111,28 +81,18 @@ const content = {
     productTitle: 'उत्पाद',
     companyTitle: 'कंपनी',
     legalTitle: 'कानूनी और अनुपालन',
-    privacyControls: 'गोपनीयता नियंत्रण',
-    cookiePrefs: 'कुकी प्राथमिकताएँ प्रबंधित करें',
-    doNotSell: 'आपके गोपनीयता अधिकार',
-    accessibility: 'अभिगम्यता',
     products: [
-      { href: '/automation', label: 'व्यावसायिक ऑटोमेशन देखें' },
-      { href: '/chatbot', label: 'आंतरिक चैटबॉट देखें' },
-      { href: '/how-it-works', label: 'यह कैसे काम करता है' },
+      { href: '/features', label: 'विशेषताएं' },
       { href: '/case-studies', label: 'केस स्टडीज' },
-      { href: '/pricing', label: 'मूल्य योजनाएँ देखें' },
+      { href: '/pricing', label: 'मूल्य योजनाएँ' },
     ],
     company: [
-      { href: '/about', label: 'हमारे बारे में जानें' },
-      { href: '/contact', label: 'हमसे बात करें' },
-      { href: '/help/getting-started', label: 'सहायता केंद्र' },
-      { href: '/faq', label: 'अक्सर पूछे जाने वाले प्रश्न' },
+      { href: '/about', label: 'हमारे बारे में' },
+      { href: '/contact', label: 'हमसे संपर्क करें' },
     ],
     legal: [
       { href: '/privacy-policy', label: 'गोपनीयता नीति' },
       { href: '/terms-and-conditions', label: 'सेवा की शर्तें' },
-      { href: '/cookie-policy', label: 'कुकी नीति' },
-      { href: '/trust', label: 'विश्वास केंद्र' },
     ],
     backToTop: 'शीर्ष पर वापस जाएँ',
   },
@@ -150,27 +110,9 @@ function Logo() {
 
 export function Footer() {
   const { locale } = useLocale();
-  const t = (en: string, fr: string, ar: string, hi: string) => {
-    if (locale === 'ar') return ar || en;
-    if (locale === 'fr') return fr || en;
-    if (locale === 'hi') return hi || en;
-    return en;
-  };
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
   const copy = content[locale] || content.en;
   const year = new Date().getFullYear();
-  const [cookiePrefsOpen, setCookiePrefsOpen] = React.useState(false);
-
-  const handleCookiePrefs = () => {
-    const banner = document.getElementById('cookie-consent-banner');
-    if (banner) {
-      banner.classList.remove('hidden');
-      banner.classList.add('flex');
-    }
-  };
-
-  const handleBackToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
 
   const [incidentStatus, setIncidentStatus] = React.useState<{ status: string; activeIncidents: number } | null>(null);
 
@@ -182,7 +124,7 @@ export function Footer() {
   }, []);
 
   return (
-    <footer className="bg-white text-slate-800 border-t border-gray-200" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <footer className="bg-white text-slate-850 border-t border-gray-200" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       {/* Trust & Compliance Bar */}
       <div className="border-b border-gray-100 bg-slate-50/50">
         <div className="mx-auto max-w-7xl px-6 py-3 lg:px-8 flex flex-wrap items-center justify-between gap-3" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -195,15 +137,15 @@ export function Footer() {
               Trust Center
             </Link>
             <span className="w-px h-4 bg-gray-200" />
-            <span className="flex items-center gap-1 text-[11px] text-slate-400">
+            <span className="flex items-center gap-1 text-[11px] text-slate-450 font-bold">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-[#2A5CFF]" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               GDPR Ready
             </span>
-            <span className="flex items-center gap-1 text-[11px] text-slate-400">
+            <span className="flex items-center gap-1 text-[11px] text-slate-450 font-bold">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-[#2A5CFF]" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               Global Compliance Ready
             </span>
-            <span className="flex items-center gap-1 text-[11px] text-slate-400/80">
+            <span className="flex items-center gap-1 text-[11px] text-slate-400 font-bold">
               ⟳ ISO 27001 In Progress
             </span>
           </div>
@@ -223,122 +165,68 @@ export function Footer() {
         </div>
       </div>
 
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Organization',
-            name: 'SAQYN RABT',
-            url: 'https://saqynrabt.com',
-            logo: 'https://saqynrabt.com/logo.png',
-            description: 'AI-powered operations for front desks and teams worldwide.',
-            address: { '@type': 'PostalAddress', addressLocality: 'Global', addressCountry: 'US' },
-            contactPoint: [
-              { '@type': 'ContactPoint', telephone: '+974-XXXX-XXXX', contactType: 'sales', email: 'saqynrabt@gmail.com' },
-              { '@type': 'ContactPoint', contactType: 'DPO', email: 'saqynrabt@gmail.com' },
-            ],
-            sameAs: [
-              'https://www.instagram.com/saqynrabt',
-              'https://www.facebook.com/share/1BNzmp2vXB/',
-              'https://x.com/saqynrabt',
-              'https://www.threads.com/@saqynrabt',
-              'https://www.tiktok.com/@saqyn.rabt',
-              'https://www.linkedin.com/company/saqynrabt/',
-              'https://youtube.com/@saqynrabt',
-            ],
-          }),
-        }}
-      />
-
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 lg:gap-8">
-          {/* Column 1: Brand & Trust Mark */}
-          <div className="flex flex-col gap-4">
+        <div className="flex flex-col lg:flex-row justify-between gap-12">
+          {/* Left Block: Logo & Newsletter (Nietzsche Style) */}
+          <div className="flex flex-col gap-4 max-w-sm">
             <Link href="/" className="inline-block" aria-label="SAQYN RABT Home">
               <Logo />
             </Link>
-            <p className="text-xs text-slate-500 font-semibold leading-relaxed">
-              {copy.tagline}
+            <p className="text-xs text-slate-500 font-bold leading-relaxed mt-2">
+              {t({ en: 'Sign up to receive updates.', ar: 'سجل للحصول على آخر التحديثات.' })}
             </p>
-            <div className="flex items-center gap-2 text-[11px] text-slate-400 font-semibold">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2A5CFF] shrink-0" />
-              <p>{copy.address}</p>
-            </div>
-            <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-royal/30 bg-royal/10 w-full shadow-sm hover:shadow-md hover:border-royal/50 transition-all duration-200">
-              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-royal/20 text-royal shrink-0">
-                <Mail className="w-4 h-4" aria-hidden="true" />
-              </div>
-              <div className="flex flex-col min-w-0">
-                <span className="text-[9px] font-black uppercase tracking-widest text-royal">DPO Contact</span>
-                <a
-                  href="mailto:saqynrabt@gmail.com"
-                  className="text-[12px] font-extrabold text-slate-800 hover:text-royal hover:underline truncate transition-colors"
-                >
-                  saqynrabt@gmail.com
-                </a>
-              </div>
-            </div>
+            
+            {/* Integrated capsule input + button */}
+            <form onSubmit={(e) => e.preventDefault()} className="relative flex items-center w-full max-w-xs">
+              <input
+                type="email"
+                placeholder={t({ en: 'Enter your email', ar: 'أدخل بريدك الإلكتروني' })}
+                className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-full px-5 py-3 pr-24 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#2A5CFF]/30 transition-all"
+                required
+              />
+              <button
+                type="submit"
+                className="absolute right-1.5 min-h-0 bg-[#141F33] hover:opacity-90 text-white font-bold text-[10px] uppercase tracking-wider px-4 py-2 rounded-full transition-all"
+              >
+                {t({ en: 'Submit', ar: 'إرسال' })}
+              </button>
+            </form>
+
+            <p className="text-[10px] text-slate-400 font-medium leading-relaxed">
+              {t({ 
+                en: 'By subscribing you agree to our Privacy Policy and provide consent to receive updates from our company.', 
+                ar: 'من خلال الاشتراك، فإنك توافق على سياسة الخصوصية الخاصة بنا وتوافق على تلقي التحديثات من شركتنا.' 
+              })}
+            </p>
           </div>
 
-          {/* Column 2: Legal & Compliance */}
-          <FooterColumn title={copy.legalTitle} links={copy.legal} />
+          {/* Right Block: Simplified Columns (Product, Company, Legal) */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 md:gap-16">
+            {/* Column 1: Product */}
+            <FooterColumn title={copy.productTitle} links={copy.products} />
 
-          {/* Column 3: Product & Platform */}
-          <FooterColumn title={copy.productTitle} links={copy.products} />
+            {/* Column 2: Company */}
+            <FooterColumn title={copy.companyTitle} links={copy.company} />
 
-          {/* Column 4: Company & Social */}
-          <FooterColumn title={copy.companyTitle} links={copy.company} />
-
-          {/* Column 5: Legal Utility Console */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-[11px] font-black uppercase tracking-widest text-slate-400">
-              {copy.privacyControls}
-            </h3>
-            <ul className="flex flex-col gap-3">
-              <li>
-                <button
-                  type="button"
-                  onClick={handleCookiePrefs}
-                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-navy transition-colors text-left"
-                >
-                  {copy.cookiePrefs}
-                </button>
-              </li>
-              <li>
-                <Link
-                  href="/privacy-policy#do-not-sell"
-                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-navy transition-colors block"
-                >
-                  {copy.doNotSell}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/help/getting-started"
-                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-navy transition-colors block"
-                >
-                  {copy.accessibility}
-                </Link>
-              </li>
-            </ul>
+            {/* Column 3: Legal */}
+            <FooterColumn title={copy.legalTitle} links={copy.legal} />
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="border-t border-gray-100 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-slate-400">
+        <div className="border-t border-gray-100 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-slate-400">
           <p className="uppercase tracking-wider">
             © {year} SAQYN RABT. ALL RIGHTS RESERVED.
           </p>
 
           <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">
-            <Link href="/sitemap" className="hover:text-navy transition-colors">{t('Site Map', 'Plan du Site', 'خريطة الموقع', 'साइट मैप')}</Link>
+            <Link href="/sitemap" className="hover:text-navy transition-colors">{t({ en: 'Site Map', ar: 'خريطة الموقع' })}</Link>
             <span>|</span>
-            <Link href="/terms-and-conditions" className="hover:text-navy transition-colors">{t('Terms', 'Conditions', 'الشروط', 'शर्तें')}</Link>
+            <Link href="/terms-and-conditions" className="hover:text-navy transition-colors">{t({ en: 'Terms', ar: 'الشروط' })}</Link>
             <span>|</span>
-            <Link href="/privacy-policy" className="hover:text-navy transition-colors">{t('Privacy', 'Confidentialité', 'سياسة الخصوصية', 'गोपनीयता')}</Link>
+            <Link href="/privacy-policy" className="hover:text-navy transition-colors">{t({ en: 'Privacy', ar: 'سياسة الخصوصية' })}</Link>
             <span>|</span>
-            <Link href="/trust" className="hover:text-navy transition-colors">{t('Trust Center', 'Centre de Confiance', 'مركز الثقة', 'विश्वास केंद्र')}</Link>
+            <Link href="/trust" className="hover:text-navy transition-colors">{t({ en: 'Trust Center', ar: 'مركز الثقة' })}</Link>
           </div>
 
           <SocialLinks />
