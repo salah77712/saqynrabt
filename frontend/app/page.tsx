@@ -8,16 +8,15 @@ import { useLocale } from './providers';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import Link from 'next/link';
 import { MessageSquare, Zap, Mail, Check } from 'lucide-react';
-import { RainbowButton } from '../components/shadcn/rainbow-button';
 
 const industries = [
-  { id: 'default', label: 'Every Business', headline: 'Catch every call. Support every team member.', copy: 'The secure 24/7 AI front-desk and private staff knowledge hub for any industry. No missed calls. No repetitive questions.' },
-  { id: 'healthcare', label: 'Healthcare', headline: 'More time with patients, less time on the phone.', copy: 'Reduce front-desk workload by automating patient bookings and triaging emergencies.' },
-  { id: 'hospitality', label: 'Hospitality', headline: 'Check-ins, check-outs, room service — handled.', copy: 'Never miss a booking inquiry. Handle late check-ins automatically.' },
-  { id: 'homeservices', label: 'Home Services', headline: 'Every emergency call captured. Every technician dispatched.', copy: 'Capture urgent calls 24/7 and dispatch technicians to the job instantly.' },
-  { id: 'realestate', label: 'Real Estate', headline: 'Maintenance requests routed before the tenant hangs up.', copy: 'Route urgent tenant maintenance requests straight to your on-site crew.' },
-  { id: 'automotive', label: 'Automotive', headline: 'Repair quotes answered while your crew keeps working.', copy: 'Handle quote inquiries instantly so your mechanics can focus on fixing cars.' },
-  { id: 'food', label: 'Food & Beverage', headline: 'Reservations and takeout handled — even at full capacity.', copy: 'Automate table reservations and takeout orders during peak rush hours.' },
+  { id: 'default', label: 'Every Business', headline: 'Catch every call. Automate your front desk.', copy: 'The secure 24/7 AI voice and message receptionist for any industry. Zero missed calls. Zero wasted leads.' },
+  { id: 'healthcare', label: 'Healthcare', headline: 'More time with patients, less time on the phone.', copy: 'Automate patient bookings, appointment inquiries, and prescription routing to reduce clinic staff workload.' },
+  { id: 'hospitality', label: 'Hospitality', headline: 'Check-ins, check-outs, room service — handled.', copy: 'Handle room reservations, late check-ins, guest FAQs, and housekeeping requests automatically 24/7.' },
+  { id: 'homeservices', label: 'Home Services', headline: 'Every emergency call captured. Every technician dispatched.', copy: 'Capture emergency repair calls 24/7, qualify leads, and trigger automated dispatch for your technicians.' },
+  { id: 'realestate', label: 'Real Estate', headline: 'Maintenance requests routed before the tenant hangs up.', copy: 'Automate tenant inquiry replies, pre-qualify buyer budgets, and schedule property viewings instantly.' },
+  { id: 'automotive', label: 'Automotive', headline: 'Repair quotes answered while your crew keeps working.', copy: 'Handle repair quotes, service bookings, and status checks automatically so your mechanics can work.' },
+  { id: 'food', label: 'Food & Beverage', headline: 'Reservations and takeout handled — even at full capacity.', copy: 'Automate table reservations, takeout orders, and dining FAQs during your busiest rush hours.' },
   { id: 'towing', label: 'Towing & Roadside', headline: 'Stranded drivers connected to your fleet in seconds.', copy: 'Capture stranded drivers, get GPS data, and dispatch trucks rapidly.' },
   { id: 'veterinary', label: 'Veterinary', headline: 'Pet emergencies triaged the moment the phone rings.', copy: 'Triage emergency pet visits and route to the nurse instantly.' },
   { id: 'plumbing', label: 'Plumbing & HVAC', headline: 'After-hours calls turned into booked jobs — automatically.', copy: 'Stop losing money from missed after-hours repair calls.' },
@@ -171,14 +170,12 @@ activeProduct === 'chatbot'
 
             {/* CTA Row */}
             <div className="flex flex-wrap gap-4 mt-2 animate-slideUp" style={{ animationDelay: '0.3s' }}>
-              <RainbowButton asChild>
-                <Link
-                  href={activeProduct === 'automation' ? '/automation' : '/chatbot'}
-                  className="px-8 py-4 text-base font-bold"
-                >
-                  {t({ en: 'Explore Product', ar: 'استكشف المنتج' })}
-                </Link>
-              </RainbowButton>
+              <Link
+                href={activeProduct === 'automation' ? '/automation' : '/chatbot'}
+                className="btn-primary flex items-center justify-center px-8 py-4 text-base font-bold"
+              >
+                {t({ en: 'Explore Product', ar: 'استكشف المنتج' })}
+              </Link>
               <button
                 type="button"
                 onClick={openCustomModal}

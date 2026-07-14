@@ -8,7 +8,6 @@ import { Footer } from '../../components/Footer';
 import { PricingCards } from '../../components/PricingCards';
 import { Check, Zap, MessageSquare } from 'lucide-react';
 import { AUTOMATION_TIERS, CHATBOT_TIERS } from '../../lib/pricing-config';
-import { RainbowButton } from '@/components/shadcn/rainbow-button';
 
 type Currency = 'USD' | 'QAR';
 type ProductTab = 'automation' | 'chatbot';
@@ -112,11 +111,12 @@ className={`absolute top-1 w-5 h-5 bg-[#F8F9FB] rounded-full shadow-sm transitio
 <p className="text-[#141F33] mb-8">
 {t({ en: 'Enterprise pricing, dedicated infrastructure, custom SLAs, and tailored onboarding for larger teams.', ar: 'أسعار المؤسسات، بنية تحتية مخصصة، اتفاقيات مستوى خدمة مخصصة، وإعداد مصمم للفرق الأكبر.' })}
 </p>
-<RainbowButton asChild className="text-[#F8F9FB]">
-<Link href="/contact">
-{t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' })}
+<Link 
+  href="/contact"
+  className="btn-primary inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white shadow-md hover:bg-royal/90 active:scale-95 transition-all text-center block"
+>
+  {t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' })}
 </Link>
-</RainbowButton>
 </div>
 </section>
 

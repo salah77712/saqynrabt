@@ -5,7 +5,6 @@ import Link from 'next/link';
 import type { ProductTier } from '../lib/pricing-config';
 import { Check } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/shadcn/card';
-import { RainbowButton } from '@/components/shadcn/rainbow-button';
 import { cn } from '@/lib/utils';
 
 interface PricingCardsProps {
@@ -38,7 +37,7 @@ return (
 <Card
 key={tier.id}
 className={cn(
-'relative flex flex-col animate-slideUp transition-all duration-300 hover:shadow-xl hover:-translate-y-1',
+'relative flex flex-col animate-slideUp transition-all duration-300 hover:shadow-xl hover:-translate-y-1 !overflow-visible',
 isCustom(tier) && 'opacity-90',
 isPopular && 'ring-2 ring-[#2A5CFF] shadow-lg scale-[1.02] z-10'
 )}
@@ -101,15 +100,14 @@ className="w-full border border-[#141F33]/10 bg-[#F8F9FB] text-[#141F33] py-3.5 
 {isAr ? tier.ctaAr : tier.cta}
 </Link>
 ) : isPopular ? (
-<RainbowButton asChild className="w-full py-3.5 text-[#F8F9FB]">
 <a
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
+className="w-full bg-[#2A5CFF] hover:bg-[#2A5CFF]/90 text-white py-3.5 rounded-xl font-bold text-sm transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-lg active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </a>
-</RainbowButton>
 ) : (
 <a
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
