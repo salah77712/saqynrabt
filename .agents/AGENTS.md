@@ -45,3 +45,21 @@ You are strictly acting as the Chief Security Officer (CSO) for SAQYN RABT. You 
 - The codebase at commit `e14700dbd50129c1922d4ad7166285d87c57d2d5` represents a verified perfect production state.
 - You are strictly forbidden from modifying any file in this repository without explicit, direct user instructions.
 
+---
+
+## 🎨 THE 60-30-10 VISUAL DESIGN LAW & ICON RULES
+
+### 1. The Color Ratio Law
+Every page, modal, component, and utility must strictly adhere to the **60-30-10** color rule:
+* **60% Dominant (Canvas & Base):** Enforced via the global `bg-surface` (`#F8F9FB` light) and `dark:bg-dark-900` (`#07111F` dark). Large containers must map to `bg-white` (light) or `dark:bg-dark-800` (dark). Hardcoded background hex values (like `#F8F9FB` or `#FFFFFF`) are strictly forbidden inside page files.
+* **30% Secondary (Layout & Type):** Sidebars, card frames, and borders (`border-gray-200` / `dark:border-slate-800`), primary typography (`text-navy` / `dark:text-white`), and muted copy (`text-muted`).
+* **10% Accent (CTAs & active indicators):** Reserved exclusively for active nav tabs, unread notifications, active toggles, and primary CTA buttons. Use `royal` (`#2A5CFF`) or specific alerts (`accent` / `destructive`).
+
+### 2. Premium Icon Mapping Rules
+Never use generic or mismatched icons for product categories:
+* **Automation:** Must always use **`Zap`** (represents background queues and triggers). Generic representation via `Phone` is strictly banned.
+* **Chatbot:** Must always use **`Sparkles`** (represents intelligent generation). Generic representation via `MessageSquare` or `Bolt` is strictly banned.
+* **Stroke Weight:** Standardize all Lucide icons to `strokeWidth={2}` for consistent weights.
+* **Accessibility:** Decorative icons must carry `aria-hidden="true"`. Interactive icons must be wrapped in buttons with descriptive `aria-label` tags.
+
+
