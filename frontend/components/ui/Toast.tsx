@@ -10,11 +10,19 @@ export interface ToastProps {
 }
 
 export function Toast({ message, type = 'success', onClose }: ToastProps) {
+  const [isExiting, setIsExiting] = React.useState(false);
+
+  const close = React.useCallback(() => {
+    if (isExiting) return;
+    setIsExiting(true);
+    setTimeout(() => onClose?.(), 200);
+  }, [isExiting, onClose]);
+
   React.useEffect(() => {
     if (!onClose) return;
-    const timer = setTimeout(() => onClose(), 5000);
+    const timer = setTimeout(close, 5000);
     return () => clearTimeout(timer);
-  }, [onClose]);
+  }, [onClose, close]);
 
   const bgColors = {
     success: 'bg-[#10B981] text-white',
@@ -24,14 +32,16 @@ export function Toast({ message, type = 'success', onClose }: ToastProps) {
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-50 flex items-center justify-between gap-4 px-4 py-3 rounded-xl shadow-2xl animate-slideUp max-w-sm ${bgColors[type]}`}
+      className={`fixed bottom-6 right-6 z-50 flex items-center justify-between gap-4 px-4 py-3 rounded-xl shadow-2xl max-w-sm ${
+        isExiting ? 'animate-slideDownExit' : 'animate-slideUp'
+      } ${bgColors[type]}`}
       role="status"
       aria-live="polite"
     >
       <span className="text-xs font-bold leading-relaxed">{message}</span>
       {onClose && (
         <button
-          onClick={onClose}
+          onClick={close}
           className="text-white opacity-80 hover:opacity-100 font-bold text-xs"
           aria-label="Dismiss toast"
         >

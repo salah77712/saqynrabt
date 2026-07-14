@@ -37,7 +37,7 @@ export default function FeaturesPage() {
           <h1 className="text-4xl lg:text-5xl font-extrabold text-[#141F33] leading-tight tracking-tight mt-3">
             {t(content.title)}
           </h1>
-          <p className="text-sm font-semibold text-[#718096] mt-4 leading-relaxed">
+          <p className="text-sm font-medium text-[#718096] mt-4 leading-relaxed">
             {t(content.subtitle)}
           </p>
         </div>
@@ -48,28 +48,28 @@ export default function FeaturesPage() {
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
             <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6"><PhoneIcon className="w-6 h-6 text-blue-600" /></div>
             <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.automationTitle)}</h3>
-            <p className="text-xs font-semibold text-[#718096] leading-relaxed mt-3">{t(content.automationDesc)}</p>
+            <p className="text-xs font-normal text-[#718096] leading-relaxed mt-3">{t(content.automationDesc)}</p>
           </div>
 
           {/* Card 2: Chatbot */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
             <div className="h-12 w-12 rounded-xl bg-indigo-50 flex items-center justify-center mb-6"><SparklesIcon className="w-6 h-6 text-indigo-600" /></div>
             <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.chatbotTitle)}</h3>
-            <p className="text-xs font-semibold text-[#718096] leading-relaxed mt-3">{t(content.chatbotDesc)}</p>
+            <p className="text-xs font-normal text-[#718096] leading-relaxed mt-3">{t(content.chatbotDesc)}</p>
           </div>
 
           {/* Card 3: Custom */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
             <div className="h-12 w-12 rounded-xl bg-violet-50 flex items-center justify-center mb-6"><WrenchIcon className="w-6 h-6 text-violet-600" /></div>
             <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.customTitle)}</h3>
-            <p className="text-xs font-semibold text-[#718096] leading-relaxed mt-3">{t(content.customDesc)}</p>
+            <p className="text-xs font-normal text-[#718096] leading-relaxed mt-3">{t(content.customDesc)}</p>
           </div>
 
           {/* Card 4: Reporting */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
             <div className="h-12 w-12 rounded-xl bg-emerald-50 flex items-center justify-center mb-6"><BarChartIcon className="w-6 h-6 text-emerald-600" /></div>
             <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.reportingTitle)}</h3>
-            <p className="text-xs font-semibold text-[#718096] leading-relaxed mt-3">{t(content.reportingDesc)}</p>
+            <p className="text-xs font-normal text-[#718096] leading-relaxed mt-3">{t(content.reportingDesc)}</p>
           </div>
         </div>
       </main>

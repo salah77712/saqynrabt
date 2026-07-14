@@ -123,7 +123,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                <SparklesIcon className="w-5 h-5 text-[#3B5B9B]" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
+                <SparklesIcon className="w-5 h-5 text-[#3B5B9B]" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
               </button>
               <button
                 type="button"
@@ -134,7 +134,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                <BoltIcon className="w-5 h-5 text-[#10B981]" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
+                <BoltIcon className="w-5 h-5 text-[#10B981]" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
               </button>
             </div>
 
@@ -197,7 +197,7 @@ export default function MarketingPage() {
                       <div key={i} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-xl">
                         <div className="flex items-center gap-2 min-w-0">
                           <div className="w-7 h-7 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
-                            {i === 0 ? <PhoneIcon className="w-4 h-4 text-[#3B5B9B]" /> : i === 1 ? <ChatIcon className="w-4 h-4 text-[#10B981]" /> : <MailIcon className="w-4 h-4 text-[#718096]" />}
+                            {i === 0 ? <PhoneIcon className="w-4 h-4 text-[#3B5B9B]" aria-hidden="true" /> : i === 1 ? <ChatIcon className="w-4 h-4 text-[#10B981]" aria-hidden="true" /> : <MailIcon className="w-4 h-4 text-[#718096]" aria-hidden="true" />}
                           </div>
                           <p className="text-xs font-semibold text-slate-700 truncate">{item.label}</p>
                         </div>
@@ -299,26 +299,26 @@ export default function MarketingPage() {
             </p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
               <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Hospitality Sector">
-                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h6M9 13h6M9 17h6" />
                 </svg>
                 <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Hotels</span>
               </div>
               <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Healthcare Sector">
-                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <rect x="3" y="3" width="18" height="18" rx="2" />
                   <path d="M12 8v8M8 12h8" />
                 </svg>
                 <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Clinics</span>
               </div>
               <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Industrial Operations">
-                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M3 21h18M3 7l5 4V7l5 4V7l6 5v9H3V7z" />
                 </svg>
                 <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Operations</span>
               </div>
               <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Retail Outlets">
-                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" />
                   <path d="M9 22V12h6v10" />
                 </svg>
@@ -350,7 +350,7 @@ export default function MarketingPage() {
               >
                 <div className="flex gap-1 mb-5">
                   {[...Array(5)].map((_, s) => (
-                    <svg key={s} className="w-4 h-4 text-[#10B981]" viewBox="0 0 20 20" fill="currentColor">
+                    <svg key={s} className="w-4 h-4 text-[#10B981]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
@@ -384,7 +384,7 @@ export default function MarketingPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#3B5B9B]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-[#141F33] rounded-xl flex items-center justify-center mb-5">
-                  <SparklesIcon className="w-6 h-6 text-white" />
+                  <SparklesIcon className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
@@ -400,7 +400,7 @@ export default function MarketingPage() {
                     { en: 'Multi-language (Arabic & English)', ar: 'متعدد اللغات (العربية والإنجليزية)' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                      <CheckIcon className="w-5 h-5 text-emerald-500 shrink-0" />
+                      <CheckIcon className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
                   ))}
@@ -419,7 +419,7 @@ export default function MarketingPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-5">
-                  <BoltIcon className="w-6 h-6 text-white" />
+                  <BoltIcon className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Internal Chatbot', ar: 'المساعد الذكي الداخلي' })}
@@ -435,7 +435,7 @@ export default function MarketingPage() {
                     { en: 'Knowledge gap tracking', ar: 'تتبع الفجوات المعرفية' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                      <CheckIcon className="w-5 h-5 text-emerald-500 shrink-0" />
+                      <CheckIcon className="w-5 h-5 text-emerald-500 shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
                   ))}

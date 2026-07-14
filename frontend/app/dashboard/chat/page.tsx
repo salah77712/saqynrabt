@@ -134,8 +134,14 @@ export default function ChatbotDashboardPage() {
               </div>
               <div className="flex items-center gap-2">
                 {isLoading && (
-                  <span className="text-[10px] md:text-xs text-royal font-bold animate-pulse">
-                    {t('Streaming...', 'جاري الكتابة...')}
+                  <span className="inline-flex items-center gap-1 text-royal">
+                    {[0, 160, 320].map((delay) => (
+                      <span
+                        key={delay}
+                        className="inline-block w-1.5 h-1.5 bg-current rounded-full animate-bounce"
+                        style={{ animationDelay: `${delay}ms` }}
+                      />
+                    ))}
                   </span>
                 )}
                 <button

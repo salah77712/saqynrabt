@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 
@@ -16,6 +16,11 @@ export function ChatInterface() {
   ]);
   const [query, setQuery] = useState('');
   const [typing, setTyping] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [list]);
 
   const handleSend = () => {
     if (!query.trim()) return;
@@ -58,11 +63,20 @@ export function ChatInterface() {
 
         {typing && (
           <div className="flex justify-start">
-            <div className="rounded-2xl rounded-tl-none p-4 border border-gray-100 bg-white text-xs text-slate-400 font-semibold animate-pulse">
-              AI is writing...
+            <div className="rounded-2xl rounded-tl-none p-4 border border-gray-100 bg-white text-xs text-slate-400 font-semibold">
+              <span className="inline-flex items-center gap-1">
+                {[0, 160, 320].map((delay) => (
+                  <span
+                    key={delay}
+                    className="inline-block w-1.5 h-1.5 bg-current rounded-full animate-bounce"
+                    style={{ animationDelay: `${delay}ms` }}
+                  />
+                ))}
+              </span>
             </div>
           </div>
         )}
+        <div ref={messagesEndRef} />
       </div>
 
       {/* Input */}

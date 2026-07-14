@@ -56,10 +56,10 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between w-full h-full">
         <Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity min-h-[44px]">
-          <div className="w-7 h-7 md:w-8 md:h-8 bg-[#141F33] rounded-md flex items-center justify-center text-white font-bold text-sm md:text-base shrink-0">
+          <div className="w-7 h-7 md:w-8 md:h-8 bg-navy rounded-md flex items-center justify-center text-white font-bold text-sm md:text-base shrink-0">
             S
           </div>
-          <span className="text-[#141F33] font-black text-sm md:text-lg tracking-[0.05em]">
+          <span className="text-navy font-black text-sm md:text-lg tracking-[0.05em]">
             {locale === 'ar' ? 'سقن' : 'SAQYN'}
           </span>
         </Link>
@@ -71,13 +71,13 @@ export function Header() {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-gray-50 hover:text-[#141F33] min-h-[44px] flex items-center ${
-                  isActive ? 'text-[#141F33]' : 'text-gray-600'
+                className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-gray-50 hover:text-navy min-h-[44px] flex items-center ${
+                  isActive ? 'text-navy' : 'text-gray-600'
                 }`}
               >
                     {t(link.label.en, link.label.fr, link.label.ar, link.label.hi)}
                 {isActive && (
-                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-[#141F33] rounded-full scale-x-100" />
+                  <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-navy rounded-full scale-x-100" />
                 )}
               </Link>
             );
@@ -90,7 +90,7 @@ export function Header() {
           <div className="flex items-center gap-2">
             <Link
               href="/contact"
-              className="hidden md:inline-flex bg-[#141F33] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all hover:scale-[1.02] shadow-sm min-h-[44px] items-center"
+              className="hidden md:inline-flex bg-navy hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
             >
               {t('See how it works', 'Voir comment ça marche', 'شاهد كيف يعمل', 'यह कैसे काम करता है देखें')}
             </Link>
@@ -99,7 +99,7 @@ export function Header() {
               <div className="flex items-center gap-3">
                 <Link
                   href="/dashboard"
-                  className="hidden md:inline-flex bg-[#141F33] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all hover:scale-[1.02] shadow-sm min-h-[40px] items-center"
+                  className="hidden md:inline-flex bg-navy hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[40px] items-center"
                 >
                   {t('Dashboard', 'Tableau de Bord', 'لوحة التحكم', 'डैशबोर्ड')}
                 </Link>
@@ -108,7 +108,7 @@ export function Header() {
                     <UserButton.Link
                       label={t("Dashboard", "Tableau de Bord", "لوحة التحكم", "डैशबोर्ड")}
                       labelIcon={
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px' }}>
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px' }} aria-hidden="true">
                           <rect x="3" y="3" width="7" height="9" />
                           <rect x="14" y="3" width="7" height="5" />
                           <rect x="14" y="12" width="7" height="9" />
@@ -122,12 +122,12 @@ export function Header() {
               </div>
             ) : (
               <div className="flex items-center gap-2">
-                <Link href="/sign-in" className="text-xs font-extrabold text-[#141F33] hover:underline min-h-[44px] flex items-center px-2">
+                <Link href="/sign-in" className="text-xs font-extrabold text-navy hover:underline min-h-[44px] flex items-center px-2">
                   {t('Sign In', 'Connexion', 'تسجيل الدخول', 'साइन इन करें')}
                 </Link>
                 <Link
                   href="/sign-up"
-                  className="hidden md:inline-flex bg-[#141F33] hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all hover:scale-[1.02] shadow-sm min-h-[40px] items-center"
+                  className="hidden md:inline-flex bg-navy hover:bg-slate-800 text-white font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[40px] items-center"
                 >
                   {t('Register', 'S\'inscrire', 'سجل الآن', 'पंजीकरण करें')}
                 </Link>
@@ -140,9 +140,9 @@ export function Header() {
             aria-label="Open navigation menu"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav"
-            className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 active:scale-95 text-gray-600 min-h-[44px] min-w-[44px] transition-colors"
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 hover:shadow-md active:scale-95 text-gray-600 min-h-[44px] min-w-[44px] transition-all duration-300"
           >
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
               <path d="M2.5 5H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               <path d="M2.5 10H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
               <path d="M2.5 15H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -172,7 +172,7 @@ export function Header() {
             }}
           >
             <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
-              <span className="text-sm font-extrabold text-[#141F33] uppercase tracking-wider">
+              <span className="text-sm font-extrabold text-navy uppercase tracking-wider">
                 {t('Menu', 'Menu', 'القائمة', 'मेन्यू')}
               </span>
               <button
@@ -180,7 +180,7 @@ export function Header() {
                 aria-label="Close navigation menu"
                 className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 text-gray-500 min-h-[44px] min-w-[44px]"
               >
-                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                   <path d="M13.5 4.5L4.5 13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                   <path d="M4.5 4.5L13.5 13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
                 </svg>
@@ -197,8 +197,8 @@ export function Header() {
                     onClick={closeMenu}
                     className={`flex items-center min-h-[44px] px-3 py-2.5 text-base font-semibold rounded-lg transition-colors ${
                       isActive
-                        ? 'text-[#141F33] bg-[#141F33]/5'
-                        : 'text-gray-700 hover:text-[#141F33] hover:bg-gray-50'
+                        ? 'text-navy bg-navy/5'
+                        : 'text-gray-700 hover:text-navy hover:bg-gray-50'
                     }`}
                   >
                 {t(link.label.en, link.label.fr, link.label.ar, link.label.hi)}
@@ -216,7 +216,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onClick={closeMenu}
-                className="flex min-h-[44px] w-full items-center justify-center rounded-xl bg-[#141F33] text-white font-bold text-sm py-3"
+                className="flex min-h-[44px] w-full items-center justify-center rounded-xl bg-navy text-white font-bold text-sm py-3"
               >
                 {t('See how it works', 'Voir comment ça marche', 'شاهد كيف يعمل', 'यह कैसे काम करता है देखें')}
               </Link>

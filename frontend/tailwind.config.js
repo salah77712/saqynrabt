@@ -28,8 +28,10 @@ module.exports = {
       },
       animation: {
         'fade-in': 'fadeIn 0.3s ease-out forwards',
+        'fade-out': 'fadeOut 0.2s ease-in forwards',
         'slide-up': 'slideUp 0.4s ease-out forwards',
         'slide-down': 'slideDown 0.3s ease-out forwards',
+        'slide-down-exit': 'slideDownExit 0.2s ease-in forwards',
         'shimmer': 'shimmer 2s linear infinite',
         'pulse-soft': 'pulseSoft 2s cubic-bezier(0.4,0,0.6,1) infinite',
         'float': 'float 3s ease-in-out infinite',
@@ -48,6 +50,14 @@ module.exports = {
         slideDown: {
           '0%': { opacity: '0', transform: 'translateY(-8px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
+        },
+        slideDownExit: {
+          '0%': { opacity: '1', transform: 'translateY(0)' },
+          '100%': { opacity: '0', transform: 'translateY(8px)' },
         },
         shimmer: {
           '0%': { backgroundPosition: '-200% 0' },

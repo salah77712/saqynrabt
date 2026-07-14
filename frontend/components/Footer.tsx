@@ -141,9 +141,9 @@ const content = {
 function Logo() {
   return (
     <svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SAQYN RABT">
-      <rect width="120" height="32" rx="4" fill="#141F33" />
+      <rect width="120" height="32" rx="4" className="fill-navy" />
       <text x="8" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" letterSpacing="1" fill="white">SAQYN</text>
-      <text x="68" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="300" letterSpacing="1" fill="#94A3B8">RABT</text>
+      <text x="68" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="300" letterSpacing="1" className="fill-slate-400">RABT</text>
     </svg>
   );
 }
@@ -189,18 +189,18 @@ export function Footer() {
           <div className="flex items-center gap-4 flex-wrap">
             <Link
               href="/trust"
-              className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500 hover:text-[#141F33] transition-colors"
+              className="flex items-center gap-1.5 text-[11px] font-bold text-slate-500 hover:text-navy transition-colors"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
               Trust Center
             </Link>
             <span className="w-px h-4 bg-gray-200" />
             <span className="flex items-center gap-1 text-[11px] text-slate-400">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-green-500" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               GDPR Ready
             </span>
             <span className="flex items-center gap-1 text-[11px] text-slate-400">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-green-500" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
               Global Compliance Ready
             </span>
             <span className="flex items-center gap-1 text-[11px] text-slate-400/80">
@@ -267,7 +267,7 @@ export function Footer() {
             </div>
             <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-emerald-100 bg-emerald-50/60 w-full shadow-sm hover:shadow-md hover:border-emerald-200 transition-all duration-200">
               <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-100 text-emerald-600 shrink-0">
-                <MailIcon className="w-4 h-4" />
+                <MailIcon className="w-4 h-4" aria-hidden="true" />
               </div>
               <div className="flex flex-col min-w-0">
                 <span className="text-[9px] font-black uppercase tracking-widest text-emerald-500">DPO Contact</span>
@@ -300,7 +300,7 @@ export function Footer() {
                 <button
                   type="button"
                   onClick={handleCookiePrefs}
-                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#141F33] transition-colors text-left"
+                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-navy transition-colors text-left"
                 >
                   {copy.cookiePrefs}
                 </button>
@@ -308,7 +308,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/privacy-policy#do-not-sell"
-                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#141F33] transition-colors block"
+                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-navy transition-colors block"
                 >
                   {copy.doNotSell}
                 </Link>
@@ -316,7 +316,7 @@ export function Footer() {
               <li>
                 <Link
                   href="/help/getting-started"
-                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-[#141F33] transition-colors block"
+                  className="text-[11px] font-extrabold uppercase tracking-wider text-slate-700 hover:text-navy transition-colors block"
                 >
                   {copy.accessibility}
                 </Link>
@@ -332,13 +332,13 @@ export function Footer() {
           </p>
 
           <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">
-            <Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t('Site Map', 'Plan du Site', 'خريطة الموقع', 'साइट मैप')}</Link>
+            <Link href="/sitemap" className="hover:text-navy transition-colors">{t('Site Map', 'Plan du Site', 'خريطة الموقع', 'साइट मैप')}</Link>
             <span>|</span>
-            <Link href="/terms-and-conditions" className="hover:text-[#141F33] transition-colors">{t('Terms', 'Conditions', 'الشروط', 'शर्तें')}</Link>
+            <Link href="/terms-and-conditions" className="hover:text-navy transition-colors">{t('Terms', 'Conditions', 'الشروط', 'शर्तें')}</Link>
             <span>|</span>
-            <Link href="/privacy-policy" className="hover:text-[#141F33] transition-colors">{t('Privacy', 'Confidentialité', 'سياسة الخصوصية', 'गोपनीयता')}</Link>
+            <Link href="/privacy-policy" className="hover:text-navy transition-colors">{t('Privacy', 'Confidentialité', 'سياسة الخصوصية', 'गोपनीयता')}</Link>
             <span>|</span>
-            <Link href="/trust" className="hover:text-[#141F33] transition-colors">{t('Trust Center', 'Centre de Confiance', 'مركز الثقة', 'विश्वास केंद्र')}</Link>
+            <Link href="/trust" className="hover:text-navy transition-colors">{t('Trust Center', 'Centre de Confiance', 'مركز الثقة', 'विश्वास केंद्र')}</Link>
           </div>
 
           <SocialLinks />

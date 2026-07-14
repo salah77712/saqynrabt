@@ -1,9 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@clerk/nextjs';
 import { useLocale, useEntitlements } from '../../../providers';
 import { useGlobalToast } from '../../../../lib/toast';
+import { useUnsavedChanges } from '../../../../hooks/useUnsavedChanges';
+import { UnsavedChangesModal } from '../../../../components/settings/UnsavedChangesModal';
+import { useKeyboardShortcut } from '../../../../hooks/useKeyboardShortcut';
 
 export default function BrandingSettingsPage() {
   const { locale } = useLocale();
@@ -11,6 +14,9 @@ export default function BrandingSettingsPage() {
   const { getToken, isLoaded: authLoaded } = useAuth();
   const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+
+  const formRef = useRef<HTMLFormElement>(null);
+  const { isDirty, setDirty, markClean, showModal, confirmNavigation, cancelNavigation } = useUnsavedChanges();
 
   const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -56,6 +62,10 @@ export default function BrandingSettingsPage() {
       .finally(() => setLoading(false));
   }, [jwtToken]);
 
+  useKeyboardShortcut('s', () => {
+    formRef.current?.requestSubmit();
+  }, true);
+
   // Handle saving configurations
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,6 +88,7 @@ export default function BrandingSettingsPage() {
     })
       .then(res => res.json())
       .then(() => {
+        markClean();
         addToast(t({ en: 'Branding options updated successfully!', ar: 'تم تحديث خيارات الهوية البصرية بنجاح!' }), 'success');
       })
       .catch(err => {
@@ -90,6 +101,7 @@ export default function BrandingSettingsPage() {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setBranding(prev => ({ ...prev, [name]: value }));
+    setDirty(true);
   };
 
   return (
@@ -106,7 +118,7 @@ export default function BrandingSettingsPage() {
           <span className="h-8 w-8 rounded-full border-4 border-gray-200 border-t-[#141F33] animate-spin" />
         </div>
       ) : (
-        <form onSubmit={handleSave} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+        <form ref={formRef} onSubmit={handleSave} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
           
           {/* Logo URL */}
           <div>
@@ -210,6 +222,11 @@ export default function BrandingSettingsPage() {
         </form>
       )}
 
+      <UnsavedChangesModal
+        isOpen={showModal}
+        onConfirm={confirmNavigation}
+        onCancel={cancelNavigation}
+      />
     </div>
   );
 }

@@ -1,18 +1,28 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useLocale } from '../../../providers';
 import { useGlobalToast } from '../../../../lib/toast';
+import { useUnsavedChanges } from '../../../../hooks/useUnsavedChanges';
+import { UnsavedChangesModal } from '../../../../components/settings/UnsavedChangesModal';
+import { useKeyboardShortcut } from '../../../../hooks/useKeyboardShortcut';
 
 export default function PromptsSettingsPage() {
   const { locale } = useLocale();
   const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
+  const formRef = useRef<HTMLFormElement>(null);
+  const { isDirty, setDirty, markClean, showModal, confirmNavigation, cancelNavigation } = useUnsavedChanges();
+
   const [prompt, setPrompt] = useState(
     "You are a private AI assistant for Al-Safa Hospitality. Answer queries using the provided handbook context. If you do not know the answer, respond with 'Low confidence'."
   );
   const [saving, setSaving] = useState(false);
+
+  useKeyboardShortcut('s', () => {
+    formRef.current?.requestSubmit();
+  }, true);
 
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,6 +30,7 @@ export default function PromptsSettingsPage() {
 
     setTimeout(() => {
       setSaving(false);
+      markClean();
       addToast('System prompt configurations updated successfully!', 'success');
     }, 800);
   };
@@ -34,14 +45,14 @@ export default function PromptsSettingsPage() {
       </div>
 
       {/* Editor */}
-      <form onSubmit={handleSave} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+      <form ref={formRef} onSubmit={handleSave} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
         
         <div>
           <label htmlFor="prompt" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Core System Prompt Instruction', ar: 'التعليمات الأساسية للنظام' })}</label>
           <textarea
             id="prompt"
             value={prompt}
-            onChange={(e) => setPrompt(e.target.value)}
+            onChange={(e) => { setPrompt(e.target.value); setDirty(true); }}
             rows={6}
             className="w-full bg-slate-50 border border-gray-200 rounded-xl p-4 text-xs font-mono font-bold text-[#141F33] focus:outline-none focus:ring-1 focus:ring-[#141F33]"
             required
@@ -58,6 +69,11 @@ export default function PromptsSettingsPage() {
 
       </form>
 
+      <UnsavedChangesModal
+        isOpen={showModal}
+        onConfirm={confirmNavigation}
+        onCancel={cancelNavigation}
+      />
     </div>
   );
 }

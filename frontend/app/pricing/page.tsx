@@ -69,7 +69,7 @@ export default function PricingPage() {
                 productTab === 'automation' ? 'bg-white text-navy shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
-              <PhoneIcon className="w-4 h-4" />
+              <PhoneIcon className={`w-4 h-4 ${productTab === 'automation' ? 'text-emerald-500' : 'text-slate-500'}`} />
               {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
             </button>
             <button
@@ -79,28 +79,28 @@ export default function PricingPage() {
                 productTab === 'chatbot' ? 'bg-white text-navy shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
-              <ChatIcon className="w-4 h-4" />
+              <ChatIcon className={`w-4 h-4 ${productTab === 'chatbot' ? 'text-emerald-500' : 'text-slate-500'}`} />
               {t({ en: 'Internal Chatbot', ar: 'المساعد الداخلي' })}
             </button>
           </div>
 
           {/* Currency Toggle */}
-          <div className="flex items-center gap-3">
-            <span className={`text-xs font-bold ${currency === 'USD' ? 'text-navy' : 'text-slate-400'}`}>USD</span>
+          <div className="flex items-center gap-4">
+            <span className={`text-xs font-bold select-none ${currency === 'USD' ? 'text-navy' : 'text-slate-400'}`}>USD</span>
             <button
               type="button"
               onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
-              className={`relative w-12 h-6 rounded-full transition-colors ${
+              className={`relative w-14 h-7 rounded-full transition-colors ${
                 currency === 'QAR' ? 'bg-navy' : 'bg-slate-300'
               }`}
             >
               <span
-                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform ${
-                  currency === 'QAR' ? 'translate-x-6' : 'translate-x-0.5'
+                className={`absolute top-1 w-5 h-5 bg-white rounded-full shadow-sm transition-all ${
+                  currency === 'QAR' ? 'ltr:right-1 rtl:left-1' : 'ltr:left-1 rtl:right-1'
                 }`}
               />
             </button>
-            <span className={`text-xs font-bold ${currency === 'QAR' ? 'text-navy' : 'text-slate-400'}`}>QAR</span>
+            <span className={`text-xs font-bold select-none ${currency === 'QAR' ? 'text-navy' : 'text-slate-400'}`}>QAR</span>
           </div>
         </div>
       </section>
@@ -120,7 +120,7 @@ export default function PricingPage() {
           <p className="text-slate-500 mb-8">
             {t({ en: 'Enterprise pricing, dedicated infrastructure, custom SLAs, and tailored onboarding for larger teams.', ar: 'أسعار المؤسسات، بنية تحتية مخصصة، اتفاقيات مستوى خدمة مخصصة، وإعداد مصمم للفرق الأكبر.' })}
           </p>
-          <RainbowButton asChild>
+          <RainbowButton asChild className="text-white">
             <Link href="/contact">
               {t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' })}
             </Link>

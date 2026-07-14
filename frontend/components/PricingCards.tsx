@@ -101,7 +101,7 @@ export function PricingCards({ tiers, currency, locale }: PricingCardsProps) {
                   {isAr ? tier.ctaAr : tier.cta}
                 </Link>
               ) : isPopular ? (
-                <RainbowButton asChild className="w-full py-3.5">
+                <RainbowButton asChild className="w-full py-3.5 text-white">
                   <a
                     href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
                     target="_blank"
