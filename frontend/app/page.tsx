@@ -7,7 +7,7 @@ import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import Link from 'next/link';
-import { Sparkles, Bolt, Phone, MessageSquare, Mail, Check } from 'lucide-react';
+import { Sparkles, Zap, Mail, Check } from 'lucide-react';
 import { RainbowButton } from '../components/shadcn/rainbow-button';
 
 const industries = [
@@ -123,7 +123,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                <Sparkles className="w-5 h-5 text-[#3B5B9B]" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
+                <Zap className="w-5 h-5 text-royal inline mr-1" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
               </button>
               <button
                 type="button"
@@ -134,7 +134,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                <Bolt className="w-5 h-5 text-[#10B981]" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
+                <Sparkles className="w-5 h-5 text-emerald-500 inline mr-1" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
               </button>
             </div>
 
@@ -197,7 +197,7 @@ export default function MarketingPage() {
                       <div key={i} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-xl">
                         <div className="flex items-center gap-2 min-w-0">
                           <div className="w-7 h-7 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
-                            {i === 0 ? <Phone className="w-4 h-4 text-[#3B5B9B]" aria-hidden="true" /> : i === 1 ? <MessageSquare className="w-4 h-4 text-[#10B981]" aria-hidden="true" /> : <Mail className="w-4 h-4 text-[#718096]" aria-hidden="true" />}
+                            {i === 0 ? <Zap className="w-4 h-4 text-royal" aria-hidden="true" /> : i === 1 ? <Sparkles className="w-4 h-4 text-emerald-500" aria-hidden="true" /> : <Mail className="w-4 h-4 text-slate-500" aria-hidden="true" />}
                           </div>
                           <p className="text-xs font-semibold text-slate-700 truncate">{item.label}</p>
                         </div>
