@@ -133,7 +133,7 @@ export default function ChatbotPage() {
 
       <section className="relative overflow-hidden py-20 md:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-          <span className="inline-block bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 animate-fadeIn">
+          <span className="inline-block bg-royal/10 text-royal text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 animate-fadeIn">
             {t({ en: 'Internal Company Chatbot', ar: 'مساعد الشركة الداخلي' })}
           </span>
           <h1 className="text-5xl md:text-6xl font-extrabold text-[#141F33] leading-tight max-w-4xl mx-auto animate-fadeIn" style={{ animationDelay: '0.1s' }}>
@@ -186,7 +186,7 @@ export default function ChatbotPage() {
                 <span className="text-[#141F33] font-black text-base">
                   {t({ en: 'Company Assistant', ar: 'مساعد الشركة' })}
                 </span>
-                <span className="text-xs bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200 rounded-full px-3 py-1">
+                <span className="text-xs bg-royal/10 text-royal font-semibold border border-royal/20 rounded-full px-3 py-1">
                   {t({ en: 'Private', ar: 'خاص' })}
                 </span>
               </div>

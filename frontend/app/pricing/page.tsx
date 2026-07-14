@@ -51,9 +51,9 @@ export default function PricingPage() {
         </div>
       </section>
 
-      <div className="bg-emerald-50 border-y border-emerald-200 py-4 px-6 text-center">
-        <p className="text-emerald-700 font-semibold text-sm">
-          <span><Check className="w-4 h-4 text-emerald-600 inline" /> {t({ en: 'No surprise bills. Everything\'s fixed monthly. Overages only if you want them.', ar: 'لا فواتير مفاجئة. سعر شهري ثابت. الاستخدام الزائد فقط إذا فعّلته.' })}</span>
+      <div className="bg-royal/10 border-y border-royal/20 py-4 px-6 text-center">
+        <p className="text-royal font-semibold text-sm">
+          <span><Check className="w-4 h-4 text-royal inline" /> {t({ en: 'No surprise bills. Everything\'s fixed monthly. Overages only if you want them.', ar: 'لا فواتير مفاجئة. سعر شهري ثابت. الاستخدام الزائد فقط إذا فعّلته.' })}</span>
         </p>
       </div>
 

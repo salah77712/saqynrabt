@@ -116,15 +116,17 @@ export default function AdminCompaniesPage() {
                       </button>
                       <button
                         onClick={() => handleSuspend(company.id)}
-                        className={`font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px] text-white ${
-                          company.status === 'active' ? 'bg-amber-500 hover:bg-amber-600' : 'bg-emerald-600 hover:bg-emerald-700'
+                        className={`font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px] transition-all ${
+                          company.status === 'active' 
+                            ? 'bg-slate-250 text-navy hover:bg-slate-300' 
+                            : 'btn-primary text-white'
                         }`}
                       >
                         {company.status === 'active' ? t({ en: 'Suspend', ar: 'تعليق' }) : t({ en: 'Activate', ar: 'تفعيل' })}
                       </button>
                       <button
                         onClick={() => handleDelete(company.id)}
-                        className="bg-red-600 hover:bg-red-700 text-white font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px]"
+                        className="bg-slate-100 text-red-650 hover:bg-red-50 border border-red-200 font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px] transition-all"
                       >
                         {t({ en: 'Delete', ar: 'حذف' })}
                       </button>

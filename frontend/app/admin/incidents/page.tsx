@@ -54,7 +54,7 @@ export default function AdminIncidentsPage() {
               {inc.status === 'Investigating' && (
                 <button
                   onClick={() => handleResolve(inc.id)}
-                  className="bg-emerald-600 text-white font-bold px-3 py-1.5 rounded-lg text-xs"
+                  className="btn-primary px-3 py-1.5 text-xs"
                 >
                   Resolve
                 </button>

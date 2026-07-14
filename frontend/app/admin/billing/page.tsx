@@ -67,11 +67,11 @@ export default function AdminBillingPage() {
                   <td className="px-6 py-4">{inv.plan}</td>
                   <td className="px-6 py-4 font-bold text-slate-900">{inv.monthlyFee} QAR</td>
                   <td className="px-6 py-4 text-slate-500">{inv.setupFee} QAR</td>
-                  <td className="px-6 py-4 font-black text-emerald-600">{inv.totalPaid} QAR</td>
+                  <td className="px-6 py-4 font-black text-royal">{inv.totalPaid} QAR</td>
                   <td className="px-6 py-4 text-slate-400 font-bold">{inv.lastInvoiceDate}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${
-                      inv.status === 'paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'
+                      inv.status === 'paid' ? 'bg-royal/10 text-royal border border-royal/20' : 'bg-rose-100 text-rose-800'
                     }`}>
                       {inv.status === 'paid' ? t({ en: 'Paid', ar: 'مدفوع' }) : t({ en: 'Unpaid', ar: 'غير مدفوع' })}
                     </span>
@@ -80,7 +80,7 @@ export default function AdminBillingPage() {
                     {inv.status === 'unpaid' ? (
                       <button
                         onClick={() => handleMarkPaid(inv.id)}
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px]"
+                        className="btn-primary px-3 py-1.5 rounded-lg text-[10px] min-h-[32px]"
                       >
                         {t({ en: 'Mark as Paid', ar: 'تحديد كمدفوع' })}
                       </button>

@@ -83,16 +83,16 @@ const faqs = {
 
 const queueItems = {
   en: [
-    { label: 'Incoming Call — Room 204 noise complaint', dept: 'Housekeeping', status: 'Routed', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-    { label: 'WhatsApp — Late checkout request (2:30 PM)', dept: 'Front Desk', status: 'Approved', color: 'bg-blue-50 text-blue-700 border-blue-200' },
-    { label: 'SMS — Airport transfer booking (07:00 tomorrow)', dept: 'Concierge', status: 'Captured', color: 'bg-violet-50 text-violet-700 border-violet-200' },
-    { label: 'Web Chat — Spa appointment request', dept: 'Wellness', status: 'Pending', color: 'bg-amber-50 text-amber-700 border-amber-200' },
+    { label: 'Incoming Call — Room 204 noise complaint', dept: 'Housekeeping', status: 'Routed', color: 'bg-royal/10 text-royal border-royal/20' },
+    { label: 'WhatsApp — Late checkout request (2:30 PM)', dept: 'Front Desk', status: 'Approved', color: 'bg-royal/10 text-royal border-royal/20' },
+    { label: 'SMS — Airport transfer booking (07:00 tomorrow)', dept: 'Concierge', status: 'Captured', color: 'bg-slate-50 text-slate-700 border-slate-200' },
+    { label: 'Web Chat — Spa appointment request', dept: 'Wellness', status: 'Pending', color: 'bg-slate-50 text-slate-700 border-slate-200' },
   ],
   ar: [
-    { label: 'مكالمة واردة — شكوى ضوضاء الغرفة 204', dept: 'التدبير المنزلي', status: 'تم التوجيه', color: 'bg-emerald-50 text-emerald-700 border-emerald-200' },
-    { label: 'واتساب — طلب مغادرة متأخر (2:30 مساءً)', dept: 'مكتب الاستقبال', status: 'تمت الموافقة', color: 'bg-blue-50 text-blue-700 border-blue-200' },
-    { label: 'رسالة نصية — حجز نقل المطار (07:00 غداً)', dept: 'الكونسيرج', status: 'تم الالتقاط', color: 'bg-violet-50 text-violet-700 border-violet-200' },
-    { label: 'دردشة ويب — طلب موعد سبا', dept: 'العافية', status: 'قيد الانتظار', color: 'bg-amber-50 text-amber-700 border-amber-200' },
+    { label: 'مكالمة واردة — شكوى ضوضاء الغرفة 204', dept: 'التدبير المنزلي', status: 'تم التوجيه', color: 'bg-royal/10 text-royal border-royal/20' },
+    { label: 'واتساب — طلب مغادرة متأخر (2:30 مساءً)', dept: 'مكتب الاستقبال', status: 'تمت الموافقة', color: 'bg-royal/10 text-royal border-royal/20' },
+    { label: 'رسالة نصية — حجز نقل المطار (07:00 غداً)', dept: 'الكونسيرج', status: 'تم الالتقاط', color: 'bg-slate-50 text-slate-700 border-slate-200' },
+    { label: 'دردشة ويب — طلب موعد سبا', dept: 'العافية', status: 'قيد الانتظار', color: 'bg-slate-50 text-slate-700 border-slate-200' },
   ],
 };
 
@@ -191,7 +191,7 @@ export default function AutomationPage() {
 
       <section className="relative overflow-hidden py-20 md:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-          <span className="inline-block bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 animate-fadeIn">
+          <span className="inline-block bg-royal/10 text-royal text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 animate-fadeIn">
             {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
           </span>
           <h1 className="text-5xl md:text-6xl font-extrabold text-[#141F33] leading-tight max-w-4xl mx-auto animate-fadeIn" style={{ animationDelay: '0.1s' }}>
@@ -244,7 +244,7 @@ export default function AutomationPage() {
                 <span className="text-[#141F33] font-black text-base">
                   {t({ en: 'Live Queue', ar: 'الطابور المباشر' })}
                 </span>
-                <span className="text-xs bg-emerald-50 text-emerald-700 font-semibold border border-emerald-200 rounded-full px-3 py-1">
+                <span className="text-xs bg-royal/10 text-royal font-semibold border border-royal/20 rounded-full px-3 py-1">
                   {t({ en: 'Live', ar: 'مباشر' })}
                 </span>
               </div>
