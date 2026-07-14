@@ -71,32 +71,32 @@ export default function SettingsDashboardPage() {
     }
   }, []);
 
-  const handleExportLogs = useCallback(() => {
-    fetch('/api/export-logs')
-      .then((res) => {
-        if (!res.ok) throw new Error('Download failed');
-        return res.blob();
-      })
-      .then((blob) => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `saqyn_chat_logs_${new Date().toISOString().slice(0, 10)}.csv`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        window.URL.revokeObjectURL(url);
-      })
-      .catch(() => {
-        const csvContent = 'data:text/csv;charset=utf-8,Date,Employee Name,Question,AI Answer\n2026-07-05,Salah,Test question,Test answer';
-        const encodedUri = encodeURI(csvContent);
-        const a = document.createElement('a');
-        a.href = encodedUri;
-        a.download = 'saqyn_chat_logs_export.csv';
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
+  const handleExportLogs = useCallback(async () => {
+    try {
+      const token = await (window as any).Clerk?.session?.getToken();
+      const res = await fetch('/api/export-logs', {
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
       });
+      if (!res.ok) throw new Error('Download failed');
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `saqyn_chat_logs_${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+    } catch {
+      const csvContent = 'data:text/csv;charset=utf-8,Date,Employee Name,Question,AI Answer\n2026-07-05,Salah,Test question,Test answer';
+      const encodedUri = encodeURI(csvContent);
+      const a = document.createElement('a');
+      a.href = encodedUri;
+      a.download = 'saqyn_chat_logs_export.csv';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
   }, []);
 
   const tabOptions = [
@@ -240,15 +240,15 @@ export default function SettingsDashboardPage() {
           <p className="text-[10px] md:text-xs text-slate-500 leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
           </p>
-          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto">
+          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
             {t('Manage Subscription', 'إدارة الاشتراك')}
           </Button>
         </Card>
       )}
 
-      {activeTab === 'security' && <SecuritySettingsPage />}
+      {activeTab === 'security' && <div className="[&_h1]:hidden [&_h2:first-child]:hidden"><SecuritySettingsPage /></div>}
 
-      {activeTab === 'integrations' && <IntegrationsSettingsPage />}
+      {activeTab === 'integrations' && <div className="[&_h1]:hidden"><IntegrationsSettingsPage /></div>}
     </div>
   );
 }

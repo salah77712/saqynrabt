@@ -38,11 +38,17 @@ export default function TeamDashboardPage() {
 
   const handleAction = useCallback(async (id: string, action: 'approve' | 'suspend' | 'toggle-admin', currentRole?: string) => {
     try {
+      const token = await (window as any).Clerk?.session?.getToken();
+      const buildHeaders = (): Record<string, string> => {
+        const h: Record<string, string> = { 'Content-Type': 'application/json' };
+        if (token) h['Authorization'] = `Bearer ${token}`;
+        return h;
+      };
       if (action === 'toggle-admin') {
         const newRole = currentRole === 'admin' ? 'employee' : 'admin';
         const res = await fetch('/api/employees', {
           method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
+          headers: buildHeaders(),
           body: JSON.stringify({ clerk_user_id: id, role: newRole }),
         });
         if (!res.ok) {
@@ -52,34 +58,38 @@ export default function TeamDashboardPage() {
       } else {
         await fetch('/api/approvals', {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: buildHeaders(),
           body: JSON.stringify({ id, action }),
         });
       }
       refetch();
-    } catch (err) {
-      console.error('Action failed:', err);
+    } catch {
+      addToast('Action failed. Please try again.', 'error');
     }
-  }, [refetch]);
+  }, [refetch, addToast]);
 
   const handleSendInvite = useCallback(async () => {
     if (!inviteName || !inviteEmail) return;
 
     try {
+      const token = await (window as any).Clerk?.session?.getToken();
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
       await fetch('/api/approvals', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers,
         body: JSON.stringify({ action: 'invite', name: inviteName, email: inviteEmail }),
       });
+      addToast('Invitation sent successfully', 'success');
       refetch();
-    } catch (err) {
-      console.error('Invite failed:', err);
+    } catch {
+      addToast('Failed to send invitation. Please try again.', 'error');
     }
 
     setInviteModalOpen(false);
     setInviteName('');
     setInviteEmail('');
-  }, [inviteName, inviteEmail, refetch]);
+  }, [inviteName, inviteEmail, refetch, addToast]);
 
   const renderMobileCard = (m: Employee) => (
     <div key={m.id} className="bg-white border border-gray-200 rounded-xl p-4 shadow-sm">
