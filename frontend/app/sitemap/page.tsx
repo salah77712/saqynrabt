@@ -4,6 +4,8 @@ import React from 'react';
 import Link from 'next/link';
 import { useLocale } from '../providers';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
+import { Header } from '../../components/Header';
+import { Footer } from '../../components/Footer';
 
 export default function VisualSitemapPage() {
   const { locale } = useLocale();
@@ -80,8 +82,9 @@ export default function VisualSitemapPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-slate-800 font-sans selection:bg-slate-100 selection:text-[#141F33]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <main className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+    <div className="bg-[#F8F9FB] text-slate-800 min-h-screen flex flex-col font-sans selection:bg-slate-100 selection:text-[#141F33]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <Header />
+      <main className="flex-1 mx-auto max-w-7xl px-6 py-20 lg:px-8 w-full">
         {/* Back Link */}
         <Link
           href="/"
@@ -133,6 +136,7 @@ export default function VisualSitemapPage() {
           ))}
         </div>
       </main>
+      <Footer />
     </div>
   );
 }

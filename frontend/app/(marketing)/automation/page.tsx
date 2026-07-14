@@ -6,7 +6,7 @@ import { useLocale } from '../../providers';
 import { Footer } from '../../../components/Footer';
 import { Header } from '../../../components/Header';
 import { PricingCards } from '../../../components/PricingCards';
-import { Phone, MessageSquare, Ambulance, ClipboardList, BarChart3, Globe, Check } from 'lucide-react';
+import { Zap, Sparkles, Ambulance, ClipboardList, BarChart3, Globe, Check } from 'lucide-react';
 import { AUTOMATION_TIERS } from '../../../lib/pricing-config';
 import * as React from 'react';
 
@@ -15,8 +15,8 @@ type Currency = 'USD' | 'QAR';
 const GULF_TZ_KEYWORDS = ['Doha', 'Riyadh', 'Kuwait', 'Dubai', 'Cairo', 'Bahrain', 'Muscat', 'Baghdad', 'Damascus'];
 
 const useCaseIcons: Record<string, React.ReactNode> = {
-  phone: <Phone className="w-5 h-5 text-slate-600" />,
-  chat: <MessageSquare className="w-5 h-5 text-slate-600" />,
+  phone: <Zap className="w-5 h-5 text-slate-600" />,
+  chat: <Sparkles className="w-5 h-5 text-slate-600" />,
   alert: <Ambulance className="w-5 h-5 text-slate-600" />,
   clipboard: <ClipboardList className="w-5 h-5 text-slate-600" />,
   chart: <BarChart3 className="w-5 h-5 text-slate-600" />,
@@ -229,7 +229,7 @@ export default function AutomationPage() {
                     className="flex items-start gap-4 bg-white border border-gray-100 rounded-xl p-5 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
-                    <span className="text-2xl mt-0.5 shrink-0">{useCaseIcons[uc.icon] || <Phone className="w-5 h-5 text-slate-600" />}</span>
+                    <span className="text-2xl mt-0.5 shrink-0">{useCaseIcons[uc.icon] || <Zap className="w-5 h-5 text-slate-600" />}</span>
                     <div>
                       <p className="font-extrabold text-slate-800 text-sm">{uc.title}</p>
                       <p className="text-[#718096] text-xs mt-0.5 leading-relaxed">{uc.desc}</p>

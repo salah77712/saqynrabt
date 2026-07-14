@@ -6,7 +6,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { UserButton } from '@clerk/nextjs';
 import { useLocale } from '../../app/providers';
 import { useEntitlements } from '../../app/providers';
-import { Home, Phone, MessageSquare, FileText, Users, Settings, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Home, Phone, Sparkles, FileText, Users, Settings, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface DashboardSidebarProps {
   isCollapsed: boolean;

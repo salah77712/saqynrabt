@@ -5,7 +5,7 @@ import { useUser } from '@clerk/nextjs';
 import { useLocale, useEntitlements } from '../providers';
 import { OverviewMetrics } from '../../components/dashboard/OverviewMetrics';
 import { QuickActions } from '../../components/dashboard/QuickActions';
-import { MessageSquare, FileText, Users, BarChart3, Check, Phone, ArrowRight } from 'lucide-react';
+import { Sparkles, FileText, Users, BarChart3, Check, Zap, ArrowRight } from 'lucide-react';
 import { UsageCard } from '../../components/dashboard/UsageCard';
 import { SkeletonMetricGrid, SkeletonCard } from '../../components/ui/Skeleton';
 import { useUsage } from '../../hooks/queries/useUsage';
@@ -54,7 +54,7 @@ export default function DashboardOverviewPage() {
   ];
 
   const quickActions = [
-    { href: '/dashboard/chat', label: t('New Chat', 'محادثة جديدة'), icon: <MessageSquare className="w-5 h-5" /> },
+    { href: '/dashboard/chat', label: t('New Chat', 'محادثة جديدة'), icon: <Sparkles className="w-5 h-5" /> },
     { href: '/dashboard/documents', label: t('Upload PDF', 'تحميل ملف PDF'), icon: <FileText className="w-5 h-5" /> },
     { href: '/dashboard/team', label: t('Manage Team', 'إدارة الفريق'), icon: <Users className="w-5 h-5" /> },
     { href: '/dashboard/reports', label: t('View Reports', 'عرض التقارير'), icon: <BarChart3 className="w-5 h-5" /> },
@@ -213,14 +213,14 @@ export default function DashboardOverviewPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
         <UsageCard
           title={t('Customer Automation', 'أتمتة العملاء')}
-          icon={<Phone className="w-5 h-5" />}
+          icon={<Zap className="w-5 h-5" />}
           used={usage?.voice_minutes_used ?? 0}
           limit={usage?.voice_minutes_limit ?? 250}
           label={t('Voice Minutes Used', 'دقائق الصوت المستخدمة')}
         />
         <UsageCard
           title={t('Employee Knowledge Hub', 'مركز معرفة الموظفين')}
-          icon={<MessageSquare className="w-5 h-5" />}
+          icon={<Sparkles className="w-5 h-5" />}
           used={usage?.questions_used ?? 0}
           limit={usage?.questions_limit ?? 2000}
           label={t('RAG Questions Answered', 'الأسئلة المجابة')}

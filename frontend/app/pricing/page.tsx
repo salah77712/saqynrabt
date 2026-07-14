@@ -6,7 +6,7 @@ import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { PricingCards } from '../../components/PricingCards';
-import { Check, Phone, MessageSquare } from 'lucide-react';
+import { Check, Zap, Sparkles } from 'lucide-react';
 import { AUTOMATION_TIERS, CHATBOT_TIERS } from '../../lib/pricing-config';
 import { RainbowButton } from '@/components/shadcn/rainbow-button';
 
@@ -69,7 +69,7 @@ export default function PricingPage() {
                 productTab === 'automation' ? 'bg-white text-navy shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
-              <Phone className={`w-4 h-4 ${productTab === 'automation' ? 'text-emerald-500' : 'text-slate-500'}`} />
+              <Zap className={`w-4 h-4 ${productTab === 'automation' ? 'text-emerald-500' : 'text-slate-500'}`} />
               {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
             </button>
             <button
@@ -79,7 +79,7 @@ export default function PricingPage() {
                 productTab === 'chatbot' ? 'bg-white text-navy shadow-sm' : 'text-slate-500 hover:text-slate-700'
               }`}
             >
-              <MessageSquare className={`w-4 h-4 ${productTab === 'chatbot' ? 'text-emerald-500' : 'text-slate-500'}`} />
+              <Sparkles className={`w-4 h-4 ${productTab === 'chatbot' ? 'text-emerald-500' : 'text-slate-500'}`} />
               {t({ en: 'Internal Chatbot', ar: 'المساعد الداخلي' })}
             </button>
           </div>

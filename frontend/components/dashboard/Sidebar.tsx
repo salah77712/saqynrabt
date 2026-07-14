@@ -4,7 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useLocale } from '../../app/providers';
-import { Home, Phone, MessageSquare, FileText, Users, Settings, ArrowRight, ArrowLeft } from 'lucide-react';
+import { Home, Zap, Sparkles, FileText, Users, Settings, ArrowRight, ArrowLeft } from 'lucide-react';
 
 interface SidebarProps {
   isCollapsed: boolean;
@@ -19,8 +19,8 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
 
   const menuItems = [
     { name: { en: 'Overview', ar: 'نظرة عامة' }, path: '/dashboard', icon: <Home className="w-5 h-5" /> },
-    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <Phone className="w-5 h-5" /> },
-    { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <Zap className="w-5 h-5" /> },
+    { name: { en: 'Chat', ar: 'المحادثة' }, path: '/dashboard/chat', icon: <Sparkles className="w-5 h-5" /> },
     { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <FileText className="w-5 h-5" /> },
     { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" />, badge: true },
     { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
