@@ -97,13 +97,13 @@
     @apply inline-flex items-center justify-center min-h-[44px] rounded-xl bg-[#141F33] px-6 py-3 font-bold text-white shadow-sm transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95 focus-visible:outline-2 focus-visible:outline-[#3B5B9B];
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center min-h-[44px] rounded-xl border border-[#141F33] bg-white px-6 py-3 font-bold text-[#141F33] transition-all hover:bg-gray-50 hover:scale-[1.02] active:scale-95;
+    @apply inline-flex items-center justify-center min-h-[44px] rounded-xl border border-[#141F33] bg-white px-6 py-3 font-bold text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95;
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center min-h-[44px] rounded-xl bg-gray-100 px-5 py-2.5 text-sm font-bold text-[#141F33] transition-all hover:bg-gray-200 hover:scale-[1.02] active:scale-95;
+    @apply inline-flex items-center justify-center min-h-[44px] rounded-xl bg-gray-100 px-5 py-2.5 text-sm font-bold text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95;
   }
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-[#141F33];
+    @apply transition-all duration-300 hover:shadow-md hover:scale-[1.02] hover:border-[#141F33] active:scale-95;
   }
 }
 
@@ -122,6 +122,12 @@
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-8px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes rainbow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes shimmer {

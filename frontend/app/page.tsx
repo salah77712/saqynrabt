@@ -8,6 +8,7 @@ import { useLocale } from './providers';
 import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import Link from 'next/link';
 import { SparklesIcon, BoltIcon, PhoneIcon, ChatIcon, MailIcon, CheckIcon } from '../components/ui/Icons';
+import { RainbowButton } from '../components/shadcn/rainbow-button';
 
 const industries = [
   { id: 'default', label: 'Every Business', headline: 'Catch every call. Support every team member.', copy: 'The secure 24/7 AI front-desk and private staff knowledge hub for any industry. No missed calls. No repetitive questions.' },
@@ -122,7 +123,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                <SparklesIcon className="w-4 h-4" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
+                <SparklesIcon className="w-5 h-5 text-[#3B5B9B]" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
               </button>
               <button
                 type="button"
@@ -133,7 +134,7 @@ export default function MarketingPage() {
                     : 'bg-transparent text-[#718096] hover:text-[#141F33]'
                 }`}
               >
-                <BoltIcon className="w-4 h-4" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
+                <BoltIcon className="w-5 h-5 text-[#10B981]" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
               </button>
             </div>
 
@@ -149,16 +150,18 @@ export default function MarketingPage() {
 
             {/* CTA Row */}
             <div className="flex flex-wrap gap-4 mt-2 animate-slideUp" style={{ animationDelay: '0.3s' }}>
-              <Link
-                href={activeProduct === 'automation' ? '/automation' : '/chatbot'}
-                className="btn-primary px-8 py-4"
-              >
-                {t({ en: 'Explore Product', ar: 'استكشف المنتج' })}
-              </Link>
+              <RainbowButton asChild>
+                <Link
+                  href={activeProduct === 'automation' ? '/automation' : '/chatbot'}
+                  className="px-8 py-4 text-base font-bold"
+                >
+                  {t({ en: 'Explore Product', ar: 'استكشف المنتج' })}
+                </Link>
+              </RainbowButton>
               <button
                 type="button"
                 onClick={openCustomModal}
-                className="btn-secondary px-8 py-4"
+                className="btn-secondary"
               >
                 {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </button>
@@ -194,7 +197,7 @@ export default function MarketingPage() {
                       <div key={i} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-xl">
                         <div className="flex items-center gap-2 min-w-0">
                           <div className="w-7 h-7 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
-                            {i === 0 ? <PhoneIcon className="w-3.5 h-3.5" /> : i === 1 ? <ChatIcon className="w-3.5 h-3.5" /> : <MailIcon className="w-3.5 h-3.5" />}
+                            {i === 0 ? <PhoneIcon className="w-4 h-4 text-[#3B5B9B]" /> : i === 1 ? <ChatIcon className="w-4 h-4 text-[#10B981]" /> : <MailIcon className="w-4 h-4 text-[#718096]" />}
                           </div>
                           <p className="text-xs font-semibold text-slate-700 truncate">{item.label}</p>
                         </div>
@@ -246,7 +249,7 @@ export default function MarketingPage() {
               <button
                 key={ind.id}
                 onClick={() => setActiveIndustry(ind.id)}
-                className={`min-h-[44px] px-6 py-3 rounded-full border text-sm font-semibold transition-all hover:scale-[1.05] hover:border-[#141F33] cursor-pointer ${
+                className={`min-h-[44px] px-6 py-3 rounded-full border text-sm font-semibold transition-all duration-300 hover:shadow-md hover:scale-[1.05] hover:border-[#141F33] active:scale-95 cursor-pointer ${
                   activeIndustry === ind.id
                     ? 'bg-[#141F33] text-white border-[#141F33] shadow-md'
                     : 'bg-white text-[#141F33] border-gray-200 shadow-sm hover:shadow-md'
@@ -397,14 +400,14 @@ export default function MarketingPage() {
                     { en: 'Multi-language (Arabic & English)', ar: 'متعدد اللغات (العربية والإنجليزية)' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                      <CheckIcon className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <CheckIcon className="w-5 h-5 text-emerald-500 shrink-0" />
                       {t(item)}
                     </li>
                   ))}
                 </ul>
                 <Link
                   href="/automation"
-                  className="inline-flex w-full items-center justify-center rounded-xl bg-[#141F33] text-white font-bold text-sm py-4 transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-[#141F33] text-white font-bold text-sm py-4 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 >
                   {t({ en: 'Explore Automation →', ar: 'استكشف الأتمتة ←' })}
                 </Link>
@@ -432,14 +435,14 @@ export default function MarketingPage() {
                     { en: 'Knowledge gap tracking', ar: 'تتبع الفجوات المعرفية' },
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
-                      <CheckIcon className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <CheckIcon className="w-5 h-5 text-emerald-500 shrink-0" />
                       {t(item)}
                     </li>
                   ))}
                 </ul>
                 <Link
                   href="/chatbot"
-                  className="inline-flex w-full items-center justify-center rounded-xl bg-emerald-600 text-white font-bold text-sm py-4 transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-emerald-600 text-white font-bold text-sm py-4 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 >
                   {t({ en: 'Explore Chatbot →', ar: 'استكشف المساعد الذكي ←' })}
                 </Link>
@@ -464,7 +467,7 @@ export default function MarketingPage() {
           <button
             type="button"
             onClick={openCustomModal}
-            className="min-h-[48px] inline-flex items-center justify-center rounded-xl bg-white text-[#141F33] font-bold px-8 py-4 transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95"
+            className="min-h-[48px] inline-flex items-center justify-center rounded-xl bg-white text-[#141F33] font-bold px-8 py-4 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
           >
             {t({ en: 'Request a Custom Solution', ar: 'طلب حل مخصص' })}
           </button>
