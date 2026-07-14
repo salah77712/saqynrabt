@@ -94,7 +94,7 @@ export default function OmnichannelInboxPage() {
                 <div className="min-w-0">
                   <div className="flex items-center gap-2">
                     <span className="text-xs font-extrabold text-[#141F33]">{msg.sender}</span>
-                    <span className="bg-slate-100 text-slate-600 font-mono text-[8px] font-extrabold px-2 py-0.5 rounded-full border border-slate-200">
+                    <span className="bg-slate-100 text-slate-600 font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-slate-200">
                       {msg.channel}
                     </span>
                   </div>

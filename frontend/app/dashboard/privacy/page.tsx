@@ -18,6 +18,7 @@ export default function PrivacyDashboardPage() {
   const [exporting, setExporting] = useState(false);
   const [exportDone, setExportDone] = useState(false);
   const [exportError, setExportError] = useState('');
+  const [deletionError, setDeletionError] = useState('');
   const [deletionRequested, setDeletionRequested] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [deleting, setDeleting] = useState(false);
@@ -67,7 +68,7 @@ export default function PrivacyDashboardPage() {
       }
       setDeletionConfirmed(true);
     } catch (err: any) {
-      setExportError(err.message);
+      setDeletionError(err.message);
     } finally {
       setDeleting(false);
     }
@@ -208,8 +209,8 @@ export default function PrivacyDashboardPage() {
               </Button>
             )}
 
-            {exportError && !exporting && (
-              <p className="mt-2 text-xs text-red-600">{exportError}</p>
+            {deletionError && (
+              <p className="mt-2 text-xs text-red-600">{deletionError}</p>
             )}
           </div>
         </div>

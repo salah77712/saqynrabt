@@ -19,8 +19,10 @@ export default function ReportsPage() {
     setToast(null);
 
     try {
+      const token = await window.Clerk?.session?.getToken();
       const res = await fetch(`/api/export-logs?format=${format?.toLowerCase()}`, {
         method: 'GET',
+        headers: token ? { Authorization: `Bearer ${token}` } : undefined,
       });
 
       const contentType = res.headers.get('content-type') || '';
