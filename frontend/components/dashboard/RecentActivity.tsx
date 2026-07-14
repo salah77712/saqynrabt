@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Card } from '@/components/shadcn/card';
-import { Phone, MessageSquare, Users } from 'lucide-react';
+import { Zap, Sparkles, Users } from 'lucide-react';
 
 interface ActivityItem {
   id: string;
@@ -23,7 +23,7 @@ export function RecentActivity({ activities }: { activities: ActivityItem[] }) {
           >
             <div className="flex items-center gap-2">
               <span className="text-sm">
-                {act.type === 'automation' ? <Phone className="w-4 h-4 text-slate-500" /> : act.type === 'chat' ? <MessageSquare className="w-4 h-4 text-slate-500" /> : <Users className="w-4 h-4 text-slate-500" />}
+                {act.type === 'automation' ? <Zap className="w-4 h-4 text-slate-500" /> : act.type === 'chat' ? <Sparkles className="w-4 h-4 text-slate-500" /> : <Users className="w-4 h-4 text-slate-500" />}
               </span>
               <p className="text-xs font-semibold text-navy dark:text-slate-300">
                 {act.title}

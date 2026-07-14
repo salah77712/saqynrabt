@@ -6,7 +6,7 @@ import { useScrollReveal } from '../../hooks/useScrollReveal';
 import Link from 'next/link';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { Phone, Sparkles, Wrench, BarChart3 } from 'lucide-react';
+import { Zap, Sparkles, Wrench, BarChart3 } from 'lucide-react';
 
 export default function FeaturesPage() {
   const { locale } = useLocale();
@@ -46,7 +46,7 @@ export default function FeaturesPage() {
         <div ref={featureGridRef} className={`grid grid-cols-1 md:grid-cols-2 gap-8 w-full animate-stagger ${featureGridVisible ? 'revealed' : ''}`}>
           {/* Card 1: Automation */}
           <div className="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300">
-            <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6"><Phone className="w-6 h-6 text-blue-600" /></div>
+            <div className="h-12 w-12 rounded-xl bg-blue-50 flex items-center justify-center mb-6"><Zap className="w-6 h-6 text-blue-600" /></div>
             <h3 className="text-xl font-extrabold text-navy">{t(content.automationTitle)}</h3>
             <p className="text-xs font-normal text-slate-500 leading-relaxed mt-3">{t(content.automationDesc)}</p>
           </div>

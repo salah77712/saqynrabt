@@ -384,7 +384,7 @@ export default function MarketingPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#3B5B9B]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-[#141F33] rounded-xl flex items-center justify-center mb-5">
-                  <Sparkles className="w-6 h-6 text-white" aria-hidden="true" />
+                  <Zap className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
@@ -419,7 +419,7 @@ export default function MarketingPage() {
               <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-5">
-                  <Bolt className="w-6 h-6 text-white" aria-hidden="true" />
+                  <Sparkles className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Internal Chatbot', ar: 'المساعد الذكي الداخلي' })}

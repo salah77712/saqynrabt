@@ -10,7 +10,7 @@ import { SkeletonCard, SkeletonTable } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry, EmptyAutomationState, EmptyState } from '../../../components/ui/EmptyState';
 import { useAutomationRequests } from '../../../hooks/queries/useAutomationRequests';
 import { PullToRefresh } from '../../../components/PullToRefresh';
-import { Phone } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 export default function AutomationDashboardPage() {
   const { locale } = useLocale();
@@ -72,7 +72,7 @@ export default function AutomationDashboardPage() {
         <Card className="p-4 md:p-6">
           <div className="flex items-center justify-between pb-3 md:pb-4 border-b border-gray-100 mb-4 md:mb-6">
             <h2 className="text-xs md:text-sm font-black text-[#141F33] dark:text-white flex items-center gap-2 md:gap-3">
-              <Phone className="w-4 h-4 text-slate-500" />
+              <Zap className="w-4 h-4 text-slate-500" />
               <span>{t('Live Customer Calls', 'المكالمات الواردة المباشرة')}</span>
             </h2>
             <div className="flex items-center gap-1.5 rounded-full bg-red-50 border border-red-200 px-2.5 md:px-3 py-1 text-[8px] md:text-[9px] font-black text-red-600 uppercase tracking-widest">
