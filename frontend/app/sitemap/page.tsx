@@ -82,7 +82,7 @@ export default function VisualSitemapPage() {
   ];
 
   return (
-    <div className="bg-[#F8F9FB] text-slate-800 min-h-screen flex flex-col font-sans selection:bg-slate-100 selection:text-[#141F33]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-navy dark:text-white min-h-screen flex flex-col font-sans selection:bg-royal/10" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
       <main className="flex-1 mx-auto max-w-7xl px-6 py-20 lg:px-8 w-full">
         {/* Back Link */}
