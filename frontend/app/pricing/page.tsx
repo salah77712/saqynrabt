@@ -1,17 +1,36 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { PricingCards } from '../../components/PricingCards';
-import { CheckIcon, PhoneIcon, ArrowRightIcon } from '../../components/ui/Icons';
-import { PRICING_TIERS } from '../../lib/pricing-config';
+import { CheckIcon, PhoneIcon, ChatIcon, ArrowRightIcon } from '../../components/ui/Icons';
+import { AUTOMATION_TIERS, CHATBOT_TIERS } from '../../lib/pricing-config';
+
+type Currency = 'USD' | 'QAR';
+type ProductTab = 'automation' | 'chatbot';
+
+const GULF_TZ_KEYWORDS = ['Doha', 'Riyadh', 'Kuwait', 'Dubai', 'Cairo', 'Bahrain', 'Muscat', 'Baghdad', 'Damascus'];
 
 export default function PricingPage() {
   const { locale } = useLocale();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
+
+  const [currency, setCurrency] = useState<Currency>('USD');
+  const [productTab, setProductTab] = useState<ProductTab>('automation');
+
+  useEffect(() => {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (GULF_TZ_KEYWORDS.some((k) => tz.includes(k))) {
+        setCurrency('QAR');
+      }
+    } catch {}
+  }, []);
+
+  const activeTiers = productTab === 'automation' ? AUTOMATION_TIERS : CHATBOT_TIERS;
 
   return (
     <div className="bg-white min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -26,7 +45,7 @@ export default function PricingPage() {
             {t({ en: 'Pricing that grows with you', ar: 'أسعار تنمو معك' })}
           </h1>
           <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-            {t({ en: 'Three plans. Pick the one that fits. No lock-in contracts.', ar: 'ثلاث خطط. اختر ما يناسبك. بدون عقود إلزامية.' })}
+            {t({ en: 'Pick the product and plan that fits. No lock-in contracts.', ar: 'اختر المنتج والخطة المناسبة. بدون عقود إلزامية.' })}
           </p>
         </div>
       </section>
@@ -37,23 +56,58 @@ export default function PricingPage() {
         </p>
       </div>
 
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="flex items-center gap-3 mb-8 pb-4 border-b-2 border-blue-600">
-            <PhoneIcon className="w-6 h-6 text-slate-600" />
-            <div>
-              <h2 className="text-xl font-extrabold text-primary">
-                {t({ en: 'Platform Pricing', ar: 'أسعار المنصة' })}
-              </h2>
-              <p className="text-xs text-slate-400 mt-0.5">
-                {t({ en: 'Call handling, staff knowledge base, and team tools — all included.', ar: 'إدارة المكالمات، قاعدة معارف الموظفين، وأدوات الفريق — كلها مشمولة.' })}
-              </p>
-            </div>
-            <Link href="/features" className="ml-auto text-xs text-blue-600 font-semibold hover:underline whitespace-nowrap">
-              {t({ en: 'View features', ar: 'عرض الميزات' })} <ArrowRightIcon className="w-3.5 h-3.5 inline" />
-            </Link>
+      {/* Product Tabs + Currency Toggle */}
+      <section className="py-10 bg-white border-b border-gray-100">
+        <div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Product Tabs */}
+          <div className="flex bg-slate-100 rounded-xl p-1 gap-1">
+            <button
+              type="button"
+              onClick={() => setProductTab('automation')}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                productTab === 'automation' ? 'bg-white text-[#141F33] shadow-sm' : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              <PhoneIcon className="w-4 h-4" />
+              {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
+            </button>
+            <button
+              type="button"
+              onClick={() => setProductTab('chatbot')}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${
+                productTab === 'chatbot' ? 'bg-white text-[#141F33] shadow-sm' : 'text-slate-500 hover:text-slate-700'
+              }`}
+            >
+              <ChatIcon className="w-4 h-4" />
+              {t({ en: 'Internal Chatbot', ar: 'المساعد الداخلي' })}
+            </button>
           </div>
-          <PricingCards tiers={PRICING_TIERS} />
+
+          {/* Currency Toggle */}
+          <div className="flex items-center gap-3">
+            <span className={`text-xs font-bold ${currency === 'USD' ? 'text-[#141F33]' : 'text-slate-400'}`}>USD</span>
+            <button
+              type="button"
+              onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
+              className={`relative w-12 h-6 rounded-full transition-colors ${
+                currency === 'QAR' ? 'bg-[#141F33]' : 'bg-slate-300'
+              }`}
+            >
+              <span
+                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform ${
+                  currency === 'QAR' ? 'translate-x-6' : 'translate-x-0.5'
+                }`}
+              />
+            </button>
+            <span className={`text-xs font-bold ${currency === 'QAR' ? 'text-[#141F33]' : 'text-slate-400'}`}>QAR</span>
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing Cards */}
+      <section className="py-16">
+        <div className="max-w-5xl mx-auto px-6">
+          <PricingCards tiers={activeTiers} currency={currency} locale={locale} />
         </div>
       </section>
 

@@ -1,51 +1,18 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLocale } from '../../providers';
 import { Footer } from '../../../components/Footer';
 import { Header } from '../../../components/Header';
+import { PricingCards } from '../../../components/PricingCards';
 import { PhoneIcon, ChatIcon, AmbulanceIcon, ClipboardIcon, BarChartIcon, GlobeIcon, CheckIcon } from '../../../components/ui/Icons';
+import { AUTOMATION_TIERS } from '../../../lib/pricing-config';
 import * as React from 'react';
 
-const automationTiers = [
-  {
-    id: 'auto-starter',
-    title: { en: 'Starter', ar: 'المبتدئ' },
-    subtitle: { en: 'For small front desks.', ar: 'لمكاتب الاستقبال الصغيرة.' },
-    price: '1,499',
-    setup: '1,999',
-    popular: false,
-    features: {
-      en: ['Basic call answering', '500 text requests/mo', '250 voice mins/mo', '1 department routing', 'Standard support'],
-      ar: ['رد أساسي على المكالمات', '500 طلب نصي/شهر', '250 دقيقة صوت/شهر', 'توجيه قسم واحد', 'دعم أساسي'],
-    },
-  },
-  {
-    id: 'auto-growth',
-    title: { en: 'Growth', ar: 'النمو' },
-    subtitle: { en: 'For growing operations.', ar: 'للعمليات المتنامية.' },
-    price: '2,499',
-    setup: '3,499',
-    popular: true,
-    features: {
-      en: ['Advanced call answering', '2,000 text requests/mo', '700 voice mins/mo', '3 dept routing', 'Complaint routing', 'Weekly report'],
-      ar: ['رد متقدم على المكالمات', '2,000 طلب نصي/شهر', '700 دقيقة صوت/شهر', 'توجيه 3 أقسام', 'توجيه الشكاوى', 'تقرير أسبوعي'],
-    },
-  },
-  {
-    id: 'auto-pro',
-    title: { en: 'Professional', ar: 'المحترف' },
-    subtitle: { en: 'For multi-department teams.', ar: 'لفرق متعددة الأقسام.' },
-    price: '4,499',
-    setup: '5,999',
-    popular: false,
-    features: {
-      en: ['Advanced call answering', '5,000 text requests/mo', '1,500 voice mins/mo', '8 dept routing', 'Manager alerts', 'Priority support', '2 languages'],
-      ar: ['رد متقدم على المكالمات', '5,000 طلب نصي/شهر', '1,500 دقيقة صوت/شهر', 'توجيه 8 أقسام', 'تنبيهات المدير', 'دعم ذو أولوية', 'لغتان'],
-    },
-  },
-];
+type Currency = 'USD' | 'QAR';
+
+const GULF_TZ_KEYWORDS = ['Doha', 'Riyadh', 'Kuwait', 'Dubai', 'Cairo', 'Bahrain', 'Muscat', 'Baghdad', 'Damascus'];
 
 const useCaseIcons: Record<string, React.ReactNode> = {
   phone: <PhoneIcon className="w-5 h-5 text-slate-600" />,
@@ -160,23 +127,26 @@ export default function AutomationPage() {
   const { locale } = useLocale();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currency, setCurrency] = useState<Currency>('USD');
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
+
+  useEffect(() => {
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (GULF_TZ_KEYWORDS.some((k) => tz.includes(k))) {
+        setCurrency('QAR');
+      }
+    } catch {}
+  }, []);
 
   const cases = useCases[locale as keyof typeof useCases] || useCases.en;
   const faqList = faqs[locale as keyof typeof faqs] || faqs.en;
   const queue = queueItems[locale as keyof typeof queueItems] || queueItems.en;
-  const tiers = automationTiers.map((tier) => ({
-    ...tier,
-    title: t(tier.title),
-    subtitle: t(tier.subtitle),
-    features: tier.features[locale as keyof typeof tier.features] || tier.features.en,
-  }));
 
   return (
     <div className="bg-[#F8F9FB] text-[#1A202C] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
-      {/* Hero */}
       <section className="relative overflow-hidden py-20 md:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
           <span className="inline-block bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 animate-fadeIn">
@@ -203,7 +173,6 @@ export default function AutomationPage() {
         </div>
       </section>
 
-      {/* Product Showcase */}
       <section className="bg-white border-y border-gray-100 py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -228,7 +197,6 @@ export default function AutomationPage() {
               </div>
             </div>
 
-            {/* Dashboard Mockup */}
             <div className="bg-white rounded-2xl border border-gray-200 shadow-xl p-6 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-center justify-between pb-4 border-b border-gray-100">
                 <span className="text-[#141F33] font-black text-base">
@@ -260,7 +228,7 @@ export default function AutomationPage() {
       {/* Pricing */}
       <section id="pricing" className="py-20 md:py-28 bg-[#F8F9FB]">
         <div className="max-w-5xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-14">
+          <div className="text-center mb-10">
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-3">
               {t({ en: 'Automation Pricing', ar: 'أسعار الأتمتة' })}
             </h2>
@@ -268,51 +236,30 @@ export default function AutomationPage() {
               {t({ en: 'All plans include onboarding support and your dedicated dashboard.', ar: 'جميع الخطط تشمل دعم الإعداد ولوحة تحكم مخصصة.' })}
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {tiers.map((tier, i) => (
-              <div
-                key={tier.id}
-                className="relative bg-white border border-gray-200/80 rounded-2xl p-6 shadow-sm card-hover flex flex-col animate-slideUp"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
-                {tier.popular && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm">
-                    {t({ en: 'Popular', ar: 'الأكثر طلباً' })}
-                  </span>
-                )}
-                <h3 className="text-xl font-extrabold text-[#141F33]">{tier.title}</h3>
-                <p className="text-xs text-[#718096] font-medium mt-0.5 mb-4">{tier.subtitle}</p>
-                <div className="mb-1">
-                  <span className="text-4xl font-extrabold text-[#141F33]">{tier.price}</span>
-                  <span className="text-[#718096] text-sm font-bold ml-1">
-                    {t({ en: 'QAR / mo', ar: 'ريال / شهر' })}
-                  </span>
-                </div>
-                <p className="text-[#10B981] font-bold text-sm mb-5">
-                  + {tier.setup} {t({ en: 'QAR setup fee', ar: 'ريال رسوم إعداد' })}
-                </p>
-                <ul className="flex flex-col gap-2 mb-6 flex-1">
-                  {tier.features.map((f, idx) => (
-                    <li key={idx} className="flex items-center gap-3 text-gray-600 text-sm font-medium">
-                      <span className="text-[#10B981]"><CheckIcon className="w-4 h-4 text-emerald-500" /></span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(true)}
-                  className="w-full bg-[#141F33] text-white py-3.5 rounded-xl font-bold text-sm transition-all min-h-[44px] hover:scale-[1.02] hover:shadow-lg active:scale-95"
-                >
-                  {t({ en: 'Get Started', ar: 'ابدأ الآن' })}
-                </button>
-              </div>
-            ))}
+
+          {/* Currency Toggle */}
+          <div className="flex items-center justify-center gap-3 mb-10">
+            <span className={`text-xs font-bold ${currency === 'USD' ? 'text-[#141F33]' : 'text-slate-400'}`}>USD</span>
+            <button
+              type="button"
+              onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
+              className={`relative w-12 h-6 rounded-full transition-colors ${
+                currency === 'QAR' ? 'bg-[#141F33]' : 'bg-slate-300'
+              }`}
+            >
+              <span
+                className={`absolute top-0.5 w-5 h-5 bg-white rounded-full shadow-sm transition-transform ${
+                  currency === 'QAR' ? 'translate-x-6' : 'translate-x-0.5'
+                }`}
+              />
+            </button>
+            <span className={`text-xs font-bold ${currency === 'QAR' ? 'text-[#141F33]' : 'text-slate-400'}`}>QAR</span>
           </div>
+
+          <PricingCards tiers={AUTOMATION_TIERS} currency={currency} locale={locale} />
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="bg-white border-y border-gray-100 py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-6 lg:px-12">
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-10 text-center">
@@ -330,7 +277,6 @@ export default function AutomationPage() {
 
       <Footer />
 
-      {/* Demo Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
           <div className="bg-white border border-gray-200 rounded-2xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
