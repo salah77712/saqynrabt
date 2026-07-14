@@ -10,9 +10,9 @@ import { AnalyticsGate } from './analytics-gate';
 
 export const metadata: Metadata = {
   title: 'SAQYN RABT | Staff Hub & Guest Queue Automation',
-  description: "The secure, high-performance RAG-based staff knowledge hub and guest queue manager engineered for Qatar's leading hotels, clinics, and workshops.",
+  description: "The secure, high-performance RAG-based staff knowledge hub and guest queue manager engineered for leading hotels, clinics, and workshops worldwide.",
   metadataBase: new URL('https://saqynrabt.com'),
-  keywords: ['hospitality staff hub', 'clinic queue automation', 'RAG database', 'Qatar B2B SaaS', 'AI front desk', 'private chatbot'],
+  keywords: ['hospitality staff hub', 'clinic queue automation', 'RAG database', 'B2B SaaS', 'AI front desk', 'private chatbot', 'global operations'],
   openGraph: {
     title: 'SAQYN RABT | Staff Hub & Guest Queue Automation',
     description: "Secure AI-powered automation for guest intake, staff knowledge, and business operations.",
@@ -62,7 +62,7 @@ export default function RootLayout({
               offers: {
                 '@type': 'Offer',
                 price: '1499',
-                priceCurrency: 'QAR',
+                priceCurrency: 'USD',
               },
             }),
           }}

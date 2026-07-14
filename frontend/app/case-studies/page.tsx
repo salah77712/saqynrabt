@@ -9,7 +9,7 @@ const cases = {
   en: [
     {
       industry: 'Hospitality',
-      title: '5-Star Doha Hotel Cuts Front-Desk Calls by 60%',
+      title: '5-Star Hotel Cuts Front-Desk Calls by 60%',
       result: 'Automated late check-ins, room service requests, and complaint routing. Staff now focus on guest experience instead of phone duty.',
       metrics: ['60% fewer front-desk calls', '4.8 Star guest satisfaction', '24/7 call coverage'],
     },
@@ -29,7 +29,7 @@ const cases = {
   ar: [
     {
       industry: 'الضيافة',
-      title: 'فندق 5 نجوم في الدوحة يخفض مكالمات مكتب الاستقبال بنسبة 60%',
+      title: 'فندق 5 نجوم يخفض مكالمات مكتب الاستقبال بنسبة 60%',
       result: 'أتمتة تسجيلات الوصول المتأخرة وطلبات خدمة الغرف وتوجيه الشكاوى. يركز الموظفون الآن على تجربة الضيوف بدلاً من مهام الهاتف.',
       metrics: ['60% مكالمات أقل لمكتب الاستقبال', '4.8 Star رضا النزلاء', 'تغطية مكالمات 24/7'],
     },
@@ -65,7 +65,7 @@ export default function CaseStudiesPage() {
           {t({ en: 'Real Results from Real Businesses', ar: 'نتائج حقيقية من شركات حقيقية' })}
         </h1>
         <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-          {t({ en: 'From Doha to Dubai to Kuwait — see how teams use SAQYN RABT to transform their operations.', ar: 'من الدوحة إلى دبي إلى الكويت — شاهد كيف تستخدم الفرق SAQYN RABT لتحويل عملياتهم.' })}
+          {t({ en: 'From the Middle East to the world — see how teams use SAQYN RABT to transform their operations.', ar: 'من الشرق الأوسط إلى العالم — شاهد كيف تستخدم الفرق SAQYN RABT لتحويل عملياتهم.' })}
         </p>
       </section>
 

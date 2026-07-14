@@ -16,7 +16,7 @@ export function IndustrySwitcher({ activeId, onChange }: IndustrySwitcherProps) 
   return (
     <div className="flex flex-col items-center gap-6">
       <p className="text-xs font-extrabold tracking-widest text-[#718096] uppercase text-center">
-        {t('Engineered for Qatar & Middle East Operations — Select Your Industry', 'مصمم خصيصًا للعمليات في قطر والشرق الأوسط - اختر قطاعك')}
+        {t('Engineered for Global Operations — Select Your Industry', 'مصمم خصيصًا للعمليات العالمية - اختر قطاعك')}
       </p>
 
       <div className="w-full flex flex-wrap justify-center gap-4 py-2">

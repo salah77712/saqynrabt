@@ -55,14 +55,14 @@ const trustCards: TrustCard[] = [
     title: 'Privacy Policy',
     description: 'How we collect, use, and protect your personal information.',
     href: '/privacy-policy',
-    badge: 'Qatar Law No. 13 of 2016',
+    badge: 'GDPR & Global Privacy',
   },
   {
     icon: 'shield',
     title: 'Terms of Service',
     description: 'Binding contract governing your use of our services.',
     href: '/terms-and-conditions',
-    badge: 'Qatari Civil Code Art. 171',
+    badge: 'Global Terms of Service',
   },
   {
     icon: 'lock',
@@ -88,11 +88,11 @@ const trustCards: TrustCard[] = [
   {
     icon: 'badgecheck',
     title: 'Certifications & Audits',
-    description: 'Our ongoing compliance with Qatari and international standards.',
+    description: 'Our ongoing compliance with international security and privacy standards.',
     badges: [
       { label: 'ISO 27001', status: 'in-progress' },
       { label: 'SOC 2', status: 'in-progress' },
-      { label: 'Qatar Ministry of Justice Registered', status: 'active' },
+      { label: 'Global Data Protection Registered', status: 'active' },
     ],
     actionLabel: 'Download Compliance Pack',
   },
@@ -107,11 +107,11 @@ export default function TrustPage() {
             Your Data, Our Responsibility.
           </h1>
           <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
-            Built for the State of Qatar.
+            Built for Global Operations.
           </p>
           <p className="mt-2 text-sm text-white/50 max-w-2xl mx-auto">
             SAQYN RABT is committed to the highest standards of data protection, security, and
-            transparency, in full compliance with Qatari Law No. 13 of 2016 and the Qatari Civil Code.
+            transparency, in full compliance with global data protection regulations and frameworks.
           </p>
         </div>
       </section>

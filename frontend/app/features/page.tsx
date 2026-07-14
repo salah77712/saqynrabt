@@ -15,7 +15,7 @@ export default function FeaturesPage() {
 
   const content = {
     title: { en: 'Two tools. One platform. Zero missed calls.', ar: 'أداتان. منصة واحدة. بدون مكالمات ضائعة.' },
-    subtitle: { en: 'Handle calls, messages, and employee questions automatically — built for how teams in Qatar and the Middle East actually work.', ar: 'تعامل مع المكالمات والرسائل وأسئلة الموظفين تلقائياً — مبني لكيفية عمل الفرق في قطر والشرق الأوسط.' },
+    subtitle: { en: 'Handle calls, messages, and employee questions automatically — built for how teams actually work, anywhere in the world.', ar: 'تعامل مع المكالمات والرسائل وأسئلة الموظفين تلقائياً — مبني لكيفية عمل الفرق في أي مكان في العالم.' },
     automationTitle: { en: 'Never miss a call or booking', ar: 'لا تفوت أي مكالمة أو حجز' },
     automationDesc: { en: 'Your AI front-desk answers calls, reads messages, and routes requests to the right person — even at 3 AM.', ar: 'مكتب الاستقبال الذكي لديك يرد على المكالمات، يقرأ الرسائل، ويوجه الطلبات للشخص المناسب — حتى في الثالثة فجراً.' },
     chatbotTitle: { en: 'Your documents, now searchable by your team', ar: 'مستنداتك، قابلة للبحث الآن من قبل فريقك' },

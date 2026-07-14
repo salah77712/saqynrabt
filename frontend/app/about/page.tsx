@@ -14,14 +14,14 @@ export default function AboutPage() {
     title: { en: 'Built for the people answering calls and running operations.', ar: 'مبني للأشخاص الذين يردون على المكالمات ويديرون العمليات.' },
     storyTitle: { en: 'The Story & Mission', ar: 'القصة والمهمة' },
     storyBody: {
-      en: 'SAQYN RABT started in Doha with a simple observation: front desks were drowning in repetitive calls, and off-the-shelf tools weren\'t built for how businesses in the region actually operate. So we built our own. Our platform handles the calls, messages, and routine questions that eat up your team\'s day — while keeping your data in-region and under your control.',
-      ar: 'بدأت SAQYN RABT في الدوحة بملاحظة بسيطة: مكاتب الاستقبال تغرق في المكالمات المتكررة، والأدوات الجاهزة لم تُصمم لكيفية عمل الشركات في المنطقة. لذا بنينا حلنا الخاص. منصتنا تدير المكالمات والرسائل والاستفسارات الروتينية التي تستهلك وقت فريقك — مع بقاء بياناتك داخل المنطقة وتحت سيطرتك.'
+      en: 'SAQYN RABT started with a simple observation: front desks everywhere were drowning in repetitive calls, and off-the-shelf tools weren\'t built for how businesses actually operate. So we built our own. Our platform handles the calls, messages, and routine questions that eat up your team\'s day — while keeping your data secure and under your control.',
+      ar: 'بدأت SAQYN RABT بملاحظة بسيطة: مكاتب الاستقبال في كل مكان تغرق في المكالمات المتكررة، والأدوات الجاهزة لم تُصمم لكيفية عمل الشركات فعلاً. لذا بنينا حلنا الخاص. منصتنا تدير المكالمات والرسائل والاستفسارات الروتينية التي تستهلك وقت فريقك — مع بقاء بياناتك آمنة وتحت سيطرتك.'
     },
     teamTitle: { en: 'Meet Our Leadership', ar: 'فريق القيادة' },
     badgeSecure: { en: 'Secure Encryption', ar: 'تشفير آمن' },
     badgePrivate: { en: 'Strict Data Privacy', ar: 'خصوصية بيانات صارمة' },
     badgeLive: { en: 'Available 24/7', ar: 'متاح 24/7' },
-    badgeLocal: { en: 'Made in Qatar', ar: 'صنع في قطر' }
+    badgeLocal: { en: 'Global Operations', ar: 'عمليات عالمية' }
   };
 
   const team = [

@@ -9,7 +9,7 @@ function getCookieConsent(): boolean {
 
 /**
  * AnalyticsGate conditionally loads third-party analytics and tracking scripts
- * only after the user has accepted cookies, as required by Qatari Law No. 13 of 2016.
+ * only after the user has accepted cookies, as required by applicable privacy regulations.
  *
  * This runs as a client component in <head> to prevent tracking before consent.
  */

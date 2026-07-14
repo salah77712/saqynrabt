@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'SAQYN RABT | AI Call Answering & Staff Knowledge Base',
-  description: "SAQYN RABT handles your incoming calls, bookings, and staff questions — so your team can focus on what matters. Built in Doha, trusted across the Middle East.",
+  description: "SAQYN RABT handles your incoming calls, bookings, and staff questions — so your team can focus on what matters. Built for global operations, trusted worldwide.",
   openGraph: {
     title: 'SAQYN RABT | AI Call Answering & Staff Knowledge Base',
-    description: 'Handle calls, bookings, and staff questions automatically. Built in Qatar.',
+    description: 'Handle calls, bookings, and staff questions automatically. Global AI operations platform.',
     url: 'https://saqynrabt.com',
     siteName: 'SAQYN RABT',
     type: 'website',
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'SAQYN RABT | AI Call Answering & Staff Knowledge Base',
-    description: 'Handle calls, bookings, and staff questions automatically. Built in Qatar.',
+    description: 'Handle calls, bookings, and staff questions automatically. Global AI operations platform.',
     images: ['https://saqynrabt.com/og-image'],
   },
 };

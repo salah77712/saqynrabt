@@ -54,7 +54,7 @@ const chatbotFeatures: Record<string, string[]> = {
 };
 
 const testimonials = [
-  { quote: 'Setup took one call. We went from 12 missed calls a day to zero in 48 hours.', name: 'Operations Director', org: 'Doha Boutique Hotel' },
+  { quote: 'Setup took one call. We went from 12 missed calls a day to zero in 48 hours.', name: 'Operations Director', org: 'Boutique Hotel Group' },
   { quote: 'Our front desk used to spend 3 hours a day answering the same questions. Now the chatbot handles it all.', name: 'HR Manager', org: 'Al Wakra Medical Group' },
   { quote: 'The ROI was immediate. Guest complaints used to sit for hours — now they are routed in seconds.', name: 'General Manager', org: 'West Bay Hospitality' },
 ];
@@ -272,7 +272,7 @@ export default function MarketingPage() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
           
           <p className="text-xs font-extrabold tracking-widest text-[#718096] uppercase mb-8 text-center animate-fadeIn">
-            {t({ en: 'Engineered for Qatar & Middle East Operations — Select Your Industry', ar: 'مصمم خصيصًا للعمليات في قطر والشرق الأوسط - اختر قطاعك' })}
+            {t({ en: 'Engineered for Global Operations — Select Your Industry', ar: 'مصمم خصيصًا للعمليات العالمية - اختر قطاعك' })}
           </p>
 
           {/* 6 Top Industry Pills */}
@@ -327,7 +327,7 @@ export default function MarketingPage() {
           {/* Social Proof */}
           <div className="mt-16 pt-12 border-t border-gray-100 w-full flex flex-col items-center gap-6 animate-fadeIn">
             <p className="text-xs font-extrabold tracking-widest text-[#718096] uppercase text-center">
-              {t({ en: 'Trusted by front desks and teams in Qatar and across the Middle East', ar: 'موثوق به من قبل مكاتب الاستقبال والفرق في قطر وأنحاء الشرق الأوسط' })}
+              {t({ en: 'Trusted by front desks and teams worldwide', ar: 'موثوق به من قبل مكاتب الاستقبال والفرق في جميع أنحاء العالم' })}
             </p>
             <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
               <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Hospitality Sector">
@@ -370,7 +370,7 @@ export default function MarketingPage() {
               {t({ en: 'Testimonials', ar: 'شهادات العملاء' })}
             </p>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33]">
-              {t({ en: 'Trusted by Operations Teams Across Qatar', ar: 'موثوق به من قبل فرق العمليات في قطر' })}
+              {t({ en: 'Trusted by Operations Teams Worldwide', ar: 'موثوق به من قبل فرق العمليات حول العالم' })}
             </h2>
           </div>
           <div className={`flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none animate-stagger ${testimonialVisible ? 'revealed' : ''}`}>

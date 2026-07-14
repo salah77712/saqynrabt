@@ -36,8 +36,8 @@ const categories = {
     {
       title: 'Global Service',
       questions: [
-        { q: 'Are you only for Qatar?', a: 'No. We are headquartered in Doha, Qatar, but we serve clients across the Middle East, Asia, Europe, Africa, and the Americas.' },
-        { q: 'What currencies do you support?', a: 'We invoice in QAR, USD, EUR, and GBP. No hidden conversion fees.' },
+        { q: 'Are you only for Qatar?', a: 'No. We are a global company serving clients across the Middle East, Asia, Europe, Africa, and the Americas.' },
+        { q: 'What currencies do you support?', a: 'We invoice in USD, EUR, GBP, and local currencies. No hidden conversion fees.' },
         { q: 'Do you support multiple time zones?', a: 'Yes. Your AI front-desk operates 24/7 and handles inquiries from any time zone automatically.' },
       ],
     },
@@ -80,8 +80,8 @@ const categories = {
     {
       title: 'الخدمة العالمية',
       questions: [
-        { q: 'هل أنتم فقط لقطر؟', a: 'لا. مقرنا الرئيسي في الدوحة، قطر، لكننا نخدم عملاء في الشرق الأوسط وآسيا وأوروبا وأفريقيا والأمريكتين.' },
-        { q: 'ما العملات التي تدعمونها؟', a: 'نصدر الفواتير بالريال القطري والدولار واليورو والجنيه الإسترليني. لا رسوم تحويل خفية.' },
+        { q: 'هل أنتم فقط لقطر؟', a: 'لا. نحن شركة عالمية نخدم عملاء في الشرق الأوسط وآسيا وأوروبا وأفريقيا والأمريكتين.' },
+        { q: 'ما العملات التي تدعمونها؟', a: 'نصدر الفواتير بالدولار واليورو والجنيه الإسترليني والعملات المحلية. لا رسوم تحويل خفية.' },
         { q: 'هل تدعمون مناطق زمنية متعددة؟', a: 'نعم. مكتب الاستقبال الذكي يعمل 24/7 ويتعامل مع الاستفسارات من أي منطقة زمنية تلقائياً.' },
       ],
     },

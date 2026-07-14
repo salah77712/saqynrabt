@@ -83,7 +83,7 @@ export default function IndustriesPage() {
           {t({ en: 'Built for 16 Industries — Worldwide', ar: 'مصمم لـ 16 قطاعاً — حول العالم' })}
         </h1>
         <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-          {t({ en: 'Based in Qatar, serving the globe. Our platform adapts to your industry, language, and time zone.', ar: 'مقرنا في قطر، نخدم العالم. منصتنا تتكيف مع قطاعك ولغتك ومنطقتك الزمنية.' })}
+          {t({ en: 'Global headquarters with local expertise. Our platform adapts to your industry, language, and time zone.', ar: 'مقر عالمي مع خبرة محلية. منصتنا تتكيف مع قطاعك ولغتك ومنطقتك الزمنية.' })}
         </p>
       </section>
 

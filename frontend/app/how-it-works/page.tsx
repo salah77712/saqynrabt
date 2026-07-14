@@ -33,17 +33,17 @@ const flagIcons: Record<string, React.ReactNode> = {
 
 const globalItems = {
   en: [
-    { flag: 'globe', title: 'Global Reach', desc: 'Headquartered in Doha, Qatar — serving clients across the Middle East, Asia, Europe, Africa, and the Americas.' },
+    { flag: 'globe', title: 'Global Reach', desc: 'Global headquarters — serving clients across the Middle East, Asia, Europe, Africa, and the Americas.' },
     { flag: 'clock', title: '24/7 Across Time Zones', desc: 'Your AI front-desk never sleeps. Handle inquiries from any time zone without hiring night staff.' },
     { flag: 'language', title: 'Multi-Language by Default', desc: 'Arabic, English, and more — your AI speaks your customers\' language, wherever they are.' },
-    { flag: 'currency', title: 'Multi-Currency Billing', desc: 'Invoiced in QAR, USD, EUR, or GBP. No hidden conversion fees.' },
+    { flag: 'currency', title: 'Multi-Currency Billing', desc: 'Invoiced in USD, EUR, GBP, or local currency. No hidden conversion fees.' },
     { flag: 'data', title: 'Data Residency Options', desc: 'Choose your data region: Middle East, Europe, or United States. Compliance-ready for local regulations.' },
   ],
   ar: [
-    { flag: 'globe', title: 'وصول عالمي', desc: 'المقر الرئيسي في الدوحة، قطر — نخدم عملاء عبر الشرق الأوسط وآسيا وأوروبا وأفريقيا والأمريكتين.' },
+    { flag: 'globe', title: 'وصول عالمي', desc: 'مقر عالمي — نخدم عملاء عبر الشرق الأوسط وآسيا وأوروبا وأفريقيا والأمريكتين.' },
     { flag: 'clock', title: '24/7 عبر المناطق الزمنية', desc: 'مكتب الاستقبال الذكي لا ينام أبداً. تعامل مع الاستفسارات من أي منطقة زمنية دون توظيف موظفين ليليين.' },
     { flag: 'language', title: 'متعدد اللغات افتراضياً', desc: 'العربية والإنجليزية والمزيد — ذكاؤك الاصطناعي يتحدث لغة عملائك أينما كانوا.' },
-    { flag: 'currency', title: 'فوترة متعددة العملات', desc: 'الفواتير بالريال القطري أو الدولار أو اليورو أو الجنيه الإسترليني. لا رسوم تحويل خفية.' },
+    { flag: 'currency', title: 'فوترة متعددة العملات', desc: 'الفواتير بالدولار أو اليورو أو الجنيه الإسترليني أو العملة المحلية. لا رسوم تحويل خفية.' },
     { flag: 'data', title: 'خيارات إقامة البيانات', desc: 'اختر منطقة بياناتك: الشرق الأوسط أو أوروبا أو الولايات المتحدة. جاهز للامتثال للوائح المحلية.' },
   ],
 };
@@ -113,7 +113,7 @@ export default function HowItWorksPage() {
             {t({ en: 'Start Your Journey Today', ar: 'ابدأ رحلتك اليوم' })}
           </h2>
           <p className="text-blue-100 mb-8">
-            {t({ en: 'From Doha to the world — let\'s build your AI operations.', ar: 'من الدوحة إلى العالم — دعنا نبني عملياتك الذكية.' })}
+            {t({ en: 'Let\'s build your AI operations — wherever you are.', ar: 'دعنا نبني عملياتك الذكية — أينما كنت.' })}
           </p>
           <a
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}

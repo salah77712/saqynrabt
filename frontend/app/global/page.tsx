@@ -22,14 +22,14 @@ const highlights = {
 
 const regions = {
   en: [
-    { name: 'Middle East', flag: 'middleeast', cities: 'Doha, Dubai, Riyadh, Kuwait City, Muscat, Manama', desc: 'Our home base. Deep understanding of regional hospitality, healthcare, and service industry needs.' },
+    { name: 'Middle East', flag: 'middleeast', cities: 'Dubai, Riyadh, Doha, Kuwait City, Muscat, Manama', desc: 'Deep understanding of regional hospitality, healthcare, and service industry needs across the Gulf and Levant.' },
     { name: 'Europe', flag: 'europe', cities: 'London, Berlin, Paris, Amsterdam, Madrid', desc: 'GDPR-compliant data hosting. Serving hotels, clinics, and service businesses across the EU.' },
     { name: 'Asia', flag: 'asia', cities: 'Singapore, Tokyo, Dubai, Mumbai, Bangkok', desc: 'Fast-growing presence in Southeast Asia and the subcontinent. Multi-language support included.' },
     { name: 'Africa', flag: 'africa', cities: 'Cairo, Nairobi, Cape Town, Lagos, Casablanca', desc: 'Expanding across the continent with Arabic, English, and French language support.' },
     { name: 'Americas', flag: 'americas', cities: 'New York, Toronto, São Paulo, Mexico City', desc: 'US-East and US-West data regions available. Serving clients from Canada to Brazil.' },
   ],
   ar: [
-    { name: 'الشرق الأوسط', flag: 'middleeast', cities: 'الدوحة، دبي، الرياض، مدينة الكويت، مسقط، المنامة', desc: 'قاعدتنا الرئيسية. فهم عميق لاحتياجات قطاعات الضيافة والرعاية الصحية والخدمات الإقليمية.' },
+    { name: 'الشرق الأوسط', flag: 'middleeast', cities: 'دبي، الرياض، الدوحة، مدينة الكويت، مسقط، المنامة', desc: 'فهم عميق لاحتياجات قطاعات الضيافة والرعاية الصحية والخدمات الإقليمية عبر الخليج والمشرق.' },
     { name: 'أوروبا', flag: 'europe', cities: 'لندن، برلين، باريس، أمستردام، مدريد', desc: 'استضافة بيانات متوافقة مع GDPR. نخدم الفنادق والعيادات وشركات الخدمات في جميع أنحاء الاتحاد الأوروبي.' },
     { name: 'آسيا', flag: 'asia', cities: 'سنغافورة، طوكيو، دبي، مومباي، بانكوك', desc: 'وجود سريع النمو في جنوب شرق آسيا وشبه القارة الهندية. دعم متعدد اللغات مشمول.' },
     { name: 'أفريقيا', flag: 'africa', cities: 'القاهرة، نيروبي، كيب تاون، لاغوس، الدار البيضاء', desc: 'نتوسع عبر القارة بدعم اللغات العربية والإنجليزية والفرنسية.' },
@@ -60,10 +60,10 @@ export default function GlobalPage() {
           {t({ en: 'Global Presence', ar: 'الوجود العالمي' })}
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-primary leading-tight max-w-4xl mx-auto">
-          {t({ en: 'Based in Qatar. Serving the World.', ar: 'مقرنا في قطر. نخدم العالم.' })}
+          {t({ en: 'Global Headquarters. Serving the World.', ar: 'مقر عالمي. نخدم العالم.' })}
         </h1>
         <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
-          {t({ en: 'Headquartered in Doha, we bring AI-powered tools to businesses across every continent.', ar: 'مقرنا الرئيسي في الدوحة، نقدم عمليات الذكاء الاصطناعي للمؤسسات في جميع القارات.' })}
+          {t({ en: 'Headquartered globally, we bring AI-powered tools to businesses across every continent.', ar: 'مقرنا عالمي، نقدم أدوات الذكاء الاصطناعي للمؤسسات في جميع القارات.' })}
         </p>
       </section>
 
@@ -104,7 +104,7 @@ export default function GlobalPage() {
             {t({ en: 'Wherever You Are, We\'re Ready', ar: 'أينما كنت، نحن جاهزون' })}
           </h2>
           <p className="text-blue-100 mb-8">
-            {t({ en: 'From a 5-star hotel in Doha to a clinic in Nairobi — your AI operations start here.', ar: 'من فندق 5 نجوم في الدوحة إلى عيادة في نيروبي — عملياتك الذكية تبدأ هنا.' })}
+            {t({ en: 'From a 5-star hotel to a clinic in Nairobi — your AI operations start here, wherever you are.', ar: 'من فندق 5 نجوم إلى عيادة في نيروبي — عملياتك الذكية تبدأ هنا، أينما كنت.' })}
           </p>
           <a
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}

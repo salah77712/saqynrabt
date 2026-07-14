@@ -90,8 +90,8 @@ export function CookieConsentBanner() {
                 </p>
                 <p>
                   {t({
-                    en: 'SAQYN RABT uses cookies to enhance your experience, secure your data, and analyze site traffic in compliance with Qatari Law No. 13 of 2016. By clicking "Accept", you consent to our use of essential and analytics cookies.',
-                    ar: 'يستخدم SAQYN RABT ملفات تعريف الارتباط لتحسين تجربتك وتأمين بياناتك وتحليل حركة مرور الموقع بما يتوافق مع قانون قطر رقم 13 لسنة 2016. بالنقر على "قبول"، فإنك توافق على استخدامنا لملفات تعريف الارتباط الأساسية والتحليلية.',
+                    en: 'SAQYN RABT uses cookies to enhance your experience, secure your data, and analyze site traffic in compliance with global data protection standards. By clicking "Accept", you consent to our use of essential and analytics cookies.',
+                    ar: 'يستخدم SAQYN RABT ملفات تعريف الارتباط لتحسين تجربتك وتأمين بياناتك وتحليل حركة مرور الموقع وفقًا لمعايير حماية البيانات العالمية. بالنقر على "قبول"، فإنك توافق على استخدامنا لملفات تعريف الارتباط الأساسية والتحليلية.',
                   })}
                 </p>
               </div>

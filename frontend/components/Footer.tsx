@@ -9,8 +9,8 @@ import { MailIcon } from './ui/Icons';
 
 const content = {
   en: {
-    tagline: 'AI-powered operations for front desks and teams across Qatar and beyond.',
-    address: 'Doha, Qatar',
+    tagline: 'AI-powered operations for front desks and teams worldwide.',
+    address: 'Global Operations',
     dpoEmail: 'saqynrabt@gmail.com',
     productTitle: 'Product',
     companyTitle: 'Company',
@@ -41,8 +41,8 @@ const content = {
     backToTop: 'Back to Top',
   },
   fr: {
-    tagline: "Opérations alimentées par l'IA pour les bureaux d'accueil et les équipes au Qatar et au-delà.",
-    address: 'Doha, Qatar',
+    tagline: "Opérations alimentées par l'IA pour les bureaux d'accueil et les équipes dans le monde entier.",
+    address: 'Opérations Mondiales',
     dpoEmail: 'saqynrabt@gmail.com',
     productTitle: 'Produit',
     companyTitle: 'Entreprise',
@@ -73,8 +73,8 @@ const content = {
     backToTop: 'Retour en Haut',
   },
   ar: {
-    tagline: 'عمليات مدعومة بالذكاء الاصطناعي لمكاتب الاستقبال والفرق في قطر وخارجها.',
-    address: 'الدوحة، قطر',
+    tagline: 'عمليات مدعومة بالذكاء الاصطناعي لمكاتب الاستقبال والفرق في جميع أنحاء العالم.',
+    address: 'عمليات عالمية',
     dpoEmail: 'saqynrabt@gmail.com',
     productTitle: 'المنتج',
     companyTitle: 'الشركة',
@@ -105,8 +105,8 @@ const content = {
     backToTop: 'العودة للأعلى',
   },
   hi: {
-    tagline: 'क़तर और उससे आगे फ्रंट डेस्क और टीमों के लिए AI-संचालित संचालन।',
-    address: 'दोहा, क़तर',
+    tagline: 'दुनिया भर में फ्रंट डेस्क और टीमों के लिए AI-संचालित संचालन।',
+    address: 'वैश्विक संचालन',
     dpoEmail: 'saqynrabt@gmail.com',
     productTitle: 'उत्पाद',
     companyTitle: 'कंपनी',
@@ -201,7 +201,7 @@ export function Footer() {
             </span>
             <span className="flex items-center gap-1 text-[11px] text-slate-400">
               <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-              Qatar Law No.13 Compliant
+              Global Compliance Ready
             </span>
             <span className="flex items-center gap-1 text-[11px] text-slate-400/80">
               ⟳ ISO 27001 In Progress
@@ -232,8 +232,8 @@ export function Footer() {
             name: 'SAQYN RABT',
             url: 'https://saqynrabt.com',
             logo: 'https://saqynrabt.com/logo.png',
-            description: 'AI-powered operations for front desks and teams across Qatar and beyond.',
-            address: { '@type': 'PostalAddress', addressLocality: 'Doha', addressCountry: 'QA' },
+            description: 'AI-powered operations for front desks and teams worldwide.',
+            address: { '@type': 'PostalAddress', addressLocality: 'Global', addressCountry: 'US' },
             contactPoint: [
               { '@type': 'ContactPoint', telephone: '+974-XXXX-XXXX', contactType: 'sales', email: 'saqynrabt@gmail.com' },
               { '@type': 'ContactPoint', contactType: 'DPO', email: 'saqynrabt@gmail.com' },
@@ -261,24 +261,23 @@ export function Footer() {
             <p className="text-xs text-slate-500 font-semibold leading-relaxed">
               {copy.tagline}
             </p>
-            <div className="text-[11px] text-slate-400 font-semibold space-y-1">
+            <div className="flex items-center gap-2 text-[11px] text-slate-400 font-semibold">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shrink-0" />
               <p>{copy.address}</p>
-              <p>
-                DPO:{' '}
-                <a href="mailto:saqynrabt@gmail.com" className="text-slate-500 hover:text-[#141F33] hover:underline">
-                  {copy.dpoEmail}
-                </a>
-              </p>
             </div>
-            <div className="flex items-center gap-2 px-3 py-2 rounded-lg border border-gray-200 bg-slate-50 w-fit">
-              <MailIcon className="w-3 h-3 text-slate-400" />
-              <span className="text-[9px] font-black uppercase tracking-wider text-slate-400">DPO</span>
-              <a
-                href="mailto:saqynrabt@gmail.com"
-                className="text-[11px] font-extrabold text-slate-700 hover:text-[#141F33] hover:underline"
-              >
-                saqynrabt@gmail.com
-              </a>
+            <div className="flex items-center gap-3 px-4 py-3 rounded-xl border border-emerald-100 bg-emerald-50/60 w-full shadow-sm hover:shadow-md hover:border-emerald-200 transition-all duration-200">
+              <div className="flex items-center justify-center w-9 h-9 rounded-lg bg-emerald-100 text-emerald-600 shrink-0">
+                <MailIcon className="w-4 h-4" />
+              </div>
+              <div className="flex flex-col min-w-0">
+                <span className="text-[9px] font-black uppercase tracking-widest text-emerald-500">DPO Contact</span>
+                <a
+                  href="mailto:saqynrabt@gmail.com"
+                  className="text-[12px] font-extrabold text-slate-800 hover:text-emerald-600 hover:underline truncate transition-colors"
+                >
+                  saqynrabt@gmail.com
+                </a>
+              </div>
             </div>
           </div>
 
@@ -329,7 +328,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-gray-100 mt-12 pt-6 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-slate-400">
           <p className="uppercase tracking-wider">
-            © {year} SAQYN RABT. ALL RIGHTS RESERVED. LICENSED UNDER QATAR LAW NO. 13 OF 2016.
+            © {year} SAQYN RABT. ALL RIGHTS RESERVED.
           </p>
 
           <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">

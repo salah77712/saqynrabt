@@ -192,7 +192,7 @@ export default function ContactPage() {
                 <MapPinIcon className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'Office Address', ar: 'عنوان المكتب' })}</p>
-                  <p className="text-[#718096] mt-0.5">Doha, Qatar</p>
+                  <p className="text-[#718096] mt-0.5">Global Operations</p>
                 </div>
               </div>
 
