@@ -90,7 +90,7 @@ export default function PricingPage() {
             <button
               type="button"
               onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
-              className={`relative w-14 h-7 rounded-full transition-colors ${
+              className={`relative w-14 h-7 min-h-0 rounded-full transition-colors ${
                 currency === 'QAR' ? 'bg-navy' : 'bg-slate-300'
               }`}
             >
