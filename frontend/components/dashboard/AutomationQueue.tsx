@@ -31,7 +31,7 @@ export function AutomationQueue({ requests, onSelect }: AutomationQueueProps) {
             <tr
               key={req.id}
               onClick={() => onSelect(req)}
-              className="border-b border-gray-50 dark:border-slate-800 last:border-0 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-colors"
+              className="border-b border-gray-50 dark:border-slate-800 last:border-0 hover:bg-slate-50/50 dark:hover:bg-slate-800/50 cursor-pointer transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95"
             >
               <td className="p-4 text-xs font-bold text-navy dark:text-white">{req.customer}</td>
               <td className="p-4 text-xs font-semibold text-slate-600 dark:text-slate-400">{req.type}</td>

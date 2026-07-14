@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { X, ClipboardList } from 'lucide-react';
 import { useChat } from 'ai/react';
 import { useLocale } from '../../providers';
 import { Button } from '../../../components/ui/Button';
@@ -12,7 +13,6 @@ import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry } from '../../../components/ui/EmptyState';
 import { useChatHistory } from '../../../hooks/queries/useChatHistory';
 import { PullToRefresh } from '../../../components/PullToRefresh';
-import { ClipboardIcon } from '../../../components/ui/Icons';
 import { useGlobalToast } from '../../../lib/toast';
 
 interface KnowledgeGap {
@@ -141,9 +141,9 @@ export default function ChatbotDashboardPage() {
                 <button
                   onClick={() => setShowGapsSheet(true)}
                   aria-label={t('Show knowledge gaps', 'عرض فجوات المعرفة')}
-                  className="xl:hidden w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 min-h-[44px] min-w-[44px]"
+                  className="xl:hidden w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95 min-h-[44px] min-w-[44px]"
                 >
-                  <ClipboardIcon className="w-4 h-4 text-slate-500" />
+                  <ClipboardList className="w-4 h-4 text-slate-500" />
                 </button>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function ChatbotDashboardPage() {
                   placeholder={t('Ask a question...', 'اسأل سؤالاً...')}
                   className="min-h-[44px] text-xs md:text-sm"
                 />
-                <Button type="submit" disabled={isLoading || !input} className="min-h-[44px] min-w-[44px] whitespace-nowrap text-xs md:text-sm">
+                <Button type="submit" disabled={isLoading || !input} className="min-h-[44px] min-w-[44px] whitespace-nowrap text-xs md:text-sm transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95">
                   {t('Send', 'إرسال')}
                 </Button>
               </div>
@@ -239,7 +239,7 @@ export default function ChatbotDashboardPage() {
               )}
             </div>
 
-            <Button variant="outline" className="w-full mt-6 min-h-[44px]" onClick={() => setIsGapModalOpen(true)}>
+            <Button variant="outline" className="w-full mt-6 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
               {t('Review Gaps', 'مراجعة الفجوات')}
             </Button>
           </Card>
@@ -256,12 +256,9 @@ export default function ChatbotDashboardPage() {
                 </h3>
                 <button
                   onClick={() => setShowGapsSheet(false)}
-                  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 min-h-[44px] min-w-[44px]"
+                  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95 min-h-[44px] min-w-[44px]"
                 >
-                  <svg width="16" height="16" viewBox="0 0 18 18" fill="none">
-                    <path d="M13.5 4.5L4.5 13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                    <path d="M4.5 4.5L13.5 13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-                  </svg>
+                  <X className="w-4 h-4" />
                 </button>
               </div>
               <div className="space-y-3">
@@ -289,7 +286,7 @@ export default function ChatbotDashboardPage() {
                   ))
                 )}
               </div>
-              <Button variant="outline" className="w-full mt-4 min-h-[44px]" onClick={() => setIsGapModalOpen(true)}>
+              <Button variant="outline" className="w-full mt-4 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
                 {t('Review All Gaps', 'مراجعة جميع الفجوات')}
               </Button>
             </div>
@@ -309,10 +306,10 @@ export default function ChatbotDashboardPage() {
             </p>
           </div>
           <div className="flex gap-3">
-            <Button variant="primary" className="flex-1 min-h-[44px]" onClick={() => setIsGapModalOpen(false)}>
+            <Button variant="primary" className="flex-1 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
               Upload Document
             </Button>
-            <Button variant="outline" className="min-h-[44px]" onClick={() => setIsGapModalOpen(false)}>
+            <Button variant="outline" className="min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
               Cancel
             </Button>
           </div>

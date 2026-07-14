@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card } from '../ui/Card';
 import { Badge } from '../ui/Badge';
-import { DocumentIcon, XIcon } from '../ui/Icons';
+import { FileText, Trash2 } from 'lucide-react';
 
 interface DocItem {
   id: string;
@@ -19,16 +19,16 @@ export function DocumentGrid({ docs, onDelete }: DocumentGridProps) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {docs.map((doc) => (
-        <Card key={doc.id} className="flex flex-col justify-between p-6">
+        <Card key={doc.id} className="flex flex-col justify-between p-6 transition-all duration-300 hover:shadow-md hover:scale-[1.01]">
           <div>
             <div className="flex justify-between items-start gap-4 mb-3">
-              <DocumentIcon className="w-6 h-6 text-slate-500" />
+              <FileText className="w-6 h-6 text-slate-500" />
               <button
                 onClick={() => onDelete(doc.id)}
-                className="text-xs text-red-500 hover:text-red-700 font-bold px-2 py-1"
+                className="text-xs text-red-500 hover:text-red-700 font-bold px-2 py-1 transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95"
                 aria-label={`Delete ${doc.name}`}
               >
-                <XIcon className="w-4 h-4" />
+                <Trash2 className="w-5 h-5" />
               </button>
             </div>
             <h4 className="font-bold text-navy dark:text-white text-sm truncate" title={doc.name}>
