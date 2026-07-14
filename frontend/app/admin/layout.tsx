@@ -21,7 +21,7 @@ export default function AdminLayout({
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Guard Check (Section 4.1): verify user.publicMetadata.role === 'saqyn_admin'
-  const isAdmin = user?.publicMetadata?.role === 'saqyn_admin' || user?.emailAddresses?.[0]?.emailAddress === 'admin@alsafa.qa';
+  const isAdmin = user?.publicMetadata?.role === 'saqyn_admin';
 
   if (!isLoaded) {
     return (

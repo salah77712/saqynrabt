@@ -92,12 +92,7 @@ export function corsHeaders(request: Request, env: Env): Record<string, string> 
 export async function verifyJWT(authHeader: string | null, env: Env): Promise<JWTPayload | null> {
   if (!authHeader || !authHeader.startsWith('Bearer ')) return null;
   const token = authHeader.split(' ')[1];
-  if (token.startsWith('mock-token-')) {
-    if (env.NODE_ENV === 'production' || env.ALLOW_MOCK_TOKENS !== 'true') return null;
-    console.warn('[WARN] ALLOW_MOCK_TOKENS is enabled! Auth bypass is active. This should never be set in production.');
-    const parts = token.split('-');
-    return { company_id: parts[2] || 'dummy_company', sub: parts[3] || 'user_admin12345demo', email: 'demo@saqynrabt.com', role: parts[4] || 'admin' };
-  }
+  if (token.startsWith('mock-token-')) return null;
   try {
     const payload = await verifyToken(token, { secretKey: env.CLERK_SECRET_KEY });
     const company_id = (payload as any).company_id || (payload as any).public_metadata?.company_id || (payload as any).org_id || 'dummy_company';
@@ -110,8 +105,8 @@ export async function verifyClerkWebhook(request: Request, bodyText: string, web
   const svixId = request.headers.get("svix-id");
   const svixTimestamp = request.headers.get("svix-timestamp");
   const svixSignature = request.headers.get("svix-signature");
-  if (!svixId || !svixTimestamp || !svixSignature) return env.ALLOW_MOCK_TOKENS === 'true';
-  if (!webhookSecret) return env.NODE_ENV !== 'production';
+  if (!svixId || !svixTimestamp || !svixSignature) return false;
+  if (!webhookSecret) return false;
   const now = Math.floor(Date.now() / 1000);
   const timestamp = parseInt(svixTimestamp, 10);
   if (isNaN(timestamp) || Math.abs(now - timestamp) > 300) return false;
