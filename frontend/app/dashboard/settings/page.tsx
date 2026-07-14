@@ -140,7 +140,7 @@ export default function SettingsDashboardPage() {
   return (
     <div className="space-y-6 md:space-y-8 animate-fadeIn max-w-4xl">
       <div>
-        <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-white tracking-tight">
+        <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
           {t('Settings', 'حدود الاستخدام والإعدادات')}
         </h1>
         <p className="text-[10px] md:text-xs text-[#141F33] font-bold mt-0.5">

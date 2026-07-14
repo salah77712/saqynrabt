@@ -123,7 +123,7 @@ activeProduct === 'automation'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'
                 }`}
               >
-                <Zap className="w-5 h-5 text-royal inline mr-1" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
+                <Zap className="w-5 h-5 text-[#2A5CFF] inline mr-1" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
               </button>
               <button
                 type="button"
@@ -134,7 +134,7 @@ activeProduct === 'chatbot'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'
                 }`}
               >
-                <MessageSquare className="w-5 h-5 text-royal inline mr-1" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
+                <MessageSquare className="w-5 h-5 text-[#2A5CFF] inline mr-1" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
               </button>
             </div>
 
@@ -172,17 +172,17 @@ activeProduct === 'chatbot'
           <div className="lg:w-1/2 w-full animate-slideUp" style={{ animationDelay: '0.3s' }}>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-[#3B5B9B]/10 to-[#10B981]/10 rounded-3xl blur-2xl opacity-70" />
-              <div className="relative bg-white rounded-2xl border border-gray-200 shadow-xl p-5 overflow-hidden">
-                <div className="flex items-center justify-between pb-3 border-b border-gray-100">
+              <div className="relative bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 shadow-xl p-5 overflow-hidden">
+                <div className="flex items-center justify-between pb-3 border-b border-[#141F33]/10">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-slate-200" />
                     <div className="w-3 h-3 rounded-full bg-slate-200" />
                     <div className="w-3 h-3 rounded-full bg-slate-200" />
                   </div>
-                  <span className="text-[10px] font-bold text-[#718096] uppercase tracking-wider">
+                  <span className="text-[10px] font-bold text-[#141F33] uppercase tracking-wider">
                     {activeProduct === 'automation' ? t({ en: 'Live Queue', ar: 'قائمة مباشرة' }) : t({ en: 'Company Assistant', ar: 'مساعد الشركة' })}
                   </span>
-                  <span className="text-[10px] bg-royal/10 text-royal font-bold px-2 py-0.5 rounded-full border border-royal/20">
+                  <span className="text-[10px] bg-[#2A5CFF]/10 text-[#2A5CFF] font-bold px-2 py-0.5 rounded-full border border-[#2A5CFF]/20">
                     ● {t({ en: 'Live', ar: 'مباشر' })}
                   </span>
                 </div>
@@ -190,11 +190,11 @@ activeProduct === 'chatbot'
                 {activeProduct === 'automation' ? (
                   <div className="space-y-2 mt-3">
                     {[
-                      { label: 'Incoming Call — Room 204', dept: 'Housekeeping', status: 'Routed', color: 'text-royal' },
-                      { label: 'WhatsApp — Late checkout', dept: 'Front Desk', status: 'Approved', color: 'text-royal' },
+{ label: 'Incoming Call — Room 204', dept: 'Housekeeping', status: 'Routed', color: 'text-[#2A5CFF]' },
+{ label: 'WhatsApp — Late checkout', dept: 'Front Desk', status: 'Approved', color: 'text-[#2A5CFF]' },
                       { label: 'SMS — Airport transfer', dept: 'Concierge', status: 'Captured', color: 'text-[#141F33]' },
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center justify-between py-2 px-3 bg-gray-50 rounded-xl">
+                      <div className="flex items-center justify-between py-2 px-3 bg-[#F8F9FB] rounded-xl">
                         <div className="flex items-center gap-2 min-w-0">
                           <div className="w-7 h-7 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
                             {i === 0 ? <Zap className="w-4 h-4 text-royal" aria-hidden="true" /> : i === 1 ? <MessageSquare className="w-4 h-4 text-royal" aria-hidden="true" /> : <Mail className="w-4 h-4 text-slate-500" aria-hidden="true" />}

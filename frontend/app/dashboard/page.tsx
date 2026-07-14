@@ -117,14 +117,14 @@ export default function DashboardOverviewPage() {
           <div className="lg:col-span-2 p-6 rounded-2xl bg-[#F8F9FB] border border-[#141F33]/10 shadow-sm space-y-4">
             <div>
               <h3 className="text-sm font-black text-[#141F33] uppercase tracking-wide">{t('Trial Onboarding: Step-by-Step Guide', 'إرشاد التجربة: خطوة بخطوة')}</h3>
-              <p className="text-[10px] text-[#718096] font-semibold mt-0.5">{t('Follow these 3 steps to configure and test your AI platform.', 'اتبع هذه الخطوات الـ 3 لتهيئة واختبار منصة الذكاء الاصطناعي الخاصة بك.')}</p>
+              <p className="text-[10px] text-[#141F33] font-semibold mt-0.5">{t('Follow these 3 steps to configure and test your AI platform.', 'اتبع هذه الخطوات الـ 3 لتهيئة واختبار منصة الذكاء الاصطناعي الخاصة بك.')}</p>
             </div>
             
             <div className="space-y-3">
               {/* Step 1 */}
               <div className="flex items-start gap-3.5 p-3 rounded-xl border border-gray-50 hover:bg-slate-50/50 transition-colors">
                 <span className="text-lg leading-none mt-0.5 select-none">
-                  {step1Completed ? <Check className="w-5 h-5 text-emerald-500" /> : <span className="font-black text-slate-400 text-lg">1</span>}
+                  {step1Completed ? <Check className="w-5 h-5 text-[#2A5CFF]" /> : <span className="font-black text-[#141F33] text-lg">1</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">

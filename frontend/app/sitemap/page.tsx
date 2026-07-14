@@ -82,13 +82,13 @@ export default function VisualSitemapPage() {
   ];
 
   return (
-    <div className="bg-surface text-navy dark:text-white min-h-screen flex flex-col font-sans selection:bg-royal/10" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF]/10" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
       <main className="flex-1 mx-auto max-w-7xl px-6 py-20 lg:px-8 w-full">
         {/* Back Link */}
         <Link
           href="/"
-          className="group inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-slate-400 hover:text-[#141F33] transition-colors mb-12"
+          className="group inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-[#141F33]/40 hover:text-[#141F33] transition-colors mb-12"
         >
           <span className="transition-transform group-hover:-translate-x-1 duration-150 inline-block">
             {locale === 'ar' ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
@@ -100,9 +100,9 @@ export default function VisualSitemapPage() {
         <div className="mb-20">
           <h1 className="text-5xl md:text-7xl font-black tracking-tight select-none">
             <span className="text-[#141F33]">SAQYN</span>
-            <span className="text-slate-200 ml-1">MAP</span>
+            <span className="text-[#141F33]/20 ml-1">MAP</span>
           </h1>
-          <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-slate-400 mt-4 leading-none">
+          <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-[#141F33]/40 mt-4 leading-none">
             {t('SAQYN RABT SITEMAP — COMPLETE DIRECTORY OF PAGES & SERVICES', 'خريطة موقع سقن ربط - دليل كامل بالصفحات والخدمات')}
           </p>
         </div>
@@ -112,7 +112,7 @@ export default function VisualSitemapPage() {
           {columns.map((col, index) => (
             <div key={index} className="flex flex-col gap-6">
               {/* Header Title with icon */}
-              <div className="flex items-center gap-2 pb-4 border-b border-gray-100">
+              <div className="flex items-center gap-2 pb-4 border-b border-[rgba(20,31,51,0.08)]">
                 {col.icon}
                 <h3 className="text-[11px] font-black uppercase tracking-widest text-[#141F33]">
                   {col.title}
@@ -125,7 +125,7 @@ export default function VisualSitemapPage() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-xs font-bold text-slate-500 hover:text-[#141F33] hover:underline transition-all block"
+                      className="text-xs font-bold text-[#141F33]/60 hover:text-[#141F33] hover:underline transition-all block"
                     >
                       {link.label}
                     </Link>

@@ -475,3 +475,12 @@ border-radius: 3px;
 ::-webkit-scrollbar-thumb:hover {
 background: rgba(20, 31, 51, 0.3);
 }
+
+@keyframes shineSweep {
+  0% {
+    transform: skewX(-20deg) translateX(-150%);
+  }
+  100% {
+    transform: skewX(-20deg) translateX(250%);
+  }
+}
