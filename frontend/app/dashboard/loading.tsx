@@ -39,8 +39,8 @@ export default function DashboardLoading() {
 <div key={i} className="flex items-center gap-3 rounded-2xl bg-[#141F33]/5 px-4 py-3">
 <div className="h-2.5 w-2.5 rounded-full bg-[#141F33] animate-pulse" />
                 <div className="flex-1 space-y-1">
-                  <div className="h-3 w-48 bg-slate-200 rounded animate-pulse" />
-                  <div className="h-2 w-16 bg-slate-100 rounded animate-pulse" />
+                  <div className="h-3 w-48 bg-[#141F33]/10 rounded animate-pulse" />
+                  <div className="h-2 w-16 bg-[#F8F9FB] rounded animate-pulse" />
                 </div>
               </div>
             ))}

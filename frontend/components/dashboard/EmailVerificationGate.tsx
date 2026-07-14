@@ -60,29 +60,29 @@ export function EmailVerificationGate() {
 
   return (
     <div className="min-h-screen bg-[#F8F9FB] flex items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 w-full max-w-md animate-fadeIn text-center">
-        <div className="mb-4"><Mail className="w-8 h-8 text-slate-400" /></div>
+      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-8 md:p-12 border border-[#141F33]/10 w-full max-w-md animate-fadeIn text-center">
+        <div className="mb-4"><Mail className="w-8 h-8 text-[#141F33]" /></div>
         <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
           {t({ en: 'Verify Your Email', ar: 'تأكيد بريدك الإلكتروني' })}
         </h2>
-        <p className="text-xs font-semibold text-[#718096] mb-6 leading-relaxed">
+        <p className="text-xs font-semibold  mb-6 leading-relaxed">
           {t({
             en: 'Please enter the 6-digit verification code sent to your email.',
             ar: 'يرجى إدخال رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني.'
           })}
         </p>
 
-        {verifError && (
-          <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-            <AlertTriangle className="w-4 h-4 text-red-500 inline mr-1" /> {verifError}
-          </div>
-        )}
+{verifError && (
+<div className="bg-[#F8F9FB] rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
+<AlertTriangle className="w-4 h-4 text-[#2A5CFF] inline mr-1" /> {verifError}
+</div>
+)}
 
-        {resendStatus && (
-          <div className="bg-emerald-50 border border-emerald-200 text-emerald-600 rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-            <Check className="w-4 h-4 text-emerald-500 inline mr-1" /> {resendStatus}
-          </div>
-        )}
+{resendStatus && (
+<div className="bg-[#F8F9FB] rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
+<Check className="w-4 h-4 text-[#2A5CFF] inline mr-1" /> {resendStatus}
+</div>
+)}
 
         <form onSubmit={handleVerifyEmail} className="space-y-4">
           <input
@@ -91,13 +91,13 @@ export function EmailVerificationGate() {
             maxLength={6}
             value={verificationCode}
             onChange={(e) => setVerificationCode(e.target.value)}
-            className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+            className="w-full min-h-[44px]  rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-[#141F33]"
             required
           />
           <button
             type="submit"
             disabled={verifying}
-            className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            className="w-full bg-[#141F33]  font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
           >
             {verifying ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Activate Account', ar: 'التحقق وتنشيط الحساب' })}
           </button>
@@ -112,9 +112,9 @@ export function EmailVerificationGate() {
           >
             {resending ? t({ en: 'Resending...', ar: 'جاري إعادة الإرسال...' }) : t({ en: 'Resend Verification Code', ar: 'إعادة إرسال رمز التحقق' })}
           </button>
-          <div className="pt-4 border-t border-gray-100 flex items-center justify-center gap-2">
+          <div className="pt-4 border-t  flex items-center justify-center gap-2">
             <UserButton afterSignOutUrl="/" />
-            <span className="text-[10px] text-slate-400 font-bold">{t({ en: 'Sign Out', ar: 'تسجيل الخروج' })}</span>
+            <span className="text-[10px] text-[#141F33] font-bold">{t({ en: 'Sign Out', ar: 'تسجيل الخروج' })}</span>
           </div>
         </div>
       </div>

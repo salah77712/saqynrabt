@@ -306,7 +306,7 @@ export default function OnboardingWizardPage() {
             <button
               type="button"
               onClick={handleNext}
-              className="flex-1 bg-[#141F33] hover:opacity-95 text-white font-bold py-3 px-6 rounded-xl transition-all text-xs min-h-[44px] flex items-center justify-center"
+              className="flex-1 bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold py-3 px-6 rounded-xl transition-all text-xs min-h-[44px] flex items-center justify-center"
             >
               {submitting
                 ? t({ en: 'Saving...', ar: 'جاري الحفظ...' })

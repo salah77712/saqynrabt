@@ -170,7 +170,7 @@ export default function WebhooksSettingsPage() {
                   type="checkbox"
                   checked={selectedEvents.includes(event)}
                   onChange={() => handleToggleEvent(event)}
-                  className="h-4 w-4 rounded border-gray-300 text-[#141F33] focus:ring-[#141F33]"
+                  className="h-4 w-4 rounded border-[#141F33]/20 text-[#141F33] focus:ring-[#141F33]"
                 />
                 <span className="font-mono text-[10px] text-[#141F33]">{event}</span>
               </label>
@@ -199,7 +199,7 @@ export default function WebhooksSettingsPage() {
         ) : webhooks.length === 0 ? (
           <p className="text-xs text-[#141F33] font-semibold text-center py-6">{t({ en: 'No outgoing webhooks registered.', ar: 'لا توجد روابط ويب هوك صادرة حاليًا.' })}</p>
         ) : (
-          <div className="divide-y divide-gray-100">
+          <div className="divide-y divide-[#141F33]/10">
             {webhooks.map((w) => (
               <div key={w.id} className="flex justify-between items-start py-4 first:pt-0 last:pb-0 gap-4">
                 <div className="min-w-0">
@@ -214,7 +214,7 @@ export default function WebhooksSettingsPage() {
                 </div>
                 <button
                   onClick={() => handleDelete(w.id)}
-                  className="text-[10px] font-bold text-[#141F33] hover:bg-[#F8F9FB] px-3 py-1.5 rounded-lg border border-red-100 shrink-0"
+                  className="text-[10px] font-bold text-[#141F33] hover:bg-[#F8F9FB] px-3 py-1.5 rounded-lg border border-[#141F33]/10 shrink-0"
                 >
                   {t({ en: 'Delete', ar: 'حذف' })}
                 </button>

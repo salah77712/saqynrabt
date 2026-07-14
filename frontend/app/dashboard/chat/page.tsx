@@ -127,7 +127,7 @@ return (
 <h2 className="text-xs md:text-sm font-black text-[#141F33] uppercase truncate">
 {t('Staff Knowledge Assistant', 'مساعد معرفة الموظفين')}
 </h2>
-<p className="text-[9px] md:text-[10px] text-slate-500 font-bold mt-0.5 truncate">
+<p className="text-[9px] md:text-[10px] text-[#141F33] font-bold mt-0.5 truncate">
 {t('Answers from your documents only', 'إجابات موثوقة ومستخرجة من المستندات فقط')}
 </p>
 </div>
@@ -146,7 +146,7 @@ style={{ animationDelay: `${delay}ms` }}
 <button
 onClick={() => setShowGapsSheet(true)}
 aria-label={t('Show knowledge gaps', 'عرض فجوات المعرفة')}
-className="xl:hidden w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-[#F8F9FB] hover:bg-[#141F33]/5 text-slate-600 transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95 min-h-[44px] min-w-[44px]"
+className="xl:hidden w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-full bg-[#F8F9FB] hover:bg-[#141F33]/5 text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95 min-h-[44px] min-w-[44px]"
 >
 <ClipboardList className="w-4 h-4 text-[#141F33]" />
 </button>
@@ -174,7 +174,7 @@ copyToClipboard(msg.content);
 <div
 className={`p-3 md:p-4 rounded-2xl text-[11px] md:text-xs font-semibold leading-relaxed shadow-sm ${
 msg.role === 'user'
-? 'bg-[#141F33] text-white rounded-br-none'
+? 'bg-[#141F33] text-[#F8F9FB] rounded-br-none'
 : 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 rounded-bl-none'
 }`}
 >
@@ -206,7 +206,7 @@ className="min-h-[44px] text-xs md:text-sm"
 <h3 className="text-sm font-black text-[#141F33] uppercase tracking-wide">
 {t('Unanswered Questions', 'فجوات معرفة الموظفين')}
 </h3>
-<p className="text-[10px] text-slate-500 font-bold mt-1">
+<p className="text-[10px] text-[#141F33] font-bold mt-1">
 {t('Questions your team asked that the AI couldn\'t answer. Upload docs to fill the gaps.', 'استفسارات الموظفين غير المجابة. يرجى تحديث الإجراءات لتغطيتها.')}
 </p>
 </div>
@@ -323,7 +323,7 @@ className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-3.5 flex items-s
 <DialogHeader>
 <DialogTitle>Resolve Knowledge Gap</DialogTitle>
 </DialogHeader>
-<p className="text-xs text-slate-500 mb-4 leading-relaxed">
+<p className="text-xs text-[#141F33] mb-4 leading-relaxed">
 {t(
 'The following query was not answered by the current indexed documents. Upload a PDF containing the correct policy details to fix this.',
 'تم طرح هذا السؤال من قبل الموظفين ولكن تعذر الإجابة عليه بناءً على المستندات الحالية.'

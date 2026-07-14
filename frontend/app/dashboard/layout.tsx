@@ -112,7 +112,7 @@ export default function DashboardLayout({
   });
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] text-[#141F33] flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-[#F8F9FB] text-[#141F33] flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <div className="flex flex-1 relative" style={{ minHeight: 'calc(100vh - env(safe-area-inset-top, 0px))' }}>
 
         <DashboardSidebar

@@ -26,15 +26,15 @@ export default function SignUpPage() {
 
   // Live password strength meter evaluation (Section 2.3)
   const getPasswordStrength = () => {
-    if (!password) return { label: '', color: 'bg-gray-100', score: 0 };
+    if (!password) return { label: '', color: 'bg-[#F8F9FB]', score: 0 };
     let score = 0;
     if (password.length >= 8) score++;
     if (/[A-Z]/.test(password)) score++;
     if (/[0-9]/.test(password) || /[^A-Za-z0-9]/.test(password)) score++;
 
-    if (score === 1) return { label: t({ en: 'Weak', ar: 'ضعيف' }), color: 'bg-red-500', score: 33 };
-    if (score === 2) return { label: t({ en: 'Medium', ar: 'متوسط' }), color: 'bg-amber-500', score: 66 };
-    return { label: t({ en: 'Strong', ar: 'قوي' }), color: 'bg-emerald-500', score: 100 };
+    if (score === 1) return { label: t({ en: 'Weak', ar: 'ضعيف' }), color: 'bg-[#141F33]', score: 33 };
+    if (score === 2) return { label: t({ en: 'Medium', ar: 'متوسط' }), color: 'bg-[#2A5CFF]', score: 66 };
+    return { label: t({ en: 'Strong', ar: 'قوي' }), color: 'bg-[#2A5CFF]', score: 100 };
   };
 
   const strength = getPasswordStrength();
@@ -118,13 +118,13 @@ export default function SignUpPage() {
   if (pendingVerification) {
     return (
       <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 w-full max-w-md animate-fadeIn text-center">
+        <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-8 md:p-12 border border-[#141F33]/10 w-full max-w-md animate-fadeIn text-center">
           
           {/* Logo */}
           <div className="text-center mb-8">
             <Link href="/" className="flex flex-col items-center gap-1">
               <span className="text-[#141F33] font-extrabold text-2xl tracking-tight">SAQYN RABT</span>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-[#718096] font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-[#141F33]/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
             </Link>
           </div>
 
@@ -132,18 +132,18 @@ export default function SignUpPage() {
           <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
             {t({ en: 'Verify Your Email', ar: 'تأكيد بريدك الإلكتروني' })}
           </h2>
-          <p className="text-xs font-semibold text-[#718096] mb-6 leading-relaxed">
+          <p className="text-xs font-semibold text-[#141F33]/60 mb-6 leading-relaxed">
             {t({ 
               en: `Please enter the 6-digit verification code sent to ${email}.`, 
               ar: `يرجى إدخال رمز التحقق المكون من 6 أرقام المرسل إلى ${email}.` 
             })}
           </p>
 
-          {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-              {error}
-            </div>
-          )}
+{error && (
+<div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
+{error}
+</div>
+)}
 
           <form onSubmit={handleVerification} className="space-y-4">
             <input
@@ -152,13 +152,13 @@ export default function SignUpPage() {
               maxLength={6}
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-[#141F33]"
               required
             />
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+              className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
             >
               {loading ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Activate Account', ar: 'التحقق وتنشيط الحساب' })}
             </button>
@@ -171,31 +171,31 @@ export default function SignUpPage() {
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 w-full max-w-md animate-fadeIn">
+      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-8 md:p-12 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
         
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="flex flex-col items-center gap-1">
             <span className="text-[#141F33] font-extrabold text-2xl tracking-tight">SAQYN RABT</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#718096] font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#141F33]/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
           </Link>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6">
+          <div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6">
             {error}
           </div>
         )}
 
         {/* Dynamic Role & Account Type Notices */}
         {emailParam ? (
-          <div className="mb-6 p-4 rounded-2xl bg-indigo-50/50 border border-indigo-100/80 text-indigo-900 flex items-start gap-3.5 shadow-sm">
-            <Lock className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
+          <div className="mb-6 p-4 rounded-2xl bg-[#F8F9FB]/50 border border-[#2A5CFF]/10/80 text-[#2A5CFF] flex items-start gap-3.5 shadow-sm">
+            <Lock className="w-5 h-5 text-[#141F33] shrink-0 mt-0.5" />
             <div>
-              <h4 className="text-xs font-black tracking-wide uppercase text-indigo-700">
+              <h4 className="text-xs font-black tracking-wide uppercase text-[#2A5CFF]">
                 {t({ en: "Invited Workspace Account", ar: "حساب مساحة عمل مدعو" })}
               </h4>
-              <p className="text-[11px] leading-relaxed font-semibold text-indigo-800/90 mt-1">
+              <p className="text-[11px] leading-relaxed font-semibold text-[#2A5CFF]/90 mt-1">
                 {t({
                   en: "You are registering as an invited employee. Your email address is locked to the address invited by your administrator.",
                   ar: "أنت تسجل كموظف مدعو. عنوان بريدك الإلكتروني مقفل على العنوان الذي دعاك إليه مسؤول النظام."
@@ -204,13 +204,13 @@ export default function SignUpPage() {
             </div>
           </div>
         ) : (
-          <div className="mb-6 p-4 rounded-2xl bg-emerald-50/50 border border-emerald-100/80 text-emerald-900 flex items-start gap-3.5 shadow-sm">
-            <Briefcase className="w-5 h-5 text-slate-500 shrink-0 mt-0.5" />
+          <div className="mb-6 p-4 rounded-2xl bg-[#F8F9FB]/50 border border-[#2A5CFF]/10/80 text-[#141F33] flex items-start gap-3.5 shadow-sm">
+            <Briefcase className="w-5 h-5 text-[#141F33] shrink-0 mt-0.5" />
             <div>
-              <h4 className="text-xs font-black tracking-wide uppercase text-emerald-700">
+              <h4 className="text-xs font-black tracking-wide uppercase text-[#2A5CFF]">
                 {t({ en: "New Business Workspace", ar: "مساحة عمل جديدة للشركة" })}
               </h4>
-              <p className="text-[11px] leading-relaxed font-semibold text-emerald-800/90 mt-1">
+              <p className="text-[11px] leading-relaxed font-semibold text-[#2A5CFF]/90 mt-1">
                 {t({
                   en: "Creating a new business workspace? The email you register with will automatically receive the Administrator role with full dashboard access.",
                   ar: "هل تقوم بإنشاء مساحة عمل جديدة للشركة؟ سيتلقى البريد الإلكتروني الذي تسجل به تلقائياً دور المسؤول مع إمكانية الوصول الكامل للوحة التحكم."
@@ -230,7 +230,7 @@ export default function SignUpPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={!!emailParam}
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] disabled:opacity-70 disabled:cursor-not-allowed"
               required
             />
           </div>
@@ -243,19 +243,19 @@ export default function SignUpPage() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
               required
             />
             {/* Live Password Strength Meter */}
             {password && (
               <div className="mt-2 flex items-center justify-between gap-3 text-[10px] font-bold">
-                <div className="flex-1 bg-gray-100 h-1.5 rounded-full overflow-hidden">
+                <div className="flex-1 bg-[#F8F9FB] h-1.5 rounded-full overflow-hidden">
                   <div
                     className={`${strength.color} h-1.5 rounded-full transition-all duration-300`}
                     style={{ width: `${strength.score}%` }}
                   />
                 </div>
-                <span className="text-[#718096] uppercase shrink-0">{strength.label}</span>
+                <span className="text-[#141F33]/60 uppercase shrink-0">{strength.label}</span>
               </div>
             )}
           </div>
@@ -268,7 +268,7 @@ export default function SignUpPage() {
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
               required
             />
           </div>
@@ -279,9 +279,9 @@ export default function SignUpPage() {
               type="checkbox"
               checked={agree}
               onChange={(e) => setAgree(e.target.checked)}
-              className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#141F33] focus:ring-[#141F33]"
+              className="mt-0.5 h-4 w-4 rounded border-[#141F33]/20 text-[#141F33] focus:ring-[#141F33]"
             />
-            <span className="text-[11px] font-semibold text-[#718096]">
+            <span className="text-[11px] font-semibold text-[#141F33]/60">
               {t({ en: 'I agree to the Terms and Privacy Policy.', ar: 'أوافق على الشروط وسياسة الخصوصية.' })}
             </span>
           </label>
@@ -289,14 +289,14 @@ export default function SignUpPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
           >
             {loading ? t({ en: 'Creating Account...', ar: 'جاري إنشاء الحساب...' }) : t({ en: 'Create Account', ar: 'إنشاء الحساب' })}
           </button>
         </form>
 
         {/* Footer Link */}
-        <p className="text-center text-xs text-[#718096] font-bold mt-8">
+        <p className="text-center text-xs text-[#141F33]/60 font-bold mt-8">
           {t({ en: 'Already have an account?', ar: 'لديك حساب بالفعل؟' })}{' '}
           <Link href="/sign-in" className="text-[#2A5CFF] hover:underline">
             {t({ en: 'Sign In', ar: 'تسجيل الدخول' })}

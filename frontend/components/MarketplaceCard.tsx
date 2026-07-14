@@ -33,7 +33,7 @@ installed ? 'bg-[#F8F9FB] text-[#141F33]' : 'bg-[#F8F9FB] text-[#141F33]/70'
 <button
 onClick={() => setInstalled(!installed)}
 className={`font-bold px-4 py-2 rounded-xl text-xs transition-all hover:scale-[1.01] hover:shadow-md ${
-installed ? 'bg-[#F8F9FB] text-[#141F33]' : 'bg-[#141F33] text-white'
+installed ? 'bg-[#F8F9FB] text-[#141F33]' : 'bg-[#141F33] text-[#F8F9FB]'
 }`}
 >
 {installed ? 'Uninstall' : 'Install'}

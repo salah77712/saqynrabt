@@ -65,13 +65,13 @@ export default function AdminBillingPage() {
   <tr key={inv.id} className="hover:bg-[#141F33]/5 transition-colors">
                   <td className="px-6 py-4 font-bold text-[#141F33]">{inv.company}</td>
                   <td className="px-6 py-4">{inv.plan}</td>
-                  <td className="px-6 py-4 font-bold text-slate-900">{inv.monthlyFee} QAR</td>
-                  <td className="px-6 py-4 text-slate-500">{inv.setupFee} QAR</td>
+                  <td className="px-6 py-4 font-bold text-[#141F33]">{inv.monthlyFee} QAR</td>
+                  <td className="px-6 py-4 text-[#141F33]">{inv.setupFee} QAR</td>
                   <td className="px-6 py-4 font-black text-[#2A5CFF]">{inv.totalPaid} QAR</td>
-                  <td className="px-6 py-4 text-slate-400 font-bold">{inv.lastInvoiceDate}</td>
+                  <td className="px-6 py-4 text-[#141F33]/40 font-bold">{inv.lastInvoiceDate}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${
-                      inv.status === 'paid' ? 'bg-royal/10 text-royal border border-royal/20' : 'bg-rose-100 text-rose-800'
+                      inv.status === 'paid' ? 'bg-royal/10 text-royal border border-royal/20' : 'bg-[#F8F9FB] text-[#2A5CFF]'
                     }`}>
                       {inv.status === 'paid' ? t({ en: 'Paid', ar: 'مدفوع' }) : t({ en: 'Unpaid', ar: 'غير مدفوع' })}
                     </span>

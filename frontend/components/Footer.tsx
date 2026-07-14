@@ -156,8 +156,8 @@ Global Compliance Ready
 All systems operational
 </span>
 ) : (
-<span className="flex items-center gap-1.5 text-amber-600">
-<span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse" />
+<span className="flex items-center gap-1.5 text-[#2A5CFF]">
+<span className="w-2 h-2 rounded-full bg-[#2A5CFF] animate-pulse" />
 Incident response active ({incidentStatus?.activeIncidents || 0})
 </span>
 )}

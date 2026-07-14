@@ -94,7 +94,7 @@ export default function CaseStudiesPage() {
   };
 
   return (
-    <div className="bg-white text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <section className="max-w-7xl mx-auto px-6 pt-20 pb-10 text-center">
@@ -104,7 +104,7 @@ export default function CaseStudiesPage() {
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#141F33] leading-tight max-w-4xl mx-auto">
           {t({ en: 'Real Results from Real Businesses', ar: 'نتائج حقيقية من شركات حقيقية' })}
         </h1>
-        <p className="mt-4 text-base md:text-lg text-[#718096] max-w-2xl mx-auto font-medium">
+        <p className="mt-4 text-base md:text-lg text-[#141F33]/60 max-w-2xl mx-auto font-medium">
           {t({ en: 'From the Middle East to the world — swipe to see how teams use SAQYN RABT to transform their operations.', ar: 'من الشرق الأوسط إلى العالم — اسحب لمشاهدة كيف تستخدم الفرق SAQYN RABT لتحويل عملياتهم.' })}
         </p>
       </section>
@@ -146,19 +146,19 @@ export default function CaseStudiesPage() {
                     }}
                     className={`relative w-[300px] md:w-[360px] h-[480px] rounded-[32px] overflow-hidden cursor-pointer shadow-xl transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col justify-between p-8 border ${
                       isActive 
-                        ? 'bg-[#141F33] text-white border-transparent scale-100 opacity-100 z-35 ring-4 ring-[#2A5CFF]/35 shadow-[0_20px_50px_rgba(42,92,255,0.25)]' 
-                        : 'bg-white text-[#141F33] border-gray-200 scale-90 opacity-40 filter blur-[1px] z-10 hover:opacity-60'
+                        ? 'bg-[#141F33] text-[#F8F9FB] border-transparent scale-100 opacity-100 z-35 ring-4 ring-[#2A5CFF]/35 shadow-[0_20px_50px_rgba(42,92,255,0.25)]' 
+                        : 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 scale-90 opacity-40 filter blur-[1px] z-10 hover:opacity-60'
                     }`}
                   >
                     {/* Premium Sweep Shine (Active Card Only) */}
                     {isActive && sweepActive && (
-                      <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 translate-x-[-100%] animate-[shineSweep_0.8s_ease-out]" />
+                      <div className="absolute inset-0 z-20 pointer-events-none bg-gradient-to-r from-transparent via-[#F8F9FB]/10 to-transparent skew-x-12 translate-x-[-100%] animate-[shineSweep_0.8s_ease-out]" />
                     )}
 
                     {/* Card Header: Industry & Icon */}
                     <div className="flex items-start justify-between w-full z-25">
                       <div className="flex flex-col gap-1.5">
-                        <span className={`text-[10px] font-black uppercase tracking-widest ${isActive ? 'text-[#2A5CFF]' : 'text-slate-400'}`}>
+                        <span className={`text-[10px] font-black uppercase tracking-widest ${isActive ? 'text-[#2A5CFF]' : 'text-[#141F33]/40'}`}>
                           {item.industry}
                         </span>
                         <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider opacity-60">
@@ -171,7 +171,7 @@ export default function CaseStudiesPage() {
                       <div className={`w-12 h-12 rounded-2xl flex items-center justify-center transition-transform duration-300 ${
                         isActive 
                           ? 'bg-[#2A5CFF]/15 text-[#2A5CFF] scale-110 shadow-[0_0_20px_rgba(42,92,255,0.2)] animate-pulse' 
-                          : 'bg-slate-100 text-slate-400'
+                          : 'bg-[#F8F9FB] text-[#141F33]/40'
                       }`}>
                         <IconComponent className="w-6 h-6 stroke-[2]" />
                       </div>
@@ -182,7 +182,7 @@ export default function CaseStudiesPage() {
                       {/* Flag & Location Header */}
                       <div className="flex items-center gap-2 mb-3">
                         <span className="text-xl">{item.flag}</span>
-                        <span className={`text-[10px] tracking-widest uppercase font-black ${isActive ? 'text-white/60' : 'text-slate-400'}`}>
+                        <span className={`text-[10px] tracking-widest uppercase font-black ${isActive ? 'text-[#F8F9FB]/60' : 'text-[#141F33]/40'}`}>
                           {item.location.split(',')[0]}
                         </span>
                       </div>
@@ -191,7 +191,7 @@ export default function CaseStudiesPage() {
                         {item.title}
                       </h2>
                       
-                      <p className={`text-xs font-medium leading-relaxed mb-6 line-clamp-3 ${isActive ? 'text-white/70' : 'text-slate-500'}`}>
+                      <p className={`text-xs font-medium leading-relaxed mb-6 line-clamp-3 ${isActive ? 'text-[#F8F9FB]/70' : 'text-[#141F33]'}`}>
                         {item.result}
                       </p>
 
@@ -200,8 +200,8 @@ export default function CaseStudiesPage() {
                         href={`/case-studies/${item.slug}`}
                         className={`w-full flex items-center justify-between min-h-[44px] font-bold text-xs px-5 py-3.5 rounded-2xl border transition-all duration-300 ${
                           isActive
-                            ? 'bg-[#2A5CFF] hover:bg-[#2A5CFF]/95 text-white border-transparent hover:shadow-[0_8px_25px_rgba(42,92,255,0.4)] hover:translate-y-[-1px] active:translate-y-0'
-                            : 'bg-slate-50 hover:bg-slate-100 text-[#141F33] border-gray-200'
+                            ? 'bg-[#2A5CFF] hover:bg-[#2A5CFF]/95 text-[#F8F9FB] border-transparent hover:shadow-[0_8px_25px_rgba(42,92,255,0.4)] hover:translate-y-[-1px] active:translate-y-0'
+                            : 'bg-[#F8F9FB] hover:bg-[#141F33]/5 text-[#141F33] border-[#141F33]/10'
                         }`}
                       >
                         <span>{t({ en: 'Explore Case Study', ar: 'استعرض دراسة الحالة' })}</span>
@@ -220,7 +220,7 @@ export default function CaseStudiesPage() {
           <div className="flex items-center gap-6 mt-10">
             <button
               onClick={handlePrev}
-              className="w-12 h-12 min-h-0 bg-white hover:bg-slate-50 border border-gray-200 text-navy flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
+              className="w-12 h-12 min-h-0 bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 text-navy flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
               aria-label="Previous Study"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -236,7 +236,7 @@ export default function CaseStudiesPage() {
                     triggerEffects();
                   }}
                   className={`min-h-0 rounded-full transition-all duration-300 shrink-0 ${
-                    i === currentIndex ? 'w-6 h-2 bg-royal' : 'w-2 h-2 bg-slate-300'
+                    i === currentIndex ? 'w-6 h-2 bg-royal' : 'w-2 h-2 bg-[#141F33]/20'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
@@ -245,7 +245,7 @@ export default function CaseStudiesPage() {
 
             <button
               onClick={handleNext}
-              className="w-12 h-12 min-h-0 bg-white hover:bg-slate-50 border border-gray-200 text-navy flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
+              className="w-12 h-12 min-h-0 bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 text-navy flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
               aria-label="Next Study"
             >
               <ChevronRight className="w-5 h-5" />
@@ -255,9 +255,9 @@ export default function CaseStudiesPage() {
 
         {/* Detailed Metrics Panel of Active Card */}
         <div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
-          <div className="bg-white border border-gray-200 rounded-[32px] p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[32px] p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex-1">
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#718096] mb-1 block">
+              <span className="text-[10px] font-black uppercase tracking-widest text-[#141F33]/60 mb-1 block">
                 {list[currentIndex].meta}
               </span>
               <h3 className="text-lg font-extrabold text-[#141F33]">
@@ -276,12 +276,12 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-[#F8F9FB]">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-extrabold text-[#141F33] mb-4">
             {t({ en: 'Be the Next Success Story', ar: 'كن قصة النجاح التالية' })}
           </h2>
-          <p className="text-[#718096] font-medium mb-8">
+          <p className="text-[#141F33]/60 font-medium mb-8">
             {t({ en: 'Book a demo and see how SAQYN RABT can transform your operations.', ar: 'احجز عرضاً توضيحياً وشاهد كيف يمكن لـ SAQYN RABT تحويل عملياتك.' })}
           </p>
           <a

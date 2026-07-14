@@ -52,7 +52,7 @@ return (
 {/* Header */}
 <div>
 <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Workflows', ar: 'منشئ مسارات العمل المخصصة' })}</h1>
-<p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Set up actions and notifications for automation events.', ar: 'تهيئة الإجراءات والتنبيهات الناتجة عن أحداث الأتمتة.' })}</p>
+<p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Set up actions and notifications for automation events.', ar: 'تهيئة الإجراءات والتنبيهات الناتجة عن أحداث الأتمتة.' })}</p>
 </div>
 
 {/* Form Builder */}
@@ -103,7 +103,7 @@ className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-x
 
 <button
 type="submit"
-className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
+className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
 >
 {t({ en: 'Add Workflow Rule', ar: 'إضافة قاعدة سير العمل' })}
 </button>
@@ -112,15 +112,15 @@ className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hove
 
 {/* Rules list */}
 <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
-<h3 className="text-xs font-extrabold text-[#718096] uppercase tracking-wider mb-4">{t({ en: 'Active Workflow Rules', ar: 'قواعد سير العمل النشطة' })}</h3>
+<h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Active Workflow Rules', ar: 'قواعد سير العمل النشطة' })}</h3>
 
 <div className="divide-y divide-[#141F33]/10">
 {workflows.map((w) => (
 <div key={w.id} className="flex justify-between items-center py-4 first:pt-0 last:pb-0 gap-4">
 <div className="min-w-0">
 <p className="text-xs font-bold text-[#141F33]">{w.name}</p>
-<p className="text-[10px] text-slate-500 font-semibold mt-1">
-If <strong className="font-mono text-slate-700">{w.trigger}</strong> then <strong className="text-[#2A5CFF]">{w.action}</strong>
+<p className="text-[10px] text-[#141F33] font-semibold mt-1">
+If <strong className="font-mono text-[#141F33]">{w.trigger}</strong> then <strong className="text-[#2A5CFF]">{w.action}</strong>
 </p>
 </div>
 

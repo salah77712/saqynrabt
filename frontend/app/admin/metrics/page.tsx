@@ -33,15 +33,15 @@ export default function AdminMetricsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Real-Time Health & Metrics Telemetry', ar: 'مؤشرات الصحة والأداء الفوري للشبكة' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Expose live container status, connection pools, and downstream response delays.', ar: 'عرض حالة الحاوية الفورية، تجمعات الاتصال، وتأخير استجابة OpenAI.' })}</p>
+        <p className="text-xs text-[#141F33]/60 font-medium mt-0.5">{t({ en: 'Expose live container status, connection pools, and downstream response delays.', ar: 'عرض حالة الحاوية الفورية، تجمعات الاتصال، وتأخير استجابة OpenAI.' })}</p>
       </div>
 
       {/* Metrics Row */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         
         {/* Metric 1 */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-32">
-          <p className="text-[10px] font-extrabold uppercase text-[#718096] tracking-wider">{t({ en: 'Requests / Sec', ar: 'الطلبات في الثانية' })}</p>
+        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-32">
+          <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{t({ en: 'Requests / Sec', ar: 'الطلبات في الثانية' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.requestsPerSecond}</span>
             <span className="text-[9px] font-extrabold text-[#2A5CFF] bg-[#F8F9FB] px-2 py-0.5 rounded-full uppercase tracking-wider">{t({ en: 'Healthy', ar: 'سليم' })}</span>
@@ -49,17 +49,17 @@ export default function AdminMetricsPage() {
         </div>
 
         {/* Metric 2 */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-32">
-          <p className="text-[10px] font-extrabold uppercase text-[#718096] tracking-wider">{t({ en: 'Total OpenAI Calls', ar: 'إجمالي طلبات OpenAI' })}</p>
+        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-32">
+          <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{t({ en: 'Total OpenAI Calls', ar: 'إجمالي طلبات OpenAI' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.openaiCalls}</span>
-            <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider">Accumulated</span>
+            <span className="text-[9px] font-extrabold text-[#141F33]/40 uppercase tracking-wider">Accumulated</span>
           </div>
         </div>
 
         {/* Metric 3 */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-32">
-          <p className="text-[10px] font-extrabold uppercase text-[#718096] tracking-wider">{t({ en: 'Active DB Pools', ar: 'اتصالات قاعدة البيانات النشطة' })}</p>
+        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-32">
+          <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{t({ en: 'Active DB Pools', ar: 'اتصالات قاعدة البيانات النشطة' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.dbConnections}</span>
             <span className="text-[9px] font-extrabold text-[#2A5CFF] bg-[#F8F9FB] px-2 py-0.5 rounded-full uppercase tracking-wider">Neon Serverless</span>
@@ -67,8 +67,8 @@ export default function AdminMetricsPage() {
         </div>
 
         {/* Metric 4 */}
-        <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-32">
-          <p className="text-[10px] font-extrabold uppercase text-[#718096] tracking-wider">{t({ en: 'Response Delay', ar: 'تأخر الاستجابة' })}</p>
+        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col justify-between h-32">
+          <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{t({ en: 'Response Delay', ar: 'تأخر الاستجابة' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.responseTimeMs} ms</span>
             <span className="text-[9px] font-extrabold text-[#2A5CFF] bg-[#F8F9FB] px-2 py-0.5 rounded-full uppercase tracking-wider">Avg Latency</span>

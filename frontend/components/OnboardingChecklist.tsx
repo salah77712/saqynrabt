@@ -27,7 +27,7 @@ return (
 {tasks.map((task) => (
 <li key={task.id} className="flex items-center gap-2 text-xs">
 <span className={`h-4 w-4 rounded-full border flex items-center justify-center text-[10px] ${
-task.done ? 'bg-[#2A5CFF] border-[#2A5CFF] text-white' : 'border-[#141F33]/30'
+task.done ? 'bg-[#2A5CFF] border-[#2A5CFF] text-[#F8F9FB]' : 'border-[#141F33]/30'
 }`}>
 {task.done ? <Check className="w-4 h-4 text-[#2A5CFF]" /> : ''}
 </span>

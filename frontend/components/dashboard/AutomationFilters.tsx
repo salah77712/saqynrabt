@@ -23,15 +23,15 @@ export function AutomationFilters({ filter, onFilterChange, search, onSearchChan
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex gap-1.5 bg-gray-100 dark:bg-slate-800 p-1 rounded-xl">
+      <div className="flex gap-1.5 bg-[#F8F9FB] dark:bg-[#141F33] p-1 rounded-xl">
         {options.map((opt) => (
           <button
             key={opt}
             onClick={() => onFilterChange(opt)}
             className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${
               filter === opt
-                ? 'bg-white dark:bg-slate-900 text-navy dark:text-white shadow-sm'
-                : 'text-slate-500 hover:text-navy dark:hover:text-white'
+                ? '  shadow-sm'
+                : ' '
             }`}
           >
             {opt}

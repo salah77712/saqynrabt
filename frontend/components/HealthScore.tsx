@@ -7,7 +7,7 @@ score: number;
 export function HealthScore({ score }: HealthScoreProps) {
 const getColor = (val: number) => {
 if (val >= 80) return 'text-[#2A5CFF] border-[#2A5CFF] bg-[#F8F9FB]';
-if (val >= 50) return 'text-amber-500 border-amber-500 bg-[#F8F9FB]';
+if (val >= 50) return 'text-[#2A5CFF] border-amber-500 bg-[#F8F9FB]';
 return 'text-[#141F33] border-[#141F33] bg-[#F8F9FB]';
 };
 

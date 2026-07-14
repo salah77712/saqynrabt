@@ -63,7 +63,7 @@ return (
 {/* Header */}
 <div>
 <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Safety Filters', ar: 'لوحة التحكم في أمان الذكاء الاصطناعي' })}</h1>
-<p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Redact personal data, block harmful prompts, and filter unsafe content.', ar: 'تفعيل المرشحات لحجب البيانات الشخصية، ومنع الاختراقات، وتصفية المحتوى الضار.' })}</p>
+<p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Redact personal data, block harmful prompts, and filter unsafe content.', ar: 'تفعيل المرشحات لحجب البيانات الشخصية، ومنع الاختراقات، وتصفية المحتوى الضار.' })}</p>
 </div>
 
 {/* Config Form */}
@@ -74,7 +74,7 @@ return (
 <div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB]">
 <div>
 <p className="text-xs font-bold text-[#141F33]">PII Redaction</p>
-<p className="text-[10px] text-slate-500 font-semibold mt-0.5">Mask emails and phone numbers before querying LLM APIs.</p>
+<p className="text-[10px] text-[#141F33] font-semibold mt-0.5">Mask emails and phone numbers before querying LLM APIs.</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer select-none">
 <input
@@ -91,7 +91,7 @@ className="sr-only peer"
 <div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB]">
 <div>
 <p className="text-xs font-bold text-[#141F33]">Jailbreak & Prompt Injection Filter</p>
-<p className="text-[10px] text-slate-500 font-semibold mt-0.5">Restrict jailbreak attempts ("ignore instructions", "system override").</p>
+<p className="text-[10px] text-[#141F33] font-semibold mt-0.5">Restrict jailbreak attempts ("ignore instructions", "system override").</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer select-none">
 <input
@@ -108,7 +108,7 @@ className="sr-only peer"
 <div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB]">
 <div>
 <p className="text-xs font-bold text-[#141F33]">Harmful Output Toxicity Filter</p>
-<p className="text-[10px] text-slate-500 font-semibold mt-0.5">Checks LLM completions for toxic, harassing, or violent outputs.</p>
+<p className="text-[10px] text-[#141F33] font-semibold mt-0.5">Checks LLM completions for toxic, harassing, or violent outputs.</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer select-none">
 <input
@@ -124,7 +124,7 @@ className="sr-only peer"
 
 <button
 type="submit"
-className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
+className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
 >
 {t({ en: 'Save Guardrail Configurations', ar: 'حفظ إعدادات جدار الحماية' })}
 </button>
@@ -135,13 +135,13 @@ className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hove
 <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
 <div>
 <h2 className="text-sm font-extrabold text-[#141F33]">{t({ en: 'Knowledge Gaps', ar: 'الفجوات المعرفية' })}</h2>
-<p className="text-[10px] text-[#718096] font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'الأسئلة التي طرحها موظفوك ولم يتمكن الذكاء الاصطناعي من الإجابة عليها.' })}</p>
+<p className="text-[10px] text-[#141F33] font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'الأسئلة التي طرحها موظفوك ولم يتمكن الذكاء الاصطناعي من الإجابة عليها.' })}</p>
 </div>
 
 {loading && (
 <div className="flex items-center justify-center py-8">
 <div className="w-5 h-5 border-2 border-[#141F33] border-t-transparent rounded-full animate-spin" />
-<span className="ml-2 text-xs text-[#718096] font-semibold">{t({ en: 'Loading gaps...', ar: 'جاري تحميل الفجوات...' })}</span>
+<span className="ml-2 text-xs text-[#141F33] font-semibold">{t({ en: 'Loading gaps...', ar: 'جاري تحميل الفجوات...' })}</span>
 </div>
 )}
 
@@ -151,7 +151,7 @@ className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hove
 {MOCK_KNOWLEDGE_GAPS.map((gap, i) => (
 <div key={i} className="p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] space-y-1.5">
 <p className="text-xs font-bold text-[#141F33]">&ldquo;{gap.question}&rdquo;</p>
-<div className="flex items-center gap-2 text-[10px] text-slate-500 font-semibold">
+<div className="flex items-center gap-2 text-[10px] text-[#141F33] font-semibold">
 <span>{gap.employee_name}</span>
 <span className="w-1 h-1 rounded-full bg-[#141F33]/20" />
 <span>{gap.department}</span>
@@ -166,7 +166,7 @@ className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hove
 {!loading && !error && knowledgeGaps.length === 0 && (
 <div className="flex flex-col items-center justify-center py-8 text-center">
 <p className="text-xs font-bold text-[#141F33]">{t({ en: 'No knowledge gaps found', ar: 'لا توجد فجوات معرفية' })}</p>
-<p className="text-[10px] text-slate-500 font-semibold mt-1">{t({ en: 'Your team is getting all the answers they need!', ar: 'فريقك يحصل على جميع الإجابات التي يحتاجها!' })}</p>
+<p className="text-[10px] text-[#141F33] font-semibold mt-1">{t({ en: 'Your team is getting all the answers they need!', ar: 'فريقك يحصل على جميع الإجابات التي يحتاجها!' })}</p>
 </div>
 )}
 
@@ -175,7 +175,7 @@ className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hove
 {knowledgeGaps.map((gap, i) => (
 <div key={i} className="p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] space-y-1.5">
 <p className="text-xs font-bold text-[#141F33]">&ldquo;{gap.question}&rdquo;</p>
-<div className="flex items-center gap-2 text-[10px] text-slate-500 font-semibold">
+<div className="flex items-center gap-2 text-[10px] text-[#141F33] font-semibold">
 <span>{gap.employee_name}</span>
 <span className="w-1 h-1 rounded-full bg-[#141F33]/20" />
 <span>{gap.department}</span>

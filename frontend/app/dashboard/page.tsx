@@ -89,7 +89,7 @@ export default function DashboardOverviewPage() {
       {isTrial && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Trial Balance & Status Card */}
-          <div className="lg:col-span-1 p-6 rounded-2xl bg-gradient-to-br from-[#141F33] to-[#141F33] text-white shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+          <div className="lg:col-span-1 p-6 rounded-2xl bg-gradient-to-br from-[#141F33] to-[#141F33] text-[#F8F9FB] shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[220px]">
             <div className="absolute right-0 top-0 translate-x-1/4 -translate-y-1/4 w-32 h-32 bg-[#2A5CFF]/10 rounded-full blur-xl pointer-events-none" />
             <div>
               <div className="flex justify-between items-center mb-4">
@@ -122,9 +122,9 @@ export default function DashboardOverviewPage() {
             
             <div className="space-y-3">
               {/* Step 1 */}
-              <div className="flex items-start gap-3.5 p-3 rounded-xl border border-gray-50 hover:bg-slate-50/50 transition-colors">
-                <span className="text-lg leading-none mt-0.5 select-none">
-                  {step1Completed ? <Check className="w-5 h-5 text-[#2A5CFF]" /> : <span className="font-black text-[#141F33] text-lg">1</span>}
+<div className="flex items-start gap-3.5 p-3 rounded-xl border border-[#141F33]/10 hover:bg-[#141F33]/5 transition-colors">
+<span className="text-lg leading-none mt-0.5 select-none">
+{step1Completed ? <Check className="w-5 h-5 text-[#2A5CFF]" /> : <span className="font-black text-[#141F33] text-lg">1</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
@@ -135,8 +135,8 @@ export default function DashboardOverviewPage() {
                       {step1Completed ? t('Completed', 'مكتمل') : t('Action Required', 'مطلوب إجراء')}
                     </span>
                   </div>
-                  <p className="text-[10px] text-[#718096] font-medium mt-1 leading-relaxed">
-                    {t('Upload an employee handbook, policy SOP, or FAQ PDF (Limit: 1 PDF during trial) to populate your chatbot knowledge base.', 'قم بتحميل دليل موظف أو ملف PDF للسياسات (الحد: 1 ملف PDF في التجربة) لتغذية قاعدة معرفة المساعد.')}
+<p className="text-[10px] text-[#141F33] font-medium mt-1 leading-relaxed">
+{t('Upload an employee handbook, policy SOP, or FAQ PDF (Limit: 1 PDF during trial) to populate your chatbot knowledge base.', 'قم بتحميل دليل موظف أو ملف PDF للسياسات (الحد: 1 ملف PDF في التجربة) لتغذية قاعدة معرفة المساعد.')}
                   </p>
                   {!step1Completed && (
                     <Link href="/dashboard/documents" className="inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
@@ -147,9 +147,9 @@ export default function DashboardOverviewPage() {
               </div>
 
               {/* Step 2 */}
-              <div className="flex items-start gap-3.5 p-3 rounded-xl border border-gray-50 hover:bg-slate-50/50 transition-colors">
+              <div className="flex items-start gap-3.5 p-3 rounded-xl border border-[#141F33]/10 hover:bg-[#F8F9FB]/50 transition-colors">
                 <span className="text-lg leading-none mt-0.5 select-none">
-                  {step2Completed ? <Check className="w-5 h-5 text-emerald-500" /> : <span className="font-black text-slate-400 text-lg">2</span>}
+                  {step2Completed ? <Check className="w-5 h-5 text-[#2A5CFF]" /> : <span className="font-black text-[#141F33] text-lg">2</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
@@ -160,8 +160,8 @@ export default function DashboardOverviewPage() {
                       {step2Completed ? t('Completed', 'مكتمل') : t('Action Required', 'مطلوب إجراء')}
                     </span>
                   </div>
-                  <p className="text-[10px] text-[#718096] font-medium mt-1 leading-relaxed">
-                    {t('Open the staff knowledge base chatbot and ask a question to test its RAG search accuracy (limit: 15 messages).', 'افتح مساعد معرفة الموظفين واسأله سؤالاً لاختبار دقة بحث RAG (الحد: 15 رسالة).')}
+<p className="text-[10px] text-[#141F33] font-medium mt-1 leading-relaxed">
+{t('Open the staff knowledge base chatbot and ask a question to test its RAG search accuracy (limit: 15 messages).', 'افتح مساعد معرفة الموظفين واسأله سؤالاً لاختبار دقة بحث RAG (الحد: 15 رسالة).')}
                   </p>
                   {!step2Completed && (
                     <Link href="/dashboard/chat" className="inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
@@ -172,9 +172,9 @@ export default function DashboardOverviewPage() {
               </div>
 
               {/* Step 3 */}
-              <div className="flex items-start gap-3.5 p-3 rounded-xl border border-gray-50 hover:bg-slate-50/50 transition-colors">
+              <div className="flex items-start gap-3.5 p-3 rounded-xl border border-[#141F33]/10 hover:bg-[#F8F9FB]/50 transition-colors">
                 <span className="text-lg leading-none mt-0.5 select-none">
-                  {step3Completed ? <Check className="w-5 h-5 text-emerald-500" /> : <span className="font-black text-slate-400 text-lg">3</span>}
+                  {step3Completed ? <Check className="w-5 h-5 text-[#2A5CFF]" /> : <span className="font-black text-[#141F33] text-lg">3</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-2">
@@ -185,8 +185,8 @@ export default function DashboardOverviewPage() {
                       {step3Completed ? t('Completed', 'مكتمل') : t('Action Required', 'مطلوب إجراء')}
                     </span>
                   </div>
-                  <p className="text-[10px] text-[#718096] font-medium mt-1 leading-relaxed">
-                    {t('Configure your own PBX, SIP trunk, or virtual number to test the automated front-desk voice reception calls.', 'قم بتهيئة بدالة PBX أو خط SIP أو الرقم الافتراضي الخاص بك لتجربة مكالمات استقبال الصوت التلقائي.')}
+<p className="text-[10px] text-[#141F33] font-medium mt-1 leading-relaxed">
+{t('Configure your own PBX, SIP trunk, or virtual number to test the automated front-desk voice reception calls.', 'قم بتهيئة بدالة PBX أو خط SIP أو الرقم الافتراضي الخاص بك لتجربة مكالمات استقبال الصوت التلقائي.')}
                   </p>
                   {!step3Completed && (
                     <Link href="/dashboard/automation" className="inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">

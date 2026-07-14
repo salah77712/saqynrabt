@@ -20,7 +20,7 @@ export function BottomNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 h-16 bg-white dark:bg-slate-900 border-t border-gray-100 dark:border-slate-800 flex justify-around items-center px-4 md:hidden shadow-lg">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 h-16  border-t  flex justify-around items-center px-4 md:hidden shadow-lg">
       {navItems.map((item) => {
         const isActive = pathname === item.path || (item.path !== '/dashboard' && pathname.startsWith(item.path));
         return (
@@ -28,7 +28,7 @@ export function BottomNav() {
             key={item.path}
             href={item.path}
             className={`flex flex-col items-center justify-center flex-1 h-full py-2 ${
-              isActive ? 'text-royal' : 'text-slate-400'
+              isActive ? 'text-royal' : ''
             }`}
           >
             {item.icon}

@@ -111,18 +111,18 @@ export default function SignInPage() {
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 border border-gray-200 w-full max-w-md animate-fadeIn">
+      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-8 md:p-12 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
         
         {/* Logo */}
         <div className="text-center mb-8">
           <Link href="/" className="flex flex-col items-center gap-1">
             <span className="text-[#141F33] font-extrabold text-2xl tracking-tight">SAQYN RABT</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-[#718096] font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-[#141F33]/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
           </Link>
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 rounded-xl p-3.5 text-xs font-bold mb-6">
+          <div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6">
             {error}
           </div>
         )}
@@ -134,7 +134,7 @@ export default function SignInPage() {
               <h3 className="text-sm font-bold text-[#141F33] mb-1">
                 {t({ en: 'Two-Factor Authentication', ar: 'التحقق بخطوتين' })}
               </h3>
-              <p className="text-[11px] text-[#718096] font-semibold">
+              <p className="text-[11px] text-[#141F33] font-semibold">
                 {factorStrategy === 'totp' 
                   ? t({ en: 'Enter the code from your authenticator app.', ar: 'أدخل الرمز من تطبيق المصادقة الخاص بك.' })
                   : t({ en: 'Enter the verification code sent to your device.', ar: 'أدخل رمز التحقق المرسل إلى جهازك.' })
@@ -149,7 +149,7 @@ export default function SignInPage() {
                 maxLength={6}
                 value={twoFactorCode}
                 onChange={(e) => setTwoFactorCode(e.target.value)}
-                className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-[#141F33]"
                 required
               />
             </div>
@@ -157,7 +157,7 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+              className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
             >
               {loading ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Sign In', ar: 'التحقق وتسجيل الدخول' })}
             </button>
@@ -165,7 +165,7 @@ export default function SignInPage() {
             <button
               type="button"
               onClick={() => setShow2FA(false)}
-              className="w-full text-center text-xs font-bold text-[#718096] hover:underline"
+              className="w-full text-center text-xs font-bold text-[#141F33] hover:underline"
             >
               {t({ en: 'Back to Sign In', ar: 'العودة لتسجيل الدخول' })}
             </button>
@@ -181,7 +181,7 @@ export default function SignInPage() {
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
                   required
                 />
               </div>
@@ -198,7 +198,7 @@ export default function SignInPage() {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
                   required
                 />
               </div>
@@ -206,7 +206,7 @@ export default function SignInPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#141F33] text-white font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
               >
                 {loading ? t({ en: 'Signing In...', ar: 'جاري تسجيل الدخول...' }) : t({ en: 'Sign In', ar: 'تسجيل الدخول' })}
               </button>
@@ -215,10 +215,10 @@ export default function SignInPage() {
             {/* Separator */}
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200" />
+                <div className="w-full border-t border-[#141F33]/10" />
               </div>
               <div className="relative flex justify-center text-xs">
-                <span className="bg-white px-3 text-[#718096] font-bold">{t({ en: 'Or continue with', ar: 'أو الاستمرار بواسطة' })}</span>
+                <span className="bg-[#F8F9FB] px-3 text-[#141F33] font-bold">{t({ en: 'Or continue with', ar: 'أو الاستمرار بواسطة' })}</span>
               </div>
             </div>
 
@@ -226,20 +226,20 @@ export default function SignInPage() {
             <div className="grid grid-cols-2 gap-4">
               <button
                 onClick={() => handleOAuth('oauth_google')}
-                className="flex items-center justify-center border border-gray-200 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-gray-50 transition-colors min-h-[44px]"
+                className="flex items-center justify-center border border-[#141F33]/10 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-[#141F33]/5 transition-colors min-h-[44px]"
               >
                 Google
               </button>
               <button
                 onClick={() => addToast('Enterprise SSO login is coming soon.', 'info')}
-                className="flex items-center justify-center border border-gray-200 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-gray-50 transition-colors min-h-[44px]"
+                className="flex items-center justify-center border border-[#141F33]/10 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-[#141F33]/5 transition-colors min-h-[44px]"
               >
                 SSO
               </button>
             </div>
 
             {/* Footer Link */}
-            <p className="text-center text-xs text-[#718096] font-bold mt-8">
+            <p className="text-center text-xs text-[#141F33] font-bold mt-8">
               {t({ en: "Don't have an account?", ar: 'ليس لديك حساب؟' })}{' '}
               <Link href="/sign-up" className="text-[#2A5CFF] hover:underline">
                 {t({ en: 'Sign Up', ar: 'إنشاء حساب' })}

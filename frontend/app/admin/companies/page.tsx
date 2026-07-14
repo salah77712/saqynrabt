@@ -105,7 +105,7 @@ export default function AdminCompaniesPage() {
                       {company.status === 'active' ? t({ en: 'Active', ar: 'نشط' }) : t({ en: 'Suspended', ar: 'معلق' })}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-slate-400 font-bold">{company.joinDate}</td>
+                  <td className="px-6 py-4 text-[#141F33]/40 font-bold">{company.joinDate}</td>
                   <td className="px-6 py-4 text-center">
                     <div className="flex justify-center gap-2">
                       <button
@@ -119,7 +119,7 @@ export default function AdminCompaniesPage() {
                         className={`font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px] transition-all ${
                           company.status === 'active' 
                             ? 'bg-[#F8F9FB] text-navy hover:bg-[#141F33]/5' 
-                            : 'btn-primary text-white'
+                            : 'btn-primary text-[#F8F9FB]'
                         }`}
                       >
                         {company.status === 'active' ? t({ en: 'Suspend', ar: 'تعليق' }) : t({ en: 'Activate', ar: 'تفعيل' })}

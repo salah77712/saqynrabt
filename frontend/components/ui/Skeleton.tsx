@@ -5,7 +5,7 @@ export interface SkeletonProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function Skeleton({ className = '', variant = 'rectangular', ...props }: SkeletonProps) {
-  const baseStyle = 'bg-gray-200 dark:bg-slate-800 animate-pulse';
+  const baseStyle = 'bg-[#F8F9FB] dark:bg-[#141F33] animate-pulse';
 
   const variants: Record<string, string> = {
     text: 'h-4 w-full rounded-md',
@@ -21,7 +21,7 @@ export function Skeleton({ className = '', variant = 'rectangular', ...props }: 
 
 export function SkeletonCard() {
   return (
-    <div className="animate-pulse bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 rounded-2xl p-6 space-y-4">
+    <div className="animate-pulse bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33]/30 rounded-2xl p-6 space-y-4">
       <Skeleton variant="text" className="w-1/3" />
       <Skeleton variant="text" className="w-2/3" />
       <Skeleton variant="rectangular" className="h-4 w-full" />
@@ -36,7 +36,7 @@ export function SkeletonCard() {
 export function SkeletonTable({ rows = 4 }: { rows?: number }) {
   return (
     <div className="space-y-3">
-      <Skeleton variant="table-row" className="bg-gray-100 dark:bg-slate-700" />
+      <Skeleton variant="table-row" className="bg-[#F8F9FB] dark:bg-[#141F33]/30" />
       {Array.from({ length: rows }).map((_, i) => (
         <Skeleton key={i} variant="table-row" />
       ))}

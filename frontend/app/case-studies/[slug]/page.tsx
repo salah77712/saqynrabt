@@ -32,7 +32,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
   const IconComponent = iconMap[details.iconName] || Briefcase;
 
   return (
-    <div className="bg-white text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-white" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <main className="flex-1 max-w-7xl mx-auto px-6 py-12 w-full">
@@ -55,7 +55,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
               <h1 className="text-3xl md:text-5xl font-black text-[#141F33] leading-tight tracking-tight">
                 {details.title}
               </h1>
-              <div className="flex flex-wrap items-center gap-4 mt-4 text-xs font-bold text-[#718096]">
+              <div className="flex flex-wrap items-center gap-4 mt-4 text-xs font-bold text-[#141F33]/60">
                 <span className="flex items-center gap-1.5">
                   <span className="text-base">{details.flag}</span>
                   <span>{details.location}</span>
@@ -66,7 +66,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
             </div>
 
             {/* Stylized Solid Backdrop Section (Vector graphic design, no image) */}
-            <div className="w-full min-h-[260px] md:min-h-[340px] rounded-[32px] bg-[#141F33] text-white p-8 md:p-12 relative overflow-hidden flex flex-col justify-between shadow-xl">
+            <div className="w-full min-h-[260px] md:min-h-[340px] rounded-[32px] bg-[#141F33] text-[#F8F9FB] p-8 md:p-12 relative overflow-hidden flex flex-col justify-between shadow-xl">
               {/* Decorative graphic background glows */}
               <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#2A5CFF]/15 rounded-full filter blur-[80px] pointer-events-none" />
               
@@ -75,7 +75,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
                   <span className="text-[10px] font-black uppercase tracking-widest text-[#2A5CFF]">
                     {t({ en: 'SYSTEM ARCHITECTURE', ar: 'بنية النظام المطبقة' })}
                   </span>
-                  <p className="text-xs text-white/50 font-bold uppercase tracking-wider">
+                  <p className="text-xs text-[#F8F9FB]/50 font-bold uppercase tracking-wider">
                     {details.meta}
                   </p>
                 </div>
@@ -86,7 +86,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
               </div>
 
               <div className="relative z-10 mt-8">
-                <blockquote className="text-lg md:text-xl font-bold italic leading-relaxed text-white/90 max-w-2xl">
+                <blockquote className="text-lg md:text-xl font-bold italic leading-relaxed text-[#F8F9FB]/90 max-w-2xl">
                   "{details.result}"
                 </blockquote>
               </div>
@@ -98,29 +98,29 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
                 <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'The Challenge', ar: 'التحدي العقبة' })}
                 </h2>
-                <p className="text-sm text-[#4A5568] leading-relaxed font-medium">
+                <p className="text-sm text-[#141F33]/60 leading-relaxed font-medium">
                   {details.challenge}
                 </p>
               </div>
 
-              <div className="h-px bg-gray-255/10 border-b border-gray-200" />
+              <div className="h-px bg-[#141F33]/10/10 border-b border-[#141F33]/10" />
 
               <div>
                 <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'The Solution', ar: 'الحل المطبق' })}
                 </h2>
-                <p className="text-sm text-[#4A5568] leading-relaxed font-medium">
+                <p className="text-sm text-[#141F33]/60 leading-relaxed font-medium">
                   {details.solution}
                 </p>
               </div>
 
-              <div className="h-px bg-gray-255/10 border-b border-gray-200" />
+              <div className="h-px bg-[#141F33]/10/10 border-b border-[#141F33]/10" />
 
               <div>
                 <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
                   {t({ en: 'Business Impact', ar: 'الأثر والنتائج' })}
                 </h2>
-                <p className="text-sm text-[#4A5568] leading-relaxed font-medium">
+                <p className="text-sm text-[#141F33]/60 leading-relaxed font-medium">
                   {details.impact}
                 </p>
               </div>
@@ -135,7 +135,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
               </h3>
               <div className="space-y-4">
                 {details.metrics.map((metric, i) => (
-                  <div key={i} className="flex items-start gap-3 bg-white border border-gray-200 rounded-2xl p-4 shadow-sm">
+                  <div key={i} className="flex items-start gap-3 bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-4 shadow-sm">
                     <Check className="w-5 h-5 text-royal shrink-0 mt-0.5" />
                     <span className="text-xs font-black text-[#141F33]">{metric}</span>
                   </div>
@@ -144,13 +144,13 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
             </div>
 
             {/* CTA Box */}
-            <div className="bg-navy rounded-[32px] p-8 text-center text-white shadow-xl relative overflow-hidden">
+            <div className="bg-navy rounded-[32px] p-8 text-center text-[#F8F9FB] shadow-xl relative overflow-hidden">
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#2A5CFF]/10 rounded-full filter blur-2xl" />
               
               <h4 className="text-lg font-extrabold mb-3 relative z-10">
                 {t({ en: 'Get Similar Results', ar: 'احصل على نتائج مماثلة' })}
               </h4>
-              <p className="text-xs text-white/70 leading-relaxed mb-6 font-semibold relative z-10">
+              <p className="text-xs text-[#F8F9FB]/70 leading-relaxed mb-6 font-semibold relative z-10">
                 {t({ 
                   en: 'Schedule a tailored automation design session for your business operations.', 
                   ar: 'جدول جلسة تصميم أتمتة مخصصة لعمليات عملك اليوم.' 
@@ -160,7 +160,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
                 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex min-h-[44px] items-center justify-center rounded-xl bg-royal text-white font-bold text-xs hover:opacity-90 transition-all shadow-[0_4px_15px_rgba(42,92,255,0.3)] hover:translate-y-[-1px] active:translate-y-0"
+                className="w-full inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#2A5CFF] text-[#F8F9FB] font-bold text-xs hover:opacity-90 transition-all shadow-[0_4px_15px_rgba(42,92,255,0.3)] hover:translate-y-[-1px] active:translate-y-0"
               >
                 {t({ en: 'Book Session Now', ar: 'احجز جلستك الآن' })}
               </a>

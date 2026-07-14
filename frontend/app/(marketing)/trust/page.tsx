@@ -78,18 +78,18 @@ const trustCards: TrustCard[] = [
 
 export default function TrustPage() {
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-white selection:bg-[#2A5CFF] selection:text-white" dir="ltr">
+    <div className="min-h-screen flex flex-col font-sans bg-[#F8F9FB] selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir="ltr">
       <Header />
 
-      <section className="bg-[#141F33] text-white py-24 px-6">
+      <section className="bg-[#141F33] text-[#F8F9FB] py-24 px-6">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
             Your Data, Our Responsibility.
           </h1>
-          <p className="mt-4 text-lg text-white/70 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-[#F8F9FB]/70 max-w-2xl mx-auto">
             Built for Global Operations.
           </p>
-          <p className="mt-2 text-sm text-white/50 max-w-2xl mx-auto">
+          <p className="mt-2 text-sm text-[#F8F9FB]/50 max-w-2xl mx-auto">
             SAQYN RABT is committed to the highest standards of data protection, security, and
             transparency, in full compliance with global data protection regulations and frameworks.
           </p>
@@ -103,14 +103,14 @@ export default function TrustPage() {
               return (
                 <div
                   key={i}
-                  className="rounded-2xl border border-gray-200 bg-white p-6 flex flex-col gap-4 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all"
+                  className="rounded-2xl border border-[#141F33]/10 bg-[#F8F9FB] p-6 flex flex-col gap-4 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all"
                 >
                   <div className="flex items-start justify-between">
                     <div className="w-10 h-10 rounded-xl bg-[#141F33]/5 flex items-center justify-center">
                       {iconMap[card.icon] || <Shield className="w-5 h-5" />}
                     </div>
                     {card.badge && (
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#2A5CFF] bg-blue-50 px-2 py-1 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#2A5CFF] bg-[#F8F9FB] px-2 py-1 rounded-full">
                         {card.badge}
                       </span>
                     )}
@@ -118,7 +118,7 @@ export default function TrustPage() {
 
                   <div className="flex-1">
                     <h3 className="text-base font-bold text-[#141F33]">{card.title}</h3>
-                    <p className="mt-1 text-sm text-[#718096]">{card.description}</p>
+                    <p className="mt-1 text-sm text-[#141F33]/60">{card.description}</p>
                   </div>
 
                   {card.badges ? (
@@ -129,11 +129,11 @@ export default function TrustPage() {
                             key={j}
                             className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
                               b.status === 'active'
-                                ? 'bg-green-50 text-green-700'
-                                : 'bg-amber-50 text-amber-700'
+                                ? 'bg-[#F8F9FB] text-[#2A5CFF]'
+                                : 'bg-[#F8F9FB] text-[#2A5CFF]'
                             }`}
                           >
-                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-amber-600 border-t-transparent rounded-full animate-spin mr-1" /> : <Check className="w-2.5 h-2.5 text-green-700 inline mr-0.5" />}
+                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-[#2A5CFF] border-t-transparent rounded-full animate-spin mr-1" /> : <Check className="w-2.5 h-2.5 text-[#2A5CFF] inline mr-0.5" />}
                             {b.label}
                           </span>
                         ))}
@@ -161,16 +161,16 @@ export default function TrustPage() {
         </div>
       </section>
 
-      <section className="py-16 px-6 bg-gray-50">
+      <section className="py-16 px-6 bg-[#F8F9FB]">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-2xl font-bold text-[#141F33]">Need More Information?</h2>
-          <p className="mt-2 text-sm text-[#718096]">
+          <p className="mt-2 text-sm text-[#141F33]/60">
             Our DPO is available to answer any compliance or security questions.
           </p>
           <div className="mt-6 flex items-center justify-center gap-4">
             <a
               href="mailto:dpo@saqynrabt.com"
-              className="inline-flex items-center gap-2 bg-[#141F33] text-white text-sm font-bold px-6 py-3 rounded-xl hover:bg-[#141F33]/90 transition-all hover:scale-[1.01] hover:shadow-md"
+              className="inline-flex items-center gap-2 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-6 py-3 rounded-xl hover:bg-[#141F33]/90 transition-all hover:scale-[1.01] hover:shadow-md"
             >
               Contact DPO: dpo@saqynrabt.com
             </a>

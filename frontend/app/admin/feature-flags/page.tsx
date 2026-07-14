@@ -31,15 +31,15 @@ export default function AdminFeatureFlagsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Global Feature Flag Manager', ar: 'إدارة مؤشرات الميزات البرمجية' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Toggle beta feature scopes.', ar: 'شاشة التحكم لموظفي SAQYN. تعديل وتفعيل صلاحيات الميزات التجريبية.' })}</p>
+        <p className="text-xs text-[#141F33]/60 font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Toggle beta feature scopes.', ar: 'شاشة التحكم لموظفي SAQYN. تعديل وتفعيل صلاحيات الميزات التجريبية.' })}</p>
       </div>
 
       {/* Flags table */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
-        <div className="divide-y divide-gray-100">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+        <div className="divide-y divide-[#141F33]/10">
           {flags.map((flag) => (
             <div key={flag.id} className="py-4 flex justify-between items-center gap-4 first:pt-0 last:pb-0">
-              <span className="text-xs font-mono font-bold text-slate-800">{flag.name}</span>
+              <span className="text-xs font-mono font-bold text-[#141F33]">{flag.name}</span>
 
               <label className="relative inline-flex items-center cursor-pointer select-none">
                 <input

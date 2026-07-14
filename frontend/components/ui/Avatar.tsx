@@ -26,7 +26,7 @@ export function Avatar({ className = '', src, name, size = 'md', ...props }: Ava
 
   return (
     <div
-      className={`relative flex items-center justify-center rounded-full bg-slate-100 dark:bg-slate-800 text-navy dark:text-white font-extrabold border border-gray-200/50 dark:border-slate-700/50 overflow-hidden ${sizes[size]} ${className}`}
+      className={`relative flex items-center justify-center rounded-full bg-[#F8F9FB] dark:bg-[#141F33] text-[#141F33] dark:text-[#F8F9FB] font-extrabold border border-[#141F33]/10 dark:border-[#141F33]/30 overflow-hidden ${sizes[size]} ${className}`}
       {...props}
     >
       {src && !error ? (

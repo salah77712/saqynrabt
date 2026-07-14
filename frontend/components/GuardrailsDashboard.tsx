@@ -25,7 +25,7 @@ return (
 key={tab}
 onClick={() => setActiveTab(tab as any)}
 className={`px-3 py-1.5 rounded-lg text-xs font-bold ${
-activeTab === tab ? 'bg-[#141F33] text-white' : 'bg-[#F8F9FB] text-[#141F33]/50 hover:bg-[#141F33]/10'
+activeTab === tab ? 'bg-[#141F33] text-[#F8F9FB]' : 'bg-[#F8F9FB] text-[#141F33]/50 hover:bg-[#141F33]/10'
 }`}
 >
 {tab}

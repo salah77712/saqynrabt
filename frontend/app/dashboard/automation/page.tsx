@@ -62,7 +62,7 @@ return (
 <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
 {t('Automation', 'مركز أتمتة العمليات')}
 </h1>
-<p className="text-[10px] md:text-xs text-slate-500 font-bold">
+<p className="text-[10px] md:text-xs text-[#141F33] font-bold">
 {t('Live calls, dispatch tasks, and channel activity.', 'إدارة المكالمات المباشرة، وتوزيع المهام، وتنسيق قنوات الاستجابة.')}
 </p>
 </div>
@@ -125,7 +125,7 @@ className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm acti
 <Badge variant={statusVariant(req.status) as any}>{req.status}</Badge>
 </div>
 <p className="text-[11px] font-semibold text-[#141F33]">{req.type}</p>
-<p className="text-[10px] text-slate-400 mt-1.5">{req.time}</p>
+<p className="text-[10px] text-[#141F33]/40 mt-1.5">{req.time}</p>
 </div>
 ))}
 </div>

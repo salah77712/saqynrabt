@@ -34,7 +34,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
   };
 
   return (
-    <aside className={`fixed inset-y-0 left-0 z-50 bg-white border-r border-gray-200 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static ${
+    <aside className={`fixed inset-y-0 left-0 z-50 bg-[#F8F9FB] border-r border-[#141F33]/10 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static ${
       isCollapsed ? 'md:w-20' : 'md:w-64'
     } ${
       isSidebarOpen
@@ -46,7 +46,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
           : '-translate-x-full md:translate-x-0'
     }`}>
       <div className="flex flex-col overflow-y-auto flex-1">
-        <div className="flex items-center justify-between px-6 py-6 border-b border-gray-100 min-h-[80px]">
+        <div className="flex items-center justify-between px-6 py-6 border-b border-[#F8F9FB] min-h-[80px]">
           <Link href="/" className="flex flex-col items-start gap-0.5 min-w-0">
             <span className={`text-[#141F33] font-extrabold tracking-tight transition-colors hover:text-[#2A5CFF] truncate ${
               isCollapsed ? 'text-sm' : 'text-xl'
@@ -54,11 +54,11 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
               {isCollapsed ? 'SR' : 'SAQYN RABT'}
             </span>
             {!isCollapsed && (
-              <span className="text-[9px] uppercase tracking-[0.15em] text-[#718096] font-bold truncate">{t(dashboardContent.clientPortal)}</span>
+              <span className="text-[9px] uppercase tracking-[0.15em] text-[#141F33] font-bold truncate">{t(dashboardContent.clientPortal)}</span>
             )}
           </Link>
           {mockMode && !isCollapsed && (
-            <span className="rounded-full bg-amber-500/10 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-widest text-amber-600 border border-amber-500/20 shrink-0">
+            <span className="rounded-full bg-[#141F33]/10 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-widest text-[#141F33] border border-[#141F33]/20 shrink-0">
               {t(dashboardContent.sandbox)}
             </span>
           )}
@@ -77,8 +77,8 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                   isCollapsed ? 'justify-center px-0' : 'px-4 gap-3.5'
                 } ${
                   isActive
-                    ? 'bg-[#141F33]/5 border-l-4 border-[#141F33] text-[#141F33]'
-                    : 'border-l-4 border-transparent text-[#718096] hover:bg-slate-50 hover:text-[#141F33]'
+? 'bg-[#141F33]/5 border-l-4 border-[#141F33] text-[#141F33]'
+: 'border-l-4 border-transparent text-[#141F33] hover:bg-[#141F33]/5 hover:text-[#141F33]'
                 }`}
                 style={{ minHeight: '44px' }}
               >
@@ -86,7 +86,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                 {!isCollapsed && <span className="truncate">{t(item.name)}</span>}
 
                 {item.badge && pendingCount > 0 && (
-                  <span className={`absolute bg-red-500 text-white rounded-full text-[9px] font-extrabold flex items-center justify-center ${
+                  <span className={`absolute bg-[#141F33] text-[#F8F9FB] rounded-full text-[9px] font-extrabold flex items-center justify-center ${
                     isCollapsed ? '-top-1 -right-1 h-4 w-4' : 'right-4 px-2 py-0.5'
                   }`}>
                     {pendingCount}
@@ -98,24 +98,24 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
         </nav>
       </div>
 
-      <div className="hidden md:flex justify-end px-4 py-2 border-t border-gray-50 bg-white">
+      <div className="hidden md:flex justify-end px-4 py-2 border-t border-[#141F33]/10">
         <button
           type="button"
           onClick={onToggleCollapse}
-          className="h-8 w-8 rounded-lg border border-gray-200 flex items-center justify-center text-slate-400 hover:text-[#141F33] hover:bg-slate-50 transition-colors"
+className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justify-center text-[#141F33] hover:text-[#141F33] hover:bg-[#141F33]/5 transition-colors"
           title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >
           {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
         </button>
       </div>
 
-      <div className="p-4 border-t border-gray-100 bg-white">
+      <div className="p-4 border-t border-[#F8F9FB] bg-[#F8F9FB]">
         {mockMode ? (
-          <div className="rounded-xl border border-gray-200 bg-[#F8F9FB] p-3 flex flex-col gap-2 min-w-0">
+          <div className="rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] p-3 flex flex-col gap-2 min-w-0">
             <div className="flex items-center justify-between gap-2 min-w-0">
               <div className="min-w-0">
                 <p className="text-xs font-extrabold text-[#141F33] truncate">Salah ({t(dashboardContent.demo)})</p>
-                {!isCollapsed && <p className="text-[10px] font-medium text-[#718096] truncate">admin@alsafa.qa</p>}
+                {!isCollapsed && <p className="text-[10px] font-medium text-[#141F33] truncate">admin@alsafa.qa</p>}
               </div>
               <button
                 onClick={() => {
@@ -133,7 +133,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
             <UserButton afterSignOutUrl="/" showName={!isCollapsed} />
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-semibold text-[#718096] uppercase tracking-wider truncate">{t(dashboardContent.activeClient)}</p>
+                <p className="text-[10px] font-semibold text-[#141F33] uppercase tracking-wider truncate">{t(dashboardContent.activeClient)}</p>
               </div>
             )}
           </div>

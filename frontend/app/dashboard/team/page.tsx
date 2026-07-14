@@ -96,7 +96,7 @@ const renderMobileCard = (m: Employee) => (
 <div className="flex items-start justify-between mb-2">
 <div className="flex-1 min-w-0">
 <h4 className="text-sm font-bold text-[#141F33] truncate">{m.name}</h4>
-<p className="text-[11px] text-slate-500 truncate">{m.email}</p>
+<p className="text-[11px] text-[#141F33] truncate">{m.email}</p>
 </div>
 <Badge variant={m.status === 'active' ? 'success' : 'primary'}>{m.status}</Badge>
 </div>
@@ -161,7 +161,7 @@ return (
 <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">
 {t('Team', 'دليل مساحة العمل')}
 </h1>
-<p className="text-[10px] md:text-xs text-slate-500 font-bold">
+<p className="text-[10px] md:text-xs text-[#141F33] font-bold">
 {t('Invite teammates, manage roles, and approve access requests.', 'إدارة ضوابط الوصول للفريق وتنسيق موافقات الموظفين.')}
 </p>
 </div>

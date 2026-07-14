@@ -2,9 +2,9 @@ export default function DashboardAutomationLoading() {
 return (
 <div className="space-y-6">
 <div className="h-6 w-48 bg-[#141F33]/10 rounded animate-pulse" />
-<div className="rounded-3xl border border-[#141F33]/10 bg-gradient-to-br from-primary to-[#141F33] p-8">
-<div className="h-4 w-32 bg-white/20 rounded animate-pulse mb-4" />
-<div className="h-6 w-64 bg-white/20 rounded animate-pulse" />
+<div className="rounded-3xl border border-[#141F33]/10 bg-gradient-to-br from-[#141F33] to-[#141F33] p-8">
+<div className="h-4 w-32 bg-[#F8F9FB]/20 rounded animate-pulse mb-4" />
+<div className="h-6 w-64 bg-[#F8F9FB]/20 rounded animate-pulse" />
 </div>
 <div className="grid gap-4 md:grid-cols-2">
 {[...Array(4)].map((_, i) => (

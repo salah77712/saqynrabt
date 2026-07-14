@@ -26,7 +26,7 @@ key={ind.id}
 onClick={() => onChange(ind.id)}
 className={`min-h-[44px] px-6 py-3 rounded-full border text-sm font-semibold transition-all hover:scale-[1.05] hover:border-[#141F33] cursor-pointer ${
 activeId === ind.id
-? 'bg-[#141F33] text-white border-[#141F33] shadow-md dark:bg-[#2A5CFF]'
+? 'bg-[#141F33] text-[#F8F9FB] border-[#141F33] shadow-md dark:bg-[#2A5CFF]'
 : 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 shadow-sm hover:shadow-md dark:bg-[#141F33] dark:text-[#F8F9FB] dark:border-[#141F33]/30'
 }`}
 >

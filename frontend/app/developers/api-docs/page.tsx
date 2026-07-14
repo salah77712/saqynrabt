@@ -78,7 +78,7 @@ export default function DevelopersApiDocsPage() {
 
               <div>
                 <h4 className="text-xs font-extrabold text-[#141F33] mb-2">JSON Request Example</h4>
-                <pre className="bg-[#141F33] text-slate-200 rounded-xl p-4 text-[10px] font-mono overflow-x-auto leading-relaxed">
+                <pre className="bg-[#141F33] text-[#141F33]/20 rounded-xl p-4 text-[10px] font-mono overflow-x-auto leading-relaxed">
                   {ep.body}
                 </pre>
               </div>

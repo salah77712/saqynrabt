@@ -33,7 +33,7 @@ export default function HealthPage() {
               <span className={`px-3 py-1 rounded-full text-sm ${val === 'online' ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#141F33]'}`}>
                 {val === 'online'
                   ? <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#2A5CFF]" />{t({en: 'Live', ar: 'نشط'})}</span>
-                  : <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-red-500" />{t({en: 'Offline', ar: 'غير متصل'})}</span>}
+                  : <span className="flex items-center gap-1.5"><span className="w-2 h-2 rounded-full bg-[#141F33]" />{t({en: 'Offline', ar: 'غير متصل'})}</span>}
               </span>
             </div>
           ))}

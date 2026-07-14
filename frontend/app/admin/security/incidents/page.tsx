@@ -135,7 +135,7 @@ export default function AdminIncidentsPage() {
         <button
           type="button"
           onClick={() => setShowCreate(!showCreate)}
-          className="flex items-center gap-2 bg-[#141F33] text-white text-sm font-bold px-4 py-2.5 rounded-xl hover:bg-[#141F33]/90 transition-colors"
+          className="flex items-center gap-2 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-4 py-2.5 rounded-xl hover:bg-[#141F33]/90 transition-colors"
         >
           <PlusSvg /> New Incident
         </button>
@@ -161,7 +161,7 @@ export default function AdminIncidentsPage() {
               placeholder="Description"
               value={newIncident.description}
               onChange={(e) => setNewIncident({ ...newIncident, description: e.target.value })}
-              className="col-span-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-[#141F33] min-h-[80px]"
+              className="col-span-full rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33] min-h-[80px]"
             />
             <select
               value={newIncident.incidentType}
@@ -195,14 +195,14 @@ export default function AdminIncidentsPage() {
             <button
               type="button"
               onClick={() => setShowCreate(false)}
-              className="px-4 py-2.5 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#718096] hover:bg-[#141F33]/5"
+              className="px-4 py-2.5 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33]/60 hover:bg-[#141F33]/10"
             >
               Cancel
             </button>
             <button
               type="button"
               onClick={handleCreate}
-              className="px-4 py-2.5 rounded-xl bg-[#141F33] text-white text-xs font-bold hover:bg-[#141F33]/90"
+              className="px-4 py-2.5 rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33]/90"
             >
               Create Incident
             </button>
@@ -223,7 +223,7 @@ export default function AdminIncidentsPage() {
       {loading ? (
         <div className="flex justify-center py-12"><LoaderSvg /></div>
       ) : filteredIncidents.length === 0 ? (
-        <div className="text-center py-12 text-sm text-[#718096]">No incidents found</div>
+        <div className="text-center py-12 text-sm text-[#141F33]/60">No incidents found</div>
       ) : (
         <div className="space-y-3">
           {filteredIncidents.map((inc) => (
@@ -231,7 +231,7 @@ export default function AdminIncidentsPage() {
               <button
                 type="button"
                 onClick={() => setExpandedId(expandedId === inc.id ? null : inc.id)}
-                className="w-full flex items-center justify-between p-4 hover:bg-[#141F33]/5 transition-colors text-left"
+                className="w-full flex items-center justify-between p-4 hover:bg-[#141F33]/10 transition-colors text-left"
               >
                 <div className="flex items-center gap-3 flex-1 min-w-0">
                   <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase ${severityColors[inc.severity] || 'bg-[#F8F9FB] text-[#141F33]'}`}>
@@ -241,21 +241,21 @@ export default function AdminIncidentsPage() {
                     {inc.status}
                   </span>
                   <span className="text-sm font-medium text-[#141F33] truncate">{inc.title}</span>
-                  <span className="text-[10px] text-[#718096] uppercase">{inc.incident_type.replace('_', ' ')}</span>
+                  <span className="text-[10px] text-[#141F33]/60 uppercase">{inc.incident_type.replace('_', ' ')}</span>
                 </div>
                 <div className="flex items-center gap-3 shrink-0">
-                  <span className="text-[10px] text-[#718096]">{new Date(inc.created_at).toLocaleDateString()}</span>
+                  <span className="text-[10px] text-[#141F33]/60">{new Date(inc.created_at).toLocaleDateString()}</span>
                   {expandedId === inc.id ? <ChevronUpSvg /> : <ChevronDownSvg />}
                 </div>
               </button>
 
               {expandedId === inc.id && (
                 <div className="px-4 pb-4 border-t border-[#141F33]/10 pt-3 space-y-3">
-                  <p className="text-sm text-[#718096]">{inc.description}</p>
+                  <p className="text-sm text-[#141F33]/60">{inc.description}</p>
                   {inc.affected_resources && (
-                    <p className="text-xs text-[#718096]"><span className="font-bold">Affected:</span> {inc.affected_resources}</p>
+                    <p className="text-xs text-[#141F33]/60"><span className="font-bold">Affected:</span> {inc.affected_resources}</p>
                   )}
-                  <div className="flex items-center gap-2 text-[10px] text-[#718096]">
+                  <div className="flex items-center gap-2 text-[10px] text-[#141F33]/60">
                     <span>Reported by: {inc.reported_by || 'N/A'}</span>
                     <span>Assigned to: {inc.assigned_to || 'Unassigned'}</span>
                   </div>
@@ -268,7 +268,7 @@ export default function AdminIncidentsPage() {
                         className={`text-[10px] font-bold px-2.5 py-1.5 rounded-full uppercase transition-colors ${
                           inc.status === s
 ? 'bg-[#141F33] text-[#F8F9FB]'
-: 'bg-[#F8F9FB] text-[#141F33] hover:bg-[#141F33]/5'
+: 'bg-[#F8F9FB] text-[#141F33] hover:bg-[#141F33]/10'
                         }`}
                       >
                         {s}

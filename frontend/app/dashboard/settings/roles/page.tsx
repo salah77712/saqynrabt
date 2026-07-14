@@ -82,7 +82,7 @@ export default function RolesSettingsPage() {
                   type="checkbox"
                   checked={newRole.permissions.includes(perm.key)}
                   onChange={() => handleTogglePermission(perm.key)}
-                  className="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#141F33] focus:ring-[#141F33]"
+                  className="mt-0.5 h-4 w-4 rounded border-[#141F33]/20 text-[#141F33] focus:ring-[#141F33]"
                 />
                 <div>
                   <p className="text-xs font-bold text-[#141F33]">{perm.key}</p>
@@ -105,7 +105,7 @@ export default function RolesSettingsPage() {
       <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
         <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Configured Access Roles', ar: 'أدوار الوصول المهيأة' })}</h3>
 
-        <div className="divide-y divide-gray-100">
+        <div className="divide-y divide-[#141F33]/10">
           {roles.map((r) => (
             <div key={r.name} className="py-4 first:pt-0 last:pb-0 space-y-2">
               <div className="flex justify-between items-center">

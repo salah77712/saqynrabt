@@ -64,7 +64,7 @@ if (loading) {
 return (
 <main id="main-content" className="p-6 space-y-6">
 <div className="flex justify-center items-center h-64">
-<p className="text-slate-500 font-bold">{t({en: 'Loading metrics...', ar: 'جارٍ تحميل المقاييس...'})}</p>
+<p className="text-[#141F33] font-bold">{t({en: 'Loading metrics...', ar: 'جارٍ تحميل المقاييس...'})}</p>
 </div>
 </main>
 );
@@ -75,7 +75,7 @@ return (
 <div className="flex justify-between items-center mb-6">
 <div>
 <h1 className="text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Analytics', ar: 'وحدة تحكم العمليات الإدارية'})}</h1>
-<p className="text-xs text-slate-500 font-bold">{t({en: 'Usage stats, billing overview, and key metrics.', ar: 'مقاييس فورية، فواتير العملاء النشطين وتتبع الإيرادات السنوية.'})}</p>
+<p className="text-xs text-[#141F33] font-bold">{t({en: 'Usage stats, billing overview, and key metrics.', ar: 'مقاييس فورية، فواتير العملاء النشطين وتتبع الإيرادات السنوية.'})}</p>
 </div>
 <Badge variant="success">{t({en: 'Active Nodes', ar: 'العقد الطرفية نشطة'})}</Badge>
 </div>

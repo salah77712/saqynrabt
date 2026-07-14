@@ -42,7 +42,7 @@ export default function AdminIncidentsPage() {
               <div>
                 <p className="text-xs font-extrabold text-[#141F33]">{inc.title}</p>
                 <div className="flex gap-2 items-center mt-1">
-                  <span className="text-[10px] text-slate-400 font-bold">Severity: {inc.severity}</span>
+                  <span className="text-[10px] text-[#141F33]/40 font-bold">Severity: {inc.severity}</span>
                   <span className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
                     inc.status === 'Resolved' ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#2A5CFF]'
                   }`}>

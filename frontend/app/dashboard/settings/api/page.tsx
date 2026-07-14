@@ -156,14 +156,14 @@ export default function ApiKeysSettingsPage() {
               type="text"
               readOnly
               value={newKeyVal}
-              className="flex-1 bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold text-slate-800"
+              className="flex-1 bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold text-[#141F33]"
             />
             <button
               onClick={() => {
                 navigator.clipboard.writeText(newKeyVal);
                 addToast('Copied to clipboard', 'success');
               }}
-              className="bg-emerald-600 hover:bg-emerald-700 text-[#F8F9FB] font-bold px-4 py-2 rounded-xl text-xs"
+              className="bg-[#2A5CFF] hover:bg-emerald-700 text-[#F8F9FB] font-bold px-4 py-2 rounded-xl text-xs"
             >
               Copy
             </button>
@@ -211,7 +211,7 @@ export default function ApiKeysSettingsPage() {
         ) : keys.length === 0 ? (
           <p className="text-xs text-[#141F33] font-semibold text-center py-6">{t({ en: 'No API keys configured yet.', ar: 'لا توجد مفاتيح واجهة تطبيقات مهيأة حاليًا.' })}</p>
         ) : (
-          <div className="divide-y divide-gray-100">
+          <div className="divide-y divide-[#141F33]/10">
             {keys.map((k) => (
               <div key={k.id} className="flex justify-between items-center py-4 first:pt-0 last:pb-0 gap-4">
                 <div className="min-w-0">
@@ -222,7 +222,7 @@ export default function ApiKeysSettingsPage() {
                   <span className="text-[10px] text-[#141F33] font-bold">{new Date(k.created_at).toLocaleDateString()}</span>
                   <button
                     onClick={() => handleRevoke(k.id)}
-                    className="text-[10px] font-bold text-[#141F33] hover:bg-[#F8F9FB] px-3 py-1.5 rounded-lg border border-red-100"
+                    className="text-[10px] font-bold text-[#141F33] hover:bg-[#F8F9FB] px-3 py-1.5 rounded-lg border border-[#141F33]/10"
                   >
                     {t({ en: 'Revoke', ar: 'إلغاء' })}
                   </button>

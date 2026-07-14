@@ -102,7 +102,7 @@ return (
 <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
 {t('Document Library', 'مستندات المعرفة الخاصة')}
 </h1>
-<p className="text-[10px] md:text-xs text-slate-500 font-bold">
+<p className="text-[10px] md:text-xs text-[#141F33] font-bold">
 {t('Upload PDFs so your AI can answer questions from your policies and manuals.', 'تحميل وفهرسة ملفات PDF لتوسيع معرفة المساعد الذكي.')}
 </p>
 </div>
@@ -123,7 +123,7 @@ className="min-h-[44px] text-xs md:text-sm"
 <h3 className="text-xs md:text-sm font-extrabold text-[#141F33]">
 {t('Tap to upload PDFs', 'اضغط لرفع ملفات PDF')}
 </h3>
-<p className="text-[10px] md:text-xs text-[#718096] font-medium mt-1">
+<p className="text-[10px] md:text-xs text-[#141F33] font-medium mt-1">
 {t('PDF up to 10MB', 'PDF حتى 10 ميجابايت')}
 </p>
 
@@ -163,7 +163,7 @@ if (fileInputRef.current) fileInputRef.current.value = '';
 <DialogTitle className="text-lg font-extrabold text-[#141F33]">
 {t('Delete Document', 'حذف المستند')}
 </DialogTitle>
-<DialogDescription className="text-xs text-slate-500 font-medium mt-2">
+<DialogDescription className="text-xs text-[#141F33] font-medium mt-2">
 {t('Are you sure you want to delete this document? This action cannot be undone.', 'هل أنت متأكد من رغبتك في حذف هذا المستند؟ لا يمكن التراجع عن هذا الإجراء.')}
 </DialogDescription>
 </DialogHeader>

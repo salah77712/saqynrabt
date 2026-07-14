@@ -19,17 +19,17 @@ export function DashboardDesktopHeader({ currentTitle }: DashboardDesktopHeaderP
   };
 
   return (
-    <header className="hidden md:block border-b border-gray-200 bg-white px-6 lg:px-8 py-5 sticky top-0 z-30 shadow-sm shrink-0">
+    <header className="hidden md:block border-b  px-6 lg:px-8 py-5 sticky top-0 z-30 shadow-sm shrink-0">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#718096]">{t(dashboardContent.clientDashboard)}</p>
+          <p className="text-[10px] font-extrabold uppercase tracking-widest ">{t(dashboardContent.clientDashboard)}</p>
           <h2 className="text-2xl font-extrabold text-[#141F33] tracking-tight mt-0.5">{currentTitle}</h2>
         </div>
         <div className="flex items-center gap-4">
           <LanguageSwitcher />
           <DarkModeToggle />
-          <div className="flex items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-4 py-1.5 text-xs font-bold text-emerald-700">
-            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="flex items-center gap-2 rounded-full border border-[#141F33]/20 bg-[#F8F9FB] px-4 py-1.5 text-xs font-bold text-[#141F33]">
+            <span className="h-2 w-2 rounded-full  animate-pulse" />
             {t(dashboardContent.live)}
           </div>
         </div>

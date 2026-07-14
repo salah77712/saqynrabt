@@ -41,8 +41,8 @@ export default function WorkflowsPage() {
     <main id="main-content" className="p-6 space-y-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-black text-[#141F33] dark:text-white">{t({en: 'Workflow Builder', ar: 'لوحة أتمتة سير العمل'})}</h1>
-          <p className="text-xs text-[#141F33]">{t({en: 'Design routing for calls, chats, and escalations.', ar: 'تصميم منطق التوجيه للهاتف والمحادثة والتصعيد.'})}</p>
+          <h1 className="text-2xl font-black text-[#141F33]">{t({en: 'Workflow Builder', ar: 'لوحة أتمتة سير العمل'})}</h1>
+          <p className="text-xs text-[#141F33] font-bold">{t({en: 'Design routing for calls, chats, and escalations.', ar: 'تصميم منطق التوجيه للهاتف والمحادثة والتصعيد.'})}</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ قرار'})}</Button>
@@ -50,18 +50,18 @@ export default function WorkflowsPage() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center gap-6 py-12 bg-slate-50 dark:bg-slate-800 rounded-2xl border border-gray-100 dark:border-gray-700 min-h-[400px]">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-6 py-12 bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 min-h-[400px]">
         {nodes.map((node, index) => (
           <React.Fragment key={node.id}>
             <Card className="w-64 relative border-royal/35 border-2">
               <Badge variant={node.type === 'trigger' ? 'success' : node.type === 'condition' ? 'warning' : 'primary'} className="mb-2">
                 {node.type.toUpperCase()}
               </Badge>
-              <h4 className="font-bold text-navy dark:text-white text-sm">{node.label}</h4>
-              <p className="text-[10px] text-slate-500 mt-1">{node.desc}</p>
+              <h4 className="font-bold text-navy text-sm">{node.label}</h4>
+              <p className="text-[10px] text-[#141F33]">{node.desc}</p>
             </Card>
             {index < nodes.length - 1 && (
-              <ArrowRight className="w-6 h-6 text-slate-400 rotate-90 md:rotate-0" />
+              <ArrowRight className="w-6 h-6 text-[#141F33] rotate-90 md:rotate-0" />
             )}
           </React.Fragment>
         ))}

@@ -55,14 +55,14 @@ return (
 <main id="main-content" className="p-6 space-y-6">
 <div className="mb-6">
 <h1 className="text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Reports', ar: 'تقارير التحليلات المخصصة'})}</h1>
-<p className="text-xs text-slate-500 font-bold">{t({en: 'Download logs, usage stats, and chat transcripts.', ar: 'تجميع سجلات العمليات وإحصائيات المستخدمين وتتبعات المعرفة.'})}</p>
+<p className="text-xs text-[#141F33] font-bold">{t({en: 'Download logs, usage stats, and chat transcripts.', ar: 'تجميع سجلات العمليات وإحصائيات المستخدمين وتتبعات المعرفة.'})}</p>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
 <Card className="flex flex-col justify-between">
 <div>
 <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'Executive Audit PDF', ar: 'تقرير التدقيق التنفيذي PDF'})}</h3>
-<p className="text-xs text-slate-500 mt-2 leading-relaxed">
+<p className="text-xs text-[#141F33] mt-2 leading-relaxed">
 {t({en: 'Generate a formal operations PDF including current workspace metrics and redacting PII details.', ar: 'إنشاء PDF رسمي للعمليات يتضمن مقاييس مساحة العمل الحالية مع إخفاء تفاصيل المعلومات الشخصية.'})}
 </p>
 </div>
@@ -74,7 +74,7 @@ return (
 <Card className="flex flex-col justify-between">
 <div>
 <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'Chat History CSV', ar: 'سجل المحادثات CSV'})}</h3>
-<p className="text-xs text-slate-500 mt-2 leading-relaxed">
+<p className="text-xs text-[#141F33] mt-2 leading-relaxed">
 {t({en: 'Export RAG assistant transcripts to CSV formats for offline review.', ar: 'تصدير نصوص مساعد RAG الشاملة بتنسيق CSV مناسب للمراجعة المحلية.'})}
 </p>
 </div>
@@ -86,7 +86,7 @@ return (
 <Card className="flex flex-col justify-between">
 <div>
 <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'Usage Ledger Excel', ar: 'دفتر الاستخدام Excel'})}</h3>
-<p className="text-xs text-slate-500 mt-2 leading-relaxed">
+<p className="text-xs text-[#141F33] mt-2 leading-relaxed">
 {t({en: 'Download monthly allocation files detailing voice minute calls and document uploads.', ar: 'تنزيل ملفات التخصيص الشهرية التي توضح دقائق المكالمات الصوتية ورفع المستندات.'})}
 </p>
 </div>

@@ -48,7 +48,7 @@ return (
 
 {cta && (
 <div className="mt-10">
-<a href={cta.href} className="inline-flex rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-white hover:opacity-90">
+<a href={cta.href} className="inline-flex rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90">
 {t(cta.label)}
 </a>
 </div>

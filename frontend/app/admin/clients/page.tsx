@@ -43,7 +43,7 @@ export default function AdminClientsPage() {
 
       {/* Clients list */}
       <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
-        <div className="divide-y divide-gray-100">
+        <div className="divide-y divide-[#141F33]/10">
           {clients.map((c) => (
             <div key={c.id} className="py-4 flex justify-between items-center gap-4 first:pt-0 last:pb-0">
               <div>

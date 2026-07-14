@@ -45,7 +45,7 @@ isPopular && 'ring-2 ring-[#2A5CFF] shadow-lg scale-[1.02] z-10'
 style={{ animationDelay: `${i * 0.1}s` }}
 >
 {isPopular && (
-<span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2A5CFF] text-white text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
+<span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2A5CFF] text-[#F8F9FB] text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
 {t({ en: 'Popular', ar: 'الأكثر طلباً' })}
 </span>
 )}
@@ -101,7 +101,7 @@ className="w-full border border-[#141F33]/10 bg-[#F8F9FB] text-[#141F33] py-3.5 
 {isAr ? tier.ctaAr : tier.cta}
 </Link>
 ) : isPopular ? (
-<RainbowButton asChild className="w-full py-3.5 text-white">
+<RainbowButton asChild className="w-full py-3.5 text-[#F8F9FB]">
 <a
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
@@ -115,7 +115,7 @@ rel="noopener noreferrer"
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="w-full bg-[#141F33] text-white py-3.5 rounded-xl font-bold text-sm transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-lg active:scale-95 text-center block"
+className="w-full bg-[#141F33] text-[#F8F9FB] py-3.5 rounded-xl font-bold text-sm transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-lg active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </a>

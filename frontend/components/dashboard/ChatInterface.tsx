@@ -12,7 +12,7 @@ interface Message {
 
 export function ChatInterface() {
   const [list, setList] = useState<Message[]>([
-    { id: '1', sender: 'assistant', text: 'Hi, I\'m your team assistant. Ask me anything from your documents.' },
+    { id: '1', sender: 'assistant', text: "Hi, I'm your team assistant. Ask me anything from your documents." },
   ]);
   const [query, setQuery] = useState('');
   const [typing, setTyping] = useState(false);
@@ -34,14 +34,14 @@ export function ChatInterface() {
       const assistantMsg: Message = {
         id: (Date.now() + 1).toString(),
         sender: 'assistant',
-        text: 'Here\'s what I found in your documents.',
+        text: "Here's what I found in your documents.",
       };
       setList((prev) => [...prev, assistantMsg]);
     }, 1200);
   };
 
   return (
-    <div className="flex flex-col h-[500px] border border-gray-100 dark:border-slate-800 rounded-2xl bg-white dark:bg-slate-900 shadow-sm overflow-hidden">
+    <div className="flex flex-col h-[500px] border border-[#F8F9FB] dark:border-[#141F33] rounded-2xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm overflow-hidden">
       {/* List */}
       <div className="flex-1 overflow-y-auto p-6 space-y-4">
         {list.map((msg) => (
@@ -52,8 +52,8 @@ export function ChatInterface() {
             <div
               className={`max-w-[75%] rounded-2xl p-4 text-xs font-semibold leading-relaxed ${
                 msg.sender === 'user'
-                  ? 'bg-slate-100 dark:bg-slate-800 text-navy dark:text-white rounded-tr-none'
-                  : 'bg-white dark:bg-slate-900 border border-gray-100 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-tl-none'
+                  ? 'bg-[#141F33] dark:bg-[#2A5CFF] text-[#F8F9FB] rounded-tr-none'
+                  : 'bg-[#F8F9FB] dark:bg-[#141F33] border border-[#F8F9FB] dark:border-[#141F33] text-[#141F33] dark:text-[#F8F9FB] rounded-tl-none'
               }`}
             >
               {msg.text}
@@ -63,7 +63,7 @@ export function ChatInterface() {
 
         {typing && (
           <div className="flex justify-start">
-            <div className="rounded-2xl rounded-tl-none p-4 border border-gray-100 bg-white text-xs text-slate-400 font-semibold">
+            <div className="rounded-2xl rounded-tl-none p-4 border border-[#F8F9FB] bg-[#F8F9FB] text-xs text-[#141F33] font-semibold">
               <span className="inline-flex items-center gap-1">
                 {[0, 160, 320].map((delay) => (
                   <span
@@ -80,7 +80,7 @@ export function ChatInterface() {
       </div>
 
       {/* Input */}
-      <div className="border-t border-gray-50 dark:border-slate-800 p-4 flex gap-2 bg-slate-50/50 dark:bg-slate-800/20">
+      <div className="border-t border-[#F8F9FB] dark:border-[#141F33] p-4 flex gap-2 bg-[#F8F9FB] dark:bg-[#141F33]">
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}
@@ -96,4 +96,5 @@ export function ChatInterface() {
     </div>
   );
 }
+
 export default ChatInterface;

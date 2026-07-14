@@ -102,7 +102,7 @@ export default function ABTestingSettingsPage() {
       <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
         <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Evaluation History & Results', ar: 'سجل التقييم والنتائج' })}</h3>
 
-        <div className="divide-y divide-gray-100">
+        <div className="divide-y divide-[#141F33]/10">
           {history.map((h) => (
             <div key={h.id} className="py-3 first:pt-0 last:pb-0 space-y-1.5">
               <div className="flex justify-between text-xs font-extrabold text-[#141F33]">

@@ -1,14 +1,14 @@
 export const colors = {
   background: '#F8F9FB',
-  white: '#FFFFFF',
+  white: '#F8F9FB',
   navy: '#141F33',
   royal: '#2A5CFF',
-  success: '#10B981',
-  textPrimary: '#1A202C',
-  textSecondary: '#718096',
-  border: '#E2E8F0',
-  error: '#EF4444',
-  lightGray: '#F1F5F9',
+  success: '#2A5CFF',
+  textPrimary: '#141F33',
+  textSecondary: '#141F33',
+  border: '#F8F9FB',
+  error: '#141F33',
+  lightGray: '#F8F9FB',
 };
 
 export const typography = {

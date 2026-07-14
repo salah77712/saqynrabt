@@ -62,7 +62,7 @@ Keyboard Shortcuts Console
 value={search}
 onChange={(e) => setSearch(e.target.value)}
 placeholder="Type to search shortcuts..."
-className="w-full bg-[#F8F9FB] border-0 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-[#141F33] focus:bg-white mb-4 text-[#141F33]"
+className="w-full bg-[#F8F9FB] border-0 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-[#141F33] focus:bg-[#F8F9FB] mb-4 text-[#141F33]"
 />
 
 <div className="space-y-2">

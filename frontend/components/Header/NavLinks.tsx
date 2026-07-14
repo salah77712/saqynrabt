@@ -24,8 +24,8 @@ export function NavLinks({ navItems }: NavLinksProps) {
           href={item.href}
           className={`text-sm font-semibold transition-colors relative py-1 rounded-md px-3 ${
             isActive(item.href)
-              ? 'text-navy dark:text-white bg-slate-100/50 dark:bg-slate-800/50'
-              : 'text-gray-600 dark:text-slate-400 hover:text-navy dark:hover:text-white'
+? 'text-[#141F33] dark:text-[#F8F9FB] bg-[#F8F9FB] dark:bg-[#141F33]/50'
+: 'text-[#141F33] dark:text-[#141F33] hover:text-[#141F33] dark:hover:text-[#F8F9FB]'
           }`}
         >
           {t(item.en, item.ar)}

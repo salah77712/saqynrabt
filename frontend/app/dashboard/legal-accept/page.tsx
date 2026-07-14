@@ -107,7 +107,7 @@ return (
 <h1 className="mt-4 text-xl font-bold text-[#141F33]">
 {t({ en: 'All Legal Terms Accepted', ar: 'تم قبول جميع الشروط القانونية' })}
 </h1>
-<p className="mt-2 text-sm text-[#718096]">
+<p className="mt-2 text-sm text-[#141F33]">
 {t({
 en: 'Redirecting you to the dashboard...',
 ar: 'جاري إعادة توجيهك إلى لوحة التحكم...',
@@ -134,7 +134,7 @@ return (
 <h1 className="text-lg font-bold text-[#141F33]">
 {t({ en: 'Acceptance of Legal Terms', ar: 'قبول الشروط القانونية' })}
 </h1>
-<p className="text-xs text-[#718096]">
+<p className="text-xs text-[#141F33]">
 {t({
 en: 'Under Qatari Law No. 8 of 2019, you must accept these terms to continue.',
 ar: 'بموجب قانون قطر رقم 8 لسنة 2019، يجب عليك قبول هذه الشروط للمتابعة.',
@@ -156,7 +156,7 @@ className="mt-0.5 accent-[#141F33]"
 <p className="text-sm font-bold text-[#141F33]">
 {t({ en: 'Terms of Service', ar: 'شروط الخدمة' })}
 </p>
-<p className="text-xs text-[#718096] mt-1">
+<p className="text-xs text-[#141F33] mt-1">
 {t({
 en: 'I have read and agree to the Terms of Service.',
 ar: 'لقد قرأت وأوافق على شروط الخدمة.',
@@ -185,7 +185,7 @@ className="mt-0.5 accent-[#141F33]"
 <p className="text-sm font-bold text-[#141F33]">
 {t({ en: 'Data Processing Agreement (DPA)', ar: 'اتفاقية معالجة البيانات' })}
 </p>
-<p className="text-xs text-[#718096] mt-1">
+<p className="text-xs text-[#141F33] mt-1">
 {t({
 en: 'I have read and agree to the Data Processing Agreement.',
 ar: 'لقد قرأت وأوافق على اتفاقية معالجة البيانات.',
@@ -214,7 +214,7 @@ className="text-xs font-bold text-[#2A5CFF] hover:underline mt-1 inline-block"
 type="button"
 onClick={handleAccept}
 disabled={!tosChecked || !dpaChecked || submitting}
-className="mt-6 w-full min-h-[48px] rounded-xl bg-[#141F33] text-white text-sm font-bold hover:bg-[#141F33]/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+className="mt-6 w-full min-h-[48px] rounded-xl bg-[#141F33] text-[#F8F9FB] text-sm font-bold hover:bg-[#141F33]/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
 >
 {submitting ? (
 <>
@@ -226,7 +226,7 @@ t({ en: 'Accept & Continue', ar: 'قبول والمتابعة' })
 )}
 </button>
 
-<p className="mt-3 text-xs text-[#718096] text-center">
+<p className="mt-3 text-xs text-[#141F33] text-center">
 {t({
 en: 'By clicking "Accept & Continue", you electronically sign these documents. Your acceptance is recorded with your IP address and user agent for audit purposes.',
 ar: 'بالنقر على "قبول والمتابعة"، فإنك توقع إلكترونياً على هذه المستندات. يتم تسجيل قبولك مع عنوان IP الخاص بك ووكيل المستخدم لأغراض التدقيق.',

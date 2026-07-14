@@ -44,7 +44,7 @@ export default function SSOPage() {
               type="checkbox"
               checked={samlEnabled}
               onChange={(e) => setSamlEnabled(e.target.checked)}
-              className="h-4 w-4 rounded border-gray-300 text-royal focus:ring-royal"
+              className="h-4 w-4 rounded border-[#141F33]/20 text-royal focus:ring-royal"
             />
           </div>
 

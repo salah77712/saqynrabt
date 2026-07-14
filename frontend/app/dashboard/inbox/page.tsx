@@ -51,7 +51,7 @@ return (
 {/* Header */}
 <div>
 <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Inbox', ar: 'صندوق البريد الموحد للقنوات' })}</h1>
-<p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'WhatsApp, SMS, web chat, and email — all in one place.', ar: 'تجميع رسائل العملاء من الواتساب، الرسائل النصية، المحادثات، والبريد الإلكتروني.' })}</p>
+<p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'WhatsApp, SMS, web chat, and email — all in one place.', ar: 'تجميع رسائل العملاء من الواتساب، الرسائل النصية، المحادثات، والبريد الإلكتروني.' })}</p>
 </div>
 
 {error && (
@@ -68,8 +68,8 @@ key={ch}
 onClick={() => setFilterChannel(ch)}
 className={`px-4 py-2 rounded-xl border transition-all ${
 filterChannel === ch
-? 'bg-[#141F33] border-[#141F33] text-white'
-: 'bg-[#F8F9FB] border-[#141F33]/10 text-slate-600 hover:bg-[#141F33]/5'
+? 'bg-[#141F33] border-[#141F33] text-[#F8F9FB]'
+: 'bg-[#F8F9FB] border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5'
 }`}
 >
 {ch}
@@ -98,7 +98,7 @@ filterChannel === ch
 {msg.channel}
 </span>
 </div>
-<p className="text-xs text-slate-500 font-semibold mt-1 leading-normal">{msg.body}</p>
+<p className="text-xs text-[#141F33] font-semibold mt-1 leading-normal">{msg.body}</p>
 </div>
 <span className="text-[10px] text-[#141F33] font-bold shrink-0">{new Date(msg.timestamp).toLocaleTimeString()}</span>
 </div>

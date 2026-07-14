@@ -18,24 +18,24 @@ export function DashboardMobileHeader({ isSidebarOpen, onToggleSidebar }: Dashbo
   };
 
   return (
-    <header className="flex h-14 w-full items-center justify-between border-b border-gray-200 bg-white px-4 md:hidden sticky top-0 z-30 shadow-sm shrink-0"
+    <header className="flex h-14 w-full items-center justify-between border-b border-[#F8F9FB] bg-[#F8F9FB] px-4 md:hidden sticky top-0 z-30 shadow-sm shrink-0"
       style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}>
       <Link href="/" className="flex items-center gap-2 min-h-[44px]">
-        <div className="w-7 h-7 bg-[#141F33] rounded-md flex items-center justify-center text-white font-bold text-xs">
+        <div className="w-7 h-7 bg-[#141F33] rounded-md flex items-center justify-center text-[#F8F9FB] font-bold text-xs">
           S
         </div>
         <span className="text-[#141F33] font-extrabold text-sm tracking-tight">SAQYN</span>
       </Link>
       <div className="flex items-center gap-2">
-        <div className="flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[8px] font-bold text-emerald-700">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        <div className="flex items-center gap-1.5 rounded-full border border-[#141F33]/20 bg-[#F8F9FB] px-2.5 py-1 text-[8px] font-bold text-[#141F33]">
+          <span className="h-1.5 w-1.5 rounded-full bg-[#2A5CFF] animate-pulse" />
           {t(dashboardContent.live)}
         </div>
         <button
           type="button"
           onClick={onToggleSidebar}
           aria-label={isSidebarOpen ? 'Close sidebar menu' : 'Open sidebar menu'}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-gray-200 text-[#141F33] min-h-[44px] min-w-[44px]"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#141F33]/10 text-[#141F33] min-h-[44px] min-w-[44px]"
         >
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.5 5H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -47,4 +47,5 @@ export function DashboardMobileHeader({ isSidebarOpen, onToggleSidebar }: Dashbo
     </header>
   );
 }
+
 export default DashboardMobileHeader;

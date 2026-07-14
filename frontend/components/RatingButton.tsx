@@ -83,7 +83,7 @@ placeholder={t({ en: 'E.g. Out of date policy...', ar: 'مثال: سياسة ق�
 <div className="flex gap-2 justify-end">
 <button
 onClick={() => submitFeedback(rating || 1, comment || 'No comment provided')}
-className="bg-[#141F33] text-white px-3 py-1 rounded-lg hover:opacity-95"
+className="bg-[#141F33] text-[#F8F9FB] px-3 py-1 rounded-lg hover:opacity-95"
 >
 {t({ en: 'Submit', ar: 'إرسال' })}
 </button>
