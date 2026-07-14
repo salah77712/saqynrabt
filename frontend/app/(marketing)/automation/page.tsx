@@ -196,7 +196,7 @@ export default function AutomationPage() {
             >
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </button>
-            <Link href="/#pricing" className="btn-secondary text-sm px-8 py-4">
+            <Link href="#pricing" className="btn-secondary text-sm px-8 py-4">
               {t({ en: 'View Pricing', ar: 'عرض الأسعار' })}
             </Link>
           </div>
@@ -258,7 +258,7 @@ export default function AutomationPage() {
       </section>
 
       {/* Pricing */}
-      <section className="py-20 md:py-28 bg-[#F8F9FB]">
+      <section id="pricing" className="py-20 md:py-28 bg-[#F8F9FB]">
         <div className="max-w-5xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-14">
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-3">

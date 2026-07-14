@@ -35,24 +35,6 @@ const OTHER_INDUSTRIES = industries.filter(i =>
   ['towing', 'veterinary', 'plumbing', 'boutiquehotel', 'catering', 'dealership', 'construction', 'law', 'accounting'].includes(i.id)
 );
 
-const automationTiers = [
-  { id: 'auto-starter', title: 'Starter', subtitle: 'For small front desks.', price: '1,499', setup: '1,999', popular: false, features: ['Basic call answering', '500 text requests/mo', '250 voice mins/mo', '1 department routing', 'Standard support'] },
-  { id: 'auto-growth',  title: 'Growth',  subtitle: 'For growing operations.', price: '2,499', setup: '3,499', popular: true,  features: ['Advanced call answering', '2,000 text requests/mo', '700 voice mins/mo', '3 dept routing', 'Complaint routing', 'Weekly report'] },
-  { id: 'auto-pro',    title: 'Professional', subtitle: 'For multi-department teams.', price: '4,499', setup: '5,999', popular: false, features: ['Advanced call answering', '5,000 text requests/mo', '1,500 voice mins/mo', '8 dept routing', 'Manager alerts', 'Priority support', '2 languages'] },
-];
-
-const chatbotTiers = [
-  { id: 'chat-starter',     title: 'Starter',    subtitle: 'Up to 50 employees.',   price: '2,999',  setup: '4,999', popular: false, cta: 'Get Chatbot' },
-  { id: 'chat-growth',      title: 'Growth',     subtitle: 'Up to 150 employees.',  price: '4,999',  setup: '6,999', popular: true,  cta: 'Get Chatbot' },
-  { id: 'chat-enterprise',  title: 'Enterprise', subtitle: '151+ employees.',        price: 'Custom', setup: 'Custom', popular: false, cta: 'Contact Sales' },
-];
-
-const chatbotFeatures: Record<string, string[]> = {
-  'chat-starter':    ['Private RAG AI', '2,000 questions/mo', '50 employees', '2 doc updates/mo', 'HR, SOP & Vacation rules'],
-  'chat-growth':     ['Private RAG AI', '5,000 questions/mo', '150 employees', '10 doc updates/mo', 'Advanced role training', '2 languages'],
-  'chat-enterprise': ['Unlimited employees', 'Unlimited questions', 'Unlimited documents', 'Dedicated knowledge base', 'Custom branding'],
-};
-
 const testimonials = [
   { quote: 'Setup took one call. We went from 12 missed calls a day to zero in 48 hours.', name: 'Operations Director', org: 'Boutique Hotel Group' },
   { quote: 'Our front desk used to spend 3 hours a day answering the same questions. Now the chatbot handles it all.', name: 'HR Manager', org: 'Al Wakra Medical Group' },
@@ -63,8 +45,6 @@ export default function MarketingPage() {
   const [activeIndustry, setActiveIndustry] = useState('default');
   const [activeProduct, setActiveProduct] = useState<'automation' | 'chatbot'>('automation');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedPlanName, setSelectedPlanName] = useState('');
-  const [isCustomModal, setIsCustomModal] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale } = useLocale();
@@ -93,15 +73,7 @@ export default function MarketingPage() {
       .catch(err => console.warn('Pre-warming ping bypassed:', err.message));
   }, []);
 
-  const openPlanModal = (planName: string) => {
-    setSelectedPlanName(planName);
-    setIsCustomModal(false);
-    setIsModalOpen(true);
-  };
-
   const openCustomModal = () => {
-    setSelectedPlanName('Custom Solution');
-    setIsCustomModal(true);
     setIsModalOpen(true);
   };
 
@@ -398,153 +370,89 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* ── Pricing Section ─────────────────────────────────── */}
-      <section ref={pricingRef} id="pricing" className={`py-24 lg:py-32 bg-white animate-reveal ${pricingVisible ? 'revealed' : ''}`}>
+      {/* ── Product Deep-Dive CTA ─────────────────────────── */}
+      <section ref={pricingRef} className={`py-24 lg:py-32 bg-white animate-reveal ${pricingVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          
           <div className="text-center mb-16 animate-fadeIn">
             <h2 className="text-4xl lg:text-5xl font-extrabold text-[#141F33] mb-4">
-              {t({ en: 'Simple pricing for every business.', ar: 'أسعار بسيطة لكل الأعمال.' })}
+              {t({ en: 'Explore our full product suite.', ar: 'استكشف مجموعة منتجاتنا الكاملة.' })}
             </h2>
-            <p className="text-base lg:text-lg text-[#10B981] font-semibold">
-              {t({ en: 'Fixed monthly price. No surprise bills. Overages only if you turn them on.', ar: 'سعر شهري ثابت. لا فواتير مفاجئة. الاستخدام الزائد فقط إذا فعّلته.' })}
+            <p className="text-base lg:text-lg text-[#718096] font-medium max-w-2xl mx-auto">
+              {t({ en: 'Two powerful AI solutions designed for your business operations.', ar: 'حلّان ذكيان قويان مصممان لعمليات عملك.' })}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-            
-            {/* Left Column: Automation */}
-            <div className="flex flex-col gap-8">
-              
-              <div className="border-b-2 border-[#3B5B9B]/30 pb-4 mb-2">
-                <h3 className="text-lg font-extrabold text-[#141F33] tracking-wider uppercase flex items-center gap-3">
-                  <SparklesIcon className="w-5 h-5" /> {t({ en: 'BUSINESS AUTOMATION', ar: 'أتمتة الأعمال' })}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Automation Card */}
+            <div className="relative bg-gradient-to-br from-[#F8F9FB] to-white border border-gray-200 rounded-3xl p-8 shadow-sm card-hover group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#3B5B9B]/5 rounded-bl-[100px] rounded-tr-3xl" />
+              <div className="relative">
+                <div className="w-12 h-12 bg-[#141F33] rounded-xl flex items-center justify-center mb-5">
+                  <SparklesIcon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
+                  {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
                 </h3>
-                <p className="text-xs text-[#718096] font-medium mt-1">
-                  {t({ en: 'Handle incoming calls, bookings & guest complaints 24/7.', ar: 'إدارة المكالمات الواردة، الحجوزات وشكاوى النزلاء على مدار الساعة.' })}
+                <p className="text-sm text-[#718096] font-medium leading-relaxed mb-6">
+                  {t({ en: 'Your 24/7 AI front-desk that handles incoming calls, WhatsApp messages, SMS, and web chat — routes every request to the right department automatically.', ar: 'مكتب استقبال ذكاء اصطناعي 24/7 يتعامل مع المكالمات الواردة وواتساب والرسائل النصية والدردشة الإلكترونية — يوجه كل طلب إلى القسم المناسب تلقائياً.' })}
                 </p>
+                <ul className="space-y-2 mb-8">
+                  {[
+                    { en: 'Call answering & routing 24/7', ar: 'الرد على المكالمات والتوجيه 24/7' },
+                    { en: 'WhatsApp, SMS & web chat parsing', ar: 'تحليل واتساب والرسائل النصية والدردشة' },
+                    { en: 'Booking & complaint management', ar: 'إدارة الحجوزات والشكاوى' },
+                    { en: 'Multi-language (Arabic & English)', ar: 'متعدد اللغات (العربية والإنجليزية)' },
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
+                      <CheckIcon className="w-4 h-4 text-emerald-500 shrink-0" />
+                      {t(item)}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/automation"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-[#141F33] text-white font-bold text-sm py-4 transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95"
+                >
+                  {t({ en: 'Explore Automation →', ar: 'استكشف الأتمتة ←' })}
+                </Link>
               </div>
-
-              <div className="flex flex-col gap-6">
-                {automationTiers.map((tier, i) => (
-                  <div
-                    key={tier.id}
-                    className="relative bg-white border border-gray-200/80 rounded-2xl p-8 shadow-sm card-hover animate-slideUp"
-                    style={{ animationDelay: `${i * 0.08}s` }}
-                  >
-                    {tier.popular && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-extrabold tracking-widest px-4 py-1 rounded-full uppercase shadow-sm">
-                        {t({ en: 'POPULAR', ar: 'شائع' })}
-                      </span>
-                    )}
-
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h4 className="text-xl font-extrabold text-[#141F33]">{tier.title}</h4>
-                        <p className="text-xs text-[#718096] font-medium mt-1">{tier.subtitle}</p>
-                      </div>
-                      <div className="text-right shrink-0">
-                        <div>
-                          <span className="text-3xl font-extrabold text-[#141F33]">{tier.price}</span>
-                          <span className="text-xs font-bold text-[#718096] mr-1">QAR/mo</span>
-                        </div>
-                        <p className="text-[#10B981] font-semibold text-xs mt-1">
-                          + {tier.setup} QAR {t({ en: 'setup fee', ar: 'رسوم تأسيس' })}
-                        </p>
-                      </div>
-                    </div>
-
-                    <ul className="mt-6 flex flex-col gap-2.5 border-t border-gray-100 pt-6">
-                      {tier.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-2.5 text-xs font-semibold text-slate-600">
-                          <CheckIcon className="w-3.5 h-3.5 text-emerald-500 shrink-0" /> {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <button
-                      type="button"
-                      onClick={() => openPlanModal(`Automation - ${tier.title}`)}
-                      className="btn-primary mt-8 w-full py-4"
-                    >
-                      {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
-                    </button>
-                  </div>
-                ))}
-              </div>
-
             </div>
 
-            {/* Right Column: Chatbot */}
-            <div className="flex flex-col gap-8">
-
-              <div className="border-b-2 border-[#10B981]/30 pb-4 mb-2">
-                <h3 className="text-lg font-extrabold text-[#141F33] tracking-wider uppercase flex items-center gap-3">
-                  <BoltIcon className="w-5 h-5" /> {t({ en: 'INTERNAL CHATBOT', ar: 'المساعد الذكي الداخلي' })}
+            {/* Chatbot Card */}
+            <div className="relative bg-gradient-to-br from-[#F8F9FB] to-white border border-gray-200 rounded-3xl p-8 shadow-sm card-hover group">
+              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-500/5 rounded-bl-[100px] rounded-tr-3xl" />
+              <div className="relative">
+                <div className="w-12 h-12 bg-emerald-600 rounded-xl flex items-center justify-center mb-5">
+                  <BoltIcon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
+                  {t({ en: 'Internal Chatbot', ar: 'المساعد الذكي الداخلي' })}
                 </h3>
-                <p className="text-xs text-[#718096] font-medium mt-1">
-                  {t({ en: 'Private RAG-powered assistant for HR, manuals, policies & SOPs.', ar: 'مساعد RAG خاص وموثوق لأدلة الموارد البشرية والسياسات وإجراءات التشغيل.' })}
+                <p className="text-sm text-[#718096] font-medium leading-relaxed mb-6">
+                  {t({ en: 'A private RAG-powered AI trained on your HR policies, SOPs, and onboarding documents. Your team gets instant, verified answers.', ar: 'ذكاء اصطناعي خاص بتقنية RAG مدرب على سياسات الموارد البشرية وإجراءات التشغيل ومستندات التوظيف. فريقك يحصل على إجابات فورية وموثوقة.' })}
                 </p>
+                <ul className="space-y-2 mb-8">
+                  {[
+                    { en: 'Private RAG on your documents', ar: 'RAG خاص على مستنداتك' },
+                    { en: 'HR, SOP & policy Q&A', ar: 'أسئلة وأجوبة الموارد البشرية والسياسات' },
+                    { en: 'Employee role-based access', ar: 'وصول قائم على أدوار الموظفين' },
+                    { en: 'Knowledge gap tracking', ar: 'تتبع الفجوات المعرفية' },
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
+                      <CheckIcon className="w-4 h-4 text-emerald-500 shrink-0" />
+                      {t(item)}
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/chatbot"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-emerald-600 text-white font-bold text-sm py-4 transition-all hover:scale-[1.02] hover:shadow-lg active:scale-95"
+                >
+                  {t({ en: 'Explore Chatbot →', ar: 'استكشف المساعد الذكي ←' })}
+                </Link>
               </div>
-
-              <div className="flex flex-col gap-6">
-                {chatbotTiers.map((tier, i) => (
-                  <div
-                    key={tier.id}
-                    className="relative bg-white border border-gray-200/80 rounded-2xl p-8 shadow-sm card-hover animate-slideUp"
-                    style={{ animationDelay: `${i * 0.08}s` }}
-                  >
-                    {tier.popular && (
-                      <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#10B981] text-white text-[10px] font-extrabold tracking-widest px-4 py-1 rounded-full uppercase shadow-sm">
-                        {t({ en: 'POPULAR', ar: 'شائع' })}
-                      </span>
-                    )}
-
-                    <div className="flex items-start justify-between gap-4">
-                      <div>
-                        <h4 className="text-xl font-extrabold text-[#141F33]">{tier.title}</h4>
-                        <p className="text-xs text-[#718096] font-medium mt-1">{tier.subtitle}</p>
-                      </div>
-                      <div className="text-right shrink-0">
-                        <div>
-                          {tier.price !== 'Custom' ? (
-                            <>
-                              <span className="text-3xl font-extrabold text-[#141F33]">{tier.price}</span>
-                              <span className="text-xs font-bold text-[#718096] mr-1">QAR/mo</span>
-                            </>
-                          ) : (
-                            <span className="text-2xl font-extrabold text-[#141F33]">{t({ en: 'Custom', ar: 'مخصص' })}</span>
-                          )}
-                        </div>
-                        <p className="text-[#10B981] font-semibold text-xs mt-1">
-                          {tier.setup !== 'Custom' ? `+ ${tier.setup} QAR ` + t({ en: 'setup fee', ar: 'رسوم تأسيس' }) : t({ en: 'Custom setup', ar: 'تأسيس مخصص' })}
-                        </p>
-                      </div>
-                    </div>
-
-                    <ul className="mt-6 flex flex-col gap-2.5 border-t border-gray-100 pt-6">
-                      {(chatbotFeatures[tier.id] || []).map((feature, idx) => (
-                        <li key={idx} className="flex items-center gap-2.5 text-xs font-semibold text-slate-600">
-                          <CheckIcon className="w-3.5 h-3.5 text-emerald-500 shrink-0" /> {feature}
-                        </li>
-                      ))}
-                    </ul>
-
-                    <button
-                      type="button"
-                      onClick={() => openPlanModal(`Chatbot - ${tier.title}`)}
-                      className="btn-primary mt-8 w-full py-4"
-                    >
-                      {tier.cta === 'Contact Sales' ? t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' }) : t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
-                    </button>
-                  </div>
-                ))}
-              </div>
-
             </div>
-
           </div>
-
         </div>
       </section>
 
@@ -578,19 +486,14 @@ export default function MarketingPage() {
           <div className="bg-white border border-gray-200 rounded-2xl max-w-md w-full p-8 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             
             <h3 className="text-xl font-extrabold text-[#141F33] mb-3">
-              {isCustomModal ? t({ en: 'Request a consultation', ar: 'طلب استشارة' }) : `${t({ en: 'Get started with', ar: 'ابدأ مع' })} ${selectedPlanName}`}
+              {t({ en: 'Request a consultation', ar: 'طلب استشارة' })}
             </h3>
             
             <p className="text-sm font-semibold text-[#718096] mb-8 leading-relaxed">
-              {isCustomModal
-                ? t({
-                    en: 'Tell us about your business operations. A 15-minute consultation is all we need to draw up a customized integration plan.',
-                    ar: 'أخبرنا عن عمليات عملك. كل ما نحتاجه هو استشارة مدتها 15 دقيقة.'
-                  })
-                : t({
-                    en: 'Pick a time that works for you and we\'ll walk you through the setup.',
-                    ar: 'اختر وقتاً يناسبك وسنرشدك خلال عملية الإعداد.'
-                  })}
+              {t({
+                en: 'Tell us about your business operations. A 15-minute consultation is all we need to draw up a customized integration plan.',
+                ar: 'أخبرنا عن عمليات عملك. كل ما نحتاجه هو استشارة مدتها 15 دقيقة.'
+              })}
             </p>
 
             <div className="flex flex-col gap-3">

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UserButton, useAuth } from '@clerk/nextjs';
@@ -11,7 +11,25 @@ export function Header() {
   const pathname = usePathname();
   const { locale, setLocale } = useLocale();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const { isSignedIn } = useAuth();
+
+  useEffect(() => {
+    let lastScrollY = window.scrollY;
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 10) {
+        setIsHeaderVisible(true);
+      } else if (currentScrollY > lastScrollY) {
+        setIsHeaderVisible(false);
+      } else {
+        setIsHeaderVisible(true);
+      }
+      lastScrollY = currentScrollY;
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const t = (en: string, fr: string, ar: string, hi: string) => {
     if (locale === 'ar') return ar || en;
@@ -33,7 +51,7 @@ export function Header() {
     <header
       role="banner"
       aria-label="Main navigation"
-      className="sticky top-0 z-50 h-14 md:h-16 bg-white border-b border-gray-100 shadow-sm shrink-0"
+      className={`sticky top-0 z-50 h-14 md:h-16 bg-white border-b border-gray-100 shadow-sm shrink-0 transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}
       style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between w-full h-full">
