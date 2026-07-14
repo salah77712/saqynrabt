@@ -31,6 +31,24 @@ const links = [
     ),
   },
   {
+    href: 'https://www.threads.com/@saqynrabt',
+    label: 'Threads',
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+        <path d="M12 2a10 10 0 1 0 10 10H12v-2h8a8 8 0 1 1-8-8c3.2 0 6 1.9 7.2 4.8l-1.9.7A6 6 0 1 0 12 16h8v-2h-6a4 4 0 1 1 4-4v2a2 2 0 0 1-2 2h-2a2 2 0 1 1 2-2z"></path>
+      </svg>
+    ),
+  },
+  {
+    href: 'https://www.tiktok.com/@saqyn.rabt',
+    label: 'TikTok',
+    svg: (
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+        <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+      </svg>
+    ),
+  },
+  {
     href: 'https://www.linkedin.com/company/saqynrabt/',
     label: 'LinkedIn',
     svg: (

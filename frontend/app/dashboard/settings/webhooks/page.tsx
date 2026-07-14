@@ -142,11 +142,11 @@ export default function WebhooksSettingsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Webhooks', ar: 'تكاملات الويب هوك الصادرة' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Send real-time updates to your own systems.', ar: 'تسجيل روابط الويب هوك لاستلام تحديثات فورية حول أحداث مساحة العمل.' })}</p>
+        <p className="text-xs text-[#141F33]/60 font-medium mt-0.5">{t({ en: 'Send real-time updates to your own systems.', ar: 'تسجيل روابط الويب هوك لاستلام تحديثات فورية حول أحداث مساحة العمل.' })}</p>
       </div>
 
       {/* Form Register */}
-      <form onSubmit={handleRegister} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+      <form onSubmit={handleRegister} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
         
         <div>
           <label htmlFor="url" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Destination URL', ar: 'الرابط المستهدف' })}</label>
@@ -156,7 +156,7 @@ export default function WebhooksSettingsPage() {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://api.yourdomain.com/webhook-receiver"
-            className="w-full min-h-[44px] bg-slate-50 border border-gray-200 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
+            className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
             required
           />
         </div>
@@ -165,7 +165,7 @@ export default function WebhooksSettingsPage() {
           <label className="block text-xs font-bold text-[#141F33] mb-3">{t({ en: 'Subscribe to Events', ar: 'الاشتراك في الأحداث' })}</label>
           <div className="grid grid-cols-2 gap-3 text-xs font-semibold">
             {['booking.created', 'complaint.routed', 'chat.answered'].map((event) => (
-              <label key={event} className="flex items-center gap-2 cursor-pointer p-3 border border-slate-100 rounded-xl bg-slate-50 hover:border-[#141F33] transition-colors">
+              <label key={event} className="flex items-center gap-2 cursor-pointer p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] hover:border-[#141F33] transition-colors">
                 <input
                   type="checkbox"
                   checked={selectedEvents.includes(event)}
@@ -189,7 +189,7 @@ export default function WebhooksSettingsPage() {
       </form>
 
       {/* Webhooks List */}
-      <div className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
         <h3 className="text-xs font-extrabold text-[#718096] uppercase tracking-wider mb-4">{t({ en: 'Active Webhook Endpoints', ar: 'روابط الويب هوك النشطة' })}</h3>
 
         {loading ? (

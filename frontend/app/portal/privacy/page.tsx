@@ -36,7 +36,7 @@ export default function PublicPrivacyPortalPage() {
         {/* Header */}
         <div className="text-center">
           <span className="text-xs font-extrabold tracking-widest text-royal uppercase">{t({ en: 'Privacy & Sovereignty', ar: 'الخصوصية وسيادة البيانات' })}</span>
-          <h1 className="text-3xl font-extrabold text-navy dark:text-white tracking-tight mt-2">
+          <h1 className="text-3xl font-extrabold text-navy dark:text-[#141F33] tracking-tight mt-2">
             {t({ en: 'Data Subject Access Request (DSAR)', ar: 'طلب معلومات خصوصية البيانات (DSAR)' })}
           </h1>
           <p className="text-xs font-semibold text-muted mt-2">
@@ -48,7 +48,7 @@ export default function PublicPrivacyPortalPage() {
         <form onSubmit={handleSubmit} className="bg-[#F8F9FB] border-[#141F33]/10 rounded-2xl p-8 shadow-sm space-y-4">
           
           <div>
-            <label htmlFor="email" className="block text-xs font-bold text-navy dark:text-white mb-1.5">{t({ en: 'Your Email Address', ar: 'البريد الإلكتروني الخاص بك' })}</label>
+            <label htmlFor="email" className="block text-xs font-bold text-navy dark:text-[#141F33] mb-1.5">{t({ en: 'Your Email Address', ar: 'البريد الإلكتروني الخاص بك' })}</label>
             <input
               type="email"
               id="email"
@@ -61,7 +61,7 @@ export default function PublicPrivacyPortalPage() {
           </div>
 
           <div>
-            <label htmlFor="type" className="block text-xs font-bold text-navy dark:text-white mb-1.5">{t({ en: 'Request Type', ar: 'نوع الطلب' })}</label>
+            <label htmlFor="type" className="block text-xs font-bold text-navy dark:text-[#141F33] mb-1.5">{t({ en: 'Request Type', ar: 'نوع الطلب' })}</label>
             <select
               id="type"
               value={requestType}
@@ -75,7 +75,7 @@ export default function PublicPrivacyPortalPage() {
           </div>
 
           <div>
-            <label htmlFor="details" className="block text-xs font-bold text-navy dark:text-white mb-1.5">{t({ en: 'Request Scope details', ar: 'تفاصيل نطاق الطلب' })}</label>
+            <label htmlFor="details" className="block text-xs font-bold text-navy dark:text-[#141F33] mb-1.5">{t({ en: 'Request Scope details', ar: 'تفاصيل نطاق الطلب' })}</label>
             <textarea
               id="details"
               value={details}

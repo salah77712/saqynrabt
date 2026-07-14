@@ -37,7 +37,7 @@ export default function PricingPage() {
     <div className="bg-[#F8F9FB] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
-      <section className="bg-gradient-to-b from-slate-50 to-white py-20 md:py-28">
+      <section className="bg-gradient-to-b from-[#F8F9FB] to-[#F8F9FB] py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 text-center">
           <span className="inline-block bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
             {t({ en: 'Pricing', ar: 'الأسعار' })}

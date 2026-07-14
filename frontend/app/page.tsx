@@ -199,7 +199,7 @@ activeProduct === 'chatbot'
                           <div className="w-7 h-7 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
                             {i === 0 ? <Zap className="w-4 h-4 text-[#2A5CFF]" aria-hidden="true" /> : i === 1 ? <MessageSquare className="w-4 h-4 text-[#2A5CFF]" aria-hidden="true" /> : <Mail className="w-4 h-4 text-[#141F33]" aria-hidden="true" />}
                           </div>
-                          <p className="text-xs font-semibold text-slate-700 truncate">{item.label}</p>
+                          <p className="text-xs font-semibold text-[#141F33] truncate">{item.label}</p>
                         </div>
                         <span className={`text-[10px] font-bold shrink-0 ml-2 ${item.color}`}>{item.status}</span>
                       </div>
@@ -212,13 +212,13 @@ activeProduct === 'chatbot'
                   </div>
                 ) : (
                   <div className="flex flex-col gap-2 mt-3">
-                    <div className="self-end bg-[#141F33] text-white text-xs px-3 py-2 rounded-2xl rounded-br-sm max-w-[85%]">
+                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs px-3 py-2 rounded-2xl rounded-br-sm max-w-[85%]">
                       How many vacation days do I have left?
                     </div>
-                    <div className="self-start bg-gray-100 text-gray-700 text-xs px-3 py-2 rounded-2xl rounded-bl-sm max-w-[90%]">
+                    <div className="self-start bg-[#F8F9FB] text-[#141F33] text-xs px-3 py-2 rounded-2xl rounded-bl-sm max-w-[90%]">
                       You have <strong>14 days</strong> remaining this cycle.
                     </div>
-                    <div className="self-end bg-[#141F33] text-white text-xs px-3 py-2 rounded-2xl rounded-br-sm max-w-[85%]">
+                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs px-3 py-2 rounded-2xl rounded-br-sm max-w-[85%]">
                       What&apos;s the SOP for maintenance?
                     </div>
                     <div className="pt-1 text-center">
@@ -236,7 +236,7 @@ activeProduct === 'chatbot'
       </section>
 
       {/* ── Industry Switcher & Social Proof ──────────────── */}
-      <section ref={industryRef} id="industries" className={`bg-gradient-to-b from-[#F8F9FB] via-white to-[#F8F9FB] py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
+      <section ref={industryRef} id="industries" className={`bg-gradient-to-b from-[#F8F9FB] via-[#F8F9FB] to-[#F8F9FB] py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
           
           <p className="text-xs font-extrabold tracking-widest text-[#141F33] uppercase mb-8 text-center animate-fadeIn">
@@ -251,8 +251,8 @@ activeProduct === 'chatbot'
                 onClick={() => setActiveIndustry(ind.id)}
                 className={`min-h-[44px] px-6 py-3 rounded-full border text-sm font-semibold transition-all duration-300 hover:shadow-md hover:scale-[1.05] hover:border-[#141F33] active:scale-95 cursor-pointer ${
                   activeIndustry === ind.id
-                    ? 'bg-[#141F33] text-white border-[#141F33] shadow-md'
-                    : 'bg-[#F8F9FB] text-[#141F33] border-gray-200 shadow-sm hover:shadow-md'
+                    ? 'bg-[#141F33] text-[#F8F9FB] border-[#141F33] shadow-md'
+                    : 'bg-[#F8F9FB] text-[#141F33] border-[#141F33] shadow-sm hover:shadow-md'
                 }`}
               >
                 {ind.label}
@@ -266,7 +266,7 @@ activeProduct === 'chatbot'
               id="other-industries"
               value={OTHER_INDUSTRIES.some(i => i.id === activeIndustry) ? activeIndustry : ''}
               onChange={handleSelectChange}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-gray-200 rounded-xl px-4 py-2 text-slate-600 focus:outline-none focus:ring-2 focus:ring-[#141F33] transition-all appearance-none cursor-pointer text-center text-sm shadow-sm font-semibold"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33] transition-all appearance-none cursor-pointer text-center text-sm shadow-sm font-semibold"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%234B5563' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
                 backgroundPosition: locale === 'ar' ? 'left 1rem center' : 'right 1rem center',
@@ -282,7 +282,7 @@ activeProduct === 'chatbot'
           </div>
 
           {/* Dynamic Headline Panel */}
-          <div className="mt-12 text-center bg-[#F8F9FB] p-8 rounded-2xl border border-gray-100 max-w-3xl w-full animate-slideUp" style={{ animationDelay: '0.2s' }}>
+          <div className="mt-12 text-center bg-[#F8F9FB] p-8 rounded-2xl border border-[#141F33]/10 max-w-3xl w-full animate-slideUp" style={{ animationDelay: '0.2s' }}>
             <span className="text-xs font-extrabold tracking-widest text-[#3B5B9B] uppercase">{currentIndustry.label}</span>
             <h2 className="text-2xl md:text-3xl font-extrabold text-[#141F33] leading-tight mt-3">
               {currentIndustry.headline}
@@ -293,7 +293,7 @@ activeProduct === 'chatbot'
           </div>
 
           {/* Social Proof */}
-          <div className="mt-16 pt-12 border-t border-gray-100 w-full flex flex-col items-center gap-6 animate-fadeIn">
+          <div className="mt-16 pt-12 border-t border-[#141F33]/10 w-full flex flex-col items-center gap-6 animate-fadeIn">
             <p className="text-xs font-extrabold tracking-widest text-[#141F33] uppercase text-center">
               {t({ en: 'Trusted by front desks and teams worldwide', ar: 'موثوق به من قبل مكاتب الاستقبال والفرق في جميع أنحاء العالم' })}
             </p>
@@ -345,7 +345,7 @@ activeProduct === 'chatbot'
             {testimonials.map((item, i) => (
               <div
                 key={i}
-                className="min-w-[300px] md:min-w-[380px] snap-start bg-[#F8F9FB] border border-gray-200/80 rounded-2xl p-8 shadow-sm card-hover"
+                className="min-w-[300px] md:min-w-[380px] snap-start bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-8 shadow-sm card-hover"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="flex gap-1 mb-5">
@@ -356,7 +356,7 @@ activeProduct === 'chatbot'
                   ))}
                 </div>
                 <p className="text-sm text-[#141F33] leading-relaxed mb-6">&ldquo;{item.quote}&rdquo;</p>
-                <div className="border-t border-gray-100 pt-4">
+                <div className="border-t border-[#141F33]/10 pt-4">
                   <p className="text-sm font-extrabold text-[#141F33]">{item.name}</p>
                   <p className="text-xs font-medium text-[#141F33]">{item.org}</p>
                 </div>
@@ -381,9 +381,9 @@ activeProduct === 'chatbot'
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Automation Card */}
             <div className="relative p-8 card-premium group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-royal/5 rounded-bl-[100px] rounded-tr-3xl" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
-                <div className="w-12 h-12 bg-royal/10 rounded-xl flex items-center justify-center mb-5">
+                <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-xl flex items-center justify-center mb-5">
                   <Zap className="w-6 h-6 text-[#2A5CFF]" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
@@ -399,7 +399,7 @@ activeProduct === 'chatbot'
                     { en: 'Booking & complaint management', ar: 'إدارة الحجوزات والشكاوى' },
                     { en: 'Multi-language (Arabic & English)', ar: 'متعدد اللغات (العربية والإنجليزية)' },
                   ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
+                    <li key={i} className="flex items-center gap-3 text-sm font-semibold text-[#141F33]">
                       <Check className="w-5 h-5 text-[#2A5CFF] shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
@@ -416,9 +416,9 @@ activeProduct === 'chatbot'
 
             {/* Chatbot Card */}
             <div className="relative p-8 card-premium group">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-royal/5 rounded-bl-[100px] rounded-tr-3xl" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
-                <div className="w-12 h-12 bg-royal/10 rounded-xl flex items-center justify-center mb-5">
+                <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-xl flex items-center justify-center mb-5">
                   <MessageSquare className="w-6 h-6 text-[#2A5CFF]" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
@@ -434,7 +434,7 @@ activeProduct === 'chatbot'
                     { en: 'Employee role-based access', ar: 'وصول قائم على أدوار الموظفين' },
                     { en: 'Knowledge gap tracking', ar: 'تتبع الفجوات المعرفية' },
                   ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm font-semibold text-slate-700">
+                    <li key={i} className="flex items-center gap-3 text-sm font-semibold text-[#141F33]">
                       <Check className="w-5 h-5 text-[#2A5CFF] shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
@@ -453,12 +453,12 @@ activeProduct === 'chatbot'
       </section>
 
       {/* ── Custom Solution CTA Banner ────────────────────── */}
-      <section ref={ctaRef} className={`bg-gradient-to-r from-[#141F33] to-[#3B5B9B] py-20 px-6 text-white border-t border-gray-800 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
+      <section ref={ctaRef} className={`bg-gradient-to-r from-[#141F33] to-[#3B5B9B] py-20 px-6 text-[#F8F9FB] border-t border-[#141F33]/20 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
         <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
             {t({ en: 'Need something more tailored?', ar: 'هل تحتاج إلى شيء أكثر تخصيصاً؟' })}
           </h2>
-          <p className="text-blue-100 max-w-xl text-base font-medium leading-relaxed">
+          <p className="text-[#F8F9FB] max-w-xl text-base font-medium leading-relaxed">
             {t({
               en: 'We build custom AI workflows for multi-location teams with unique security or integration needs. Tell us what you need.',
               ar: 'نبني مسارات ذكاء اصطناعي مخصصة للفرق متعددة الفروع ذات احتياجات الأمان أو التكامل الفريدة. أخبرنا بما تحتاجه.'
@@ -478,8 +478,8 @@ activeProduct === 'chatbot'
 
       {/* ── Modal ─────────────────────────────────────────── */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-slate-900/60 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#F8F9FB] border border-gray-200 rounded-2xl max-w-md w-full p-8 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33]/60 backdrop-blur-sm animate-fadeIn">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl max-w-md w-full p-8 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             
             <h3 className="text-xl font-extrabold text-[#141F33] mb-3">
               {t({ en: 'Request a consultation', ar: 'طلب استشارة' })}

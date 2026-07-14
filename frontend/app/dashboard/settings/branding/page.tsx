@@ -110,7 +110,7 @@ export default function BrandingSettingsPage() {
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Branding', ar: 'إعدادات الهوية البصرية للعميل' })}</h1>
-        <p className="text-xs text-[#718096] font-medium mt-0.5">{t({ en: 'Your logo, your colors, your AI assistant\'s look.', ar: 'تخصيص الشعارات، الألوان الأساسية، وصورة المساعد الذكي.' })}</p>
+        <p className="text-xs text-[#141F33]/60 font-medium mt-0.5">{t({ en: 'Your logo, your colors, your AI assistant\'s look.', ar: 'تخصيص الشعارات، الألوان الأساسية، وصورة المساعد الذكي.' })}</p>
       </div>
 
       {loading ? (
@@ -118,7 +118,7 @@ export default function BrandingSettingsPage() {
           <span className="h-8 w-8 rounded-full border-4 border-gray-200 border-t-[#141F33] animate-spin" />
         </div>
       ) : (
-        <form ref={formRef} onSubmit={handleSave} className="bg-white border border-gray-200 rounded-2xl p-6 shadow-sm space-y-4">
+        <form ref={formRef} onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
           
           {/* Logo URL */}
           <div>
@@ -180,7 +180,7 @@ export default function BrandingSettingsPage() {
 
           {/* AI Persona */}
           <div className="pt-4 border-t border-gray-100 space-y-4">
-            <h3 className="text-xs font-extrabold text-[#718096] uppercase tracking-wider">{t({ en: 'AI Persona Config', ar: 'إعدادات شخصية المساعد' })}</h3>
+            <h3 className="text-xs font-extrabold text-[#141F33]/60 uppercase tracking-wider">{t({ en: 'AI Persona Config', ar: 'إعدادات شخصية المساعد' })}</h3>
 
             <div className="grid grid-cols-2 gap-4">
               <div>
