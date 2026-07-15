@@ -42,50 +42,7 @@ if (e.ctrlKey || e.metaKey) {
 if (status === 'loading') return null;
 
 return (
-<>
-<div
-role="status"
-aria-live="polite"
-className="fixed bottom-4 right-4 z-[999]"
-onMouseEnter={() => setHovered(true)}
-onMouseLeave={() => setHovered(false)}
->
-<div
-className={`bg-[#F8F9FB] border border-[#141F33]/10 shadow-lg rounded-full flex items-center gap-3 transition-all duration-300 ${
-hovered ? 'px-4 py-2' : 'px-3 py-1.5'
-}`}
->
-<span
-className={`w-2 h-2 rounded-full flex-shrink-0 ${
-status === 'online' ? 'bg-[#2A5CFF] animate-pulse' : 'bg-[#141F33]'
-}`}
-/>
-
-{status === 'online' && (
-<span className="text-xs text-[#141F33]/50 whitespace-nowrap select-none">
-{hovered && latency > 0 ? `${latency}ms` : 'All systems operational'}
-</span>
-)}
-
-{status === 'offline' && (
-<span className="text-xs text-[#141F33]/50 whitespace-nowrap select-none">
-Offline. Retrying...
-</span>
-)}
-
-{status === 'offline' && (
-<button
-onClick={checkHealth}
-className="text-xs font-semibold text-[#2A5CFF] hover:text-[#141F33] whitespace-nowrap min-h-[44px] flex items-center"
->
-Retry
-</button>
-)}
-</div>
-</div>
-
-<KeyboardShortcutsModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
-</>
+  <KeyboardShortcutsModal isOpen={modalOpen} onClose={() => setModalOpen(false)} />
 );
 }
 

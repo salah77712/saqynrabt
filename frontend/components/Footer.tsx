@@ -5,95 +5,38 @@ import Link from 'next/link';
 import { useLocale } from '../app/providers';
 import { FooterColumn } from './Footer/FooterColumn';
 import { SocialLinks } from './Footer/SocialLinks';
-import { Mail, Check } from 'lucide-react';
 
 const content = {
 en: {
   tagline: 'AI-powered operations for front desks and teams worldwide.',
   address: 'Global Operations',
   dpoEmail: 'saqynrabt@gmail.com',
-  featuresTitle: 'Features',
-  features: [{ href: '/features', label: 'Features' }],
-  casesTitle: 'Case Studies',
-  cases: [{ href: '/case-studies', label: 'Case Studies' }],
-  pricingTitle: 'Pricing',
-  pricing: [{ href: '/pricing', label: 'Pricing Plans' }],
   companyTitle: 'Company',
   legalTitle: 'Legal & Compliance',
-  company: [
-  { href: '/about', label: 'About Us' },
-  { href: '/contact', label: 'Contact Us' },
-  ],
-  legal: [
-  { href: '/privacy-policy', label: 'Privacy Policy' },
-  { href: '/terms-and-conditions', label: 'Terms of Service' },
-  ],
   backToTop: 'Back to Top',
 },
 fr: {
   tagline: "Opérations alimentées par l'IA pour les bureaux d'accueil et les équipes dans le monde entier.",
   address: 'Opérations Mondiales',
   dpoEmail: 'saqynrabt@gmail.com',
-  featuresTitle: 'Fonctionnalités',
-  features: [{ href: '/features', label: 'Fonctionnalités' }],
-  casesTitle: 'Études de Cas',
-  cases: [{ href: '/case-studies', label: 'Études de Cas' }],
-  pricingTitle: 'Tarifs',
-  pricing: [{ href: '/pricing', label: 'Tarifs' }],
   companyTitle: 'Entreprise',
   legalTitle: 'Juridique et Conformité',
-  company: [
-  { href: '/about', label: 'À Propos' },
-  { href: '/contact', label: 'Contactez-nous' },
-  ],
-  legal: [
-  { href: '/privacy-policy', label: 'Politique de Confidentialité' },
-  { href: '/terms-and-conditions', label: "Conditions d'Utilisation" },
-  ],
   backToTop: 'Retour en Haut',
 },
 ar: {
   tagline: 'عمليات مدعومة بالذكاء الاصطناعي لمكاتب الاستقبال والفرق في جميع أنحاء العالم.',
   address: 'عمليات عالمية',
   dpoEmail: 'saqynrabt@gmail.com',
-  featuresTitle: 'المميزات',
-  features: [{ href: '/features', label: 'المميزات' }],
-  casesTitle: 'دراسات الحالة',
-  cases: [{ href: '/case-studies', label: 'دراسات الحالة' }],
-  pricingTitle: 'خطط الأسعار',
-  pricing: [{ href: '/pricing', label: 'خطط الأسعار' }],
   companyTitle: 'الشركة',
   legalTitle: 'القانون والامتثال',
-  company: [
-  { href: '/about', label: 'من نحن' },
-  { href: '/contact', label: 'اتصل بنا' },
-  ],
-  legal: [
-  { href: '/privacy-policy', label: 'سياسة الخصوصية' },
-  { href: '/terms-and-conditions', label: 'شروط الخدمة' },
-  ],
   backToTop: 'العودة للأعلى',
 },
 hi: {
   tagline: 'दुनिया भर में फ्रंट डेस्क and टीमों के लिए AI-संचालित संचालन।',
   address: 'वैश्विक संचालन',
   dpoEmail: 'saqynrabt@gmail.com',
-  featuresTitle: 'विशेषताएं',
-  features: [{ href: '/features', label: 'विशेषताएं' }],
-  casesTitle: 'केस स्टडीज',
-  cases: [{ href: '/case-studies', label: 'केस स्टडीज' }],
-  pricingTitle: 'मूल्य योजनाएँ',
-  pricing: [{ href: '/pricing', label: 'मूल्य योजनाएँ' }],
   companyTitle: 'कंपनी',
   legalTitle: 'कानूनी और अनुपालन',
-  company: [
-  { href: '/about', label: 'हमारे बारे में' },
-  { href: '/contact', label: 'हमसे संपर्क करें' },
-  ],
-  legal: [
-  { href: '/privacy-policy', label: 'गोपनीयता नीति' },
-  { href: '/terms-and-conditions', label: 'सेवा की शर्तें' },
-  ],
   backToTop: 'शीर्ष पर वापस जाएँ',
 },
 };
@@ -111,7 +54,6 @@ return (
 export function Footer() {
 const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
-const copy = content[locale] || content.en;
 const year = new Date().getFullYear();
 
 const [incidentStatus, setIncidentStatus] = React.useState<{ status: string; activeIncidents: number } | null>(null);
@@ -123,112 +65,143 @@ fetch('/api/admin/incidents/status')
 .catch(() => setIncidentStatus({ status: 'all_operational', activeIncidents: 0 }));
 }, []);
 
+const col1 = [
+  { href: '/features', label: t({ en: 'Features', fr: 'Fonctionnalités', ar: 'الميزات', hi: 'विशेषताएँ' }) },
+  { href: '/case-studies', label: t({ en: 'Case Studies', fr: 'Études de Cas', ar: 'دراسات الحالة', hi: 'केस स्टडीज' }) },
+];
+
+const col2 = [
+  { href: '/pricing', label: t({ en: 'Pricing Plans', fr: 'Tarifs', ar: 'خطط الأسعار', hi: 'मूल्य योजनाएँ' }) },
+  { href: '/about', label: t({ en: 'About Us', fr: 'À Propos', ar: 'من نحن', hi: 'हमारे बारे में' }) },
+];
+
+const col3 = [
+  { href: '/contact', label: t({ en: 'Contact Us', fr: 'Contactez-nous', ar: 'اتصل بنا', hi: 'हमसे संपर्क करें' }) },
+  { href: '/trust', label: t({ en: 'Legal & Compliance', fr: 'Juridique et Conformité', ar: 'القانون والامتثال', hi: 'कानूनी और अनुपालन' }) },
+];
+
+const col4 = [
+  { href: '/privacy-policy', label: t({ en: 'Privacy Policy', fr: 'Politique de Confidentialité', ar: 'سياسة الخصوصية', hi: 'गोपनीयता नीति' }) },
+  { href: '/terms-and-conditions', label: t({ en: 'Terms of Service', fr: "Conditions d'Utilisation", ar: 'شروط الخدمة', hi: 'सेवा की शर्तें' }) },
+];
+
 return (
 <footer className="bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] m-4 overflow-hidden" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-{/* Trust & Compliance Bar */}
-<div className="border-b border-[#141F33]/10 bg-[#F8F9FB]">
-<div className="mx-auto max-w-7xl px-6 py-2.5 lg:px-8 flex flex-wrap items-center justify-between gap-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<div className="flex items-center gap-8 flex-wrap">
-<Link
-href="/trust"
-className="flex items-center gap-1.5 text-[11px] font-bold text-[#141F33]/50 hover:text-[#141F33] transition-colors"
->
-<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-Trust Center
-</Link>
-<span className="w-px h-4 bg-[#141F33]" />
-<span className="flex items-center gap-1 text-[11px] text-[#141F33]/40 font-bold">
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-[#2A5CFF]" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-GDPR Ready
-</span>
-<span className="flex items-center gap-1 text-[11px] text-[#141F33]/40 font-bold">
-<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-[#2A5CFF]" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-Global Compliance Ready
-</span>
-<span className="flex items-center gap-1 text-[11px] text-[#141F33]/40 font-bold">
-⟳ ISO 27001 In Progress
-</span>
-</div>
-<div className="flex items-center gap-3 text-[11px] font-semibold text-[#141F33]/50">
-{incidentStatus?.status === 'all_operational' ? (
-<span className="flex items-center gap-1.5 text-[#2A5CFF]">
-<span className="w-2 h-2 rounded-full bg-[#2A5CFF]" />
-All systems operational
-</span>
-) : (
-<span className="flex items-center gap-1.5 text-[#2A5CFF]">
-<span className="w-2 h-2 rounded-full bg-[#2A5CFF] animate-pulse" />
-Incident response active ({incidentStatus?.activeIncidents || 0})
-</span>
-)}
-</div>
-</div>
-</div>
+  
+  {/* 1. Top Status Bar */}
+  <div className="border-b border-[#141F33]/10 bg-[#F8F9FB] py-3 px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-4 w-full">
+      <div className="flex items-center gap-4 flex-wrap text-[11px] font-bold text-[#141F33]/55">
+<Link href="/trust" className="flex items-center gap-1.5 hover:text-[#141F33] transition-colors">
+  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+  </svg>
+          {t({ en: 'Trust Center', ar: 'مركز الثقة' })}
+        </Link>
+        <span className="w-px h-3 bg-[#141F33]/10" />
+        <span className="flex items-center gap-1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-[#2A5CFF]" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          GDPR Ready
+        </span>
+        <span className="w-px h-3 bg-[#141F33]/10" />
+        <span className="flex items-center gap-1">
+          ⟳ ISO 27001 In Progress
+        </span>
+      </div>
+      
+      <div className="flex items-center gap-3 text-[11px] font-semibold text-[#141F33]/50">
+        {incidentStatus?.status === 'all_operational' ? (
+          <span className="flex items-center gap-1.5 text-[#2A5CFF]">
+            <span className="w-2 h-2 rounded-full bg-[#2A5CFF]" />
+            All systems operational
+          </span>
+        ) : (
+          <span className="flex items-center gap-1.5 text-[#2A5CFF]">
+            <span className="w-2 h-2 rounded-full bg-[#2A5CFF] animate-pulse" />
+            Incident active ({incidentStatus?.activeIncidents || 0})
+          </span>
+        )}
+      </div>
+    </div>
+  </div>
 
-<div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-<div className="flex flex-col lg:flex-row justify-between gap-16">
-{/* Left Block: Logo & Newsletter (Nietzsche Style) */}
-<div className="flex flex-col gap-8 max-w-sm">
-<Link href="/" className="inline-block" aria-label="SAQYN RABT Home">
-<Logo />
-</Link>
-<p className="text-xs text-[#141F33]/50 font-bold leading-relaxed mt-2">
-{t({ en: 'Sign up to receive updates.', ar: 'سجل للحصول على آخر التحديثات.' })}
-</p>
+  {/* 2. Main Content Grid */}
+  <div className="mx-auto max-w-7xl px-6 py-10 lg:px-8">
+    <div className="flex flex-col lg:flex-row justify-between gap-12">
+      
+      {/* Left Block (30%) */}
+      <div className="flex flex-col gap-5 max-w-sm lg:w-[30%]">
+        <Link href="/" className="inline-block" aria-label="SAQYN RABT Home">
+          <Logo />
+        </Link>
+        <p className="text-xs text-[#141F33]/50 font-bold leading-relaxed">
+          {t({ en: 'Sign up to receive updates.', ar: 'سجل للحصول على آخر التحديثات.' })}
+        </p>
 
-{/* Integrated capsule input + button */}
-<form onSubmit={(e) => e.preventDefault()} className="relative flex items-center w-full max-w-xs">
-<input
-type="email"
-placeholder={t({ en: 'Enter your email', ar: 'أدخل بريدك الإلكتروني' })}
-className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-full pl-5 pr-28 py-3 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-2 focus:ring-royal/25 focus:border-[#141F33]/20 transition-all"
-required
-/>
-<button
-type="submit"
-className="absolute right-1 top-1 bottom-1 bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] font-bold text-[10px] uppercase tracking-wider px-5 rounded-full transition-all duration-200"
->
-{t({ en: 'Submit', ar: 'إرسال' })}
-</button>
-</form>
+        {/* Compact Integrated Input */}
+        <form onSubmit={(e) => e.preventDefault()} className="relative flex items-center w-full max-w-xs">
+          <input
+            type="email"
+            placeholder={t({ en: 'Enter your email', ar: 'أدخل بريدك الإلكتروني' })}
+            className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-full pl-4 pr-24 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-royal/25 focus:border-[#141F33]/20 transition-all min-h-[36px]"
+            required
+          />
+          <button
+            type="submit"
+            className="absolute right-1 top-[4px] bottom-[4px] bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-[9px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[28px]"
+          >
+            {t({ en: 'Submit', ar: 'إرسال' })}
+          </button>
+        </form>
+      </div>
 
-<p className="text-[10px] text-[#141F33]/40 font-medium leading-relaxed">
-{t({
-en: 'By subscribing you agree to our Privacy Policy and provide consent to receive updates from our company.',
-ar: 'من خلال الاشتراك، فإنك توافق على سياسة الخصوصية الخاصة بنا وتوافق على تلقي التحديثات من شركتنا.'
-})}
-</p>
-</div>
+      {/* Right Block (70%): 4-Column Link Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 lg:w-[70%]">
+        <FooterColumn title={t({ en: 'Features', fr: 'Fonctionnalités', ar: 'الميزات', hi: 'विशेषताएँ' })} links={col1} />
+        <FooterColumn title={t({ en: 'Company', fr: 'Entreprise', ar: 'الشركة', hi: 'कंपनी' })} links={col2} />
+        <FooterColumn title={t({ en: 'Contact', fr: 'Contact', ar: 'اتصل بنا', hi: 'संपर्क' })} links={col3} />
+        <FooterColumn title={t({ en: 'Legal', fr: 'Juridique', ar: 'القانون', hi: 'कानूनी' })} links={col4} />
+      </div>
 
-{/* Right Block: Simplified Columns (Product, Company, Legal) */}
-<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-12">
-  <FooterColumn title={copy.featuresTitle || 'Features'} links={copy.features || []} />
-  <FooterColumn title={copy.casesTitle || 'Case Studies'} links={copy.cases || []} />
-  <FooterColumn title={copy.pricingTitle || 'Pricing'} links={copy.pricing || []} />
-  <FooterColumn title={copy.companyTitle} links={copy.company} />
-  <FooterColumn title={copy.legalTitle} links={copy.legal} />
-</div>
-</div>
+    </div>
 
-{/* Bottom Bar */}
-<div className="border-t border-[#141F33]/10 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-bold text-[#141F33]/40">
-<p className="uppercase tracking-wider">
-© {year} SAQYN RABT. ALL RIGHTS RESERVED.
-</p>
+    {/* 3. Bottom Bar */}
+    <div className="border-t border-[#141F33]/10 mt-10 pt-6 flex flex-col lg:flex-row justify-between items-center gap-6 text-[10px] font-bold text-[#141F33]/40">
+      <p className="uppercase tracking-wider">
+        © {year} SAQYN RABT. ALL RIGHTS RESERVED.
+      </p>
 
-<div className="flex items-center gap-4 flex-wrap justify-center uppercase tracking-wider">
-<Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t({ en: 'Site Map', ar: 'خريطة الموقع' })}</Link>
-<span>|</span>
-<Link href="/terms-and-conditions" className="hover:text-[#141F33] transition-colors">{t({ en: 'Terms', ar: 'الشروط' })}</Link>
-<span>|</span>
-<Link href="/privacy-policy" className="hover:text-[#141F33] transition-colors">{t({ en: 'Privacy', ar: 'سياسة الخصوصية' })}</Link>
-<span>|</span>
-<Link href="/trust" className="hover:text-[#141F33] transition-colors">{t({ en: 'Trust Center', ar: 'مركز الثقة' })}</Link>
-</div>
+      <div className="flex flex-wrap items-center gap-6 justify-center">
+        <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">
+          <Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t({ en: 'Site Map', ar: 'خريطة الموقع' })}</Link>
+          <span>|</span>
+          <Link href="/terms-and-conditions" className="hover:text-[#141F33] transition-colors">{t({ en: 'Terms', ar: 'الشروط' })}</Link>
+          <span>|</span>
+          <Link href="/privacy-policy" className="hover:text-[#141F33] transition-colors">{t({ en: 'Privacy', ar: 'سياسة الخصوصية' })}</Link>
+          <span>|</span>
+          <Link href="/trust" className="hover:text-[#141F33] transition-colors">{t({ en: 'Trust Center', ar: 'مركز الثقة' })}</Link>
+        </div>
+        
+        <SocialLinks />
 
-<SocialLinks />
-</div>
-</div>
+        {/* Systems status indicator pill next to socials */}
+        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#141F33]/5 border border-[#141F33]/10 text-[#2A5CFF] min-h-[28px]">
+          {incidentStatus?.status === 'all_operational' ? (
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2A5CFF]" />
+              {t({ en: 'Operational', ar: 'مستقر' })}
+            </span>
+          ) : (
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2A5CFF] animate-pulse" />
+              {t({ en: 'Incident Response', ar: 'الاستجابة للمشكلة' })} ({incidentStatus?.activeIncidents || 0})
+            </span>
+          )}
+        </div>
+      </div>
+    </div>
+
+  </div>
 </footer>
 );
 }

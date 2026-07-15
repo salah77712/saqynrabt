@@ -24,11 +24,10 @@ export async function GET(req: NextRequest) {
       console.error("[/api/documents GET] Invalid JSON from backend:", text);
       return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 });
     }
-  } catch (err: unknown) {
-    console.error("[/api/documents GET CRASH]", err);
-    const msg = err instanceof Error ? err.message : String(err);
-    return NextResponse.json({ success: false, error: "Internal Server Error", detail: msg }, { status: 500 });
-  }
+} catch (err: unknown) {
+  console.error("[/api/documents GET CRASH]", err);
+  return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
+}
 }
 
 export async function POST(req: NextRequest) {

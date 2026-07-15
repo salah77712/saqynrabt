@@ -131,6 +131,8 @@ export default function MarketingPage() {
           
           {/* Left Column */}
           <div className="flex flex-col items-center text-center gap-8 max-w-3xl relative">
+            {/* Spotlight Background Glow */}
+            <div className="absolute inset-0 w-full h-full pointer-events-none -z-10" style={{ background: "radial-gradient(circle at 50% 50%, rgba(42, 92, 255, 0.08) 0%, transparent 70%)" }} />
             {/* Floating Cards */}
             <div className="absolute -top-12 -left-16 w-24 h-24 bg-white border border-[#141F33]/5 rounded-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform rotate-[15deg] hidden lg:block pointer-events-none" />
             <div className="absolute -top-12 -right-16 w-24 h-24 bg-white border border-[#141F33]/5 rounded-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform -rotate-[15deg] hidden lg:block pointer-events-none" />
