@@ -21,7 +21,9 @@
 --border: #F8F9FB;
 --input: #F8F9FB;
 --ring: #2A5CFF;
---radius: 0.75rem;
+--radius: 40px;
+    --shadow-geo: 0 10px 40px rgba(0,0,0,0.05);
+    --shadow-geo-hover: 0 20px 60px rgba(42, 92, 255, 0.08);
 --popover: #F8F9FB;
 --popover-foreground: #141F33;
 --color-1: oklch(66.2% 0.225 25.9);
@@ -49,7 +51,9 @@
 --border: rgba(20,31,51,0.2);
 --input: rgba(20,31,51,0.2);
 --ring: #2A5CFF;
---radius: 0.75rem;
+--radius: 40px;
+    --shadow-geo: 0 10px 40px rgba(0,0,0,0.05);
+    --shadow-geo-hover: 0 20px 60px rgba(42, 92, 255, 0.08);
 --popover: #141F33;
 --popover-foreground: #F8F9FB;
 --color-1: oklch(66.2% 0.225 25.9);
@@ -261,7 +265,7 @@ to { background-position: -200% 0; }
 }
 
 @keyframes animotion-glowPulseBtn {
-0%, 100% { box-shadow: 0 0 5px rgba(42, 92, 255, 0.35); }
+0%, 100% { box-shadow: var(--shadow-geo); }
 50% { box-shadow: 0 0 18px rgba(42, 92, 255, 0.65), 0 0 30px rgba(42, 92, 255, 0.3); }
 }
 

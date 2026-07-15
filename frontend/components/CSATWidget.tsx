@@ -32,7 +32,7 @@ body: JSON.stringify({ requestId, rating: val }),
 
 if (submitted) {
 return (
-<div className="bg-[#F8F9FB] border border-[#2A5CFF]/20 rounded-xl p-3 text-center">
+<div className="bg-[#F8F9FB] border border-[#2A5CFF]/20 rounded-[40px] p-3 text-center">
 <p className="text-xs font-bold text-[#2A5CFF]">
 {t('Thanks for rating!', 'شكراً لتقييمك!')}
 </p>
@@ -41,7 +41,7 @@ return (
 }
 
 return (
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 text-center">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-4 text-center">
 <p className="text-xs font-bold text-[#141F33] mb-3">
 {t('How satisfied are you with this resolution?', 'ما مدى رضاك عن حل هذا الطلب؟')}
 </p>

@@ -33,10 +33,10 @@ export default function AdminFeatureFlagsPage() {
       </div>
 
       {/* Flags table */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
         <div className="divide-y divide-[#141F33]/10">
           {flags.map((flag) => (
-            <div key={flag.id} className="py-4 flex justify-between items-center gap-4 first:pt-0 last:pb-0">
+            <div key={flag.id} className="py-4 flex justify-between items-center gap-8 first:pt-0 last:pb-0">
               <span className="text-xs font-mono font-bold text-[#141F33]">{flag.name}</span>
 
               <label className="relative inline-flex items-center cursor-pointer select-none">
@@ -46,7 +46,7 @@ export default function AdminFeatureFlagsPage() {
                   onChange={() => handleToggle(flag.id)}
                   className="sr-only peer"
                 />
-                <div className="w-9 h-5 bg-[#141F33]/20 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
+                <div className="w-9 h-5 bg-[#141F33] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
               </label>
             </div>
           ))}

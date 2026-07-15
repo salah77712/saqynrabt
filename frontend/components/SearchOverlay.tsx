@@ -124,7 +124,7 @@ let flatIndex = -1;
 
 return (
 <div
-className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 search-backdrop bg-[#141F33]/40"
+className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 search-backdrop bg-[#141F33]"
 onClick={(e) => {
 if (e.target === e.currentTarget) onClose();
 }}
@@ -132,9 +132,9 @@ role="dialog"
 aria-modal="true"
 aria-label={t('Search', 'بحث')}
 >
-<div className="w-full max-w-xl bg-[#F8F9FB] rounded-2xl shadow-2xl border border-[#141F33]/10 overflow-hidden animate-slideDown">
+<div className="w-full max-w-xl bg-[#F8F9FB] rounded-[40px] shadow-2xl border border-[#141F33]/10 overflow-hidden animate-slideDown">
 {/* Search Input */}
-<div className="flex items-center gap-3 px-5 py-4 border-b border-[#141F33]/10">
+<div className="flex items-center gap-4 px-5 py-4 border-b border-[#141F33]/10">
 <svg className="h-5 w-5 text-[#141F33]/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
 <circle cx="11" cy="11" r="8" />
 <path d="m21 21-4.35-4.35" strokeLinecap="round" />
@@ -186,10 +186,10 @@ className="max-h-[50vh] overflow-y-auto"
   key={item.href}
   href={item.href}
   onClick={onClose}
-  className={`flex items-center gap-3 px-5 py-3 transition-colors ${
+  className={`flex items-center gap-4 px-5 py-3 transition-colors ${
   idx === selectedIndex
-  ? 'bg-[#141F33]/5 text-[#141F33]'
-  : 'text-[#141F33]/70 hover:bg-[#141F33]/5'
+  ? 'bg-[#141F33] text-[#141F33]'
+  : 'text-[#141F33]/70 hover:bg-[#141F33]'
   }`}
   >
   <PageIcon />
@@ -222,13 +222,13 @@ className="max-h-[50vh] overflow-y-auto"
 <p className="text-sm text-[#141F33]/60 font-medium">
 {t('Start typing to search…', 'ابدأ بالكتابة للبحث…')}
 </p>
-<div className="mt-4 flex flex-wrap justify-center gap-2">
+<div className="mt-4 flex flex-wrap justify-center gap-3">
 {['Features', 'Pricing', 'Help', 'API'].map((tag) => (
 <button
 key={tag}
 type="button"
 onClick={() => setQuery(tag)}
-className="rounded-full border border-[#141F33]/10 bg-[#F8F9FB] px-3 py-1.5 text-xs font-semibold text-[#141F33]/60 hover:bg-[#141F33]/5 transition-colors min-h-[44px]"
+className="rounded-full border border-[#141F33]/10 bg-[#F8F9FB] px-3 py-1.5 text-xs font-semibold text-[#141F33]/60 hover:bg-[#141F33] transition-colors min-h-[44px]"
 >
 {tag}
 </button>
@@ -239,8 +239,8 @@ className="rounded-full border border-[#141F33]/10 bg-[#F8F9FB] px-3 py-1.5 text
 </div>
 
 {/* Footer */}
-<div className="flex items-center justify-between px-5 py-3 border-t border-[#141F33]/10 bg-[#F8F9FB]/50">
-<div className="flex items-center gap-3 text-[10px] font-bold text-[#141F33]/60 uppercase tracking-wider">
+<div className="flex items-center justify-between px-5 py-3 border-t border-[#141F33]/10 bg-[#F8F9FB]">
+<div className="flex items-center gap-4 text-[10px] font-bold text-[#141F33]/60 uppercase tracking-wider">
 <span className="flex items-center gap-1">
 <kbd className="rounded border border-[#141F33]/10 bg-[#F8F9FB] px-1.5 py-0.5">↑↓</kbd>
 {t('Navigate', 'تنقل')}

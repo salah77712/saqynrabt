@@ -55,7 +55,7 @@ export default function ChangelogPage() {
               {/* Timeline Bullet */}
               <div className="absolute -left-[31px] md:-left-[47px] top-1.5 h-4 w-4 rounded-full bg-[#141F33] border-4 border-[#F8F9FB] shadow-sm" />
 
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-4">
                 <span className="text-[10px] font-extrabold uppercase bg-[#F8F9FB] text-[#2A5CFF] px-2.5 py-0.5 rounded-full border border-[#141F33]/10">
                   {log.version}
                 </span>

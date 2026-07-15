@@ -19,7 +19,7 @@ export default function PluginsMarketplacePage() {
 
   const [plugins, setPlugins] = useState<PluginItem[]>([
     { id: 'p-1', name: 'Slack Workspaces Sync', desc: 'Dispatches active queue dispatches and call summaries to Slack channels.', author: 'SAQYN core', installed: false },
-    { id: 'p-2', name: 'BambooHR sync', desc: 'Auto-syncs employee lists and leaves balances to Postgres tables.', author: 'SAQYN core', installed: true },
+    { id: 'p-2', name: 'BambooHR sync', desc: 'Au employee lists and leaves balances to Postgres tables.', author: 'SAQYN core', installed: true },
     { id: 'p-3', name: 'Calendar Bookings', desc: 'Hooks into Google & Outlook calendars to insert scheduling details.', author: 'Community', installed: false },
   ]);
 
@@ -46,9 +46,9 @@ export default function PluginsMarketplacePage() {
         </div>
 
         {/* Plugin Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {plugins.map((plugin) => (
-            <div key={plugin.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md hover:scale-[1.02] transition-all duration-300">
+            <div key={plugin.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col justify-between hover:shadow-md hover:scale-[1.02] transition-all duration-300">
               <div className="space-y-2">
                 <span className="text-[10px] font-extrabold text-[#2A5CFF] uppercase tracking-wider">by {plugin.author}</span>
                 <h3 className="text-base font-extrabold text-[#141F33]">{plugin.name}</h3>
@@ -64,7 +64,7 @@ export default function PluginsMarketplacePage() {
                 
                 <button
                   onClick={() => handleInstall(plugin.id)}
-                  className={`font-bold px-4 py-2 rounded-xl text-xs ${
+                  className={`font-bold px-4 py-2 rounded-[40px] text-xs ${
                     plugin.installed ? 'bg-[#F8F9FB] text-[#141F33] hover:bg-[#F8F9FB]' : 'bg-[#141F33] hover:opacity-95 text-[#F8F9FB]'
                   }`}
                 >

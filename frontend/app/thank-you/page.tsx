@@ -18,7 +18,7 @@ return (
 <main className="flex-1 flex flex-col items-center justify-center py-24 px-6 text-center max-w-2xl mx-auto animate-fadeIn">
 
 {/* Confetti SVG Icon */}
-<div className="h-24 w-24 rounded-full bg-[#141F33]/10 flex items-center justify-center mb-8 animate-bounce shadow-sm">
+<div className="h-24 w-24 rounded-full bg-[#141F33] flex items-center justify-center mb-8 animate-bounce shadow-sm">
 <PartyPopper className="w-12 h-12 text-[#2A5CFF]" />
 </div>
 
@@ -35,7 +35,7 @@ ar: 'سيتصل بك ممثل من فريق SAQYN RABT خلال 24 ساعة لج
 })}
 </p>
 
-<div className="mt-10 flex gap-4">
+<div className="mt-10 flex gap-8">
 <Link
 href="/"
 className="btn-primary text-xs"

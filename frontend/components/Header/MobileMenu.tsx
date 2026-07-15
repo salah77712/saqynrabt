@@ -21,7 +21,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-[#F8F9FB]/95 dark:bg-[#141F33]/95 backdrop-blur-md px-6 py-6 flex flex-col justify-between animate-fadeIn">
+    <div className="fixed inset-0 z-50 bg-[#F8F9FB] dark:bg-[#141F33] backdrop-blur-md px-6 py-6 flex flex-col justify-between animate-fadeIn">
       <div>
         <div className="flex items-center justify-between mb-8">
           <span className="text-sm font-black text-[#141F33] dark:text-[#F8F9FB] uppercase tracking-wider">
@@ -36,7 +36,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
           </button>
         </div>
 
-        <nav className="flex flex-col gap-2">
+        <nav className="flex flex-col gap-3">
           {navItems.map((item) => (
             <Link
               key={item.href}
@@ -61,7 +61,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
         </nav>
       </div>
 
-      <div className="border-t border-[#141F33]/10 dark:border-[#141F33]/30 pt-6 flex flex-col gap-4">
+      <div className="border-t border-[#141F33]/10 dark:border-[#141F33]/30 pt-6 flex flex-col gap-8">
         <div className="flex items-center justify-between">
           <span className="text-xs font-bold text-[#141F33]">{t('Select Language', 'اختر اللغة')}</span>
           <LanguageSwitcher />
@@ -71,7 +71,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
           target="_blank"
           rel="noopener noreferrer"
           onClick={onClose}
-          className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] dark:bg-[#141F33] text-[#F8F9FB] font-bold text-sm text-center py-3"
+          className="inline-flex min-h-[44px] items-center justify-center rounded-[40px] bg-[#141F33] dark:bg-[#141F33] text-[#F8F9FB] font-bold text-sm text-center py-3"
         >
           {t('See how it works', 'شاهد كيف يعمل')}
         </a>

@@ -24,7 +24,7 @@ export default function DashboardError({
 <p className="text-[#141F33] mb-8 leading-relaxed">
           This section didn't load properly. Don't worry — your data hasn't gone anywhere.
         </p>
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => reset()}
             className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all"
@@ -33,7 +33,7 @@ export default function DashboardError({
           </button>
           <a
             href="/dashboard"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/10 px-6 py-3 text-sm font-semibold text-[#141F33] hover:bg-[#141F33]/5 transition-all"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/10 px-6 py-3 text-sm font-semibold text-[#141F33] hover:bg-[#141F33] transition-all"
           >
             Back to Dashboard
           </a>

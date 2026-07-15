@@ -92,7 +92,7 @@ setInviteEmail('');
 }, [inviteName, inviteEmail, refetch, addToast]);
 
 const renderMobileCard = (m: Employee) => (
-<div key={m.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+<div key={m.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
 <div className="flex items-start justify-between mb-2">
 <div className="flex-1 min-w-0">
 <h4 className="text-sm font-bold text-[#141F33] truncate">{m.name}</h4>
@@ -101,11 +101,11 @@ const renderMobileCard = (m: Employee) => (
 <Badge variant={m.status === 'active' ? 'success' : 'primary'}>{m.status}</Badge>
 </div>
 <p className="text-[10px] font-semibold text-[#141F33] uppercase tracking-wider mb-3">{m.role}</p>
-<div className="flex gap-2">
+<div className="flex gap-3">
 {m.status === 'pending' ? (
 <button
           onClick={() => handleAction(m.id, 'approve')}
-          className="flex-1 min-h-[44px] py-3 px-6 rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 text-[#2A5CFF] font-bold text-xs"
+          className="flex-1 min-h-[44px] py-3 px-6 rounded-[40px] bg-[#F8F9FB] border border-[#141F33]/10 text-[#2A5CFF] font-bold text-xs"
         >
           Approve
         </button>
@@ -113,7 +113,7 @@ const renderMobileCard = (m: Employee) => (
 <>
 <button
 onClick={() => handleAction(m.id, 'toggle-admin', m.role)}
-className={`flex-1 min-h-[44px] py-3 px-6 rounded-xl border font-bold text-xs ${
+className={`flex-1 min-h-[44px] py-3 px-6 rounded-[40px] border font-bold text-xs ${
 m.role === 'admin'
 ? 'bg-[#F8F9FB] border-[#141F33]/10 text-[#2A5CFF]'
 : 'bg-[#F8F9FB] border-[#141F33]/10 text-[#2A5CFF]'
@@ -123,7 +123,7 @@ m.role === 'admin'
 </button>
 <button
         onClick={() => handleAction(m.id, 'suspend')}
-        className="flex-1 min-h-[44px] py-3 px-6 rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] font-bold text-xs"
+        className="flex-1 min-h-[44px] py-3 px-6 rounded-[40px] bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] font-bold text-xs"
       >
         Suspend
       </button>
@@ -137,8 +137,8 @@ if (isLoading) {
 return (
 <main id="main-content" className="space-y-6">
 <div className="animate-fadeIn">
-<div className="h-8 bg-[#141F33]/10 dark:bg-[#141F33] rounded-lg w-72 mb-2" />
-<div className="h-4 bg-[#141F33]/10 dark:bg-[#141F33] rounded-lg w-96" />
+<div className="h-8 bg-[#141F33] dark:bg-[#141F33] rounded-lg w-72 mb-2" />
+<div className="h-4 bg-[#141F33] dark:bg-[#141F33] rounded-lg w-96" />
 </div>
 <SkeletonTable rows={3} />
 </main>
@@ -156,7 +156,7 @@ onRetry={() => refetch()}
 
 return (
 <main id="main-content" className="space-y-6">
-<div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4 mb-6">
+<div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8 mb-6">
 <div>
 <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">
 {t('Team', 'دليل مساحة العمل')}
@@ -165,7 +165,7 @@ return (
 {t('Invite teammates, manage roles, and approve access requests.', 'إدارة ضوابط الوصول للفريق وتنسيق موافقات الموظفين.')}
 </p>
 </div>
-<Button variant="default" onClick={() => setInviteModalOpen(true)} className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] w-full md:w-auto">
+<Button variant="default" onClick={() => setInviteModalOpen(true)} className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] w-full md:w-auto">
 {t('Invite Colleague', 'دعوة زميل')}
 </Button>
 </div>
@@ -215,13 +215,13 @@ return (
 <div className="space-y-4">
 <div>
 <label className="block text-[10px] font-bold text-[#141F33] uppercase mb-1">{t('Full Name', 'الاسم الكامل')}</label>
-<Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold" />
+<Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] rounded-[40px] px-4 py-2 text-xs font-semibold" />
 </div>
 <div>
 <label className="block text-[10px] font-bold text-[#141F33] uppercase mb-1">{t('Email Address', 'البريد الإلكتروني')}</label>
-<Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold" />
+<Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] rounded-[40px] px-4 py-2 text-xs font-semibold" />
 </div>
-<Button variant="default" className="w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" onClick={handleSendInvite}>
+<Button variant="default" className="w-full py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]" onClick={handleSendInvite}>
 {t('Send Invitation', 'إرسال الدعوة')}
 </Button>
 </div>

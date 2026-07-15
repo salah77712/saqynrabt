@@ -93,7 +93,7 @@ export default function HowItWorksPage() {
       <Header />
 
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
-        <span className="inline-block bg-[#141F33]/10 text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+        <span className="inline-block bg-[#141F33] text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
           {t({ en: 'How It Works', fr: 'Comment ça marche', ar: 'كيف يعمل', hi: 'यह कैसे काम करता है' })}
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-[#141F33] leading-tight max-w-4xl mx-auto">
@@ -108,8 +108,8 @@ export default function HowItWorksPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="space-y-8">
             {stepList.map((s) => (
-              <div key={s.step} className="flex items-start gap-6 bg-white border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
-                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-[#141F33] text-lg font-bold text-[#F8F9FB]">
+              <div key={s.step} className="flex items-start gap-8 bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-[40px] bg-[#141F33] text-lg font-bold text-[#F8F9FB]">
                   {s.step}
                 </div>
                 <div>
@@ -127,9 +127,9 @@ export default function HowItWorksPage() {
           <h2 className="text-3xl font-bold text-[#141F33] text-center mb-12">
             {t({ en: 'Global by Design', fr: 'Global par conception', ar: 'عالمي بالتصميم', hi: 'डिज़ाइन द्वारा वैश्विक' })}
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {global.map((g) => (
-              <div key={g.title} className="border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+              <div key={g.title} className="border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
                 <span className="text-3xl mb-3 block">{flagIcons[g.flag] || <Globe className="w-8 h-8 text-[#141F33]" />}</span>
                 <h3 className="text-lg font-bold text-[#141F33] mb-2">{g.title}</h3>
                 <p className="text-sm text-[#141F33] leading-relaxed">{g.desc}</p>

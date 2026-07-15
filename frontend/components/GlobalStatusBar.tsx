@@ -51,7 +51,7 @@ onMouseEnter={() => setHovered(true)}
 onMouseLeave={() => setHovered(false)}
 >
 <div
-className={`bg-[#F8F9FB] border border-[#141F33]/10 shadow-lg rounded-full flex items-center gap-2 transition-all duration-300 ${
+className={`bg-[#F8F9FB] border border-[#141F33]/10 shadow-lg rounded-full flex items-center gap-3 transition-all duration-300 ${
 hovered ? 'px-4 py-2' : 'px-3 py-1.5'
 }`}
 >

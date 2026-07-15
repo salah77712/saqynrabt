@@ -11,7 +11,7 @@ export default function SecuritySettingsPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
-    <Card className="p-6 rounded-2xl space-y-4 max-w-xl">
+    <Card className="p-8 rounded-[40px] space-y-4 max-w-xl">
       <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'Security', ar: 'سياسات أمان الحساب'})}</h3>
       <p className="text-xs text-[#141F33] leading-relaxed">
         {t({en: 'Manage login security, devices, and two-factor authentication.', ar: 'التحقق من إعدادات التحقق من الهوية وسجلات الأجهزة وتكوينات المصادقة الثنائية.'})}

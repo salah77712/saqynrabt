@@ -14,7 +14,7 @@ export default function ChatbotError({
 
   return (
     <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans">
-      <header className="sticky top-0 z-50 w-full border-b border-[#141F33]/10 bg-[#F8F9FB]/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 w-full border-b border-[#141F33]/10 bg-[#F8F9FB] backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#141F33] text-sm font-semibold text-[#F8F9FB]">S</div>
           <div className="ml-3">
@@ -29,7 +29,7 @@ export default function ChatbotError({
           <h1 className="text-2xl font-bold text-[#141F33] mb-2">Chatbot page unavailable</h1>
           <p className="text-sm text-[#141F33] mb-2">We couldn&apos;t load the chatbot content right now.</p>
           <p className="text-xs text-[#141F33] mb-8">This is usually temporary. Please try again.</p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all">Try again</button>
             <a href="/" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/10 px-6 py-3 text-sm font-semibold text-[#141F33] hover:bg-[#F8F9FB] transition-all">Back to Home</a>
           </div>

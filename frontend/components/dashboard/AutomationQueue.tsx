@@ -16,7 +16,7 @@ interface AutomationQueueProps {
 
 export function AutomationQueue({ requests, onSelect }: AutomationQueueProps) {
   return (
-<div className="overflow-x-auto w-full border border-[#F8F9FB] dark:border-[#141F33] rounded-2xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm">
+<div className="overflow-x-auto w-full border border-[#F8F9FB] dark:border-[#141F33] rounded-[40px] bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm">
       <table className="w-full text-left border-collapse">
         <thead>
 <tr className="bg-[#F8F9FB] dark:bg-[#141F33] border-b text-[10px] font-black text-[#141F33] uppercase tracking-wider">

@@ -55,21 +55,21 @@ return (
 </div>
 
 {error && (
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#2A5CFF] rounded-xl p-3 text-xs font-semibold">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#2A5CFF] rounded-[40px] p-3 text-xs font-semibold">
 {t({ en: 'Could not load fresh data. Showing sample messages.', ar: 'تعذر تحميل البيانات الحديثة. يتم عرض رسائل نموذجية.' })}
 </div>
 )}
 
 {/* Filter Chips */}
-<div className="flex gap-2 text-xs font-bold">
+<div className="flex gap-3 text-xs font-bold">
 {['All', 'WhatsApp', 'Email', 'SMS'].map((ch) => (
 <button
 key={ch}
 onClick={() => setFilterChannel(ch)}
-className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+className={`px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
             filterChannel === ch
               ? 'bg-[#141F33] border-[#141F33] text-[#F8F9FB]'
-              : 'bg-[#F8F9FB] border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5'
+              : 'bg-[#F8F9FB] border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]'
             }`}
 >
 {ch}
@@ -78,7 +78,7 @@ className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transitio
 </div>
 
 {/* Inbox List */}
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
 {loading ? (
 <p className="text-xs text-[#141F33] font-semibold text-center py-6">
 {t({ en: 'Loading messages...', ar: 'جاري تحميل الرسائل...' })}
@@ -90,9 +90,9 @@ className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transitio
 ) : (
 <div className="divide-y divide-[#141F33]/10">
 {filtered.map((msg) => (
-<div key={msg.id} className="py-4 first:pt-0 last:pb-0 flex justify-between items-start gap-4">
+<div key={msg.id} className="py-4 first:pt-0 last:pb-0 flex justify-between items-start gap-8">
 <div className="min-w-0">
-<div className="flex items-center gap-2">
+<div className="flex items-center gap-3">
 <span className="text-xs font-extrabold text-[#141F33]">{msg.sender}</span>
 <span className="bg-[#F8F9FB] text-[#141F33] font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-[#141F33]/10">
 {msg.channel}

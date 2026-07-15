@@ -89,7 +89,7 @@ export default function TrustPage() {
           <p className="mt-4 text-lg text-[#F8F9FB]/70 max-w-2xl mx-auto">
             Built for Global Operations.
           </p>
-          <p className="mt-2 text-sm text-[#F8F9FB]/50 max-w-2xl mx-auto">
+          <p className="mt-3 text-sm text-[#F8F9FB]/50 max-w-2xl mx-auto">
             SAQYN RABT is committed to the highest standards of data protection, security, and
             transparency, in full compliance with global data protection regulations and frameworks.
           </p>
@@ -98,15 +98,15 @@ export default function TrustPage() {
 
       <section className="py-16 px-6">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {trustCards.map((card, i) => {
               return (
                 <div
                   key={i}
-                  className="rounded-2xl border border-[#141F33]/10 bg-[#F8F9FB] p-6 flex flex-col gap-4 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all"
+                  className="rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] p-8 flex flex-col gap-8 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all"
                 >
                   <div className="flex items-start justify-between">
-                    <div className="w-10 h-10 rounded-xl bg-[#141F33]/5 flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-[40px] bg-[#141F33] flex items-center justify-center">
                       {iconMap[card.icon] || <Shield className="w-5 h-5" />}
                     </div>
                     {card.badge && (
@@ -123,7 +123,7 @@ export default function TrustPage() {
 
                   {card.badges ? (
                     <div className="space-y-3">
-                      <div className="flex flex-wrap gap-2">
+                      <div className="flex flex-wrap gap-3">
                         {card.badges.map((b, j) => (
                           <span
                             key={j}
@@ -140,7 +140,7 @@ export default function TrustPage() {
                       </div>
                       <button
                         type="button"
-                        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33]/5 text-[#141F33] hover:bg-[#141F33]/10 transition-all hover:scale-[1.01] hover:shadow-md"
+                        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] bg-[#141F33] text-[#141F33] hover:bg-[#141F33] transition-all hover:scale-[1.01] hover:shadow-md"
                       >
                         <Download className="w-4 h-4" />
                         {card.actionLabel}
@@ -164,13 +164,13 @@ export default function TrustPage() {
       <section className="py-16 px-6 bg-[#F8F9FB]">
         <div className="mx-auto max-w-4xl text-center">
           <h2 className="text-2xl font-bold text-[#141F33]">Need More Information?</h2>
-          <p className="mt-2 text-sm text-[#141F33]/60">
+          <p className="mt-3 text-sm text-[#141F33]/60">
             Our DPO is available to answer any compliance or security questions.
           </p>
-          <div className="mt-6 flex items-center justify-center gap-4">
+          <div className="mt-6 flex items-center justify-center gap-8">
             <a
               href="mailto:dpo@saqynrabt.com"
-              className="inline-flex items-center gap-2 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-6 py-3 rounded-xl hover:bg-[#141F33]/90 transition-all hover:scale-[1.01] hover:shadow-md min-h-[44px]"
+              className="inline-flex items-center gap-3 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-6 py-3 rounded-[40px] hover:bg-[#141F33] transition-all hover:scale-[1.01] hover:shadow-md min-h-[44px]"
             >
               Contact DPO: dpo@saqynrabt.com
             </a>

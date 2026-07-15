@@ -42,16 +42,16 @@ export default function ABTestingSettingsPage() {
       </div>
 
       {/* Form config */}
-      <form onSubmit={handleUpdate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col gap-6">
+      <form onSubmit={handleUpdate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col gap-8">
         
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-8">
           <div>
             <label htmlFor="model_a" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Model A (Control)', ar: 'الموديل أ (القياسي)' })}</label>
             <select
               id="model_a"
               value={activeTest.model_a}
               onChange={(e) => setActiveTest(prev => ({ ...prev, model_a: e.target.value }))}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-bold text-[#141F33]"
             >
               <option value="gpt-4o-mini">gpt-4o-mini</option>
               <option value="gpt-4o">gpt-4o</option>
@@ -64,7 +64,7 @@ export default function ABTestingSettingsPage() {
               id="model_b"
               value={activeTest.model_b}
               onChange={(e) => setActiveTest(prev => ({ ...prev, model_b: e.target.value }))}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-bold text-[#141F33]"
             >
               <option value="gpt-4o-mini-finetuned-alsafa">gpt-4o-mini-finetuned-alsafa</option>
               <option value="gpt-4o-finetuned">gpt-4o-finetuned</option>
@@ -91,7 +91,7 @@ export default function ABTestingSettingsPage() {
 
         <button
           type="submit"
-          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-[40px] text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
           {t({ en: 'Update Split Testing Settings', ar: 'تحديث إعدادات تقسيم الزوار' })}
         </button>
@@ -99,7 +99,7 @@ export default function ABTestingSettingsPage() {
       </form>
 
       {/* History */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
         <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Evaluation History & Results', ar: 'سجل التقييم والنتائج' })}</h3>
 
         <div className="divide-y divide-[#141F33]/10">

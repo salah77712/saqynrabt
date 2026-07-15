@@ -17,11 +17,11 @@ export default function IntegrationsSettingsPage() {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
       {integrations.map((int) => (
-        <Card key={int.id} className="flex flex-col justify-between p-6">
+        <Card key={int.id} className="flex flex-col justify-between p-8">
           <div>
-            <div className="flex justify-between items-start gap-4 mb-2">
+            <div className="flex justify-between items-start gap-8 mb-2">
               <h4 className="font-bold text-navy dark:text-[#F8F9FB] text-sm">{int.name}</h4>
               <Badge variant={int.active ? 'success' : 'primary'}>
                 {int.active ? t({en: 'Connected', ar: 'متصل'}) : t({en: 'Configure', ar: 'تكوين'})}
@@ -31,7 +31,7 @@ export default function IntegrationsSettingsPage() {
               {int.desc}
             </p>
           </div>
-          <Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
+          <Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]">
             {int.active ? t({en: 'Manage', ar: 'إدارة'}) : t({en: 'Connect API', ar: 'ربط API'})}
           </Button>
         </Card>

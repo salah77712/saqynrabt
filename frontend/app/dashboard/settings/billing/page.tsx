@@ -22,8 +22,8 @@ export default function BillingSettingsPage() {
         </p>
       </div>
 
-      <Card className="p-6 border-[#2A5CFF]/10 bg-[#F8F9FB] rounded-2xl shadow-sm">
-        <div className="flex items-start gap-3">
+      <Card className="p-8 border-[#2A5CFF]/10 bg-[#F8F9FB] rounded-[40px] shadow-sm">
+        <div className="flex items-start gap-4">
           <span className="shrink-0 mt-0.5"><ShieldSvg /></span>
           <div>
             <h2 className="text-sm font-bold text-[#2A5CFF]">
@@ -35,7 +35,7 @@ export default function BillingSettingsPage() {
                 ar: 'بموجب قانون قطر رقم 8 لسنة 2019 (التجارة الإلكترونية)، لديك فترة تهدئة مدتها 14 يوماً من تاريخ التسجيل الأولي. خلال هذه الفترة، يمكنك الإلغاء واسترداد كامل رسوم الشهر الأول. بعد 14 يوماً، تنطبق سياسة عدم الاسترداد القياسية كما هو منصوص عليه في شروط الخدمة الخاصة بنا.',
               })}
             </p>
-            <div className="mt-3 flex items-center gap-2 text-xs text-[#2A5CFF]">
+            <div className="mt-3 flex items-center gap-3 text-xs text-[#2A5CFF]">
 <span className="font-bold text-[#141F33]">{t({ en: 'Status:', ar: 'الحالة:' })}</span>
 <span className="bg-[#2A5CFF] text-[#F8F9FB] px-2 py-0.5 rounded-full text-[10px] font-bold">
                 {t({ en: 'Active', ar: 'نشط' })}
@@ -45,8 +45,8 @@ export default function BillingSettingsPage() {
         </div>
       </Card>
 
-      <Card className="p-6 rounded-2xl shadow-sm">
-        <div className="flex items-start gap-3">
+      <Card className="p-8 rounded-[40px] shadow-sm">
+        <div className="flex items-start gap-4">
           <span className="shrink-0 mt-0.5"><AlertTriangleSvg /></span>
           <div>
             <h2 className="text-sm font-bold text-[#141F33]">
@@ -58,7 +58,7 @@ export default function BillingSettingsPage() {
                 ar: 'يمكنك إلغاء اشتراكك في أي وقت عبر إعدادات لوحة التحكم. عند الإلغاء، تظل الخدمة نشطة حتى نهاية فترة الفوترة الحالية. لا يتم إصدار استرداد للأشهر الجزئية من الخدمة. رسوم الإعداد غير قابلة للاسترداد بعد إجراء مكالمة الإعداد.',
               })}
             </p>
-            <Button variant="outline" className="mt-3 border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5 py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
+            <Button variant="outline" className="mt-3 border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33] py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]">
               {t({ en: 'Cancel Subscription', ar: 'إلغاء الاشتراك' })}
             </Button>
           </div>

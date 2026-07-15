@@ -36,11 +36,11 @@ const industries = {
     { icon: 'towing', title: 'Towing & Roadside', desc: 'Capture stranded drivers, get GPS data, and dispatch the nearest truck without a phone call.' },
     { icon: 'veterinary', title: 'Veterinary', desc: 'Triage emergency pet visits and route urgent cases to the on-call nurse immediately.' },
     { icon: 'plumbing', title: 'Plumbing & HVAC', desc: 'Stop losing money from missed after-hours repair calls. Capture every lead and dispatch your field team.' },
-    { icon: 'boutique', title: 'Boutique Hotels', desc: 'Let guests auto-assign digital door codes at midnight. Handle late arrivals without front-desk staff.' },
+    { icon: 'boutique', title: 'Boutique Hotels', desc: 'Let guests au digital door codes at midnight. Handle late arrivals without front-desk staff.' },
     { icon: 'catering', title: 'Restaurants & Catering', desc: 'Quote and book catering orders with no phone tag. Standardize large event bookings.' },
     { icon: 'dealerships', title: 'Auto Dealerships', desc: 'Answer real-time inventory questions about used cars on your lot —  even after hours.' },
     { icon: 'construction', title: 'Construction', desc: 'Keep subcontractors updated on material delivery times and site work permits without manual calls.' },
-    { icon: 'law', title: 'Law Firms', desc: 'Auto-answer retainer fee questions and intake form inquiries. Free up paralegals for billable work.' },
+    { icon: 'law', title: 'Law Firms', desc: 'Au retainer fee questions and intake form inquiries. Free up paralegals for billable work.' },
     { icon: 'accounting', title: 'Accounting & Tax', desc: 'Handle tax season refund status checks without a receptionist. Route complex cases to senior accountants.' },
     { icon: 'retail', title: 'Retail & E-commerce', desc: 'Answer product questions, process returns, and handle customer inquiries across every channel.' },
   ],
@@ -112,7 +112,7 @@ export default function IndustriesPage() {
       <Header />
 
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
-        <span className="inline-block bg-[#141F33]/10 text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+        <span className="inline-block bg-[#141F33] text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
           {t({ en: 'Industries', fr: 'Secteurs d\'activité', ar: 'القطاعات', hi: 'उद्योग' })}
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-[#141F33] leading-tight max-w-4xl mx-auto">
@@ -125,9 +125,9 @@ export default function IndustriesPage() {
 
       <section className="bg-[#F8F9FB] py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {list.map((ind) => (
-              <div key={ind.title} className="bg-white border border-[#141F33]/10 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
+              <div key={ind.title} className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md transition-all shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
                 <span className="text-3xl mb-3 block">{industryIcons[ind.icon] || <Building2 className="w-8 h-8 text-[#141F33]" />}</span>
                 <h3 className="text-lg font-bold text-[#141F33] mb-2">{ind.title}</h3>
                 <p className="text-sm text-[#141F33] leading-relaxed">{ind.desc}</p>
@@ -149,7 +149,7 @@ export default function IndustriesPage() {
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-xl bg-[#141F33] px-6 py-3 text-xs font-bold min-h-[44px] text-[#F8F9FB] hover:opacity-90 transition-all"
+            className="inline-flex items-center justify-center rounded-[40px] bg-[#141F33] px-6 py-3 text-xs font-bold min-h-[44px] text-[#F8F9FB] hover:opacity-90 transition-all"
           >
             {t({ en: 'See how it works', fr: 'Découvrez comment ça marche', ar: 'شاهد كيف يعمل', hi: 'देखें यह कैसे काम करता है' })}
           </a>

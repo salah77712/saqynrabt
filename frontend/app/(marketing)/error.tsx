@@ -16,9 +16,9 @@ export default function MarketingError({
 
   return (
     <div className="min-h-screen bg-[#F8F9FB] flex flex-col">
-      <header className="sticky top-0 z-50 w-full border-b border-[#141F33]/10 bg-[#F8F9FB]/80 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 w-full border-b border-[#141F33]/10 bg-[#F8F9FB] backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#141F33] text-sm font-semibold text-[#F8F9FB]">
               S
             </div>
@@ -38,7 +38,7 @@ export default function MarketingError({
           <p className="text-sm text-[#141F33] mb-8 leading-relaxed">
             We encountered an error loading this page. Please try again.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => reset()}
               className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all"

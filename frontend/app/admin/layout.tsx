@@ -43,16 +43,16 @@ export default function AdminLayout({
             ar: 'هذه اللوحة مخصصة لمسؤولي SAQYN RABT فقط. يرجى تسجيل الدخول بحساب مسؤول للمتابعة.'
           })}
         </p>
-        <div className="mt-8 flex gap-4">
+        <div className="mt-8 flex gap-8">
           <Link
             href="/sign-in"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-xs font-bold text-[#F8F9FB] shadow-md hover:opacity-95 transition-all"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-[40px] bg-[#141F33] px-8 py-3 text-xs font-bold text-[#F8F9FB] shadow-md hover:opacity-95 transition-all"
           >
             {t({ en: 'Sign In as Admin', ar: 'تسجيل دخول كمسؤول' })}
           </Link>
           <Link
             href="/"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-[#141F33]/5 transition-all"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-[40px] bg-[#F8F9FB] border border-[#141F33]/10 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-[#141F33] transition-all"
           >
             {t({ en: 'Back to Home', ar: 'العودة للرئيسية' })}
           </Link>
@@ -73,13 +73,13 @@ export default function AdminLayout({
       
       {/* Mobile Top Header */}
       <header className="flex h-16 w-full items-center justify-between border-b border-[#141F33]/10 bg-[#F8F9FB] px-6 md:hidden sticky top-0 z-40 shadow-sm">
-        <Link href="/" className="flex items-baseline gap-2">
+        <Link href="/" className="flex items-baseline gap-3">
           <span className="text-[#141F33] font-extrabold text-lg tracking-tight">SAQYN ADMIN</span>
         </Link>
         <button
           type="button"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#141F33]/10 text-[#141F33] min-h-[44px] min-w-[44px]"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-[40px] border border-[#141F33]/10 text-[#141F33] min-h-[44px] min-w-[44px]"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -114,10 +114,10 @@ export default function AdminLayout({
                     key={item.path}
                     href={item.path}
                     onClick={() => setIsSidebarOpen(false)}
-                    className={`flex items-center gap-3.5 px-4 rounded-xl text-sm font-bold transition-all ${
+                    className={`flex items-center gap-4.5 px-4 rounded-[40px] text-sm font-bold transition-all ${
                       isActive
-                        ? 'bg-[#141F33]/5 border-l-4 border-[#141F33] text-[#141F33]'
-                        : 'text-[#141F33]/60 hover:bg-[#141F33]/5 hover:text-[#141F33]'
+                        ? 'bg-[#141F33] border-l-4 border-[#141F33] text-[#141F33]'
+                        : 'text-[#141F33]/60 hover:bg-[#141F33] hover:text-[#141F33]'
                     }`}
                     style={{ minHeight: '44px' }}
                   >
@@ -130,7 +130,7 @@ export default function AdminLayout({
           </div>
 
           {/* Profile bottom */}
-          <div className="p-4 border-t border-[#141F33]/10 bg-[#F8F9FB] flex items-center gap-3">
+          <div className="p-4 border-t border-[#141F33]/10 bg-[#F8F9FB] flex items-center gap-4">
             <UserButton afterSignOutUrl="/" />
             <div className="flex-1 min-w-0">
               <p className="text-xs font-extrabold text-[#141F33] truncate">{user?.fullName || 'Staff Administrator'}</p>
@@ -146,7 +146,7 @@ export default function AdminLayout({
         {isSidebarOpen && (
           <div
             onClick={() => setIsSidebarOpen(false)}
-            className="fixed inset-0 z-40 bg-[#141F33]/40 md:hidden backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-[#141F33] md:hidden backdrop-blur-sm"
           />
         )}
 
@@ -159,7 +159,7 @@ export default function AdminLayout({
             </div>
           </header>
 
-          <div className="flex-1 overflow-y-auto p-6 md:p-8">
+          <div className="flex-1 overflow-y-auto p-8 md:p-8">
             <div className="max-w-6xl mx-auto w-full">
               {children}
             </div>

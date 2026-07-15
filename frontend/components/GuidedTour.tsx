@@ -43,16 +43,16 @@ const tourSteps = [
   body: t({ en: 'Drag policy manuals into the Documents zone. The system indexes text blocks so the assistant can answer correctly.', ar: 'اسحب كتيبات السياسات في قسم المستندات. يقوم النظام بفهرستها ليتمكن المساعد من الإجابة.' }),
 },
 {
-  title: t({ en: '3. Auto-Overage Consent', ar: '3. خيارات التجاوز التلقائي' }),
-  body: t({ en: 'Enable the auto-overage toggle under Settings to ensure operations continue beyond monthly limits.', ar: 'قم بتفعيل خيار التجاوز في الإعدادات لضمان استمرار العمليات عند نفاد الباقة.' }),
+  title: t({ en: '3. Au Consent', ar: '3. خيارات التجاوز التلقائي' }),
+  body: t({ en: 'Enable the au toggle under Settings to ensure operations continue beyond monthly limits.', ar: 'قم بتفعيل خيار التجاوز في الإعدادات لضمان استمرار العمليات عند نفاد الباقة.' }),
 },
 ];
 
 const current = tourSteps[step - 1];
 
 return (
-<div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#141F33]/60 backdrop-blur-sm animate-fadeIn">
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-6 relative" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#141F33] backdrop-blur-sm animate-fadeIn">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] max-w-sm w-full p-8 shadow-2xl space-y-6 relative" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 
 <div>
 <span className="text-[9px] font-extrabold uppercase tracking-widest text-[#2A5CFF]">{t({ en: 'Quick Workspace Tour', ar: 'جولة سريعة في مساحة العمل' })}</span>
@@ -68,11 +68,11 @@ className="text-[10px] font-bold text-[#141F33]/40 hover:text-[#141F33]"
 {t({ en: 'Skip Tour', ar: 'تخطي الجولة' })}
 </button>
 
-<div className="flex items-center gap-4">
+<div className="flex items-center gap-8">
 <span className="text-[10px] font-bold text-[#141F33]/50">{step} / 3</span>
 <button
 onClick={handleNext}
-className="bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+className="bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-[40px] text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 {step === 3 ? t({ en: 'Finish', ar: 'إنهاء' }) : t({ en: 'Next', ar: 'التالي' })}
 </button>

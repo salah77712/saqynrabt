@@ -31,7 +31,7 @@ return (
 <Card className="w-80 shadow-2xl border border-[#141F33]/10">
 <span className="text-[10px] font-black uppercase text-[#2A5CFF]">Onboarding Guide</span>
 <h4 className="font-bold text-[#141F33] dark:text-[#F8F9FB] text-sm mt-1">{current.title}</h4>
-<p className="text-xs text-[#141F33]/60 mt-2 leading-relaxed">{current.body}</p>
+<p className="text-xs text-[#141F33]/60 mt-3 leading-relaxed">{current.body}</p>
 
 <div className="flex justify-between items-center mt-4 pt-3 border-t border-[#141F33]/10">
 <button className="text-[10px] font-bold text-[#141F33]/40 hover:text-[#141F33] min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setVisible(false)}>

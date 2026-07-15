@@ -12,7 +12,7 @@ export function AutomationFilters({ filter, onFilterChange, search, onSearchChan
   const options = ['all', 'pending', 'assigned', 'completed'];
 
   return (
-    <div className="flex flex-col sm:flex-row gap-4 items-center justify-between">
+    <div className="flex flex-col sm:flex-row gap-8 items-center justify-between">
       {/* Search Input */}
       <div className="w-full sm:w-72">
         <Input
@@ -23,12 +23,12 @@ export function AutomationFilters({ filter, onFilterChange, search, onSearchChan
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex gap-1.5 bg-[#F8F9FB] dark:bg-[#141F33] p-1 rounded-xl">
+      <div className="flex gap-1.5 bg-[#F8F9FB] dark:bg-[#141F33] p-1 rounded-[40px]">
         {options.map((opt) => (
           <button
             key={opt}
             onClick={() => onFilterChange(opt)}
-            className={`px-4 py-3 min-h-[44px] rounded-xl text-xs font-bold uppercase tracking-wide transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+            className={`px-4 py-3 min-h-[44px] rounded-[40px] text-xs font-bold uppercase tracking-wide transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
               filter === opt
                 ? '  shadow-sm'
                 : ' '

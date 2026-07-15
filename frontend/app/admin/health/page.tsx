@@ -21,12 +21,12 @@ export default function HealthPage() {
   }, []);
 
   return (
-    <div className="p-6 max-w-4xl animate-fadeIn">
+    <div className="p-8 max-w-4xl animate-fadeIn">
       <h1 className="text-xl font-extrabold text-[#141F33] mb-4">{t({en: 'Live MCP Health Dashboard', ar: 'لوحة صحة MCP المباشرة'})}</h1>
       {loading ? (
         <p className="text-xs text-[#141F33]">{t({en: 'Checking MCP providers...', ar: 'جارٍ التحقق من موفري MCP...'})}</p>
       ) : (
-        <div className="grid gap-4">
+        <div className="grid gap-8">
           {Object.entries(status).map(([key, val]) => (
             <div key={key} className="flex justify-between border-b border-[#141F33]/10 p-2">
               <span className="font-mono text-sm text-[#141F33] font-bold">{key.toUpperCase()}</span>

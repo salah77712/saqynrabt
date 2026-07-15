@@ -40,7 +40,7 @@ export default function GlobalMarketplacePage() {
         </div>
 
         {/* Plugin Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {plugins.map((p, idx) => (
             <MarketplaceCard key={idx} name={p.name} desc={p.desc} developer={p.developer} />
           ))}

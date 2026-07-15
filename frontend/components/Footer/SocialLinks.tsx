@@ -73,7 +73,7 @@ const links = [
 
 export function SocialLinks() {
   return (
-    <div className="flex items-center gap-2" role="list" aria-label="Social media links">
+    <div className="flex items-center gap-3" role="list" aria-label="Social media links">
       {links.map(({ href, label, svg }) => (
         <a
           key={label}

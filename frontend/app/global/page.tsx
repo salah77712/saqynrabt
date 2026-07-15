@@ -56,7 +56,7 @@ return (
 <Header />
 
 <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
-<span className="inline-block bg-[#141F33]/10 text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+<span className="inline-block bg-[#141F33] text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
 {t({ en: 'Global Presence', fr: 'Présence mondiale', ar: 'الوجود العالمي', hi: 'वैश्विक उपस्थिति' })}
 </span>
 <h1 className="text-4xl md:text-5xl font-bold text-[#141F33] leading-tight max-w-4xl mx-auto">
@@ -69,9 +69,9 @@ return (
 
 <section className="bg-[#F8F9FB] py-16">
 <div className="max-w-5xl mx-auto px-6">
-<div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div className="grid grid-cols-2 md:grid-cols-4 gap-8">
 {highlightList.map((h) =>
-<div key={h.label} className="text-center bg-white border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+<div key={h.label} className="text-center bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
 <p className="text-4xl font-extrabold text-[#141F33]">{h.stat}</p>
 <p className="text-sm text-[#141F33] mt-1">{h.label}</p>
 </div>
@@ -85,9 +85,9 @@ return (
 <h2 className="text-3xl font-bold text-[#141F33] text-center mb-12">
 {t({ en: 'Where We Operate', fr: 'Où nous opérons', ar: 'أين نعمل', hi: 'हम कहाँ काम करते हैं' })}
 </h2>
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 {regionList.map((r) =>
-<div key={r.name} className="border border-[#141F33]/10 rounded-2xl p-6 shadow-sm hover:shadow-md transition-all">
+<div key={r.name} className="border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md transition-all">
 <span className="text-4xl mb-3 block">{flagIconMap[r.flag] || <Globe className="w-8 h-8 text-[#141F33]" />}</span>
 <h3 className="text-xl font-bold text-[#141F33] mb-1">{r.name}</h3>
 <p className="text-xs text-[#141F33] mb-3">{r.cities}</p>

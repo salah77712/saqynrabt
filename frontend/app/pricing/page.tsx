@@ -38,7 +38,7 @@ return (
 
 <section className="bg-[#F8F9FB] py-20 md:py-28">
 <div className="max-w-7xl mx-auto px-6 text-center">
-<span className="inline-block bg-[#141F33]/10 text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+<span className="inline-block bg-[#141F33] text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
 {t({ en: 'Pricing', ar: 'الأسعار' })}
 </span>
 <h1 className="text-4xl md:text-5xl font-bold text-[#141F33] leading-tight max-w-3xl mx-auto">
@@ -50,7 +50,7 @@ return (
 </div>
 </section>
 
-<div className="bg-[#141F33]/10 border-y border-[#141F33]/20 py-4 px-6 text-center">
+<div className="bg-[#141F33] border-y border-[#141F33]/20 py-4 px-6 text-center">
 <p className="text-[#141F33] font-semibold text-sm">
 <span><Check className="w-4 h-4 text-[#2A5CFF] inline" /> {t({ en: 'No surprise bills. Everything\'s fixed monthly. Overages only if you want them.', ar: 'لا فواتير مفاجئة. سعر شهري ثابت. الاستخدام الزائد فقط إذا فعّلته.' })}</span>
 </p>
@@ -58,13 +58,13 @@ return (
 
 {/* Product Tabs + Currency Toggle */}
 <section className="bg-[#F8F9FB] py-10 border-b border-[#141F33]/10">
-<div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+<div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-8">
 {/* Product Tabs */}
-<div className="flex bg-[#F8F9FB] rounded-xl p-1 gap-1">
+<div className="flex bg-[#F8F9FB] rounded-[40px] p-1 gap-1">
 <button
 type="button"
 onClick={() => setProductTab('automation')}
-className={`flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${productTab === 'automation' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
+className={`flex items-center gap-3 px-6 py-3 rounded-[40px] text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${productTab === 'automation' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
 >
 <Zap className={`w-4 h-4 ${productTab === 'automation' ? 'text-[#2A5CFF]' : 'text-[#141F33]'}`} />
 {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
@@ -72,7 +72,7 @@ className={`flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-bold tran
 <button
 type="button"
 onClick={() => setProductTab('chatbot')}
-className={`flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${productTab === 'chatbot' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
+className={`flex items-center gap-3 px-6 py-3 rounded-[40px] text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${productTab === 'chatbot' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
 >
 <MessageSquare className={`w-4 h-4 ${productTab === 'chatbot' ? 'text-[#2A5CFF]' : 'text-[#141F33]'}`} />
 {t({ en: 'Internal Chatbot', ar: 'المساعد الداخلي' })}
@@ -80,7 +80,7 @@ className={`flex items-center gap-2 px-6 py-3 rounded-2xl text-xs font-bold tran
 </div>
 
 {/* Currency Toggle */}
-<div className="flex items-center gap-4">
+<div className="flex items-center gap-8">
 <span className={`text-xs font-bold select-none ${currency === 'USD' ? 'text-[#141F33]' : 'text-[#141F33]/60'}`}>USD</span>
 <button
 type="button"
@@ -113,7 +113,7 @@ className={`absolute top-1 w-5 h-5 bg-[#F8F9FB] rounded-full shadow-sm transitio
 </p>
 <Link 
   href="/contact"
-  className="btn-primary py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]"
+  className="btn-primary py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]"
 >
   {t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' })}
 </Link>

@@ -8,15 +8,15 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[#141F33] text-[#F8F9FB] hover:bg-[#141F33]/80",
+        default: "bg-[#141F33] text-[#F8F9FB] hover:bg-[#141F33]",
         outline:
-          "btn-secondary border-[#141F33]/10 bg-[#F8F9FB] hover:bg-[#F8F9FB] hover:text-[#141F33] aria-expanded:bg-[#F8F9FB] aria-expanded:text-[#141F33] dark:border-[#141F33]/10 dark:bg-[#141F33]/30 dark:hover:bg-[#141F33]/50",
+          "btn-secondary border-[#141F33]/10 bg-[#F8F9FB] hover:bg-[#F8F9FB] hover:text-[#141F33] aria-expanded:bg-[#F8F9FB] aria-expanded:text-[#141F33] dark:border-[#141F33]/10 dark:bg-[#141F33] dark:hover:bg-[#141F33]",
         secondary:
           "btn-secondary bg-[#2A5CFF]/10 text-[#2A5CFF] hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-[#2A5CFF]/10 aria-expanded:text-[#2A5CFF]",
         ghost:
-          "hover:bg-[#F8F9FB] hover:text-[#141F33] aria-expanded:bg-[#F8F9FB] aria-expanded:text-[#141F33] dark:hover:bg-[#141F33]/50",
+          "hover:bg-[#F8F9FB] hover:text-[#141F33] aria-expanded:bg-[#F8F9FB] aria-expanded:text-[#141F33] dark:hover:bg-[#141F33]",
         destructive:
-          "bg-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/20 focus-visible:border-[#141F33]/40 focus-visible:ring-[#141F33]/20 dark:bg-[#141F33]/20 dark:hover:bg-[#141F33]/30 dark:focus-visible:ring-[#141F33]/40",
+          "bg-[#141F33] text-[#141F33] hover:bg-[#141F33] focus-visible:border-[#141F33]/40 focus-visible:ring-[#141F33]/20 dark:bg-[#141F33] dark:hover:bg-[#141F33] dark:focus-visible:ring-[#141F33]/40",
         link: "text-[#141F33] underline-offset-4 hover:underline",
       },
       size: {

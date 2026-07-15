@@ -51,11 +51,11 @@ return (
 <header
 role="banner"
 aria-label="Main navigation"
-className={`sticky top-0 z-50 h-14 md:h-16 bg-[#F8F9FB]/70 backdrop-blur-xl shadow-lg border-b border-[#F8F9FB]/20 shrink-0 transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}
+className={`sticky top-0 z-50 h-14 md:h-16 bg-[#F8F9FB] backdrop-blur-xl shadow-lg border-b border-[#F8F9FB]/20 shrink-0 transition-transform duration-300 ${isHeaderVisible ? 'translate-y-0' : '-translate-y-full'}`}
 style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
 >
 <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 flex items-center justify-between w-full h-full">
-<Link href="/" className="flex items-center gap-2 md:gap-3 hover:opacity-80 transition-opacity min-h-[44px]">
+<Link href="/" className="flex items-center gap-3 md:gap-4 hover:opacity-80 transition-opacity min-h-[44px]">
 <div className="w-7 h-7 md:w-8 md:h-8 bg-[#141F33] rounded-md flex items-center justify-center text-[#F8F9FB] font-bold text-sm md:text-base shrink-0">
 S
 </div>
@@ -71,7 +71,7 @@ return (
 <Link
 key={link.href}
 href={link.href}
-className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 rounded-xl hover:bg-[#141F33]/5 hover:text-[#141F33] min-h-[44px] flex items-center ${
+className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 rounded-full hover:bg-[#141F33] hover:text-[#141F33] min-h-[44px] flex items-center ${
       isActive ? 'text-[#141F33]' : 'text-[#141F33]/60'
     }`}
 >
@@ -84,22 +84,22 @@ className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 r
 })}
 </nav>
 
-<div className="flex items-center gap-2 md:gap-4">
+<div className="flex items-center gap-3 md:gap-4">
 <LanguageSwitcher />
 
-<div className="flex items-center gap-2">
+<div className="flex items-center gap-3">
 <Link
 href="/contact"
-className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
+className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
 >
 {t('See how it works', 'Voir comment ça marche', 'شاهد كيف يعمل', 'यह कैसे काम करता है देखें')}
 </Link>
 
 {isSignedIn ? (
-<div className="flex items-center gap-3">
+<div className="flex items-center gap-4">
 <Link
 href="/dashboard"
-className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
+className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
 >
 {t('Dashboard', 'Tableau de Bord', 'لوحة التحكم', 'डैशबोर्ड')}
 </Link>
@@ -121,13 +121,13 @@ href="/dashboard"
 </UserButton>
 </div>
 ) : (
-<div className="flex items-center gap-2">
+<div className="flex items-center gap-3">
 <Link href="/sign-in" className="text-xs font-extrabold text-[#141F33] hover:underline min-h-[44px] flex items-center px-2">
 {t('Sign In', 'Connexion', 'تسجيل الدخول', 'साइन इन करें')}
 </Link>
 <Link
 href="/sign-up"
-className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
+className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
 >
 {t('Register', 'S\'inscrire', 'سجل الآن', 'पंजीकरण करें')}
 </Link>
@@ -140,7 +140,7 @@ onClick={() => setMobileMenuOpen(true)}
 aria-label="Open navigation menu"
 aria-expanded={mobileMenuOpen}
 aria-controls="mobile-nav"
-className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#141F33]/5 hover:shadow-md hover:scale-[1.02] active:scale-95 text-[#141F33] min-h-[44px] min-w-[44px] transition-all duration-300"
+className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#141F33] hover:shadow-md hover:scale-[1.02] active:scale-95 text-[#141F33] min-h-[44px] min-w-[44px] transition-all duration-300"
 >
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <path d="M2.5 5H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -160,11 +160,11 @@ aria-label="Mobile navigation menu"
 className="fixed inset-0 z-50 flex"
 >
 <div
-className="fixed inset-0 bg-[#141F33]/20 backdrop-blur-sm"
+className="fixed inset-0 bg-[#141F33] backdrop-blur-sm"
 onClick={closeMenu}
 />
 <div
-className={`relative w-72 max-w-[85vw] bg-[#F8F9FB]/95 backdrop-blur-md shadow-2xl flex flex-col animate-slide-in-left ${
+className={`relative w-72 max-w-[85vw] bg-[#F8F9FB] backdrop-blur-md shadow-2xl flex flex-col animate-slide-in-left ${
 locale === 'ar' ? 'mr-auto' : 'ml-0'
 }`}
 style={{
@@ -178,7 +178,7 @@ animation: 'slideInLeft 0.3s ease-out',
 <button
 onClick={closeMenu}
 aria-label="Close navigation menu"
-className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#141F33]/5 text-[#141F33]/50 min-h-[44px] min-w-[44px]"
+className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#141F33] text-[#141F33]/50 min-h-[44px] min-w-[44px]"
 >
 <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <path d="M13.5 4.5L4.5 13.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
@@ -195,10 +195,10 @@ return (
 key={link.href}
 href={link.href}
 onClick={closeMenu}
-className={`flex items-center min-h-[44px] px-3 py-2.5 text-base font-semibold rounded-xl transition-colors ${
+className={`flex items-center min-h-[44px] px-3 py-2.5 text-base font-semibold rounded-full transition-colors ${
 isActive
-? 'text-[#141F33] bg-[#141F33]/5'
-: 'text-[#141F33]/70 hover:text-[#141F33] hover:bg-[#141F33]/5'
+? 'text-[#141F33] bg-[#141F33]'
+: 'text-[#141F33]/70 hover:text-[#141F33] hover:bg-[#141F33]'
 }`}
 >
 {t(link.label.en, link.label.fr, link.label.ar, link.label.hi)}
@@ -216,7 +216,7 @@ isActive
 <Link
 href="/contact"
 onClick={closeMenu}
-className="flex min-h-[44px] w-full items-center justify-center rounded-xl bg-[#141F33] text-[#F8F9FB] font-bold text-sm py-3"
+className="flex min-h-[44px] w-full items-center justify-center rounded-full bg-[#141F33] text-[#F8F9FB] font-bold text-sm py-3"
 >
 {t('See how it works', 'Voir comment ça marche', 'شاهد كيف يعمل', 'यह कैसे काम करता है देखें')}
 </Link>

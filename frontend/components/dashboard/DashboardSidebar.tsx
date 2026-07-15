@@ -58,7 +58,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
             )}
           </Link>
           {mockMode && !isCollapsed && (
-            <span className="rounded-full bg-[#141F33]/10 px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-widest text-[#141F33] border border-[#141F33]/20 shrink-0">
+            <span className="rounded-full bg-[#141F33] px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-widest text-[#141F33] border border-[#141F33]/20 shrink-0">
               {t(dashboardContent.sandbox)}
             </span>
           )}
@@ -73,12 +73,12 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                 href={item.path}
                 onClick={onClose}
                 title={isCollapsed ? t(item.name) : undefined}
-                className={`flex items-center rounded-xl text-sm font-bold transition-all relative ${
-                  isCollapsed ? 'justify-center px-0' : 'px-4 gap-3.5'
+                className={`flex items-center rounded-[40px] text-sm font-bold transition-all relative ${
+                  isCollapsed ? 'justify-center px-0' : 'px-4 gap-4.5'
                 } ${
                   isActive
-? 'bg-[#141F33]/5 border-l-4 border-[#141F33] text-[#141F33]'
-: 'border-l-4 border-transparent text-[#141F33] hover:bg-[#141F33]/5 hover:text-[#141F33]'
+? 'bg-[#141F33] border-l-4 border-[#141F33] text-[#141F33]'
+: 'border-l-4 border-transparent text-[#141F33] hover:bg-[#141F33] hover:text-[#141F33]'
                 }`}
                 style={{ minHeight: '44px' }}
               >
@@ -102,7 +102,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
         <button
           type="button"
           onClick={onToggleCollapse}
-className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justify-center text-[#141F33] hover:text-[#141F33] hover:bg-[#141F33]/5 transition-colors min-h-[44px] min-w-[44px]"
+className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justify-center text-[#141F33] hover:text-[#141F33] hover:bg-[#141F33] transition-colors min-h-[44px] min-w-[44px]"
           title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >
           {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
@@ -111,8 +111,8 @@ className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justi
 
       <div className="p-4 border-t border-[#F8F9FB] bg-[#F8F9FB]">
         {mockMode ? (
-          <div className="rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] p-3 flex flex-col gap-2 min-w-0">
-            <div className="flex items-center justify-between gap-2 min-w-0">
+          <div className="rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] p-3 flex flex-col gap-3 min-w-0">
+            <div className="flex items-center justify-between gap-3 min-w-0">
               <div className="min-w-0">
                 <p className="text-xs font-extrabold text-[#141F33] truncate">Salah ({t(dashboardContent.demo)})</p>
                 {!isCollapsed && <p className="text-[10px] font-medium text-[#141F33] truncate">admin@alsafa.qa</p>}
@@ -129,7 +129,7 @@ className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justi
             </div>
           </div>
         ) : (
-          <div className={`flex items-center p-1 rounded-xl min-w-0 ${isCollapsed ? 'justify-center' : 'gap-3'}`}>
+          <div className={`flex items-center p-1 rounded-[40px] min-w-0 ${isCollapsed ? 'justify-center' : 'gap-4'}`}>
             <UserButton afterSignOutUrl="/" showName={!isCollapsed} />
             {!isCollapsed && (
               <div className="flex-1 min-w-0">

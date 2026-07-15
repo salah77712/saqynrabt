@@ -107,7 +107,7 @@ longPressTimer.current = null;
 if (historyLoading) {
 return (
 <div className="animate-fadeIn">
-<div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-6">
+<div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-8">
 <SkeletonCard />
 <div className="hidden xl:block">
 <SkeletonCard />
@@ -120,7 +120,7 @@ return (
 return (
 <PullToRefresh onRefresh={handleRefresh}>
 <div className="animate-fadeIn">
-<div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-6">
+<div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-8">
 <Card className="flex flex-col overflow-hidden p-0 h-[500px] xl:h-[650px]">
 <div className="px-4 md:px-6 py-3 md:py-4 border-b border-[#141F33]/10 bg-[#F8F9FB] flex items-center justify-between shrink-0">
 <div className="flex-1 min-w-0">
@@ -131,7 +131,7 @@ return (
 {t('Answers from your documents only', 'إجابات موثوقة ومستخرجة من المستندات فقط')}
 </p>
 </div>
-<div className="flex items-center gap-2">
+<div className="flex items-center gap-3">
 {isLoading && (
 <span className="inline-flex items-center gap-1 text-royal">
 {[0, 160, 320].map((delay) => (
@@ -146,14 +146,14 @@ style={{ animationDelay: `${delay}ms` }}
 <button
 onClick={() => setShowGapsSheet(true)}
 aria-label={t('Show knowledge gaps', 'عرض فجوات المعرفة')}
- className="xl:hidden w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-xl bg-[#F8F9FB] hover:bg-[#141F33]/5 text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] min-w-[44px] px-6 font-bold"
+ className="xl:hidden w-9 h-9 md:w-10 md:h-10 flex items-center justify-center rounded-[40px] bg-[#F8F9FB] hover:bg-[#141F33] text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] min-w-[44px] px-6 font-bold"
 >
 <ClipboardList className="w-4 h-4 text-[#141F33]" />
 </button>
 </div>
 </div>
 
-<div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 bg-[#F8F9FB]/50"
+<div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-4 bg-[#F8F9FB]"
 style={{ WebkitOverflowScrolling: 'touch' }}
 aria-live="polite"
 aria-label={t('Chat messages', 'رسائل المحادثة')}>
@@ -172,7 +172,7 @@ copyToClipboard(msg.content);
 }}
 >
 <div
-className={`p-3 md:p-4 rounded-2xl text-[11px] md:text-xs font-semibold leading-relaxed shadow-sm ${
+className={`p-3 md:p-4 rounded-[40px] text-[11px] md:text-xs font-semibold leading-relaxed shadow-sm ${
 msg.role === 'user'
 ? 'bg-[#141F33] text-[#F8F9FB] rounded-br-none'
 : 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 rounded-bl-none'
@@ -186,21 +186,21 @@ msg.role === 'user'
 </div>
 
 <form onSubmit={handleSubmit} className="p-3 md:p-4 border-t border-[#141F33]/10 bg-[#F8F9FB] shrink-0">
-<div className="flex items-center gap-2 md:gap-3">
+<div className="flex items-center gap-3 md:gap-4">
 <Input
 value={input}
 onChange={handleInputChange}
 placeholder={t('Ask a question...', 'اسأل سؤالاً...')}
 className="min-h-[44px] text-xs md:text-sm"
 />
-<Button type="submit" disabled={isLoading || !input} className="min-h-[44px] min-w-[44px] whitespace-nowrap text-xs md:text-sm py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95">
+<Button type="submit" disabled={isLoading || !input} className="min-h-[44px] min-w-[44px] whitespace-nowrap text-xs md:text-sm py-3 px-6 rounded-[40px] font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95">
 {t('Send', 'إرسال')}
 </Button>
 </div>
 </form>
 </Card>
 
-<Card className="hidden xl:flex flex-col justify-between p-6">
+<Card className="hidden xl:flex flex-col justify-between p-8">
 <div className="space-y-4">
 <div className="pb-3 border-b border-[#141F33]/10">
 <h3 className="text-sm font-black text-[#141F33] uppercase tracking-wide">
@@ -243,7 +243,7 @@ setIsGapModalOpen(true);
 }}
 role="button"
 tabIndex={0}
-className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-3.5 hover:border-royal transition-all cursor-pointer flex items-start justify-between gap-3"
+className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-3.5 hover:border-royal transition-all cursor-pointer flex items-start justify-between gap-4"
 >
 <p className="text-xs font-bold text-[#141F33] leading-normal">
 &ldquo;{gap.question}&rdquo;
@@ -255,7 +255,7 @@ className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-3.5 hover:border
 )}
 </div>
 
-<Button variant="outline" className="w-full mt-6 min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
+<Button variant="outline" className="w-full mt-6 min-h-[44px] py-3 px-6 rounded-[40px] font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
 {t('Review Gaps', 'مراجعة الفجوات')}
 </Button>
 </Card>
@@ -263,7 +263,7 @@ className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-3.5 hover:border
 
 {showGapsSheet && (
 <div className="fixed inset-0 z-50 flex items-end xl:hidden">
-<div className="fixed inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setShowGapsSheet(false)} />
+<div className="fixed inset-0 bg-black backdrop-blur-sm" onClick={() => setShowGapsSheet(false)} />
 <div className="relative w-full bg-[#F8F9FB] rounded-t-2xl shadow-2xl max-h-[70vh] overflow-y-auto animate-fadeIn p-5"
 style={{ paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
 <div className="flex items-center justify-between mb-4">
@@ -272,7 +272,7 @@ style={{ paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
 </h3>
 <button
 onClick={() => setShowGapsSheet(false)}
-className="w-10 h-10 flex items-center justify-center rounded-xl bg-[#F8F9FB] hover:bg-[#141F33]/5 text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] min-w-[44px] px-6 font-bold"
+className="w-10 h-10 flex items-center justify-center rounded-[40px] bg-[#F8F9FB] hover:bg-[#141F33] text-[#141F33] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] min-w-[44px] px-6 font-bold"
 >
 <X className="w-4 h-4" />
 </button>
@@ -301,7 +301,7 @@ setIsGapModalOpen(true);
 }}
 role="button"
 tabIndex={0}
-className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-3.5 flex items-start justify-between gap-3"
+className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-3.5 flex items-start justify-between gap-4"
 >
 <p className="text-xs font-bold text-[#141F33] leading-normal">
 &ldquo;{gap.question}&rdquo;
@@ -311,7 +311,7 @@ className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-3.5 flex items-s
 ))
 )}
 </div>
-<Button variant="outline" className="w-full mt-4 min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
+<Button variant="outline" className="w-full mt-4 min-h-[44px] py-3 px-6 rounded-[40px] font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
 {t('Review All Gaps', 'مراجعة جميع الفجوات')}
 </Button>
 </div>
@@ -329,16 +329,16 @@ className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-3.5 flex items-s
 'تم طرح هذا السؤال من قبل الموظفين ولكن تعذر الإجابة عليه بناءً على المستندات الحالية.'
 )}
 </p>
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 mb-6">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-4 mb-6">
 <p className="text-sm font-bold text-[#141F33]">
 &ldquo;{selectedGap || (gaps.length > 0 ? gaps[0].question : t('No question selected', 'لم يتم تحديد سؤال'))}&rdquo;
 </p>
 </div>
-<div className="flex gap-3">
-<Button variant="default" className="flex-1 min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
+<div className="flex gap-4">
+<Button variant="default" className="flex-1 min-h-[44px] py-3 px-6 rounded-[40px] font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
 Upload Document
 </Button>
-<Button variant="outline" className="min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
+<Button variant="outline" className="min-h-[44px] py-3 px-6 rounded-[40px] font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
 Cancel
 </Button>
 </div>

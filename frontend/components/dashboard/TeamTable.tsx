@@ -16,7 +16,7 @@ interface TeamTableProps {
 
 export function TeamTable({ members, onAction }: TeamTableProps) {
   return (
-    <div className="overflow-x-auto w-full border border-[#F8F9FB] dark:border-[#141F33] rounded-2xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm">
+    <div className="overflow-x-auto w-full border border-[#F8F9FB] dark:border-[#141F33] rounded-[40px] bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm">
       <table className="w-full text-left border-collapse">
         <thead>
           <tr className="bg-[#F8F9FB] dark:bg-[#141F33] border-b border-[#F8F9FB] dark:border-[#141F33] text-[10px] font-black text-[#141F33] uppercase tracking-wider">
@@ -29,7 +29,7 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
         </thead>
         <tbody>
           {members.map((m) => (
-            <tr key={m.id} className="border-b border-[#F8F9FB] dark:border-[#141F33] last:border-0 hover:bg-[#141F33]/5 transition-colors">
+            <tr key={m.id} className="border-b border-[#F8F9FB] dark:border-[#141F33] last:border-0 hover:bg-[#141F33] transition-colors">
               <td className="p-4 text-xs font-bold text-navy dark:text-[#F8F9FB]">{m.name}</td>
               <td className="p-4 text-xs text-[#141F33] dark:text-[#141F33]">{m.email}</td>
               <td className="p-4 text-xs font-semibold text-[#141F33] uppercase tracking-wider">{m.role}</td>
@@ -38,7 +38,7 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
 </td>
               {onAction && (
                 <td className="p-4 text-right">
-                  <div className="flex justify-end gap-3.5">
+                  <div className="flex justify-end gap-4.5">
                     {m.status === 'pending' ? (
                       <button
                         onClick={() => onAction(m.id, 'approve')}
@@ -60,7 +60,7 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
                         </button>
                         <button
                           onClick={() => onAction(m.id, 'suspend')}
-className="px-4 py-2 min-h-[44px] rounded-xl text-xs font-bold text-[#141F33] transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:text-[#141F33]"
+className="px-4 py-2 min-h-[44px] rounded-[40px] text-xs font-bold text-[#141F33] transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:text-[#141F33]"
                         >
                           Suspend
                         </button>

@@ -17,7 +17,7 @@ return (
 value={locale}
 onChange={(e) => setLocale(e.target.value)}
 aria-label="Select language"
-className="appearance-none bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-3 py-1.5 text-xs font-bold text-[#141F33] cursor-pointer hover:border-[#141F33]/30 focus:outline-none focus:ring-2 focus:ring-[#141F33]/30 min-h-[44px] pr-7"
+className="appearance-none bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-3 py-1.5 text-xs font-bold text-[#141F33] cursor-pointer hover:border-[#141F33]/30 focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal/30 min-h-[44px] pr-7"
 style={{
 backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 20 20'%3E%3Cpath fill='%23141F33' fill-rule='evenodd' d='M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z' clip-rule='evenodd'/%3E%3C/svg%3E")`,
 backgroundPosition: 'right 0.5rem center',

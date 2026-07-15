@@ -27,7 +27,7 @@ const isCustom = (tier: ProductTier) =>
 tier.priceUSD === null && tier.priceQAR === null;
 
 return (
-<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
 {tiers.map((tier, i) => {
 const price = currency === 'USD' ? tier.priceUSD : tier.priceQAR;
 const setup = currency === 'USD' ? tier.setupUSD : tier.setupQAR;
@@ -79,9 +79,9 @@ style={{ animationDelay: `${i * 0.1}s` }}
 )}
 </div>
 
-<ul className="flex flex-col gap-2">
+<ul className="flex flex-col gap-3">
 {(tier.features[locale as keyof typeof tier.features] || tier.features.en).map((f, idx) => (
-<li key={idx} className="flex items-center gap-3 text-[#141F33]/70 text-sm font-medium">
+<li key={idx} className="flex items-center gap-4 text-[#141F33]/70 text-sm font-medium">
 <span className="text-[#2A5CFF] shrink-0">
 <Check className="w-4 h-4 text-[#2A5CFF]" />
 </span>
@@ -95,7 +95,7 @@ style={{ animationDelay: `${i * 0.1}s` }}
 {isCustom(tier) ? (
 <Link
 href="/contact"
-className="w-full border border-[#141F33]/10 bg-[#F8F9FB] text-[#141F33] py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:bg-[#141F33]/5 hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
+className="w-full border border-[#141F33]/10 bg-[#F8F9FB] text-[#141F33] py-3 rounded-[40px] text-xs font-bold transition-all duration-300 min-h-[44px] hover:bg-[#141F33] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </Link>
@@ -104,7 +104,7 @@ className="w-full border border-[#141F33]/10 bg-[#F8F9FB] text-[#141F33] py-3 ro
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="w-full bg-[#2A5CFF] hover:bg-[#141F33]/90 text-white py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
+className="w-full bg-[#2A5CFF] hover:bg-[#141F33] text-white py-3 rounded-[40px] text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </a>
@@ -113,7 +113,7 @@ className="w-full bg-[#2A5CFF] hover:bg-[#141F33]/90 text-white py-3 rounded-xl 
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="w-full bg-[#141F33] text-[#F8F9FB] py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
+className="w-full bg-[#141F33] text-[#F8F9FB] py-3 rounded-[40px] text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </a>

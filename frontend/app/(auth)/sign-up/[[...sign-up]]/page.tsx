@@ -118,7 +118,7 @@ export default function SignUpPage() {
   if (pendingVerification) {
     return (
       <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-        <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-6 border border-[#141F33]/10 w-full max-w-md animate-fadeIn text-center">
+        <div className="bg-[#F8F9FB] rounded-[40px] shadow-xl p-8 border border-[#141F33]/10 w-full max-w-md animate-fadeIn text-center">
           
           {/* Logo */}
           <div className="text-center mb-8">
@@ -140,7 +140,7 @@ export default function SignUpPage() {
           </p>
 
 {error && (
-    <div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6 text-center">
+    <div className="bg-[#141F33] border border-[#141F33]/10 text-[#141F33] rounded-[40px] p-3.5 text-xs font-bold mb-6 text-center">
 {error}
 </div>
 )}
@@ -152,13 +152,13 @@ export default function SignUpPage() {
               maxLength={6}
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-center text-sm font-bold tracking-widest text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-3 text-center text-sm font-bold tracking-widest text-[#141F33] focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
               required
             />
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+              className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-[40px] text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
             >
               {loading ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Activate Account', ar: 'التحقق وتنشيط الحساب' })}
             </button>
@@ -171,7 +171,7 @@ export default function SignUpPage() {
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-6 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
+      <div className="bg-[#F8F9FB] rounded-[40px] shadow-xl p-8 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
         
         {/* Logo */}
         <div className="text-center mb-8">
@@ -182,14 +182,14 @@ export default function SignUpPage() {
         </div>
 
 {error && (
-<div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6" role="alert" aria-live="assertive">
+<div className="bg-[#141F33] border border-[#141F33]/10 text-[#141F33] rounded-[40px] p-3.5 text-xs font-bold mb-6" role="alert" aria-live="assertive">
 {error}
 </div>
 )}
 
         {/* Dynamic Role & Account Type Notices */}
         {emailParam ? (
-          <div className="mb-6 p-4 rounded-2xl bg-[#F8F9FB]/50 border border-[#2A5CFF]/10/80 text-[#2A5CFF] flex items-start gap-3.5 shadow-sm">
+          <div className="mb-6 p-4 rounded-[40px] bg-[#F8F9FB] border border-[#2A5CFF]/10/80 text-[#2A5CFF] flex items-start gap-4.5 shadow-sm">
             <Lock className="w-5 h-5 text-[#141F33] shrink-0 mt-0.5" />
             <div>
               <h4 className="text-xs font-black tracking-wide uppercase text-[#2A5CFF]">
@@ -204,7 +204,7 @@ export default function SignUpPage() {
             </div>
           </div>
         ) : (
-          <div className="mb-6 p-4 rounded-2xl bg-[#F8F9FB]/50 border border-[#2A5CFF]/10/80 text-[#141F33] flex items-start gap-3.5 shadow-sm">
+          <div className="mb-6 p-4 rounded-[40px] bg-[#F8F9FB] border border-[#2A5CFF]/10/80 text-[#141F33] flex items-start gap-4.5 shadow-sm">
             <Briefcase className="w-5 h-5 text-[#141F33] shrink-0 mt-0.5" />
             <div>
               <h4 className="text-xs font-black tracking-wide uppercase text-[#2A5CFF]">
@@ -230,7 +230,7 @@ export default function SignUpPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               disabled={!!emailParam}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] disabled:opacity-70 disabled:cursor-not-allowed"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal disabled:opacity-70 disabled:cursor-not-allowed"
               required
             />
           </div>
@@ -243,12 +243,12 @@ export default function SignUpPage() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
               required
             />
             {/* Live Password Strength Meter */}
             {password && (
-              <div className="mt-2 flex items-center justify-between gap-3 text-[10px] font-bold">
+              <div className="mt-3 flex items-center justify-between gap-4 text-[10px] font-bold">
                 <div className="flex-1 bg-[#F8F9FB] h-1.5 rounded-full overflow-hidden">
                   <div
                     className={`${strength.color} h-1.5 rounded-full transition-all duration-300`}
@@ -268,18 +268,18 @@ export default function SignUpPage() {
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
               required
             />
           </div>
 
           {/* Terms Checkbox */}
-          <label className="flex items-start gap-3 py-2 cursor-pointer select-none">
+          <label className="flex items-start gap-4 py-2 cursor-pointer select-none">
             <input
               type="checkbox"
               checked={agree}
               onChange={(e) => setAgree(e.target.checked)}
-              className="mt-0.5 h-4 w-4 rounded border-[#141F33]/20 text-[#141F33] focus:ring-[#141F33]"
+              className="mt-0.5 h-4 w-4 rounded border-[#141F33]/20 text-[#141F33] focus:ring-2 focus:ring-royal"
             />
             <span className="text-[11px] font-semibold text-[#141F33]/60">
               {t({ en: 'I agree to the Terms and Privacy Policy.', ar: 'أوافق على الشروط وسياسة الخصوصية.' })}
@@ -289,7 +289,7 @@ export default function SignUpPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-[40px] text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
           >
             {loading ? t({ en: 'Creating Account...', ar: 'جاري إنشاء الحساب...' }) : t({ en: 'Create Account', ar: 'إنشاء الحساب' })}
           </button>

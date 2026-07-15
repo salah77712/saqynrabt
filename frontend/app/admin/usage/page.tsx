@@ -34,9 +34,9 @@ export default function AdminUsagePage() {
       </div>
 
       {/* Grid Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {cards.map((card, idx) => (
-          <div key={idx} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+          <div key={idx} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
             <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{card.title}</p>
             <div className="flex items-baseline justify-between mt-3">
               <span className="text-2xl font-black text-[#141F33]">{card.value}</span>
@@ -51,7 +51,7 @@ export default function AdminUsagePage() {
       </div>
 
       {/* Premium SVG/CSS Line Chart */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-sm font-extrabold text-[#141F33]">{t({ en: '7-Day Platform Request Load', ar: 'أحمال طلبات المنصة خلال 7 أيام' })}</h3>
           <span className="text-[10px] font-bold text-[#2A5CFF]">{t({ en: 'Updated 2 min ago', ar: 'تم التحديث منذ دقيقتين' })}</span>

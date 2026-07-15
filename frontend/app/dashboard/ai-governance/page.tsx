@@ -10,7 +10,7 @@ const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
 return (
-<main id="main-content" className="p-6 space-y-6 animate-fadeIn">
+<main id="main-content" className="p-8 space-y-6 animate-fadeIn">
 <div className="flex justify-between items-center mb-6">
 <div>
 <h1 className="text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Model Oversight', ar: 'حوكمة الذكاء الاصطناعي والشفافية'})}</h1>
@@ -19,7 +19,7 @@ return (
 <Badge variant="success">{t({en: 'ISO 42001 Standard', ar: 'معيار ISO 42001'})}</Badge>
 </div>
 
-<div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 <Card>
 <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-sm mb-2">{t({en: 'Model Inventory', ar: 'جرد النماذج'})}</h3>
 <ul className="space-y-2 text-xs">

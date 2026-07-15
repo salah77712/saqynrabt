@@ -67,10 +67,10 @@ export default function ContactPage() {
       <main className="flex-1 max-w-6xl mx-auto py-24 px-6 lg:px-12 w-full">
         
         {/* Split Screen 50/50 Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-30 items-start">
           
           {/* Left Column: Contact Form */}
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
             <h2 className="text-2xl font-extrabold text-[#141F33] mb-2">
               {t({ en: 'Send us a message', ar: 'أرسل لنا رسالة' })}
             </h2>
@@ -89,7 +89,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   aria-invalid={!!errors.name}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] ${
+                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal ${
                     errors.name ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
@@ -106,7 +106,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   aria-invalid={!!errors.email}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] ${
+                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal ${
                     errors.email ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
@@ -123,7 +123,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   aria-invalid={!!errors.phone}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] ${
+                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal ${
                     errors.phone ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
@@ -138,7 +138,7 @@ export default function ContactPage() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
                 >
                   <option value="Demo Request">{t({ en: 'Demo Request', ar: 'طلب عرض توضيحي' })}</option>
                   <option value="Support">{t({ en: 'Support', ar: 'الدعم الفني' })}</option>
@@ -157,7 +157,7 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleChange}
                   aria-invalid={!!errors.message}
-                  className={`w-full bg-[#F8F9FB] border rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] resize-none ${
+                  className={`w-full bg-[#F8F9FB] border rounded-[40px] px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal resize-none ${
                     errors.message ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
@@ -168,7 +168,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+                className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-[40px] text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
               >
                 {submitting ? t({ en: 'Submitting...', ar: 'جاري الإرسال...' }) : t({ en: 'Submit Message', ar: 'إرسال الرسالة' })}
               </button>
@@ -188,7 +188,7 @@ export default function ContactPage() {
             </div>
 
             <div className="space-y-6 pt-6 border-t border-[#141F33]/10">
-              <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
+              <div className="flex flex-col lg:flex-row items-center gap-8 text-xs font-semibold">
                 <MapPin className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'Office Address', ar: 'عنوان المكتب' })}</p>
@@ -196,7 +196,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
+              <div className="flex flex-col lg:flex-row items-center gap-8 text-xs font-semibold">
                 <Mail className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'General Inquiry', ar: 'البريد الإلكتروني' })}</p>
@@ -204,7 +204,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
+              <div className="flex flex-col lg:flex-row items-center gap-8 text-xs font-semibold">
                 <Phone className="w-5 h-5 text-primary" />
                 <div>
                   <p className="text-[#141F33]">{t({ en: 'Support Hotline', ar: 'خط الدعم' })}</p>

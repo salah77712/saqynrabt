@@ -27,12 +27,12 @@ return (
 {!isOpen ? (
 <button
 onClick={() => setIsOpen(true)}
-className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-2xl shadow-2xl transition-all duration-300 min-h-[44px] hover:shadow-md hover:scale-[1.02] active:scale-95"
+className="bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-[40px] shadow-2xl transition-all duration-300 min-h-[44px] hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 Feedback
 </button>
 ) : (
-<Card className="w-80 shadow-2xl border border-[#141F33]/10 p-6 animate-slideUp">
+<Card className="w-80 shadow-2xl border border-[#141F33]/10 p-8 animate-slideUp">
 <div className="flex justify-between items-center mb-4">
 <h4 className="font-bold text-[#141F33] dark:text-[#F8F9FB] text-sm">Rate Your Experience</h4>
 <button onClick={() => setIsOpen(false)} className="text-[#141F33]/40 hover:text-[#141F33] min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors">
@@ -60,7 +60,7 @@ rating && rating >= star ? 'text-[#2A5CFF]' : 'text-[#141F33]/20'
 value={comment}
 onChange={(e) => setComment(e.target.value)}
 placeholder="Any suggestions or requests?"
-className="w-full text-xs p-2.5 border border-[#141F33]/10 rounded-xl focus:ring-1 focus:ring-[#141F33] focus:outline-none dark:bg-[#141F33] dark:border-[#141F33]/30"
+className="w-full text-xs p-2.5 border border-[#141F33]/10 rounded-[40px] focus:ring-1 focus:ring-2 focus:ring-royal focus:outline-none dark:bg-[#141F33] dark:border-[#141F33]/30"
 rows={3}
 />
 <Button variant="default" className="w-full" onClick={handleSubmit} disabled={!rating}>

@@ -20,11 +20,11 @@ const industries = [
   { id: 'towing', label: 'Towing & Roadside', headline: 'Stranded drivers connected to your fleet in seconds.', copy: 'Capture stranded drivers, get GPS data, and dispatch trucks rapidly.' },
   { id: 'veterinary', label: 'Veterinary', headline: 'Pet emergencies triaged the moment the phone rings.', copy: 'Triage emergency pet visits and route to the nurse instantly.' },
   { id: 'plumbing', label: 'Plumbing & HVAC', headline: 'After-hours calls turned into booked jobs — automatically.', copy: 'Stop losing money from missed after-hours repair calls.' },
-  { id: 'boutiquehotel', label: 'Boutique Hotels', headline: 'Midnight check-ins. Digital keys. Zero staff needed.', copy: 'Let guests auto-assign digital door codes at midnight.' },
+  { id: 'boutiquehotel', label: 'Boutique Hotels', headline: 'Midnight check-ins. Digital keys. Zero staff needed.', copy: 'Let guests au digital door codes at midnight.' },
   { id: 'catering', label: 'Restaurants & Catering', headline: 'Event quotes and bookings, minus the phone tag.', copy: 'Quote and book catering orders with no phone tag.' },
   { id: 'dealership', label: 'Auto Dealerships', headline: 'Inventory questions answered on the first ring.', copy: 'Answer real-time inventory questions about used cars.' },
   { id: 'construction', label: 'Construction & Contracting', headline: 'Permits, materials, crew dispatch — from one call.', copy: 'Keep subcontractors updated on material delivery times.' },
-  { id: 'law', label: 'Law Firms', headline: 'Retainer questions and case updates, handled instantly.', copy: 'Auto-answer retainer fee and intake form questions.' },
+  { id: 'law', label: 'Law Firms', headline: 'Retainer questions and case updates, handled instantly.', copy: 'Au retainer fee and intake form questions.' },
   { id: 'accounting', label: 'Accounting & Tax', headline: 'Tax season status checks, automated.', copy: 'Handle tax season refund status checks without a receptionist.' },
 ];
 
@@ -127,17 +127,20 @@ export default function MarketingPage() {
 
       {/* ── Hero Section ─────────────────────────────────── */}
       <section className="bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)] pt-20 md:pt-24">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col items-center text-center gap-16">
           
           {/* Left Column */}
-          <div className="flex flex-col items-start gap-6 lg:w-1/2">
+          <div className="flex flex-col items-center text-center gap-8 max-w-3xl relative">
+            {/* Floating Cards */}
+            <div className="absolute -top-12 -left-16 w-24 h-24 bg-white border border-[#141F33]/5 rounded-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform rotate-[15deg] hidden lg:block pointer-events-none" />
+            <div className="absolute -top-12 -right-16 w-24 h-24 bg-white border border-[#141F33]/5 rounded-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform -rotate-[15deg] hidden lg:block pointer-events-none" />
             
             {/* Two-Product Toggle */}
             <div className="inline-flex rounded-full bg-[#F8F9FB] p-1 border border-[#141F33]/10 shadow-sm animate-fadeIn">
 <button
   type="button"
   onClick={() => setActiveProduct('automation')}
-  className={`rounded-2xl px-6 py-3 text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+  className={`rounded-[40px] px-6 py-3 text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
 activeProduct === 'automation'
 ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'
@@ -148,7 +151,7 @@ activeProduct === 'automation'
 <button
   type="button"
   onClick={() => setActiveProduct('chatbot')}
-  className={`rounded-2xl px-6 py-3 text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+  className={`rounded-[40px] px-6 py-3 text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
 activeProduct === 'chatbot'
 ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'
@@ -169,10 +172,15 @@ activeProduct === 'chatbot'
             </p>
 
             {/* CTA Row */}
-            <div className="flex flex-wrap gap-4 mt-2 animate-slideUp" style={{ animationDelay: '0.3s' }}>
+            <div className="relative w-full flex justify-center mt-2">
+              <svg className="absolute -top-8 left-[65%] w-16 h-8 text-[#2A5CFF] opacity-75 hidden lg:block" viewBox="0 0 100 50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <path d="M10,10 Q50,40 90,20" />
+                <path d="M80,15 L90,20 L85,30" />
+              </svg>
+              <div className="flex flex-wrap gap-8 justify-center animate-slideUp" style={{ animationDelay: '0.3s' }}>
               <Link
                 href={activeProduct === 'automation' ? '/automation' : '/chatbot'}
-                className="btn-primary py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]"
+                className="btn-primary py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]"
               >
                 {t({ en: 'Explore Product', ar: 'استكشف المنتج' })}
               </Link>
@@ -183,19 +191,20 @@ activeProduct === 'chatbot'
               >
                 {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </button>
+              </div>
             </div>
           </div>
 
           {/* Right Column — Dashboard Preview */}
-          <div className="lg:w-1/2 w-full animate-slideUp" style={{ animationDelay: '0.3s' }}>
+          <div className="w-full max-w-2xl animate-slideUp" style={{ animationDelay: '0.3s' }}>
             <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#141F33]/10 to-[#F8F9FB]/30 rounded-3xl blur-2xl opacity-70" />
-              <div className="relative bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 shadow-xl p-6 overflow-hidden">
+              <div className="absolute -inset-4 r   rounded-[40px] blur-2xl opacity-70" />
+              <div className="relative bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 shadow-xl p-8 overflow-hidden">
                 <div className="flex items-center justify-between pb-3 border-b border-[#141F33]/10">
-                  <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-[#141F33]/10" />
-                    <div className="w-3 h-3 rounded-full bg-[#141F33]/10" />
-                    <div className="w-3 h-3 rounded-full bg-[#141F33]/10" />
+                  <div className="flex items-center gap-3">
+                    <div className="w-3 h-3 rounded-full bg-[#141F33]" />
+                    <div className="w-3 h-3 rounded-full bg-[#141F33]" />
+                    <div className="w-3 h-3 rounded-full bg-[#141F33]" />
                   </div>
                   <span className="text-[10px] font-bold text-[#141F33] uppercase tracking-wider">
                     {activeProduct === 'automation' ? t({ en: 'Live Queue', ar: 'قائمة مباشرة' }) : t({ en: 'Company Assistant', ar: 'مساعد الشركة' })}
@@ -212,9 +221,9 @@ activeProduct === 'chatbot'
 { label: 'WhatsApp — Late checkout', dept: 'Front Desk', status: 'Approved', color: 'text-[#2A5CFF]' },
                       { label: 'SMS — Airport transfer', dept: 'Concierge', status: 'Captured', color: 'text-[#141F33]' },
                     ].map((item, i) => (
-                      <div key={i} className="flex items-center justify-between py-2 px-3 bg-[#F8F9FB] rounded-xl">
-                        <div className="flex items-center gap-2 min-w-0">
-                          <div className="w-7 h-7 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
+                      <div key={i} className="flex items-center justify-between py-2 px-3 bg-[#F8F9FB] rounded-[40px]">
+                        <div className="flex items-center gap-3 min-w-0">
+                          <div className="w-7 h-7 rounded-full bg-[#141F33] flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
                             {i === 0 ? <Zap className="w-4 h-4 text-[#2A5CFF]" aria-hidden="true" /> : i === 1 ? <MessageSquare className="w-4 h-4 text-[#2A5CFF]" aria-hidden="true" /> : <Mail className="w-4 h-4 text-[#141F33]" aria-hidden="true" />}
                           </div>
                           <p className="text-xs font-semibold text-[#141F33] truncate">{item.label}</p>
@@ -229,14 +238,14 @@ activeProduct === 'chatbot'
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col gap-2 mt-3">
-                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs px-3 py-2 rounded-2xl rounded-br-sm max-w-[85%]">
+                  <div className="flex flex-col gap-3 mt-3">
+                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs px-3 py-2 rounded-[40px] rounded-br-sm max-w-[85%]">
                       How many vacation days do I have left?
                     </div>
-                    <div className="self-start bg-[#F8F9FB] text-[#141F33] text-xs px-3 py-2 rounded-2xl rounded-bl-sm max-w-[90%]">
+                    <div className="self-start bg-[#F8F9FB] text-[#141F33] text-xs px-3 py-2 rounded-[40px] rounded-bl-sm max-w-[90%]">
                       You have <strong>14 days</strong> remaining this cycle.
                     </div>
-                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs px-3 py-2 rounded-2xl rounded-br-sm max-w-[85%]">
+                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs px-3 py-2 rounded-[40px] rounded-br-sm max-w-[85%]">
                       What&apos;s the SOP for maintenance?
                     </div>
                     <div className="pt-1 text-center">
@@ -254,7 +263,7 @@ activeProduct === 'chatbot'
       </section>
 
       {/* ── Industry Switcher & Social Proof ──────────────── */}
-      <section ref={industryRef} id="industries" className={`bg-gradient-to-b py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
+      <section ref={industryRef} id="industries" className={` py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
           
           <p className="text-xs font-extrabold tracking-widest text-[#141F33] uppercase mb-8 text-center animate-fadeIn">
@@ -262,12 +271,12 @@ activeProduct === 'chatbot'
           </p>
 
           {/* 6 Top Industry Pills */}
-          <div className="w-full flex flex-wrap justify-center gap-4 py-2 animate-slideUp" style={{ animationDelay: '0.1s' }}>
+          <div className="w-full flex flex-wrap justify-center gap-8 py-2 animate-slideUp" style={{ animationDelay: '0.1s' }}>
             {GOLDMINE_INDUSTRIES.map((ind) => (
               <button
                 key={ind.id}
                 onClick={() => setActiveIndustry(ind.id)}
-                className={`min-h-[44px] px-6 py-3 rounded-xl border text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 cursor-pointer ${
+                className={`min-h-[44px] px-6 py-3 rounded-[40px] border text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 cursor-pointer ${
                   activeIndustry === ind.id
                     ? 'bg-[#141F33] text-[#F8F9FB] border-[#141F33] shadow-md'
                     : 'bg-[#F8F9FB] text-[#141F33] border-[#141F33] shadow-sm hover:shadow-md'
@@ -284,7 +293,7 @@ activeProduct === 'chatbot'
               id="other-industries"
               value={OTHER_INDUSTRIES.some(i => i.id === activeIndustry) ? activeIndustry : ''}
               onChange={handleSelectChange}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33] transition-all appearance-none cursor-pointer text-center text-xs shadow-sm font-semibold"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-[#141F33] focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal transition-all appearance-none cursor-pointer text-center text-xs shadow-sm font-semibold"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%234B5563' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
                 backgroundPosition: locale === 'ar' ? 'left 1rem center' : 'right 1rem center',
@@ -300,7 +309,7 @@ activeProduct === 'chatbot'
           </div>
 
           {/* Dynamic Headline Panel */}
-          <div className="mt-12 text-center bg-[#F8F9FB] p-6 rounded-2xl border border-[#141F33]/10 max-w-3xl w-full animate-slideUp" style={{ animationDelay: '0.2s' }}>
+          <div className="mt-12 text-center bg-[#F8F9FB] p-8 rounded-[40px] border border-[#141F33]/10 max-w-3xl w-full animate-slideUp" style={{ animationDelay: '0.2s' }}>
             <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{currentIndustry.label}</span>
             <h2 className="text-2xl md:text-3xl font-extrabold text-[#141F33] leading-tight mt-3">
               {currentIndustry.headline}
@@ -311,31 +320,31 @@ activeProduct === 'chatbot'
           </div>
 
           {/* Social Proof */}
-          <div className="mt-16 pt-12 border-t border-[#141F33]/10 w-full flex flex-col items-center gap-6 animate-fadeIn">
+          <div className="mt-16 pt-12 border-t border-[#141F33]/10 w-full flex flex-col items-center gap-8 animate-fadeIn">
             <p className="text-xs font-extrabold tracking-widest text-[#141F33] uppercase text-center">
               {t({ en: 'Trusted by front desks and teams worldwide', ar: 'موثوق به من قبل مكاتب الاستقبال والفرق في جميع أنحاء العالم' })}
             </p>
-            <div className="flex flex-wrap justify-center items-center gap-8 md:gap-16">
-              <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Hospitality Sector">
+            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">
+              <div className="flex items-center gap-3 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Hospitality Sector">
                 <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h6M9 13h6M9 17h6" />
                 </svg>
                 <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Hotels</span>
               </div>
-              <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Healthcare Sector">
+              <div className="flex items-center gap-3 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Healthcare Sector">
                 <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <rect x="3" y="3" width="18" height="18" rx="2" />
                   <path d="M12 8v8M8 12h8" />
                 </svg>
                 <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Clinics</span>
               </div>
-              <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Industrial Operations">
+              <div className="flex items-center gap-3 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Industrial Operations">
                 <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M3 21h18M3 7l5 4V7l5 4V7l6 5v9H3V7z" />
                 </svg>
                 <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Operations</span>
               </div>
-              <div className="flex items-center gap-2 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Retail Outlets">
+              <div className="flex items-center gap-3 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Retail Outlets">
                 <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
                   <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" />
                   <path d="M9 22V12h6v10" />
@@ -359,11 +368,11 @@ activeProduct === 'chatbot'
               {t({ en: 'Trusted by Operations Teams Worldwide', ar: 'موثوق به من قبل فرق العمليات حول العالم' })}
             </h2>
           </div>
-          <div className={`flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none animate-stagger ${testimonialVisible ? 'revealed' : ''}`}>
+          <div className={`flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none animate-stagger ${testimonialVisible ? 'revealed' : ''}`}>
             {testimonials.map((item, i) => (
               <div
                 key={i}
-                className="min-w-[300px] md:min-w-[380px] snap-start bg-white border border-[#141F33]/10 rounded-2xl p-6 shadow-sm card-hover"
+                className="min-w-[300px] md:min-w-[380px] snap-start bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm card-hover shadow-[0_10px_40px_rgba(0,0,0,0.05)]"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="flex gap-1 mb-5">
@@ -396,12 +405,12 @@ activeProduct === 'chatbot'
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
 {/* Automation Card */}
-<div className="relative p-6 card-premium group bg-white border border-[#141F33]/10 rounded-2xl">
+<div className="relative p-8 card-premium group bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
-                <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-xl flex items-center justify-center mb-5">
+                <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-[40px] flex items-center justify-center mb-5">
                   <Zap className="w-6 h-6 text-[#2A5CFF]" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
@@ -417,7 +426,7 @@ activeProduct === 'chatbot'
                     { en: 'Booking & complaint management', ar: 'إدارة الحجوزات والشكاوى' },
                     { en: 'Multi-language (Arabic & English)', ar: 'متعدد اللغات (العربية والإنجليزية)' },
                   ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm font-semibold text-[#141F33]">
+                    <li key={i} className="flex items-center gap-4 text-sm font-semibold text-[#141F33]">
                       <Check className="w-5 h-5 text-[#2A5CFF] shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
@@ -433,10 +442,10 @@ activeProduct === 'chatbot'
             </div>
 
 {/* Chatbot Card */}
-<div className="relative p-6 card-premium group bg-white border border-[#141F33]/10 rounded-2xl">
+<div className="relative p-8 card-premium group bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
-                <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-xl flex items-center justify-center mb-5">
+                <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-[40px] flex items-center justify-center mb-5">
                   <MessageSquare className="w-6 h-6 text-[#2A5CFF]" aria-hidden="true" />
                 </div>
                 <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
@@ -452,7 +461,7 @@ activeProduct === 'chatbot'
                     { en: 'Employee role-based access', ar: 'وصول قائم على أدوار الموظفين' },
                     { en: 'Knowledge gap tracking', ar: 'تتبع الفجوات المعرفية' },
                   ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 text-sm font-semibold text-[#141F33]">
+                    <li key={i} className="flex items-center gap-4 text-sm font-semibold text-[#141F33]">
                       <Check className="w-5 h-5 text-[#2A5CFF] shrink-0" aria-hidden="true" />
                       {t(item)}
                     </li>
@@ -471,8 +480,8 @@ activeProduct === 'chatbot'
       </section>
 
       {/* ── Custom Solution CTA Banner ────────────────────── */}
-      <section ref={ctaRef} className={`bg-gradient-to-r from-[#141F33] to-[#2A5CFF] py-20 px-6 text-[#F8F9FB] border-t border-[#141F33]/20 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-6">
+      <section ref={ctaRef} className={`   py-20 px-6 text-[#F8F9FB] border-t border-[#141F33]/20 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
+        <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
             {t({ en: 'Need something more tailored?', ar: 'هل تحتاج إلى شيء أكثر تخصيصاً؟' })}
           </h2>
@@ -496,8 +505,8 @@ activeProduct === 'chatbot'
 
       {/* ── Modal ─────────────────────────────────────────── */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33]/60 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl max-w-md w-full p-6 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33] backdrop-blur-sm animate-fadeIn">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] max-w-md w-full p-8 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             
             <h3 className="text-xl font-extrabold text-[#141F33] mb-3">
               {t({ en: 'Request a consultation', ar: 'طلب استشارة' })}
@@ -510,7 +519,7 @@ activeProduct === 'chatbot'
               })}
             </p>
 
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               <a
                 href={calendlyUrl}
                 target="_blank"

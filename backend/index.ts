@@ -1,6 +1,7 @@
 import { neon } from '@neondatabase/serverless';
 import { createRouter } from './src/routes';
 import { initRedis, corsHeaders } from './src/utils';
+import { handlePurgeCron } from './src/cron/purge-data';
 export type { Env } from './src/utils';
 
 let currentDBConnections = 0;

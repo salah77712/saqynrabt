@@ -67,11 +67,11 @@ return (
 </div>
 
 {/* Config Form */}
-<form onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm gap-6">
+<form onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm gap-8">
 
 <div className="space-y-3">
 {/* PII */}
-<div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB]">
+<div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-[40px] bg-[#F8F9FB]">
 <div>
 <p className="text-xs font-bold text-[#141F33]">PII Redaction</p>
 <p className="text-[10px] text-[#141F33] font-semibold mt-0.5">Mask emails and phone numbers before querying LLM APIs.</p>
@@ -83,12 +83,12 @@ checked={settings.pii_redaction}
 onChange={() => handleToggle('pii_redaction')}
 className="sr-only peer"
 />
-<div className="w-9 h-5 bg-[#141F33]/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
+<div className="w-9 h-5 bg-[#141F33] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
 </label>
 </div>
 
 {/* Jailbreak */}
-<div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB]">
+<div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-[40px] bg-[#F8F9FB]">
 <div>
 <p className="text-xs font-bold text-[#141F33]">Jailbreak & Prompt Injection Filter</p>
 <p className="text-[10px] text-[#141F33] font-semibold mt-0.5">Restrict jailbreak attempts ("ignore instructions", "system override").</p>
@@ -100,12 +100,12 @@ checked={settings.jailbreak_prevention}
 onChange={() => handleToggle('jailbreak_prevention')}
 className="sr-only peer"
 />
-<div className="w-9 h-5 bg-[#141F33]/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
+<div className="w-9 h-5 bg-[#141F33] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
 </label>
 </div>
 
 {/* Toxicity */}
-<div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB]">
+<div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-[40px] bg-[#F8F9FB]">
 <div>
 <p className="text-xs font-bold text-[#141F33]">Harmful Output Toxicity Filter</p>
 <p className="text-[10px] text-[#141F33] font-semibold mt-0.5">Checks LLM completions for toxic, harassing, or violent outputs.</p>
@@ -117,14 +117,14 @@ checked={settings.toxicity_filter}
 onChange={() => handleToggle('toxicity_filter')}
 className="sr-only peer"
 />
-<div className="w-9 h-5 bg-[#141F33]/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
+<div className="w-9 h-5 bg-[#141F33] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
 </label>
 </div>
 </div>
 
 <button
         type="submit"
-        className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
+        className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-[40px] text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
       >
         {t({ en: 'Save Guardrail Configurations', ar: 'حفظ إعدادات جدار الحماية' })}
 </button>
@@ -132,7 +132,7 @@ className="sr-only peer"
 </form>
 
 {/* Knowledge Gaps */}
-      <div className="p-6 rounded-2xl bg-[#F8F9FB] border border-[#141F33]/10 shadow-sm gap-6">
+      <div className="p-8 rounded-[40px] bg-[#F8F9FB] border border-[#141F33]/10 shadow-sm gap-8">
 <div>
 <h2 className="text-sm font-extrabold text-[#141F33]">{t({ en: 'Knowledge Gaps', ar: 'الفجوات المعرفية' })}</h2>
 <p className="text-[10px] text-[#141F33] font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'الأسئلة التي طرحها موظفوك ولم يتمكن الذكاء الاصطناعي من الإجابة عليها.' })}</p>
@@ -149,13 +149,13 @@ className="sr-only peer"
 <div className="space-y-2">
 <p className="text-xs text-[#141F33] font-semibold">{t({ en: 'Could not load knowledge gaps. Showing sample data.', ar: 'تعذر تحميل الفجوات المعرفية. يتم عرض بيانات نموذجية.' })}</p>
 {MOCK_KNOWLEDGE_GAPS.map((gap, i) => (
-<div key={i} className="p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] space-y-1.5">
+<div key={i} className="p-3 border border-[#141F33]/10 rounded-[40px] bg-[#F8F9FB] space-y-1.5">
 <p className="text-xs font-bold text-[#141F33]">&ldquo;{gap.question}&rdquo;</p>
-<div className="flex items-center gap-2 text-[10px] text-[#141F33] font-semibold">
+<div className="flex items-center gap-3 text-[10px] text-[#141F33] font-semibold">
 <span>{gap.employee_name}</span>
-<span className="w-1 h-1 rounded-full bg-[#141F33]/20" />
+<span className="w-1 h-1 rounded-full bg-[#141F33]" />
 <span>{gap.department}</span>
-<span className="w-1 h-1 rounded-full bg-[#141F33]/20" />
+<span className="w-1 h-1 rounded-full bg-[#141F33]" />
 <span>{new Date(gap.asked_at).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
 </div>
 </div>
@@ -173,13 +173,13 @@ className="sr-only peer"
 {!loading && !error && knowledgeGaps.length > 0 && (
 <div className="space-y-2">
 {knowledgeGaps.map((gap, i) => (
-<div key={i} className="p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] space-y-1.5">
+<div key={i} className="p-3 border border-[#141F33]/10 rounded-[40px] bg-[#F8F9FB] space-y-1.5">
 <p className="text-xs font-bold text-[#141F33]">&ldquo;{gap.question}&rdquo;</p>
-<div className="flex items-center gap-2 text-[10px] text-[#141F33] font-semibold">
+<div className="flex items-center gap-3 text-[10px] text-[#141F33] font-semibold">
 <span>{gap.employee_name}</span>
-<span className="w-1 h-1 rounded-full bg-[#141F33]/20" />
+<span className="w-1 h-1 rounded-full bg-[#141F33]" />
 <span>{gap.department}</span>
-<span className="w-1 h-1 rounded-full bg-[#141F33]/20" />
+<span className="w-1 h-1 rounded-full bg-[#141F33]" />
 <span>{new Date(gap.asked_at).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
 </div>
 </div>

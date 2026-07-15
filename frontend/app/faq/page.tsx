@@ -46,7 +46,7 @@ const categories = {
       questions: [
         { q: 'Can I change my plan later?', a: 'Yes. Upgrade at any time mid-cycle. Downgrades take effect at the next billing date.' },
         { q: 'What happens if I exceed my limits?', a: 'Only if you enable overages. By default, the system stops at your plan limit so you never get surprise bills.' },
-        { q: 'Is there a contract?', a: 'All plans are month-to-month with no long-term contract. Enterprise plans may have annual terms.' },
+        { q: 'Is there a contract?', a: 'All plans are month- with no long-term contract. Enterprise plans may have annual terms.' },
       ],
     },
   ],
@@ -195,7 +195,7 @@ export default function FAQPage() {
       <Header />
 
       <section className="max-w-4xl mx-auto px-6 py-20 md:py-28 text-center">
-        <span className="inline-block bg-[#141F33]/10 text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+        <span className="inline-block bg-[#141F33] text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
           {t({ en: 'FAQ', fr: 'FAQ', ar: 'الأسئلة الشائعة', hi: 'एफएक्यू' })}
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-[#141F33] leading-tight max-w-3xl mx-auto">
@@ -215,7 +215,7 @@ export default function FAQPage() {
                 const globalIdx = `${cat.title}-${idx}`;
                 const isOpen = openIndex === idx;
                 return (
-                  <div key={globalIdx} className="border border-[#141F33]/10 rounded-2xl overflow-hidden">
+                  <div key={globalIdx} className="border border-[#141F33]/10 rounded-[40px] overflow-hidden">
                     <button
                       onClick={() => setOpenIndex(isOpen ? null : idx)}
                       aria-expanded={isOpen}

@@ -23,13 +23,13 @@ if (process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
 
 export default async function middleware(req: any, event: any) {
   if (!handler) {
-    return NextResponse.next();
+    return NextResponse.redirect(new URL("/sign-in?error=auth_not_configured", req.url));
   }
   try {
     return await handler(req, event);
   } catch (err) {
     console.error("clerkMiddleware execution failed:", err);
-    return NextResponse.next();
+    return NextResponse.redirect(new URL("/sign-in?error=auth_unavailable", req.url));
   }
 }
 

@@ -16,7 +16,7 @@ const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 const [installed, setInstalled] = useState(false);
 
 return (
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md hover:scale-[1.01] transition-all">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col justify-between hover:shadow-md hover:scale-[1.01] transition-all">
 <div className="space-y-2">
 <span className="text-[9px] font-extrabold text-[#2A5CFF] uppercase tracking-wider">by {developer}</span>
 <h3 className="text-base font-extrabold text-[#141F33]">{name}</h3>
@@ -32,7 +32,7 @@ installed ? 'bg-[#F8F9FB] text-[#141F33]' : 'bg-[#F8F9FB] text-[#141F33]/70'
 
 <button
 onClick={() => setInstalled(!installed)}
-className={`font-bold px-4 py-2 min-h-[44px] rounded-xl text-xs transition-all duration-300 hover:scale-[1.02] hover:shadow-md ${
+className={`font-bold px-4 py-2 min-h-[44px] rounded-[40px] text-xs transition-all duration-300 hover:scale-[1.02] hover:shadow-md ${
 installed ? 'bg-[#F8F9FB] text-[#141F33]' : 'bg-[#141F33] text-[#F8F9FB]'
 }`}
 >

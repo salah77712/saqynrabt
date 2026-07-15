@@ -110,8 +110,8 @@ export default function ApprovalsDashboardPage() {
         </p>
 
         {/* Limit Warning Badge */}
-        <div className="mt-4 p-6 rounded-2xl border border-[#141F33]/10 flex items-center justify-between gap-6 text-xs font-semibold bg-[#F8F9FB]">
-          <div className="flex items-center gap-2">
+        <div className="mt-4 p-8 rounded-[40px] border border-[#141F33]/10 flex items-center justify-between gap-8 text-xs font-semibold bg-[#F8F9FB]">
+          <div className="flex items-center gap-3">
             <Users className="w-5 h-5 text-[#141F33]" />
             <span className="text-[#141F33]">
               {t({ en: 'Plan Active Limits:', ar: 'حدود الموظفين النشطين:' })} <strong>{activeCount} / {maxEmployees}</strong>
@@ -126,7 +126,7 @@ export default function ApprovalsDashboardPage() {
       </div>
 
       {/* Pending Employees List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-[#141F33]/10 bg-[#F8F9FB]">
           <h2 className="text-sm font-extrabold text-[#141F33] uppercase tracking-widest">{t({ en: 'Pending Requests', ar: 'طلبات الدخول المعلقة' })}</h2>
         </div>
@@ -155,7 +155,7 @@ export default function ApprovalsDashboardPage() {
               </thead>
               <tbody className="divide-[#141F33]/10 text-sm">
                 {pendingEmployees.map((emp) => (
-                  <tr key={emp.clerk_user_id} className="hover:bg-[#141F33]/5 transition-colors">
+                  <tr key={emp.clerk_user_id} className="hover:bg-[#141F33] transition-colors">
                     <td className="px-6 py-4 font-bold text-[#141F33]">{emp.name}</td>
                     <td className="px-6 py-4 font-semibold text-[#141F33]">{emp.email}</td>
                     <td className="px-6 py-4 text-xs font-bold text-[#141F33]/60 uppercase tracking-wider">{emp.role}</td>
@@ -164,12 +164,12 @@ export default function ApprovalsDashboardPage() {
                         <button
                           onClick={() => handleApprove(emp.clerk_user_id)}
                           disabled={isLimitReached || approvingId !== null}
-                          className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] disabled:opacity-40 disabled:cursor-not-allowed"
+                          className="px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                           {approvingId === emp.clerk_user_id ? t({ en: 'Approving...', ar: 'جاري الموافقة...' }) : t({ en: 'Approve Access', ar: 'الموافقة' })}
                         </button>
                         {isLimitReached && (
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 bg-[#141F33] text-[#F8F9FB] text-[10px] font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-2 whitespace-nowrap shadow-md">
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 bg-[#141F33] text-[#F8F9FB] text-[10px] font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-3 whitespace-nowrap shadow-md">
                             {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول للحد الأقصى. قم بالترقية.' })}
                           </div>
                         )}
@@ -184,7 +184,7 @@ export default function ApprovalsDashboardPage() {
       </div>
 
       {/* Active Employees List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-[#141F33]/10 bg-[#F8F9FB]">
           <h2 className="text-sm font-extrabold text-[#141F33] uppercase tracking-widest">{t({ en: 'Authorized Active Staff', ar: 'الموظفون النشطون المعتمدون' })}</h2>
         </div>
@@ -205,7 +205,7 @@ export default function ApprovalsDashboardPage() {
               </thead>
               <tbody className="divide-[#141F33]/10 text-sm">
                 {activeEmployees.map((emp) => (
-                  <tr key={emp.clerk_user_id} className="hover:bg-[#141F33]/5 transition-colors">
+                  <tr key={emp.clerk_user_id} className="hover:bg-[#141F33] transition-colors">
                     <td className="px-6 py-4 font-bold text-[#141F33]">{emp.name}</td>
                     <td className="px-6 py-4 font-semibold text-[#141F33]">{emp.email}</td>
                     <td className="px-6 py-4">

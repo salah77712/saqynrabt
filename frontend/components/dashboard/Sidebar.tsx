@@ -46,12 +46,12 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
               <Link
                 key={item.path}
                 href={item.path}
-                className={`flex items-center rounded-xl text-sm font-bold transition-all duration-300 relative ${
-                  isCollapsed ? 'justify-center px-0' : 'px-4 gap-3'
+                className={`flex items-center rounded-[40px] text-sm font-bold transition-all duration-300 relative ${
+                  isCollapsed ? 'justify-center px-0' : 'px-4 gap-4'
                 } ${
                   isActive
-? 'bg-[#141F33]/5 border-l-4 border-[#141F33] text-[#141F33] dark:text-[#F8F9FB] dark:bg-royal/10 dark:border-royal'
-: 'border-l-4 border-transparent text-[#141F33] hover:bg-[#141F33]/5 dark:hover:bg-[#141F33]'
+? 'bg-[#141F33] border-l-4 border-[#141F33] text-[#141F33] dark:text-[#F8F9FB] dark:bg-royal/10 dark:border-royal'
+: 'border-l-4 border-transparent text-[#141F33] hover:bg-[#141F33] dark:hover:bg-[#141F33]'
                 }`}
                 style={{ minHeight: '44px' }}
               >
@@ -74,7 +74,7 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
       <div className="flex justify-end p-4 border-t border-[#F8F9FB] dark:border-[#141F33]">
         <button
           onClick={onToggle}
-          className="h-8 w-8 rounded-lg border border-[#F8F9FB] dark:border-[#141F33] flex items-center justify-center text-[#141F33] hover:scale-[1.02] min-h-[44px] min-w-[44px] rounded-xl"
+          className="h-8 w-8 rounded-lg border border-[#F8F9FB] dark:border-[#141F33] flex items-center justify-center text-[#141F33] hover:scale-[1.02] min-h-[44px] min-w-[44px] rounded-[40px]"
         >
           {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
         </button>

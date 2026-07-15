@@ -8,11 +8,11 @@ interface FooterColumnProps {
 
 export function FooterColumn({ title, links }: FooterColumnProps) {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-8">
       <h3 className="text-[11px] font-semibold uppercase tracking-wider text-[#141F33]/55">
         {title}
       </h3>
-      <ul className="flex flex-col gap-3">
+      <ul className="flex flex-col gap-4">
         {links.map((link) => (
           <li key={link.href}>
             <Link

@@ -21,7 +21,7 @@ export default function ChatbotHelpPage() {
     <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
-      <main className="flex-1 max-w-6xl mx-auto py-16 px-6 w-full flex flex-col md:flex-row gap-12">
+      <main className="flex-1 max-w-6xl mx-auto py-16 px-6 w-full flex flex-col md:flex-row gap-16">
         {/* Help Center Sidebar */}
         <aside className="w-full md:w-64 shrink-0 space-y-2">
           <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-widest px-4 mb-4">
@@ -33,7 +33,7 @@ export default function ChatbotHelpPage() {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`flex items-center px-4 rounded-xl text-xs font-extrabold transition-all min-h-[44px] ${
+                className={`flex items-center px-4 rounded-[40px] text-xs font-extrabold transition-all min-h-[44px] ${
                   isActive
                     ? 'bg-[#141F33] text-[#F8F9FB]'
 : 'text-[#141F33] hover:bg-[#F8F9FB] hover:text-[#141F33] border border-transparent hover:border-[#141F33]/10'
@@ -44,7 +44,7 @@ export default function ChatbotHelpPage() {
         </aside>
 
         {/* Content Panel */}
-        <div className="flex-1 bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-6">
+        <div className="flex-1 bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm space-y-6">
           <div>
             <span className="text-[10px] font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'الوثائق والكتيبات', hi: 'दस्तावेज़ीकरण' })}</span>
             <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight mt-2">

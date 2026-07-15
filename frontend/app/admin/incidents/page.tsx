@@ -35,13 +35,13 @@ export default function AdminIncidentsPage() {
       </div>
 
       {/* Incidents List */}
-      <div className="bg-white border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+      <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
         <div className="divide-y divide-[#141F33]/10">
           {incidents.map((inc) => (
-            <div key={inc.id} className="py-4 flex justify-between items-center gap-4 first:pt-0 last:pb-0">
+            <div key={inc.id} className="py-4 flex justify-between items-center gap-8 first:pt-0 last:pb-0">
               <div>
                 <p className="text-xs font-extrabold text-[#141F33]">{inc.title}</p>
-                <div className="flex gap-2 items-center mt-1">
+                <div className="flex gap-3 items-center mt-1">
                   <span className="text-[10px] text-[#141F33]/40 font-bold">Severity: {inc.severity}</span>
                   <span className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
                     inc.status === 'Resolved' ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#2A5CFF]'
@@ -54,7 +54,7 @@ export default function AdminIncidentsPage() {
               {inc.status === 'Investigating' && (
                 <button
                   onClick={() => handleResolve(inc.id)}
-                  className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                  className="px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 >
                   {t({ en: 'Resolve', ar: 'حل' })}
                 </button>

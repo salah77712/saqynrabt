@@ -41,7 +41,7 @@ export default function HitlQueuePage() {
       </div>
 
       {/* Queue list */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
         <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Pending Review Tasks', ar: 'مهام المراجعة المعلقة' })}</h3>
 
         {tasks.length === 0 ? (
@@ -49,7 +49,7 @@ export default function HitlQueuePage() {
         ) : (
           <div className="divide-[#141F33]/10">
             {tasks.map((task) => (
-              <div key={task.id} className="py-4 first:pt-0 last:pb-0 flex justify-between items-center gap-4">
+              <div key={task.id} className="py-4 first:pt-0 last:pb-0 flex justify-between items-center gap-8">
                 <div className="min-w-0 space-y-1">
                   <p className="text-xs font-extrabold text-[#141F33]">"{task.request}"</p>
                   <p className="text-[10px] text-[#141F33] font-semibold leading-normal">{task.context}</p>
@@ -60,18 +60,18 @@ export default function HitlQueuePage() {
                   </span>
                 </div>
 
-                <div className="flex gap-2 shrink-0">
+                <div className="flex gap-3 shrink-0">
                   {task.status === 'pending' ? (
                     <button
                       onClick={() => handleClaim(task.id)}
-                      className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#141F33] text-[#F8F9FB]"
+                      className="px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#141F33] text-[#F8F9FB]"
                     >
                       Claim
                     </button>
                   ) : (
                     <button
                       onClick={() => handleResolve(task.id)}
-                      className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#2A5CFF] text-[#F8F9FB]"
+                      className="px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#2A5CFF] text-[#F8F9FB]"
                     >
                       Resolve
                     </button>

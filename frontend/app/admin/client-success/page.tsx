@@ -24,7 +24,7 @@ export default function ClientSuccessPage() {
   ];
 
   return (
-    <main id="main-content" className="p-6 space-y-6 animate-fadeIn">
+    <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-xl font-extrabold text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Customer Success Console', ar: 'وحدة تحكم نجاح العملاء'})}</h1>
@@ -35,13 +35,13 @@ export default function ClientSuccessPage() {
 
       <div className="space-y-4">
         {clients.map((client) => (
-          <div key={client.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col md:flex-row items-center justify-between gap-4">
+          <div key={client.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <h4 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{client.name}</h4>
               <p className="text-xs text-[#141F33] mt-1">{t({en: 'Resource consumption:', ar: 'استهلاك الموارد:'})} {client.usage}</p>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-8">
               <HealthScore score={client.score} />
               <Badge variant={client.status === 'active' ? 'success' : 'danger'}>
                 {client.status === 'active' ? t({en: 'Healthy', ar: 'سليم'}) : t({en: 'Retention Warning', ar: 'تحذير الاحتفاظ'})}

@@ -7,10 +7,11 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 -- 1. Companies Table (Rule 17)
 CREATE TABLE IF NOT EXISTS companies (
-    id VARCHAR(255) PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    auto_overage_enabled BOOLEAN DEFAULT FALSE NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  id VARCHAR(255) PRIMARY KEY,
+  name VARCHAR(255) NOT NULL,
+  auto_overage_enabled BOOLEAN DEFAULT FALSE NOT NULL,
+  cancellation_date TIMESTAMP,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 -- 2. Company Entitlements Table (Rule 25 / 26 / 27 / 28)

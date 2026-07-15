@@ -39,7 +39,7 @@ export default function ForgotPasswordPage() {
 
  return (
  <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
- <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-6 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
+ <div className="bg-[#F8F9FB] rounded-[40px] shadow-xl p-8 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
 
  {/* Logo */}
  <div className="text-center mb-8">
@@ -64,7 +64,7 @@ export default function ForgotPasswordPage() {
 <div className="pt-4">
       <Link
         href="/sign-in"
-        className="inline-flex items-center justify-center py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] text-[#2A5CFF] hover:bg-[#141F33]/5 transition-all"
+        className="inline-flex items-center justify-center py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] text-[#2A5CFF] hover:bg-[#141F33] transition-all"
       >
         {t({ en: 'Back to Sign In', ar: 'العودة لتسجيل الدخول' })}
       </Link>
@@ -73,7 +73,7 @@ export default function ForgotPasswordPage() {
  ) : (
  <>
 {error && (
-<div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6" role="alert" aria-live="assertive">
+<div className="bg-[#141F33] border border-[#141F33]/10 text-[#141F33] rounded-[40px] p-3.5 text-xs font-bold mb-6" role="alert" aria-live="assertive">
 {error}
 </div>
 )}
@@ -85,7 +85,7 @@ export default function ForgotPasswordPage() {
  id="email"
  value={email}
  onChange={(e) => setEmail(e.target.value)}
- className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+ className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
  required
  />
  </div>
@@ -93,7 +93,7 @@ export default function ForgotPasswordPage() {
  <button
  type="submit"
  disabled={loading}
- className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+ className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-[40px] text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
  >
  {loading ? t({ en: 'Sending Reset Link...', ar: 'جاري إرسال الرابط...' }) : t({ en: 'Send Reset Link', ar: 'إرسال رابط إعادة التعيين' })}
  </button>

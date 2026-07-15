@@ -35,7 +35,7 @@ return (
 <div className="relative">
 <button
 onClick={toggleOpen}
-className="relative inline-flex items-center justify-center p-2 rounded-full hover:bg-[#141F33]/5 transition-all duration-300 min-h-[44px] min-w-[44px]"
+className="relative inline-flex items-center justify-center p-2 rounded-full hover:bg-[#141F33] transition-all duration-300 min-h-[44px] min-w-[44px]"
 aria-label="Open notifications"
 >
 <Bell className="w-5 h-5 text-[#141F33]" />
@@ -47,8 +47,8 @@ aria-label="Open notifications"
 </button>
 
 {isOpen && (
-<div className="absolute right-0 rtl:right-auto rtl:left-0 mt-2 w-80 bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl shadow-xl z-50 overflow-hidden animate-slideDown">
-<div className="flex items-center justify-between px-4 py-3 border-b border-[#141F33]/10 bg-[#F8F9FB]/50">
+<div className="absolute right-0 rtl:right-auto rtl:left-0 mt-3 w-80 bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-xl z-50 overflow-hidden animate-slideDown">
+<div className="flex items-center justify-between px-4 py-3 border-b border-[#141F33]/10 bg-[#F8F9FB]">
 <span className="text-xs font-bold text-[#141F33]">
 {t('Notifications', 'الإشعارات')}
 </span>
@@ -65,8 +65,8 @@ className="text-[10px] font-extrabold text-[#2A5CFF] hover:underline uppercase"
 {list.map((item) => (
 <div
 key={item.id}
-className={`px-4 py-3 border-b border-[#141F33]/5 flex items-start gap-2.5 transition-colors ${
-item.read ? 'opacity-70' : 'bg-[#141F33]/5'
+className={`px-4 py-3 border-b border-[#141F33]/5 flex items-start gap-3.5 transition-colors ${
+item.read ? 'opacity-70' : 'bg-[#141F33]'
 }`}
 >
 <span className="text-sm mt-0.5">{item.read ? <Check className="w-4 h-4 text-[#141F33]/30" /> : <Bell className="w-4 h-4 text-[#2A5CFF]" />}</span>

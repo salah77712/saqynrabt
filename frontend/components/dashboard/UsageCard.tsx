@@ -14,8 +14,8 @@ export function UsageCard({ title, icon, used, limit, label }: UsageProps) {
   const percent = limit > 0 ? (used / limit) * 100 : 0;
 
   return (
-    <Card className="p-6">
-      <div className="flex items-center gap-3 border-b border-[#F8F9FB] dark:border-[#141F33] pb-3 mb-4">
+    <Card className="p-8">
+      <div className="flex items-center gap-4 border-b border-[#F8F9FB] dark:border-[#141F33] pb-3 mb-4">
         <span className="flex items-center">{icon}</span>
         <h4 className="font-bold text-navy dark:text-[#F8F9FB] text-sm">{title}</h4>
       </div>

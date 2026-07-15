@@ -34,7 +34,7 @@ return (
 <div
 key={keyExtractor(item)}
 onClick={() => onRowClick?.(item)}
-className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm active:scale-[0.98] transition-transform"
+className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-4 shadow-sm active:scale-[0.98] transition-transform"
 >
 {cardTitle && (
 <h4 className="text-sm font-bold text-[#141F33] mb-3 pb-2 border-b border-[#141F33]/10">
@@ -60,7 +60,7 @@ className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm acti
 }
 
 return (
-<div className="overflow-x-auto w-full border border-[#141F33]/10 rounded-2xl bg-[#F8F9FB] shadow-sm">
+<div className="overflow-x-auto w-full border border-[#141F33]/10 rounded-[40px] bg-[#F8F9FB] shadow-sm">
 <table className="w-full text-left border-collapse">
 <thead>
 <tr className="bg-[#F8F9FB] border-b border-[#141F33]/10 text-[10px] font-black text-[#141F33]/40 uppercase tracking-wider">
@@ -74,7 +74,7 @@ return (
 <tr
 key={keyExtractor(item)}
 onClick={() => onRowClick?.(item)}
-className="border-b border-[#141F33]/5 last:border-0 hover:bg-[#141F33]/5 cursor-pointer transition-colors"
+className="border-b border-[#141F33]/5 last:border-0 hover:bg-[#141F33] cursor-pointer transition-colors"
 >
 {columns.map((col) => (
 <td key={col.key} className="p-4 text-xs font-semibold text-[#141F33]">

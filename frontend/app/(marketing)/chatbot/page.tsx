@@ -84,7 +84,7 @@ const faqs = {
 function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boolean }) {
   const [isOpen, setIsOpen] = useState(defaultOpen || false);
   return (
-    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden">
+    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -142,17 +142,17 @@ export default function ChatbotPage() {
           <p className="mt-6 text-lg md:text-xl text-[#141F33] max-w-2xl mx-auto leading-relaxed font-medium animate-fadeIn" style={{ animationDelay: '0.2s' }}>
             {t({ en: 'A private RAG-powered AI trained only on your HR policies, SOPs, and onboarding documents. Your employees get answers, not chatbots.', ar: 'ذكاء اصطناعي خاص بتقنية RAG مدرب فقط على سياسات الموارد البشرية وإجراءات التشغيل ومستندات التوظيف. موظفوك يحصلون على إجابات، ليس روبوتات محادثة.' })}
           </p>
-          <div className="mt-10 flex flex-wrap gap-4 justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+          <div className="mt-10 flex flex-wrap gap-8 justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-95 transition-all"
+              className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-95 transition-all"
             >
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </button>
             <Link
         href="#pricing"
-        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33]/5 transition-all"
+        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
       >{t({ en: 'View Pricing', ar: 'عرض الأسعار' })}</Link>
           </div>
         </div>
@@ -160,16 +160,16 @@ export default function ChatbotPage() {
 
       <section className="bg-[#F8F9FB] border-y border-[#141F33]/10 py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-30 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-8">
                 {t({ en: 'What your team can do with it', ar: 'ماذا يمكن لفريقك أن يفعل به' })}
               </h2>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-8">
                 {caps.map((cap, i) => (
                   <div
                     key={cap.title}
-                    className="flex items-start gap-4 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-6 shadow-sm card-hover animate-slideUp"
+                    className="flex items-start gap-8 bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
                     <span className="text-2xl mt-0.5 shrink-0">{capabilityIcons[cap.icon] || <FileText className="w-5 h-5 text-[#141F33]" />}</span>
@@ -182,7 +182,7 @@ export default function ChatbotPage() {
               </div>
             </div>
 
-            <div className="bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 p-6 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
+            <div className="bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 p-8 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-center justify-between pb-4 border-b border-[#141F33]/10">
                 <span className="text-[#141F33] font-black text-base">
                   {t({ en: 'Company Assistant', ar: 'مساعد الشركة' })}
@@ -192,20 +192,20 @@ export default function ChatbotPage() {
                 </span>
               </div>
 
-              <div className="flex flex-col gap-3">
-                <div className="self-end bg-[#141F33] text-[#F8F9FB] text-sm px-4 py-2.5 rounded-2xl rounded-br-sm max-w-[80%]">
+              <div className="flex flex-col gap-4">
+                <div className="self-end bg-[#141F33] text-[#F8F9FB] text-sm px-4 py-2.5 rounded-[40px] rounded-br-sm max-w-[80%]">
                   {t({ en: 'How many vacation days do I have left?', ar: 'كم يوم إجازة متبقي لدي؟' })}
                 </div>
-                <div className="self-start bg-[#F8F9FB] text-[#141F33] text-sm px-4 py-2.5 rounded-2xl rounded-bl-sm max-w-[85%]">
+                <div className="self-start bg-[#F8F9FB] text-[#141F33] text-sm px-4 py-2.5 rounded-[40px] rounded-bl-sm max-w-[85%]">
                   {t({ en: 'Based on your profile, you have', ar: 'بناءً على ملفك، لديك' })} <strong>{t({ en: '14 days', ar: '14 يوماً' })}</strong> {t({ en: 'remaining this cycle. Your next accrual of 2.5 days is on August 1st.', ar: 'متبقية هذه الدورة. استحقاقك القادم 2.5 يوم في 1 أغسطس.' })}
                 </div>
-                <div className="self-end bg-[#141F33] text-[#F8F9FB] text-sm px-4 py-2.5 rounded-2xl rounded-br-sm max-w-[80%]">
+                <div className="self-end bg-[#141F33] text-[#F8F9FB] text-sm px-4 py-2.5 rounded-[40px] rounded-br-sm max-w-[80%]">
                   {t({ en: 'What\'s the SOP for reporting a maintenance issue?', ar: 'ما هو الإجراء المعياري للإبلاغ عن مشكلة صيانة؟' })}
                 </div>
-                <div className="self-start bg-[#F8F9FB] text-[#141F33] text-sm px-4 py-2.5 rounded-2xl rounded-bl-sm max-w-[85%]">
+                <div className="self-start bg-[#F8F9FB] text-[#141F33] text-sm px-4 py-2.5 rounded-[40px] rounded-bl-sm max-w-[85%]">
                   {t({ en: 'According to', ar: 'وفقاً لـ' })} <em>{t({ en: 'Operations Manual v3.2', ar: 'دليل العمليات الإصدار 3.2' })}</em>{t({ en: ', submit a ticket via the portal under', ar: '، أرسل تذكرة عبر البوابة تحت' })} <strong>{t({ en: 'Facilities → Maintenance', ar: 'المرافق ← الصيانة' })}</strong>. {t({ en: 'Urgent issues can be escalated directly to your floor supervisor.', ar: 'يمكن رفع المشكلات العاجلة مباشرة إلى مشرف الطابق.' })}
                 </div>
-                <div className="self-start bg-[#F8F9FB] border border-dashed border-[#141F33]/20 text-[#141F33] text-xs px-4 py-2.5 rounded-2xl max-w-[85%] italic">
+                <div className="self-start bg-[#F8F9FB] border border-dashed border-[#141F33]/20 text-[#141F33] text-xs px-4 py-2.5 rounded-[40px] max-w-[85%] italic">
                   {t({ en: 'Sourced from: HR Handbook & Operations Manual', ar: 'المصدر: دليل الموارد البشرية ودليل العمليات' })}
                 </div>
               </div>
@@ -233,7 +233,7 @@ export default function ChatbotPage() {
           </div>
 
           {/* Currency Toggle */}
-          <div className="flex items-center justify-center gap-3 mb-10">
+          <div className="flex items-center justify-center gap-4 mb-10">
             <span className={`text-xs font-bold ${currency === 'USD' ? 'text-[#141F33]' : 'text-[#141F33]/40'}`}>USD</span>
             <button
               type="button"
@@ -260,7 +260,7 @@ export default function ChatbotPage() {
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-10 text-center">
             {t({ en: 'Frequently Asked Questions', ar: 'الأسئلة الشائعة' })}
           </h2>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-8">
             {faqList.map((faq, i) => (
               <div key={faq.q} className="animate-slideUp" style={{ animationDelay: `${i * 0.08}s` }}>
                 <FAQItem q={faq.q} a={faq.a} open={i === 0} />
@@ -273,27 +273,27 @@ export default function ChatbotPage() {
       <Footer />
 
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33]/60 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33] backdrop-blur-sm animate-fadeIn">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] max-w-md w-full p-8 shadow-2xl animate-scaleIn">
             <h3 className="text-xl font-extrabold text-[#141F33] mb-2">
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </h3>
             <p className="text-sm font-medium text-[#141F33] mb-6 leading-relaxed">
               {t({ en: 'We\'ll walk you through setup in a 15-minute call.', ar: 'سنرشدك خلال الإعداد في مكالمة مدتها 15 دقيقة.' })}
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               <a
                 href={calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-90 transition-all"
+                className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-90 transition-all"
               >
                 {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </a>
               <button
                 type="button"
 onClick={() => setIsModalOpen(false)}
-        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33]/5 transition-all"
+        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
               >
                 {t({ en: 'Close', ar: 'إغلاق' })}
               </button>

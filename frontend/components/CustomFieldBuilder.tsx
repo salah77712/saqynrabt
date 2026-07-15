@@ -37,7 +37,7 @@ setFields((prev) => prev.filter((f) => f.id !== id));
 };
 
 return (
-<div className="bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 p-6 max-w-md w-full shadow-sm" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 p-8 max-w-md w-full shadow-sm" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <h3 className="text-lg font-bold text-[#141F33] mb-2">
 {t('Custom Form Fields', 'حقول مخصصة للنماذج')}
 </h3>
@@ -51,14 +51,14 @@ return (
 {/* Field List */}
 <div className="space-y-2 mb-6">
 {fields.map((f) => (
-<div key={f.id} className="flex items-center justify-between border border-[#141F33]/10 bg-[#F8F9FB]/50 rounded-xl px-4 py-3">
+<div key={f.id} className="flex items-center justify-between border border-[#141F33]/10 bg-[#F8F9FB] rounded-[40px] px-4 py-3">
 <div>
 <p className="text-xs font-semibold text-[#141F33]">{f.name}</p>
 <p className="text-[10px] text-[#141F33]/60 uppercase font-semibold tracking-wider">{f.type}</p>
 </div>
 <button
         onClick={() => handleRemoveField(f.id)}
-        className="text-xs font-bold px-3 py-1.5 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-[#141F33] hover:text-[#141F33]/70 transition-all duration-300"
+        className="text-xs font-bold px-3 py-1.5 rounded-[40px] min-h-[44px] min-w-[44px] flex items-center justify-center text-[#141F33] hover:text-[#141F33]/70 transition-all duration-300"
       >
 {t('Delete', 'حذف')}
 </button>
@@ -73,12 +73,12 @@ type="text"
 value={newFieldName}
 onChange={(e) => setNewFieldName(e.target.value)}
 placeholder={t('Field Label (e.g. Booking Code)', 'اسم الحقل (مثال: رمز الحجز)')}
-className="min-h-[44px] w-full rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 text-xs font-semibold outline-none focus:bg-white focus:border-[#141F33]"
+className="min-h-[44px] w-full rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] px-4 text-xs font-semibold outline-none focus:bg-white focus:border-[#141F33]"
 />
 <select
 value={newFieldType}
 onChange={(e) => setNewFieldType(e.target.value as CustomField['type'])}
-className="min-h-[44px] w-full rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 text-xs font-semibold outline-none"
+className="min-h-[44px] w-full rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] px-4 text-xs font-semibold outline-none"
 >
 <option value="text">{t('Text Input', 'إدخال نصي')}</option>
 <option value="number">{t('Numeric Value', 'قيمة رقمية')}</option>
@@ -86,7 +86,7 @@ className="min-h-[44px] w-full rounded-xl border border-[#141F33]/10 bg-[#F8F9FB
 </select>
 <button
 onClick={handleAddField}
-className="w-full bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold py-3 rounded-xl text-xs transition-all min-h-[44px]"
+className="w-full bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold py-3 rounded-[40px] text-xs transition-all min-h-[44px]"
 >
 {t('Add Attribute', 'إضافة خاصية')}
 </button>

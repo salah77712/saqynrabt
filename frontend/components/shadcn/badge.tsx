@@ -9,11 +9,11 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[#141F33] text-[#F8F9FB] [a]:hover:bg-[#141F33]/80",
+        default: "bg-[#141F33] text-[#F8F9FB] [a]:hover:bg-[#141F33]",
         secondary: "bg-[#2A5CFF]/10 text-[#2A5CFF] [a]:hover:bg-[#2A5CFF]/20",
-        destructive: "bg-[#141F33]/10 text-[#141F33] focus-visible:ring-[#141F33]/20 dark:bg-[#141F33]/20 dark:focus-visible:ring-[#141F33]/40 [a]:hover:bg-[#141F33]/20",
+        destructive: "bg-[#141F33] text-[#141F33] focus-visible:ring-[#141F33]/20 dark:bg-[#141F33] dark:focus-visible:ring-[#141F33]/40 [a]:hover:bg-[#141F33]",
         outline: "border-[#141F33]/10 text-[#141F33] [a]:hover:bg-[#F8F9FB] [a]:hover:text-[#141F33]",
-        ghost: "hover:bg-[#F8F9FB] hover:text-[#141F33] dark:hover:bg-[#141F33]/50",
+        ghost: "hover:bg-[#F8F9FB] hover:text-[#141F33] dark:hover:bg-[#141F33]",
         link: "text-[#141F33] underline-offset-4 hover:underline",
       },
     },

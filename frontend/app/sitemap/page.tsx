@@ -88,7 +88,7 @@ export default function VisualSitemapPage() {
         {/* Back Link */}
         <Link
           href="/"
-          className="group inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-wider text-[#141F33]/40 hover:text-[#141F33] transition-colors mb-12"
+          className="group inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-wider text-[#141F33]/40 hover:text-[#141F33] transition-colors mb-12"
         >
           <span className="transition-transform group-hover:-translate-x-1 duration-150 inline-block">
             {locale === 'ar' ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
@@ -108,11 +108,11 @@ export default function VisualSitemapPage() {
         </div>
 
         {/* Directory Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-8 lg:gap-12">
           {columns.map((col, index) => (
-            <div key={index} className="flex flex-col gap-6">
+            <div key={index} className="flex flex-col gap-8">
               {/* Header Title with icon */}
-              <div className="flex items-center gap-2 pb-4 border-b border-[rgba(20,31,51,0.08)]">
+              <div className="flex items-center gap-3 pb-4 border-b border-[rgba(20,31,51,0.08)]">
                 {col.icon}
                 <h3 className="text-[11px] font-black uppercase tracking-widest text-[#141F33]">
                   {col.title}
@@ -120,7 +120,7 @@ export default function VisualSitemapPage() {
               </div>
 
               {/* Link items */}
-              <ul className="flex flex-col gap-3.5">
+              <ul className="flex flex-col gap-4.5">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     <Link

@@ -45,7 +45,7 @@ return (
 </div>
 
 {/* Form request */}
-<form onSubmit={handleSubmit} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-8 shadow-sm space-y-4">
+<form onSubmit={handleSubmit} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm space-y-4">
 
 <div>
 <label htmlFor="email" className="block text-xs font-bold text-[#141F33] dark:text-[#F8F9FB] mb-1.5">{t({ en: 'Your Email Address', ar: 'البريد الإلكتروني الخاص بك' })}</label>
@@ -55,7 +55,7 @@ id="email"
 value={email}
 onChange={(e) => setEmail(e.target.value)}
 placeholder="name@company.com"
-className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:border-[#2A5CFF]"
+className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:border-[#2A5CFF]"
 required
 />
 </div>
@@ -66,7 +66,7 @@ required
 id="type"
 value={requestType}
 onChange={(e) => setRequestType(e.target.value)}
-className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33]"
+className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-bold text-[#141F33]"
 >
 <option value="access">Access Personal Data</option>
 <option value="erasure">Erasure (Forget Me)</option>
@@ -81,7 +81,7 @@ id="details"
 value={details}
 onChange={(e) => setDetails(e.target.value)}
 rows={4}
-className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 text-xs font-semibold text-[#141F33] focus:outline-none focus:border-[#2A5CFF] resize-none"
+className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-4 text-xs font-semibold text-[#141F33] focus:outline-none focus:border-[#2A5CFF] resize-none"
 placeholder="Provide context details..."
 required
 />

@@ -59,7 +59,7 @@ export default function RolesSettingsPage() {
       </div>
 
       {/* Form Custom Role */}
-      <form onSubmit={handleCreate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col gap-6">
+      <form onSubmit={handleCreate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col gap-8">
         <div>
           <label htmlFor="name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Custom Role Title', ar: 'مسمى الدور المخصص' })}</label>
           <input
@@ -68,7 +68,7 @@ export default function RolesSettingsPage() {
             value={newRole.name}
             onChange={(e) => setNewRole(prev => ({ ...prev, name: e.target.value }))}
             placeholder="E.g. Assistant Operations Manager"
-            className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
+            className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none"
             required
           />
         </div>
@@ -77,12 +77,12 @@ export default function RolesSettingsPage() {
           <label className="block text-xs font-bold text-[#141F33] mb-3">{t({ en: 'Grant Permissions', ar: 'منح الصلاحيات' })}</label>
           <div className="space-y-2 text-xs font-semibold">
             {availablePermissions.map((perm) => (
-              <label key={perm.key} className="flex items-start gap-3 p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] cursor-pointer hover:border-[#141F33] transition-all">
+              <label key={perm.key} className="flex items-start gap-4 p-3 border border-[#141F33]/10 rounded-[40px] bg-[#F8F9FB] cursor-pointer hover:border-[#141F33] transition-all">
                 <input
                   type="checkbox"
                   checked={newRole.permissions.includes(perm.key)}
                   onChange={() => handleTogglePermission(perm.key)}
-                  className="mt-0.5 h-4 w-4 rounded border-[#141F33]/20 text-[#141F33] focus:ring-[#141F33]"
+                  className="mt-0.5 h-4 w-4 rounded border-[#141F33]/20 text-[#141F33] focus:ring-2 focus:ring-royal"
                 />
                 <div>
                   <p className="text-xs font-bold text-[#141F33]">{perm.key}</p>
@@ -95,14 +95,14 @@ export default function RolesSettingsPage() {
 
         <button
           type="submit"
-          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-[40px] text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
           {t({ en: 'Create Custom Access Role', ar: 'إنشاء دور وصول مخصص' })}
         </button>
       </form>
 
       {/* Roles list */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
         <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Configured Access Roles', ar: 'أدوار الوصول المهيأة' })}</h3>
 
         <div className="divide-y divide-[#141F33]/10">

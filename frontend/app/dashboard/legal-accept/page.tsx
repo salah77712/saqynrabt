@@ -101,13 +101,13 @@ return (
 
 if (accepted) {
 return (
-<div className="min-h-screen flex items-center justify-center bg-[#F8F9FB] p-6">
+<div className="min-h-screen flex items-center justify-center bg-[#F8F9FB] p-8">
 <div className="max-w-md text-center">
 <CheckCircleSvg />
 <h1 className="mt-4 text-xl font-bold text-[#141F33]">
 {t({ en: 'All Legal Terms Accepted', ar: 'تم قبول جميع الشروط القانونية' })}
 </h1>
-<p className="mt-2 text-sm text-[#141F33]">
+<p className="mt-3 text-sm text-[#141F33]">
 {t({
 en: 'Redirecting you to the dashboard...',
 ar: 'جاري إعادة توجيهك إلى لوحة التحكم...',
@@ -126,9 +126,9 @@ return null;
 }
 
 return (
-<div className="min-h-screen flex items-center justify-center bg-[#F8F9FB] p-6 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<div className="max-w-lg w-full bg-[#F8F9FB] rounded-2xl shadow-xl p-6">
-<div className="flex items-center gap-3 mb-6">
+<div className="min-h-screen flex items-center justify-center bg-[#F8F9FB] p-8 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="max-w-lg w-full bg-[#F8F9FB] rounded-[40px] shadow-xl p-8">
+<div className="flex items-center gap-4 mb-6">
 <ShieldSvg />
 <div>
 <h1 className="text-lg font-bold text-[#141F33]">
@@ -143,9 +143,9 @@ ar: 'بموجب قانون قطر رقم 8 لسنة 2019، يجب عليك قب�
 </div>
 </div>
 
-<div className="gap-6">
+<div className="gap-8">
 {status?.tos.needsAccept && (
-<label className="flex items-start gap-3 p-4 rounded-xl border border-[#141F33]/10 hover:border-[#141F33]/30 cursor-pointer transition-colors">
+<label className="flex items-start gap-4 p-4 rounded-[40px] border border-[#141F33]/10 hover:border-[#141F33]/30 cursor-pointer transition-colors">
 <input
 type="checkbox"
 checked={tosChecked}
@@ -174,7 +174,7 @@ className="text-xs font-bold text-[#2A5CFF] hover:underline mt-1 inline-block"
 )}
 
 {status?.dpa.needsAccept && (
-<label className="flex items-start gap-3 p-4 rounded-xl border border-[#141F33]/10 hover:border-[#141F33]/30 cursor-pointer transition-colors">
+<label className="flex items-start gap-4 p-4 rounded-[40px] border border-[#141F33]/10 hover:border-[#141F33]/30 cursor-pointer transition-colors">
 <input
 type="checkbox"
 checked={dpaChecked}
@@ -204,7 +204,7 @@ className="text-xs font-bold text-[#2A5CFF] hover:underline mt-1 inline-block"
 </div>
 
 {error && (
-<div className="mt-4 flex items-start gap-2 text-[#141F33] text-xs bg-[#F8F9FB] border border-[#141F33]/10 p-3 rounded-xl">
+<div className="mt-4 flex items-start gap-3 text-[#141F33] text-xs bg-[#F8F9FB] border border-[#141F33]/10 p-3 rounded-[40px]">
 <AlertTriangleSvg />
 <p>{error}</p>
 </div>
@@ -214,7 +214,7 @@ className="text-xs font-bold text-[#2A5CFF] hover:underline mt-1 inline-block"
 type="button"
 onClick={handleAccept}
 disabled={!tosChecked || !dpaChecked || submitting}
-className="mt-6 w-full py-3 px-6 min-h-[44px] rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33]/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+className="mt-6 w-full py-3 px-6 min-h-[44px] rounded-[40px] bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3"
 >
 {submitting ? (
 <>

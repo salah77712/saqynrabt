@@ -108,7 +108,7 @@ export default function SettingsDashboardPage() {
 
   if (usageLoading) {
     return (
-<div className="flex flex-col gap-6 md:gap-8 animate-fadeIn max-w-4xl">
+<div className="flex flex-col gap-8 md:gap-8 animate-fadeIn max-w-4xl">
   <div className="animate-pulse">
           <div className="h-8 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-72 mb-2" />
           <div className="h-4 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-96" />
@@ -138,7 +138,7 @@ export default function SettingsDashboardPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6 md:gap-8 animate-fadeIn max-w-4xl">
+    <div className="flex flex-col gap-8 md:gap-8 animate-fadeIn max-w-4xl">
       <div>
         <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
           {t('Settings', 'حدود الاستخدام والإعدادات')}
@@ -152,7 +152,7 @@ export default function SettingsDashboardPage() {
         <select
           value={activeTab}
           onChange={(e) => setActiveTab(e.target.value)}
-          className="w-full min-h-[44px] rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 py-2 text-xs font-semibold text-[#141F33] appearance-none"
+          className="w-full min-h-[44px] rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] px-4 py-2 text-xs font-semibold text-[#141F33] appearance-none"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23141F33' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'no-repeat',
@@ -168,18 +168,18 @@ export default function SettingsDashboardPage() {
       )}
 
 {activeTab === 'general' && (
-  <div className="flex flex-col gap-4 md:gap-6">
-  <Card className="p-6">
+  <div className="flex flex-col gap-8 md:gap-8">
+  <Card className="p-8">
             <h2 className="text-[10px] md:text-xs font-black text-[#141F33]/60 uppercase tracking-widest mb-3 md:mb-4">
               {t('Overage Protection', 'حماية التجاوز التلقائي')}
             </h2>
-            <label className="flex items-start gap-6 p-3 md:p-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] cursor-pointer">
+            <label className="flex items-start gap-8 p-3 md:p-4 rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] cursor-pointer">
               <input
                 type="checkbox"
                 checked={autoOverage}
                 onChange={(e) => handleOverageToggle(e.target.checked)}
                 disabled={savingOverage}
-                className="mt-1 h-5 w-5 md:h-4 md:w-4 rounded text-navy focus:ring-[#141F33] shrink-0"
+                className="mt-1 h-5 w-5 md:h-4 md:w-4 rounded text-navy focus:ring-2 focus:ring-royal shrink-0"
               />
               <div className="flex-1">
                 <p className="text-[11px] md:text-xs font-bold text-[#141F33]">
@@ -189,7 +189,7 @@ export default function SettingsDashboardPage() {
             </label>
           </Card>
 
-          <Card className="p-6 rounded-2xl flex flex-col gap-6">
+          <Card className="p-8 rounded-[40px] flex flex-col gap-8">
             <h2 className="text-[10px] md:text-xs font-black text-[#141F33] uppercase tracking-widest">
               {t('Usage Limits', 'حدود الاستخدام')}
             </h2>
@@ -218,7 +218,7 @@ export default function SettingsDashboardPage() {
             </div>
           </Card>
 
-          <Card className="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          <Card className="p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div>
               <h3 className="text-[11px] md:text-xs font-bold text-[#141F33]">
                 {t('Export Chat Log Audit', 'تصدير سجل التدقيق للمحادثات')}
@@ -227,7 +227,7 @@ export default function SettingsDashboardPage() {
                 {t('Download employee RAG chatbot logs and question histories in .csv format.', 'تنزيل جميع سجلات المساعد الذكي وتاريخ الأسئلة بصيغة .csv للتدقيق.')}
               </p>
             </div>
-            <Button variant="default" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs py-3 px-6 rounded-xl font-bold">
+            <Button variant="default" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs py-3 px-6 rounded-[40px] font-bold">
               {t('Export Logs', 'تصدير السجلات')}
             </Button>
           </Card>
@@ -235,12 +235,12 @@ export default function SettingsDashboardPage() {
       )}
 
 {activeTab === 'billing' && (
-  <Card className="p-6 flex flex-col gap-3">
+  <Card className="p-8 flex flex-col gap-4">
           <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-sm md:text-base">{t('Subscription Plan', 'خطة الاشتراك')}</h3>
           <p className="text-[10px] md:text-xs text-[#141F33] leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
           </p>
-          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-xl font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
+          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-[40px] font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
             {t('Manage Subscription', 'إدارة الاشتراك')}
           </Button>
         </Card>

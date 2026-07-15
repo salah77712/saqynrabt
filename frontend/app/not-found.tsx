@@ -31,7 +31,7 @@ export default function NotFound() {
         <div className="text-center max-w-lg animate-slideUp">
           {/* Large 404 with gradient */}
           <div className="relative mb-8">
-            <span className="text-[140px] lg:text-[180px] font-extrabold leading-none bg-gradient-to-br from-[#141F33] via-[#2A5CFF] to-[#141F33] bg-clip-text text-transparent select-none">
+            <span className="text-[140px] lg:text-[180px] font-extrabold leading-none r    bg-clip-text text-transparent select-none">
               404
             </span>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -51,12 +51,12 @@ export default function NotFound() {
           </p>
 
           {/* Suggestion Links */}
-          <div className="flex flex-wrap justify-center gap-3 mb-10">
+          <div className="flex flex-wrap justify-center gap-4 mb-10">
             {suggestions.map((s) => (
               <Link
                 key={s.href}
                 href={s.href}
-                className="rounded-xl border border-[rgba(20,31,51,0.1)] bg-[#F8F9FB] px-4 py-2.5 text-sm font-semibold text-[#141F33] hover:border-[#2A5CFF] hover:bg-[#2A5CFF]/5 hover:text-[#2A5CFF] transition-all shadow-sm"
+                className="rounded-[40px] border border-[rgba(20,31,51,0.1)] bg-[#F8F9FB] px-4 py-2.5 text-sm font-semibold text-[#141F33] hover:border-[#2A5CFF] hover:bg-[#2A5CFF]/5 hover:text-[#2A5CFF] transition-all shadow-sm"
               >
                 {t(s.en, s.ar)}
               </Link>
@@ -66,7 +66,7 @@ export default function NotFound() {
           {/* Primary CTA */}
           <Link
             href="/"
-            className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-sm font-bold text-[#F8F9FB] hover:bg-[#141F33]/90 hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-[40px] bg-[#141F33] px-8 py-3 text-sm font-bold text-[#F8F9FB] hover:bg-[#141F33] hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
           >
             {t('Back to Home', 'العودة للرئيسية')}
           </Link>

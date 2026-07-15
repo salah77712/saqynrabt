@@ -27,40 +27,40 @@ export default function DevelopersLandingPage() {
           </p>
         </div>
 
-        <div className="flex gap-4 justify-center">
+        <div className="flex gap-8 justify-center">
           <Link
             href="/developers/api-docs"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-xs font-bold text-[#F8F9FB] shadow-md hover:opacity-95 transition-all hover:scale-[1.01] hover:shadow-md"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-[40px] bg-[#141F33] px-8 py-3 text-xs font-bold text-[#F8F9FB] shadow-md hover:opacity-95 transition-all hover:scale-[1.01] hover:shadow-md"
           >
             {t({ en: 'API Reference Swagger', fr: 'Référence API Swagger', ar: 'مرجع واجهة التطبيقات Swagger', hi: 'एपीआई संदर्भ स्वैगर' })}
           </Link>
           <Link
             href="/dashboard"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-[#F8F9FB] transition-all hover:scale-[1.01] hover:shadow-md"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-[40px] bg-[#F8F9FB] border border-[#141F33]/10 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-[#F8F9FB] transition-all hover:scale-[1.01] hover:shadow-md"
           >
             {t({ en: 'Manage API Keys', fr: 'Gérer les clés API', ar: 'إدارة مفاتيح الـ API', hi: 'एपीआई कुंजी प्रबंधित करें' })}
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-12 border-t border-[#141F33]/10 text-start">
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
-            <div className="w-10 h-10 rounded-xl bg-[#141F33]/5 flex items-center justify-center mb-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-12 border-t border-[#141F33]/10 text-start">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
+            <div className="w-10 h-10 rounded-[40px] bg-[#141F33] flex items-center justify-center mb-4">
               <Code className="w-5 h-5 text-[#141F33]" />
             </div>
             <h3 className="text-sm font-extrabold text-[#141F33]">JavaScript SDK</h3>
             <p className="text-xs text-[#141F33] font-semibold mt-2">Install our lightweight npm package to run chat streams and log usage data directly.</p>
           </div>
 
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
-            <div className="w-10 h-10 rounded-xl bg-[#141F33]/5 flex items-center justify-center mb-4">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
+            <div className="w-10 h-10 rounded-[40px] bg-[#141F33] flex items-center justify-center mb-4">
               <Terminal className="w-5 h-5 text-[#141F33]" />
             </div>
             <h3 className="text-sm font-extrabold text-[#141F33]">Python Library</h3>
             <p className="text-xs text-[#141F33] font-semibold mt-2">Fetch company request queues and automate data ingestion processes using our PyPI helper client.</p>
           </div>
 
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
-            <div className="w-10 h-10 rounded-xl bg-[#141F33]/5 flex items-center justify-center mb-4">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all">
+            <div className="w-10 h-10 rounded-[40px] bg-[#141F33] flex items-center justify-center mb-4">
               <Radio className="w-5 h-5 text-[#141F33]" />
             </div>
             <h3 className="text-sm font-extrabold text-[#141F33]">Outbound Webhooks</h3>

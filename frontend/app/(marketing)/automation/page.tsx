@@ -99,11 +99,11 @@ const queueItems = {
 function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boolean }) {
   const [isOpen, setIsOpen] = useState(defaultOpen || false);
   return (
-    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden">
+    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[#141F33]/5"
+        className="flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[#141F33]"
       >
         <span className="font-bold text-sm text-[#141F33] pr-4">{q}</span>
         <svg
@@ -200,17 +200,17 @@ export default function AutomationPage() {
           <p className="mt-6 text-lg md:text-xl text-[#141F33]/60 max-w-2xl mx-auto leading-relaxed font-medium animate-fadeIn" style={{ animationDelay: '0.2s' }}>
             {t({ en: 'The 24/7 AI front-desk that handles external inquiries, routes requests, and manages your guest experience.', ar: 'مكتب استقبال ذكاء اصطناعي 24/7 يتعامل مع الاستفسارات الخارجية ويوجه الطلبات وينظم تجربة الضيوف.' })}
           </p>
-          <div className="mt-10 flex flex-wrap gap-4 justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
+          <div className="mt-10 flex flex-wrap gap-8 justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-95 transition-all"
+              className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-95 transition-all"
             >
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </button>
             <Link
         href="#pricing"
-        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33]/5 transition-all"
+        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
       >
               {t({ en: 'View Pricing', ar: 'عرض الأسعار' })}
             </Link>
@@ -220,16 +220,16 @@ export default function AutomationPage() {
 
       <section className="bg-[#F8F9FB] border-y border-[#141F33]/10 py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-30 items-center">
             <div>
               <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-8">
                 {t({ en: 'What it handles for you', ar: 'ماذا يعالج نيابة عنك' })}
               </h2>
-              <div className="flex flex-col gap-4">
+              <div className="flex flex-col gap-8">
                 {cases.map((uc, i) => (
                   <div
                     key={uc.title}
-                    className="flex items-start gap-4 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-6 shadow-sm card-hover animate-slideUp"
+                    className="flex items-start gap-8 bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
                     <span className="text-2xl mt-0.5 shrink-0">{useCaseIcons[uc.icon] || <Zap className="w-5 h-5 text-[#141F33]" />}</span>
@@ -242,7 +242,7 @@ export default function AutomationPage() {
               </div>
             </div>
 
-            <div className="bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 shadow-xl p-6 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
+            <div className="bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 shadow-xl p-8 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-center justify-between pb-4 border-b border-[#141F33]/10">
                 <span className="text-[#141F33] font-black text-base">
                   {t({ en: 'Live Queue', ar: 'الطابور المباشر' })}
@@ -283,13 +283,13 @@ export default function AutomationPage() {
           </div>
 
           {/* Currency Toggle */}
-          <div className="flex items-center justify-center gap-3 mb-10">
+          <div className="flex items-center justify-center gap-4 mb-10">
             <span className={`text-xs font-bold ${currency === 'USD' ? 'text-[#141F33]' : 'text-[#141F33]/40'}`}>USD</span>
             <button
               type="button"
               onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
               className={`relative w-12 h-6 min-h-0 rounded-full transition-colors ${
-                currency === 'QAR' ? 'bg-[#141F33]' : 'bg-[#141F33]/20'
+                currency === 'QAR' ? 'bg-[#141F33]' : 'bg-[#141F33]'
               }`}
             >
               <span
@@ -310,7 +310,7 @@ export default function AutomationPage() {
           <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-10 text-center">
             {t({ en: 'Frequently Asked Questions', ar: 'الأسئلة الشائعة' })}
           </h2>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-8">
             {faqList.map((faq, i) => (
               <div key={faq.q} className="animate-slideUp" style={{ animationDelay: `${i * 0.08}s` }}>
                 <FAQItem q={faq.q} a={faq.a} open={i === 0} />
@@ -326,27 +326,27 @@ export default function AutomationPage() {
         <div
           ref={modalRef}
           onKeyDown={handleModalKeyDown}
-          className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33]/60 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
+          className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33] backdrop-blur-sm animate-fadeIn">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] max-w-md w-full p-8 shadow-2xl animate-scaleIn">
             <h3 className="text-xl font-extrabold text-[#141F33] mb-2">
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </h3>
             <p className="text-sm font-medium text-[#141F33]/60 mb-6 leading-relaxed">
               {t({ en: 'We\'ll walk you through setup in a 15-minute call.', ar: 'سنرشدك خلال الإعداد في مكالمة مدتها 15 دقيقة.' })}
             </p>
-            <div className="flex flex-col gap-3">
+            <div className="flex flex-col gap-4">
               <a
 href={calendlyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-90 transition-all"
+        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-90 transition-all"
               >
                 {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </a>
               <button
 type="button"
         onClick={() => setIsModalOpen(false)}
-        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33]/5 transition-all"
+        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
               >
                 {t({ en: 'Close', ar: 'إغلاق' })}
               </button>
