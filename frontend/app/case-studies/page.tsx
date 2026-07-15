@@ -144,7 +144,7 @@ export default function CaseStudiesPage() {
                         triggerEffects();
                       }
                     }}
-                    className={`relative w-[300px] md:w-[360px] h-[480px] rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col justify-between p-6 border ${
+                    className={`relative w-[300px] md:w-[360px] h-[480px] rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between p-6 border ${
                       isActive 
                         ? 'bg-[#141F33] text-[#F8F9FB] border-transparent scale-100 opacity-100 z-35 ring-4 ring-[#2A5CFF]/35 shadow-[0_20px_50px_rgba(42,92,255,0.25)]' 
                         : 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 scale-90 opacity-40 filter blur-[1px] z-10 hover:opacity-60'
@@ -254,8 +254,8 @@ export default function CaseStudiesPage() {
         </div>
 
         {/* Detailed Metrics Panel of Active Card */}
-        <div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+<div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
+<div className="bg-white border border-[#141F33]/10 rounded-2xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex-1">
               <span className="text-[10px] font-black uppercase tracking-widest text-[#141F33]/60 mb-1 block">
                 {list[currentIndex].meta}

@@ -12,7 +12,7 @@ export default function BillingSettingsPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
-    <div className="space-y-6 max-w-2xl animate-fadeIn">
+    <div className="space-y-6 max-w-xl animate-fadeIn">
       <div>
         <h1 className="text-xl font-bold text-[#141F33]">
           {t({ en: 'Billing & Subscription', ar: 'الفواتير والاشتراك' })}
@@ -22,7 +22,7 @@ export default function BillingSettingsPage() {
         </p>
       </div>
 
-      <Card className="p-6 border-[#2A5CFF]/10 bg-[#F8F9FB]">
+      <Card className="p-6 border-[#2A5CFF]/10 bg-[#F8F9FB] rounded-2xl shadow-sm">
         <div className="flex items-start gap-3">
           <span className="shrink-0 mt-0.5"><ShieldSvg /></span>
           <div>
@@ -45,7 +45,7 @@ export default function BillingSettingsPage() {
         </div>
       </Card>
 
-      <Card className="p-6">
+      <Card className="p-6 rounded-2xl shadow-sm">
         <div className="flex items-start gap-3">
           <span className="shrink-0 mt-0.5"><AlertTriangleSvg /></span>
           <div>

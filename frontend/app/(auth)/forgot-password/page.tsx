@@ -72,11 +72,11 @@ export default function ForgotPasswordPage() {
  </div>
  ) : (
  <>
- {error && (
- <div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6">
- {error}
- </div>
- )}
+{error && (
+<div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6" role="alert" aria-live="assertive">
+{error}
+</div>
+)}
  <form onSubmit={handleSubmit} className="space-y-4">
  <div>
  <label htmlFor="email" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>

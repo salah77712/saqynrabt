@@ -35,7 +35,7 @@ export default function AdminIncidentsPage() {
       </div>
 
       {/* Incidents List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
+      <div className="bg-white border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
         <div className="divide-y divide-[#141F33]/10">
           {incidents.map((inc) => (
             <div key={inc.id} className="py-4 flex justify-between items-center gap-4 first:pt-0 last:pb-0">

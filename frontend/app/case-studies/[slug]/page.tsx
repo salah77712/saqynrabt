@@ -103,7 +103,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
                 </p>
               </div>
 
-              <div className="h-px bg-[#141F33]/10 border-b border-[#141F33]/10" />
+              <div className="border-b border-[#141F33]/10" />
 
               <div>
                 <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
@@ -114,7 +114,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
                 </p>
               </div>
 
-              <div className="h-px bg-[#141F33]/10 border-b border-[#141F33]/10" />
+              <div className="border-b border-[#141F33]/10" />
 
               <div>
                 <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
@@ -129,7 +129,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
 
           {/* Right Columns: Metrics Panel */}
           <div className="space-y-8 lg:sticky lg:top-24">
-            <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-8 shadow-sm">
+            <div className="bg-white border border-[#141F33]/10 rounded-2xl p-8 shadow-sm">
               <h3 className="text-base font-extrabold text-[#141F33] mb-6">
                 {t({ en: 'Performance Metrics', ar: 'مقاييس الأداء المحققة' })}
               </h3>

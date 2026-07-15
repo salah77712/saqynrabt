@@ -36,9 +36,9 @@ export default function ChatbotHelpPage() {
                 className={`flex items-center px-4 rounded-xl text-xs font-extrabold transition-all min-h-[44px] ${
                   isActive
                     ? 'bg-[#141F33] text-[#F8F9FB]'
-                    : 'text-[#141F33] hover:bg-[#F8F9FB] hover:text-[#141F33] border border-transparent hover:border-[#141F33]/10'
-                }`}
-        </Link>
+: 'text-[#141F33] hover:bg-[#F8F9FB] hover:text-[#141F33] border border-transparent hover:border-[#141F33]/10'
+}`}>
+</Link>
             );
           })}
         </aside>

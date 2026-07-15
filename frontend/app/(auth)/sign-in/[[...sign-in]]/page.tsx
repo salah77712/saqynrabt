@@ -121,11 +121,11 @@ export default function SignInPage() {
           </Link>
         </div>
 
-        {error && (
-          <div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6">
-            {error}
-          </div>
-        )}
+{error && (
+<div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6" role="alert" aria-live="assertive">
+{error}
+</div>
+)}
 
         {show2FA ? (
           /* Two-Factor Authentication Form */

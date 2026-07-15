@@ -31,7 +31,7 @@ export default function GlobalMarketplacePage() {
         {/* Header */}
         <div>
           <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Integration Hub', fr: 'Hub d\'intégration', ar: 'مركز التكاملات البرمجية', hi: 'एकीकरण हब' })}</span>
-          <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight mt-2">
+          <h1 className="text-4xl font-extrabold text-[#141F33] tracking-tight mt-2">
             {t({ en: 'SAQYN Marketplace Extensions', fr: 'Extensions du SAQYN Marketplace', ar: 'متجر إضافات SAQYN', hi: 'SAQYN मार्केटप्लेस एक्सटेंशन' })}
           </h1>
           <p className="text-xs font-semibold text-[#141F33] mt-2">

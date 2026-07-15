@@ -254,7 +254,7 @@ activeProduct === 'chatbot'
       </section>
 
       {/* ── Industry Switcher & Social Proof ──────────────── */}
-      <section ref={industryRef} id="industries" className={`bg-gradient-to-b from-[#F8F9FB] via-[#F8F9FB] to-[#F8F9FB] py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
+      <section ref={industryRef} id="industries" className={`bg-gradient-to-b py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
           
           <p className="text-xs font-extrabold tracking-widest text-[#141F33] uppercase mb-8 text-center animate-fadeIn">
@@ -363,7 +363,7 @@ activeProduct === 'chatbot'
             {testimonials.map((item, i) => (
               <div
                 key={i}
-                className="min-w-[300px] md:min-w-[380px] snap-start bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm card-hover"
+                className="min-w-[300px] md:min-w-[380px] snap-start bg-white border border-[#141F33]/10 rounded-2xl p-6 shadow-sm card-hover"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="flex gap-1 mb-5">
@@ -397,8 +397,8 @@ activeProduct === 'chatbot'
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* Automation Card */}
-            <div className="relative p-6 card-premium group">
+{/* Automation Card */}
+<div className="relative p-6 card-premium group bg-white border border-[#141F33]/10 rounded-2xl">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-xl flex items-center justify-center mb-5">
@@ -432,8 +432,8 @@ activeProduct === 'chatbot'
               </div>
             </div>
 
-            {/* Chatbot Card */}
-            <div className="relative p-6 card-premium group">
+{/* Chatbot Card */}
+<div className="relative p-6 card-premium group bg-white border border-[#141F33]/10 rounded-2xl">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-xl flex items-center justify-center mb-5">

@@ -76,7 +76,7 @@ export default function AdminCompaniesPage() {
       </div>
 
       {/* Companies Table */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl shadow-sm overflow-hidden">
+      <div className="bg-white border border-[#141F33]/10 rounded-2xl shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>

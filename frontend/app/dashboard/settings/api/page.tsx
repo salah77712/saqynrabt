@@ -156,7 +156,7 @@ export default function ApiKeysSettingsPage() {
               type="text"
               readOnly
               value={newKeyVal}
-              className="flex-1 bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold text-[#141F33]"
+              className="flex-1 bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold text-[#141F33] min-h-[44px]"
             />
             <button
               onClick={() => {

@@ -81,7 +81,7 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Name', ar: 'الاسم' })}</label>
+                <label htmlFor="name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Name', ar: 'الاسم' })}</label>
                 <input
                   type="text"
                   id="name"
@@ -89,8 +89,8 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   aria-invalid={!!errors.name}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-navy ${
-                    errors.name ? 'border-red-500' : 'border-[#141F33]/10'
+                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] ${
+                    errors.name ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
                 {errors.name && <p className="text-[#141F33] text-[10px] font-bold mt-1">{errors.name}</p>}
@@ -98,7 +98,7 @@ export default function ContactPage() {
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
+                <label htmlFor="email" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
                 <input
                   type="email"
                   id="email"
@@ -106,8 +106,8 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   aria-invalid={!!errors.email}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-navy ${
-                    errors.email ? 'border-red-500' : 'border-[#141F33]/10'
+                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] ${
+                    errors.email ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
                 {errors.email && <p className="text-[#141F33] text-[10px] font-bold mt-1">{errors.email}</p>}
@@ -115,7 +115,7 @@ export default function ContactPage() {
 
               {/* Phone */}
               <div>
-                <label htmlFor="phone" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Phone Number', ar: 'رقم الهاتف' })}</label>
+                <label htmlFor="phone" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Phone Number', ar: 'رقم الهاتف' })}</label>
                 <input
                   type="text"
                   id="phone"
@@ -123,8 +123,8 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   aria-invalid={!!errors.phone}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-navy ${
-                    errors.phone ? 'border-red-500' : 'border-[#141F33]/10'
+                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] ${
+                    errors.phone ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
                 {errors.phone && <p className="text-[#141F33] text-[10px] font-bold mt-1">{errors.phone}</p>}
@@ -132,7 +132,7 @@ export default function ContactPage() {
 
               {/* Subject */}
               <div>
-                <label htmlFor="subject" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Subject', ar: 'الموضوع' })}</label>
+                <label htmlFor="subject" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Subject', ar: 'الموضوع' })}</label>
                 <select
                   id="subject"
                   name="subject"
@@ -149,7 +149,7 @@ export default function ContactPage() {
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-xs font-bold text-navy mb-1.5">{t({ en: 'Message', ar: 'الرسالة' })}</label>
+                <label htmlFor="message" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Message', ar: 'الرسالة' })}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -157,8 +157,8 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleChange}
                   aria-invalid={!!errors.message}
-                  className={`w-full bg-[#F8F9FB] border rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-navy resize-none ${
-                    errors.message ? 'border-red-500' : 'border-[#141F33]/10'
+                  className={`w-full bg-[#F8F9FB] border rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] resize-none ${
+                    errors.message ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
                 {errors.message && <p className="text-[#141F33] text-[10px] font-bold mt-1">{errors.message}</p>}
@@ -179,7 +179,7 @@ export default function ContactPage() {
           <div className="space-y-8 lg:pt-8 text-center lg:text-start">
             <div>
               <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Get in touch', ar: 'تواصل معنا' })}</span>
-              <h1 className="text-4xl font-extrabold text-navy tracking-tight mt-3">
+              <h1 className="text-4xl font-extrabold text-[#141F33] tracking-tight mt-3">
                 {t({ en: 'Tell us what you need.', ar: 'أخبرنا بما تحتاجه.' })}
               </h1>
               <p className="text-sm font-semibold text-[#141F33] mt-4 leading-relaxed max-w-md mx-auto lg:mx-0">
@@ -191,7 +191,7 @@ export default function ContactPage() {
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
                 <MapPin className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-navy">{t({ en: 'Office Address', ar: 'عنوان المكتب' })}</p>
+                  <p className="text-[#141F33]">{t({ en: 'Office Address', ar: 'عنوان المكتب' })}</p>
                   <p className="text-[#141F33] mt-0.5">Global Operations</p>
                 </div>
               </div>
@@ -199,7 +199,7 @@ export default function ContactPage() {
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
                 <Mail className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-navy">{t({ en: 'General Inquiry', ar: 'البريد الإلكتروني' })}</p>
+                  <p className="text-[#141F33]">{t({ en: 'General Inquiry', ar: 'البريد الإلكتروني' })}</p>
                   <p className="text-[#141F33] mt-0.5">saqynrabt@gmail.com</p>
                 </div>
               </div>
@@ -207,7 +207,7 @@ export default function ContactPage() {
               <div className="flex flex-col lg:flex-row items-center gap-4 text-xs font-semibold">
                 <Phone className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-navy">{t({ en: 'Support Hotline', ar: 'خط الدعم' })}</p>
+                  <p className="text-[#141F33]">{t({ en: 'Support Hotline', ar: 'خط الدعم' })}</p>
                   <p className="text-[#141F33] mt-0.5">+974 5500 0000</p>
                 </div>
               </div>
