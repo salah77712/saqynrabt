@@ -101,9 +101,9 @@ hi: {
 function Logo() {
 return (
 <svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SAQYN RABT">
-<rect width="120" height="32" rx="4" className="fill-[#141F33]" />
+<rect width="62" height="32" rx="4" className="fill-[#141F33]" />
 <text x="8" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" letterSpacing="1" fill="#F8F9FB">SAQYN</text>
-<text x="68" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="300" letterSpacing="1" className="fill-[#141F33]/40">RABT</text>
+<text x="68" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="300" letterSpacing="1" className="fill-[#141F33] opacity-40">RABT</text>
 </svg>
 );
 }
@@ -127,7 +127,7 @@ return (
 <footer className="bg-[#F8F9FB] text-[#141F33] border-t border-[#141F33]/10" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 {/* Trust & Compliance Bar */}
 <div className="border-b border-[#141F33]/10 bg-[#F8F9FB]/50">
-<div className="mx-auto max-w-7xl px-6 py-3 lg:px-8 flex flex-wrap items-center justify-between gap-3" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="mx-auto max-w-7xl px-6 py-2.5 lg:px-8 flex flex-wrap items-center justify-between gap-3" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <div className="flex items-center gap-4 flex-wrap">
 <Link
 href="/trust"
@@ -165,7 +165,7 @@ Incident response active ({incidentStatus?.activeIncidents || 0})
 </div>
 </div>
 
-<div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+<div className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
 <div className="flex flex-col lg:flex-row justify-between gap-12">
 {/* Left Block: Logo & Newsletter (Nietzsche Style) */}
 <div className="flex flex-col gap-4 max-w-sm">
@@ -181,12 +181,12 @@ Incident response active ({incidentStatus?.activeIncidents || 0})
 <input
 type="email"
 placeholder={t({ en: 'Enter your email', ar: 'أدخل بريدك الإلكتروني' })}
-className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-full px-5 py-3 pr-24 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#2A5CFF]/30 transition-all"
+className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-full pl-5 pr-28 py-3 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-[#141F33]/25 focus:border-[#141F33]/20 transition-all"
 required
 />
 <button
 type="submit"
-className="absolute right-1.5 min-h-[44px] bg-[#141F33] hover:opacity-90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+className="absolute right-1 top-1 bottom-1 bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-[10px] uppercase tracking-wider px-5 rounded-full transition-all duration-200"
 >
 {t({ en: 'Submit', ar: 'إرسال' })}
 </button>
@@ -214,7 +214,7 @@ ar: 'من خلال الاشتراك، فإنك توافق على سياسة ال
 </div>
 
 {/* Bottom Bar */}
-<div className="border-t border-[#141F33]/10 mt-16 pt-8 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-[#141F33]/40">
+<div className="border-t border-[#141F33]/10 mt-10 pt-6 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-bold text-[#141F33]/40">
 <p className="uppercase tracking-wider">
 © {year} SAQYN RABT. ALL RIGHTS RESERVED.
 </p>
