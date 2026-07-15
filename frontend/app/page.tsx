@@ -5,35 +5,8 @@ import { useScrollReveal } from '../hooks/useScrollReveal';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
-import { LanguageSwitcher } from '../components/LanguageSwitcher';
 import Link from 'next/link';
-import { MessageSquare, Zap, Mail, Check } from 'lucide-react';
-
-const industries = [
-  { id: 'default', label: 'Every Business', headline: 'Catch every call. Automate your front desk.', copy: 'The secure 24/7 AI voice and message receptionist for any industry. Zero missed calls. Zero wasted leads.' },
-  { id: 'healthcare', label: 'Healthcare', headline: 'More time with patients, less time on the phone.', copy: 'Automate patient bookings, appointment inquiries, and prescription routing to reduce clinic staff workload.' },
-  { id: 'hospitality', label: 'Hospitality', headline: 'Check-ins, check-outs, room service — handled.', copy: 'Handle room reservations, late check-ins, guest FAQs, and housekeeping requests automatically 24/7.' },
-  { id: 'homeservices', label: 'Home Services', headline: 'Every emergency call captured. Every technician dispatched.', copy: 'Capture emergency repair calls 24/7, qualify leads, and trigger automated dispatch for your technicians.' },
-  { id: 'realestate', label: 'Real Estate', headline: 'Maintenance requests routed before the tenant hangs up.', copy: 'Automate tenant inquiry replies, pre-qualify buyer budgets, and schedule property viewings instantly.' },
-  { id: 'automotive', label: 'Automotive', headline: 'Repair quotes answered while your crew keeps working.', copy: 'Handle repair quotes, service bookings, and status checks automatically so your mechanics can work.' },
-  { id: 'food', label: 'Food & Beverage', headline: 'Reservations and takeout handled — even at full capacity.', copy: 'Automate table reservations, takeout orders, and dining FAQs during your busiest rush hours.' },
-  { id: 'towing', label: 'Towing & Roadside', headline: 'Stranded drivers connected to your fleet in seconds.', copy: 'Capture stranded drivers, get GPS data, and dispatch trucks rapidly.' },
-  { id: 'veterinary', label: 'Veterinary', headline: 'Pet emergencies triaged the moment the phone rings.', copy: 'Triage emergency pet visits and route to the nurse instantly.' },
-  { id: 'plumbing', label: 'Plumbing & HVAC', headline: 'After-hours calls turned into booked jobs — automatically.', copy: 'Stop losing money from missed after-hours repair calls.' },
-  { id: 'boutiquehotel', label: 'Boutique Hotels', headline: 'Midnight check-ins. Digital keys. Zero staff needed.', copy: 'Let guests au digital door codes at midnight.' },
-  { id: 'catering', label: 'Restaurants & Catering', headline: 'Event quotes and bookings, minus the phone tag.', copy: 'Quote and book catering orders with no phone tag.' },
-  { id: 'dealership', label: 'Auto Dealerships', headline: 'Inventory questions answered on the first ring.', copy: 'Answer real-time inventory questions about used cars.' },
-  { id: 'construction', label: 'Construction & Contracting', headline: 'Permits, materials, crew dispatch — from one call.', copy: 'Keep subcontractors updated on material delivery times.' },
-  { id: 'law', label: 'Law Firms', headline: 'Retainer questions and case updates, handled instantly.', copy: 'Au retainer fee and intake form questions.' },
-  { id: 'accounting', label: 'Accounting & Tax', headline: 'Tax season status checks, automated.', copy: 'Handle tax season refund status checks without a receptionist.' },
-];
-
-const GOLDMINE_INDUSTRIES = industries.filter(i =>
-  ['healthcare', 'hospitality', 'homeservices', 'realestate', 'automotive', 'food'].includes(i.id)
-);
-const OTHER_INDUSTRIES = industries.filter(i =>
-  ['towing', 'veterinary', 'plumbing', 'boutiquehotel', 'catering', 'dealership', 'construction', 'law', 'accounting'].includes(i.id)
-);
+import { MessageSquare, Zap, Check } from 'lucide-react';
 
 const testimonials = [
   { 
@@ -63,62 +36,19 @@ const testimonials = [
 ];
 
 export default function MarketingPage() {
-  const [activeIndustry, setActiveIndustry] = useState('default');
-  const [activeProduct, setActiveProduct] = useState<'automation' | 'chatbot'>('automation');
+  const [activeProduct, setActiveProduct] = useState<'voice' | 'chatbot'>('voice');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { locale } = useLocale();
 
-  const { ref: industryRef, isVisible: industryVisible } = useScrollReveal<HTMLDivElement>();
-  const { ref: testimonialRef, isVisible: testimonialVisible } = useScrollReveal<HTMLDivElement>();
-  const { ref: pricingRef, isVisible: pricingVisible } = useScrollReveal<HTMLDivElement>();
-  const { ref: ctaRef, isVisible: ctaVisible } = useScrollReveal<HTMLDivElement>();
+  const { ref: testimonialsRef, isVisible: testimonialsVisible } = useScrollReveal<HTMLDivElement>();
+  const { ref: suiteRef, isVisible: suiteVisible } = useScrollReveal<HTMLDivElement>();
 
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
-
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const openCustomModal = () => {
     setIsModalOpen(true);
   };
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    if (e.target.value) setActiveIndustry(e.target.value);
-  };
-
-  const currentIndustry = industries.find(i => i.id === activeIndustry) || industries[0];
-
-  const chatbotIndustryHeadlines: Record<string, { en: string; ar: string }> = {
-    default: { en: 'Every company policy, answered instantly.', ar: 'سياسة كل شركة، يتم الرد عليها فوراً.' },
-    healthcare: { en: 'Clinical SOPs and protocols at your staff\'s fingertips.', ar: 'إجراءات التشغيل السريرية في متناول يد موظفيك.' },
-    hospitality: { en: 'Hotel policies, room configs, guest rules — ask and get.', ar: 'سياسات الفندق وتجهيزات الغرف وقواعد النزلاء.' },
-    homeservices: { en: 'Safety manuals and pricing guides on every phone.', ar: 'أدلة السلامة وأدلة الأسعار على كل هاتف.' },
-    realestate: { en: 'Building handbooks and lease templates, always searchable.', ar: 'كتيبات المباني ونماذج الإيجار، قابلة للبحث دائماً.' },
-    automotive: { en: 'Diagnostic standards and shop policies, instantly.', ar: 'معايير التشخيص وسياسات الورشة، فوراً.' },
-    food: { en: 'Kitchen guidelines and allergy policies, always current.', ar: 'إرشادات المطبخ وسياسات الحساسية، محدثة دائماً.' }
-  };
-
-  const chatbotIndustryCopies: Record<string, { en: string; ar: string }> = {
-    default: { en: 'A private RAG assistant trained on your HR, SOPs, and policies. Employees get fast, verified answers without generic AI drift.', ar: 'مساعد RAG خاص مدرب على الموارد البشرية وإجراءات التشغيل والسياسات.' },
-    healthcare: { en: 'Upload clinical SOPs, treatment protocols, and clinic guidelines. Nurses and staff get verified, non-generic answers instantly.', ar: 'قم بتحميل إجراءات التشغيل السريرية وبروتوكولات العلاج.' },
-    hospitality: { en: 'Train your private assistant on check-in policies, room configurations, and guest handle rules to onboard front desk staff faster.', ar: 'درب مساعدك الخاص على سياسات الدخول وتجهيز الغرف.' },
-    homeservices: { en: 'Make safety protocols, appliance manuals, and pricing calculators available to field technicians instantly on their phones.', ar: 'اجعل بروتوكولات السلامة وأدلة الأجهزة متاحة للفنيين.' },
-    realestate: { en: 'Index building handbooks, vendor directories, and lease templates for on-site property managers and leasing coordinators.', ar: 'فهرس كتيبات المباني ودليل الموردين ونماذج الإيجار.' },
-    automotive: { en: 'Give mechanics instant access to manufacturer schematics, diagnostic procedures, and shop safety policies.', ar: 'امنح الفنيين وصولاً فوريًا إلى مخططات المصنّع وإجراءات التشخيص.' },
-    food: { en: 'Train floor staff on kitchen guidelines, food allergies policy, and dining room standards to ensure top hospitality.', ar: 'درب موظفي الخدمة على إرشادات المطبخ وسياسة الحساسية الغذائية.' }
-  };
-
-  const chatbotHeadline = chatbotIndustryHeadlines[activeIndustry] || chatbotIndustryHeadlines.default;
-  const chatbotCopy = chatbotIndustryCopies[activeIndustry] || chatbotIndustryCopies.default;
 
   return (
     <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -126,419 +56,341 @@ export default function MarketingPage() {
       <Header />
 
       {/* ── Hero Section ─────────────────────────────────── */}
-      <section className="bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)] pt-20 md:pt-24">
+      <section className="bg-[#F8F9FB] pt-20 md:pt-28 pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col items-center text-center gap-16">
           
-          {/* Left Column */}
+          {/* Hero Content Stack */}
           <div className="flex flex-col items-center text-center gap-8 max-w-3xl relative">
             {/* Spotlight Background Glow */}
             <div className="absolute inset-0 w-full h-full pointer-events-none -z-10" style={{ background: "radial-gradient(circle at 50% 50%, rgba(42, 92, 255, 0.08) 0%, transparent 70%)" }} />
-            {/* Floating Cards */}
+            
+            {/* Floating Rotated Cards */}
             <div className="absolute -top-12 -left-16 w-24 h-24 bg-white border border-[#141F33]/5 rounded-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform rotate-[15deg] hidden lg:block pointer-events-none" />
             <div className="absolute -top-12 -right-16 w-24 h-24 bg-white border border-[#141F33]/5 rounded-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform -rotate-[15deg] hidden lg:block pointer-events-none" />
             
-            {/* Two-Product Toggle */}
-            <div className="inline-flex rounded-full bg-[#F8F9FB] p-1 border border-[#141F33]/10 shadow-sm animate-fadeIn">
-<button
-  type="button"
-  onClick={() => setActiveProduct('automation')}
-  className={`rounded-[40px] px-6 py-3 text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
-activeProduct === 'automation'
-? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
-: 'bg-transparent text-[#141F33] hover:text-[#141F33]'
+            {/* H1 Headline */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] text-[#141F33] tracking-tight">
+              Total Business Automation. Human-like Voice & Internal AI.
+            </h1>
+
+            {/* Dynamic Product Toggle */}
+            <div className="inline-flex rounded-full bg-[#141F33]/5 p-1 border border-[#141F33]/10 shadow-sm">
+              <button
+                type="button"
+                onClick={() => setActiveProduct('voice')}
+                className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[38px] ${
+                  activeProduct === 'voice'
+                    ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
+                    : 'bg-transparent text-[#141F33]'
                 }`}
               >
-                <Zap className="w-5 h-5 text-[#2A5CFF] inline mr-1" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
+                AI Voice Agent
               </button>
-<button
-  type="button"
-  onClick={() => setActiveProduct('chatbot')}
-  className={`rounded-[40px] px-6 py-3 text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
-activeProduct === 'chatbot'
-? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
-: 'bg-transparent text-[#141F33] hover:text-[#141F33]'
+              <button
+                type="button"
+                onClick={() => setActiveProduct('chatbot')}
+                className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[38px] ${
+                  activeProduct === 'chatbot'
+                    ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
+                    : 'bg-transparent text-[#141F33]'
                 }`}
               >
-                <MessageSquare className="w-5 h-5 text-[#2A5CFF] inline mr-1" aria-hidden="true" /> {t({ en: 'Chatbot', ar: 'المساعد الذكي' })}
+                Internal RAG Chatbot
               </button>
             </div>
 
-            {/* Dynamic H1 */}
-            <h1 className="text-5xl lg:text-6xl font-extrabold leading-[1.1] text-[#141F33] tracking-tight transition-all duration-500 animate-slideUp" style={{ animationDelay: '0.1s' }}>
-              {activeProduct === 'automation' ? currentIndustry.headline : t(chatbotHeadline)}
-            </h1>
-
-            {/* Subtext */}
-            <p className="text-lg lg:text-xl text-[#141F33] max-w-xl font-medium leading-relaxed transition-all duration-500 animate-slideUp" style={{ animationDelay: '0.2s' }}>
-              {activeProduct === 'automation' ? currentIndustry.copy : t(chatbotCopy)}
+            {/* Dynamic Subtext */}
+            <p className="text-base md:text-lg text-[#141F33]/70 max-w-2xl font-medium leading-relaxed min-h-[56px]">
+              {activeProduct === 'voice' ? (
+                t({
+                  en: "Connect your phone lines and your databases to our voice-first AI. Answer inbound calls, schedule appointments, and capture operations 24/7.",
+                  ar: "قم بتوصيل خطوط الهاتف وقواعد البيانات الخاصة بك بالذكاء الاصطناعي الصوتي. الرد على المكالمات وجدولة المواعيد 24/7."
+                })
+              ) : (
+                t({
+                  en: "Connect your ERP/SAP databases to our secure internal assistant. Empower your team to query HR policies, vacation status, and SOP guides instantly.",
+                  ar: "قم بتوصيل قواعد بيانات ERP/SAP بالمساعد الداخلي الآمن. تمكين فريقك من الاستعلام عن سياسات الموارد البشرية وإجراءات التشغيل."
+                })
+              )}
             </p>
 
-            {/* CTA Row */}
-            <div className="relative w-full flex justify-center mt-2">
+            {/* Dynamic CTA Row */}
+            <div className="relative w-full flex justify-center">
               <svg className="absolute -top-8 left-[65%] w-16 h-8 text-[#2A5CFF] opacity-75 hidden lg:block" viewBox="0 0 100 50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M10,10 Q50,40 90,20" />
                 <path d="M80,15 L90,20 L85,30" />
               </svg>
-              <div className="flex flex-wrap gap-8 justify-center animate-slideUp" style={{ animationDelay: '0.3s' }}>
-              <Link
-                href={activeProduct === 'automation' ? '/automation' : '/chatbot'}
-                className="btn-primary py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]"
-              >
-                {t({ en: 'Explore Product', ar: 'استكشف المنتج' })}
-              </Link>
-              <button
-                type="button"
-                onClick={openCustomModal}
-                className="btn-secondary"
-              >
-                {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
-              </button>
+              
+              <div className="flex flex-wrap gap-4 justify-center">
+                <Link
+                  href={activeProduct === 'voice' ? '/voice-agent' : '/ai-chatbot'}
+                  className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold px-6 py-3 rounded-full transition-all duration-200 min-h-[44px] flex items-center shadow-sm"
+                >
+                  {activeProduct === 'voice' ? t({ en: 'Explore Voice AI', ar: 'استكشف الذكاء الصوتي' }) : t({ en: 'Explore Chatbot AI', ar: 'استكشف المساعد الذكي' })}
+                </Link>
+                <button
+                  type="button"
+                  onClick={openCustomModal}
+                  className="bg-transparent border border-[#141F33]/15 text-[#141F33] hover:bg-[#141F33]/5 text-xs font-bold px-6 py-3 rounded-full transition-all duration-200 min-h-[44px]"
+                >
+                  {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
+                </button>
               </div>
             </div>
+
           </div>
 
-          {/* Right Column — Dashboard Preview */}
-          <div className="w-full max-w-2xl animate-slideUp" style={{ animationDelay: '0.3s' }}>
-            <div className="relative">
-              <div className="absolute -inset-4 r   rounded-[40px] blur-2xl opacity-70" />
-              <div className="relative bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 shadow-xl p-8 overflow-hidden">
-                <div className="flex items-center justify-between pb-3 border-b border-[#141F33]/10">
-                  <div className="flex items-center gap-3">
-                    <div className="w-3 h-3 rounded-full bg-[#141F33]" />
-                    <div className="w-3 h-3 rounded-full bg-[#141F33]" />
-                    <div className="w-3 h-3 rounded-full bg-[#141F33]" />
-                  </div>
-                  <span className="text-[10px] font-bold text-[#141F33] uppercase tracking-wider">
-                    {activeProduct === 'automation' ? t({ en: 'Live Queue', ar: 'قائمة مباشرة' }) : t({ en: 'Company Assistant', ar: 'مساعد الشركة' })}
-                  </span>
-                  <span className="text-[10px] bg-[#2A5CFF]/10 text-[#2A5CFF] font-bold px-2 py-0.5 rounded-full border border-[#2A5CFF]/20">
-                    ● {t({ en: 'Live', ar: 'مباشر' })}
-                  </span>
+          {/* Dynamic Preview Container (Navy/Canvas Monochromatic SVG elements) */}
+          <div className="w-full max-w-2xl">
+            <div className="relative bg-white rounded-[40px] border border-[#141F33]/10 shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 overflow-hidden min-h-[300px] flex flex-col justify-between">
+              
+              {/* Header bar of preview */}
+              <div className="flex items-center justify-between pb-4 border-b border-[#141F33]/10">
+                <div className="flex items-center gap-2">
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#141F33]/20" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#141F33]/20" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-[#141F33]/20" />
                 </div>
+                <span className="text-[10px] font-bold text-[#141F33]/50 uppercase tracking-widest">
+                  {activeProduct === 'voice' ? 'Voice Agent Workflow' : 'Internal RAG Portal'}
+                </span>
+                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#141F33]/5 text-[#141F33] text-[9px] font-bold border border-[#141F33]/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#141F33] animate-pulse" />
+                  ACTIVE MOCKUP
+                </div>
+              </div>
 
-                {activeProduct === 'automation' ? (
-                  <div className="space-y-2 mt-3">
-                    {[
-{ label: 'Incoming Call — Room 204', dept: 'Housekeeping', status: 'Routed', color: 'text-[#2A5CFF]' },
-{ label: 'WhatsApp — Late checkout', dept: 'Front Desk', status: 'Approved', color: 'text-[#2A5CFF]' },
-                      { label: 'SMS — Airport transfer', dept: 'Concierge', status: 'Captured', color: 'text-[#141F33]' },
-                    ].map((item, i) => (
-                      <div key={i} className="flex items-center justify-between py-2 px-3 bg-[#F8F9FB] rounded-[40px]">
-                        <div className="flex items-center gap-3 min-w-0">
-                          <div className="w-7 h-7 rounded-full bg-[#141F33] flex items-center justify-center text-[10px] font-bold text-[#141F33] shrink-0">
-                            {i === 0 ? <Zap className="w-4 h-4 text-[#2A5CFF]" aria-hidden="true" /> : i === 1 ? <MessageSquare className="w-4 h-4 text-[#2A5CFF]" aria-hidden="true" /> : <Mail className="w-4 h-4 text-[#141F33]" aria-hidden="true" />}
-                          </div>
-                          <p className="text-xs font-semibold text-[#141F33] truncate">{item.label}</p>
-                        </div>
-                        <span className={`text-[10px] font-bold shrink-0 ml-2 ${item.color}`}>{item.status}</span>
+              {/* Dynamic Preview Screen */}
+              <div className="flex-1 py-6 flex items-center justify-center">
+                {activeProduct === 'voice' ? (
+                  /* Phone call workflow dashboard mockup (Navy and Canvas only) */
+                  <div className="w-full max-w-md flex flex-col gap-4">
+                    <div className="grid grid-cols-3 gap-4 items-center">
+                      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[20px] p-3 text-center">
+                        <p className="text-[9px] font-bold text-[#141F33]/40 uppercase tracking-wider">Inbound Call</p>
+                        <p className="text-xs font-bold text-[#141F33] mt-1">User Dialed</p>
                       </div>
-                    ))}
-                    <div className="pt-2 text-center">
-                      <span className="text-[10px] text-[#141F33] font-medium">
-                        {t({ en: '3 active requests', ar: '3 طلبات نشطة' })}
-                      </span>
+                      
+                      <div className="flex justify-center">
+                        <svg width="40" height="20" viewBox="0 0 40 20" fill="none" className="stroke-[#141F33]">
+                          <path d="M0,10 L32,10 M26,4 L32,10 L26,16" strokeWidth="2" strokeDasharray="3,3" />
+                        </svg>
+                      </div>
+
+                      <div className="bg-[#141F33] border border-[#141F33] rounded-[20px] p-3 text-center">
+                        <p className="text-[9px] font-bold text-[#F8F9FB]/40 uppercase tracking-wider">Voice AI Node</p>
+                        <p className="text-xs font-bold text-[#F8F9FB] mt-1">SOP Answer</p>
+                      </div>
+                    </div>
+
+                    <div className="flex justify-center">
+                      <svg width="20" height="40" viewBox="0 0 20 40" fill="none" className="stroke-[#141F33]">
+                        <path d="M10,0 L10,32 M4,26 L10,32 L16,26" strokeWidth="2" strokeDasharray="3,3" />
+                      </svg>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
+                      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[20px] p-3 text-left">
+                        <p className="text-[9px] font-bold text-[#141F33]/40 uppercase tracking-wider">Route Trigger</p>
+                        <p className="text-xs font-bold text-[#141F33] mt-0.5">Booking Database Sync</p>
+                      </div>
+                      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[20px] p-3 text-left">
+                        <p className="text-[9px] font-bold text-[#141F33]/40 uppercase tracking-wider">Escalate Trigger</p>
+                        <p className="text-xs font-bold text-[#141F33] mt-0.5">Agent Ring Group</p>
+                      </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col gap-3 mt-3">
-                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs px-3 py-2 rounded-[40px] rounded-br-sm max-w-[85%]">
-                      How many vacation days do I have left?
+                  /* Chat window with HR question (Navy and Canvas only) */
+                  <div className="w-full max-w-md flex flex-col gap-4">
+                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs font-semibold px-4 py-2.5 rounded-[20px] max-w-[85%]">
+                      How do I submit my Q3 expense report in Oracle ERP?
                     </div>
-                    <div className="self-start bg-[#F8F9FB] text-[#141F33] text-xs px-3 py-2 rounded-[40px] rounded-bl-sm max-w-[90%]">
-                      You have <strong>14 days</strong> remaining this cycle.
-                    </div>
-                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs px-3 py-2 rounded-[40px] rounded-br-sm max-w-[85%]">
-                      What&apos;s the SOP for maintenance?
-                    </div>
-                    <div className="pt-1 text-center">
-                      <span className="text-[10px] text-[#141F33] font-medium">
-                        {t({ en: 'Sourced from your documents', ar: 'مأخوذ من مستنداتك' })}
-                      </span>
+                    
+                    <div className="self-start bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] text-xs font-semibold px-4 py-2.5 rounded-[20px] max-w-[90%] flex gap-3">
+                      <span className="text-xs shrink-0 select-none">AI:</span>
+                      <div>
+                        To submit your Q3 expenses, navigate to <strong>Oracle Expense module</strong>, create a new Expense Claim, select code <strong>Q3-OPS</strong>, and attach invoices.
+                        <div className="mt-2 text-[9px] font-bold text-[#141F33]/40 uppercase tracking-wider border-t border-[#141F33]/15 pt-2">
+                          Source: ERP-Oracle-Guide.pdf
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
               </div>
+
+              {/* Bottom tag of mockup */}
+              <div className="border-t border-[#141F33]/10 pt-3 text-center">
+                <span className="text-[10px] text-[#141F33]/40 font-bold uppercase tracking-wider">
+                  Interactive Live Dashboard Simulator
+                </span>
+              </div>
+
             </div>
           </div>
 
-        </div>
-      </section>
-
-      {/* ── Industry Switcher & Social Proof ──────────────── */}
-      <section ref={industryRef} id="industries" className={` py-16 lg:py-24 animate-reveal ${industryVisible ? 'revealed' : ''}`}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col items-center">
-          
-          <p className="text-xs font-extrabold tracking-widest text-[#141F33] uppercase mb-8 text-center animate-fadeIn">
-            {t({ en: 'Engineered for Global Operations — Select Your Industry', ar: 'مصمم خصيصًا للعمليات العالمية - اختر قطاعك' })}
-          </p>
-
-          {/* 6 Top Industry Pills */}
-          <div className="w-full flex flex-wrap justify-center gap-8 py-2 animate-slideUp" style={{ animationDelay: '0.1s' }}>
-            {GOLDMINE_INDUSTRIES.map((ind) => (
-              <button
-                key={ind.id}
-                onClick={() => setActiveIndustry(ind.id)}
-                className={`min-h-[44px] px-6 py-3 rounded-[40px] border text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 cursor-pointer ${
-                  activeIndustry === ind.id
-                    ? 'bg-[#141F33] text-[#F8F9FB] border-[#141F33] shadow-md'
-                    : 'bg-[#F8F9FB] text-[#141F33] border-[#141F33] shadow-sm hover:shadow-md'
-                }`}
-              >
-                {ind.label}
-              </button>
-            ))}
-          </div>
-
-          {/* Other Industries Dropdown */}
-          <div className="mt-6 w-full max-w-xs mx-auto animate-fadeIn" style={{ animationDelay: '0.15s' }}>
-            <select
-              id="other-industries"
-              value={OTHER_INDUSTRIES.some(i => i.id === activeIndustry) ? activeIndustry : ''}
-              onChange={handleSelectChange}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-[#141F33] focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal transition-all appearance-none cursor-pointer text-center text-xs shadow-sm font-semibold"
-              style={{
-                backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%234B5563' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
-                backgroundPosition: locale === 'ar' ? 'left 1rem center' : 'right 1rem center',
-                backgroundSize: '1.25rem',
-                backgroundRepeat: 'no-repeat',
-              }}
-            >
-              <option value="">{t({ en: 'Other Industries…', ar: 'صناعات أخرى…' })}</option>
-              {OTHER_INDUSTRIES.map((ind) => (
-                <option key={ind.id} value={ind.id}>{ind.label}</option>
+          {/* ── Trust Integration Logos Row ─────────────────── */}
+          <div className="w-full max-w-3xl flex flex-col items-center gap-4">
+            <p className="text-[10px] font-extrabold tracking-widest text-[#141F33]/40 uppercase text-center">
+              Direct Secure ERP & Communication Integrations
+            </p>
+            <div className="bg-white rounded-full px-6 py-3 border border-[#141F33]/10 shadow-sm flex flex-wrap justify-center items-center gap-6 md:gap-8">
+              {['SAP', 'Oracle', 'Salesforce', 'Slack', 'Jira', 'HubSpot'].map((logo, i) => (
+                <div key={i} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F8F9FB] border border-[#141F33]/5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#141F33]/20" />
+                  <span className="text-[10px] font-bold text-[#141F33]/60 uppercase tracking-wider">{logo}</span>
+                </div>
               ))}
-            </select>
-          </div>
-
-          {/* Dynamic Headline Panel */}
-          <div className="mt-12 text-center bg-[#F8F9FB] p-8 rounded-[40px] border border-[#141F33]/10 max-w-3xl w-full animate-slideUp" style={{ animationDelay: '0.2s' }}>
-            <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{currentIndustry.label}</span>
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#141F33] leading-tight mt-3">
-              {currentIndustry.headline}
-            </h2>
-            <p className="text-[#141F33] mt-4 text-sm leading-relaxed max-w-xl mx-auto font-medium">
-              {currentIndustry.copy}
-            </p>
-          </div>
-
-          {/* Social Proof */}
-          <div className="mt-16 pt-12 border-t border-[#141F33]/10 w-full flex flex-col items-center gap-8 animate-fadeIn">
-            <p className="text-xs font-extrabold tracking-widest text-[#141F33] uppercase text-center">
-              {t({ en: 'Trusted by front desks and teams worldwide', ar: 'موثوق به من قبل مكاتب الاستقبال والفرق في جميع أنحاء العالم' })}
-            </p>
-            <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16">
-              <div className="flex items-center gap-3 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Hospitality Sector">
-                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M3 21h18M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16M9 9h6M9 13h6M9 17h6" />
-                </svg>
-                <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Hotels</span>
-              </div>
-              <div className="flex items-center gap-3 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Healthcare Sector">
-                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <rect x="3" y="3" width="18" height="18" rx="2" />
-                  <path d="M12 8v8M8 12h8" />
-                </svg>
-                <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Clinics</span>
-              </div>
-              <div className="flex items-center gap-3 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Industrial Operations">
-                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M3 21h18M3 7l5 4V7l5 4V7l6 5v9H3V7z" />
-                </svg>
-                <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Operations</span>
-              </div>
-              <div className="flex items-center gap-3 opacity-40 grayscale hover:opacity-75 transition-opacity" title="Retail Outlets">
-                <svg className="h-8 w-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                  <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" />
-                  <path d="M9 22V12h6v10" />
-                </svg>
-                <span className="text-xs font-bold text-[#141F33] tracking-wider uppercase">Retail</span>
-              </div>
             </div>
           </div>
 
         </div>
       </section>
 
-      {/* ── Testimonials Section ─────────────────────────── */}
-      <section ref={testimonialRef} className={`bg-[#F8F9FB] py-20 lg:py-28 animate-reveal ${testimonialVisible ? 'revealed' : ''}`}>
+      {/* ── Suite Exploration cards ──────────────────────── */}
+      <section ref={suiteRef} className={`py-20 bg-[#F8F9FB] border-t border-[#141F33]/10 animate-reveal ${suiteVisible ? 'revealed' : ''}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-14">
+          
+          <div className="text-center mb-16">
             <p className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase mb-3">
-              {t({ en: 'Testimonials', ar: 'شهادات العملاء' })}
+              Solution Overview
             </p>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33]">
-              {t({ en: 'Trusted by Operations Teams Worldwide', ar: 'موثوق به من قبل فرق العمليات حول العالم' })}
+              Enterprise Intelligent System Architecture
             </h2>
           </div>
-          <div className={`flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-none animate-stagger ${testimonialVisible ? 'revealed' : ''}`}>
-            {testimonials.map((item, i) => (
-              <div
-                key={i}
-                className="min-w-[300px] md:min-w-[380px] snap-start bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm card-hover shadow-[0_10px_40px_rgba(0,0,0,0.05)]"
-                style={{ animationDelay: `${i * 0.1}s` }}
-              >
-                <div className="flex gap-1 mb-5">
-                  {[...Array(5)].map((_, s) => (
-                    <svg key={s} className="w-4 h-4 text-[#2A5CFF]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
-                  ))}
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Card 1 */}
+            <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-full bg-[#2A5CFF]/15 flex items-center justify-center text-[#2A5CFF] mb-6">
+                  <Zap className="w-5 h-5" />
                 </div>
-                <p className="text-sm text-[#141F33] leading-relaxed mb-6">&ldquo;{t(item.quote)}&rdquo;</p>
+                <h3 className="text-lg font-bold text-[#141F33] mb-3">Voice Automation</h3>
+                <p className="text-xs text-[#141F33]/60 font-semibold leading-relaxed mb-6">
+                  Autonomously pick up every phone call, run scheduling tasks, identify custom caller context, and route emergencies.
+                </p>
+              </div>
+              <Link href="/voice-agent" className="text-xs font-bold text-[#2A5CFF] hover:underline flex items-center gap-1">
+                Explore Voice Agent Deep Dive &rarr;
+              </Link>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between">
+              <div>
+                <div className="w-10 h-10 rounded-full bg-[#1A3BCC]/15 flex items-center justify-center text-[#1A3BCC] mb-6">
+                  <MessageSquare className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold text-[#141F33] mb-3">Internal Knowledge</h3>
+                <p className="text-xs text-[#141F33]/60 font-semibold leading-relaxed mb-6">
+                  Index internal HR files, SOP binders, and contract databases. Provide employees with immediate, context-verified solutions.
+                </p>
+              </div>
+              <Link href="/ai-chatbot" className="text-xs font-bold text-[#1A3BCC] hover:underline flex items-center gap-1">
+                Explore RAG Chatbot Deep Dive &rarr;
+              </Link>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between md:col-span-2 lg:col-span-1">
+              <div>
+                <div className="w-10 h-10 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[#141F33] mb-6 font-bold text-sm">
+                  $
+                </div>
+                <h3 className="text-lg font-bold text-[#141F33] mb-3">Transparent Plans</h3>
+                <p className="text-xs text-[#141F33]/60 font-semibold leading-relaxed mb-6">
+                  Simple pricing based on usage limits. No setups or locking commitments. Choose what works best for your workflow scale.
+                </p>
+              </div>
+              <Link href="/pricing" className="text-xs font-bold text-[#141F33] hover:underline flex items-center gap-1">
+                View Pricing Grid &rarr;
+              </Link>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      {/* ── Testimonials ─────────────────────────────────── */}
+      <section ref={testimonialsRef} className={`py-20 bg-[#F8F9FB] border-t border-[#141F33]/10 animate-reveal ${testimonialsVisible ? 'revealed' : ''}`}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-extrabold text-[#141F33]">
+              What Operations Leaders Say
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {testimonials.map((tItem, i) => (
+              <div key={i} className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+                <p className="text-xs text-[#141F33] font-medium italic leading-relaxed mb-6">
+                  &ldquo;{t(tItem.quote)}&rdquo;
+                </p>
                 <div className="border-t border-[#141F33]/10 pt-4">
-                  <p className="text-sm font-extrabold text-[#141F33]">{t(item.name)}</p>
-                  <p className="text-xs font-medium text-[#141F33]">{t(item.org)}</p>
+                  <p className="text-xs font-bold text-[#141F33]">{t(tItem.name)}</p>
+                  <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-0.5">{t(tItem.org)}</p>
                 </div>
               </div>
             ))}
           </div>
+
         </div>
       </section>
 
-      {/* ── Product Deep-Dive CTA ─────────────────────────── */}
-      <section ref={pricingRef} className={`py-24 lg:py-32 bg-[#F8F9FB] animate-reveal ${pricingVisible ? 'revealed' : ''}`}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-16 animate-fadeIn">
-            <h2 className="text-4xl lg:text-5xl font-extrabold text-[#141F33] mb-4">
-              {t({ en: 'Explore our full product suite.', ar: 'استكشف مجموعة منتجاتنا الكاملة.' })}
-            </h2>
-            <p className="text-base lg:text-lg text-[#141F33] font-medium max-w-2xl mx-auto">
-              {t({ en: 'Two powerful AI solutions designed for your business operations.', ar: 'حلّان ذكيان قويان مصممان لعمليات عملك.' })}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
-{/* Automation Card */}
-<div className="relative p-8 card-premium group bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
-              <div className="relative">
-                <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-[40px] flex items-center justify-center mb-5">
-                  <Zap className="w-6 h-6 text-[#2A5CFF]" aria-hidden="true" />
-                </div>
-                <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
-                  {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
-                </h3>
-                <p className="text-sm text-[#141F33] font-medium leading-relaxed mb-6">
-                  {t({ en: 'Your 24/7 AI front-desk that handles incoming calls, WhatsApp messages, SMS, and web chat — routes every request to the right department automatically.', ar: 'مكتب استقبال ذكاء اصطناعي 24/7 يتعامل مع المكالمات الواردة وواتساب والرسائل النصية والدردشة الإلكترونية — يوجه كل طلب إلى القسم المناسب تلقائياً.' })}
-                </p>
-                <ul className="space-y-2 mb-8">
-                  {[
-                    { en: 'Call answering & routing 24/7', ar: 'الرد على المكالمات والتوجيه 24/7' },
-                    { en: 'WhatsApp, SMS & web chat parsing', ar: 'تحليل واتساب والرسائل النصية والدردشة' },
-                    { en: 'Booking & complaint management', ar: 'إدارة الحجوزات والشكاوى' },
-                    { en: 'Multi-language (Arabic & English)', ar: 'متعدد اللغات (العربية والإنجليزية)' },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4 text-sm font-semibold text-[#141F33]">
-                      <Check className="w-5 h-5 text-[#2A5CFF] shrink-0" aria-hidden="true" />
-                      {t(item)}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/automation"
-                  className="btn-primary w-full py-4"
-                >
-                  {t({ en: 'Explore Automation →', ar: 'استكشف الأتمتة ←' })}
-                </Link>
-              </div>
-            </div>
-
-{/* Chatbot Card */}
-<div className="relative p-8 card-premium group bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
-              <div className="relative">
-                <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-[40px] flex items-center justify-center mb-5">
-                  <MessageSquare className="w-6 h-6 text-[#2A5CFF]" aria-hidden="true" />
-                </div>
-                <h3 className="text-2xl font-extrabold text-[#141F33] mb-2">
-                  {t({ en: 'Internal Chatbot', ar: 'المساعد الذكي الداخلي' })}
-                </h3>
-                <p className="text-sm text-[#141F33] font-medium leading-relaxed mb-6">
-                  {t({ en: 'A private RAG-powered AI trained on your HR policies, SOPs, and onboarding documents. Your team gets instant, verified answers.', ar: 'ذكاء اصطناعي خاص بتقنية RAG مدرب على سياسات الموارد البشرية وإجراءات التشغيل ومستندات التوظيف. فريقك يحصل على إجابات فورية وموثوقة.' })}
-                </p>
-                <ul className="space-y-2 mb-8">
-                  {[
-                    { en: 'Private RAG on your documents', ar: 'RAG خاص على مستنداتك' },
-                    { en: 'HR, SOP & policy Q&A', ar: 'أسئلة وأجوبة الموارد البشرية والسياسات' },
-                    { en: 'Employee role-based access', ar: 'وصول قائم على أدوار الموظفين' },
-                    { en: 'Knowledge gap tracking', ar: 'تتبع الفجوات المعرفية' },
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4 text-sm font-semibold text-[#141F33]">
-                      <Check className="w-5 h-5 text-[#2A5CFF] shrink-0" aria-hidden="true" />
-                      {t(item)}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  href="/chatbot"
-                  className="btn-primary w-full py-4"
-                >
-                  {t({ en: 'Explore Chatbot →', ar: 'استكشف المساعد الذكي ←' })}
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Custom Solution CTA Banner ────────────────────── */}
-      <section ref={ctaRef} className={`   py-20 px-6 text-[#F8F9FB] border-t border-[#141F33]/20 animate-reveal ${ctaVisible ? 'revealed' : ''}`}>
-        <div className="max-w-4xl mx-auto text-center flex flex-col items-center gap-8">
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-            {t({ en: 'Need something more tailored?', ar: 'هل تحتاج إلى شيء أكثر تخصيصاً؟' })}
+      {/* ── Custom banner CTA ────────────────────────────── */}
+      <section className="py-16 bg-[#141F33] text-[#F8F9FB] text-center">
+        <div className="max-w-3xl mx-auto px-6 flex flex-col items-center gap-6">
+          <h2 className="text-2xl md:text-3xl font-bold">
+            Need Custom Integrations?
           </h2>
-          <p className="text-[#F8F9FB] max-w-xl text-base font-medium leading-relaxed">
-            {t({
-              en: 'We build custom AI workflows for multi-location teams with unique security or integration needs. Tell us what you need.',
-              ar: 'نبني مسارات ذكاء اصطناعي مخصصة للفرق متعددة الفروع ذات احتياجات الأمان أو التكامل الفريدة. أخبرنا بما تحتاجه.'
-            })}
+          <p className="text-xs text-[#F8F9FB]/70 font-semibold leading-relaxed max-w-xl">
+            We provide specialized integrations with bespoke ERP schemas, custom SSO, and dedicated phone trunks for large organizations. Let's speak.
           </p>
           <button
             type="button"
             onClick={openCustomModal}
-            className="btn-primary"
+            className="bg-[#F8F9FB] hover:bg-[#F8F9FB]/90 text-[#141F33] text-xs font-bold px-6 py-3 rounded-full transition-all duration-200 min-h-[44px]"
           >
-            {t({ en: 'Request a Custom Solution', ar: 'طلب حل مخصص' })}
+            Request Custom Consultation
           </button>
         </div>
       </section>
 
       <Footer />
 
-      {/* ── Modal ─────────────────────────────────────────── */}
+      {/* ── Request consultation modal ─────────────────────── */}
       {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33] backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] max-w-md w-full p-8 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-            
-            <h3 className="text-xl font-extrabold text-[#141F33] mb-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33]/40 backdrop-blur-sm">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] max-w-md w-full p-8 shadow-2xl relative" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+            <h3 className="text-lg font-bold text-[#141F33] mb-2">
               {t({ en: 'Request a consultation', ar: 'طلب استشارة' })}
             </h3>
-            
-            <p className="text-sm font-semibold text-[#141F33] mb-8 leading-relaxed">
+            <p className="text-xs text-[#141F33]/70 font-semibold mb-6 leading-relaxed">
               {t({
-                en: 'Tell us about your business operations. A 15-minute consultation is all we need to draw up a customized integration plan.',
-                ar: 'أخبرنا عن عمليات عملك. كل ما نحتاجه هو استشارة مدتها 15 دقيقة.'
+                en: 'Tell us about your operations. A 15-minute call is all we need to draw up a customized setup plan.',
+                ar: 'أخبرنا عن عملياتك. مكالمة مدتها 15 دقيقة هي كل ما نحتاجه لوضع خطة إعداد مخصصة.'
               })}
             </p>
-
-            <div className="flex flex-col gap-4">
+            <div className="flex flex-col gap-3">
               <a
                 href={calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary text-sm"
+                className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold py-3 text-center rounded-full transition-all duration-200 min-h-[44px] flex items-center justify-center"
               >
-                {t({ en: 'Pick a time', ar: 'اختر وقتاً' })}
+                {t({ en: 'Book Consultation Call', ar: 'حجز مكالمة استشارية' })}
               </a>
               <button
                 type="button"
                 onClick={() => setIsModalOpen(false)}
-                className="btn-ghost text-sm"
+                className="bg-transparent border border-[#141F33]/15 text-[#141F33] hover:bg-[#141F33]/5 text-xs font-bold py-3 rounded-full transition-all duration-200 min-h-[44px]"
               >
-                {t({ en: 'Close', ar: 'إغلاق' })}
+                {t({ en: 'Cancel', ar: 'إلغاء' })}
               </button>
             </div>
-
           </div>
         </div>
       )}

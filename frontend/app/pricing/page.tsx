@@ -1,126 +1,177 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import * as React from 'react';
 import Link from 'next/link';
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { PricingCards } from '../../components/PricingCards';
-import { Check, Zap, MessageSquare } from 'lucide-react';
-import { AUTOMATION_TIERS, CHATBOT_TIERS } from '../../lib/pricing-config';
-
-type Currency = 'USD' | 'QAR';
-type ProductTab = 'automation' | 'chatbot';
-
-const GULF_TZ_KEYWORDS = ['Doha', 'Riyadh', 'Kuwait', 'Dubai', 'Cairo', 'Bahrain', 'Muscat', 'Baghdad', 'Damascus'];
+import { Check } from 'lucide-react';
 
 export default function PricingPage() {
-const { locale } = useLocale();
-const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
-const [currency, setCurrency] = useState<Currency>('USD');
-const [productTab, setProductTab] = useState<ProductTab>('automation');
+  return (
+    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <Header />
 
-useEffect(() => {
-try {
-const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-if (GULF_TZ_KEYWORDS.some((k) => tz.includes(k))) {
-setCurrency('QAR');
-}
-} catch {}
-}, []);
+      <main className="flex-1 max-w-6xl mx-auto w-full px-6 py-24 text-center">
+        
+        {/* Pricing Header */}
+        <div className="mb-16">
+          <span className="inline-block bg-[#141F33]/5 border border-[#141F33]/15 text-[#141F33] text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+            {t({ en: 'SAQYN RABT PLANS', ar: 'خطط أسعارنا' })}
+          </span>
+          <h1 className="text-4xl md:text-5xl font-extrabold text-[#141F33] tracking-tight leading-tight max-w-2xl mx-auto">
+            {t({ en: 'Pick the product and plan that fits your business scale', ar: 'اختر المنتج والخطة التي تناسب حجم أعمالك' })}
+          </h1>
+          <p className="mt-4 text-xs md:text-sm text-[#141F33]/60 font-semibold max-w-xl mx-auto">
+            {t({ en: 'Simple, monthly flat rates. No setup fees, no lock-in contracts, cancel anytime.', ar: 'أسعار شهرية ثابتة وبسيطة. لا توجد رسوم إعداد، ولا عقود إلزامية.' })}
+          </p>
+        </div>
 
-const activeTiers = productTab === 'automation' ? AUTOMATION_TIERS : CHATBOT_TIERS;
+        {/* Pricing Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left items-stretch">
+          
+          {/* Card 1: Voice Core */}
+          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between">
+            <div>
+              <div className="pb-6 border-b border-[#141F33]/10">
+                <h3 className="text-lg font-bold text-[#141F33]">Voice Core</h3>
+                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">AI Voice Agent Deep Dive</p>
+                <div className="mt-4 flex items-baseline gap-1">
+                  <span className="text-3xl font-extrabold">$199</span>
+                  <span className="text-xs text-[#141F33]/60 font-bold">/mo</span>
+                </div>
+              </div>
 
-return (
-<div className="bg-[#F8F9FB] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<Header />
+              <ul className="space-y-4 my-8">
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>Call routing & forwarding 24/7</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>1,000 conversational minutes/mo</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>Transcripts & CRM status logs</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>Arabic & English standard speech</span>
+                </li>
+              </ul>
+            </div>
 
-<section className="bg-[#F8F9FB] py-20 md:py-28">
-<div className="max-w-7xl mx-auto px-6 text-center">
-<span className="inline-block bg-[#141F33] text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-{t({ en: 'Pricing', ar: 'الأسعار' })}
-</span>
-<h1 className="text-4xl md:text-5xl font-bold text-[#141F33] leading-tight max-w-3xl mx-auto">
-{t({ en: 'Pricing that grows with you', ar: 'أسعار تنمو معك' })}
-</h1>
-<p className="mt-4 text-lg text-[#141F33] max-w-2xl mx-auto">
-{t({ en: 'Pick the product and plan that fits. No lock-in contracts.', ar: 'اختر المنتج والخطة المناسبة. بدون عقود إلزامية.' })}
-</p>
-</div>
-</section>
+            <Link
+              href="/contact"
+              className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold py-3.5 text-center rounded-full transition-all duration-200 min-h-[44px] flex items-center justify-center shadow-sm"
+            >
+              Get Started with Voice
+            </Link>
+          </div>
 
-<div className="bg-[#141F33] border-y border-[#141F33]/20 py-4 px-6 text-center">
-<p className="text-[#141F33] font-semibold text-sm">
-<span><Check className="w-4 h-4 text-[#2A5CFF] inline" /> {t({ en: 'No surprise bills. Everything\'s fixed monthly. Overages only if you want them.', ar: 'لا فواتير مفاجئة. سعر شهري ثابت. الاستخدام الزائد فقط إذا فعّلته.' })}</span>
-</p>
-</div>
+          {/* Card 2: Chatbot Core */}
+          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between">
+            <div>
+              <div className="pb-6 border-b border-[#141F33]/10">
+                <h3 className="text-lg font-bold text-[#141F33]">Chatbot Core</h3>
+                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">RAG Knowledge Portal</p>
+                <div className="mt-4 flex items-baseline gap-1">
+                  <span className="text-3xl font-extrabold">$299</span>
+                  <span className="text-xs text-[#141F33]/60 font-bold">/mo</span>
+                </div>
+              </div>
 
-{/* Product Tabs + Currency Toggle */}
-<section className="bg-[#F8F9FB] py-10 border-b border-[#141F33]/10">
-<div className="max-w-5xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-8">
-{/* Product Tabs */}
-<div className="flex bg-[#F8F9FB] rounded-[40px] p-1 gap-1">
-<button
-type="button"
-onClick={() => setProductTab('automation')}
-className={`flex items-center gap-3 px-6 py-3 rounded-[40px] text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${productTab === 'automation' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
->
-<Zap className={`w-4 h-4 ${productTab === 'automation' ? 'text-[#2A5CFF]' : 'text-[#141F33]'}`} />
-{t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
-</button>
-<button
-type="button"
-onClick={() => setProductTab('chatbot')}
-className={`flex items-center gap-3 px-6 py-3 rounded-[40px] text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${productTab === 'chatbot' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
->
-<MessageSquare className={`w-4 h-4 ${productTab === 'chatbot' ? 'text-[#2A5CFF]' : 'text-[#141F33]'}`} />
-{t({ en: 'Internal Chatbot', ar: 'المساعد الداخلي' })}
-</button>
-</div>
+              <ul className="space-y-4 my-8">
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>RAG Vector index on policy files</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>SAP & Oracle secure read-only sync</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>Unlimited internal Q&A requests</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>Role-based file permission routing</span>
+                </li>
+              </ul>
+            </div>
 
-{/* Currency Toggle */}
-<div className="flex items-center gap-8">
-<span className={`text-xs font-bold select-none ${currency === 'USD' ? 'text-[#141F33]' : 'text-[#141F33]/60'}`}>USD</span>
-<button
-type="button"
-onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
-className={`relative w-14 h-7 min-h-0 rounded-full transition-colors ${currency === 'QAR' ? 'bg-[#141F33]' : 'bg-[#F8F9FB]'}`}
->
-<span
-className={`absolute top-1 w-5 h-5 bg-[#F8F9FB] rounded-full shadow-sm transition-all ${currency === 'QAR' ? 'ltr:right-1 rtl:left-1' : 'ltr:left-1 rtl:right-1'}`}
-/>
-</button>
-<span className={`text-xs font-bold select-none ${currency === 'QAR' ? 'text-[#141F33]' : 'text-[#141F33]/60'}`}>QAR</span>
-</div>
-</div>
-</section>
+            <Link
+              href="/contact"
+              className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold py-3.5 text-center rounded-full transition-all duration-200 min-h-[44px] flex items-center justify-center shadow-sm"
+            >
+              Get Started with Chatbot
+            </Link>
+          </div>
 
-{/* Pricing Cards */}
-<section className="py-16">
-<div className="max-w-5xl mx-auto px-6">
-<PricingCards tiers={activeTiers} currency={currency} locale={locale} />
-</div>
-</section>
+          {/* Card 3: Enterprise Bundle (white bg, highlighted with a 2px Royal Blue ring and badge) */}
+          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between ring-2 ring-[#2A5CFF] relative">
+            
+            {/* Recommended Pill Badge */}
+            <div className="absolute top-4 right-6 bg-[#2A5CFF] text-[#F8F9FB] text-[10px] font-bold rounded-full px-3 py-1 shadow-sm uppercase tracking-wider select-none">
+              Recommended
+            </div>
 
-<section className="bg-[#F8F9FB] py-16">
-<div className="max-w-3xl mx-auto px-6 text-center">
-<h2 className="text-2xl font-bold text-[#141F33] mb-4">
-{t({ en: 'Need a custom plan?', ar: 'هل تحتاج إلى خطة مخصصة؟' })}
-</h2>
-<p className="text-[#141F33] mb-8">
-{t({ en: 'Enterprise pricing, dedicated infrastructure, custom SLAs, and tailored onboarding for larger teams.', ar: 'أسعار المؤسسات، بنية تحتية مخصصة، اتفاقيات مستوى خدمة مخصصة، وإعداد مصمم للفرق الأكبر.' })}
-</p>
-<Link 
-  href="/contact"
-  className="btn-primary py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]"
->
-  {t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' })}
-</Link>
-</div>
-</section>
+            <div>
+              <div className="pb-6 border-b border-[#141F33]/10">
+                <h3 className="text-lg font-bold text-[#141F33]">Complete Business AI</h3>
+                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">Custom operations</p>
+                <div className="mt-4 flex items-baseline gap-1">
+                  <span className="text-3xl font-extrabold">Custom</span>
+                  <span className="text-xs text-[#141F33]/60 font-bold">/quote</span>
+                </div>
+              </div>
 
-<Footer />
-</div>
-);
+              <ul className="space-y-4 my-8">
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>AI Voice Agent + RAG Chatbot Suite</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>Custom ERP workflows & API access</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>Dedicated cloud nodes & instances</span>
+                </li>
+                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
+                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
+                  <span>Priority support SLA & custom training</span>
+                </li>
+              </ul>
+            </div>
+
+            <Link
+              href="/contact"
+              className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold py-3.5 text-center rounded-full transition-all duration-200 min-h-[44px] flex items-center justify-center shadow-sm"
+            >
+              Contact Enterprise Sales
+            </Link>
+          </div>
+
+        </div>
+
+        {/* Gulf Compliance Subtext banner */}
+        <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-6 shadow-sm mt-16 max-w-3xl mx-auto flex items-center justify-center gap-3">
+          <span className="w-2 h-2 rounded-full bg-[#2A5CFF]" />
+          <span className="text-xs font-bold text-[#141F33]/60 uppercase tracking-wider">
+            All prices are fixed monthly. Overages only activate upon request.
+          </span>
+        </div>
+
+      </main>
+
+      <Footer />
+    </div>
+  );
 }
