@@ -31,7 +31,7 @@ export default function IntegrationsSettingsPage() {
               {int.desc}
             </p>
           </div>
-          <Button variant="outline" className="mt-6 w-full">
+          <Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
             {int.active ? t({en: 'Manage', ar: 'إدارة'}) : t({en: 'Connect API', ar: 'ربط API'})}
           </Button>
         </Card>

@@ -14,7 +14,6 @@ export default function AdminUsagePage() {
     { title: t({ en: 'Average Text API Loads', ar: 'متوسط استهلاك النصوص' }), value: '420', change: '-2%', color: 'text-[#2A5CFF] bg-[#F8F9FB]' },
   ];
 
-  // Last 7 days usage data points (for SVG Chart)
   const chartData = [
     { day: 'Sun', value: 120 },
     { day: 'Mon', value: 250 },
@@ -27,7 +26,7 @@ export default function AdminUsagePage() {
 
   return (
     <div className="space-y-8 animate-fadeIn">
-      
+
       {/* Page Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Live Platform Usage & Telemetry', ar: 'استهلاك المنصة وقياس العمليات' })}</h1>
@@ -38,11 +37,11 @@ export default function AdminUsagePage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {cards.map((card, idx) => (
           <div key={idx} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
-            <p className="text-[10px] font-extrabold uppercase text-[#141F33] tracking-wider">{card.title}</p>
+            <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{card.title}</p>
             <div className="flex items-baseline justify-between mt-3">
               <span className="text-2xl font-black text-[#141F33]">{card.value}</span>
               <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
-                <code>card.change.startsWith('+') ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#141F33]'</code>
+                card.change.startsWith('+') ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#141F33]'
               }`}>
                 {card.change}
               </span>
@@ -60,14 +59,10 @@ export default function AdminUsagePage() {
 
         {/* SVG Vector Graph */}
         <div className="relative w-full h-64 border-b border-l border-[#141F33]/10 flex items-end">
-          
           <svg className="absolute inset-0 w-full h-full p-4" viewBox="0 0 700 200" preserveAspectRatio="none">
-            {/* Background Grid Lines */}
-<line x1="0" y1="50" x2="700" y2="50" stroke="#F8F9FB" strokeWidth="1" />
-<line x1="0" y1="100" x2="700" y2="100" stroke="#F8F9FB" strokeWidth="1" />
-<line x1="0" y1="150" x2="700" y2="150" stroke="#F8F9FB" strokeWidth="1" />
-
-            {/* Smooth Spline Vector Curve path */}
+            <line x1="0" y1="50" x2="700" y2="50" stroke="#F8F9FB" strokeWidth="1" />
+            <line x1="0" y1="100" x2="700" y2="100" stroke="#F8F9FB" strokeWidth="1" />
+            <line x1="0" y1="150" x2="700" y2="150" stroke="#F8F9FB" strokeWidth="1" />
             <path
               d="M 50 160 C 120 120, 180 140, 250 80 C 320 100, 380 40, 450 60 C 520 20, 580 40, 650 30"
               fill="none"
@@ -75,8 +70,6 @@ export default function AdminUsagePage() {
               strokeWidth="4"
               strokeLinecap="round"
             />
-
-            {/* Dot markers at key data joints */}
             <circle cx="50" cy="160" r="5" fill="#2A5CFF" />
             <circle cx="250" cy="80" r="5" fill="#2A5CFF" />
             <circle cx="450" cy="60" r="5" fill="#2A5CFF" />
@@ -84,12 +77,11 @@ export default function AdminUsagePage() {
           </svg>
 
           {/* X Axis Labels */}
-          <div className="absolute inset-x-0 bottom-0 flex justify-between px-6 transform translate-y-6 text-[10px] font-extrabold text-[#141F33] uppercase tracking-widest">
+          <div className="absolute inset-x-0 bottom-0 flex justify-between px-6 translate-y-6 text-[10px] font-extrabold text-[#141F33] uppercase tracking-widest">
             {chartData.map((d, idx) => (
               <span key={idx}>{d.day}</span>
             ))}
           </div>
-
         </div>
       </div>
 

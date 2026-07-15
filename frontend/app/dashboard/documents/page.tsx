@@ -65,9 +65,9 @@ setUploading(false);
 }
 }, [refetch, t]);
 
-const filteredDocs = documents.filter((doc) => {
-doc.name?.toLowerCase().includes(searchQuery?.toLowerCase())
-});
+  const filteredDocs = documents.filter((doc) => {
+    return doc.name?.toLowerCase().includes(searchQuery?.toLowerCase())
+  });
 
 if (isLoading) {
 return (
@@ -97,7 +97,7 @@ onRetry={() => refetch()}
 
 return (
 <div className="space-y-6 md:space-y-8 animate-fadeIn">
-<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+<div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
 <div>
 <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
 {t('Document Library', 'مستندات المعرفة الخاصة')}
@@ -118,16 +118,16 @@ className="min-h-[44px] text-xs md:text-sm"
 </div>
 
 <label className="block">
-<div className="border-2 border-dashed border-[#141F33]/10 rounded-2xl p-6 bg-[#F8F9FB] flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-md hover:border-[#141F33] group relative overflow-hidden cursor-pointer">
-<Folder className="w-8 h-8 md:w-10 md:h-10 text-[#141F33] group-hover:scale-110 transition-transform mb-2 md:mb-4" />
-<h3 className="text-xs md:text-sm font-extrabold text-[#141F33]">
-{t('Tap to upload PDFs', 'اضغط لرفع ملفات PDF')}
-</h3>
-<p className="text-[10px] md:text-xs text-[#141F33] font-medium mt-1">
-{t('PDF up to 10MB', 'PDF حتى 10 ميجابايت')}
-</p>
+      <div className="border-2 border-dashed border-[#141F33]/10 rounded-2xl p-6 bg-[#F8F9FB] flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-md hover:border-[#141F33] group relative overflow-hidden cursor-pointer">
+        <Folder className="w-8 h-8 md:w-10 md:h-10 text-[#141F33] group-hover:scale-110 transition-transform mb-2 md:mb-4" />
+        <h3 className="text-xs md:text-sm font-extrabold text-[#141F33]">
+          {t('Tap to upload PDFs', 'اضغط لرفع ملفات PDF')}
+        </h3>
+        <p className="text-[10px] md:text-xs text-[#141F33] font-medium mt-1">
+          {t('PDF up to 10MB', 'PDF حتى 10 ميجابايت')}
+        </p>
 
-<div className="transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 mt-3 md:mt-5 bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] inline-flex items-center justify-center">
+        <div className="transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 mt-3 md:mt-5 bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] inline-flex items-center justify-center">
 {t('Browse Files', 'تصفح الملفات')}
 </div>
 <input
@@ -171,14 +171,14 @@ if (fileInputRef.current) fileInputRef.current.value = '';
 <Button
 variant="outline"
 onClick={() => setDeleteTargetId(null)}
-className="min-h-[44px] rounded-xl text-xs font-bold px-4 border-[#141F33]/10"
+className="min-h-[44px] rounded-xl text-xs font-bold px-6 border-[#141F33]/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 {t('Cancel', 'إلغاء')}
 </Button>
 <Button
 variant="destructive"
 onClick={confirmDelete}
-className="min-h-[44px] rounded-xl text-xs font-semibold px-4 bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB]"
+className="min-h-[44px] rounded-xl text-xs font-bold px-6 bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 {t('Delete', 'حذف')}
 </Button>

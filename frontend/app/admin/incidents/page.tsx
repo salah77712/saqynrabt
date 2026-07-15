@@ -27,7 +27,7 @@ export default function AdminIncidentsPage() {
 
   return (
     <div className="space-y-6 animate-fadeIn max-w-xl py-12 px-6 mx-auto">
-      
+
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Active System Incidents', ar: 'الحوادث والتقارير الفنية النشطة' })}</h1>
@@ -54,9 +54,9 @@ export default function AdminIncidentsPage() {
               {inc.status === 'Investigating' && (
                 <button
                   onClick={() => handleResolve(inc.id)}
-                  className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                  className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 >
-                  Resolve
+                  {t({ en: 'Resolve', ar: 'حل' })}
                 </button>
               )}
             </div>

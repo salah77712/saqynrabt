@@ -95,7 +95,7 @@ style={{ width: `${progress}%` }}
 <button
 onClick={handleUpload}
 disabled={!file || importing}
-className="w-full bg-[#141F33] hover:bg-[#141F33]/90 disabled:opacity-40 text-[#F8F9FB] font-bold py-3 rounded-xl text-sm transition-all"
+className="w-full bg-[#141F33] hover:bg-[#141F33]/90 disabled:opacity-40 text-[#F8F9FB] font-bold py-3 rounded-xl text-sm transition-all duration-300 min-h-[44px] hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 {importing ? t('Processing...', 'جاري المعالجة...') : t('Upload and Process', 'تحميل ومعالجة')}
 </button>

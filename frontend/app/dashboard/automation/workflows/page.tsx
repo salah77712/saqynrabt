@@ -56,7 +56,7 @@ return (
 </div>
 
 {/* Form Builder */}
-<form onSubmit={handleCreate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
+<form onSubmit={handleCreate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-6">
 
 <div>
 <label htmlFor="name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Workflow Rule Name', ar: 'اسم قاعدة سير العمل' })}</label>
@@ -71,7 +71,7 @@ required
 />
 </div>
 
-<div className="grid grid-cols-2 gap-4">
+<div className="grid grid-cols-2 gap-6">
 <div>
 <label htmlFor="trigger" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'When this happens...', ar: 'عند حدوث هذا الحدث...' })}</label>
 <select
@@ -102,9 +102,9 @@ className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-x
 </div>
 
 <button
-type="submit"
-className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
->
+        type="submit"
+        className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
+      >
 {t({ en: 'Add Workflow Rule', ar: 'إضافة قاعدة سير العمل' })}
 </button>
 

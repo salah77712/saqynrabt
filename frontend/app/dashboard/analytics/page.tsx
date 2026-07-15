@@ -81,7 +81,7 @@ return (
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-<Card>
+      <Card className="p-6 rounded-2xl">
 <p className="text-[10px] uppercase font-bold text-[#141F33]">{t({en: 'Monthly Recurring Revenue', ar: 'الإيرادات الشهرية المتكررة'})}</p>
 <p className="text-3xl font-black text-[#141F33] dark:text-[#F8F9FB] mt-1">QAR {formatNumber(s.mrr)}</p>
 <p className="text-xs text-[#2A5CFF] font-bold mt-2"><TrendingUp className="w-3.5 h-3.5 inline text-[#2A5CFF]" /> {s.mrr_growth}% {t({en: 'from last month', ar: 'عن الشهر الماضي'})}</p>
@@ -103,7 +103,7 @@ return (
 </Card>
 </div>
 
-<Card className="mt-6">
+<Card className="mt-6 p-6 rounded-2xl">
 <h3 className="font-bold text-navy dark:text-[#F8F9FB] mb-4">{t({en: 'Traffic (Last 24 Hours)', ar: 'حركة المرور وارتفاعات الذكاء الاصطناعي (آخر 24 ساعة)'})}</h3>
 <div className="h-64 flex items-end justify-between gap-2 bg-[#F8F9FB] dark:bg-[#141F33] p-4 rounded-xl border border-[#141F33]/10 dark:border-[#141F33]">
 {[40, 65, 30, 85, 45, 95, 70, 55, 90, 100, 35, 60].map((h, i) => (

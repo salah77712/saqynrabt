@@ -57,9 +57,9 @@ return (
 <p className="text-[10px] text-[#141F33]/60 uppercase font-semibold tracking-wider">{f.type}</p>
 </div>
 <button
-onClick={() => handleRemoveField(f.id)}
-className="text-xs text-[#141F33] hover:text-[#141F33]/70 font-bold px-3 py-1.5 rounded-xl"
->
+        onClick={() => handleRemoveField(f.id)}
+        className="text-xs font-bold px-3 py-1.5 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-[#141F33] hover:text-[#141F33]/70 transition-all duration-300"
+      >
 {t('Delete', 'حذف')}
 </button>
 </div>

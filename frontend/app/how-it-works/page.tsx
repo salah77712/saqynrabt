@@ -151,7 +151,7 @@ export default function HowItWorksPage() {
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#F8F9FB] text-[#141F33] px-6 py-3 text-sm font-semibold hover:bg-[#F8F9FB] transition-all"
+            className="inline-flex items-center justify-center rounded-full bg-[#F8F9FB] text-[#141F33] px-6 py-3 text-xs font-bold min-h-[44px] hover:opacity-90 transition-all"
           >
             {t({ en: 'See how it works', fr: 'Découvrez comment ça marche', ar: 'شاهد كيف يعمل', hi: 'देखें यह कैसे काम करता है' })}
           </a>

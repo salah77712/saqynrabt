@@ -67,7 +67,7 @@ return (
 </div>
 
 {/* Config Form */}
-<form onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
+<form onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm gap-6">
 
 <div className="space-y-3">
 {/* PII */}
@@ -123,16 +123,16 @@ className="sr-only peer"
 </div>
 
 <button
-type="submit"
-className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
->
-{t({ en: 'Save Guardrail Configurations', ar: 'حفظ إعدادات جدار الحماية' })}
+        type="submit"
+        className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
+      >
+        {t({ en: 'Save Guardrail Configurations', ar: 'حفظ إعدادات جدار الحماية' })}
 </button>
 
 </form>
 
 {/* Knowledge Gaps */}
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
+      <div className="p-6 rounded-2xl bg-[#F8F9FB] border border-[#141F33]/10 shadow-sm gap-6">
 <div>
 <h2 className="text-sm font-extrabold text-[#141F33]">{t({ en: 'Knowledge Gaps', ar: 'الفجوات المعرفية' })}</h2>
 <p className="text-[10px] text-[#141F33] font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'الأسئلة التي طرحها موظفوك ولم يتمكن الذكاء الاصطناعي من الإجابة عليها.' })}</p>

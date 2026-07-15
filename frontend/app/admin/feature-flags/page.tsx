@@ -20,14 +20,12 @@ export default function AdminFeatureFlagsPage() {
   ]);
 
   const handleToggle = (id: string) => {
-    setFlags(prev =>
-      prev.map(f => f.id === id ? { ...f, enabled: !f.enabled } : f)
-    );
+    setFlags(prev => prev.map(f => f.id === id ? { ...f, enabled: !f.enabled } : f));
   };
 
   return (
     <div className="space-y-6 animate-fadeIn max-w-xl py-12 px-6 mx-auto">
-      
+
       {/* Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Global Feature Flag Manager', ar: 'إدارة مؤشرات الميزات البرمجية' })}</h1>

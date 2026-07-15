@@ -24,7 +24,7 @@ export default function GlobalMarketplacePage() {
   ];
 
   return (
-    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <main className="flex-1 max-w-4xl mx-auto py-24 px-6 w-full space-y-12">

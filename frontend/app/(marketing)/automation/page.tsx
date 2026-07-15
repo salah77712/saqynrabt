@@ -103,7 +103,7 @@ function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boo
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[#141F33]/5"
+        className="flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[#141F33]/5"
       >
         <span className="font-bold text-sm text-[#141F33] pr-4">{q}</span>
         <svg
@@ -204,11 +204,14 @@ export default function AutomationPage() {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB]"
+              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-95 transition-all"
             >
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </button>
-            <Link href="#pricing" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB]">
+            <Link
+        href="#pricing"
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33]/5 transition-all"
+      >
               {t({ en: 'View Pricing', ar: 'عرض الأسعار' })}
             </Link>
           </div>
@@ -226,7 +229,7 @@ export default function AutomationPage() {
                 {cases.map((uc, i) => (
                   <div
                     key={uc.title}
-                    className="flex items-start gap-4 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-5 shadow-sm card-hover animate-slideUp"
+                    className="flex items-start gap-4 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-6 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
                     <span className="text-2xl mt-0.5 shrink-0">{useCaseIcons[uc.icon] || <Zap className="w-5 h-5 text-[#141F33]" />}</span>
@@ -333,17 +336,17 @@ export default function AutomationPage() {
             </p>
             <div className="flex flex-col gap-3">
               <a
-                href={calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-sm"
+href={calendlyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-90 transition-all"
               >
                 {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </a>
               <button
-                type="button"
-                onClick={() => setIsModalOpen(false)}
-                className="btn-ghost text-sm"
+type="button"
+        onClick={() => setIsModalOpen(false)}
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33]/5 transition-all"
               >
                 {t({ en: 'Close', ar: 'إغلاق' })}
               </button>

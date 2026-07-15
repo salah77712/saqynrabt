@@ -41,7 +41,7 @@ export default function ReportBuilderSettingsPage() {
       {/* Form Report Parameter Builder */}
       <form onSubmit={handleGenerate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col gap-6">
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           <div>
             <label htmlFor="metric" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Aggregate Metric', ar: 'مقياس التجميع' })}</label>
             <select
@@ -74,7 +74,7 @@ export default function ReportBuilderSettingsPage() {
         <button
           type="submit"
           disabled={generating}
-          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] flex items-center justify-center disabled:opacity-40"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40"
         >
           {generating ? t({ en: 'Generating...', ar: 'جاري الإنشاء...' }) : t({ en: 'Generate and Download Report (CSV)', ar: 'إنشاء وتنزيل التقرير (CSV)' })}
         </button>

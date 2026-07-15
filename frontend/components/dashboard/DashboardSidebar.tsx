@@ -102,7 +102,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
         <button
           type="button"
           onClick={onToggleCollapse}
-className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justify-center text-[#141F33] hover:text-[#141F33] hover:bg-[#141F33]/5 transition-colors"
+className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justify-center text-[#141F33] hover:text-[#141F33] hover:bg-[#141F33]/5 transition-colors min-h-[44px] min-w-[44px]"
           title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >
           {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}

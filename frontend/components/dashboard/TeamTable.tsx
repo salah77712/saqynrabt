@@ -60,7 +60,7 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
                         </button>
                         <button
                           onClick={() => onAction(m.id, 'suspend')}
-                          className="px-4 py-2 min-h-[44px] text-xs font-bold text-[#141F33] hover:text-[#141F33]"
+className="px-4 py-2 min-h-[44px] rounded-xl text-xs font-bold text-[#141F33] transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:text-[#141F33]"
                         >
                           Suspend
                         </button>

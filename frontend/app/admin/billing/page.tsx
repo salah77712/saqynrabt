@@ -37,7 +37,7 @@ export default function AdminBillingPage() {
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      
+
       {/* Page Header */}
       <div>
         <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Billing & Invoice Ledger', ar: 'دفتر الفواتير والحسابات' })}</h1>
@@ -61,8 +61,8 @@ export default function AdminBillingPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-[#141F33]">
-{invoices.map((inv) => (
-  <tr key={inv.id} className="hover:bg-[#141F33]/5 transition-colors">
+              {invoices.map((inv) => (
+                <tr key={inv.id} className="hover:bg-[#141F33]/5 transition-colors">
                   <td className="px-6 py-4 font-bold text-[#141F33]">{inv.company}</td>
                   <td className="px-6 py-4">{inv.plan}</td>
                   <td className="px-6 py-4 font-bold text-[#141F33]">{inv.monthlyFee} QAR</td>

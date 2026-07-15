@@ -140,7 +140,7 @@ export default function SignUpPage() {
           </p>
 
 {error && (
-<div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
+    <div className="bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] rounded-xl p-3.5 text-xs font-bold mb-6 text-center">
 {error}
 </div>
 )}
@@ -152,7 +152,7 @@ export default function SignUpPage() {
               maxLength={6}
               value={code}
               onChange={(e) => setCode(e.target.value)}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-center text-sm font-bold tracking-widest text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33]"
               required
             />
             <button

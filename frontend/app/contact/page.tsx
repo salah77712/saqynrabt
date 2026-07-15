@@ -71,7 +71,7 @@ export default function ContactPage() {
           
           {/* Left Column: Contact Form */}
           <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
-            <h2 className="text-2xl font-extrabold text-navy mb-2">
+            <h2 className="text-2xl font-extrabold text-[#141F33] mb-2">
               {t({ en: 'Send us a message', ar: 'أرسل لنا رسالة' })}
             </h2>
             <p className="text-xs font-semibold text-[#141F33] mb-6">
@@ -138,7 +138,7 @@ export default function ContactPage() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold text-navy focus:outline-none focus:ring-2 focus:ring-navy"
+                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33]"
                 >
                   <option value="Demo Request">{t({ en: 'Demo Request', ar: 'طلب عرض توضيحي' })}</option>
                   <option value="Support">{t({ en: 'Support', ar: 'الدعم الفني' })}</option>

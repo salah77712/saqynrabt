@@ -178,7 +178,7 @@ export default function ApiKeysSettingsPage() {
       )}
 
       {/* Form Generate */}
-      <form onSubmit={handleGenerate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex gap-3 items-end">
+      <form onSubmit={handleGenerate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex gap-6 items-end">
         <div className="flex-1">
           <label htmlFor="keyName" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Credential Key Name', ar: 'اسم المفتاح التعريفي' })}</label>
           <input
@@ -194,7 +194,7 @@ export default function ApiKeysSettingsPage() {
         <button
           type="submit"
           disabled={generating}
-          className="bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] flex items-center shrink-0"
+          className="bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] flex items-center shrink-0 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
           {generating ? t({ en: 'Generating...', ar: 'جاري الإنشاء...' }) : t({ en: 'Generate Key', ar: 'إنشاء مفتاح' })}
         </button>

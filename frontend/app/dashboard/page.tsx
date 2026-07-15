@@ -69,7 +69,7 @@ export default function DashboardOverviewPage() {
 
   return (
     <div className="space-y-6 md:space-y-8 animate-fadeIn">
-      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
         <div>
           <h1 className="text-2xl md:text-3xl font-extrabold text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
             {t('Dashboard', 'لوحة التحكم')}
@@ -114,7 +114,7 @@ export default function DashboardOverviewPage() {
           </div>
 
           {/* Step-by-Step Trial Checklist Guide */}
-          <div className="lg:col-span-2 p-6 rounded-2xl bg-[#F8F9FB] border border-[#141F33]/10 shadow-sm space-y-4">
+          <div className="lg:col-span-2 p-6 rounded-2xl bg-[#F8F9FB] border border-[#141F33]/10 shadow-sm space-y-6">
             <div>
               <h3 className="text-sm font-black text-[#141F33] uppercase tracking-wide">{t('Trial Onboarding: Step-by-Step Guide', 'إرشاد التجربة: خطوة بخطوة')}</h3>
               <p className="text-[10px] text-[#141F33] font-semibold mt-0.5">{t('Follow these 3 steps to configure and test your AI platform.', 'اتبع هذه الخطوات الـ 3 لتهيئة واختبار منصة الذكاء الاصطناعي الخاصة بك.')}</p>

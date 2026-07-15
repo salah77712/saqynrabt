@@ -134,10 +134,10 @@ export default function MarketingPage() {
             
             {/* Two-Product Toggle */}
             <div className="inline-flex rounded-full bg-[#F8F9FB] p-1 border border-[#141F33]/10 shadow-sm animate-fadeIn">
-              <button
-                type="button"
-                onClick={() => setActiveProduct('automation')}
-                className={`rounded-xl px-6 py-3 text-xs font-bold min-h-[44px] transition-all ${
+<button
+  type="button"
+  onClick={() => setActiveProduct('automation')}
+  className={`rounded-2xl px-6 py-3 text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
 activeProduct === 'automation'
 ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'
@@ -145,10 +145,10 @@ activeProduct === 'automation'
               >
                 <Zap className="w-5 h-5 text-[#2A5CFF] inline mr-1" aria-hidden="true" /> {t({ en: 'Automation', ar: 'الأتمتة' })}
               </button>
-              <button
-                type="button"
-                onClick={() => setActiveProduct('chatbot')}
-                className={`rounded-xl px-6 py-3 text-xs font-bold min-h-[44px] transition-all ${
+<button
+  type="button"
+  onClick={() => setActiveProduct('chatbot')}
+  className={`rounded-2xl px-6 py-3 text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
 activeProduct === 'chatbot'
 ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'

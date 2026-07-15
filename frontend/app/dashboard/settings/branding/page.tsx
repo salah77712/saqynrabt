@@ -118,7 +118,7 @@ export default function BrandingSettingsPage() {
           <span className="h-8 w-8 rounded-full border-4 border-[#141F33]/10 border-t-[#141F33] animate-spin" />
         </div>
       ) : (
-        <form ref={formRef} onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
+        <form ref={formRef} onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col gap-6">
           
           {/* Logo URL */}
           <div>
@@ -214,7 +214,7 @@ export default function BrandingSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] flex items-center justify-center disabled:opacity-40"
           >
             {saving ? t({ en: 'Updating...', ar: 'جاري الحفظ...' }) : t({ en: 'Save Branding Options', ar: 'حفظ إعدادات الهوية البصرية' })}
           </button>

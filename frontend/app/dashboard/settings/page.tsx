@@ -108,8 +108,8 @@ export default function SettingsDashboardPage() {
 
   if (usageLoading) {
     return (
-      <div className="space-y-6 md:space-y-8 animate-fadeIn max-w-4xl">
-        <div className="animate-pulse">
+<div className="flex flex-col gap-6 md:gap-8 animate-fadeIn max-w-4xl">
+  <div className="animate-pulse">
           <div className="h-8 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-72 mb-2" />
           <div className="h-4 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-96" />
         </div>
@@ -138,7 +138,7 @@ export default function SettingsDashboardPage() {
   };
 
   return (
-    <div className="space-y-6 md:space-y-8 animate-fadeIn max-w-4xl">
+    <div className="flex flex-col gap-6 md:gap-8 animate-fadeIn max-w-4xl">
       <div>
         <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
           {t('Settings', 'حدود الاستخدام والإعدادات')}
@@ -167,13 +167,13 @@ export default function SettingsDashboardPage() {
         <SettingsTabs activeTab={activeTab} onChange={setActiveTab} />
       )}
 
-      {activeTab === 'general' && (
-        <div className="space-y-4 md:space-y-6">
-          <Card className="p-4 md:p-6">
+{activeTab === 'general' && (
+  <div className="flex flex-col gap-4 md:gap-6">
+  <Card className="p-6">
             <h2 className="text-[10px] md:text-xs font-black text-[#141F33]/60 uppercase tracking-widest mb-3 md:mb-4">
               {t('Overage Protection', 'حماية التجاوز التلقائي')}
             </h2>
-            <label className="flex items-start gap-3 md:gap-4 p-3 md:p-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] cursor-pointer">
+            <label className="flex items-start gap-6 p-3 md:p-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] cursor-pointer">
               <input
                 type="checkbox"
                 checked={autoOverage}
@@ -189,7 +189,7 @@ export default function SettingsDashboardPage() {
             </label>
           </Card>
 
-          <Card className="p-4 md:p-6 space-y-4 md:space-y-6">
+          <Card className="p-6 rounded-2xl flex flex-col gap-6">
             <h2 className="text-[10px] md:text-xs font-black text-[#141F33] uppercase tracking-widest">
               {t('Usage Limits', 'حدود الاستخدام')}
             </h2>
@@ -218,7 +218,7 @@ export default function SettingsDashboardPage() {
             </div>
           </Card>
 
-          <Card className="p-4 md:p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <Card className="p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
             <div>
               <h3 className="text-[11px] md:text-xs font-bold text-[#141F33]">
                 {t('Export Chat Log Audit', 'تصدير سجل التدقيق للمحادثات')}
@@ -227,20 +227,20 @@ export default function SettingsDashboardPage() {
                 {t('Download employee RAG chatbot logs and question histories in .csv format.', 'تنزيل جميع سجلات المساعد الذكي وتاريخ الأسئلة بصيغة .csv للتدقيق.')}
               </p>
             </div>
-            <Button variant="default" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs">
+            <Button variant="default" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs py-3 px-6 rounded-xl font-bold">
               {t('Export Logs', 'تصدير السجلات')}
             </Button>
           </Card>
         </div>
       )}
 
-      {activeTab === 'billing' && (
-        <Card className="p-4 md:p-6 space-y-4">
+{activeTab === 'billing' && (
+  <Card className="p-6 flex flex-col gap-3">
           <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-sm md:text-base">{t('Subscription Plan', 'خطة الاشتراك')}</h3>
           <p className="text-[10px] md:text-xs text-[#141F33] leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
           </p>
-          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
+          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-xl font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
             {t('Manage Subscription', 'إدارة الاشتراك')}
           </Button>
         </Card>

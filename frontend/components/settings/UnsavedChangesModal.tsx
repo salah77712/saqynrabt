@@ -32,10 +32,10 @@ export function UnsavedChangesModal({ isOpen, onConfirm, onCancel }: UnsavedChan
           You have unsaved changes. Are you sure you want to leave?
         </p>
         <div className="flex gap-3 mt-6">
-          <button
-            onClick={onCancel}
-            className="flex-1 border border-[#141F33]/10 dark:border-[#141F33]/30 text-[#141F33] dark:text-[#141F33] font-bold py-3 rounded-xl text-xs hover:bg-[#141F33]/5 dark:hover:bg-[#141F33]/20 transition-all"
-          >
+<button
+        onClick={onCancel}
+        className="flex-1 border border-[#141F33]/10 dark:border-[#141F33]/30 text-[#141F33] dark:text-[#141F33] font-bold py-3 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:bg-[#141F33]/5 dark:hover:bg-[#141F33]/20"
+      >
             Stay
           </button>
           <button

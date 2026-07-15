@@ -33,48 +33,48 @@ export default function AdminClientsPage() {
   };
 
   return (
-    <div className="space-y-6 animate-fadeIn max-w-xl py-12 px-6 mx-auto">
-      
-      {/* Header */}
-      <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Global Client Accounts', ar: 'حسابات العملاء الشاملة' })}</h1>
-        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Suspend/enable tenant access.', ar: 'لوحة إدارة موظفي SAQYN. إيقاف وتفعيل صلاحيات وصول العملاء.' })}</p>
-      </div>
+{/* Header */}
+<div>
+  <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Global Client Accounts', ar: 'حسابات العملاء الشاملة' })}</h1>
+  <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Suspend/enable tenant access.', ar: 'لوحة إدارة موظفي SAQYN. إيقاف وتفعيل صلاحيات وصول العملاء.' })}</p>
+</div>
 
-      {/* Clients list */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
-        <div className="divide-y divide-[#141F33]/10">
-          {clients.map((c) => (
-            <div key={c.id} className="py-4 flex justify-between items-center gap-4 first:pt-0 last:pb-0">
-              <div>
-                <p className="text-xs font-extrabold text-[#141F33]">{c.name}</p>
-                <div className="flex gap-2 items-center mt-1">
-                  <span className="text-[10px] text-[#141F33] font-bold">{c.plan}</span>
-                  <span className="text-[10px] text-[#2A5CFF] font-bold">CHS: {c.healthScore}%</span>
-                </div>
-              </div>
+{/* Clients list */}
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl shadow-sm overflow-hidden">
+  <div className="p-6 divide-y divide-[#141F33]/10">
+    {clients.map((c) => (
+      <div key={c.id} className="py-4 flex justify-between items-center gap-4 first:pt-0 last:pb-0">
+        <div>
+          <p className="text-xs font-extrabold text-[#141F33]">{c.name}</p>
+          <div className="flex gap-2 items-center mt-1">
+            <span className="text-[10px] text-[#141F33] font-bold">{c.plan}</span>
+            <span className="text-[10px] text-[#2A5CFF] font-bold">CHS: {c.healthScore}%</span>
+          </div>
+        </div>
 
-              <div className="flex items-center gap-3">
-                <span className={`text-[8px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
-                  c.status === 'active' ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#141F33]'
-                }`}>
-                  {c.status}
-                </span>
+        <div className="flex items-center gap-3">
+          <span className={`text-[8px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
+            c.status === 'active' ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#141F33]'
+          }`}>
+            {c.status}
+          </span>
 
-                <button
-                  onClick={() => handleToggleStatus(c.id)}
-                  className={`py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 border ${
-                    c.status === 'active' ? 'text-[#141F33] border-[#141F33]/10 hover:bg-[#141F33]/5' : 'text-[#2A5CFF] border-[#141F33]/10 hover:bg-[#141F33]/5'
-                  }`}
-                >
-                  {c.status === 'active' ? 'Suspend' : 'Activate'}
-                </button>
-              </div>
-            </div>
-          ))}
+          <button
+            onClick={() => handleToggleStatus(c.id)}
+            className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+              c.status === 'active'
+                ? 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33]/5'
+                : 'bg-[#2A5CFF] text-[#F8F9FB] hover:bg-[#2A5CFF]/90'
+            }`}
+          >
+            {c.status === 'active' ? 'Suspend' : 'Activate'}
+          </button>
         </div>
       </div>
+    ))}
+  </div>
+</div>
 
-    </div>
+</div>
   );
 }

@@ -24,7 +24,7 @@ return (
 <button
 key={tab}
 onClick={() => setActiveTab(tab as any)}
-className={`px-3 py-1.5 rounded-lg text-xs font-bold ${
+className={`px-3 py-2 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
 activeTab === tab ? 'bg-[#141F33] text-[#F8F9FB]' : 'bg-[#F8F9FB] text-[#141F33]/50 hover:bg-[#141F33]/10'
 }`}
 >

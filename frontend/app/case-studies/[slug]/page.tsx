@@ -39,7 +39,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
         {/* Back Link */}
         <Link 
           href="/case-studies"
-          className="inline-flex items-center gap-2 text-xs font-bold text-royal hover:opacity-85 transition-all mb-8 hover:translate-x-[-2px] duration-200"
+          className="inline-flex items-center gap-2 text-xs font-bold text-[#2A5CFF] hover:opacity-85 transition-all mb-8 hover:translate-x-[-2px] duration-200"
         >
           <ArrowLeft className="w-4 h-4" />
           <span>{t({ en: 'Back to Case Studies', ar: 'العودة لدراسات الحالة' })}</span>
@@ -49,7 +49,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
           {/* Left Columns: Story */}
           <div className="lg:col-span-2 space-y-8">
             <div>
-              <span className="inline-block bg-royal/10 text-royal text-[10px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-4">
+              <span className="inline-block bg-[#2A5CFF]/10 text-[#2A5CFF] text-[10px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-4">
                 {details.industry}
               </span>
               <h1 className="text-3xl md:text-5xl font-black text-[#141F33] leading-tight tracking-tight">
@@ -103,7 +103,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
                 </p>
               </div>
 
-              <div className="h-px bg-[#141F33]/10/10 border-b border-[#141F33]/10" />
+              <div className="h-px bg-[#141F33]/10 border-b border-[#141F33]/10" />
 
               <div>
                 <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
@@ -114,7 +114,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
                 </p>
               </div>
 
-              <div className="h-px bg-[#141F33]/10/10 border-b border-[#141F33]/10" />
+              <div className="h-px bg-[#141F33]/10 border-b border-[#141F33]/10" />
 
               <div>
                 <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
@@ -136,7 +136,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
               <div className="space-y-4">
                 {details.metrics.map((metric, i) => (
                   <div key={i} className="flex items-start gap-3 bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-4 shadow-sm">
-                    <Check className="w-5 h-5 text-royal shrink-0 mt-0.5" />
+                    <Check className="w-5 h-5 text-[#2A5CFF] shrink-0 mt-0.5" />
                     <span className="text-xs font-black text-[#141F33]">{metric}</span>
                   </div>
                 ))}
@@ -144,7 +144,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
             </div>
 
             {/* CTA Box */}
-            <div className="bg-navy rounded-2xl p-8 text-center text-[#F8F9FB] shadow-xl relative overflow-hidden">
+            <div className="bg-[#141F33] rounded-2xl p-8 text-center text-[#F8F9FB] shadow-xl relative overflow-hidden">
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#2A5CFF]/10 rounded-full filter blur-2xl" />
               
               <h4 className="text-lg font-extrabold mb-3 relative z-10">

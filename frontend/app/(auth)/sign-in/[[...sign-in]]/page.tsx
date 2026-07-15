@@ -162,13 +162,13 @@ export default function SignInPage() {
               {loading ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Sign In', ar: 'التحقق وتسجيل الدخول' })}
             </button>
 
-            <button
-              type="button"
-              onClick={() => setShow2FA(false)}
-              className="w-full text-center text-xs font-bold text-[#141F33] hover:underline"
-            >
-              {t({ en: 'Back to Sign In', ar: 'العودة لتسجيل الدخول' })}
-            </button>
+<button
+        type="button"
+        onClick={() => setShow2FA(false)}
+        className="w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] text-[#141F33] bg-[#F8F9FB] border border-[#141F33]/10 hover:bg-[#141F33]/5 transition-all"
+      >
+        {t({ en: 'Back to Sign In', ar: 'العودة لتسجيل الدخول' })}
+      </button>
           </form>
         ) : (
           /* Standard Sign-In Form */

@@ -140,7 +140,7 @@ export default function TrustPage() {
                       </div>
                       <button
                         type="button"
-                        className="inline-flex items-center gap-2 text-xs font-bold text-[#141F33] bg-[#141F33]/5 px-6 py-3 rounded-xl hover:bg-[#141F33]/10 transition-all hover:scale-[1.01] hover:shadow-md min-h-[44px]"
+                        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33]/5 text-[#141F33] hover:bg-[#141F33]/10 transition-all hover:scale-[1.01] hover:shadow-md"
                       >
                         <Download className="w-4 h-4" />
                         {card.actionLabel}

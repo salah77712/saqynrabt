@@ -98,7 +98,7 @@ export default function CaseStudiesPage() {
       <Header />
 
       <section className="max-w-7xl mx-auto px-6 pt-20 pb-10 text-center">
-        <span className="inline-block bg-royal/10 text-royal text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+        <span className="inline-block bg-[#2A5CFF]/10 text-[#2A5CFF] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
           {t({ en: 'Case Studies', ar: 'دراسات الحالة' })}
         </span>
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#141F33] leading-tight max-w-4xl mx-auto">
@@ -220,7 +220,7 @@ export default function CaseStudiesPage() {
           <div className="flex items-center gap-6 mt-10">
             <button
               onClick={handlePrev}
-              className="w-12 h-12 min-h-0 bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 text-navy flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
+              className="w-12 h-12 min-h-0 bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
               aria-label="Previous Study"
             >
               <ChevronLeft className="w-5 h-5" />
@@ -236,7 +236,7 @@ export default function CaseStudiesPage() {
                     triggerEffects();
                   }}
                   className={`min-h-0 rounded-full transition-all duration-300 shrink-0 ${
-                    i === currentIndex ? 'w-6 h-2 bg-royal' : 'w-2 h-2 bg-[#141F33]/20'
+                    i === currentIndex ? 'w-6 h-2 bg-[#2A5CFF]' : 'w-2 h-2 bg-[#141F33]/20'
                   }`}
                   aria-label={`Go to slide ${i + 1}`}
                 />
@@ -245,7 +245,7 @@ export default function CaseStudiesPage() {
 
             <button
               onClick={handleNext}
-              className="w-12 h-12 min-h-0 bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 text-navy flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
+              className="w-12 h-12 min-h-0 bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 text-[#141F33] flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
               aria-label="Next Study"
             >
               <ChevronRight className="w-5 h-5" />
@@ -266,8 +266,8 @@ export default function CaseStudiesPage() {
             </div>
             <div className="flex flex-wrap gap-4 justify-end">
               {list[currentIndex].metrics.map((metric, i) => (
-                <div key={i} className="flex items-center gap-2.5 bg-royal/5 border border-royal/10 rounded-2xl px-5 py-3 shadow-sm">
-                  <Check className="w-5 h-5 text-royal shrink-0" />
+                <div key={i} className="flex items-center gap-2.5 bg-[#2A5CFF]/10 border border-[#2A5CFF]/10 rounded-2xl px-5 py-3 shadow-sm">
+                  <Check className="w-5 h-5 text-[#2A5CFF] shrink-0" />
                   <span className="text-xs font-extrabold text-[#141F33]">{metric}</span>
                 </div>
               ))}

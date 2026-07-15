@@ -71,9 +71,9 @@ return (
 <Link
 key={link.href}
 href={link.href}
-className={`relative px-3 py-2 text-sm font-medium transition-colors rounded-md hover:bg-[#141F33]/5 hover:text-[#141F33] min-h-[44px] flex items-center ${
-isActive ? 'text-[#141F33]' : 'text-[#141F33]/60'
-}`}
+className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 rounded-xl hover:bg-[#141F33]/5 hover:text-[#141F33] min-h-[44px] flex items-center ${
+      isActive ? 'text-[#141F33]' : 'text-[#141F33]/60'
+    }`}
 >
 {t(link.label.en, link.label.fr, link.label.ar, link.label.hi)}
 {isActive && (
@@ -195,7 +195,7 @@ return (
 key={link.href}
 href={link.href}
 onClick={closeMenu}
-className={`flex items-center min-h-[44px] px-3 py-2.5 text-base font-semibold rounded-lg transition-colors ${
+className={`flex items-center min-h-[44px] px-3 py-2.5 text-base font-semibold rounded-xl transition-colors ${
 isActive
 ? 'text-[#141F33] bg-[#141F33]/5'
 : 'text-[#141F33]/70 hover:text-[#141F33] hover:bg-[#141F33]/5'

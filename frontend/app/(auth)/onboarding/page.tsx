@@ -122,7 +122,7 @@ export default function OnboardingWizardPage() {
                     value={formData.userName}
                     onChange={handleChange}
                     placeholder="Salah Al-Qahtani"
-                    className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                    className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
                   />
                 </div>
               </div>
@@ -147,7 +147,7 @@ export default function OnboardingWizardPage() {
                     value={formData.companyName}
                     onChange={handleChange}
                     placeholder="Al-Safa Hospitality"
-                    className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                    className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33]"
                   />
                 </div>
 
@@ -159,7 +159,7 @@ export default function OnboardingWizardPage() {
                       name="industry"
                       value={formData.industry}
                       onChange={handleChange}
-                      className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                      className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-bold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33]"
                     >
                       <option value="Hospitality">Hospitality</option>
                       <option value="Healthcare">Healthcare</option>
@@ -175,7 +175,7 @@ export default function OnboardingWizardPage() {
                       name="size"
                       value={formData.size}
                       onChange={handleChange}
-                      className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33]"
+                      className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-bold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33]"
                     >
                       <option value="1-10">1-10 employees</option>
                       <option value="11-50">11-50 employees</option>
@@ -267,7 +267,7 @@ export default function OnboardingWizardPage() {
                     value={formData.teamInvites}
                     onChange={handleChange}
                     placeholder="manager@alsafa.qa, staff@alsafa.qa"
-                    className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] resize-none"
+                    className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] resize-none min-h-[44px]"
                   />
                 </div>
               </div>

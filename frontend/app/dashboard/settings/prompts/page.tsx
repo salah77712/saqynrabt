@@ -62,7 +62,7 @@ export default function PromptsSettingsPage() {
         <button
           type="submit"
           disabled={saving}
-          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] flex items-center justify-center disabled:opacity-40"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40"
         >
           {saving ? t({ en: 'Saving...', ar: 'جاري الحفظ...' }) : t({ en: 'Save System Prompt overrides', ar: 'حفظ تعديلات تعليمات النظام' })}
         </button>

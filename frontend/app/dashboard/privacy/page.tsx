@@ -112,7 +112,7 @@ ar: 'قم بتنزيل أرشيف كامل لبيانات شركتك، بما ف
 ) : (
 <Button
 variant="default"
-className="mt-3"
+className="mt-3 py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]"
 onClick={handleExport}
 disabled={exporting}
 >
@@ -166,7 +166,7 @@ ar: 'تم استلام طلبك. فترة سماح مدتها 30 يوماً سا
 </div>
 </div>
 ) : deletionRequested ? (
-<div className="mt-3 space-y-2">
+<div className="flex gap-6">
 <label className="flex items-center gap-2 text-xs text-[#141F33]">
 <input
 type="checkbox"
@@ -182,6 +182,7 @@ ar: 'أؤكد أنني أرغب في حذف حسابي وجميع البيانا
 <div className="flex gap-2">
 <Button
 variant="destructive"
+className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]"
 onClick={handleDeleteRequest}
 disabled={!confirmDelete || deleting}
 >
@@ -194,7 +195,7 @@ disabled={!confirmDelete || deleting}
 t({ en: 'Confirm Deletion', ar: 'تأكيد الحذف' })
 )}
 </Button>
-<Button variant="outline" onClick={() => setDeletionRequested(false)}>
+<Button variant="outline" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" onClick={() => setDeletionRequested(false)}>
 {t({ en: 'Cancel', ar: 'إلغاء' })}
 </Button>
 </div>
@@ -202,7 +203,7 @@ t({ en: 'Confirm Deletion', ar: 'تأكيد الحذف' })
 ) : (
 <Button
 variant="outline"
-className="mt-3 border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5"
+          className="mt-3 py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5"
 onClick={() => setDeletionRequested(true)}
 >
 {t({ en: 'Request Account Deletion', ar: 'طلب حذف الحساب' })}

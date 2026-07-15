@@ -42,9 +42,9 @@ export default function ABTestingSettingsPage() {
       </div>
 
       {/* Form config */}
-      <form onSubmit={handleUpdate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
+      <form onSubmit={handleUpdate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col gap-6">
         
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           <div>
             <label htmlFor="model_a" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Model A (Control)', ar: 'الموديل أ (القياسي)' })}</label>
             <select

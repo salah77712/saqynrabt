@@ -53,7 +53,7 @@ onClick={(e) => e.stopPropagation()}
 <h3 id="shortcuts-title" className="text-sm font-black text-[#141F33] uppercase tracking-wider">
 Keyboard Shortcuts Console
 </h3>
-<button onClick={onClose} className="text-[#141F33]/40 hover:text-[#141F33] text-xs">
+<button onClick={onClose} className="text-[#141F33]/40 hover:text-[#141F33] min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors">
 <X className="w-4 h-4" />
 </button>
 </div>

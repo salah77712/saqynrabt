@@ -35,7 +35,7 @@ return (
 <div className="relative">
 <button
 onClick={toggleOpen}
-className="relative inline-flex items-center justify-center p-2 rounded-full hover:bg-[#141F33]/5 transition-colors"
+className="relative inline-flex items-center justify-center p-2 rounded-full hover:bg-[#141F33]/5 transition-all duration-300 min-h-[44px] min-w-[44px]"
 aria-label="Open notifications"
 >
 <Bell className="w-5 h-5 text-[#141F33]" />

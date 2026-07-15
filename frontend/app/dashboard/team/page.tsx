@@ -104,16 +104,16 @@ const renderMobileCard = (m: Employee) => (
 <div className="flex gap-2">
 {m.status === 'pending' ? (
 <button
-onClick={() => handleAction(m.id, 'approve')}
-className="flex-1 min-h-[44px] rounded-lg bg-[#F8F9FB] border border-[#141F33]/10 text-[#2A5CFF] font-bold text-xs"
->
-Approve
-</button>
+          onClick={() => handleAction(m.id, 'approve')}
+          className="flex-1 min-h-[44px] py-3 px-6 rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 text-[#2A5CFF] font-bold text-xs"
+        >
+          Approve
+        </button>
 ) : (
 <>
 <button
 onClick={() => handleAction(m.id, 'toggle-admin', m.role)}
-className={`flex-1 min-h-[44px] rounded-lg border font-bold text-xs ${
+className={`flex-1 min-h-[44px] py-3 px-6 rounded-xl border font-bold text-xs ${
 m.role === 'admin'
 ? 'bg-[#F8F9FB] border-[#141F33]/10 text-[#2A5CFF]'
 : 'bg-[#F8F9FB] border-[#141F33]/10 text-[#2A5CFF]'
@@ -122,11 +122,11 @@ m.role === 'admin'
 {m.role === 'admin' ? 'Demote' : 'Make Admin'}
 </button>
 <button
-onClick={() => handleAction(m.id, 'suspend')}
-className="flex-1 min-h-[44px] rounded-lg bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] font-bold text-xs"
->
-Suspend
-</button>
+        onClick={() => handleAction(m.id, 'suspend')}
+        className="flex-1 min-h-[44px] py-3 px-6 rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] font-bold text-xs"
+      >
+        Suspend
+      </button>
 </>
 )}
 </div>
@@ -136,7 +136,7 @@ Suspend
 if (isLoading) {
 return (
 <main id="main-content" className="space-y-6">
-<div className="animate-pulse">
+<div className="animate-fadeIn">
 <div className="h-8 bg-[#141F33]/10 dark:bg-[#141F33] rounded-lg w-72 mb-2" />
 <div className="h-4 bg-[#141F33]/10 dark:bg-[#141F33] rounded-lg w-96" />
 </div>
@@ -165,7 +165,7 @@ return (
 {t('Invite teammates, manage roles, and approve access requests.', 'إدارة ضوابط الوصول للفريق وتنسيق موافقات الموظفين.')}
 </p>
 </div>
-<Button variant="default" onClick={() => setInviteModalOpen(true)} className="min-h-[44px] text-xs md:text-sm w-full md:w-auto">
+<Button variant="default" onClick={() => setInviteModalOpen(true)} className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] w-full md:w-auto">
 {t('Invite Colleague', 'دعوة زميل')}
 </Button>
 </div>
@@ -215,13 +215,13 @@ return (
 <div className="space-y-4">
 <div>
 <label className="block text-[10px] font-bold text-[#141F33] uppercase mb-1">{t('Full Name', 'الاسم الكامل')}</label>
-<Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] text-xs" />
+<Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold" />
 </div>
 <div>
 <label className="block text-[10px] font-bold text-[#141F33] uppercase mb-1">{t('Email Address', 'البريد الإلكتروني')}</label>
-<Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] text-xs" />
+<Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold" />
 </div>
-<Button variant="default" className="w-full min-h-[44px]" onClick={handleSendInvite}>
+<Button variant="default" className="w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" onClick={handleSendInvite}>
 {t('Send Invitation', 'إرسال الدعوة')}
 </Button>
 </div>

@@ -34,7 +34,7 @@ return (
 <p className="text-xs text-[#141F33]/60 mt-2 leading-relaxed">{current.body}</p>
 
 <div className="flex justify-between items-center mt-4 pt-3 border-t border-[#141F33]/10">
-<button className="text-[10px] font-extrabold text-[#141F33]/40 hover:text-[#141F33] transition-colors" onClick={() => setVisible(false)}>
+<button className="text-[10px] font-bold text-[#141F33]/40 hover:text-[#141F33] min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setVisible(false)}>
 Dismiss
 </button>
 <Button variant="default" size="sm" onClick={handleNext}>

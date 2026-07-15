@@ -110,7 +110,7 @@ export default function ApprovalsDashboardPage() {
         </p>
 
         {/* Limit Warning Badge */}
-        <div className="mt-4 p-4 rounded-xl border flex items-center justify-between gap-4 text-xs font-semibold bg-[#F8F9FB]">
+        <div className="mt-4 p-6 rounded-2xl border border-[#141F33]/10 flex items-center justify-between gap-6 text-xs font-semibold bg-[#F8F9FB]">
           <div className="flex items-center gap-2">
             <Users className="w-5 h-5 text-[#141F33]" />
             <span className="text-[#141F33]">

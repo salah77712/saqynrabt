@@ -58,7 +58,7 @@ export default function BillingSettingsPage() {
                 ar: 'يمكنك إلغاء اشتراكك في أي وقت عبر إعدادات لوحة التحكم. عند الإلغاء، تظل الخدمة نشطة حتى نهاية فترة الفوترة الحالية. لا يتم إصدار استرداد للأشهر الجزئية من الخدمة. رسوم الإعداد غير قابلة للاسترداد بعد إجراء مكالمة الإعداد.',
               })}
             </p>
-            <Button variant="outline" className="mt-3 border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5">
+            <Button variant="outline" className="mt-3 border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5 py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
               {t({ en: 'Cancel Subscription', ar: 'إلغاء الاشتراك' })}
             </Button>
           </div>

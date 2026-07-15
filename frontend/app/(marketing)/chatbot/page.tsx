@@ -88,7 +88,7 @@ function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boo
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[#F8F9FB]"
+        className="flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[#F8F9FB]"
       >
         <span className="font-bold text-sm text-[#141F33] pr-4">{q}</span>
         <svg
@@ -146,11 +146,14 @@ export default function ChatbotPage() {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB]"
+              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-95 transition-all"
             >
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </button>
-            <Link href="#pricing" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB]">{t({ en: 'View Pricing', ar: 'عرض الأسعار' })}</Link>
+            <Link
+        href="#pricing"
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33]/5 transition-all"
+      >{t({ en: 'View Pricing', ar: 'عرض الأسعار' })}</Link>
           </div>
         </div>
       </section>
@@ -166,7 +169,7 @@ export default function ChatbotPage() {
                 {caps.map((cap, i) => (
                   <div
                     key={cap.title}
-                    className="flex items-start gap-4 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-5 shadow-sm card-hover animate-slideUp"
+                    className="flex items-start gap-4 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-6 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
                     <span className="text-2xl mt-0.5 shrink-0">{capabilityIcons[cap.icon] || <FileText className="w-5 h-5 text-[#141F33]" />}</span>
@@ -231,7 +234,7 @@ export default function ChatbotPage() {
 
           {/* Currency Toggle */}
           <div className="flex items-center justify-center gap-3 mb-10">
-            <span className={`text-xs font-bold ${currency === 'USD' ? 'text-[#141F33]' : 'text-[#141F33]'}`}>USD</span>
+            <span className={`text-xs font-bold ${currency === 'USD' ? 'text-[#141F33]' : 'text-[#141F33]/40'}`}>USD</span>
             <button
               type="button"
               onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
@@ -245,7 +248,7 @@ export default function ChatbotPage() {
                 }`}
               />
             </button>
-            <span className={`text-xs font-bold ${currency === 'QAR' ? 'text-[#141F33]' : 'text-[#141F33]'}`}>QAR</span>
+            <span className={`text-xs font-bold ${currency === 'QAR' ? 'text-[#141F33]' : 'text-[#141F33]/40'}`}>QAR</span>
           </div>
 
           <PricingCards tiers={CHATBOT_TIERS} currency={currency} locale={locale} />
@@ -283,14 +286,14 @@ export default function ChatbotPage() {
                 href={calendlyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-primary text-sm"
+                className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-90 transition-all"
               >
                 {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </a>
               <button
                 type="button"
-                onClick={() => setIsModalOpen(false)}
-                className="btn-ghost text-sm"
+onClick={() => setIsModalOpen(false)}
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33]/5 transition-all"
               >
                 {t({ en: 'Close', ar: 'إغلاق' })}
               </button>

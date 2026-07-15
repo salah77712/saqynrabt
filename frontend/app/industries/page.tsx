@@ -149,7 +149,7 @@ export default function IndustriesPage() {
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all"
+            className="inline-flex items-center justify-center rounded-xl bg-[#141F33] px-6 py-3 text-xs font-bold min-h-[44px] text-[#F8F9FB] hover:opacity-90 transition-all"
           >
             {t({ en: 'See how it works', fr: 'Découvrez comment ça marche', ar: 'شاهد كيف يعمل', hi: 'देखें यह कैसे काम करता है' })}
           </a>

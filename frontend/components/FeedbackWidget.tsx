@@ -27,7 +27,7 @@ return (
 {!isOpen ? (
 <button
 onClick={() => setIsOpen(true)}
-className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-full shadow-2xl transition-all"
+className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-2xl shadow-2xl transition-all duration-300 min-h-[44px] hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 Feedback
 </button>
@@ -35,7 +35,7 @@ Feedback
 <Card className="w-80 shadow-2xl border border-[#141F33]/10 p-6 animate-slideUp">
 <div className="flex justify-between items-center mb-4">
 <h4 className="font-bold text-[#141F33] dark:text-[#F8F9FB] text-sm">Rate Your Experience</h4>
-<button onClick={() => setIsOpen(false)} className="text-[#141F33]/40 hover:text-[#141F33]">
+<button onClick={() => setIsOpen(false)} className="text-[#141F33]/40 hover:text-[#141F33] min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors">
 <X className="w-4 h-4" />
 </button>
 </div>

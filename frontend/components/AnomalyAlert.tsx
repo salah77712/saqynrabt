@@ -26,7 +26,7 @@ return (
 
 <button
 onClick={() => setVisible(false)}
-className="text-[10px] font-bold text-[#2A5CFF] hover:text-[#141F33]"
+className="text-[10px] font-bold text-[#2A5CFF] hover:text-[#141F33] min-h-[44px] min-w-[44px] flex items-center justify-center"
 >
 <X className="w-4 h-4" />
 </button>

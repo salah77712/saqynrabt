@@ -76,7 +76,7 @@ Offline. Retrying...
 {status === 'offline' && (
 <button
 onClick={checkHealth}
-className="text-xs font-semibold text-[#2A5CFF] hover:text-[#141F33] whitespace-nowrap"
+className="text-xs font-semibold text-[#2A5CFF] hover:text-[#141F33] whitespace-nowrap min-h-[44px] flex items-center"
 >
 Retry
 </button>

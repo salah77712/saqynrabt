@@ -30,7 +30,7 @@ export default function AdminAuditPage() {
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      
+
       {/* Page Header and Search */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
@@ -44,7 +44,7 @@ export default function AdminAuditPage() {
             placeholder={t({ en: 'Filter logs...', ar: 'تصفية السجلات...' })}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] w-64 shadow-sm"
+            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-[#141F33] w-64"
           />
         </div>
       </div>
@@ -62,12 +62,12 @@ export default function AdminAuditPage() {
               </tr>
             </thead>
             <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-[#141F33]">
-{filteredLogs.map((log) => (
-  <tr key={log.id} className="hover:bg-[#141F33]/5 transition-colors">
-    <td className="px-6 py-4 text-[#141F33] font-bold">{new Date(log.timestamp).toLocaleString()}</td>
-    <td className="px-6 py-4 font-bold text-[#141F33]">{log.user}</td>
-    <td className="px-6 py-4 text-[#141F33]">{log.action}</td>
-    <td className="px-6 py-4 font-mono text-[#141F33] font-bold">{log.ipAddress}</td>
+              {filteredLogs.map((log) => (
+                <tr key={log.id} className="hover:bg-[#141F33]/5 transition-colors">
+                  <td className="px-6 py-4 text-[#141F33] font-bold">{new Date(log.timestamp).toLocaleString()}</td>
+                  <td className="px-6 py-4 font-bold text-[#141F33]">{log.user}</td>
+                  <td className="px-6 py-4 text-[#141F33]">{log.action}</td>
+                  <td className="px-6 py-4 font-mono text-[#141F33] font-bold">{log.ipAddress}</td>
                 </tr>
               ))}
             </tbody>

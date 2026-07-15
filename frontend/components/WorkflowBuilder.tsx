@@ -68,9 +68,9 @@ node.type === 'trigger' ? 'border-l-4 border-l-[#2A5CFF]' : 'border-l-4 border-l
 
 {node.type !== 'trigger' && (
 <button
-onClick={() => handleRemoveNode(node.id)}
-className="text-xs text-[#141F33]/60 hover:text-[#141F33] transition-colors p-1 border border-[#141F33]/10 hover:border-[#2A5CFF] rounded"
->
+        onClick={() => handleRemoveNode(node.id)}
+        className="text-xs text-[#141F33]/60 hover:text-[#141F33] transition-all duration-300 p-1 border border-[#141F33]/10 hover:border-[#2A5CFF] rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
+      >
 <Trash2 className="w-4 h-4 text-[#141F33]/60 hover:text-[#141F33]" />
 </button>
 )}

@@ -56,7 +56,7 @@ export default function AdminCompaniesPage() {
 
   return (
     <div className="space-y-6 animate-fadeIn">
-      
+
       {/* Header and Search */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
@@ -69,11 +69,8 @@ export default function AdminCompaniesPage() {
             type="text"
             placeholder={t({ en: 'Search companies...', ar: 'البحث عن الشركات...' })}
             value={search}
-            onChange={(e) => {
-              setSearch(e.target.value);
-              setPage(1);
-            }}
-            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#141F33] w-64 shadow-sm"
+            onChange={(e) => { setSearch(e.target.value); setPage(1); }}
+            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-[#141F33] w-64"
           />
         </div>
       </div>
@@ -116,17 +113,17 @@ export default function AdminCompaniesPage() {
                       </button>
                       <button
                         onClick={() => handleSuspend(company.id)}
-                        className={`font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
-                          company.status === 'active' 
-                            ? 'bg-[#F8F9FB] text-navy hover:bg-[#141F33]/5' 
-                            : 'btn-primary text-[#F8F9FB]'
+                        className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+                          company.status === 'active'
+                            ? 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33]/5'
+                            : 'bg-[#2A5CFF] text-[#F8F9FB] hover:bg-[#2A5CFF]/90'
                         }`}
                       >
                         {company.status === 'active' ? t({ en: 'Suspend', ar: 'تعليق' }) : t({ en: 'Activate', ar: 'تفعيل' })}
                       </button>
                       <button
                         onClick={() => handleDelete(company.id)}
-                        className="bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 hover:bg-[#141F33]/5 font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                        className="bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33]/5 font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
                         {t({ en: 'Delete', ar: 'حذف' })}
                       </button>

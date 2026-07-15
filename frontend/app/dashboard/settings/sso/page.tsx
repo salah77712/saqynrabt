@@ -32,9 +32,9 @@ export default function SSOPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card className="space-y-4">
-          <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'SSO Gateway Details', ar: 'تفاصيل بوابة SSO'})}</h3>
-          <p className="text-xs text-[#141F33] leading-relaxed">
+<Card className="p-6 rounded-2xl space-y-4">
+  <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'SSO Gateway Details', ar: 'تفاصيل بوابة SSO'})}</h3>
+  <p className="text-xs text-[#141F33] leading-relaxed">
             {t({en: 'Integrate SAQYN authentication directly with enterprise credential stores like Okta, Azure AD, or Ping Identity.', ar: 'دمج مصادقة SAQYN مباشرة مع مخازن بيانات الاعتماد المؤسسية مثل Okta أو Azure AD أو Ping Identity.'})}
           </p>
 
@@ -44,26 +44,27 @@ export default function SSOPage() {
               type="checkbox"
               checked={samlEnabled}
               onChange={(e) => setSamlEnabled(e.target.checked)}
-              className="h-4 w-4 rounded border-[#141F33]/20 text-royal focus:ring-royal"
+              className="h-4 w-4 rounded border-[#141F33]/20 text-[#141F33] focus:ring-[#141F33]"
             />
           </div>
 
           <div className="space-y-1">
             <label className="block text-[10px] font-bold text-[#141F33] uppercase">{t({en: 'SAML Metadata XML URL', ar: 'رابط XML بيانات SAML الوصفية'})}</label>
-            <Input
-              value={metadataUrl}
-              onChange={(e) => setMetadataUrl(e.target.value)}
-              placeholder="https://identity.yourcorp.com/app/metadata"
+<Input
+        value={metadataUrl}
+        onChange={(e) => setMetadataUrl(e.target.value)}
+        placeholder="https://identity.yourcorp.com/app/metadata"
+        className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold"
             />
           </div>
 
-          <Button variant="default" className="w-full" onClick={handleSave}>
+          <Button variant="default" className="w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={handleSave}>
             {t({en: 'Save SSO Settings', ar: 'حفظ إعدادات SSO'})}
           </Button>
         </Card>
 
-        <Card className="space-y-4">
-          <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'Metadata Downloads', ar: 'تنزيل البيانات الوصفية'})}</h3>
+<Card className="p-6 rounded-2xl space-y-4">
+  <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'Metadata Downloads', ar: 'تنزيل البيانات الوصفية'})}</h3>
           <p className="text-xs text-[#141F33] leading-relaxed">
             {t({en: 'To configure SSO in your Identity Provider (IdP) administration portal, download our service provider config properties.', ar: 'لتكوين SSO في بوابة إدارة موفر الهوية (IdP)، قم بتنزيل خصائص تكوين موفر الخدمة لدينا.'})}
           </p>

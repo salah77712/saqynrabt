@@ -51,14 +51,14 @@ return (
 <span>{t({ en: 'Was this helpful?', ar: 'هل كانت هذه الإجابة مفيدة؟' })}</span>
 <button
 onClick={() => handleRate(5)}
-className="hover:text-[#2A5CFF] transition-colors p-1 border border-[#141F33]/10 hover:border-[#2A5CFF] rounded"
+className="hover:text-[#2A5CFF] transition-all duration-300 p-1 border border-[#141F33]/10 hover:border-[#2A5CFF] rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
 title="Good Answer"
 >
 {t({ en: 'Yes', ar: 'نعم' })}
 </button>
 <button
 onClick={() => handleRate(1)}
-className="hover:text-[#141F33] transition-colors p-1 border border-[#141F33]/10 hover:border-[#141F33] rounded"
+className="hover:text-[#141F33] transition-all duration-300 p-1 border border-[#141F33]/10 hover:border-[#141F33] rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
 title="Bad Answer"
 >
 {t({ en: 'No', ar: 'لا' })}
