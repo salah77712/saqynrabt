@@ -99,7 +99,7 @@ className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9F
 <div className="flex items-center gap-3">
 <Link
 href="/dashboard"
-className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[40px] items-center"
+className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
 >
 {t('Dashboard', 'Tableau de Bord', 'لوحة التحكم', 'डैशबोर्ड')}
 </Link>
@@ -127,7 +127,7 @@ href="/dashboard"
 </Link>
 <Link
 href="/sign-up"
-className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-4 py-2.5 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[40px] items-center"
+className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
 >
 {t('Register', 'S\'inscrire', 'سجل الآن', 'पंजीकरण करें')}
 </Link>
@@ -140,7 +140,7 @@ onClick={() => setMobileMenuOpen(true)}
 aria-label="Open navigation menu"
 aria-expanded={mobileMenuOpen}
 aria-controls="mobile-nav"
-className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#141F33]/5 hover:shadow-md active:scale-95 text-[#141F33] min-h-[44px] min-w-[44px] transition-all duration-300"
+className="md:hidden w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#141F33]/5 hover:shadow-md hover:scale-[1.02] active:scale-95 text-[#141F33] min-h-[44px] min-w-[44px] transition-all duration-300"
 >
 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
 <path d="M2.5 5H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />

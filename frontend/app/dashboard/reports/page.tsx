@@ -52,7 +52,7 @@ setLoading(null);
 }, [t]);
 
 return (
-<main id="main-content" className="p-6 space-y-6">
+<main id="main-content" className="p-6 space-y-6 animate-fadeIn">
 <div className="mb-6">
 <h1 className="text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Reports', ar: 'تقارير التحليلات المخصصة'})}</h1>
 <p className="text-xs text-[#141F33] font-bold">{t({en: 'Download logs, usage stats, and chat transcripts.', ar: 'تجميع سجلات العمليات وإحصائيات المستخدمين وتتبعات المعرفة.'})}</p>

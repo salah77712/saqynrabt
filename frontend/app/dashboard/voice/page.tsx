@@ -32,7 +32,7 @@ return (
 </p>
 </div>
 
-<div className="bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33] p-8 rounded-xl text-center space-y-4">
+<div className="bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33] p-6 rounded-2xl text-center space-y-4">
 <Phone className="w-10 h-10 text-[#141F33]/40 mx-auto" />
 <h2 className="text-sm font-semibold text-[#141F33] dark:text-[#F8F9FB]">{t({ en: 'Voice Stream Connection Established', ar: 'تم إنشاء اتصال تدفق الصوت' })}</h2>
 <p className="text-xs text-[#141F33] max-w-sm mx-auto">

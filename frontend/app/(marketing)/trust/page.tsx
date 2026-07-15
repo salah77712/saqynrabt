@@ -140,7 +140,7 @@ export default function TrustPage() {
                       </div>
                       <button
                         type="button"
-                        className="inline-flex items-center gap-2 text-xs font-bold text-[#141F33] bg-[#141F33]/5 px-4 py-2.5 rounded-xl hover:bg-[#141F33]/10 transition-all hover:scale-[1.01] hover:shadow-md"
+                        className="inline-flex items-center gap-2 text-xs font-bold text-[#141F33] bg-[#141F33]/5 px-6 py-3 rounded-xl hover:bg-[#141F33]/10 transition-all hover:scale-[1.01] hover:shadow-md min-h-[44px]"
                       >
                         <Download className="w-4 h-4" />
                         {card.actionLabel}
@@ -170,7 +170,7 @@ export default function TrustPage() {
           <div className="mt-6 flex items-center justify-center gap-4">
             <a
               href="mailto:dpo@saqynrabt.com"
-              className="inline-flex items-center gap-2 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-6 py-3 rounded-xl hover:bg-[#141F33]/90 transition-all hover:scale-[1.01] hover:shadow-md"
+              className="inline-flex items-center gap-2 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-6 py-3 rounded-xl hover:bg-[#141F33]/90 transition-all hover:scale-[1.01] hover:shadow-md min-h-[44px]"
             >
               Contact DPO: dpo@saqynrabt.com
             </a>

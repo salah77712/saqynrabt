@@ -46,7 +46,7 @@ return (
 </div>
 <button
 onClick={() => handleAddNode('action')}
-className="bg-[#141F33] text-white font-bold py-2 px-4 rounded-xl text-xs"
+className="bg-[#141F33] text-white font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 + Add Action Node
 </button>

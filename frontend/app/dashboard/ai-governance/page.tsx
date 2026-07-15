@@ -10,7 +10,7 @@ const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
 return (
-<main id="main-content" className="p-6 space-y-6">
+<main id="main-content" className="p-6 space-y-6 animate-fadeIn">
 <div className="flex justify-between items-center mb-6">
 <div>
 <h1 className="text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Model Oversight', ar: 'حوكمة الذكاء الاصطناعي والشفافية'})}</h1>

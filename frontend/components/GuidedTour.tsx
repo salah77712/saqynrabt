@@ -52,7 +52,7 @@ const current = tourSteps[step - 1];
 
 return (
 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#141F33]/60 backdrop-blur-sm animate-fadeIn">
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl max-w-sm w-full p-8 shadow-2xl space-y-6 relative" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl max-w-sm w-full p-6 shadow-2xl space-y-6 relative" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 
 <div>
 <span className="text-[9px] font-extrabold uppercase tracking-widest text-[#2A5CFF]">{t({ en: 'Quick Workspace Tour', ar: 'جولة سريعة في مساحة العمل' })}</span>
@@ -72,7 +72,7 @@ className="text-[10px] font-bold text-[#141F33]/40 hover:text-[#141F33]"
 <span className="text-[10px] font-bold text-[#141F33]/50">{step} / 3</span>
 <button
 onClick={handleNext}
-className="bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-5 py-2.5 rounded-xl text-xs"
+className="bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 {step === 3 ? t({ en: 'Finish', ar: 'إنهاء' }) : t({ en: 'Next', ar: 'التالي' })}
 </button>

@@ -46,13 +46,13 @@ export default function AdminLayout({
         <div className="mt-8 flex gap-4">
           <Link
             href="/sign-in"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-xs font-bold text-[#F8F9FB] shadow-md hover:opacity-95 transition-all"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-6 py-3 text-xs font-bold text-[#F8F9FB] shadow-md hover:opacity-95 transition-all"
           >
             {t({ en: 'Sign In as Admin', ar: 'تسجيل دخول كمسؤول' })}
           </Link>
           <Link
             href="/"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-[#141F33]/5 transition-all"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 px-6 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-[#141F33]/5 transition-all"
           >
             {t({ en: 'Back to Home', ar: 'العودة للرئيسية' })}
           </Link>

@@ -12,7 +12,7 @@ export default function BillingSettingsPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
-    <div className="space-y-6 max-w-2xl">
+    <div className="space-y-6 max-w-2xl animate-fadeIn">
       <div>
         <h1 className="text-xl font-bold text-[#141F33]">
           {t({ en: 'Billing & Subscription', ar: 'الفواتير والاشتراك' })}

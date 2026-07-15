@@ -146,7 +146,7 @@ export default function WebhooksSettingsPage() {
       </div>
 
       {/* Form Register */}
-      <form onSubmit={handleRegister} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-4">
+      <form onSubmit={handleRegister} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm flex flex-col gap-6">
         
         <div>
           <label htmlFor="url" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Destination URL', ar: 'الرابط المستهدف' })}</label>
@@ -181,7 +181,7 @@ export default function WebhooksSettingsPage() {
         <button
           type="submit"
           disabled={registering}
-          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] flex items-center justify-center disabled:opacity-40"
         >
           {registering ? t({ en: 'Registering...', ar: 'جاري التسجيل...' }) : t({ en: 'Register Destination Webhook', ar: 'تسجيل الويب هوك الصادر' })}
         </button>

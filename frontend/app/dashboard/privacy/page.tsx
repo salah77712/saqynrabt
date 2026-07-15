@@ -75,8 +75,8 @@ setDeleting(false);
 };
 
 return (
-<div className="space-y-6 max-w-2xl">
-<div>
+<div className="space-y-6 max-w-2xl animate-fadeIn">
+      <div>
 <h1 className="text-xl font-bold text-[#141F33]">
 {t({ en: 'Privacy', ar: 'خصوصية البيانات والامتثال' })}
 </h1>

@@ -42,7 +42,7 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
                     {m.status === 'pending' ? (
                       <button
                         onClick={() => onAction(m.id, 'approve')}
-                        className="text-xs font-bold text-[#141F33] hover:text-[#141F33]"
+                        className="px-4 py-2 min-h-[44px] text-xs font-bold text-[#141F33] hover:text-[#141F33]"
                       >
                         Approve
                       </button>
@@ -50,7 +50,7 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
                       <>
                         <button
                           onClick={() => onAction(m.id, 'toggle-admin', m.role)}
-                          className={`text-xs font-bold ${
+                          className={`px-4 py-2 min-h-[44px] text-xs font-bold ${
                             m.role === 'admin' 
 ? 'text-[#2A5CFF] hover:text-[#2A5CFF]'
 : 'text-[#2A5CFF] hover:text-[#2A5CFF]'
@@ -60,7 +60,7 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
                         </button>
                         <button
                           onClick={() => onAction(m.id, 'suspend')}
-                          className="text-xs font-bold text-[#141F33] hover:text-[#141F33]"
+                          className="px-4 py-2 min-h-[44px] text-xs font-bold text-[#141F33] hover:text-[#141F33]"
                         >
                           Suspend
                         </button>

@@ -54,7 +54,7 @@ export default function AdminIncidentsPage() {
               {inc.status === 'Investigating' && (
                 <button
                   onClick={() => handleResolve(inc.id)}
-                  className="btn-primary px-3 py-1.5 text-xs"
+                  className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 >
                   Resolve
                 </button>

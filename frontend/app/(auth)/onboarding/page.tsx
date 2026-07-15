@@ -94,7 +94,7 @@ export default function OnboardingWizardPage() {
           />
         </div>
 
-        <div className="p-8 md:p-12 flex-1 flex flex-col justify-between">
+        <div className="p-6 flex-1 flex flex-col justify-between">
           <div>
             {/* Header info */}
             <div className="flex justify-between items-center mb-8">

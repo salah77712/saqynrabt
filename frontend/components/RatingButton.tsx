@@ -77,19 +77,19 @@ title="Bad Answer"
 value={comment}
 onChange={(e) => setComment(e.target.value)}
 rows={2}
-className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-lg p-2 text-[10px] text-[#141F33] focus:outline-none focus:ring-1 focus:ring-[#141F33] resize-none"
+className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-2 text-[10px] text-[#141F33] focus:outline-none focus:ring-1 focus:ring-[#141F33] resize-none"
 placeholder={t({ en: 'E.g. Out of date policy...', ar: 'مثال: سياسة قديمة...' })}
 />
 <div className="flex gap-2 justify-end">
 <button
 onClick={() => submitFeedback(rating || 1, comment || 'No comment provided')}
-className="bg-[#141F33] text-[#F8F9FB] px-3 py-1 rounded-lg hover:opacity-95"
+className="bg-[#141F33] text-[#F8F9FB] px-3 py-1 rounded-xl hover:opacity-95"
 >
 {t({ en: 'Submit', ar: 'إرسال' })}
 </button>
 <button
 onClick={() => setIsOpen(false)}
-className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] px-3 py-1 rounded-lg hover:bg-[#141F33]/5"
+className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] px-3 py-1 rounded-xl hover:bg-[#141F33]/5"
 >
 {t({ en: 'Cancel', ar: 'إلغاء' })}
 </button>

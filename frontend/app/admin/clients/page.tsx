@@ -63,7 +63,7 @@ export default function AdminClientsPage() {
 
                 <button
                   onClick={() => handleToggleStatus(c.id)}
-                  className={`font-bold px-3 py-1.5 rounded-lg text-xs border ${
+                  className={`py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 border ${
                     c.status === 'active' ? 'text-[#141F33] border-[#141F33]/10 hover:bg-[#141F33]/5' : 'text-[#2A5CFF] border-[#141F33]/10 hover:bg-[#141F33]/5'
                   }`}
                 >

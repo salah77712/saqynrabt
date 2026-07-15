@@ -29,7 +29,7 @@ export default function DashboardOverviewPage() {
         </div>
         <SkeletonMetricGrid />
         <SkeletonCard />
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <SkeletonCard />
           <SkeletonCard />
         </div>
@@ -138,8 +138,8 @@ export default function DashboardOverviewPage() {
 <p className="text-[10px] text-[#141F33] font-medium mt-1 leading-relaxed">
 {t('Upload an employee handbook, policy SOP, or FAQ PDF (Limit: 1 PDF during trial) to populate your chatbot knowledge base.', 'قم بتحميل دليل موظف أو ملف PDF للسياسات (الحد: 1 ملف PDF في التجربة) لتغذية قاعدة معرفة المساعد.')}
                   </p>
-                  {!step1Completed && (
-                    <Link href="/dashboard/documents" className="inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
+                    {!step1Completed && (
+                    <Link href="/dashboard/documents" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
                       {t('Upload PDF Document', 'تحميل مستند PDF')} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
@@ -163,8 +163,8 @@ export default function DashboardOverviewPage() {
 <p className="text-[10px] text-[#141F33] font-medium mt-1 leading-relaxed">
 {t('Open the staff knowledge base chatbot and ask a question to test its RAG search accuracy (limit: 15 messages).', 'افتح مساعد معرفة الموظفين واسأله سؤالاً لاختبار دقة بحث RAG (الحد: 15 رسالة).')}
                   </p>
-                  {!step2Completed && (
-                    <Link href="/dashboard/chat" className="inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
+                    {!step2Completed && (
+                    <Link href="/dashboard/chat" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
                       {t('Open Knowledge Chatbot', 'فتح مساعد المعرفة')} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
@@ -188,8 +188,8 @@ export default function DashboardOverviewPage() {
 <p className="text-[10px] text-[#141F33] font-medium mt-1 leading-relaxed">
 {t('Configure your own PBX, SIP trunk, or virtual number to test the automated front-desk voice reception calls.', 'قم بتهيئة بدالة PBX أو خط SIP أو الرقم الافتراضي الخاص بك لتجربة مكالمات استقبال الصوت التلقائي.')}
                   </p>
-                  {!step3Completed && (
-                    <Link href="/dashboard/automation" className="inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
+                    {!step3Completed && (
+                    <Link href="/dashboard/automation" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 inline-block mt-2.5 text-[10px] font-black text-[#2A5CFF] hover:underline">
                       {t('Configure Voice Setup', 'تهيئة إعداد الصوت')} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
@@ -210,7 +210,7 @@ export default function DashboardOverviewPage() {
         <QuickActions actions={quickActions} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <UsageCard
           title={t('Customer Automation', 'أتمتة العملاء')}
           icon={<Zap className="w-5 h-5" />}

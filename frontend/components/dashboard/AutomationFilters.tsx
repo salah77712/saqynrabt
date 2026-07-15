@@ -28,7 +28,7 @@ export function AutomationFilters({ filter, onFilterChange, search, onSearchChan
           <button
             key={opt}
             onClick={() => onFilterChange(opt)}
-            className={`px-4 py-2 rounded-lg text-xs font-bold uppercase tracking-wide transition-all ${
+            className={`px-4 py-3 min-h-[44px] rounded-xl text-xs font-bold uppercase tracking-wide transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
               filter === opt
                 ? '  shadow-sm'
                 : ' '

@@ -39,7 +39,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-8 md:p-12 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
+      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-6 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
         
         {/* Logo */}
         <div className="text-center mb-8">
@@ -91,7 +91,7 @@ export default function ForgotPasswordPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+                className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
               >
                 {loading ? t({ en: 'Sending Reset Link...', ar: 'Ø¬Ø§Ø±ÙŠ Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø±Ø§Ø¨Ø·...' }) : t({ en: 'Send Reset Link', ar: 'Ø¥Ø±Ø³Ø§Ù„ Ø±Ø§Ø¨Ø· Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„ØªØ¹ÙŠÙŠÙ†' })}
               </button>

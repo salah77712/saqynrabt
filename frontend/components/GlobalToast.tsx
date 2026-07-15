@@ -35,8 +35,8 @@ Undo
 )}
 <button
 onClick={() => removeToast(t.id)}
-className="text-xs font-bold text-[#141F33]/40 hover:text-[#141F33]"
-aria-label="Close notification"
+className="text-xs font-bold text-[#141F33]/40 hover:text-[#141F33] min-h-[44px] min-w-[44px]"
+                  aria-label="Close notification"
 >
 <X className="w-3 h-3" />
 </button>

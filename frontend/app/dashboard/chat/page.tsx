@@ -107,7 +107,7 @@ longPressTimer.current = null;
 if (historyLoading) {
 return (
 <div className="animate-fadeIn">
-<div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-4 md:gap-8">
+<div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-6">
 <SkeletonCard />
 <div className="hidden xl:block">
 <SkeletonCard />
@@ -120,7 +120,7 @@ return (
 return (
 <PullToRefresh onRefresh={handleRefresh}>
 <div className="animate-fadeIn">
-<div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-4 md:gap-8">
+<div className="grid grid-cols-1 xl:grid-cols-[1.4fr_0.6fr] gap-6">
 <Card className="flex flex-col overflow-hidden p-0 h-[500px] xl:h-[650px]">
 <div className="px-4 md:px-6 py-3 md:py-4 border-b border-[#141F33]/10 bg-[#F8F9FB] flex items-center justify-between shrink-0">
 <div className="flex-1 min-w-0">
@@ -264,7 +264,7 @@ className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-3.5 hover:border
 {showGapsSheet && (
 <div className="fixed inset-0 z-50 flex items-end xl:hidden">
 <div className="fixed inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setShowGapsSheet(false)} />
-<div className="relative w-full bg-[#F8F9FB] rounded-t-2xl shadow-2xl max-h-[70vh] overflow-y-auto animate-slide-up p-5"
+<div className="relative w-full bg-[#F8F9FB] rounded-t-2xl shadow-2xl max-h-[70vh] overflow-y-auto animate-fadeIn p-5"
 style={{ paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
 <div className="flex items-center justify-between mb-4">
 <h3 className="text-sm font-black text-[#141F33] uppercase tracking-wide">

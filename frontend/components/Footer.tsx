@@ -186,7 +186,7 @@ required
 />
 <button
 type="submit"
-className="absolute right-1.5 min-h-0 bg-[#141F33] hover:opacity-90 text-[#F8F9FB] font-bold text-[10px] uppercase tracking-wider px-4 py-2 rounded-full transition-all"
+className="absolute right-1.5 min-h-[44px] bg-[#141F33] hover:opacity-90 text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 {t({ en: 'Submit', ar: 'إرسال' })}
 </button>

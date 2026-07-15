@@ -64,7 +64,7 @@ return (
 <button
 type="button"
 onClick={() => setProductTab('automation')}
-className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${productTab === 'automation' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
+className={`flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold transition-all ${productTab === 'automation' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
 >
 <Zap className={`w-4 h-4 ${productTab === 'automation' ? 'text-[#2A5CFF]' : 'text-[#141F33]'}`} />
 {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
@@ -113,7 +113,7 @@ className={`absolute top-1 w-5 h-5 bg-[#F8F9FB] rounded-full shadow-sm transitio
 </p>
 <Link 
   href="/contact"
-  className="btn-primary inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white shadow-md hover:bg-royal/90 active:scale-95 transition-all text-center block"
+  className="btn-primary py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]"
 >
   {t({ en: 'Contact Sales', ar: 'اتصل بالمبيعات' })}
 </Link>

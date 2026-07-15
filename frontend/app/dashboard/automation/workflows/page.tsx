@@ -78,7 +78,7 @@ required
 id="trigger"
 value={newWorkflow.trigger}
 onChange={(e) => setNewWorkflow(prev => ({ ...prev, trigger: e.target.value }))}
-className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33]"
+className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold text-[#141F33]"
 >
 <option value="booking.created">booking.created</option>
 <option value="complaint.routed">complaint.routed</option>
@@ -92,7 +92,7 @@ className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-x
 id="action"
 value={newWorkflow.action}
 onChange={(e) => setNewWorkflow(prev => ({ ...prev, action: e.target.value }))}
-className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-bold text-[#141F33]"
+className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold text-[#141F33]"
 >
 <option value="Send Slack Notification">Send Slack Notification</option>
 <option value="Trigger outbound Webhook">Trigger outbound Webhook</option>
@@ -103,7 +103,7 @@ className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-x
 
 <button
 type="submit"
-className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
+className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
 >
 {t({ en: 'Add Workflow Rule', ar: 'إضافة قاعدة سير العمل' })}
 </button>

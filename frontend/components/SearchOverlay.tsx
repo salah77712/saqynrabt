@@ -228,7 +228,7 @@ className="max-h-[50vh] overflow-y-auto"
 key={tag}
 type="button"
 onClick={() => setQuery(tag)}
-className="rounded-full border border-[#141F33]/10 bg-[#F8F9FB] px-3 py-1.5 text-xs font-semibold text-[#141F33]/60 hover:bg-[#141F33]/5 transition-colors min-h-[32px]"
+className="rounded-full border border-[#141F33]/10 bg-[#F8F9FB] px-3 py-1.5 text-xs font-semibold text-[#141F33]/60 hover:bg-[#141F33]/5 transition-colors min-h-[44px]"
 >
 {tag}
 </button>

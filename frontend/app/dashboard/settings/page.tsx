@@ -152,7 +152,7 @@ export default function SettingsDashboardPage() {
         <select
           value={activeTab}
           onChange={(e) => setActiveTab(e.target.value)}
-          className="w-full min-h-[44px] rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 py-2 text-sm font-bold text-[#141F33] appearance-none"
+          className="w-full min-h-[44px] rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 py-2 text-xs font-semibold text-[#141F33] appearance-none"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23141F33' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'no-repeat',

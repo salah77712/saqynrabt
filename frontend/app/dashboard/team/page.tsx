@@ -92,7 +92,7 @@ setInviteEmail('');
 }, [inviteName, inviteEmail, refetch, addToast]);
 
 const renderMobileCard = (m: Employee) => (
-<div key={m.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm">
+<div key={m.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm">
 <div className="flex items-start justify-between mb-2">
 <div className="flex-1 min-w-0">
 <h4 className="text-sm font-bold text-[#141F33] truncate">{m.name}</h4>
@@ -215,11 +215,11 @@ return (
 <div className="space-y-4">
 <div>
 <label className="block text-[10px] font-bold text-[#141F33] uppercase mb-1">{t('Full Name', 'الاسم الكامل')}</label>
-<Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] text-sm" />
+<Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] text-xs" />
 </div>
 <div>
 <label className="block text-[10px] font-bold text-[#141F33] uppercase mb-1">{t('Email Address', 'البريد الإلكتروني')}</label>
-<Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] text-sm" />
+<Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] text-xs" />
 </div>
 <Button variant="default" className="w-full min-h-[44px]" onClick={handleSendInvite}>
 {t('Send Invitation', 'إرسال الدعوة')}

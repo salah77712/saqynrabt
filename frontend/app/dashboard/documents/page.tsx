@@ -118,7 +118,7 @@ className="min-h-[44px] text-xs md:text-sm"
 </div>
 
 <label className="block">
-<div className="border-2 border-dashed border-[#141F33]/10 rounded-2xl p-6 md:p-12 bg-[#F8F9FB] flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-md hover:border-[#141F33] group relative overflow-hidden cursor-pointer">
+<div className="border-2 border-dashed border-[#141F33]/10 rounded-2xl p-6 bg-[#F8F9FB] flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-md hover:border-[#141F33] group relative overflow-hidden cursor-pointer">
 <Folder className="w-8 h-8 md:w-10 md:h-10 text-[#141F33] group-hover:scale-110 transition-transform mb-2 md:mb-4" />
 <h3 className="text-xs md:text-sm font-extrabold text-[#141F33]">
 {t('Tap to upload PDFs', 'اضغط لرفع ملفات PDF')}
@@ -127,7 +127,7 @@ className="min-h-[44px] text-xs md:text-sm"
 {t('PDF up to 10MB', 'PDF حتى 10 ميجابايت')}
 </p>
 
-<div className="transition-all duration-300 hover:shadow-md hover:scale-[1.01] active:scale-95 mt-3 md:mt-5 bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-5 md:px-6 py-2.5 md:py-3 rounded-xl text-[10px] md:text-xs min-h-[44px] inline-flex items-center justify-center">
+<div className="transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 mt-3 md:mt-5 bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] inline-flex items-center justify-center">
 {t('Browse Files', 'تصفح الملفات')}
 </div>
 <input
@@ -171,7 +171,7 @@ if (fileInputRef.current) fileInputRef.current.value = '';
 <Button
 variant="outline"
 onClick={() => setDeleteTargetId(null)}
-className="min-h-[44px] rounded-xl text-xs font-semibold px-4 border-[#141F33]/10"
+className="min-h-[44px] rounded-xl text-xs font-bold px-4 border-[#141F33]/10"
 >
 {t('Cancel', 'إلغاء')}
 </Button>

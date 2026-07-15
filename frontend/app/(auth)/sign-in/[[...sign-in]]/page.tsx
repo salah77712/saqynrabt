@@ -111,7 +111,7 @@ export default function SignInPage() {
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-8 md:p-12 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
+      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-6 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
         
         {/* Logo */}
         <div className="text-center mb-8">
@@ -157,7 +157,7 @@ export default function SignInPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+              className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
             >
               {loading ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Sign In', ar: 'التحقق وتسجيل الدخول' })}
             </button>
@@ -206,7 +206,7 @@ export default function SignInPage() {
               <button
                 type="submit"
                 disabled={loading}
-className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
               >
                 {loading ? t({ en: 'Signing In...', ar: 'جاري تسجيل الدخول...' }) : t({ en: 'Sign In', ar: 'تسجيل الدخول' })}
               </button>
@@ -226,13 +226,13 @@ className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs 
             <div className="grid grid-cols-2 gap-4">
               <button
                 onClick={() => handleOAuth('oauth_google')}
-                className="flex items-center justify-center border border-[#141F33]/10 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-[#141F33]/5 transition-colors min-h-[44px]"
+                className="flex items-center justify-center border border-[#141F33]/10 rounded-xl py-3 px-6 text-xs font-bold text-[#141F33] hover:bg-[#141F33]/5 transition-colors min-h-[44px]"
               >
                 Google
               </button>
               <button
                 onClick={() => addToast('Enterprise SSO login is coming soon.', 'info')}
-                className="flex items-center justify-center border border-[#141F33]/10 rounded-xl py-3 px-4 text-xs font-bold text-[#141F33] hover:bg-[#141F33]/5 transition-colors min-h-[44px]"
+                className="flex items-center justify-center border border-[#141F33]/10 rounded-xl py-3 px-6 text-xs font-bold text-[#141F33] hover:bg-[#141F33]/5 transition-colors min-h-[44px]"
               >
                 SSO
               </button>

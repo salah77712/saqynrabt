@@ -68,7 +68,7 @@ return (
 </div>
 </div>
 
-<Card className="p-4 md:p-6">
+<Card className="p-6">
 <div className="flex items-center justify-between pb-3 md:pb-4 border-b border-[#141F33]/10 mb-4 md:mb-6">
 <h2 className="text-xs md:text-sm font-black text-[#141F33] dark:text-[#F8F9FB] flex items-center gap-2 md:gap-3">
 <Zap className="w-4 h-4 text-[#141F33]" />

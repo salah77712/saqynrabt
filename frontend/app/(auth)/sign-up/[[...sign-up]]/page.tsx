@@ -118,7 +118,7 @@ export default function SignUpPage() {
   if (pendingVerification) {
     return (
       <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-        <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-8 md:p-12 border border-[#141F33]/10 w-full max-w-md animate-fadeIn text-center">
+        <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-6 border border-[#141F33]/10 w-full max-w-md animate-fadeIn text-center">
           
           {/* Logo */}
           <div className="text-center mb-8">
@@ -158,7 +158,7 @@ export default function SignUpPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+              className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
             >
               {loading ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Activate Account', ar: 'التحقق وتنشيط الحساب' })}
             </button>
@@ -171,7 +171,7 @@ export default function SignUpPage() {
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-8 md:p-12 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
+      <div className="bg-[#F8F9FB] rounded-2xl shadow-xl p-6 border border-[#141F33]/10 w-full max-w-md animate-fadeIn">
         
         {/* Logo */}
         <div className="text-center mb-8">
@@ -289,7 +289,7 @@ export default function SignUpPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
           >
             {loading ? t({ en: 'Creating Account...', ar: 'جاري إنشاء الحساب...' }) : t({ en: 'Create Account', ar: 'إنشاء الحساب' })}
           </button>

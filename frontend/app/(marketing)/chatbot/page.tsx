@@ -146,11 +146,11 @@ export default function ChatbotPage() {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="btn-primary text-sm px-8 py-4"
+              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB]"
             >
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </button>
-            <Link href="#pricing" className="btn-secondary text-sm px-8 py-4">{t({ en: 'View Pricing', ar: 'عرض الأسعار' })}</Link>
+            <Link href="#pricing" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB]">{t({ en: 'View Pricing', ar: 'عرض الأسعار' })}</Link>
           </div>
         </div>
       </section>

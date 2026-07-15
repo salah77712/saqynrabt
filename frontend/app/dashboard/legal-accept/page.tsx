@@ -126,8 +126,8 @@ return null;
 }
 
 return (
-<div className="min-h-screen flex items-center justify-center bg-[#F8F9FB] p-6" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<div className="max-w-lg w-full bg-[#F8F9FB] rounded-2xl shadow-xl p-8">
+<div className="min-h-screen flex items-center justify-center bg-[#F8F9FB] p-6 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="max-w-lg w-full bg-[#F8F9FB] rounded-2xl shadow-xl p-6">
 <div className="flex items-center gap-3 mb-6">
 <ShieldSvg />
 <div>
@@ -214,7 +214,7 @@ className="text-xs font-bold text-[#2A5CFF] hover:underline mt-1 inline-block"
 type="button"
 onClick={handleAccept}
 disabled={!tosChecked || !dpaChecked || submitting}
-className="mt-6 w-full min-h-[48px] rounded-xl bg-[#141F33] text-[#F8F9FB] text-sm font-bold hover:bg-[#141F33]/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+className="mt-6 w-full min-h-[44px] rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33]/90 transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2"
 >
 {submitting ? (
 <>

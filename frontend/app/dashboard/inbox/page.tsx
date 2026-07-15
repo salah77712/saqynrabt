@@ -66,11 +66,11 @@ return (
 <button
 key={ch}
 onClick={() => setFilterChannel(ch)}
-className={`px-4 py-2 rounded-xl border transition-all ${
-filterChannel === ch
-? 'bg-[#141F33] border-[#141F33] text-[#F8F9FB]'
-: 'bg-[#F8F9FB] border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5'
-}`}
+className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+            filterChannel === ch
+              ? 'bg-[#141F33] border-[#141F33] text-[#F8F9FB]'
+              : 'bg-[#F8F9FB] border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5'
+            }`}
 >
 {ch}
 </button>

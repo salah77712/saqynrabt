@@ -124,7 +124,7 @@ className="sr-only peer"
 
 <button
 type="submit"
-className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center"
+className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
 >
 {t({ en: 'Save Guardrail Configurations', ar: 'حفظ إعدادات جدار الحماية' })}
 </button>

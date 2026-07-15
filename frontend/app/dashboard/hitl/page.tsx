@@ -64,14 +64,14 @@ export default function HitlQueuePage() {
                   {task.status === 'pending' ? (
                     <button
                       onClick={() => handleClaim(task.id)}
-                      className="bg-[#141F33] text-[#F8F9FB] font-bold px-3 py-1.5 rounded-lg text-xs"
+                      className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#141F33] text-[#F8F9FB]"
                     >
                       Claim
                     </button>
                   ) : (
                     <button
                       onClick={() => handleResolve(task.id)}
-                      className="bg-[#2A5CFF] text-[#F8F9FB] font-bold px-3 py-1.5 rounded-lg text-xs"
+                      className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#2A5CFF] text-[#F8F9FB]"
                     >
                       Resolve
                     </button>

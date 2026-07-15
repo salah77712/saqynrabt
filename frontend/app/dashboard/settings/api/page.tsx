@@ -163,7 +163,7 @@ export default function ApiKeysSettingsPage() {
                 navigator.clipboard.writeText(newKeyVal);
                 addToast('Copied to clipboard', 'success');
               }}
-              className="bg-[#2A5CFF] hover:bg-emerald-700 text-[#F8F9FB] font-bold px-4 py-2 rounded-xl text-xs"
+              className="bg-[#2A5CFF] hover:bg-emerald-700 text-[#F8F9FB] font-bold px-6 py-3 min-h-[44px] rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
             >
               Copy
             </button>
@@ -222,7 +222,7 @@ export default function ApiKeysSettingsPage() {
                   <span className="text-[10px] text-[#141F33] font-bold">{new Date(k.created_at).toLocaleDateString()}</span>
                   <button
                     onClick={() => handleRevoke(k.id)}
-                    className="text-[10px] font-bold text-[#141F33] hover:bg-[#F8F9FB] px-3 py-1.5 rounded-lg border border-[#141F33]/10"
+                    className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] text-[#141F33] hover:bg-[#F8F9FB] border border-[#141F33]/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                   >
                     {t({ en: 'Revoke', ar: 'إلغاء' })}
                   </button>

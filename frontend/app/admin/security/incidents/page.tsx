@@ -122,7 +122,7 @@ export default function AdminIncidentsPage() {
   );
 
   return (
-    <div className="max-w-6xl mx-auto p-6 space-y-6">
+    <div className="max-w-6xl mx-auto p-6 space-y-6 animate-fadeIn">
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-[#141F33] flex items-center gap-2">
@@ -135,7 +135,7 @@ export default function AdminIncidentsPage() {
         <button
           type="button"
           onClick={() => setShowCreate(!showCreate)}
-          className="flex items-center gap-2 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-4 py-2.5 rounded-xl hover:bg-[#141F33]/90 transition-colors"
+          className="flex items-center gap-2 bg-[#141F33] text-[#F8F9FB] text-xs font-bold px-6 py-3 rounded-xl min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
           <PlusSvg /> New Incident
         </button>
@@ -155,18 +155,18 @@ export default function AdminIncidentsPage() {
               placeholder="Incident Title"
               value={newIncident.title}
               onChange={(e) => setNewIncident({ ...newIncident, title: e.target.value })}
-              className="col-span-full rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
+              className="col-span-full rounded-xl border border-[#141F33]/10 px-4 py-2 text-xs font-semibold min-h-[44px] outline-none focus:border-[#141F33]"
             />
             <textarea
               placeholder="Description"
               value={newIncident.description}
               onChange={(e) => setNewIncident({ ...newIncident, description: e.target.value })}
-              className="col-span-full rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33] min-h-[80px]"
+              className="col-span-full rounded-xl border border-[#141F33]/10 px-4 py-2 text-xs font-semibold min-h-[44px] outline-none focus:border-[#141F33]"
             />
             <select
               value={newIncident.incidentType}
               onChange={(e) => setNewIncident({ ...newIncident, incidentType: e.target.value as any })}
-              className="rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
+              className="rounded-xl border border-[#141F33]/10 px-4 py-2 text-xs font-semibold min-h-[44px] outline-none focus:border-[#141F33]"
             >
               <option value="data_breach">Data Breach</option>
               <option value="system_outage">System Outage</option>
@@ -177,7 +177,7 @@ export default function AdminIncidentsPage() {
             <select
               value={newIncident.severity}
               onChange={(e) => setNewIncident({ ...newIncident, severity: e.target.value as any })}
-              className="rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
+              className="rounded-xl border border-[#141F33]/10 px-4 py-2 text-xs font-semibold min-h-[44px] outline-none focus:border-[#141F33]"
             >
               <option value="critical">Critical</option>
               <option value="high">High</option>
@@ -188,21 +188,21 @@ export default function AdminIncidentsPage() {
               placeholder="Affected Resources"
               value={newIncident.affectedResources}
               onChange={(e) => setNewIncident({ ...newIncident, affectedResources: e.target.value })}
-              className="rounded-xl border border-[#141F33]/10 px-4 py-2.5 text-sm outline-none focus:border-[#141F33]"
+              className="rounded-xl border border-[#141F33]/10 px-4 py-2 text-xs font-semibold min-h-[44px] outline-none focus:border-[#141F33]"
             />
           </div>
           <div className="flex gap-2 justify-end">
             <button
               type="button"
               onClick={() => setShowCreate(false)}
-              className="px-4 py-2.5 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33]/60 hover:bg-[#141F33]/10"
+              className="px-6 py-3 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33]/60 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 hover:bg-[#141F33]/10"
             >
               Cancel
             </button>
             <button
               type="button"
               onClick={handleCreate}
-              className="px-4 py-2.5 rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33]/90"
+              className="px-6 py-3 rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
             >
               Create Incident
             </button>
@@ -216,7 +216,7 @@ export default function AdminIncidentsPage() {
           placeholder="Filter incidents..."
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[#141F33]/10 text-sm outline-none focus:border-[#141F33]"
+          className="w-full pl-10 pr-4 py-2 rounded-xl border border-[#141F33]/10 text-xs font-semibold min-h-[44px] outline-none focus:border-[#141F33]"
         />
       </div>
 

@@ -29,7 +29,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
           </span>
           <button
             onClick={onClose}
-            className="text-[#141F33] hover:text-[#141F33] dark:hover:text-[#F8F9FB] text-lg font-bold p-1"
+            className="text-[#141F33] hover:text-[#141F33] dark:hover:text-[#F8F9FB] text-lg font-bold p-1 min-h-[44px] min-w-[44px]"
             aria-label="Close menu"
           >
             <X className="w-4 h-4" />
@@ -42,7 +42,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
               key={item.href}
               href={item.href}
               onClick={onClose}
-              className="text-base font-bold text-[#141F33] dark:text-[#F8F9FB] py-2 hover:text-royal"
+              className="text-base font-bold text-[#141F33] dark:text-[#F8F9FB] py-2 hover:text-royal min-h-[44px]"
             >
               {t(item.en, item.ar)}
             </Link>
@@ -53,7 +53,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
               key={item.href}
               href={item.href}
               onClick={onClose}
-              className="text-sm font-semibold text-[#141F33] dark:text-[#141F33] py-1.5 hover:text-royal"
+              className="text-sm font-semibold text-[#141F33] dark:text-[#141F33] py-3 hover:text-royal"
             >
               {t(item.en, item.ar)}
             </Link>

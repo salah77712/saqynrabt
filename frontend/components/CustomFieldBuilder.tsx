@@ -53,12 +53,12 @@ return (
 {fields.map((f) => (
 <div key={f.id} className="flex items-center justify-between border border-[#141F33]/10 bg-[#F8F9FB]/50 rounded-xl px-4 py-3">
 <div>
-<p className="text-xs font-bold text-[#141F33]">{f.name}</p>
+<p className="text-xs font-semibold text-[#141F33]">{f.name}</p>
 <p className="text-[10px] text-[#141F33]/60 uppercase font-bold tracking-wider">{f.type}</p>
 </div>
 <button
 onClick={() => handleRemoveField(f.id)}
-className="text-xs text-[#141F33] hover:text-[#141F33]/70 font-bold px-2 py-1"
+className="text-xs text-[#141F33] hover:text-[#141F33]/70 font-bold px-3 py-1.5 rounded-xl"
 >
 {t('Delete', 'حذف')}
 </button>
@@ -86,7 +86,7 @@ className="min-h-[44px] w-full rounded-xl border border-[#141F33]/10 bg-[#F8F9FB
 </select>
 <button
 onClick={handleAddField}
-className="w-full bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold py-3.5 rounded-xl text-xs transition-all min-h-[44px]"
+className="w-full bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold py-3 rounded-xl text-xs transition-all min-h-[44px]"
 >
 {t('Add Attribute', 'إضافة خاصية')}
 </button>

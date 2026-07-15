@@ -97,7 +97,7 @@ export function EmailVerificationGate() {
           <button
             type="submit"
             disabled={verifying}
-            className="w-full bg-[#141F33]  font-bold py-4 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            className="w-full bg-[#141F33]  font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center disabled:opacity-40 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
           >
             {verifying ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Activate Account', ar: 'التحقق وتنشيط الحساب' })}
           </button>

@@ -15,7 +15,7 @@ export function RecentActivity({ activities }: { activities: ActivityItem[] }) {
       <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base mb-4">
         Recent Activity Feed
       </h3>
-      <div className="flex flex-col gap-3">
+      <div className="flex flex-col gap-6">
         {activities.map((act) => (
           <div
             key={act.id}

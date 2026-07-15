@@ -137,7 +137,7 @@ export default function MarketingPage() {
               <button
                 type="button"
                 onClick={() => setActiveProduct('automation')}
-                className={`min-h-[44px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
+                className={`rounded-xl px-6 py-3 text-xs font-bold min-h-[44px] transition-all ${
 activeProduct === 'automation'
 ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'
@@ -148,7 +148,7 @@ activeProduct === 'automation'
               <button
                 type="button"
                 onClick={() => setActiveProduct('chatbot')}
-                className={`min-h-[44px] rounded-full px-6 py-1.5 text-sm font-semibold transition-all ${
+                className={`rounded-xl px-6 py-3 text-xs font-bold min-h-[44px] transition-all ${
 activeProduct === 'chatbot'
 ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
 : 'bg-transparent text-[#141F33] hover:text-[#141F33]'
@@ -172,7 +172,7 @@ activeProduct === 'chatbot'
             <div className="flex flex-wrap gap-4 mt-2 animate-slideUp" style={{ animationDelay: '0.3s' }}>
               <Link
                 href={activeProduct === 'automation' ? '/automation' : '/chatbot'}
-                className="btn-primary flex items-center justify-center px-8 py-4 text-base font-bold"
+                className="btn-primary py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]"
               >
                 {t({ en: 'Explore Product', ar: 'استكشف المنتج' })}
               </Link>
@@ -190,7 +190,7 @@ activeProduct === 'chatbot'
           <div className="lg:w-1/2 w-full animate-slideUp" style={{ animationDelay: '0.3s' }}>
             <div className="relative">
               <div className="absolute -inset-4 bg-gradient-to-br from-[#141F33]/10 to-[#F8F9FB]/30 rounded-3xl blur-2xl opacity-70" />
-              <div className="relative bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 shadow-xl p-5 overflow-hidden">
+              <div className="relative bg-[#F8F9FB] rounded-2xl border border-[#141F33]/10 shadow-xl p-6 overflow-hidden">
                 <div className="flex items-center justify-between pb-3 border-b border-[#141F33]/10">
                   <div className="flex items-center gap-2">
                     <div className="w-3 h-3 rounded-full bg-[#141F33]/10" />
@@ -284,7 +284,7 @@ activeProduct === 'chatbot'
               id="other-industries"
               value={OTHER_INDUSTRIES.some(i => i.id === activeIndustry) ? activeIndustry : ''}
               onChange={handleSelectChange}
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33] transition-all appearance-none cursor-pointer text-center text-sm shadow-sm font-semibold"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-[#141F33] focus:outline-none focus:ring-2 focus:ring-[#141F33] transition-all appearance-none cursor-pointer text-center text-xs shadow-sm font-semibold"
               style={{
                 backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%234B5563' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E")`,
                 backgroundPosition: locale === 'ar' ? 'left 1rem center' : 'right 1rem center',
@@ -300,7 +300,7 @@ activeProduct === 'chatbot'
           </div>
 
           {/* Dynamic Headline Panel */}
-          <div className="mt-12 text-center bg-[#F8F9FB] p-8 rounded-2xl border border-[#141F33]/10 max-w-3xl w-full animate-slideUp" style={{ animationDelay: '0.2s' }}>
+          <div className="mt-12 text-center bg-[#F8F9FB] p-6 rounded-2xl border border-[#141F33]/10 max-w-3xl w-full animate-slideUp" style={{ animationDelay: '0.2s' }}>
             <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{currentIndustry.label}</span>
             <h2 className="text-2xl md:text-3xl font-extrabold text-[#141F33] leading-tight mt-3">
               {currentIndustry.headline}
@@ -363,7 +363,7 @@ activeProduct === 'chatbot'
             {testimonials.map((item, i) => (
               <div
                 key={i}
-                className="min-w-[300px] md:min-w-[380px] snap-start bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-8 shadow-sm card-hover"
+                className="min-w-[300px] md:min-w-[380px] snap-start bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm card-hover"
                 style={{ animationDelay: `${i * 0.1}s` }}
               >
                 <div className="flex gap-1 mb-5">
@@ -398,7 +398,7 @@ activeProduct === 'chatbot'
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {/* Automation Card */}
-            <div className="relative p-8 card-premium group">
+            <div className="relative p-6 card-premium group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-xl flex items-center justify-center mb-5">
@@ -433,7 +433,7 @@ activeProduct === 'chatbot'
             </div>
 
             {/* Chatbot Card */}
-            <div className="relative p-8 card-premium group">
+            <div className="relative p-6 card-premium group">
               <div className="absolute top-0 right-0 w-32 h-32 bg-[#2A5CFF]/5 rounded-bl-[100px] rounded-tr-3xl" />
               <div className="relative">
                 <div className="w-12 h-12 bg-[#2A5CFF]/10 rounded-xl flex items-center justify-center mb-5">
@@ -497,7 +497,7 @@ activeProduct === 'chatbot'
       {/* ── Modal ─────────────────────────────────────────── */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33]/60 backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl max-w-md w-full p-8 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl max-w-md w-full p-6 shadow-2xl relative animate-scaleIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             
             <h3 className="text-xl font-extrabold text-[#141F33] mb-3">
               {t({ en: 'Request a consultation', ar: 'طلب استشارة' })}

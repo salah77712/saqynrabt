@@ -21,7 +21,7 @@ export default function HealthPage() {
   }, []);
 
   return (
-    <div className="p-6 max-w-4xl">
+    <div className="p-6 max-w-4xl animate-fadeIn">
       <h1 className="text-2xl font-bold mb-4">{t({en: 'Live MCP Health Dashboard', ar: 'لوحة صحة MCP المباشرة'})}</h1>
       {loading ? (
         <p className="text-[#141F33]">{t({en: 'Checking MCP providers...', ar: 'جارٍ التحقق من موفري MCP...'})}</p>

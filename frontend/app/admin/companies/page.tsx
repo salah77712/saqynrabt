@@ -110,13 +110,13 @@ export default function AdminCompaniesPage() {
                     <div className="flex justify-center gap-2">
                       <button
                         onClick={() => addToast(`Viewing detailed logs for ${company.name}`, 'info')}
-                        className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5 font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px]"
+                        className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]/5 font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
                         {t({ en: 'View', ar: 'عرض' })}
                       </button>
                       <button
                         onClick={() => handleSuspend(company.id)}
-                        className={`font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px] transition-all ${
+                        className={`font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
                           company.status === 'active' 
                             ? 'bg-[#F8F9FB] text-navy hover:bg-[#141F33]/5' 
                             : 'btn-primary text-[#F8F9FB]'
@@ -126,7 +126,7 @@ export default function AdminCompaniesPage() {
                       </button>
                       <button
                         onClick={() => handleDelete(company.id)}
-                        className="bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 hover:bg-[#141F33]/5 font-bold px-3 py-1.5 rounded-lg text-[10px] min-h-[32px] transition-all"
+                        className="bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 hover:bg-[#141F33]/5 font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
                         {t({ en: 'Delete', ar: 'حذف' })}
                       </button>
@@ -145,7 +145,7 @@ export default function AdminCompaniesPage() {
           <button
             onClick={() => setPage(prev => Math.max(prev - 1, 1))}
             disabled={page === 1}
-            className="bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 rounded-lg px-4 py-2 min-h-[36px] transition-colors disabled:opacity-40"
+            className="bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
             {t({ en: 'Previous', ar: 'السابق' })}
           </button>
@@ -155,7 +155,7 @@ export default function AdminCompaniesPage() {
           <button
             onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
             disabled={page === totalPages}
-            className="bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 rounded-lg px-4 py-2 min-h-[36px] transition-colors disabled:opacity-40"
+            className="bg-[#F8F9FB] hover:bg-[#141F33]/5 border border-[#141F33]/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
             {t({ en: 'Next', ar: 'التالي' })}
           </button>

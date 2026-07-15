@@ -80,7 +80,7 @@ export default function AdminBillingPage() {
                     {inv.status === 'unpaid' ? (
                       <button
                         onClick={() => handleMarkPaid(inv.id)}
-                        className="btn-primary px-3 py-1.5 rounded-lg text-[10px] min-h-[32px]"
+                        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
                         {t({ en: 'Mark as Paid', ar: 'تحديد كمدفوع' })}
                       </button>

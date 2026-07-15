@@ -27,7 +27,7 @@ export function BottomNav() {
           <Link
             key={item.path}
             href={item.path}
-            className={`flex flex-col items-center justify-center flex-1 h-full py-2 ${
+            className={`flex flex-col items-center justify-center flex-1 h-full py-2 min-h-[44px] ${
               isActive ? 'text-royal' : ''
             }`}
           >

@@ -62,8 +62,8 @@ const s = stats ?? MOCK_STATS;
 
 if (loading) {
 return (
-<main id="main-content" className="p-6 space-y-6">
-<div className="flex justify-center items-center h-64">
+      <main id="main-content" className="p-6 space-y-6 animate-fadeIn">
+        <div className="flex justify-center items-center h-64">
 <p className="text-[#141F33] font-bold">{t({en: 'Loading metrics...', ar: 'جارٍ تحميل المقاييس...'})}</p>
 </div>
 </main>
@@ -71,7 +71,7 @@ return (
 }
 
 return (
-<main id="main-content" className="p-6 space-y-6">
+<main id="main-content" className="p-6 space-y-6 animate-fadeIn">
 <div className="flex justify-between items-center mb-6">
 <div>
 <h1 className="text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Analytics', ar: 'وحدة تحكم العمليات الإدارية'})}</h1>
