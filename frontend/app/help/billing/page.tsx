@@ -47,7 +47,7 @@ export default function BillingHelpPage() {
         </aside>
 
         {/* Content Panel */}
-        <div className="flex-1 bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-8 md:p-12 shadow-sm space-y-6">
+        <div className="flex-1 bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-6 shadow-sm space-y-6">
           <div>
             <span className="text-[10px] font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'الوثائق والكتيبات', hi: 'दस्तावेज़ीकरण' })}</span>
             <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight mt-2">

@@ -72,7 +72,7 @@ className={`flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold trans
 <button
 type="button"
 onClick={() => setProductTab('chatbot')}
-className={`flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold transition-all ${productTab === 'chatbot' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
+className={`flex items-center gap-2 px-6 py-3 rounded-xl text-xs font-bold transition-all ${productTab === 'chatbot' ? 'bg-[#F8F9FB] text-[#141F33] shadow-sm' : 'text-[#141F33] hover:text-[#141F33]'}`}
 >
 <MessageSquare className={`w-4 h-4 ${productTab === 'chatbot' ? 'text-[#2A5CFF]' : 'text-[#141F33]'}`} />
 {t({ en: 'Internal Chatbot', ar: 'المساعد الداخلي' })}

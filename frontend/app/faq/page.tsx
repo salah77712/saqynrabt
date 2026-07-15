@@ -215,12 +215,12 @@ export default function FAQPage() {
                 const globalIdx = `${cat.title}-${idx}`;
                 const isOpen = openIndex === idx;
                 return (
-                  <div key={globalIdx} className="border border-[#141F33]/10 rounded-xl overflow-hidden">
+                  <div key={globalIdx} className="border border-[#141F33]/10 rounded-2xl overflow-hidden">
                     <button
                       onClick={() => setOpenIndex(isOpen ? null : idx)}
                       aria-expanded={isOpen}
                       aria-controls={globalIdx}
-                      className="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-[#141F33] hover:bg-[#F8F9FB] transition-all"
+                      className="w-full flex items-center justify-between px-6 py-3 text-left font-bold text-[#141F33] text-xs min-h-[44px] hover:bg-[#F8F9FB] transition-all"
                     >
                       <span>{item.q}</span>
                       <svg className={`w-4 h-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} viewBox="0 0 20 20" fill="currentColor"><path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clipRule="evenodd" /></svg>

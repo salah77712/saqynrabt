@@ -144,7 +144,7 @@ export default function CaseStudiesPage() {
                         triggerEffects();
                       }
                     }}
-                    className={`relative w-[300px] md:w-[360px] h-[480px] rounded-[32px] overflow-hidden cursor-pointer shadow-xl transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col justify-between p-8 border ${
+                    className={`relative w-[300px] md:w-[360px] h-[480px] rounded-2xl overflow-hidden cursor-pointer shadow-xl transition-all duration-700 cubic-bezier(0.16, 1, 0.3, 1) flex flex-col justify-between p-6 border ${
                       isActive 
                         ? 'bg-[#141F33] text-[#F8F9FB] border-transparent scale-100 opacity-100 z-35 ring-4 ring-[#2A5CFF]/35 shadow-[0_20px_50px_rgba(42,92,255,0.25)]' 
                         : 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 scale-90 opacity-40 filter blur-[1px] z-10 hover:opacity-60'
@@ -198,7 +198,7 @@ export default function CaseStudiesPage() {
                       {/* Explore Link (Animated Capsule Button) */}
                       <Link
                         href={`/case-studies/${item.slug}`}
-                        className={`w-full flex items-center justify-between min-h-[44px] font-bold text-xs px-5 py-3.5 rounded-2xl border transition-all duration-300 ${
+                        className={`w-full flex items-center justify-between min-h-[44px] font-bold text-xs px-6 py-3 rounded-2xl border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
                           isActive
                             ? 'bg-[#2A5CFF] hover:bg-[#2A5CFF]/95 text-[#F8F9FB] border-transparent hover:shadow-[0_8px_25px_rgba(42,92,255,0.4)] hover:translate-y-[-1px] active:translate-y-0'
                             : 'bg-[#F8F9FB] hover:bg-[#141F33]/5 text-[#141F33] border-[#141F33]/10'
@@ -255,7 +255,7 @@ export default function CaseStudiesPage() {
 
         {/* Detailed Metrics Panel of Active Card */}
         <div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[32px] p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex-1">
               <span className="text-[10px] font-black uppercase tracking-widest text-[#141F33]/60 mb-1 block">
                 {list[currentIndex].meta}
@@ -288,7 +288,7 @@ export default function CaseStudiesPage() {
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-primary text-sm px-8 py-4"
+            className="btn-primary py-3 px-6 text-xs"
           >
             {t({ en: 'Book Your Demo Session', ar: 'احجز جلسة العرض الخاص بك' })}
           </a>

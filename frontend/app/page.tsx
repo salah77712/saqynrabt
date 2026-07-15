@@ -267,7 +267,7 @@ activeProduct === 'chatbot'
               <button
                 key={ind.id}
                 onClick={() => setActiveIndustry(ind.id)}
-                className={`min-h-[44px] px-6 py-3 rounded-full border text-sm font-semibold transition-all duration-300 hover:shadow-md hover:scale-[1.05] hover:border-[#141F33] active:scale-95 cursor-pointer ${
+                className={`min-h-[44px] px-6 py-3 rounded-xl border text-xs font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 cursor-pointer ${
                   activeIndustry === ind.id
                     ? 'bg-[#141F33] text-[#F8F9FB] border-[#141F33] shadow-md'
                     : 'bg-[#F8F9FB] text-[#141F33] border-[#141F33] shadow-sm hover:shadow-md'

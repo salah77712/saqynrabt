@@ -66,7 +66,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
             </div>
 
             {/* Stylized Solid Backdrop Section (Vector graphic design, no image) */}
-            <div className="w-full min-h-[260px] md:min-h-[340px] rounded-[32px] bg-[#141F33] text-[#F8F9FB] p-8 md:p-12 relative overflow-hidden flex flex-col justify-between shadow-xl">
+            <div className="w-full min-h-[260px] md:min-h-[340px] rounded-2xl bg-[#141F33] text-[#F8F9FB] p-8 md:p-12 relative overflow-hidden flex flex-col justify-between shadow-xl">
               {/* Decorative graphic background glows */}
               <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-[#2A5CFF]/15 rounded-full filter blur-[80px] pointer-events-none" />
               
@@ -129,7 +129,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
 
           {/* Right Columns: Metrics Panel */}
           <div className="space-y-8 lg:sticky lg:top-24">
-            <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[32px] p-8 shadow-sm">
+            <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-2xl p-8 shadow-sm">
               <h3 className="text-base font-extrabold text-[#141F33] mb-6">
                 {t({ en: 'Performance Metrics', ar: 'مقاييس الأداء المحققة' })}
               </h3>
@@ -144,7 +144,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
             </div>
 
             {/* CTA Box */}
-            <div className="bg-navy rounded-[32px] p-8 text-center text-[#F8F9FB] shadow-xl relative overflow-hidden">
+            <div className="bg-navy rounded-2xl p-8 text-center text-[#F8F9FB] shadow-xl relative overflow-hidden">
               <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#2A5CFF]/10 rounded-full filter blur-2xl" />
               
               <h4 className="text-lg font-extrabold mb-3 relative z-10">

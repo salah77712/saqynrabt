@@ -54,7 +54,7 @@ return (
 <div key={f.id} className="flex items-center justify-between border border-[#141F33]/10 bg-[#F8F9FB]/50 rounded-xl px-4 py-3">
 <div>
 <p className="text-xs font-semibold text-[#141F33]">{f.name}</p>
-<p className="text-[10px] text-[#141F33]/60 uppercase font-bold tracking-wider">{f.type}</p>
+<p className="text-[10px] text-[#141F33]/60 uppercase font-semibold tracking-wider">{f.type}</p>
 </div>
 <button
 onClick={() => handleRemoveField(f.id)}

@@ -14,7 +14,7 @@ export function QuickActions({ actions }: { actions: ActionItem[] }) {
         <Link
           key={act.href}
           href={act.href}
-          className="flex flex-col items-center justify-center p-6 border border-[#F8F9FB] dark:border-[#141F33] rounded-2xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm hover:shadow-md hover:border-royal/20 hover:scale-[1.02] transition-all duration-300 text-center min-h-[100px]"
+          className="flex flex-col items-center justify-center p-4 border border-[#F8F9FB] dark:border-[#141F33] rounded-2xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm hover:shadow-md hover:border-royal/20 hover:scale-[1.02] transition-all duration-300 text-center min-h-[100px]"
         >
           <span className="mb-2">
             {act.icon}
