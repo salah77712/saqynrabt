@@ -1,15 +1,34 @@
 'use client';
 
-import * as React from 'react';
-import Link from 'next/link';
+import { useState } from 'react';
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { Check } from 'lucide-react';
+import Link from 'next/link';
 
 export default function PricingPage() {
   const { locale } = useLocale();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+
+  // State management for automated sync toggles
+  const [voiceSync, setVoiceSync] = useState<boolean>(false);
+  const [workSync, setWorkSync] = useState<boolean>(false);
+
+  // State management for employee sizes
+  const [voiceEmployees, setVoiceEmployees] = useState<number>(50);
+  const [workEmployees, setWorkEmployees] = useState<number>(50);
+
+  // Calculated prices
+  const baseVoicePrice = 2999;
+  const baseWorkPrice = 4999;
+
+  const currentVoicePrice = baseVoicePrice + (voiceSync ? 999 : 0);
+  const currentWorkPrice = baseWorkPrice + (workSync ? 1999 : 0);
+
+  // Check if checkout is disabled due to overage (>150 employees and Automated Sync active)
+  const isVoiceDisabled = voiceSync && voiceEmployees > 150;
+  const isWorkDisabled = workSync && workEmployees > 150;
 
   return (
     <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
@@ -20,133 +39,221 @@ export default function PricingPage() {
         {/* Pricing Header */}
         <div className="mb-16">
           <span className="inline-block bg-[#141F33]/5 border border-[#141F33]/15 text-[#141F33] text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-            {t({ en: 'SAQYN RABT PLANS', ar: 'خطط أسعارنا' })}
+            Transparent Pricing
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold text-[#141F33] tracking-tight leading-tight max-w-2xl mx-auto">
-            {t({ en: 'Pick the product and plan that fits your business scale', ar: 'اختر المنتج والخطة التي تناسب حجم أعمالك' })}
+            Pick the Synthetiq engine that fits your business scale
           </h1>
           <p className="mt-4 text-xs md:text-sm text-[#141F33]/60 font-semibold max-w-xl mx-auto">
-            {t({ en: 'Simple, monthly flat rates. No setup fees, no lock-in contracts, cancel anytime.', ar: 'أسعار شهرية ثابتة وبسيطة. لا توجد رسوم إعداد، ولا عقود إلزامية.' })}
+            Simple monthly flat rates. Setup fees apply for direct hotline trunk provisioning and DB mapping.
           </p>
         </div>
 
-        {/* Pricing Grid */}
+        {/* 3-Column Pricing Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left items-stretch">
           
-          {/* Card 1: Voice Core */}
-          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between">
+          {/* Card 1: Synthetiq Voice Core */}
+          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between relative">
             <div>
               <div className="pb-6 border-b border-[#141F33]/10">
-                <h3 className="text-lg font-bold text-[#141F33]">Voice Core</h3>
-                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">AI Voice Agent Deep Dive</p>
+                <h3 className="text-xl font-bold text-[#141F33]">Synthetiq Voice Core</h3>
+                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">AI Call Agent</p>
+                
                 <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-3xl font-extrabold">$199</span>
+                  <span className="text-3xl font-extrabold">{currentVoicePrice.toLocaleString()} QAR</span>
                   <span className="text-xs text-[#141F33]/60 font-bold">/mo</span>
+                </div>
+                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">+ 4,999 QAR setup fee</p>
+              </div>
+
+              {/* Sync Add-On Toggle */}
+              <div className="mt-6 p-4 bg-[#F8F9FB] rounded-[24px] border border-[#141F33]/5">
+                <p className="text-[10px] font-extrabold text-[#141F33] uppercase tracking-wider mb-2.5">Want to automate data sync?</p>
+                <div className="flex bg-[#141F33]/5 p-0.5 rounded-full border border-[#141F33]/10">
+                  <button
+                    type="button"
+                    onClick={() => setVoiceSync(false)}
+                    className={`flex-1 rounded-full py-1 text-[10px] font-bold transition-all duration-200 ${
+                      !voiceSync ? 'bg-[#141F33] text-[#F8F9FB]' : 'text-[#141F33]'
+                    }`}
+                  >
+                    Manual CSV
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setVoiceSync(true)}
+                    className={`flex-1 rounded-full py-1 text-[10px] font-bold transition-all duration-200 ${
+                      voiceSync ? 'bg-[#141F33] text-[#F8F9FB]' : 'text-[#141F33]'
+                    }`}
+                  >
+                    API Sync (+999)
+                  </button>
                 </div>
               </div>
 
+              {/* Employee Limit Input Validator */}
+              <div className="mt-4 flex flex-col gap-1">
+                <label htmlFor="voice-employee-count" className="text-[10px] font-extrabold text-[#141F33] uppercase tracking-wider">Number of employees</label>
+                <input
+                  id="voice-employee-count"
+                  type="number"
+                  min="1"
+                  value={voiceEmployees}
+                  onChange={(e) => setVoiceEmployees(Number(e.target.value))}
+                  className="max-w-[80px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-full px-3 py-1.5 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#2A5CFF]"
+                />
+              </div>
+
+              {/* Features List */}
               <ul className="space-y-4 my-8">
                 <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
                   <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>Call routing & forwarding 24/7</span>
+                  <span>24/7 AI Call Answering & Synthesizer</span>
                 </li>
                 <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
                   <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>1,000 conversational minutes/mo</span>
+                  <span>Workflow & Department Routing</span>
                 </li>
                 <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
                   <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>Transcripts & CRM status logs</span>
-                </li>
-                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
-                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>Arabic & English standard speech</span>
+                  <span>Smart Tone-based Escalation Loop</span>
                 </li>
               </ul>
             </div>
 
-            <Link
-              href="/contact"
-              className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold py-3.5 text-center rounded-full transition-all duration-200 min-h-[44px] flex items-center justify-center shadow-sm"
+            <button
+              type="button"
+              disabled={isVoiceDisabled}
+              className={`w-full py-3.5 text-xs font-bold text-[#F8F9FB] rounded-full transition-all duration-200 min-h-[44px] flex items-center justify-center ${
+                isVoiceDisabled
+                  ? 'bg-[#141F33] opacity-50 pointer-events-none'
+                  : 'bg-[#141F33] hover:bg-[#141F33]/90'
+              }`}
             >
-              Get Started with Voice
-            </Link>
+              {isVoiceDisabled ? 'Contact Saqyn Rabt for Enterprise quote' : 'Get Started with Voice'}
+            </button>
           </div>
 
-          {/* Card 2: Chatbot Core */}
-          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between">
+          {/* Card 2: Synthetiq Work Core */}
+          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between relative">
             <div>
               <div className="pb-6 border-b border-[#141F33]/10">
-                <h3 className="text-lg font-bold text-[#141F33]">Chatbot Core</h3>
-                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">RAG Knowledge Portal</p>
+                <h3 className="text-xl font-bold text-[#141F33]">Synthetiq Work Core</h3>
+                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">HR & Policy Chatbot</p>
+                
                 <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-3xl font-extrabold">$299</span>
+                  <span className="text-3xl font-extrabold">{currentWorkPrice.toLocaleString()} QAR</span>
                   <span className="text-xs text-[#141F33]/60 font-bold">/mo</span>
+                </div>
+                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">+ 6,999 QAR setup fee</p>
+              </div>
+
+              {/* Sync Add-On Toggle */}
+              <div className="mt-6 p-4 bg-[#F8F9FB] rounded-[24px] border border-[#141F33]/5">
+                <p className="text-[10px] font-extrabold text-[#141F33] uppercase tracking-wider mb-2.5">Want to automate data sync?</p>
+                <div className="flex bg-[#141F33]/5 p-0.5 rounded-full border border-[#141F33]/10">
+                  <button
+                    type="button"
+                    onClick={() => setWorkSync(false)}
+                    className={`flex-1 rounded-full py-1 text-[10px] font-bold transition-all duration-200 ${
+                      !workSync ? 'bg-[#141F33] text-[#F8F9FB]' : 'text-[#141F33]'
+                    }`}
+                  >
+                    Manual CSV
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setWorkSync(true)}
+                    className={`flex-1 rounded-full py-1 text-[10px] font-bold transition-all duration-200 ${
+                      workSync ? 'bg-[#141F33] text-[#F8F9FB]' : 'text-[#141F33]'
+                    }`}
+                  >
+                    API Sync (+1,999)
+                  </button>
                 </div>
               </div>
 
+              {/* Employee Limit Input Validator */}
+              <div className="mt-4 flex flex-col gap-1">
+                <label htmlFor="work-employee-count" className="text-[10px] font-extrabold text-[#141F33] uppercase tracking-wider">Number of employees</label>
+                <input
+                  id="work-employee-count"
+                  type="number"
+                  min="1"
+                  value={workEmployees}
+                  onChange={(e) => setWorkEmployees(Number(e.target.value))}
+                  className="max-w-[80px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-full px-3 py-1.5 text-xs font-bold focus:outline-none focus:ring-2 focus:ring-[#1A3BCC]"
+                />
+              </div>
+
+              {/* Features List */}
               <ul className="space-y-4 my-8">
                 <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
                   <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>RAG Vector index on policy files</span>
+                  <span>Real-time PTO & Leave Balances Sync</span>
                 </li>
                 <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
                   <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>SAP & Oracle secure read-only sync</span>
+                  <span>Role & Designation Org Directory</span>
                 </li>
                 <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
                   <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>Unlimited internal Q&A requests</span>
-                </li>
-                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
-                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>Role-based file permission routing</span>
+                  <span>Unlimited Handbook & Policy RAG Q&A</span>
                 </li>
               </ul>
             </div>
 
-            <Link
-              href="/contact"
-              className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold py-3.5 text-center rounded-full transition-all duration-200 min-h-[44px] flex items-center justify-center shadow-sm"
+            <button
+              type="button"
+              disabled={isWorkDisabled}
+              className={`w-full py-3.5 text-xs font-bold text-[#F8F9FB] rounded-full transition-all duration-200 min-h-[44px] flex items-center justify-center ${
+                isWorkDisabled
+                  ? 'bg-[#141F33] opacity-50 pointer-events-none'
+                  : 'bg-[#141F33] hover:bg-[#141F33]/90'
+              }`}
             >
-              Get Started with Chatbot
-            </Link>
+              {isWorkDisabled ? 'Contact Saqyn Rabt for Enterprise quote' : 'Get Started with Work'}
+            </button>
           </div>
 
-          {/* Card 3: Enterprise Bundle (white bg, highlighted with a 2px Royal Blue ring and badge) */}
+          {/* Card 3: Saqyn Rabt Enterprise Bundle */}
           <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between ring-2 ring-[#2A5CFF] relative">
-            
-            {/* Recommended Pill Badge */}
-            <div className="absolute top-4 right-6 bg-[#2A5CFF] text-[#F8F9FB] text-[10px] font-bold rounded-full px-3 py-1 shadow-sm uppercase tracking-wider select-none">
+            {/* Absolute Recommended badge */}
+            <div className="absolute top-4 right-6 bg-[#2A5CFF] text-white rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider select-none shadow-sm">
               Recommended
             </div>
 
             <div>
               <div className="pb-6 border-b border-[#141F33]/10">
-                <h3 className="text-lg font-bold text-[#141F33]">Complete Business AI</h3>
-                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">Custom operations</p>
+                <h3 className="text-xl font-bold text-[#141F33]">Saqyn Rabt Enterprise</h3>
+                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">Full Automation Suite</p>
+                
                 <div className="mt-4 flex items-baseline gap-1">
-                  <span className="text-3xl font-extrabold">Custom</span>
-                  <span className="text-xs text-[#141F33]/60 font-bold">/quote</span>
+                  <span className="text-3xl font-extrabold">Custom Quote</span>
                 </div>
+                <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-1">Enterprise scale integrations</p>
               </div>
 
+              {/* Employee Limit Disclaimer */}
+              <div className="mt-6 p-4 bg-[#F8F9FB] rounded-[24px] border border-[#141F33]/5">
+                <p className="text-[10px] font-semibold text-[#141F33]/70 leading-relaxed">
+                  Required for database scale operations with more than 150 active employees.
+                </p>
+              </div>
+
+              {/* Features List */}
               <ul className="space-y-4 my-8">
                 <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
                   <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>AI Voice Agent + RAG Chatbot Suite</span>
+                  <span>Synthetiq Voice + Synthetiq Work</span>
                 </li>
                 <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
                   <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>Custom ERP workflows & API access</span>
+                  <span>Dedicated Integration Success Manager</span>
                 </li>
                 <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
                   <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>Dedicated cloud nodes & instances</span>
-                </li>
-                <li className="flex items-start gap-3 text-xs font-semibold text-[#141F33]/80">
-                  <Check className="w-4 h-4 text-[#2A5CFF] shrink-0 mt-0.5" />
-                  <span>Priority support SLA & custom training</span>
+                  <span>Bespoke Database & SSO Custom Link</span>
                 </li>
               </ul>
             </div>
@@ -161,11 +268,11 @@ export default function PricingPage() {
 
         </div>
 
-        {/* Gulf Compliance Subtext banner */}
+        {/* Bottom Employee Size Limit Notice */}
         <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-6 shadow-sm mt-16 max-w-3xl mx-auto flex items-center justify-center gap-3">
           <span className="w-2 h-2 rounded-full bg-[#2A5CFF]" />
           <span className="text-xs font-bold text-[#141F33]/60 uppercase tracking-wider">
-            All prices are fixed monthly. Overages only activate upon request.
+            Work plan covers up to 150 employees. For 150+ employees, please contact us for an Enterprise quote.
           </span>
         </div>
 

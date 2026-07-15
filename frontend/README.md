@@ -35,3 +35,10 @@ npm run build  # next build
 - **Mobile (Expo):** `cd frontend/mobile && npm start`
 - **Desktop (Electron):** `cd frontend/desktop && npm start`
 - **E2E Tests:** `cd frontend/e2e && npx playwright test`
+
+## Merge.dev Integration Setup
+1. Create a Merge.dev account and navigate to your dashboard settings.
+2. Retrieve your **Secret API Key** (`MERGE_API_KEY`) and **Public Key** (`NEXT_PUBLIC_MERGE_PUBLIC_KEY`) from the API Keys tab.
+3. Configure your redirect URIs in the Merge Dashboard under the Link Configuration options, mapping them to `/admin/integrations`.
+4. Copy the key values into your local `.env.local` config file.
+

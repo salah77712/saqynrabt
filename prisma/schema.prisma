@@ -1,0 +1,67 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Tenant {
+  id                 String        @id @default(uuid())
+  company_name       String
+  createdAt          DateTime      @default(now())
+  stripe_customer_id String?
+  plan_tier          String        @default("Starter") // Starter, Growth, Enterprise
+  employee_count     Int           @default(0)
+  integrations       Integration[]
+  employees          Employee[]
+  chatSessions       ChatSession[]
+}
+
+model Integration {
+  id                   String    @id @default(uuid())
+  tenantId             String
+  tenant               Tenant    @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  provider_name        String    // e.g., BambooHR, SAP, Manual
+  linked_account_token String?   // The token from Merge.dev (encrypted in prod)
+  is_active            Boolean   @default(true)
+  last_synced_at       DateTime?
+}
+
+model Employee {
+  id                    String   @id @default(uuid())
+  tenantId              String
+  tenant                Tenant   @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  remote_id             String?  // ID from the remote HRIS/ERP system
+  first_name            String
+  last_name             String
+  work_email            String
+  job_title             String?
+  department            String?
+  manager_name          String?
+  pto_balance_remaining Decimal  @default(0.0) @db.Decimal(5, 2)
+  employment_status     String?  // active, terminated, pending, etc.
+  created_at            DateTime @default(now())
+  updated_at            DateTime @updatedAt
+
+  @@unique([tenantId, work_email])
+}
+
+model ChatSession {
+  id        String        @id @default(uuid())
+  tenantId  String
+  tenant    Tenant        @relation(fields: [tenantId], references: [id], onDelete: Cascade)
+  createdAt DateTime      @default(now())
+  messages  ChatMessage[]
+}
+
+model ChatMessage {
+  id        String      @id @default(uuid())
+  sessionId String
+  session   ChatSession @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  sender    String      // user, assistant
+  text      String
+  citation  String?     // e.g., Company_Handbook_v2.pdf
+  createdAt DateTime    @default(now())
+}

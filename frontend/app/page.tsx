@@ -1,86 +1,43 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useScrollReveal } from '../hooks/useScrollReveal';
+import { useState } from 'react';
+import { useLocale } from './providers';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
-import { useLocale } from './providers';
 import Link from 'next/link';
-import { MessageSquare, Zap, Check } from 'lucide-react';
-
-const testimonials = [
-  { 
-    quote: {
-      en: 'Setup took one call. We went from 12 missed calls a day to zero in 48 hours.',
-      ar: 'استغرق الإعداد مكالمة واحدة. انتقلنا من 12 مكالمة فائتة يومياً إلى صفر في غضون 48 ساعة.'
-    },
-    name: { en: 'Operations Director', ar: 'مدير العمليات' },
-    org: { en: 'Boutique Hotel Group', ar: 'مجموعة الفنادق الفاخرة' }
-  },
-  { 
-    quote: {
-      en: 'Our HR team used to spend 3 hours a day answering the same policy questions. Now the chatbot handles it all.',
-      ar: 'كان فريق الموارد البشرية لدينا يقضي 3 ساعات يومياً في الإجابة على نفس الأسئلة المتعلقة بالسياسات. الآن يتولى المساعد الذكي كل شيء.'
-    },
-    name: { en: 'HR Manager', ar: 'مدير الموارد البشرية' },
-    org: { en: 'Al Wakra Medical Group', ar: 'مجموعة الوكرة الطبية' }
-  },
-  { 
-    quote: {
-      en: 'The ROI was immediate. Guest complaints used to sit for hours — now they are routed in seconds.',
-      ar: 'كان العائد على الاستثمار فورياً. كانت شكاوى الضيوف تنتظر لساعات — الآن يتم توجيهها في ثوانٍ.'
-    },
-    name: { en: 'General Manager', ar: 'المدير العام' },
-    org: { en: 'West Bay Hospitality', ar: 'شركة الخليج الغربي للضيافة' }
-  },
-];
 
 export default function MarketingPage() {
-  const [activeProduct, setActiveProduct] = useState<'voice' | 'chatbot'>('voice');
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeProduct, setActiveProduct] = useState<'voice' | 'work'>('voice');
   const { locale } = useLocale();
 
-  const { ref: testimonialsRef, isVisible: testimonialsVisible } = useScrollReveal<HTMLDivElement>();
-  const { ref: suiteRef, isVisible: suiteVisible } = useScrollReveal<HTMLDivElement>();
-
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
-  const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
-
-  const openCustomModal = () => {
-    setIsModalOpen(true);
-  };
 
   return (
-    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      
+    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       {/* ── Hero Section ─────────────────────────────────── */}
-      <section className="bg-[#F8F9FB] pt-20 md:pt-28 pb-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col items-center text-center gap-16">
+      <section className="relative pt-20 md:pt-28 pb-16 flex-1 flex flex-col justify-center">
+        <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col items-center text-center gap-16 w-full relative">
           
-          {/* Hero Content Stack */}
-          <div className="flex flex-col items-center text-center gap-8 max-w-3xl relative">
-            {/* Spotlight Background Glow */}
-            <div className="absolute inset-0 w-full h-full pointer-events-none -z-10" style={{ background: "radial-gradient(circle at 50% 50%, rgba(42, 92, 255, 0.08) 0%, transparent 70%)" }} />
-            
-            {/* Floating Rotated Cards */}
-            <div className="absolute -top-12 -left-16 w-24 h-24 bg-white border border-[#141F33]/5 rounded-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform rotate-[15deg] hidden lg:block pointer-events-none" />
-            <div className="absolute -top-12 -right-16 w-24 h-24 bg-white border border-[#141F33]/5 rounded-[24px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform -rotate-[15deg] hidden lg:block pointer-events-none" />
-            
-            {/* H1 Headline */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] text-[#141F33] tracking-tight">
+          {/* Floating Tilted Cards (Hidden on mobile) */}
+          <div className="absolute top-10 left-12 w-24 h-24 bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform rotate-[15deg] hidden lg:block pointer-events-none" />
+          <div className="absolute top-10 right-12 w-24 h-24 bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform -rotate-[15deg] hidden lg:block pointer-events-none" />
+          
+          {/* Headline and Subtext Block */}
+          <div className="flex flex-col items-center gap-8 max-w-3xl">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight">
               Total Business Automation. Human-like Voice & Internal AI.
             </h1>
-
-            {/* Dynamic Product Toggle */}
-            <div className="inline-flex rounded-full bg-[#141F33]/5 p-1 border border-[#141F33]/10 shadow-sm">
+            
+            {/* Interactive Product Toggle */}
+            <div className="inline-flex rounded-full bg-[#F8F9FB] p-1 border border-[#141F33]/10">
               <button
                 type="button"
                 onClick={() => setActiveProduct('voice')}
                 className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[38px] ${
                   activeProduct === 'voice'
-                    ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
+                    ? 'bg-[#141F33] text-[#F8F9FB]'
                     : 'bg-transparent text-[#141F33]'
                 }`}
               >
@@ -88,158 +45,135 @@ export default function MarketingPage() {
               </button>
               <button
                 type="button"
-                onClick={() => setActiveProduct('chatbot')}
+                onClick={() => setActiveProduct('work')}
                 className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[38px] ${
-                  activeProduct === 'chatbot'
-                    ? 'bg-[#141F33] text-[#F8F9FB] shadow-sm'
+                  activeProduct === 'work'
+                    ? 'bg-[#141F33] text-[#F8F9FB]'
                     : 'bg-transparent text-[#141F33]'
                 }`}
               >
-                Internal RAG Chatbot
+                Internal HR Chatbot
               </button>
             </div>
 
-            {/* Dynamic Subtext */}
-            <p className="text-base md:text-lg text-[#141F33]/70 max-w-2xl font-medium leading-relaxed min-h-[56px]">
+            {/* Dynamic Subheadline */}
+            <p className="text-base md:text-lg text-[#141F33]/70 font-semibold leading-relaxed max-w-2xl min-h-[56px]">
               {activeProduct === 'voice' ? (
                 t({
-                  en: "Connect your phone lines and your databases to our voice-first AI. Answer inbound calls, schedule appointments, and capture operations 24/7.",
-                  ar: "قم بتوصيل خطوط الهاتف وقواعد البيانات الخاصة بك بالذكاء الاصطناعي الصوتي. الرد على المكالمات وجدولة المواعيد 24/7."
+                  en: "Synthetiq Voice answers incoming business calls with human-like voice, logs routing paths, and escalates to live teams natively.",
+                  ar: "يجيب وكيل الهاتف الصوتي Synthetiq Voice على المكالمات الواردة بصوت بشري، ويوجه المسارات، ويصعد إلى الفرق الحية."
                 })
               ) : (
                 t({
-                  en: "Connect your ERP/SAP databases to our secure internal assistant. Empower your team to query HR policies, vacation status, and SOP guides instantly.",
-                  ar: "قم بتوصيل قواعد بيانات ERP/SAP بالمساعد الداخلي الآمن. تمكين فريقك من الاستعلام عن سياسات الموارد البشرية وإجراءات التشغيل."
+                  en: "Synthetiq Work connects to your HR and ERP systems to securely resolve employee vacation balance requests and policy documentation queries.",
+                  ar: "يتصل برنامج Synthetiq Work بأنظمة الموارد البشرية لتسهيل الاستعلام عن إجازات الموظفين ومستندات السياسة بأمان."
                 })
               )}
             </p>
 
-            {/* Dynamic CTA Row */}
-            <div className="relative w-full flex justify-center">
-              <svg className="absolute -top-8 left-[65%] w-16 h-8 text-[#2A5CFF] opacity-75 hidden lg:block" viewBox="0 0 100 50" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <path d="M10,10 Q50,40 90,20" />
-                <path d="M80,15 L90,20 L85,30" />
-              </svg>
-              
-              <div className="flex flex-wrap gap-4 justify-center">
+            {/* Dynamic CTA buttons & Arrow */}
+            <div className="relative w-full flex flex-col items-center mt-2">
+              <div className="flex gap-4">
                 <Link
-                  href={activeProduct === 'voice' ? '/voice-agent' : '/ai-chatbot'}
-                  className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold px-6 py-3 rounded-full transition-all duration-200 min-h-[44px] flex items-center shadow-sm"
+                  href={activeProduct === 'voice' ? '/synthetiq-voice' : '/synthetiq-work'}
+                  className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold px-8 py-3 rounded-full transition-all duration-200 min-h-[44px] flex items-center shadow-sm"
                 >
-                  {activeProduct === 'voice' ? t({ en: 'Explore Voice AI', ar: 'استكشف الذكاء الصوتي' }) : t({ en: 'Explore Chatbot AI', ar: 'استكشف المساعد الذكي' })}
+                  {activeProduct === 'voice' ? t({ en: 'Start Voice AI', ar: 'بدء الذكاء الصوتي' }) : t({ en: 'Start Employee AI', ar: 'بدء ذكاء الموظف' })}
                 </Link>
-                <button
-                  type="button"
-                  onClick={openCustomModal}
-                  className="bg-transparent border border-[#141F33]/15 text-[#141F33] hover:bg-[#141F33]/5 text-xs font-bold px-6 py-3 rounded-full transition-all duration-200 min-h-[44px]"
+                <Link
+                  href="/pricing"
+                  className="bg-transparent border border-[#141F33]/15 text-[#141F33] hover:bg-[#141F33]/5 text-xs font-bold px-8 py-3 rounded-full transition-all duration-200 min-h-[44px] flex items-center"
                 >
-                  {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
-                </button>
+                  {t({ en: 'View Plans', ar: 'عرض الخطط' })}
+                </Link>
+              </div>
+
+              {/* Curved Arrow below CTA, pointing down to dynamic preview */}
+              <div className="mt-8">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="stroke-[#141F33]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20,5 Q30,20 20,35 M12,28 L20,35 L28,28" />
+                </svg>
               </div>
             </div>
-
           </div>
 
-          {/* Dynamic Preview Container (Navy/Canvas Monochromatic SVG elements) */}
-          <div className="w-full max-w-2xl">
-            <div className="relative bg-white rounded-[40px] border border-[#141F33]/10 shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 overflow-hidden min-h-[300px] flex flex-col justify-between">
+          {/* ── Dynamic Preview Mockup Container ──────────────── */}
+          <div className="w-full max-w-xl">
+            <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex items-center justify-center min-h-[280px]">
               
-              {/* Header bar of preview */}
-              <div className="flex items-center justify-between pb-4 border-b border-[#141F33]/10">
-                <div className="flex items-center gap-2">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#141F33]/20" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#141F33]/20" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#141F33]/20" />
-                </div>
-                <span className="text-[10px] font-bold text-[#141F33]/50 uppercase tracking-widest">
-                  {activeProduct === 'voice' ? 'Voice Agent Workflow' : 'Internal RAG Portal'}
-                </span>
-                <div className="flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-[#141F33]/5 text-[#141F33] text-[9px] font-bold border border-[#141F33]/10">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#141F33] animate-pulse" />
-                  ACTIVE MOCKUP
-                </div>
-              </div>
+              {activeProduct === 'voice' ? (
+                /* Dynamic Voice SVG Mockup (Navy & Canvas only) */
+                <svg width="340" height="200" viewBox="0 0 340 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Central Node - Robot Head */}
+                  <rect x="130" y="70" width="80" height="60" rx="12" fill="#F8F9FB" stroke="#141F33" strokeWidth="2.5" />
+                  <circle cx="155" cy="95" r="4" fill="#141F33" />
+                  <circle cx="185" cy="95" r="4" fill="#141F33" />
+                  <path d="M150,115 H190" stroke="#141F33" strokeWidth="2" strokeLinecap="round" />
+                  <text x="170" y="60" textAnchor="middle" fill="#141F33" fontSize="9" fontWeight="800" letterSpacing="1">VOICE AI</text>
 
-              {/* Dynamic Preview Screen */}
-              <div className="flex-1 py-6 flex items-center justify-center">
-                {activeProduct === 'voice' ? (
-                  /* Phone call workflow dashboard mockup (Navy and Canvas only) */
-                  <div className="w-full max-w-md flex flex-col gap-4">
-                    <div className="grid grid-cols-3 gap-4 items-center">
-                      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[20px] p-3 text-center">
-                        <p className="text-[9px] font-bold text-[#141F33]/40 uppercase tracking-wider">Inbound Call</p>
-                        <p className="text-xs font-bold text-[#141F33] mt-1">User Dialed</p>
-                      </div>
-                      
-                      <div className="flex justify-center">
-                        <svg width="40" height="20" viewBox="0 0 40 20" fill="none" className="stroke-[#141F33]">
-                          <path d="M0,10 L32,10 M26,4 L32,10 L26,16" strokeWidth="2" strokeDasharray="3,3" />
-                        </svg>
-                      </div>
+                  {/* Connected boxes */}
+                  {/* IVR Node */}
+                  <g>
+                    <rect x="10" y="20" width="85" height="36" rx="8" fill="#F8F9FB" stroke="#141F33" strokeWidth="2" />
+                    <text x="52" y="42" textAnchor="middle" fill="#141F33" fontSize="9" fontWeight="bold">IVR Menu</text>
+                    <path d="M95,38 L130,80" stroke="#141F33" strokeWidth="2" strokeDasharray="3,3" />
+                  </g>
 
-                      <div className="bg-[#141F33] border border-[#141F33] rounded-[20px] p-3 text-center">
-                        <p className="text-[9px] font-bold text-[#F8F9FB]/40 uppercase tracking-wider">Voice AI Node</p>
-                        <p className="text-xs font-bold text-[#F8F9FB] mt-1">SOP Answer</p>
-                      </div>
-                    </div>
+                  {/* Call Routing Node */}
+                  <g>
+                    <rect x="10" y="144" width="85" height="36" rx="8" fill="#F8F9FB" stroke="#141F33" strokeWidth="2" />
+                    <text x="52" y="166" textAnchor="middle" fill="#141F33" fontSize="9" fontWeight="bold">Call Routing</text>
+                    <path d="M95,162 L130,120" stroke="#141F33" strokeWidth="2" strokeDasharray="3,3" />
+                  </g>
 
-                    <div className="flex justify-center">
-                      <svg width="20" height="40" viewBox="0 0 20 40" fill="none" className="stroke-[#141F33]">
-                        <path d="M10,0 L10,32 M4,26 L10,32 L16,26" strokeWidth="2" strokeDasharray="3,3" />
-                      </svg>
-                    </div>
+                  {/* Escalation Node */}
+                  <g>
+                    <rect x="245" y="82" width="85" height="36" rx="8" fill="#F8F9FB" stroke="#141F33" strokeWidth="2" />
+                    <text x="287" y="104" textAnchor="middle" fill="#141F33" fontSize="9" fontWeight="bold">Escalation</text>
+                    <path d="M210,100 H245" stroke="#141F33" strokeWidth="2" strokeDasharray="3,3" />
+                  </g>
+                </svg>
+              ) : (
+                /* Dynamic Work Chat Mockup SVG (Navy & Canvas only) */
+                <svg width="340" height="200" viewBox="0 0 340 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  {/* Chat Container Header */}
+                  <rect x="20" y="10" width="300" height="180" rx="20" fill="#F8F9FB" stroke="#141F33" strokeWidth="2.5" />
+                  <line x1="20" y1="42" x2="320" y2="42" stroke="#141F33" strokeWidth="2" />
+                  <circle cx="40" cy="26" r="4" fill="#141F33" />
+                  <circle cx="54" cy="26" r="4" fill="#141F33" />
+                  
+                  {/* User Message Bubble */}
+                  <rect x="150" y="56" width="150" height="36" rx="14" fill="#141F33" />
+                  <text x="164" y="77" fill="#F8F9FB" fontSize="9" fontWeight="bold">How much PTO do I have?</text>
 
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[20px] p-3 text-left">
-                        <p className="text-[9px] font-bold text-[#141F33]/40 uppercase tracking-wider">Route Trigger</p>
-                        <p className="text-xs font-bold text-[#141F33] mt-0.5">Booking Database Sync</p>
-                      </div>
-                      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[20px] p-3 text-left">
-                        <p className="text-[9px] font-bold text-[#141F33]/40 uppercase tracking-wider">Escalate Trigger</p>
-                        <p className="text-xs font-bold text-[#141F33] mt-0.5">Agent Ring Group</p>
-                      </div>
-                    </div>
-                  </div>
-                ) : (
-                  /* Chat window with HR question (Navy and Canvas only) */
-                  <div className="w-full max-w-md flex flex-col gap-4">
-                    <div className="self-end bg-[#141F33] text-[#F8F9FB] text-xs font-semibold px-4 py-2.5 rounded-[20px] max-w-[85%]">
-                      How do I submit my Q3 expense report in Oracle ERP?
-                    </div>
-                    
-                    <div className="self-start bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] text-xs font-semibold px-4 py-2.5 rounded-[20px] max-w-[90%] flex gap-3">
-                      <span className="text-xs shrink-0 select-none">AI:</span>
-                      <div>
-                        To submit your Q3 expenses, navigate to <strong>Oracle Expense module</strong>, create a new Expense Claim, select code <strong>Q3-OPS</strong>, and attach invoices.
-                        <div className="mt-2 text-[9px] font-bold text-[#141F33]/40 uppercase tracking-wider border-t border-[#141F33]/15 pt-2">
-                          Source: ERP-Oracle-Guide.pdf
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </div>
+                  {/* Assistant Avatar */}
+                  <circle cx="46" cy="126" r="14" fill="#141F33" />
+                  <path d="M42,122 L46,126 L50,122" stroke="#F8F9FB" strokeWidth="1.5" />
 
-              {/* Bottom tag of mockup */}
-              <div className="border-t border-[#141F33]/10 pt-3 text-center">
-                <span className="text-[10px] text-[#141F33]/40 font-bold uppercase tracking-wider">
-                  Interactive Live Dashboard Simulator
-                </span>
-              </div>
+                  {/* Assistant Message Bubble */}
+                  <rect x="70" y="108" width="180" height="60" rx="14" fill="#FFFFFF" stroke="#141F33" strokeWidth="2" />
+                  <text x="82" y="130" fill="#141F33" fontSize="9" fontWeight="bold">You have 15 days remaining.</text>
+                  
+                  {/* Micro Calendar inside response */}
+                  <rect x="82" y="140" width="22" height="18" rx="3" fill="#F8F9FB" stroke="#141F33" strokeWidth="1.5" />
+                  <path d="M93,143 V146" stroke="#141F33" strokeWidth="1" />
+                  <path d="M93,151 L95,153 L98,149" stroke="#141F33" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                  <text x="110" y="152" fill="#141F33" fontSize="8" fontWeight="800">Checked: Sync</text>
+                </svg>
+              )}
 
             </div>
           </div>
 
-          {/* ── Trust Integration Logos Row ─────────────────── */}
-          <div className="w-full max-w-3xl flex flex-col items-center gap-4">
-            <p className="text-[10px] font-extrabold tracking-widest text-[#141F33]/40 uppercase text-center">
-              Direct Secure ERP & Communication Integrations
+          {/* ── Trust Row ──────────────────────────────────── */}
+          <div className="flex flex-col items-center gap-4 mt-6">
+            <p className="text-[10px] font-extrabold tracking-widest text-[#141F33]/40 uppercase">
+              Direct HR & Call Stack Integrations
             </p>
-            <div className="bg-white rounded-full px-6 py-3 border border-[#141F33]/10 shadow-sm flex flex-wrap justify-center items-center gap-6 md:gap-8">
+            <div className="flex flex-wrap justify-center gap-4">
               {['SAP', 'Oracle', 'Salesforce', 'Slack', 'Jira', 'HubSpot'].map((logo, i) => (
-                <div key={i} className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#F8F9FB] border border-[#141F33]/5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#141F33]/20" />
-                  <span className="text-[10px] font-bold text-[#141F33]/60 uppercase tracking-wider">{logo}</span>
+                <div key={i} className="bg-white rounded-full border border-[#141F33]/10 px-6 py-2 text-xs font-bold tracking-wider shadow-sm select-none">
+                  {logo}
                 </div>
               ))}
             </div>
@@ -248,153 +182,7 @@ export default function MarketingPage() {
         </div>
       </section>
 
-      {/* ── Suite Exploration cards ──────────────────────── */}
-      <section ref={suiteRef} className={`py-20 bg-[#F8F9FB] border-t border-[#141F33]/10 animate-reveal ${suiteVisible ? 'revealed' : ''}`}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          
-          <div className="text-center mb-16">
-            <p className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase mb-3">
-              Solution Overview
-            </p>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33]">
-              Enterprise Intelligent System Architecture
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Card 1 */}
-            <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between">
-              <div>
-                <div className="w-10 h-10 rounded-full bg-[#2A5CFF]/15 flex items-center justify-center text-[#2A5CFF] mb-6">
-                  <Zap className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-[#141F33] mb-3">Voice Automation</h3>
-                <p className="text-xs text-[#141F33]/60 font-semibold leading-relaxed mb-6">
-                  Autonomously pick up every phone call, run scheduling tasks, identify custom caller context, and route emergencies.
-                </p>
-              </div>
-              <Link href="/voice-agent" className="text-xs font-bold text-[#2A5CFF] hover:underline flex items-center gap-1">
-                Explore Voice Agent Deep Dive &rarr;
-              </Link>
-            </div>
-
-            {/* Card 2 */}
-            <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between">
-              <div>
-                <div className="w-10 h-10 rounded-full bg-[#1A3BCC]/15 flex items-center justify-center text-[#1A3BCC] mb-6">
-                  <MessageSquare className="w-5 h-5" />
-                </div>
-                <h3 className="text-lg font-bold text-[#141F33] mb-3">Internal Knowledge</h3>
-                <p className="text-xs text-[#141F33]/60 font-semibold leading-relaxed mb-6">
-                  Index internal HR files, SOP binders, and contract databases. Provide employees with immediate, context-verified solutions.
-                </p>
-              </div>
-              <Link href="/ai-chatbot" className="text-xs font-bold text-[#1A3BCC] hover:underline flex items-center gap-1">
-                Explore RAG Chatbot Deep Dive &rarr;
-              </Link>
-            </div>
-
-            {/* Card 3 */}
-            <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between md:col-span-2 lg:col-span-1">
-              <div>
-                <div className="w-10 h-10 rounded-full bg-[#141F33]/10 flex items-center justify-center text-[#141F33] mb-6 font-bold text-sm">
-                  $
-                </div>
-                <h3 className="text-lg font-bold text-[#141F33] mb-3">Transparent Plans</h3>
-                <p className="text-xs text-[#141F33]/60 font-semibold leading-relaxed mb-6">
-                  Simple pricing based on usage limits. No setups or locking commitments. Choose what works best for your workflow scale.
-                </p>
-              </div>
-              <Link href="/pricing" className="text-xs font-bold text-[#141F33] hover:underline flex items-center gap-1">
-                View Pricing Grid &rarr;
-              </Link>
-            </div>
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── Testimonials ─────────────────────────────────── */}
-      <section ref={testimonialsRef} className={`py-20 bg-[#F8F9FB] border-t border-[#141F33]/10 animate-reveal ${testimonialsVisible ? 'revealed' : ''}`}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-extrabold text-[#141F33]">
-              What Operations Leaders Say
-            </h2>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((tItem, i) => (
-              <div key={i} className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
-                <p className="text-xs text-[#141F33] font-medium italic leading-relaxed mb-6">
-                  &ldquo;{t(tItem.quote)}&rdquo;
-                </p>
-                <div className="border-t border-[#141F33]/10 pt-4">
-                  <p className="text-xs font-bold text-[#141F33]">{t(tItem.name)}</p>
-                  <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-0.5">{t(tItem.org)}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-        </div>
-      </section>
-
-      {/* ── Custom banner CTA ────────────────────────────── */}
-      <section className="py-16 bg-[#141F33] text-[#F8F9FB] text-center">
-        <div className="max-w-3xl mx-auto px-6 flex flex-col items-center gap-6">
-          <h2 className="text-2xl md:text-3xl font-bold">
-            Need Custom Integrations?
-          </h2>
-          <p className="text-xs text-[#F8F9FB]/70 font-semibold leading-relaxed max-w-xl">
-            We provide specialized integrations with bespoke ERP schemas, custom SSO, and dedicated phone trunks for large organizations. Let's speak.
-          </p>
-          <button
-            type="button"
-            onClick={openCustomModal}
-            className="bg-[#F8F9FB] hover:bg-[#F8F9FB]/90 text-[#141F33] text-xs font-bold px-6 py-3 rounded-full transition-all duration-200 min-h-[44px]"
-          >
-            Request Custom Consultation
-          </button>
-        </div>
-      </section>
-
       <Footer />
-
-      {/* ── Request consultation modal ─────────────────────── */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33]/40 backdrop-blur-sm">
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] max-w-md w-full p-8 shadow-2xl relative" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-            <h3 className="text-lg font-bold text-[#141F33] mb-2">
-              {t({ en: 'Request a consultation', ar: 'طلب استشارة' })}
-            </h3>
-            <p className="text-xs text-[#141F33]/70 font-semibold mb-6 leading-relaxed">
-              {t({
-                en: 'Tell us about your operations. A 15-minute call is all we need to draw up a customized setup plan.',
-                ar: 'أخبرنا عن عملياتك. مكالمة مدتها 15 دقيقة هي كل ما نحتاجه لوضع خطة إعداد مخصصة.'
-              })}
-            </p>
-            <div className="flex flex-col gap-3">
-              <a
-                href={calendlyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold py-3 text-center rounded-full transition-all duration-200 min-h-[44px] flex items-center justify-center"
-              >
-                {t({ en: 'Book Consultation Call', ar: 'حجز مكالمة استشارية' })}
-              </a>
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(false)}
-                className="bg-transparent border border-[#141F33]/15 text-[#141F33] hover:bg-[#141F33]/5 text-xs font-bold py-3 rounded-full transition-all duration-200 min-h-[44px]"
-              >
-                {t({ en: 'Cancel', ar: 'إلغاء' })}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
     </div>
   );
 }
