@@ -86,18 +86,18 @@ return (
 <p className="text-3xl font-black text-[#141F33] dark:text-[#F8F9FB] mt-1">QAR {formatNumber(s.mrr)}</p>
 <p className="text-xs text-[#2A5CFF] font-bold mt-2"><TrendingUp className="w-3.5 h-3.5 inline text-[#2A5CFF]" /> {s.mrr_growth}% {t({en: 'from last month', ar: 'عن الشهر الماضي'})}</p>
 </Card>
-<Card>
-<p className="text-[10px] uppercase font-bold text-[#141F33]">{t({en: 'Annual Run Rate', ar: 'معدل التشغيل السنوي'})}</p>
+      <Card className="p-6 rounded-2xl">
+        <p className="text-[10px] uppercase font-bold text-[#141F33]">{t({en: 'Annual Run Rate', ar: 'معدل التشغيل السنوي'})}</p>
 <p className="text-3xl font-black text-[#141F33] dark:text-[#F8F9FB] mt-1">QAR {formatArr(s.arr)}</p>
 <p className="text-xs text-[#2A5CFF] font-bold mt-2"><TrendingUp className="w-3.5 h-3.5 inline text-[#2A5CFF]" /> {s.arr_growth}% {t({en: 'YoY growth', ar: 'نمو سنوي'})}</p>
 </Card>
-<Card>
-<p className="text-[10px] uppercase font-bold text-[#141F33]">{t({en: 'Active Companies', ar: 'الشركات النشطة'})}</p>
+      <Card className="p-6 rounded-2xl">
+        <p className="text-[10px] uppercase font-bold text-[#141F33]">{t({en: 'Active Companies', ar: 'الشركات النشطة'})}</p>
 <p className="text-3xl font-black text-[#141F33] dark:text-[#F8F9FB] mt-1">{formatNumber(s.active_companies)}</p>
 <p className="text-xs text-[#141F33] font-bold mt-2">{t({en: '0 churn cases', ar: '0 حالات انسحاب'})}</p>
 </Card>
-<Card>
-<p className="text-[10px] uppercase font-bold text-[#141F33]">{t({en: 'Monthly Questions Usage', ar: 'استخدام الأسئلة الشهري'})}</p>
+      <Card className="p-6 rounded-2xl">
+        <p className="text-[10px] uppercase font-bold text-[#141F33]">{t({en: 'Monthly Questions Usage', ar: 'استخدام الأسئلة الشهري'})}</p>
 <p className="text-3xl font-black text-[#141F33] dark:text-[#F8F9FB] mt-1">{formatNumber(s.questions_used)}</p>
 <p className="text-xs text-[#2A5CFF] font-bold mt-2">{t({en: `${s.usage_pct}% of total capacity`, ar: `${s.usage_pct}% من السعة الإجمالية`})}</p>
 </Card>
