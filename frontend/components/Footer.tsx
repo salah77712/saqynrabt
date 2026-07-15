@@ -173,13 +173,13 @@ return (
 
       <div className="flex flex-wrap items-center gap-6 justify-center">
         <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">
-          <Link href="/sitemap" className="hover:text-[#141F33] transition-colors">{t({ en: 'Site Map', ar: 'خريطة الموقع' })}</Link>
-          <span>|</span>
-          <Link href="/terms-and-conditions" className="hover:text-[#141F33] transition-colors">{t({ en: 'Terms', ar: 'الشروط' })}</Link>
-          <span>|</span>
-          <Link href="/privacy-policy" className="hover:text-[#141F33] transition-colors">{t({ en: 'Privacy', ar: 'سياسة الخصوصية' })}</Link>
-          <span>|</span>
-          <Link href="/trust" className="hover:text-[#141F33] transition-colors">{t({ en: 'Trust Center', ar: 'مركز الثقة' })}</Link>
+          <Link href="/sitemap" className="hover:text-[#141F33] transition-colors flex items-center">{t({ en: 'Site Map', ar: 'خريطة الموقع' })}</Link>
+          <span className="flex items-center">|</span>
+          <Link href="/terms-and-conditions" className="hover:text-[#141F33] transition-colors flex items-center">{t({ en: 'Terms', ar: 'الشروط' })}</Link>
+          <span className="flex items-center">|</span>
+          <Link href="/privacy-policy" className="hover:text-[#141F33] transition-colors flex items-center">{t({ en: 'Privacy', ar: 'سياسة الخصوصية' })}</Link>
+          <span className="flex items-center">|</span>
+          <Link href="/trust" className="hover:text-[#141F33] transition-colors flex items-center">{t({ en: 'Trust Center', ar: 'مركز الثقة' })}</Link>
         </div>
         
         <SocialLinks />
