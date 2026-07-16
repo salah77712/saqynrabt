@@ -55,7 +55,7 @@ return (
 </div>
 
 {error && (
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#2A5CFF] rounded-[40px] p-3 text-xs font-semibold">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#2A5CFF] rounded-xl p-3 text-xs font-semibold">
 {t({ en: 'Could not load fresh data. Showing sample messages.', ar: 'تعذر تحميل البيانات الحديثة. يتم عرض رسائل نموذجية.' })}
 </div>
 )}
@@ -66,7 +66,7 @@ return (
 <button
 key={ch}
 onClick={() => setFilterChannel(ch)}
-className={`px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
             filterChannel === ch
               ? 'bg-[#141F33] border-[#141F33] text-[#F8F9FB]'
               : 'bg-[#F8F9FB] border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]'
@@ -78,7 +78,7 @@ className={`px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] border trans
 </div>
 
 {/* Inbox List */}
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
 {loading ? (
 <p className="text-xs text-[#141F33] font-semibold text-center py-6">
 {t({ en: 'Loading messages...', ar: 'جاري تحميل الرسائل...' })}

@@ -104,7 +104,7 @@ export function ChatWidget() {
 
       {/* Chat Tray */}
       {isOpen && (
-        <div className="w-[380px] h-[500px] bg-white rounded-[40px] border border-[#141F33]/10 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col overflow-hidden border-t-4 border-t-[#1A3BCC]">
+        <div className="w-[380px] h-[500px] bg-white rounded-xl border border-[#141F33]/10 shadow-card flex flex-col overflow-hidden border-t-4 border-t-[#1A3BCC]">
           
           {/* Header */}
           <div className="bg-white border-b border-[#141F33]/10 px-6 py-4 flex items-center justify-between">

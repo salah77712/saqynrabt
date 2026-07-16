@@ -144,7 +144,7 @@ export default function CaseStudiesPage() {
                         triggerEffects();
                       }
                     }}
-                    className={`relative w-[300px] md:w-[360px] h-[480px] rounded-[40px] overflow-hidden cursor-pointer shadow-xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between p-8 border ${
+                    className={`relative w-[300px] md:w-[360px] h-[480px] rounded-xl overflow-hidden cursor-pointer shadow-xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between p-8 border ${
                       isActive 
                         ? 'bg-[#141F33] text-[#F8F9FB] border-transparent scale-100 opacity-100 z-35 ring-4 ring-[#2A5CFF]/35 shadow-[0_20px_50px_rgba(42,92,255,0.25)]' 
                         : 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 scale-90 opacity-40 filter blur-[1px] z-10 hover:opacity-60'
@@ -168,7 +168,7 @@ export default function CaseStudiesPage() {
                       </div>
                       
                       {/* Stylized Circular Icon Container */}
-                      <div className={`w-12 h-12 rounded-[40px] flex items-center justify-center transition-transform duration-300 ${
+                      <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 ${
                         isActive 
                           ? 'bg-[#2A5CFF]/15 text-[#2A5CFF] scale-110 shadow-[0_0_20px_rgba(42,92,255,0.2)] animate-pulse' 
                           : 'bg-[#F8F9FB] text-[#141F33]/40'
@@ -198,7 +198,7 @@ export default function CaseStudiesPage() {
                       {/* Explore Link (Animated Capsule Button) */}
                       <Link
                         href={`/case-studies/${item.slug}`}
-                        className={`w-full flex items-center justify-between min-h-[44px] font-bold text-xs px-6 py-3 rounded-[40px] border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+                        className={`w-full flex items-center justify-between min-h-[44px] font-bold text-xs px-6 py-3 rounded-xl border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
                           isActive
                             ? 'bg-[#2A5CFF] hover:bg-[#2A5CFF]/95 text-[#F8F9FB] border-transparent hover:shadow-[0_8px_25px_rgba(42,92,255,0.4)] hover:translate-y-[-1px] active:translate-y-0'
                             : 'bg-[#F8F9FB] hover:bg-[#141F33] text-[#141F33] border-[#141F33]/10'
@@ -255,7 +255,7 @@ export default function CaseStudiesPage() {
 
         {/* Detailed Metrics Panel of Active Card */}
 <div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
-<div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+<div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 shadow-card">
             <div className="flex-1">
               <span className="text-[10px] font-black uppercase tracking-widest text-[#141F33]/60 mb-1 block">
                 {list[currentIndex].meta}
@@ -266,7 +266,7 @@ export default function CaseStudiesPage() {
             </div>
             <div className="flex flex-wrap gap-8 justify-end">
               {list[currentIndex].metrics.map((metric, i) => (
-                <div key={i} className="flex items-center gap-3.5 bg-[#2A5CFF]/10 border border-[#2A5CFF]/10 rounded-[40px] px-5 py-3 shadow-sm">
+                <div key={i} className="flex items-center gap-3.5 bg-[#2A5CFF]/10 border border-[#2A5CFF]/10 rounded-xl px-5 py-3 shadow-sm">
                   <Check className="w-5 h-5 text-[#2A5CFF] shrink-0" />
                   <span className="text-xs font-extrabold text-[#141F33]">{metric}</span>
                 </div>

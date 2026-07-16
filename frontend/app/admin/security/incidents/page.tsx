@@ -136,38 +136,38 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
         <button
           type="button"
           onClick={() => setShowCreate(!showCreate)}
-          className="flex items-center gap-3 bg-[#141F33] text-[#F8F9FB] text-xs font-bold px-6 py-3 rounded-[40px] min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+          className="flex items-center gap-3 bg-[#141F33] text-[#F8F9FB] text-xs font-bold px-6 py-3 rounded-xl min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
           <PlusSvg />{t({ en: 'New Incident', ar: 'حادث جديد' })}
         </button>
       </div>
 
       {error && (
-        <div className="flex items-center gap-3 text-[#141F33] text-xs bg-[#F8F9FB] p-3 rounded-[40px] border border-[#141F33]/10">
+        <div className="flex items-center gap-3 text-[#141F33] text-xs bg-[#F8F9FB] p-3 rounded-xl border border-[#141F33]/10">
           <AlertTriangleSvg /> {error}
         </div>
       )}
 
       {showCreate && (
-        <div className="bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 p-8 space-y-4">
+        <div className="bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 p-8 space-y-4">
           <h2 className="text-sm font-bold text-[#141F33]">{t({ en: 'Log New Incident', ar: 'تسجيل حادث جديد' })}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <input
               placeholder={t({ en: 'Incident Title', ar: 'عنوان الحادث' })}
               value={newIncident.title}
               onChange={(e) => setNewIncident({ ...newIncident, title: e.target.value })}
-              className="col-span-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+              className="col-span-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             />
             <textarea
               placeholder={t({ en: 'Description', ar: 'الوصف' })}
               value={newIncident.description}
               onChange={(e) => setNewIncident({ ...newIncident, description: e.target.value })}
-              className="col-span-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+              className="col-span-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             />
             <select
               value={newIncident.incidentType}
               onChange={(e) => setNewIncident({ ...newIncident, incidentType: e.target.value as any })}
-              className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+              className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             >
               <option value="data_breach">{t({ en: 'Data Breach', ar: 'خرق بيانات' })}</option>
               <option value="system_outage">{t({ en: 'System Outage', ar: 'انقطاع النظام' })}</option>
@@ -178,7 +178,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
             <select
               value={newIncident.severity}
               onChange={(e) => setNewIncident({ ...newIncident, severity: e.target.value as any })}
-              className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+              className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             >
               <option value="critical">{t({ en: 'Critical', ar: 'حرج' })}</option>
               <option value="high">{t({ en: 'High', ar: 'عالي' })}</option>
@@ -189,21 +189,21 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
               placeholder={t({ en: 'Affected Resources', ar: 'الموارد المتأثرة' })}
               value={newIncident.affectedResources}
               onChange={(e) => setNewIncident({ ...newIncident, affectedResources: e.target.value })}
-              className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+              className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             />
           </div>
           <div className="flex gap-3 justify-end">
             <button
               type="button"
               onClick={() => setShowCreate(false)}
-              className="px-6 py-3 rounded-[40px] border border-[#141F33]/10 text-xs font-bold text-[#141F33]/60 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 hover:bg-[#141F33]"
+              className="px-6 py-3 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33]/60 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 hover:bg-[#141F33]"
             >
               {t({ en: 'Cancel', ar: 'إلغاء' })}
             </button>
             <button
               type="button"
               onClick={handleCreate}
-              className="px-6 py-3 rounded-[40px] bg-[#141F33] text-[#F8F9FB] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+              className="px-6 py-3 rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
             >
               {t({ en: 'Create Incident', ar: 'إنشاء الحادث' })}
             </button>
@@ -218,7 +218,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
           placeholder={t({ en: 'Filter incidents...', ar: 'تصفية الحوادث...' })}
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="min-h-[44px] w-full pl-10 pr-4 rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal shadow-sm"
+          className="min-h-[44px] w-full pl-10 pr-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal shadow-sm"
         />
       </div>
 
@@ -229,7 +229,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
       ) : (
         <div className="space-y-3">
           {filteredIncidents.map((inc) => (
-            <div key={inc.id} className="bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 overflow-hidden">
+            <div key={inc.id} className="bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 overflow-hidden">
               <button
                 type="button"
                 onClick={() => setExpandedId(expandedId === inc.id ? null : inc.id)}
@@ -267,7 +267,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
                         key={s}
                         type="button"
                         onClick={() => handleStatusUpdate(inc.id, s)}
-                        className={`px-2.5 py-1.5 rounded-[40px] text-[10px] font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+                        className={`px-2.5 py-1.5 rounded-xl text-[10px] font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
                           inc.status === s
                             ? 'bg-[#141F33] text-[#F8F9FB]'
                             : 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33]'

@@ -103,10 +103,10 @@ export default function TrustPage() {
               return (
                 <div
                   key={i}
-                  className="rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] p-8 flex flex-col gap-8 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all"
+                  className="rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] p-8 flex flex-col gap-8 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all"
                 >
                   <div className="flex items-start justify-between">
-                    <div className="w-10 h-10 rounded-[40px] bg-[#141F33] flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-[#141F33] flex items-center justify-center">
                       {iconMap[card.icon] || <Shield className="w-5 h-5" />}
                     </div>
                     {card.badge && (
@@ -140,7 +140,7 @@ export default function TrustPage() {
                       </div>
                       <button
                         type="button"
-                        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] bg-[#141F33] text-[#141F33] hover:bg-[#141F33] transition-all hover:scale-[1.01] hover:shadow-md"
+                        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#141F33] hover:bg-[#141F33] transition-all hover:scale-[1.01] hover:shadow-md"
                       >
                         <Download className="w-4 h-4" />
                         {card.actionLabel}
@@ -170,7 +170,7 @@ export default function TrustPage() {
           <div className="mt-6 flex items-center justify-center gap-8">
             <a
               href="mailto:dpo@saqynrabt.com"
-              className="inline-flex items-center gap-3 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-6 py-3 rounded-[40px] hover:bg-[#141F33] transition-all hover:scale-[1.01] hover:shadow-md min-h-[44px]"
+              className="inline-flex items-center gap-3 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-6 py-3 rounded-xl hover:bg-[#141F33] transition-all hover:scale-[1.01] hover:shadow-md min-h-[44px]"
             >
               Contact DPO: dpo@saqynrabt.com
             </a>

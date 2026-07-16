@@ -18,8 +18,8 @@ export default function FeaturesLoading() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(12)].map((_, i) => (
-              <div key={i} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8">
-                <div className="h-12 w-12 rounded-[40px] bg-[#F8F9FB] animate-pulse mb-4" />
+              <div key={i} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8">
+                <div className="h-12 w-12 rounded-xl bg-[#F8F9FB] animate-pulse mb-4" />
                 <div className="h-5 w-40 bg-[#F8F9FB] rounded animate-pulse mb-2" />
                 <div className="h-4 w-full bg-[#F8F9FB] rounded animate-pulse mb-1" />
                 <div className="h-4 w-3/4 bg-[#F8F9FB] rounded animate-pulse" />

@@ -35,7 +35,7 @@ reports: [
 const renderNode = (node: EmployeeNode) => {
 return (
 <div key={node.name} className="flex flex-col items-center mt-4">
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-4 shadow-sm w-48 text-center">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm w-48 text-center">
 <p className="text-xs font-bold text-[#141F33]">{node.name}</p>
 <p className="text-[10px] text-[#141F33]/60 font-bold mt-1 uppercase tracking-wider">{node.role}</p>
 </div>
@@ -49,7 +49,7 @@ return (
 };
 
 return (
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 overflow-x-auto w-full" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 overflow-x-auto w-full" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <h3 className="text-base font-bold text-[#141F33] mb-1 text-center">
 {t('Organizational Reporting Tree', 'شجرة الهيكل التنظيمي للموظفين')}
 </h3>

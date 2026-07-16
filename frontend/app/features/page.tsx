@@ -45,29 +45,29 @@ export default function FeaturesPage() {
         {/* 2x2 Feature Grid */}
         <div ref={featureGridRef} className={`grid grid-cols-1 md:grid-cols-2 gap-12 w-full animate-stagger ${featureGridVisible ? 'revealed' : ''}`}>
           {/* Card 1: Automation */}
-          <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
-            <div className="h-12 w-12 rounded-[40px] bg-[#2A5CFF]/10 flex items-center justify-center mb-6"><Zap className="w-6 h-6 text-[#2A5CFF]" /></div>
+          <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
+            <div className="h-12 w-12 rounded-xl bg-[#2A5CFF]/10 flex items-center justify-center mb-6"><Zap className="w-6 h-6 text-[#2A5CFF]" /></div>
             <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.automationTitle)}</h3>
             <p className="text-xs font-normal text-[#141F33] leading-relaxed mt-3">{t(content.automationDesc)}</p>
           </div>
 
           {/* Card 2: Chatbot */}
-          <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
-            <div className="h-12 w-12 rounded-[40px] bg-[#2A5CFF]/10 flex items-center justify-center mb-6"><MessageSquare className="w-6 h-6 text-[#2A5CFF]" /></div>
+          <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
+            <div className="h-12 w-12 rounded-xl bg-[#2A5CFF]/10 flex items-center justify-center mb-6"><MessageSquare className="w-6 h-6 text-[#2A5CFF]" /></div>
             <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.chatbotTitle)}</h3>
             <p className="text-xs font-normal text-[#141F33] leading-relaxed mt-3">{t(content.chatbotDesc)}</p>
           </div>
 
           {/* Card 3: Custom */}
-          <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
-            <div className="h-12 w-12 rounded-[40px] bg-[#2A5CFF]/10 flex items-center justify-center mb-6"><Wrench className="w-6 h-6 text-[#2A5CFF]" /></div>
+          <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
+            <div className="h-12 w-12 rounded-xl bg-[#2A5CFF]/10 flex items-center justify-center mb-6"><Wrench className="w-6 h-6 text-[#2A5CFF]" /></div>
             <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.customTitle)}</h3>
             <p className="text-xs font-normal text-[#141F33] leading-relaxed mt-3">{t(content.customDesc)}</p>
           </div>
 
           {/* Card 4: Reporting */}
-          <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
-            <div className="h-12 w-12 rounded-[40px] bg-[#2A5CFF]/10 flex items-center justify-center mb-6"><BarChart3 className="w-6 h-6 text-[#2A5CFF]" /></div>
+          <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
+            <div className="h-12 w-12 rounded-xl bg-[#2A5CFF]/10 flex items-center justify-center mb-6"><BarChart3 className="w-6 h-6 text-[#2A5CFF]" /></div>
             <h3 className="text-xl font-extrabold text-[#141F33]">{t(content.reportingTitle)}</h3>
             <p className="text-xs font-normal text-[#141F33] leading-relaxed mt-3">{t(content.reportingDesc)}</p>
           </div>

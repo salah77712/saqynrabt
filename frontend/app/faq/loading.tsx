@@ -20,7 +20,7 @@ export default function FAQLoading() {
             <div className="h-7 w-40 bg-[#F8F9FB] rounded animate-pulse mb-6" />
             <div className="space-y-3">
               {[...Array(3)].map((_, q) => (
-                <div key={q} className="border border-[#141F33]/10 rounded-[40px] p-4">
+                <div key={q} className="border border-[#141F33]/10 rounded-xl p-4">
                   <div className="h-5 w-3/4 bg-[#F8F9FB] rounded animate-pulse" />
                 </div>
               ))}

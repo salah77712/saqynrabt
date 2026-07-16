@@ -17,8 +17,8 @@ export default function HowItWorksLoading() {
       <section className="bg-[#F8F9FB] py-20">
         <div className="max-w-4xl mx-auto px-6 space-y-8">
           {[...Array(5)].map((_, i) => (
-            <div key={i} className="flex items-start gap-8 bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8">
-              <div className="h-14 w-14 shrink-0 rounded-[40px] bg-[#F8F9FB] animate-pulse" />
+            <div key={i} className="flex items-start gap-8 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8">
+              <div className="h-14 w-14 shrink-0 rounded-xl bg-[#F8F9FB] animate-pulse" />
               <div className="flex-1 space-y-2">
                 <div className="h-6 w-48 bg-[#F8F9FB] rounded animate-pulse" />
                 <div className="h-4 w-full bg-[#F8F9FB] rounded animate-pulse" />

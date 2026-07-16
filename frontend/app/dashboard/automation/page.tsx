@@ -68,7 +68,7 @@ return (
 </div>
 </div>
 
-<Card className="p-8 rounded-[40px]">
+<Card className="p-8 rounded-xl">
 <div className="flex items-center justify-between pb-3 md:pb-4 border-b border-[#141F33]/10 mb-4 md:mb-6">
 <h2 className="text-xs md:text-sm font-black text-[#141F33] dark:text-[#F8F9FB] flex items-center gap-3 md:gap-4">
 <Zap className="w-4 h-4 text-[#141F33]" />
@@ -85,7 +85,7 @@ return (
 ) : (
         <div className="gap-8 md:space-y-6">
 {activeCalls.map((call) => (
-<div key={call.id} className="bg-[#F8F9FB] rounded-[40px] p-8 border border-[#141F33]/10 animate-fadeIn">
+<div key={call.id} className="bg-[#F8F9FB] rounded-xl p-8 border border-[#141F33]/10 animate-fadeIn">
 <div className="flex items-center justify-between gap-8 border-b border-[#141F33]/10 pb-3 mb-3">
 <span className="text-[11px] md:text-xs font-bold text-navy">{call.caller}</span>
 <span className="text-[9px] md:text-[10px] font-bold text-[#141F33]">{call.timestamp}</span>
@@ -118,7 +118,7 @@ onSearchChange={setSearch}
 <div
 key={req.id}
 onClick={() => handleRequestSelect(req)}
-className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm active:scale-[0.98] transition-transform"
+className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm active:scale-[0.98] transition-transform"
 >
 <div className="flex items-center justify-between mb-2">
 <span className="text-xs font-bold text-[#141F33]">{req.customer}</span>

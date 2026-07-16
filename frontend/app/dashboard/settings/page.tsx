@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocale } from '../../providers';
@@ -152,7 +152,7 @@ export default function SettingsDashboardPage() {
         <select
           value={activeTab}
           onChange={(e) => setActiveTab(e.target.value)}
-          className="w-full min-h-[44px] rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] px-4 py-2 text-xs font-semibold text-[#141F33] appearance-none"
+          className="w-full min-h-[44px] rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 py-2 text-xs font-semibold text-[#141F33] appearance-none"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23141F33' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'no-repeat',
@@ -173,7 +173,7 @@ export default function SettingsDashboardPage() {
             <h2 className="text-[10px] md:text-xs font-black text-[#141F33]/60 uppercase tracking-widest mb-3 md:mb-4">
               {t('Overage Protection', 'حماية التجاوز التلقائي')}
             </h2>
-            <label className="flex items-start gap-8 p-3 md:p-4 rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] cursor-pointer">
+            <label className="flex items-start gap-8 p-3 md:p-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] cursor-pointer">
               <input
                 type="checkbox"
                 checked={autoOverage}
@@ -189,7 +189,7 @@ export default function SettingsDashboardPage() {
             </label>
           </Card>
 
-          <Card className="p-8 rounded-[40px] flex flex-col gap-8">
+          <Card className="p-8 rounded-xl flex flex-col gap-8">
             <h2 className="text-[10px] md:text-xs font-black text-[#141F33] uppercase tracking-widest">
               {t('Usage Limits', 'حدود الاستخدام')}
             </h2>
@@ -227,7 +227,7 @@ export default function SettingsDashboardPage() {
                 {t('Download employee RAG chatbot logs and question histories in .csv format.', 'تنزيل جميع سجلات المساعد الذكي وتاريخ الأسئلة بصيغة .csv للتدقيق.')}
               </p>
             </div>
-            <Button variant="default" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs py-3 px-6 rounded-[40px] font-bold">
+            <Button variant="default" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs py-3 px-6 rounded-xl font-bold">
               {t('Export Logs', 'تصدير السجلات')}
             </Button>
           </Card>
@@ -240,7 +240,7 @@ export default function SettingsDashboardPage() {
           <p className="text-[10px] md:text-xs text-[#141F33] leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
           </p>
-          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-[40px] font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
+          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-xl font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
             {t('Manage Subscription', 'إدارة الاشتراك')}
           </Button>
         </Card>

@@ -84,7 +84,7 @@ export default function OnboardingWizardPage() {
 
   return (
     <div className="flex min-h-screen bg-[#F8F9FB] items-center justify-center px-4 py-12" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-[#F8F9FB] rounded-[40px] shadow-xl border border-[#141F33]/10 w-full max-w-lg overflow-hidden animate-fadeIn flex flex-col justify-between min-h-[500px]">
+      <div className="bg-[#F8F9FB] rounded-xl shadow-xl border border-[#141F33]/10 w-full max-w-lg overflow-hidden animate-fadeIn flex flex-col justify-between min-h-[500px]">
         
         {/* Progress Bar */}
         <div className="w-full bg-[#F8F9FB] h-2">
@@ -122,7 +122,7 @@ export default function OnboardingWizardPage() {
                     value={formData.userName}
                     onChange={handleChange}
                     placeholder="Salah Al-Qahtani"
-                    className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+                    className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
                   />
                 </div>
               </div>
@@ -147,7 +147,7 @@ export default function OnboardingWizardPage() {
                     value={formData.companyName}
                     onChange={handleChange}
                     placeholder="Al-Safa Hospitality"
-                    className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+                    className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
                   />
                 </div>
 
@@ -159,7 +159,7 @@ export default function OnboardingWizardPage() {
                       name="industry"
                       value={formData.industry}
                       onChange={handleChange}
-                      className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-3 text-xs font-bold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+                      className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-bold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
                     >
                       <option value="Hospitality">Hospitality</option>
                       <option value="Healthcare">Healthcare</option>
@@ -175,7 +175,7 @@ export default function OnboardingWizardPage() {
                       name="size"
                       value={formData.size}
                       onChange={handleChange}
-                      className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-3 text-xs font-bold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+                      className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-bold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
                     >
                       <option value="1-10">1-10 employees</option>
                       <option value="11-50">11-50 employees</option>
@@ -198,7 +198,7 @@ export default function OnboardingWizardPage() {
                 </p>
 
                 <div className="flex flex-col gap-4 pt-2">
-                  <label className="flex items-center gap-4 p-4 rounded-[40px] border border-[#141F33]/10 hover:border-[#141F33] cursor-pointer bg-[#F8F9FB]">
+                  <label className="flex items-center gap-4 p-4 rounded-xl border border-[#141F33]/10 hover:border-[#141F33] cursor-pointer bg-[#F8F9FB]">
                     <input
                       type="radio"
                       name="setupPreference"
@@ -213,7 +213,7 @@ export default function OnboardingWizardPage() {
                     </div>
                   </label>
 
-                  <label className="flex items-center gap-4 p-4 rounded-[40px] border border-[#141F33]/10 hover:border-[#141F33] cursor-pointer bg-[#F8F9FB]">
+                  <label className="flex items-center gap-4 p-4 rounded-xl border border-[#141F33]/10 hover:border-[#141F33] cursor-pointer bg-[#F8F9FB]">
                     <input
                       type="radio"
                       name="setupPreference"
@@ -228,7 +228,7 @@ export default function OnboardingWizardPage() {
                     </div>
                   </label>
 
-                  <label className="flex items-center gap-4 p-4 rounded-[40px] border border-[#141F33]/10 hover:border-[#141F33] cursor-pointer bg-[#F8F9FB]">
+                  <label className="flex items-center gap-4 p-4 rounded-xl border border-[#141F33]/10 hover:border-[#141F33] cursor-pointer bg-[#F8F9FB]">
                     <input
                       type="radio"
                       name="setupPreference"
@@ -267,7 +267,7 @@ export default function OnboardingWizardPage() {
                     value={formData.teamInvites}
                     onChange={handleChange}
                     placeholder="manager@alsafa.qa, staff@alsafa.qa"
-                    className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal resize-none min-h-[44px]"
+                    className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal resize-none min-h-[44px]"
                   />
                 </div>
               </div>
@@ -283,7 +283,7 @@ export default function OnboardingWizardPage() {
                   {t({ en: 'Upload your first SOP or employee handbook to train your RAG assistant immediately.', ar: 'قم بتحميل دليل الموظفين أو إجراء التشغيل لتدريب المساعد فورًا.' })}
                 </p>
 
-                <div className="border-2 border-dashed border-[#141F33]/10 rounded-[40px] p-8 bg-[#F8F9FB] flex flex-col items-center justify-center text-center">
+                <div className="border-2 border-dashed border-[#141F33]/10 rounded-xl p-8 bg-[#F8F9FB] flex flex-col items-center justify-center text-center">
                   <FileText className="w-8 h-8 text-[#141F33] mb-2" />
                   <p className="text-xs font-bold text-[#141F33]">{t({ en: 'Drop policy PDF here to start', ar: 'اسقط ملف PDF للسياسة هنا للبدء' })}</p>
                   <span className="text-[10px] text-[#141F33] font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'أو اضغط أدناه للتصفح (اختياري)' })}</span>
@@ -298,7 +298,7 @@ export default function OnboardingWizardPage() {
               <button
                 type="button"
                 onClick={handleBack}
-                className="bg-[#F8F9FB] hover:bg-[#141F33] text-[#141F33] font-bold py-3 px-6 rounded-[40px] border border-[#141F33]/10 transition-all text-xs min-h-[44px]"
+                className="bg-[#F8F9FB] hover:bg-[#141F33] text-[#141F33] font-bold py-3 px-6 rounded-xl border border-[#141F33]/10 transition-all text-xs min-h-[44px]"
               >
                 {t({ en: 'Back', ar: 'السابق' })}
               </button>
@@ -306,7 +306,7 @@ export default function OnboardingWizardPage() {
             <button
               type="button"
               onClick={handleNext}
-              className="flex-1 bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold py-3 px-6 rounded-[40px] transition-all text-xs min-h-[44px] flex items-center justify-center"
+              className="flex-1 bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold py-3 px-6 rounded-xl transition-all text-xs min-h-[44px] flex items-center justify-center"
             >
               {submitting
                 ? t({ en: 'Saving...', ar: 'جاري الحفظ...' })

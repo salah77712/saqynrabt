@@ -1,13 +1,40 @@
 'use client';
 
+import React from 'react';
 import { Phone } from 'lucide-react';
 import { useLocale } from '../../providers';
+
+type CallStatus = 'connected' | 'on_hold' | 'disconnected' | 'checking';
 
 export default function VoicePage() {
 const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+const [callStatus, setCallStatus] = React.useState<CallStatus>('checking');
 
 const isVoiceActivated = process.env.NEXT_PUBLIC_VOICE_AI_ACTIVATED === 'true';
+
+React.useEffect(() => {
+  if (!isVoiceActivated) return;
+
+  let mounted = true;
+  const poll = async () => {
+    try {
+      const res = await fetch('/api/voice/stream?text=status');
+      if (res.status === 200) {
+        if (mounted) setCallStatus('connected');
+      } else if (res.status === 503) {
+        if (mounted) setCallStatus('on_hold');
+      } else {
+        if (mounted) setCallStatus('disconnected');
+      }
+    } catch {
+      if (mounted) setCallStatus('disconnected');
+    }
+  };
+  poll();
+  const interval = setInterval(poll, 5_000);
+  return () => { mounted = false; clearInterval(interval); };
+}, [isVoiceActivated]);
 
 if (!isVoiceActivated) {
 return (
@@ -23,6 +50,15 @@ return (
 );
 }
 
+const statusConfig: Record<CallStatus, { label: Record<string, string>; color: string; pulse: boolean }> = {
+  connected: { label: { en: 'Connected — Voice AI Ready', ar: 'متصل — الذكاء الصوتي جاهز' }, color: '#22C55E', pulse: true },
+  on_hold: { label: { en: 'On Hold — TTS Service Unavailable', ar: 'معلق — خدمة TTS غير متاحة' }, color: '#F59E0B', pulse: false },
+  disconnected: { label: { en: 'Disconnected — No Active Call', ar: 'غير متصل — لا توجد مكالمة نشطة' }, color: '#EF4444', pulse: false },
+  checking: { label: { en: 'Checking Service Status...', ar: 'جار التحقق من حالة الخدمة...' }, color: '#6B7280', pulse: false },
+};
+
+const cfg = statusConfig[callStatus];
+
 return (
 <main id="main-content" className="max-w-4xl mx-auto space-y-6 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <div className="border-b border-[#141F33]/10 dark:border-[#141F33] pb-6">
@@ -32,11 +68,17 @@ return (
 </p>
 </div>
 
-<div className="bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33] p-8 rounded-[40px] text-center gap-8 animate-fadeIn flex flex-col items-center">
-<Phone className="w-10 h-10 text-[#141F33]/40 mx-auto" />
-<h2 className="text-sm font-semibold text-[#141F33] dark:text-[#F8F9FB]">{t({ en: 'Voice Stream Connection Established', ar: 'تم إنشاء اتصال تدفق الصوت' })}</h2>
+<div className="bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33] p-8 rounded-xl text-center gap-6 animate-fadeIn flex flex-col items-center">
+<Phone className="w-10 h-10 mx-auto" style={{ color: cfg.color }} />
+<span className="relative flex h-3 w-3 mx-auto">
+{cfg.pulse && (
+<span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75" style={{ backgroundColor: cfg.color }} />
+)}
+<span className="relative inline-flex rounded-full h-3 w-3" style={{ backgroundColor: cfg.color }} />
+</span>
+<h2 className="text-sm font-semibold text-[#141F33] dark:text-[#F8F9FB]">{t(cfg.label)}</h2>
 <p className="text-xs text-[#141F33] max-w-sm mx-auto">
-{t({ en: 'Streaming active caller transcription frames via WebSockets (Rule 33).', ar: 'بث إطارات نسخ المتصل النشطة عبر WebSockets (القاعدة 33).' })}
+{t({ en: 'Live call status refreshes every 5 seconds. Status reflects the current voice AI service health.', ar: 'يتم تحديث حالة المكالمة المباشرة كل 5 ثوانٍ. يعكس الحالة الصحية الحالية لخدمة الذكاء الصوتي.' })}
 </p>
 </div>
 </main>

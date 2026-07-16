@@ -17,14 +17,14 @@ export default function CaseStudiesLoading() {
       <section className="bg-[#F8F9FB] py-20">
         <div className="max-w-7xl mx-auto px-6 space-y-8">
           {[...Array(3)].map((_, i) => (
-            <div key={i} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8">
+            <div key={i} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8">
               <div className="flex flex-col lg:flex-row gap-8">
                 <div className="flex-1 space-y-3">
                   <div className="h-4 w-32 bg-[#F8F9FB] rounded animate-pulse" />
                   <div className="h-7 w-3/4 bg-[#F8F9FB] rounded animate-pulse" />
                   <div className="h-4 w-full bg-[#F8F9FB] rounded animate-pulse" />
                 </div>
-                <div className="lg:w-64 bg-[#F8F9FB] rounded-[40px] p-5 space-y-3">
+                <div className="lg:w-64 bg-[#F8F9FB] rounded-xl p-5 space-y-3">
                   <div className="h-3 w-20 bg-[#F8F9FB] rounded animate-pulse" />
                   {[...Array(3)].map((_, m) => (
                     <div key={m} className="h-4 w-36 bg-[#F8F9FB] rounded animate-pulse" />

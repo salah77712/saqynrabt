@@ -35,7 +35,7 @@ export function DashboardMobileHeader({ isSidebarOpen, onToggleSidebar }: Dashbo
           type="button"
           onClick={onToggleSidebar}
           aria-label={isSidebarOpen ? 'Close sidebar menu' : 'Open sidebar menu'}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-[40px] border border-[#141F33]/10 text-[#141F33] min-h-[44px] min-w-[44px]"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#141F33]/10 text-[#141F33] min-h-[44px] min-w-[44px]"
         >
           <svg width="18" height="18" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M2.5 5H17.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />

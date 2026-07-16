@@ -47,7 +47,7 @@ aria-label="Open notifications"
 </button>
 
 {isOpen && (
-<div className="absolute right-0 rtl:right-auto rtl:left-0 mt-3 w-80 bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-xl z-50 overflow-hidden animate-slideDown">
+<div className="absolute right-0 rtl:right-auto rtl:left-0 mt-3 w-80 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-xl z-50 overflow-hidden animate-slideDown">
 <div className="flex items-center justify-between px-4 py-3 border-b border-[#141F33]/10 bg-[#F8F9FB]">
 <span className="text-xs font-bold text-[#141F33]">
 {t('Notifications', 'الإشعارات')}

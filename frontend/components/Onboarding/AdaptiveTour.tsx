@@ -23,7 +23,7 @@ export function AdaptiveTour() {
   const progressPct = Math.round((completedCount / steps.length) * 100);
 
   return (
-    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm space-y-4">
+    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm space-y-4">
       
       <div>
         <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider">{t({ en: 'Onboarding Checklist Progress', ar: 'تقدم قائمة متطلبات التهيئة' })}</h3>
@@ -39,7 +39,7 @@ export function AdaptiveTour() {
 
       <div className="space-y-2 text-xs font-semibold">
         {steps.map((step) => (
-          <label key={step.id} className="flex items-center gap-4 cursor-pointer p-2.5 hover:bg-[#141F33] rounded-[40px] transition-colors">
+          <label key={step.id} className="flex items-center gap-4 cursor-pointer p-2.5 hover:bg-[#141F33] rounded-xl transition-colors">
             <input
               type="checkbox"
               checked={step.checked}

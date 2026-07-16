@@ -99,7 +99,7 @@ const queueItems = {
 function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boolean }) {
   const [isOpen, setIsOpen] = useState(defaultOpen || false);
   return (
-    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden">
+    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
@@ -204,13 +204,13 @@ export default function AutomationPage() {
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-95 transition-all"
+              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-95 transition-all"
             >
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </button>
             <Link
         href="#pricing"
-        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
       >
               {t({ en: 'View Pricing', ar: 'عرض الأسعار' })}
             </Link>
@@ -229,7 +229,7 @@ export default function AutomationPage() {
                 {cases.map((uc, i) => (
                   <div
                     key={uc.title}
-                    className="flex items-start gap-8 bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm card-hover animate-slideUp"
+                    className="flex items-start gap-8 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
                     <span className="text-2xl mt-0.5 shrink-0">{useCaseIcons[uc.icon] || <Zap className="w-5 h-5 text-[#141F33]" />}</span>
@@ -242,7 +242,7 @@ export default function AutomationPage() {
               </div>
             </div>
 
-            <div className="bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 shadow-xl p-8 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
+            <div className="bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 shadow-xl p-8 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-center justify-between pb-4 border-b border-[#141F33]/10">
                 <span className="text-[#141F33] font-black text-base">
                   {t({ en: 'Live Queue', ar: 'الطابور المباشر' })}
@@ -327,7 +327,7 @@ export default function AutomationPage() {
           ref={modalRef}
           onKeyDown={handleModalKeyDown}
           className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33] backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] max-w-md w-full p-8 shadow-2xl animate-scaleIn">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
             <h3 className="text-xl font-extrabold text-[#141F33] mb-2">
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </h3>
@@ -339,14 +339,14 @@ export default function AutomationPage() {
 href={calendlyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-90 transition-all"
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-90 transition-all"
               >
                 {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </a>
               <button
 type="button"
         onClick={() => setIsModalOpen(false)}
-        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
               >
                 {t({ en: 'Close', ar: 'إغلاق' })}
               </button>

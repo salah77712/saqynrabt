@@ -56,7 +56,7 @@ export default function NotFound() {
               <Link
                 key={s.href}
                 href={s.href}
-                className="rounded-[40px] border border-[rgba(20,31,51,0.1)] bg-[#F8F9FB] px-4 py-2.5 text-sm font-semibold text-[#141F33] hover:border-[#2A5CFF] hover:bg-[#2A5CFF]/5 hover:text-[#2A5CFF] transition-all shadow-sm"
+                className="rounded-xl border border-[rgba(20,31,51,0.1)] bg-[#F8F9FB] px-4 py-2.5 text-sm font-semibold text-[#141F33] hover:border-[#2A5CFF] hover:bg-[#2A5CFF]/5 hover:text-[#2A5CFF] transition-all shadow-sm"
               >
                 {t(s.en, s.ar)}
               </Link>
@@ -66,7 +66,7 @@ export default function NotFound() {
           {/* Primary CTA */}
           <Link
             href="/"
-            className="inline-flex min-h-[48px] items-center justify-center rounded-[40px] bg-[#141F33] px-8 py-3 text-sm font-bold text-[#F8F9FB] hover:bg-[#141F33] hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-sm font-bold text-[#F8F9FB] hover:bg-[#141F33] hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
           >
             {t('Back to Home', 'العودة للرئيسية')}
           </Link>

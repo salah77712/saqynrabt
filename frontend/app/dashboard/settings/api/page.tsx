@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
@@ -148,7 +148,7 @@ export default function ApiKeysSettingsPage() {
 
       {/* New Key Result Banner */}
       {newKeyVal && (
-        <div className="bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-[40px] p-8 space-y-3">
+        <div className="bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-xl p-8 space-y-3">
           <h3 className="text-xs font-extrabold text-[#2A5CFF] uppercase tracking-widest">{t({ en: 'API Key Created Successfully', ar: 'تم إنشاء مفتاح واجهة التطبيق بنجاح' })}</h3>
           <p className="text-[10px] text-[#2A5CFF] font-semibold">{t({ en: 'Copy this key now. It will not be shown again for security reasons.', ar: 'انسخ هذا المفتاح الآن. لن يتم عرضه مرة أخرى لأسباب أمنية.' })}</p>
           <div className="flex gap-3">
@@ -156,14 +156,14 @@ export default function ApiKeysSettingsPage() {
               type="text"
               readOnly
               value={newKeyVal}
-              className="flex-1 bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-[40px] px-4 py-2 text-xs font-mono font-bold text-[#141F33] min-h-[44px]"
+              className="flex-1 bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold text-[#141F33] min-h-[44px]"
             />
             <button
               onClick={() => {
                 navigator.clipboard.writeText(newKeyVal);
                 addToast('Copied to clipboard', 'success');
               }}
-              className="bg-[#2A5CFF] hover:bg-emerald-700 text-[#F8F9FB] font-bold px-6 py-3 min-h-[44px] rounded-[40px] text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+              className="bg-[#2A5CFF] hover:bg-emerald-700 text-[#F8F9FB] font-bold px-6 py-3 min-h-[44px] rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
             >
               Copy
             </button>
@@ -178,7 +178,7 @@ export default function ApiKeysSettingsPage() {
       )}
 
       {/* Form Generate */}
-      <form onSubmit={handleGenerate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex gap-8 items-end">
+      <form onSubmit={handleGenerate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex gap-8 items-end">
         <div className="flex-1">
           <label htmlFor="keyName" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Credential Key Name', ar: 'اسم المفتاح التعريفي' })}</label>
           <input
@@ -187,21 +187,21 @@ export default function ApiKeysSettingsPage() {
             value={keyName}
             onChange={(e) => setKeyName(e.target.value)}
             placeholder="E.g. ERP Scheduler Token"
-            className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none"
+            className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
             required
           />
         </div>
         <button
           type="submit"
           disabled={generating}
-          className="bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-[40px] text-xs min-h-[44px] flex items-center shrink-0 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+          className="bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] flex items-center shrink-0 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
           {generating ? t({ en: 'Generating...', ar: 'جاري الإنشاء...' }) : t({ en: 'Generate Key', ar: 'إنشاء مفتاح' })}
         </button>
       </form>
 
       {/* Keys List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
         <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Active API Keys', ar: 'مفاتيح واجهة التطبيقات النشطة' })}</h3>
 
         {loading ? (
@@ -222,7 +222,7 @@ export default function ApiKeysSettingsPage() {
                   <span className="text-[10px] text-[#141F33] font-bold">{new Date(k.created_at).toLocaleDateString()}</span>
                   <button
                     onClick={() => handleRevoke(k.id)}
-                    className="px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] text-[#141F33] hover:bg-[#F8F9FB] border border-[#141F33]/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                    className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] text-[#141F33] hover:bg-[#F8F9FB] border border-[#141F33]/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                   >
                     {t({ en: 'Revoke', ar: 'إلغاء' })}
                   </button>

@@ -127,7 +127,7 @@ export default function IndustriesPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {list.map((ind) => (
-              <div key={ind.title} className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm hover:shadow-md transition-all shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+              <div key={ind.title} className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm hover:shadow-md transition-all shadow-card">
                 <span className="text-3xl mb-3 block">{industryIcons[ind.icon] || <Building2 className="w-8 h-8 text-[#141F33]" />}</span>
                 <h3 className="text-lg font-bold text-[#141F33] mb-2">{ind.title}</h3>
                 <p className="text-sm text-[#141F33] leading-relaxed">{ind.desc}</p>
@@ -149,7 +149,7 @@ export default function IndustriesPage() {
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-[40px] bg-[#141F33] px-6 py-3 text-xs font-bold min-h-[44px] text-[#F8F9FB] hover:opacity-90 transition-all"
+            className="inline-flex items-center justify-center rounded-xl bg-[#141F33] px-6 py-3 text-xs font-bold min-h-[44px] text-[#F8F9FB] hover:opacity-90 transition-all"
           >
             {t({ en: 'See how it works', fr: 'Découvrez comment ça marche', ar: 'شاهد كيف يعمل', hi: 'देखें यह कैसे काम करता है' })}
           </a>

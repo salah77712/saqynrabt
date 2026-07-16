@@ -1,37 +1,33 @@
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { NextResponse } from "next/server";
+import { neon } from "@neondatabase/serverless";
 
 export async function GET(request: Request) {
   try {
-    const authHeader = request.headers.get('Authorization');
+    const authHeader = request.headers.get("Authorization");
     const expectedToken = `Bearer ${process.env.CRON_SECRET}`;
 
     if (!process.env.CRON_SECRET || authHeader !== expectedToken) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Select all active integrations with valid Merge tokens
-    const activeIntegrations = await prisma.integration.findMany({
-      where: {
-        is_active: true,
-        linked_account_token: { not: null }
-      }
-    });
+    const sql = neon(process.env.DATABASE_URL!);
 
-    let syncReports = [];
+    const activeIntegrations = await sql`
+      SELECT * FROM "Integration"
+      WHERE is_active = true AND "linked_account_token" IS NOT NULL
+    `;
 
-    for (const integration of activeIntegrations) {
+    let syncReports: any[] = [];
+
+    for (const integration of activeIntegrations as any[]) {
       try {
-        // Trigger the internal sync logic
-        const mergeUrl = 'https://api.merge.dev/api/hris/v1/employees';
+        const mergeUrl = "https://api.merge.dev/api/hris/v1/employees";
         const response = await fetch(mergeUrl, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Authorization': `Bearer ${process.env.MERGE_API_KEY}`,
-            'X-Account-Token': integration.linked_account_token!,
-            'Content-Type': 'application/json',
+            Authorization: `Bearer ${process.env.MERGE_API_KEY}`,
+            "X-Account-Token": integration.linked_account_token,
+            "Content-Type": "application/json",
           },
         });
 
@@ -41,47 +37,35 @@ export async function GET(request: Request) {
 
           for (const emp of results) {
             if (!emp.work_email) continue;
-            await prisma.employee.upsert({
-              where: {
-                tenantId_work_email: {
-                  tenantId: integration.tenantId,
-                  work_email: emp.work_email,
-                },
-              },
-              update: {
-                first_name: emp.first_name || '',
-                last_name: emp.last_name || '',
-                job_title: emp.job_title || 'Worker',
-                department: emp.department || 'Operations',
-                manager_name: emp.manager ? `${emp.manager.first_name || ''} ${emp.manager.last_name || ''}`.trim() : null,
-                pto_balance_remaining: emp.pto_balance_remaining || 0.0,
-                employment_status: emp.employment_status || 'active',
-                updated_at: new Date(),
-              },
-              create: {
-                tenantId: integration.tenantId,
-                remote_id: emp.id,
-                first_name: emp.first_name || '',
-                last_name: emp.last_name || '',
-                work_email: emp.work_email,
-                job_title: emp.job_title || 'Worker',
-                department: emp.department || 'Operations',
-                manager_name: emp.manager ? `${emp.manager.first_name || ''} ${emp.manager.last_name || ''}`.trim() : null,
-                pto_balance_remaining: emp.pto_balance_remaining || 0.0,
-                employment_status: emp.employment_status || 'active',
-              },
-            });
+
+            const managerName = emp.manager
+              ? `${emp.manager.first_name || ""} ${emp.manager.last_name || ""}`.trim()
+              : null;
+
+            await sql`
+              INSERT INTO "Employee" ("tenantId", "remote_id", "first_name", "last_name", "work_email", "job_title", "department", "manager_name", "pto_balance_remaining", "employment_status", "updated_at")
+              VALUES (${integration.tenantId}, ${emp.id || null}, ${emp.first_name || ""}, ${emp.last_name || ""}, ${emp.work_email}, ${emp.job_title || "Worker"}, ${emp.department || "Operations"}, ${managerName}, ${emp.pto_balance_remaining || 0.0}, ${emp.employment_status || "active"}, NOW())
+              ON CONFLICT ("tenantId", "work_email")
+              DO UPDATE SET
+                "remote_id" = EXCLUDED."remote_id",
+                "first_name" = EXCLUDED."first_name",
+                "last_name" = EXCLUDED."last_name",
+                "job_title" = EXCLUDED."job_title",
+                "department" = EXCLUDED."department",
+                "manager_name" = EXCLUDED."manager_name",
+                "pto_balance_remaining" = EXCLUDED."pto_balance_remaining",
+                "employment_status" = EXCLUDED."employment_status",
+                "updated_at" = NOW()
+            `;
           }
 
-          // Update last synced
-          await prisma.integration.update({
-            where: { id: integration.id },
-            data: { last_synced_at: new Date() }
-          });
+          await sql`
+            UPDATE "Integration" SET "last_synced_at" = NOW() WHERE id = ${integration.id}
+          `;
 
           syncReports.push({ integrationId: integration.id, success: true, count: results.length });
         } else {
-          syncReports.push({ integrationId: integration.id, success: false, error: 'Merge API Error' });
+          syncReports.push({ integrationId: integration.id, success: false, error: "Merge API Error" });
         }
       } catch (err: any) {
         syncReports.push({ integrationId: integration.id, success: false, error: err.message });
@@ -90,6 +74,6 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ success: true, reports: syncReports });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message || 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
   }
 }

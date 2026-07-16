@@ -19,7 +19,7 @@ export function UnsavedChangesModal({ isOpen, onConfirm, onCancel }: UnsavedChan
       aria-modal="true"
     >
       <div
-        className="w-full max-w-sm bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33]/30 rounded-[40px] shadow-2xl p-8 relative animate-slideUp"
+        className="w-full max-w-sm bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33]/30 rounded-xl shadow-2xl p-8 relative animate-slideUp"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-4 mb-4">
@@ -34,13 +34,13 @@ export function UnsavedChangesModal({ isOpen, onConfirm, onCancel }: UnsavedChan
         <div className="flex gap-4 mt-6">
 <button
         onClick={onCancel}
-        className="flex-1 border border-[#141F33]/10 dark:border-[#141F33]/30 text-[#141F33] dark:text-[#141F33] font-bold py-3 rounded-[40px] text-xs min-h-[44px] transition-all duration-300 hover:bg-[#141F33] dark:hover:bg-[#141F33]"
+        className="flex-1 border border-[#141F33]/10 dark:border-[#141F33]/30 text-[#141F33] dark:text-[#141F33] font-bold py-3 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:bg-[#141F33] dark:hover:bg-[#141F33]"
       >
             Stay
           </button>
           <button
             onClick={onConfirm}
-            className="flex-1 bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-[40px] text-xs hover:bg-[#141F33] transition-all"
+            className="flex-1 bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:bg-[#141F33] transition-all"
           >
             Leave
           </button>

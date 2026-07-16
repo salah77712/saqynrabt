@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../../../providers';
@@ -32,7 +32,7 @@ export default function SSOPage() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-<Card className="p-8 rounded-[40px] space-y-4">
+<Card className="p-8 rounded-xl space-y-4">
   <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'SSO Gateway Details', ar: 'تفاصيل بوابة SSO'})}</h3>
   <p className="text-xs text-[#141F33] leading-relaxed">
             {t({en: 'Integrate SAQYN authentication directly with enterprise credential stores like Okta, Azure AD, or Ping Identity.', ar: 'دمج مصادقة SAQYN مباشرة مع مخازن بيانات الاعتماد المؤسسية مثل Okta أو Azure AD أو Ping Identity.'})}
@@ -54,16 +54,16 @@ export default function SSOPage() {
         value={metadataUrl}
         onChange={(e) => setMetadataUrl(e.target.value)}
         placeholder="https://identity.yourcorp.com/app/metadata"
-        className="min-h-[44px] rounded-[40px] px-4 py-2 text-xs font-semibold"
+        className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold"
             />
           </div>
 
-          <Button variant="default" className="w-full py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={handleSave}>
+          <Button variant="default" className="w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={handleSave}>
             {t({en: 'Save SSO Settings', ar: 'حفظ إعدادات SSO'})}
           </Button>
         </Card>
 
-<Card className="p-8 rounded-[40px] space-y-4">
+<Card className="p-8 rounded-xl space-y-4">
   <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{t({en: 'Metadata Downloads', ar: 'تنزيل البيانات الوصفية'})}</h3>
           <p className="text-xs text-[#141F33] leading-relaxed">
             {t({en: 'To configure SSO in your Identity Provider (IdP) administration portal, download our service provider config properties.', ar: 'لتكوين SSO في بوابة إدارة موفر الهوية (IdP)، قم بتنزيل خصائص تكوين موفر الخدمة لدينا.'})}

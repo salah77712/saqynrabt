@@ -17,7 +17,7 @@ export function AgentToolDisplay({ steps }: AgentToolDisplayProps) {
   if (!steps || steps.length === 0) return null;
 
   return (
-    <div className="mt-4 p-4 rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] space-y-3">
+    <div className="mt-4 p-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] space-y-3">
       <div className="flex items-center gap-3 text-[10px] font-extrabold uppercase text-[#141F33] tracking-wider">
         <span className="h-2.5 w-2.5 rounded-full bg-[#2A5CFF] animate-pulse" />
         <span>Agent Execution Reasoning Trace</span>

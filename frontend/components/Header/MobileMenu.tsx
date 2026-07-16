@@ -71,7 +71,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
           target="_blank"
           rel="noopener noreferrer"
           onClick={onClose}
-          className="inline-flex min-h-[44px] items-center justify-center rounded-[40px] bg-[#141F33] dark:bg-[#141F33] text-[#F8F9FB] font-bold text-sm text-center py-3"
+          className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] dark:bg-[#141F33] text-[#F8F9FB] font-bold text-sm text-center py-3"
         >
           {t('See how it works', 'شاهد كيف يعمل')}
         </a>

@@ -45,12 +45,12 @@ export default function WorkflowsPage() {
           <p className="text-xs text-[#141F33] font-bold">{t({en: 'Design routing for calls, chats, and escalations.', ar: 'تصميم منطق التوجيه للهاتف والمحادثة والتصعيد.'})}</p>
         </div>
         <div className="flex gap-3">
-<Button variant="outline" className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ قرار'})}</Button>
-<Button variant="default" className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('action')}>{t({en: '+ Action', ar: '+ إجراء'})}</Button>
+<Button variant="outline" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ قرار'})}</Button>
+<Button variant="default" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('action')}>{t({en: '+ Action', ar: '+ إجراء'})}</Button>
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row items-center justify-center gap-8 py-12 bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 min-h-[400px]">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-8 py-12 bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 min-h-[400px]">
         {nodes.map((node, index) => (
           <React.Fragment key={node.id}>
             <Card className="w-64 p-8 relative border-royal/35 border-2">

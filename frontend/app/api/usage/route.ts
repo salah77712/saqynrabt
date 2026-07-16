@@ -29,7 +29,7 @@ export async function GET() {
       voice_minutes_limit: data.limits?.voice_minutes_limit ?? 250,
       questions_used: data.usage?.questions_used ?? data.usage?.questions_count ?? 0,
       questions_limit: data.limits?.max_questions ?? 1000,
-      employees_used: 0,
+      employees_used: data.employees_used ?? 0,
       employees_limit: data.limits?.max_employees ?? 50,
       documents_used: data.documents_used ?? 0,
       documents_limit: data.limits?.max_documents ?? 5,

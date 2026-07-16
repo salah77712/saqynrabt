@@ -23,12 +23,12 @@ export function AutomationFilters({ filter, onFilterChange, search, onSearchChan
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex gap-1.5 bg-[#F8F9FB] dark:bg-[#141F33] p-1 rounded-[40px]">
+      <div className="flex gap-1.5 bg-[#F8F9FB] dark:bg-[#141F33] p-1 rounded-xl">
         {options.map((opt) => (
           <button
             key={opt}
             onClick={() => onFilterChange(opt)}
-            className={`px-4 py-3 min-h-[44px] rounded-[40px] text-xs font-bold uppercase tracking-wide transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+            className={`px-4 py-3 min-h-[44px] rounded-xl text-xs font-bold uppercase tracking-wide transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
               filter === opt
                 ? '  shadow-sm'
                 : ' '

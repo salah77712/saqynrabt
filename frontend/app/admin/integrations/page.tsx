@@ -106,7 +106,7 @@ export default function AdminIntegrationsPage() {
       <main className="flex-1 max-w-4xl mx-auto w-full px-6 py-12 lg:px-8">
         
         {/* Main Workspace Frame */}
-        <div className="bg-white rounded-[40px] border border-[#141F33]/10 p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+        <div className="bg-white rounded-xl border border-[#141F33]/10 p-8 shadow-card">
           
           <div className="border-b border-[#141F33]/10 pb-6 mb-8">
             <h1 className="text-2xl font-extrabold text-[#141F33]">Connect your HR Database to Saqyn Rabt.</h1>
@@ -164,7 +164,7 @@ export default function AdminIntegrationsPage() {
             {/* Right Block: Manual CSV Fallback Drag and Drop */}
             <div>
               <h3 className="text-sm font-bold text-[#141F33] mb-3">Manual CSV Upload Fallback</h3>
-              <div className="relative border-2 border-dashed border-[#141F33]/10 rounded-[40px] p-6 text-center hover:bg-[#F8F9FB] transition-colors">
+              <div className="relative border-2 border-dashed border-[#141F33]/10 rounded-xl p-6 text-center hover:bg-[#F8F9FB] transition-colors">
                 <input
                   type="file"
                   accept=".csv"

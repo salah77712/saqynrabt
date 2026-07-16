@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as Sentry from '@sentry/nextjs';
 import NextError from 'next/error';
@@ -19,64 +19,20 @@ export default function GlobalError({
   return (
     <html>
       <body>
-        <div
-          style={{
-            minHeight: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '24px',
-            background: '#F8F9FB',
-            fontFamily: 'system-ui, sans-serif',
-          }}
-        >
-          <div
-            style={{
-              background: '#F8F9FB',
-              borderRadius: '16px',
-              padding: '48px',
-              maxWidth: '480px',
-              width: '100%',
-              textAlign: 'center',
-              boxShadow: '0 4px 24px rgba(20,31,51,0.08)',
-            }}
-          >
-            <div style={{ fontSize: '48px', marginBottom: '16px' }}>
-              <AlertTriangle className="w-6 h-6 text-[#141F33]" />
+        <div className="min-h-screen flex items-center justify-center bg-surface p-6">
+          <div className="bg-surface rounded-2xl p-10 sm:p-12 max-w-md w-full text-center shadow-lg">
+            <div className="text-5xl mb-4">
+              <AlertTriangle className="w-6 h-6 text-primary" />
             </div>
-            <h1
-              style={{
-                fontSize: '24px',
-                fontWeight: 800,
-                color: '#141F33',
-                marginBottom: '8px',
-              }}
-            >
+            <h1 className="text-2xl font-extrabold text-primary mb-2">
               Something went wrong
             </h1>
-            <p
-              style={{
-                fontSize: '14px',
-                color: 'rgba(20,31,51,0.6)',
-                marginBottom: '24px',
-                lineHeight: 1.5,
-              }}
-            >
+            <p className="text-sm text-primary/60 mb-6 leading-relaxed">
               An unexpected error occurred. Our team has been notified.
             </p>
             <button
               onClick={reset}
-              style={{
-                background: '#141F33',
-                color: '#F8F9FB',
-                border: 'none',
-                borderRadius: '12px',
-                padding: '12px 32px',
-                fontSize: '14px',
-                fontWeight: 700,
-                cursor: 'pointer',
-                minHeight: '44px',
-              }}
+              className="bg-primary text-surface rounded-xl px-8 py-3 text-sm font-bold min-h-[44px] transition-colors focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             >
               Try again
             </button>

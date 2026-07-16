@@ -132,7 +132,7 @@ role="dialog"
 aria-modal="true"
 aria-label={t('Search', 'بحث')}
 >
-<div className="w-full max-w-xl bg-[#F8F9FB] rounded-[40px] shadow-2xl border border-[#141F33]/10 overflow-hidden animate-slideDown">
+<div className="w-full max-w-xl bg-[#F8F9FB] rounded-xl shadow-2xl border border-[#141F33]/10 overflow-hidden animate-slideDown">
 {/* Search Input */}
 <div className="flex items-center gap-4 px-5 py-4 border-b border-[#141F33]/10">
 <svg className="h-5 w-5 text-[#141F33]/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

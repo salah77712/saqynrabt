@@ -35,7 +35,7 @@ export default function ClientSuccessPage() {
 
       <div className="space-y-4">
         {clients.map((client) => (
-          <div key={client.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+          <div key={client.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
               <h4 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{client.name}</h4>
               <p className="text-xs text-[#141F33] mt-1">{t({en: 'Resource consumption:', ar: 'استهلاك الموارد:'})} {client.usage}</p>

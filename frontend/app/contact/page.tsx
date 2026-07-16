@@ -70,7 +70,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-30 items-start">
           
           {/* Left Column: Contact Form */}
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
+          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
             <h2 className="text-2xl font-extrabold text-[#141F33] mb-2">
               {t({ en: 'Send us a message', ar: 'أرسل لنا رسالة' })}
             </h2>
@@ -89,7 +89,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   aria-invalid={!!errors.name}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal ${
+                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal ${
                     errors.name ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
@@ -106,7 +106,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   aria-invalid={!!errors.email}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal ${
+                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal ${
                     errors.email ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
@@ -123,7 +123,7 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   aria-invalid={!!errors.phone}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal ${
+                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal ${
                     errors.phone ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
@@ -138,7 +138,7 @@ export default function ContactPage() {
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
                 >
                   <option value="Demo Request">{t({ en: 'Demo Request', ar: 'طلب عرض توضيحي' })}</option>
                   <option value="Support">{t({ en: 'Support', ar: 'الدعم الفني' })}</option>
@@ -157,7 +157,7 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleChange}
                   aria-invalid={!!errors.message}
-                  className={`w-full bg-[#F8F9FB] border rounded-[40px] px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal resize-none ${
+                  className={`w-full bg-[#F8F9FB] border rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal resize-none ${
                     errors.message ? 'border-red-600' : 'border-[#141F33]/10'
                   }`}
                 />
@@ -168,7 +168,7 @@ export default function ContactPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-[40px] text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+                className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
               >
                 {submitting ? t({ en: 'Submitting...', ar: 'جاري الإرسال...' }) : t({ en: 'Submit Message', ar: 'إرسال الرسالة' })}
               </button>

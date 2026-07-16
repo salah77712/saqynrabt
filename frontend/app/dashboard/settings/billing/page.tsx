@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import { useLocale } from '../../../providers';
 import { Card } from '@/components/shadcn/card';
@@ -22,7 +22,7 @@ export default function BillingSettingsPage() {
         </p>
       </div>
 
-      <Card className="p-8 border-[#2A5CFF]/10 bg-[#F8F9FB] rounded-[40px] shadow-sm">
+      <Card className="p-8 border-[#2A5CFF]/10 bg-[#F8F9FB] rounded-xl shadow-sm">
         <div className="flex items-start gap-4">
           <span className="shrink-0 mt-0.5"><ShieldSvg /></span>
           <div>
@@ -45,7 +45,7 @@ export default function BillingSettingsPage() {
         </div>
       </Card>
 
-      <Card className="p-8 rounded-[40px] shadow-sm">
+      <Card className="p-8 rounded-xl shadow-sm">
         <div className="flex items-start gap-4">
           <span className="shrink-0 mt-0.5"><AlertTriangleSvg /></span>
           <div>
@@ -58,7 +58,7 @@ export default function BillingSettingsPage() {
                 ar: 'يمكنك إلغاء اشتراكك في أي وقت عبر إعدادات لوحة التحكم. عند الإلغاء، تظل الخدمة نشطة حتى نهاية فترة الفوترة الحالية. لا يتم إصدار استرداد للأشهر الجزئية من الخدمة. رسوم الإعداد غير قابلة للاسترداد بعد إجراء مكالمة الإعداد.',
               })}
             </p>
-            <Button variant="outline" className="mt-3 border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33] py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]">
+            <Button variant="outline" className="mt-3 border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33] py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
               {t({ en: 'Cancel Subscription', ar: 'إلغاء الاشتراك' })}
             </Button>
           </div>

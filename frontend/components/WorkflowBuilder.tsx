@@ -36,7 +36,7 @@ setNodes(prev => prev.filter(n => n.id !== id));
 };
 
 return (
-<div className="border border-[#141F33]/10 rounded-[40px] p-8 bg-[#F8F9FB] space-y-6">
+<div className="border border-[#141F33]/10 rounded-xl p-8 bg-[#F8F9FB] space-y-6">
 
 {/* Header */}
 <div className="flex justify-between items-center">
@@ -46,7 +46,7 @@ return (
 </div>
 <button
 onClick={() => handleAddNode('action')}
-className="bg-[#141F33] text-white font-bold py-3 px-6 rounded-[40px] text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+className="bg-[#141F33] text-white font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 + Add Action Node
 </button>
@@ -58,7 +58,7 @@ className="bg-[#141F33] text-white font-bold py-3 px-6 rounded-[40px] text-xs mi
 <React.Fragment key={node.id}>
 
 {/* Node Card */}
-<div className={`w-full max-w-sm bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-4 shadow-sm flex justify-between items-center relative ${
+<div className={`w-full max-w-sm bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm flex justify-between items-center relative ${
 node.type === 'trigger' ? 'border-l-4 border-l-[#2A5CFF]' : 'border-l-4 border-l-[#2A5CFF]'
 }`}>
 <div>
@@ -69,7 +69,7 @@ node.type === 'trigger' ? 'border-l-4 border-l-[#2A5CFF]' : 'border-l-4 border-l
 {node.type !== 'trigger' && (
 <button
         onClick={() => handleRemoveNode(node.id)}
-        className="text-xs text-[#141F33]/60 hover:text-[#141F33] transition-all duration-300 p-1 border border-[#141F33]/10 hover:border-[#2A5CFF] rounded-[40px] min-h-[44px] min-w-[44px] flex items-center justify-center"
+        className="text-xs text-[#141F33]/60 hover:text-[#141F33] transition-all duration-300 p-1 border border-[#141F33]/10 hover:border-[#2A5CFF] rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
       >
 <Trash2 className="w-4 h-4 text-[#141F33]/60 hover:text-[#141F33]" />
 </button>

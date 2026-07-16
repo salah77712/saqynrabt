@@ -53,7 +53,7 @@ export default function PricingPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left items-stretch">
           
           {/* Card 1: Synthetiq Voice Core */}
-          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between relative">
+          <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-8 flex flex-col justify-between relative">
             <div>
               <div className="pb-6 border-b border-[#141F33]/10">
                 <h3 className="text-xl font-bold text-[#141F33]">Synthetiq Voice Core</h3>
@@ -135,7 +135,7 @@ export default function PricingPage() {
           </div>
 
           {/* Card 2: Synthetiq Work Core */}
-          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between relative">
+          <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-8 flex flex-col justify-between relative">
             <div>
               <div className="pb-6 border-b border-[#141F33]/10">
                 <h3 className="text-xl font-bold text-[#141F33]">Synthetiq Work Core</h3>
@@ -217,7 +217,7 @@ export default function PricingPage() {
           </div>
 
           {/* Card 3: Saqyn Rabt Enterprise Bundle */}
-          <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex flex-col justify-between ring-2 ring-[#2A5CFF] relative">
+          <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-8 flex flex-col justify-between ring-2 ring-[#2A5CFF] relative">
             {/* Absolute Recommended badge */}
             <div className="absolute top-4 right-6 bg-[#2A5CFF] text-white rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider select-none shadow-sm">
               Recommended
@@ -269,7 +269,7 @@ export default function PricingPage() {
         </div>
 
         {/* Bottom Employee Size Limit Notice */}
-        <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-6 shadow-sm mt-16 max-w-3xl mx-auto flex items-center justify-center gap-3">
+        <div className="bg-white border border-[#141F33]/10 rounded-xl p-6 shadow-sm mt-16 max-w-3xl mx-auto flex items-center justify-center gap-3">
           <span className="w-2 h-2 rounded-full bg-[#2A5CFF]" />
           <span className="text-xs font-bold text-[#141F33]/60 uppercase tracking-wider">
             Work plan covers up to 150 employees. For 150+ employees, please contact us for an Enterprise quote.

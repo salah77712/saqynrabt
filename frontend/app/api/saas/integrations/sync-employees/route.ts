@@ -1,34 +1,37 @@
-import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
-
-const prisma = new PrismaClient();
+import { NextResponse } from "next/server";
+import { neon } from "@neondatabase/serverless";
 
 export async function POST(request: Request) {
   try {
     const { token, tenantId } = await request.json();
 
     if (!token || !tenantId) {
-      return NextResponse.json({ message: 'Missing token or tenantId' }, { status: 400 });
+      return NextResponse.json({ message: "Missing token or tenantId" }, { status: 400 });
     }
 
-    // Step 1: Query Tenant details to check employee limits
-    const tenant = await prisma.tenant.findUnique({
-      where: { id: tenantId },
-      include: { _count: { select: { employees: true } } }
-    });
+    const sql = neon(process.env.DATABASE_URL!);
+
+    const tenants = await sql`
+      SELECT id, plan_tier FROM "Tenant" WHERE id = ${tenantId}
+    `;
+    const tenant = tenants[0] as { id: string; plan_tier: string } | undefined;
 
     if (!tenant) {
-      return NextResponse.json({ message: 'Tenant not found' }, { status: 404 });
+      return NextResponse.json({ message: "Tenant not found" }, { status: 404 });
     }
 
-    // Step 2: Fetch standardized employee records from Merge HRIS
-    const mergeUrl = 'https://api.merge.dev/api/hris/v1/employees';
+    const countResult = await sql`
+      SELECT COUNT(*)::int AS count FROM "Employee" WHERE "tenantId" = ${tenantId}
+    `;
+    const currentCount = (countResult[0] as { count: number }).count;
+
+    const mergeUrl = "https://api.merge.dev/api/hris/v1/employees";
     const response = await fetch(mergeUrl, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Authorization': `Bearer ${process.env.MERGE_API_KEY}`,
-        'X-Account-Token': token,
-        'Content-Type': 'application/json',
+        Authorization: `Bearer ${process.env.MERGE_API_KEY}`,
+        "X-Account-Token": token,
+        "Content-Type": "application/json",
       },
     });
 
@@ -40,73 +43,52 @@ export async function POST(request: Request) {
     const mergeData = await response.json();
     const results = mergeData.results || [];
 
-    // Step 3: Enforce strict 150-employee limit for Growth tier
     const incomingCount = results.length;
-    const currentCount = tenant._count.employees;
-
-    if (tenant.plan_tier !== 'Enterprise' && (currentCount + incomingCount > 150)) {
+    if (tenant.plan_tier !== "Enterprise" && currentCount + incomingCount > 150) {
       return NextResponse.json(
-        { message: 'Please upgrade to Enterprise to manage >150 employees.' },
+        { message: "Please upgrade to Enterprise to manage >150 employees." },
         { status: 403 }
       );
     }
 
-    // Step 4: Iterate and Upsert employee records
     let upsertCount = 0;
     for (const emp of results) {
-      if (!emp.work_email) continue; // Skip if no valid work email
+      if (!emp.work_email) continue;
 
-      await prisma.employee.upsert({
-        where: {
-          tenantId_work_email: {
-            tenantId: tenantId,
-            work_email: emp.work_email,
-          },
-        },
-        update: {
-          first_name: emp.first_name || '',
-          last_name: emp.last_name || '',
-          job_title: emp.job_title || 'Worker',
-          department: emp.department || 'Operations',
-          manager_name: emp.manager ? `${emp.manager.first_name || ''} ${emp.manager.last_name || ''}`.trim() : null,
-          pto_balance_remaining: emp.pto_balance_remaining || 0.0,
-          employment_status: emp.employment_status || 'active',
-          updated_at: new Date(),
-        },
-        create: {
-          tenantId: tenantId,
-          remote_id: emp.id,
-          first_name: emp.first_name || '',
-          last_name: emp.last_name || '',
-          work_email: emp.work_email,
-          job_title: emp.job_title || 'Worker',
-          department: emp.department || 'Operations',
-          manager_name: emp.manager ? `${emp.manager.first_name || ''} ${emp.manager.last_name || ''}`.trim() : null,
-          pto_balance_remaining: emp.pto_balance_remaining || 0.0,
-          employment_status: emp.employment_status || 'active',
-        },
-      });
+      const managerName = emp.manager
+        ? `${emp.manager.first_name || ""} ${emp.manager.last_name || ""}`.trim()
+        : null;
+
+      await sql`
+        INSERT INTO "Employee" ("tenantId", "remote_id", "first_name", "last_name", "work_email", "job_title", "department", "manager_name", "pto_balance_remaining", "employment_status", "updated_at")
+        VALUES (${tenantId}, ${emp.id || null}, ${emp.first_name || ""}, ${emp.last_name || ""}, ${emp.work_email}, ${emp.job_title || "Worker"}, ${emp.department || "Operations"}, ${managerName}, ${emp.pto_balance_remaining || 0.0}, ${emp.employment_status || "active"}, NOW())
+        ON CONFLICT ("tenantId", "work_email")
+        DO UPDATE SET
+          "remote_id" = EXCLUDED."remote_id",
+          "first_name" = EXCLUDED."first_name",
+          "last_name" = EXCLUDED."last_name",
+          "job_title" = EXCLUDED."job_title",
+          "department" = EXCLUDED."department",
+          "manager_name" = EXCLUDED."manager_name",
+          "pto_balance_remaining" = EXCLUDED."pto_balance_remaining",
+          "employment_status" = EXCLUDED."employment_status",
+          "updated_at" = NOW()
+      `;
+
       upsertCount++;
     }
 
-    // Step 5: Update the Integration status record
-    await prisma.integration.upsert({
-      where: { id: tenantId }, // tied 1:1 for simplicity or map via tenantId + provider
-      update: {
-        last_synced_at: new Date(),
-        is_active: true,
-      },
-      create: {
-        tenantId: tenantId,
-        provider_name: 'Merge',
-        linked_account_token: token,
-        last_synced_at: new Date(),
-        is_active: true,
-      }
-    });
+    await sql`
+      INSERT INTO "Integration" ("id", "tenantId", "provider_name", "linked_account_token", "is_active", "last_synced_at")
+      VALUES (${tenantId}, ${tenantId}, 'Merge', ${token}, true, NOW())
+      ON CONFLICT ("id")
+      DO UPDATE SET
+        "last_synced_at" = NOW(),
+        "is_active" = true
+    `;
 
     return NextResponse.json({ success: true, count: upsertCount });
   } catch (error: any) {
-    return NextResponse.json({ message: error.message || 'Internal Server Error' }, { status: 500 });
+    return NextResponse.json({ message: error.message || "Internal Server Error" }, { status: 500 });
   }
 }

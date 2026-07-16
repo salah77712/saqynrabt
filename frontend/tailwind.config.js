@@ -6,8 +6,16 @@ module.exports = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./lib/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  theme: {
-    extend: {
+theme: {
+  extend: {
+    borderRadius: {
+      xl: '40px',
+      pill: '9999px',
+    },
+    boxShadow: {
+      card: '0 10px 40px rgba(0,0,0,0.05)',
+      glow: '0 0 20px rgba(42,92,255,0.2)',
+    },
       colors: {
         primary: "#141F33",
         accent: "#2A5CFF",

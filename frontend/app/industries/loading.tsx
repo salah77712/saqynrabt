@@ -18,7 +18,7 @@ export default function IndustriesLoading() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(16)].map((_, i) => (
-              <div key={i} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8">
+              <div key={i} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8">
                 <div className="h-8 w-8 bg-[#F8F9FB] rounded animate-pulse mb-3" />
                 <div className="h-5 w-32 bg-[#F8F9FB] rounded animate-pulse mb-2" />
                 <div className="h-4 w-full bg-[#F8F9FB] rounded animate-pulse mb-1" />

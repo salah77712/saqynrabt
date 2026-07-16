@@ -18,7 +18,7 @@ export default function ContactLoading() {
         <div className="h-5 w-full bg-[#F8F9FB] rounded animate-pulse mb-10" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {[...Array(2)].map((_, i) => (
-            <div key={i} className="border border-[#141F33]/10 rounded-[40px] p-8">
+            <div key={i} className="border border-[#141F33]/10 rounded-xl p-8">
               <div className="h-6 w-32 bg-[#141F33] rounded animate-pulse mb-3" />
               <div className="h-4 w-full bg-[#F8F9FB] rounded animate-pulse" />
             </div>

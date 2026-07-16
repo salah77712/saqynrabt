@@ -66,7 +66,7 @@ return (
 {t({en: 'Generate a formal operations PDF including current workspace metrics and redacting PII details.', ar: 'إنشاء PDF رسمي للعمليات يتضمن مقاييس مساحة العمل الحالية مع إخفاء تفاصيل المعلومات الشخصية.'})}
 </p>
 </div>
-<Button variant="default" className="mt-6 w-full py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('PDF')}>
+<Button variant="default" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('PDF')}>
 {loading === 'PDF' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export PDF Report', ar: 'تصدير تقرير PDF'})}
 </Button>
 </Card>
@@ -78,7 +78,7 @@ return (
 {t({en: 'Export RAG assistant transcripts to CSV formats for offline review.', ar: 'تصدير نصوص مساعد RAG الشاملة بتنسيق CSV مناسب للمراجعة المحلية.'})}
 </p>
 </div>
-<Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('CSV')}>
+<Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('CSV')}>
 {loading === 'CSV' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export CSV Database', ar: 'تصدير قاعدة البيانات CSV'})}
 </Button>
 </Card>
@@ -90,7 +90,7 @@ return (
 {t({en: 'Download monthly allocation files detailing voice minute calls and document uploads.', ar: 'تنزيل ملفات التخصيص الشهرية التي توضح دقائق المكالمات الصوتية ورفع المستندات.'})}
 </p>
 </div>
-<Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('EXCEL')}>
+<Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('EXCEL')}>
 {loading === 'EXCEL' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export Excel Sheet', ar: 'تصدير ورقة Excel'})}
 </Button>
 </Card>

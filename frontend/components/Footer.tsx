@@ -86,7 +86,7 @@ const col4 = [
 ];
 
 return (
-<footer className="bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] m-4 overflow-hidden" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<footer className="bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 rounded-xl shadow-card m-4 overflow-hidden" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
   
   {/* 1. Top Status Bar */}
   <div className="border-b border-[#141F33]/10 bg-[#F8F9FB] py-3 px-6 lg:px-8">

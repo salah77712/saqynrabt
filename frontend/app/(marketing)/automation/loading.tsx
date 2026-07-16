@@ -29,7 +29,7 @@ export default function AutomationLoading() {
             <div className="space-y-4">
               <div className="h-8 w-64 bg-[#141F33] rounded animate-pulse" />
               {[...Array(6)].map((_, i) => (
-                <div key={i} className="flex items-start gap-8 bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-5">
+                <div key={i} className="flex items-start gap-8 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-5">
                   <div className="h-8 w-8 bg-[#141F33] rounded animate-pulse" />
                   <div className="flex-1 space-y-2">
                     <div className="h-4 w-40 bg-[#141F33] rounded animate-pulse" />
@@ -38,7 +38,7 @@ export default function AutomationLoading() {
                 </div>
               ))}
             </div>
-            <div className="bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 p-8 space-y-4">
+            <div className="bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 p-8 space-y-4">
               <div className="h-6 w-24 bg-[#141F33] rounded animate-pulse" />
               {[...Array(4)].map((_, i) => (
                 <div key={i} className="h-12 w-full bg-[#F8F9FB] rounded animate-pulse" />

@@ -21,8 +21,8 @@ export default function MarketingPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col items-center text-center gap-16 w-full relative">
           
           {/* Floating Tilted Cards (Hidden on mobile) */}
-          <div className="absolute top-10 left-12 w-24 h-24 bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform rotate-[15deg] hidden lg:block pointer-events-none" />
-          <div className="absolute top-10 right-12 w-24 h-24 bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] transform -rotate-[15deg] hidden lg:block pointer-events-none" />
+          <div className="absolute top-10 left-12 w-24 h-24 bg-white border border-[#141F33]/10 rounded-xl shadow-card transform rotate-[15deg] hidden lg:block pointer-events-none" />
+          <div className="absolute top-10 right-12 w-24 h-24 bg-white border border-[#141F33]/10 rounded-xl shadow-card transform -rotate-[15deg] hidden lg:block pointer-events-none" />
           
           {/* Headline and Subtext Block */}
           <div className="flex flex-col items-center gap-8 max-w-3xl">
@@ -99,7 +99,7 @@ export default function MarketingPage() {
 
           {/* ── Dynamic Preview Mockup Container ──────────────── */}
           <div className="w-full max-w-xl">
-            <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 flex items-center justify-center min-h-[280px]">
+            <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-8 flex items-center justify-center min-h-[280px]">
               
               {activeProduct === 'voice' ? (
                 /* Dynamic Voice SVG Mockup (Navy & Canvas only) */

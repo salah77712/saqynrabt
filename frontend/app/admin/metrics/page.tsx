@@ -40,7 +40,7 @@ export default function AdminMetricsPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         
         {/* Metric 1 */}
-        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col justify-between h-32">
+        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col justify-between h-32">
           <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{t({ en: 'Requests / Sec', ar: 'الطلبات في الثانية' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.requestsPerSecond}</span>
@@ -49,7 +49,7 @@ export default function AdminMetricsPage() {
         </div>
 
         {/* Metric 2 */}
-        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col justify-between h-32">
+        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col justify-between h-32">
           <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{t({ en: 'Total OpenAI Calls', ar: 'إجمالي طلبات OpenAI' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.openaiCalls}</span>
@@ -58,7 +58,7 @@ export default function AdminMetricsPage() {
         </div>
 
         {/* Metric 3 */}
-        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col justify-between h-32">
+        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col justify-between h-32">
           <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{t({ en: 'Active DB Pools', ar: 'اتصالات قاعدة البيانات النشطة' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.dbConnections}</span>
@@ -67,7 +67,7 @@ export default function AdminMetricsPage() {
         </div>
 
         {/* Metric 4 */}
-        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col justify-between h-32">
+        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col justify-between h-32">
           <p className="text-[10px] font-extrabold uppercase text-[#141F33]/60 tracking-wider">{t({ en: 'Response Delay', ar: 'تأخر الاستجابة' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-[#141F33]">{metrics.responseTimeMs} ms</span>

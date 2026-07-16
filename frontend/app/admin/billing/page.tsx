@@ -45,7 +45,7 @@ export default function AdminBillingPage() {
       </div>
 
       {/* Invoices List */}
-      <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+      <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden shadow-card">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
@@ -80,7 +80,7 @@ export default function AdminBillingPage() {
                     {inv.status === 'unpaid' ? (
                       <button
                         onClick={() => handleMarkPaid(inv.id)}
-                        className="py-3 px-6 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
                         {t({ en: 'Mark as Paid', ar: 'تحديد كمدفوع' })}
                       </button>

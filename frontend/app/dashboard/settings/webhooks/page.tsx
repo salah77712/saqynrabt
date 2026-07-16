@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
@@ -146,7 +146,7 @@ export default function WebhooksSettingsPage() {
       </div>
 
       {/* Form Register */}
-      <form onSubmit={handleRegister} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col gap-8">
+      <form onSubmit={handleRegister} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col gap-8">
         
         <div>
           <label htmlFor="url" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Destination URL', ar: 'الرابط المستهدف' })}</label>
@@ -156,7 +156,7 @@ export default function WebhooksSettingsPage() {
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             placeholder="https://api.yourdomain.com/webhook-receiver"
-            className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none"
+            className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
             required
           />
         </div>
@@ -165,7 +165,7 @@ export default function WebhooksSettingsPage() {
           <label className="block text-xs font-bold text-[#141F33] mb-3">{t({ en: 'Subscribe to Events', ar: 'الاشتراك في الأحداث' })}</label>
           <div className="grid grid-cols-2 gap-4 text-xs font-semibold">
             {['booking.created', 'complaint.routed', 'chat.answered'].map((event) => (
-              <label key={event} className="flex items-center gap-3 cursor-pointer p-3 border border-[#141F33]/10 rounded-[40px] bg-[#F8F9FB] hover:border-[#141F33] transition-colors">
+              <label key={event} className="flex items-center gap-3 cursor-pointer p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] hover:border-[#141F33] transition-colors">
                 <input
                   type="checkbox"
                   checked={selectedEvents.includes(event)}
@@ -181,7 +181,7 @@ export default function WebhooksSettingsPage() {
         <button
           type="submit"
           disabled={registering}
-          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-[40px] text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40"
+          className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40"
         >
           {registering ? t({ en: 'Registering...', ar: 'جاري التسجيل...' }) : t({ en: 'Register Destination Webhook', ar: 'تسجيل الويب هوك الصادر' })}
         </button>
@@ -189,7 +189,7 @@ export default function WebhooksSettingsPage() {
       </form>
 
       {/* Webhooks List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
         <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Active Webhook Endpoints', ar: 'روابط الويب هوك النشطة' })}</h3>
 
         {loading ? (

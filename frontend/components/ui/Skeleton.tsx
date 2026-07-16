@@ -10,10 +10,10 @@ export function Skeleton({ className = '', variant = 'rectangular', ...props }: 
   const variants: Record<string, string> = {
     text: 'h-4 w-full rounded-md',
     circular: 'rounded-full',
-    rectangular: 'rounded-[40px]',
-    card: 'h-48 w-full rounded-[40px]',
+    rectangular: 'rounded-xl',
+    card: 'h-48 w-full rounded-xl',
     'table-row': 'h-12 w-full rounded-lg',
-    'metric-card': 'h-28 w-full rounded-[40px]',
+    'metric-card': 'h-28 w-full rounded-xl',
   };
 
   return <div className={`${baseStyle} ${variants[variant] || variants.rectangular} ${className}`} {...props} />;
@@ -21,7 +21,7 @@ export function Skeleton({ className = '', variant = 'rectangular', ...props }: 
 
 export function SkeletonCard() {
   return (
-    <div className="animate-pulse bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33]/30 rounded-[40px] p-8 space-y-4">
+    <div className="animate-pulse bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33]/30 rounded-xl p-8 space-y-4">
       <Skeleton variant="text" className="w-1/3" />
       <Skeleton variant="text" className="w-2/3" />
       <Skeleton variant="rectangular" className="h-4 w-full" />

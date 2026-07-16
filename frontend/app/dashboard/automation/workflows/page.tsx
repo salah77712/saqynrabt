@@ -56,7 +56,7 @@ return (
 </div>
 
 {/* Form Builder */}
-<form onSubmit={handleCreate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm space-y-6">
+<form onSubmit={handleCreate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm space-y-6">
 
 <div>
 <label htmlFor="name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Workflow Rule Name', ar: 'اسم قاعدة سير العمل' })}</label>
@@ -66,7 +66,7 @@ id="name"
 value={newWorkflow.name}
 onChange={(e) => setNewWorkflow(prev => ({ ...prev, name: e.target.value }))}
 placeholder="E.g. Slack alert for emergency bookings"
-className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none"
+className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
 required
 />
 </div>
@@ -78,7 +78,7 @@ required
 id="trigger"
 value={newWorkflow.trigger}
 onChange={(e) => setNewWorkflow(prev => ({ ...prev, trigger: e.target.value }))}
-className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold text-[#141F33]"
+className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold text-[#141F33]"
 >
 <option value="booking.created">booking.created</option>
 <option value="complaint.routed">complaint.routed</option>
@@ -92,7 +92,7 @@ className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[
 id="action"
 value={newWorkflow.action}
 onChange={(e) => setNewWorkflow(prev => ({ ...prev, action: e.target.value }))}
-className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold text-[#141F33]"
+className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold text-[#141F33]"
 >
 <option value="Send Slack Notification">Send Slack Notification</option>
 <option value="Trigger outbound Webhook">Trigger outbound Webhook</option>
@@ -103,7 +103,7 @@ className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[
 
 <button
         type="submit"
-        className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-[40px] text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
+        className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
       >
 {t({ en: 'Add Workflow Rule', ar: 'إضافة قاعدة سير العمل' })}
 </button>
@@ -111,7 +111,7 @@ className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[
 </form>
 
 {/* Rules list */}
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
 <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Active Workflow Rules', ar: 'قواعد سير العمل النشطة' })}</h3>
 
 <div className="divide-y divide-[#141F33]/10">

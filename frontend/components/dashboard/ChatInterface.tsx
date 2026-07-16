@@ -41,7 +41,7 @@ export function ChatInterface() {
   };
 
   return (
-    <div className="flex flex-col h-[500px] border border-[#F8F9FB] dark:border-[#141F33] rounded-[40px] bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm overflow-hidden">
+    <div className="flex flex-col h-[500px] border border-[#F8F9FB] dark:border-[#141F33] rounded-xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm overflow-hidden">
       {/* List */}
       <div className="flex-1 overflow-y-auto p-8 space-y-4">
         {list.map((msg) => (
@@ -50,7 +50,7 @@ export function ChatInterface() {
             className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`max-w-[75%] rounded-[40px] p-4 text-xs font-semibold leading-relaxed ${
+              className={`max-w-[75%] rounded-xl p-4 text-xs font-semibold leading-relaxed ${
                 msg.sender === 'user'
                   ? 'bg-[#141F33] dark:bg-[#2A5CFF] text-[#F8F9FB] rounded-tr-none'
                   : 'bg-[#F8F9FB] dark:bg-[#141F33] border border-[#F8F9FB] dark:border-[#141F33] text-[#141F33] dark:text-[#F8F9FB] rounded-tl-none'
@@ -63,7 +63,7 @@ export function ChatInterface() {
 
         {typing && (
           <div className="flex justify-start">
-            <div className="rounded-[40px] rounded-tl-none p-4 border border-[#F8F9FB] bg-[#F8F9FB] text-xs text-[#141F33] font-semibold">
+            <div className="rounded-xl rounded-tl-none p-4 border border-[#F8F9FB] bg-[#F8F9FB] text-xs text-[#141F33] font-semibold">
               <span className="inline-flex items-center gap-1">
                 {[0, 160, 320].map((delay) => (
                   <span

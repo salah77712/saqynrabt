@@ -18,7 +18,7 @@ export default function AIChatbotPage() {
       {/* ── Main Hero Container with 4px border top ─────────── */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 lg:px-8">
         
-        <div className="border-t-4 border-[#1A3BCC] rounded-[40px] bg-white shadow-[0_10px_40px_rgba(0,0,0,0.05)] p-8 lg:p-12 mb-12">
+        <div className="border-t-4 border-[#1A3BCC] rounded-xl bg-white shadow-card p-8 lg:p-12 mb-12">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A3BCC]/10 text-[#1A3BCC] text-[10px] font-bold uppercase tracking-wider mb-6">
               ● Internal RAG Chatbot Deep Dive
@@ -56,7 +56,7 @@ export default function AIChatbotPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Card 1: RAG Knowledge */}
-            <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between">
+            <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-full bg-[#1A3BCC] flex items-center justify-center text-white mb-6">
                   <FileText className="w-5 h-5" strokeWidth={2} />
@@ -73,7 +73,7 @@ export default function AIChatbotPage() {
             </div>
 
             {/* Card 2: ERP Integrations (Network Diagram in top 50%) */}
-            <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between">
+            <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
               <div>
                 {/* Monochromatic Network Diagram (Navy and Canvas only) */}
                 <div className="bg-[#F8F9FB] rounded-[24px] border border-[#141F33]/10 p-3 mb-6 flex flex-col items-center justify-center min-h-[110px]">
@@ -109,7 +109,7 @@ export default function AIChatbotPage() {
             </div>
 
             {/* Card 3: HR & Work Q&A */}
-            <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] flex flex-col justify-between">
+            <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
               <div>
                 <div className="w-10 h-10 rounded-full bg-[#1A3BCC] flex items-center justify-center text-white mb-6">
                   <Database className="w-5 h-5" strokeWidth={2} />
@@ -128,7 +128,7 @@ export default function AIChatbotPage() {
         </section>
 
         {/* ── Security & Sandboxing Details ────────────────── */}
-        <section className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.05)] mb-12">
+        <section className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-card mb-12">
           <div className="flex items-center gap-3 mb-4">
             <ShieldAlert className="w-6 h-6 text-[#141F33]" />
             <h2 className="text-lg font-bold text-[#141F33]">Data Privacy & Security Policies</h2>

@@ -95,7 +95,7 @@ style={{ animationDelay: `${i * 0.1}s` }}
 {isCustom(tier) ? (
 <Link
 href="/contact"
-className="w-full border border-[#141F33]/10 bg-[#F8F9FB] text-[#141F33] py-3 rounded-[40px] text-xs font-bold transition-all duration-300 min-h-[44px] hover:bg-[#141F33] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
+className="w-full border border-[#141F33]/10 bg-[#F8F9FB] text-[#141F33] py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:bg-[#141F33] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </Link>
@@ -104,7 +104,7 @@ className="w-full border border-[#141F33]/10 bg-[#F8F9FB] text-[#141F33] py-3 ro
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="w-full bg-[#2A5CFF] hover:bg-[#141F33] text-white py-3 rounded-[40px] text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
+className="w-full bg-[#2A5CFF] hover:bg-[#141F33] text-white py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </a>
@@ -113,7 +113,7 @@ className="w-full bg-[#2A5CFF] hover:bg-[#141F33] text-white py-3 rounded-[40px]
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="w-full bg-[#141F33] text-[#F8F9FB] py-3 rounded-[40px] text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
+className="w-full bg-[#141F33] text-[#F8F9FB] py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </a>

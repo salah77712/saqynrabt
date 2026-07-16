@@ -46,7 +46,7 @@ export default function AboutPage() {
         </div>
 
         {/* Story Section */}
-        <div className="bg-white border border-[rgba(20,31,51,0.1)] rounded-[40px] p-8 shadow-sm w-full mb-12 text-center md:text-start">
+        <div className="bg-white border border-[rgba(20,31,51,0.1)] rounded-xl p-8 shadow-sm w-full mb-12 text-center md:text-start">
           <h2 className="text-xl font-extrabold text-[#141F33] mb-4">{t(content.storyTitle)}</h2>
           <div className="space-y-4">
             {ta(content.storyBody).map((paragraph: string, i: number) => (

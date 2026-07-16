@@ -35,7 +35,7 @@ export default function AdminIncidentsPage() {
       </div>
 
       {/* Incidents List */}
-      <div className="bg-white border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+      <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm shadow-card">
         <div className="divide-y divide-[#141F33]/10">
           {incidents.map((inc) => (
             <div key={inc.id} className="py-4 flex justify-between items-center gap-8 first:pt-0 last:pb-0">
@@ -54,7 +54,7 @@ export default function AdminIncidentsPage() {
               {inc.status === 'Investigating' && (
                 <button
                   onClick={() => handleResolve(inc.id)}
-                  className="px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                  className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 >
                   {t({ en: 'Resolve', ar: 'حل' })}
                 </button>

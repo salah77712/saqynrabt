@@ -33,7 +33,7 @@ export default function AdminFeatureFlagsPage() {
       </div>
 
       {/* Flags table */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
         <div className="divide-y divide-[#141F33]/10">
           {flags.map((flag) => (
             <div key={flag.id} className="py-4 flex justify-between items-center gap-8 first:pt-0 last:pb-0">

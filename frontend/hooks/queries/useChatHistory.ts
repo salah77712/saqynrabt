@@ -26,6 +26,7 @@ export function useChatHistory() {
     queryKey: ['chat-history'],
     queryFn: fetchChatHistory,
     staleTime: 30_000,
+    refetchInterval: 15_000,
     retry: 2,
   });
 }

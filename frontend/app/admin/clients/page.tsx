@@ -39,7 +39,7 @@ return (
 </div>
 
 {/* Clients list */}
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden">
+<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden">
 <div className="p-8 divide-y divide-[#141F33]/10">
 {clients.map((c) => (
 <div key={c.id} className="py-4 flex justify-between items-center gap-8 first:pt-0 last:pb-0">
@@ -58,7 +58,7 @@ return (
 
 <button
 onClick={() => handleToggleStatus(c.id)}
-className={`px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${c.status === 'active' ? 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33]' : 'bg-[#2A5CFF] text-[#F8F9FB] hover:bg-[#2A5CFF]/90'}`}
+className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${c.status === 'active' ? 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33]' : 'bg-[#2A5CFF] text-[#F8F9FB] hover:bg-[#2A5CFF]/90'}`}
 >
 {c.status === 'active' ? 'Suspend' : 'Activate'}
 </button>

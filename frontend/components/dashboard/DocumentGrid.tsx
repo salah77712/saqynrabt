@@ -25,7 +25,7 @@ export function DocumentGrid({ docs, onDelete }: DocumentGridProps) {
               <FileText className="w-6 h-6 " />
               <button
                 onClick={() => onDelete(doc.id)}
-className="text-xs hover:text-[#141F33] font-bold px-3 py-1.5 min-h-[44px] rounded-[40px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+className="text-xs hover:text-[#141F33] font-bold px-3 py-1.5 min-h-[44px] rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 aria-label={`Delete ${doc.name}`}
               >
                 <Trash2 className="w-5 h-5" />

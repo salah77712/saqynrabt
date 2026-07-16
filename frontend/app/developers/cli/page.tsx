@@ -32,12 +32,12 @@ export default function DevelopersCliDocsPage() {
         </div>
 
         {/* CLI Steps */}
-        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm space-y-6">
+        <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm space-y-6">
           <h3 className="text-sm font-extrabold text-[#141F33]">{t({ en: 'Core CLI Command Reference', fr: 'Référence des commandes CLI principales', ar: 'مرجع أوامر CLI الأساسية', hi: 'मुख्य सीएलआई कमांड संदर्भ' })}</h3>
 
           <div className="space-y-4">
             {commands.map((c, idx) => (
-              <div key={idx} className="p-4 rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] space-y-2">
+              <div key={idx} className="p-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] space-y-2">
                 <code className="text-xs font-mono font-bold text-[#2A5CFF]">{c.cmd}</code>
                 <p className="text-[11px] font-semibold text-[#141F33] leading-normal">{c.desc}</p>
               </div>

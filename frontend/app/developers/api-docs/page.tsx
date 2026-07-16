@@ -51,7 +51,7 @@ export default function DevelopersApiDocsPage() {
         {/* Endpoints */}
         <div className="space-y-8">
           {endpoints.map((ep, idx) => (
-            <div key={idx} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm space-y-6">
+            <div key={idx} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm space-y-6">
               
               <div className="flex items-center gap-4">
                 <span className="bg-[#2A5CFF] text-[#F8F9FB] text-[10px] font-extrabold px-3 py-1 rounded-lg uppercase tracking-wider">
@@ -78,7 +78,7 @@ export default function DevelopersApiDocsPage() {
 
               <div>
                 <h4 className="text-xs font-extrabold text-[#141F33] mb-2">JSON Request Example</h4>
-                <pre className="bg-[#141F33] text-[#141F33]/20 rounded-[40px] p-4 text-[10px] font-mono overflow-x-auto leading-relaxed">
+                <pre className="bg-[#141F33] text-[#141F33]/20 rounded-xl p-4 text-[10px] font-mono overflow-x-auto leading-relaxed">
                   {ep.body}
                 </pre>
               </div>

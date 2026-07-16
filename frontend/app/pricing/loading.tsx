@@ -27,7 +27,7 @@ return (
 <div className="h-8 w-48 bg-[#141F33] rounded animate-pulse mb-8" />
 <div className="flex flex-col gap-5">
 {[...Array(3)].map((_, row) => (
-<div key={row} className="border border-[#141F33]/10 rounded-[40px] p-8">
+<div key={row} className="border border-[#141F33]/10 rounded-xl p-8">
 <div className="flex justify-between mb-4">
 <div className="space-y-2">
 <div className="h-5 w-20 bg-[#141F33] rounded animate-pulse" />

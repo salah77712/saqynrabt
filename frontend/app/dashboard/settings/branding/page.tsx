@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@clerk/nextjs';
@@ -89,11 +89,11 @@ export default function BrandingSettingsPage() {
       .then(res => res.json())
       .then(() => {
         markClean();
-        addToast(t({ en: 'Branding options updated successfully!', ar: 'تم تحديث خيارات الهوية البصرية بنجاح!' }), 'success');
+        addToast(t({ en: 'Branding options updated successfully!', ar: '?? ????? ?????? ?????? ??????? ?????!' }), 'success');
       })
       .catch(err => {
         console.error('Failed to save branding:', err);
-        addToast(t({ en: 'Failed to update branding settings.', ar: 'فشل حفظ إعدادات الهوية البصرية.' }), 'error');
+        addToast(t({ en: 'Failed to update branding settings.', ar: '??? ??? ??????? ?????? ???????.' }), 'error');
       })
       .finally(() => setSaving(false));
   };
@@ -109,8 +109,8 @@ export default function BrandingSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Branding', ar: 'إعدادات الهوية البصرية للعميل' })}</h1>
-        <p className="text-xs text-[#141F33]/60 font-medium mt-0.5">{t({ en: 'Your logo, your colors, your AI assistant\'s look.', ar: 'تخصيص الشعارات، الألوان الأساسية، وصورة المساعد الذكي.' })}</p>
+        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Branding', ar: '??????? ?????? ??????? ??????' })}</h1>
+        <p className="text-xs text-[#141F33]/60 font-medium mt-0.5">{t({ en: 'Your logo, your colors, your AI assistant\'s look.', ar: '????? ????????? ??????? ????????? ????? ??????? ?????.' })}</p>
       </div>
 
       {loading ? (
@@ -118,11 +118,11 @@ export default function BrandingSettingsPage() {
           <span className="h-8 w-8 rounded-full border-4 border-[#141F33]/10 border-t-[#141F33] animate-spin" />
         </div>
       ) : (
-        <form ref={formRef} onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm flex flex-col gap-8">
+        <form ref={formRef} onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col gap-8">
           
           {/* Logo URL */}
           <div>
-            <label htmlFor="logo_url" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Company Logo Image URL', ar: 'رابط صورة شعار الشركة' })}</label>
+            <label htmlFor="logo_url" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Company Logo Image URL', ar: '???? ???? ???? ??????' })}</label>
             <input
               type="text"
               id="logo_url"
@@ -130,49 +130,49 @@ export default function BrandingSettingsPage() {
               value={branding.logo_url}
               onChange={handleChange}
               placeholder="https://alsafa.qa/logo.png"
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal"
+              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-8">
             {/* Primary color */}
             <div>
-              <label htmlFor="primary_color_hex" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Primary Hex Color', ar: 'اللون الأساسي (Hex)' })}</label>
+              <label htmlFor="primary_color_hex" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Primary Hex Color', ar: '????? ??????? (Hex)' })}</label>
               <div className="flex gap-3">
                 <input
                   type="color"
                   name="primary_color_hex"
                   value={branding.primary_color_hex}
                   onChange={handleChange}
-                  className="h-[44px] w-12 bg-transparent border-0 cursor-pointer rounded-[40px]"
+                  className="h-[44px] w-12 bg-transparent border-0 cursor-pointer rounded-xl"
                 />
                 <input
                   type="text"
                   name="primary_color_hex"
                   value={branding.primary_color_hex}
                   onChange={handleChange}
-                  className="flex-1 min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-mono font-bold"
+                  className="flex-1 min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold"
                 />
               </div>
             </div>
 
             {/* Secondary Color */}
             <div>
-              <label htmlFor="secondary_color_hex" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Secondary Hex Color', ar: 'اللون الثانوي (Hex)' })}</label>
+              <label htmlFor="secondary_color_hex" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Secondary Hex Color', ar: '????? ??????? (Hex)' })}</label>
               <div className="flex gap-3">
                 <input
                   type="color"
                   name="secondary_color_hex"
                   value={branding.secondary_color_hex}
                   onChange={handleChange}
-                  className="h-[44px] w-12 bg-transparent border-0 cursor-pointer rounded-[40px]"
+                  className="h-[44px] w-12 bg-transparent border-0 cursor-pointer rounded-xl"
                 />
                 <input
                   type="text"
                   name="secondary_color_hex"
                   value={branding.secondary_color_hex}
                   onChange={handleChange}
-                  className="flex-1 min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-mono font-bold"
+                  className="flex-1 min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold"
                 />
               </div>
             </div>
@@ -180,11 +180,11 @@ export default function BrandingSettingsPage() {
 
           {/* AI Persona */}
           <div className="pt-4 border-t border-[#141F33]/10 space-y-4">
-            <h3 className="text-xs font-extrabold text-[#141F33]/60 uppercase tracking-wider">{t({ en: 'AI Persona Config', ar: 'إعدادات شخصية المساعد' })}</h3>
+            <h3 className="text-xs font-extrabold text-[#141F33]/60 uppercase tracking-wider">{t({ en: 'AI Persona Config', ar: '??????? ????? ???????' })}</h3>
 
             <div className="grid grid-cols-2 gap-8">
               <div>
-                <label htmlFor="chat_bot_name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'AI Assistant Name', ar: 'اسم المساعد الذكي' })}</label>
+                <label htmlFor="chat_bot_name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'AI Assistant Name', ar: '??? ??????? ?????' })}</label>
                 <input
                   type="text"
                   id="chat_bot_name"
@@ -192,12 +192,12 @@ export default function BrandingSettingsPage() {
                   value={branding.chat_bot_name}
                   onChange={handleChange}
                   placeholder="SAQYN Assistant"
-                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold"
+                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold"
                 />
               </div>
 
               <div>
-                <label htmlFor="chat_bot_avatar_url" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Assistant Avatar URL', ar: 'رابط صورة المساعد' })}</label>
+                <label htmlFor="chat_bot_avatar_url" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Assistant Avatar URL', ar: '???? ???? ???????' })}</label>
                 <input
                   type="text"
                   id="chat_bot_avatar_url"
@@ -205,7 +205,7 @@ export default function BrandingSettingsPage() {
                   value={branding.chat_bot_avatar_url}
                   onChange={handleChange}
                   placeholder="https://alsafa.qa/avatar.png"
-                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold"
+                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold"
                 />
               </div>
             </div>
@@ -214,9 +214,9 @@ export default function BrandingSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-[40px] text-xs hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] flex items-center justify-center disabled:opacity-40"
           >
-            {saving ? t({ en: 'Updating...', ar: 'جاري الحفظ...' }) : t({ en: 'Save Branding Options', ar: 'حفظ إعدادات الهوية البصرية' })}
+            {saving ? t({ en: 'Updating...', ar: '???? ?????...' }) : t({ en: 'Save Branding Options', ar: '??? ??????? ?????? ???????' })}
           </button>
 
         </form>

@@ -30,7 +30,7 @@ export function EmptyState({
 }: EmptyStateProps) {
   const containerClass = compact
     ? 'flex flex-col items-center justify-center text-center p-6'
-    : 'flex flex-col items-center justify-center text-center p-8 border border-[#141F33]/10 dark:border-[#141F33]/30 rounded-[40px] bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm max-w-sm mx-auto';
+    : 'flex flex-col items-center justify-center text-center p-8 border border-[#141F33]/10 dark:border-[#141F33]/30 rounded-xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm max-w-sm mx-auto';
 
   return (
     <div className={containerClass}>

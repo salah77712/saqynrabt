@@ -46,13 +46,13 @@ export default function AdminLayout({
         <div className="mt-8 flex gap-8">
           <Link
             href="/sign-in"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-[40px] bg-[#141F33] px-8 py-3 text-xs font-bold text-[#F8F9FB] shadow-md hover:opacity-95 transition-all"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-xs font-bold text-[#F8F9FB] shadow-md hover:opacity-95 transition-all"
           >
             {t({ en: 'Sign In as Admin', ar: 'تسجيل دخول كمسؤول' })}
           </Link>
           <Link
             href="/"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-[40px] bg-[#F8F9FB] border border-[#141F33]/10 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-[#141F33] transition-all"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-[#141F33] transition-all"
           >
             {t({ en: 'Back to Home', ar: 'العودة للرئيسية' })}
           </Link>
@@ -79,7 +79,7 @@ export default function AdminLayout({
         <button
           type="button"
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-[40px] border border-[#141F33]/10 text-[#141F33] min-h-[44px] min-w-[44px]"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-[#141F33]/10 text-[#141F33] min-h-[44px] min-w-[44px]"
         >
           <Menu className="w-5 h-5" />
         </button>
@@ -114,7 +114,7 @@ export default function AdminLayout({
                     key={item.path}
                     href={item.path}
                     onClick={() => setIsSidebarOpen(false)}
-                    className={`flex items-center gap-4.5 px-4 rounded-[40px] text-sm font-bold transition-all ${
+                    className={`flex items-center gap-4.5 px-4 rounded-xl text-sm font-bold transition-all ${
                       isActive
                         ? 'bg-[#141F33] border-l-4 border-[#141F33] text-[#141F33]'
                         : 'text-[#141F33]/60 hover:bg-[#141F33] hover:text-[#141F33]'

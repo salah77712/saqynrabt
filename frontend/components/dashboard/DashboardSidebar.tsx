@@ -73,7 +73,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                 href={item.path}
                 onClick={onClose}
                 title={isCollapsed ? t(item.name) : undefined}
-                className={`flex items-center rounded-[40px] text-sm font-bold transition-all relative ${
+                className={`flex items-center rounded-xl text-sm font-bold transition-all relative ${
                   isCollapsed ? 'justify-center px-0' : 'px-4 gap-4.5'
                 } ${
                   isActive
@@ -111,7 +111,7 @@ className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justi
 
       <div className="p-4 border-t border-[#F8F9FB] bg-[#F8F9FB]">
         {mockMode ? (
-          <div className="rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] p-3 flex flex-col gap-3 min-w-0">
+          <div className="rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] p-3 flex flex-col gap-3 min-w-0">
             <div className="flex items-center justify-between gap-3 min-w-0">
               <div className="min-w-0">
                 <p className="text-xs font-extrabold text-[#141F33] truncate">Salah ({t(dashboardContent.demo)})</p>
@@ -129,7 +129,7 @@ className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justi
             </div>
           </div>
         ) : (
-          <div className={`flex items-center p-1 rounded-[40px] min-w-0 ${isCollapsed ? 'justify-center' : 'gap-4'}`}>
+          <div className={`flex items-center p-1 rounded-xl min-w-0 ${isCollapsed ? 'justify-center' : 'gap-4'}`}>
             <UserButton afterSignOutUrl="/" showName={!isCollapsed} />
             {!isCollapsed && (
               <div className="flex-1 min-w-0">

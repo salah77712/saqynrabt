@@ -14,7 +14,7 @@ return (
 {toasts.map((t) => (
 <div
 key={t.id}
-className="flex items-center gap-8 bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33]/30 shadow-xl rounded-[40px] p-4 transition-all animate-slideUp"
+className="flex items-center gap-8 bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33]/30 shadow-xl rounded-xl p-4 transition-all animate-slideUp"
 >
 <span className="text-base">
 {t.type === 'success' ? <Check className="text-[#2A5CFF] w-4 h-4" /> : t.type === 'error' ? <X className="text-[#141F33] w-4 h-4" /> : t.type === 'warning' ? <AlertTriangle className="text-[#2A5CFF] w-4 h-4" /> : <Info className="text-[#2A5CFF] w-4 h-4" />}

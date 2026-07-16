@@ -110,7 +110,7 @@ export default function ApprovalsDashboardPage() {
         </p>
 
         {/* Limit Warning Badge */}
-        <div className="mt-4 p-8 rounded-[40px] border border-[#141F33]/10 flex items-center justify-between gap-8 text-xs font-semibold bg-[#F8F9FB]">
+        <div className="mt-4 p-8 rounded-xl border border-[#141F33]/10 flex items-center justify-between gap-8 text-xs font-semibold bg-[#F8F9FB]">
           <div className="flex items-center gap-3">
             <Users className="w-5 h-5 text-[#141F33]" />
             <span className="text-[#141F33]">
@@ -126,7 +126,7 @@ export default function ApprovalsDashboardPage() {
       </div>
 
       {/* Pending Employees List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-[#141F33]/10 bg-[#F8F9FB]">
           <h2 className="text-sm font-extrabold text-[#141F33] uppercase tracking-widest">{t({ en: 'Pending Requests', ar: 'طلبات الدخول المعلقة' })}</h2>
         </div>
@@ -164,7 +164,7 @@ export default function ApprovalsDashboardPage() {
                         <button
                           onClick={() => handleApprove(emp.clerk_user_id)}
                           disabled={isLimitReached || approvingId !== null}
-                          className="px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] disabled:opacity-40 disabled:cursor-not-allowed"
+                          className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] disabled:opacity-40 disabled:cursor-not-allowed"
                         >
                           {approvingId === emp.clerk_user_id ? t({ en: 'Approving...', ar: 'جاري الموافقة...' }) : t({ en: 'Approve Access', ar: 'الموافقة' })}
                         </button>
@@ -184,7 +184,7 @@ export default function ApprovalsDashboardPage() {
       </div>
 
       {/* Active Employees List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden">
+      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-[#141F33]/10 bg-[#F8F9FB]">
           <h2 className="text-sm font-extrabold text-[#141F33] uppercase tracking-widest">{t({ en: 'Authorized Active Staff', ar: 'الموظفون النشطون المعتمدون' })}</h2>
         </div>

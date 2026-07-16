@@ -33,7 +33,7 @@ export default function GettingStartedHelpPage() {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`flex items-center px-4 rounded-[40px] text-xs font-extrabold transition-all min-h-[44px] ${
+                className={`flex items-center px-4 rounded-xl text-xs font-extrabold transition-all min-h-[44px] ${
                   isActive
                     ? 'bg-[#141F33] text-[#F8F9FB]'
                     : 'text-[#141F33] hover:bg-[#F8F9FB] hover:text-[#141F33] border border-transparent hover:border-[#141F33]/10'
@@ -46,7 +46,7 @@ export default function GettingStartedHelpPage() {
         </aside>
 
         {/* Content Panel */}
-        <div className="flex-1 bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 shadow-sm space-y-6">
+        <div className="flex-1 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm space-y-6">
           <div>
             <span className="text-[10px] font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'الوثائق والكتيبات', hi: 'दस्तावेज़ीकरण' })}</span>
             <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight mt-2">

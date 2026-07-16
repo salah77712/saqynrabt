@@ -46,7 +46,7 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
               <Link
                 key={item.path}
                 href={item.path}
-                className={`flex items-center rounded-[40px] text-sm font-bold transition-all duration-300 relative ${
+                className={`flex items-center rounded-xl text-sm font-bold transition-all duration-300 relative ${
                   isCollapsed ? 'justify-center px-0' : 'px-4 gap-4'
                 } ${
                   isActive
@@ -74,7 +74,7 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
       <div className="flex justify-end p-4 border-t border-[#F8F9FB] dark:border-[#141F33]">
         <button
           onClick={onToggle}
-          className="h-8 w-8 rounded-lg border border-[#F8F9FB] dark:border-[#141F33] flex items-center justify-center text-[#141F33] hover:scale-[1.02] min-h-[44px] min-w-[44px] rounded-[40px]"
+          className="h-8 w-8 rounded-lg border border-[#F8F9FB] dark:border-[#141F33] flex items-center justify-center text-[#141F33] hover:scale-[1.02] min-h-[44px] min-w-[44px] rounded-xl"
         >
           {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
         </button>

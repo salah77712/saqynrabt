@@ -2,7 +2,7 @@ export default function ApprovalsLoading() {
   return (
     <div className="space-y-6">
       <div className="h-6 w-40 bg-[#141F33] rounded animate-pulse" />
-      <div className="rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB] p-8 shadow-sm">
+      <div className="rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] p-8 shadow-sm">
         <div className="space-y-4">
           {[...Array(5)].map((_, i) => (
             <div key={i} className="flex items-center justify-between py-3 border-b border-[#141F33]/10 last:border-0">

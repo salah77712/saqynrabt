@@ -44,13 +44,13 @@ export default function AdminAuditPage() {
             placeholder={t({ en: 'Filter logs...', ar: 'تصفية السجلات...' })}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal w-64"
+            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal w-64"
           />
         </div>
       </div>
 
       {/* Audit Log Table */}
-      <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+      <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden shadow-card">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>

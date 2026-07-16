@@ -215,7 +215,7 @@ export default function FAQPage() {
                 const globalIdx = `${cat.title}-${idx}`;
                 const isOpen = openIndex === idx;
                 return (
-                  <div key={globalIdx} className="border border-[#141F33]/10 rounded-[40px] overflow-hidden">
+                  <div key={globalIdx} className="border border-[#141F33]/10 rounded-xl overflow-hidden">
                     <button
                       onClick={() => setOpenIndex(isOpen ? null : idx)}
                       aria-expanded={isOpen}

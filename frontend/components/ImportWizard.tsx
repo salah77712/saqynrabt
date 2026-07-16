@@ -45,7 +45,7 @@ setFile(null);
 };
 
 return (
-<div className="bg-[#F8F9FB] rounded-[40px] border border-[#141F33]/10 p-8 max-w-md w-full shadow-sm" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 p-8 max-w-md w-full shadow-sm" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <h3 className="text-lg font-bold text-[#141F33] mb-2">
 {t('Bulk Import Operations', 'استيراد البيانات دفعة واحدة')}
 </h3>
@@ -57,7 +57,7 @@ return (
 </p>
 
 {success ? (
-<div className="bg-[#F8F9FB] border border-[#2A5CFF]/20 rounded-[40px] p-4 text-center mb-6">
+<div className="bg-[#F8F9FB] border border-[#2A5CFF]/20 rounded-xl p-4 text-center mb-6">
 <p className="text-sm font-bold text-[#2A5CFF]">
 {t('Import completed successfully!', 'تم الاستيراد بنجاح!')}
 </p>
@@ -70,7 +70,7 @@ className="text-xs text-[#141F33] underline font-bold mt-2"
 </div>
 ) : (
 <div className="space-y-4">
-<label className="flex flex-col items-center justify-center border-2 border-dashed border-[#141F33]/10 rounded-[40px] p-8 hover:bg-[#141F33] cursor-pointer transition-all">
+<label className="flex flex-col items-center justify-center border-2 border-dashed border-[#141F33]/10 rounded-xl p-8 hover:bg-[#141F33] cursor-pointer transition-all">
 <FileText className="w-6 h-6 text-[#141F33]/60 mb-2" />
 <span className="text-xs font-bold text-[#141F33]">
 {file ? file.name : t('Select CSV file', 'اختر ملف CSV')}
@@ -95,7 +95,7 @@ style={{ width: `${progress}%` }}
 <button
 onClick={handleUpload}
 disabled={!file || importing}
-className="w-full bg-[#141F33] hover:bg-[#141F33] disabled:opacity-40 text-[#F8F9FB] font-bold py-3 rounded-[40px] text-sm transition-all duration-300 min-h-[44px] hover:shadow-md hover:scale-[1.02] active:scale-95"
+className="w-full bg-[#141F33] hover:bg-[#141F33] disabled:opacity-40 text-[#F8F9FB] font-bold py-3 rounded-xl text-sm transition-all duration-300 min-h-[44px] hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 {importing ? t('Processing...', 'جاري المعالجة...') : t('Upload and Process', 'تحميل ومعالجة')}
 </button>

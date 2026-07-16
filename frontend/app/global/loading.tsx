@@ -17,7 +17,7 @@ export default function GlobalLoading() {
       <section className="bg-[#F8F9FB] py-16">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           {[...Array(4)].map((_, i) => (
-            <div key={i} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-8 text-center">
+            <div key={i} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 text-center">
               <div className="h-10 w-20 bg-[#F8F9FB] rounded animate-pulse mx-auto mb-2" />
               <div className="h-4 w-16 bg-[#F8F9FB] rounded animate-pulse mx-auto" />
             </div>
@@ -29,7 +29,7 @@ export default function GlobalLoading() {
           <div className="mx-auto h-8 w-48 bg-[#F8F9FB] rounded animate-pulse mb-12" />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[...Array(5)].map((_, i) => (
-              <div key={i} className="border border-[#141F33]/10 rounded-[40px] p-8">
+              <div key={i} className="border border-[#141F33]/10 rounded-xl p-8">
                 <div className="h-10 w-10 bg-[#F8F9FB] rounded animate-pulse mb-3" />
                 <div className="h-6 w-28 bg-[#F8F9FB] rounded animate-pulse mb-2" />
                 <div className="h-3 w-40 bg-[#F8F9FB] rounded animate-pulse mb-3" />

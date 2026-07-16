@@ -27,11 +27,11 @@ export default function RootLoading() {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="rounded-[40px] border border-[rgba(20,31,51,0.1)] bg-[#F8F9FB] p-5 shadow-sm"
+              className="rounded-xl border border-[rgba(20,31,51,0.1)] bg-[#F8F9FB] p-5 shadow-sm"
               style={{ animationDelay: `${i * 80}ms` }}
             >
               <div className="mb-4 flex items-center gap-4">
-                <div className="h-10 w-10 rounded-[40px] bg-[#141F33] animate-pulse" />
+                <div className="h-10 w-10 rounded-xl bg-[#141F33] animate-pulse" />
                 <div className="flex-1 space-y-2">
                   <div className="h-3 w-3/4 rounded bg-[#141F33] animate-pulse" />
                   <div className="h-2 w-1/2 rounded bg-[#141F33] animate-pulse" />

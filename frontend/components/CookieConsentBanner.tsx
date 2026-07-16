@@ -80,7 +80,7 @@ id={bannerId}
 className={`fixed bottom-0 left-0 right-0 z-50 p-4 ${!visible ? 'hidden' : ''}`}
 dir={locale === 'ar' ? 'rtl' : 'ltr'}
 >
-<div className="mx-auto max-w-4xl bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] shadow-2xl p-8">
+<div className="mx-auto max-w-4xl bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-2xl p-8">
 {!showPrefs ? (
 <>
 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8">
@@ -99,21 +99,21 @@ ar: 'يستخدم SAQYN RABT ملفات تعريف الارتباط لتحسين
 <button
 type="button"
 onClick={handleRejectNonEssential}
-className="min-h-[44px] px-4 py-2.5 rounded-[40px] text-xs font-bold text-[#141F33]/50 hover:text-[#141F33] hover:underline transition-all"
+className="min-h-[44px] px-4 py-2.5 rounded-xl text-xs font-bold text-[#141F33]/50 hover:text-[#141F33] hover:underline transition-all"
 >
 {t({ en: 'Reject Non-Essential', ar: 'رفض غير الأساسي' })}
 </button>
 <button
 type="button"
 onClick={handleManagePrefs}
-className="min-h-[44px] px-4 py-2.5 rounded-[40px] border border-[#141F33]/10 text-xs font-bold text-[#141F33] hover:bg-[#141F33] transition-all"
+className="min-h-[44px] px-4 py-2.5 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33] hover:bg-[#141F33] transition-all"
 >
 {t({ en: 'Manage Preferences', ar: 'إدارة التفضيلات' })}
 </button>
 <button
 type="button"
 onClick={handleAcceptAll}
-className="min-h-[44px] px-6 py-2.5 rounded-[40px] bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33] transition-all"
+className="min-h-[44px] px-6 py-2.5 rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33] transition-all"
 >
 {t({ en: 'Accept All', ar: 'قبول الكل' })}
 </button>
@@ -132,7 +132,7 @@ ar: 'يمكنك اختيار ملفات تعريف الارتباط التي ت�
 })}
 </p>
 <div className="space-y-2">
-<label className="flex items-center gap-4 p-3 rounded-[40px] border border-[#141F33]/10 bg-[#F8F9FB]">
+<label className="flex items-center gap-4 p-3 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB]">
 <input type="checkbox" checked disabled className="accent-[#141F33]" />
 <div>
 <p className="text-xs font-bold text-[#141F33]">
@@ -143,7 +143,7 @@ ar: 'يمكنك اختيار ملفات تعريف الارتباط التي ت�
 </p>
 </div>
 </label>
-<label className="flex items-center gap-4 p-3 rounded-[40px] border border-[#141F33]/10">
+<label className="flex items-center gap-4 p-3 rounded-xl border border-[#141F33]/10">
 <input type="checkbox" defaultChecked className="accent-[#141F33]" id="analytics-cookies" />
 <div>
 <p className="text-xs font-bold text-[#141F33]">
@@ -159,14 +159,14 @@ ar: 'يمكنك اختيار ملفات تعريف الارتباط التي ت�
 <button
 type="button"
 onClick={() => setShowPrefs(false)}
-className="min-h-[44px] px-4 py-2.5 rounded-[40px] border border-[#141F33]/10 text-xs font-bold text-[#141F33] hover:bg-[#141F33] transition-all"
+className="min-h-[44px] px-4 py-2.5 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33] hover:bg-[#141F33] transition-all"
 >
 {t({ en: 'Cancel', ar: 'إلغاء' })}
 </button>
 <button
 type="button"
 onClick={handleAcceptAll}
-className="min-h-[44px] px-6 py-2.5 rounded-[40px] bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33] transition-all"
+className="min-h-[44px] px-6 py-2.5 rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33] transition-all"
 >
 {t({ en: 'Save Preferences', ar: 'حفظ التفضيلات' })}
 </button>

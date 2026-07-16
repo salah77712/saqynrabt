@@ -70,13 +70,13 @@ export default function AdminCompaniesPage() {
             placeholder={t({ en: 'Search companies...', ar: 'البحث عن الشركات...' })}
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-2 focus:ring-royal w-64"
+            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal w-64"
           />
         </div>
       </div>
 
       {/* Companies Table */}
-      <div className="bg-white border border-[#141F33]/10 rounded-[40px] shadow-sm overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.05)]">
+      <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden shadow-card">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
@@ -107,13 +107,13 @@ export default function AdminCompaniesPage() {
                     <div className="flex justify-center gap-3">
                       <button
                         onClick={() => addToast(`Viewing detailed logs for ${company.name}`, 'info')}
-                        className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33] font-bold py-3 px-6 rounded-[40px] text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                        className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
                         {t({ en: 'View', ar: 'عرض' })}
                       </button>
                       <button
                         onClick={() => handleSuspend(company.id)}
-                        className={`px-6 py-3 rounded-[40px] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+                        className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
                           company.status === 'active'
                             ? 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33]'
                             : 'bg-[#2A5CFF] text-[#F8F9FB] hover:bg-[#2A5CFF]/90'
@@ -123,7 +123,7 @@ export default function AdminCompaniesPage() {
                       </button>
                       <button
                         onClick={() => handleDelete(company.id)}
-                        className="bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33] font-bold py-3 px-6 rounded-[40px] text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                        className="bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
                         {t({ en: 'Delete', ar: 'حذف' })}
                       </button>
@@ -138,11 +138,11 @@ export default function AdminCompaniesPage() {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-between items-center bg-[#F8F9FB] border border-[#141F33]/10 rounded-[40px] p-4 shadow-sm text-xs font-bold text-[#141F33]">
+        <div className="flex justify-between items-center bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm text-xs font-bold text-[#141F33]">
           <button
             onClick={() => setPage(prev => Math.max(prev - 1, 1))}
             disabled={page === 1}
-            className="bg-[#F8F9FB] hover:bg-[#141F33] border border-[#141F33]/10 rounded-[40px] px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
+            className="bg-[#F8F9FB] hover:bg-[#141F33] border border-[#141F33]/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
             {t({ en: 'Previous', ar: 'السابق' })}
           </button>
@@ -152,7 +152,7 @@ export default function AdminCompaniesPage() {
           <button
             onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
             disabled={page === totalPages}
-            className="bg-[#F8F9FB] hover:bg-[#141F33] border border-[#141F33]/10 rounded-[40px] px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
+            className="bg-[#F8F9FB] hover:bg-[#141F33] border border-[#141F33]/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
             {t({ en: 'Next', ar: 'التالي' })}
           </button>
