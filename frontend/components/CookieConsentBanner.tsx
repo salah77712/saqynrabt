@@ -80,12 +80,12 @@ id={bannerId}
 className={`fixed bottom-0 left-0 right-0 z-50 p-4 ${!visible ? 'hidden' : ''}`}
 dir={locale === 'ar' ? 'rtl' : 'ltr'}
 >
-<div className="mx-auto max-w-4xl bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-2xl p-8">
+<div className="mx-auto max-w-4xl bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#F8F9FB]/10 rounded-xl shadow-2xl p-8">
 {!showPrefs ? (
 <>
 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8">
-<div className="flex-1 text-sm text-[#141F33]/60 leading-relaxed">
-<p className="font-bold text-[#141F33] mb-1">
+<div className="flex-1 text-sm text-[#141F33]/60 dark:text-[#F8F9FB]/60 leading-relaxed">
+<p className="font-bold text-[#141F33] dark:text-[#F8F9FB] mb-1">
 {t({ en: 'We respect your privacy.', ar: 'نحن نحترم خصوصيتك.' })}
 </p>
 <p>
@@ -99,14 +99,14 @@ ar: 'يستخدم SAQYN RABT ملفات تعريف الارتباط لتحسين
 <button
 type="button"
 onClick={handleRejectNonEssential}
-className="min-h-[44px] px-4 py-2.5 rounded-xl text-xs font-bold text-[#141F33]/50 hover:text-[#141F33] hover:underline transition-all"
+className="min-h-[44px] px-4 py-2.5 rounded-xl text-xs font-bold text-[#141F33]/50 dark:text-[#F8F9FB]/50 hover:text-[#141F33] dark:hover:text-[#2A5CFF] hover:underline transition-all"
 >
 {t({ en: 'Reject Non-Essential', ar: 'رفض غير الأساسي' })}
 </button>
 <button
 type="button"
 onClick={handleManagePrefs}
-className="min-h-[44px] px-4 py-2.5 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33] hover:bg-[#141F33] transition-all"
+className="min-h-[44px] px-4 py-2.5 rounded-xl border border-[#141F33]/10 dark:border-[#F8F9FB]/10 text-xs font-bold text-[#141F33] dark:text-[#F8F9FB] hover:bg-[#141F33] dark:hover:bg-[#2A5CFF] transition-all"
 >
 {t({ en: 'Manage Preferences', ar: 'إدارة التفضيلات' })}
 </button>
@@ -122,34 +122,34 @@ className="min-h-[44px] px-6 py-2.5 rounded-xl bg-[#141F33] text-[#F8F9FB] text-
 </>
 ) : (
 <div className="space-y-4">
-<h3 className="text-sm font-bold text-[#141F33]">
+<h3 className="text-sm font-bold text-[#141F33] dark:text-[#F8F9FB]">
 {t({ en: 'Cookie Preferences', ar: 'تفضيلات ملفات تعريف الارتباط' })}
 </h3>
-<p className="text-xs text-[#141F33]/60">
+<p className="text-xs text-[#141F33]/60 dark:text-[#F8F9FB]/60">
 {t({
 en: 'You can choose which cookies to allow. Essential cookies are required for the platform to function.',
 ar: 'يمكنك اختيار ملفات تعريف الارتباط التي تسمح بها. ملفات تعريف الارتباط الأساسية مطلوبة لكي تعمل المنصة.',
 })}
 </p>
 <div className="space-y-2">
-<label className="flex items-center gap-4 p-3 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB]">
+<label className="flex items-center gap-4 p-3 rounded-xl border border-[#141F33]/10 dark:border-[#F8F9FB]/10 bg-[#F8F9FB] dark:bg-[#141F33]">
 <input type="checkbox" checked disabled className="accent-[#141F33]" />
 <div>
-<p className="text-xs font-bold text-[#141F33]">
+<p className="text-xs font-bold text-[#141F33] dark:text-[#F8F9FB]">
 {t({ en: 'Essential Cookies', ar: 'ملفات تعريف الارتباط الأساسية' })}
 </p>
-<p className="text-xs text-[#141F33]/60">
+<p className="text-xs text-[#141F33]/60 dark:text-[#F8F9FB]/60">
 {t({ en: 'Required for authentication (Clerk) and platform security. Cannot be disabled.', ar: 'مطلوبة للمصادقة (Clerk) وأمان المنصة. لا يمكن تعطيلها.' })}
 </p>
 </div>
 </label>
-<label className="flex items-center gap-4 p-3 rounded-xl border border-[#141F33]/10">
+<label className="flex items-center gap-4 p-3 rounded-xl border border-[#141F33]/10 dark:border-[#F8F9FB]/10">
 <input type="checkbox" defaultChecked className="accent-[#141F33]" id="analytics-cookies" />
 <div>
-<p className="text-xs font-bold text-[#141F33]">
+<p className="text-xs font-bold text-[#141F33] dark:text-[#F8F9FB]">
 {t({ en: 'Analytics Cookies', ar: 'ملفات تعريف الارتباط التحليلية' })}
 </p>
-<p className="text-xs text-[#141F33]/60">
+<p className="text-xs text-[#141F33]/60 dark:text-[#F8F9FB]/60">
 {t({ en: 'Cloudflare Insights and Vercel Analytics for traffic monitoring.', ar: 'Cloudflare Insights و Vercel Analytics لمراقبة حركة المرور.' })}
 </p>
 </div>
@@ -159,7 +159,7 @@ ar: 'يمكنك اختيار ملفات تعريف الارتباط التي ت�
 <button
 type="button"
 onClick={() => setShowPrefs(false)}
-className="min-h-[44px] px-4 py-2.5 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33] hover:bg-[#141F33] transition-all"
+className="min-h-[44px] px-4 py-2.5 rounded-xl border border-[#141F33]/10 dark:border-[#F8F9FB]/10 text-xs font-bold text-[#141F33] dark:text-[#F8F9FB] hover:bg-[#141F33] dark:hover:bg-[#2A5CFF] transition-all"
 >
 {t({ en: 'Cancel', ar: 'إلغاء' })}
 </button>

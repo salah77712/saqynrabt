@@ -132,10 +132,10 @@ role="dialog"
 aria-modal="true"
 aria-label={t('Search', 'بحث')}
 >
-<div className="w-full max-w-xl bg-[#F8F9FB] rounded-xl shadow-2xl border border-[#141F33]/10 overflow-hidden animate-slideDown">
+<div className="w-full max-w-xl bg-[#F8F9FB] dark:bg-[#141F33] rounded-xl shadow-2xl border border-[#141F33]/10 dark:border-[#F8F9FB]/10 overflow-hidden animate-slideDown">
 {/* Search Input */}
-<div className="flex items-center gap-4 px-5 py-4 border-b border-[#141F33]/10">
-<svg aria-hidden="true" className="h-5 w-5 text-[#141F33]/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+<div className="flex items-center gap-4 px-5 py-4 border-b border-[#141F33]/10 dark:border-[#F8F9FB]/10">
+<svg aria-hidden="true" className="h-5 w-5 text-[#141F33]/60 dark:text-[#F8F9FB]/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
 <circle cx="11" cy="11" r="8" />
 <path d="m21 21-4.35-4.35" strokeLinecap="round" />
 </svg>
@@ -146,11 +146,11 @@ value={query}
 onChange={(e) => setQuery(e.target.value)}
 onKeyDown={handleKeyDown}
 placeholder={t('Search pages, help, and docs...', 'ابحث في الصفحات والمساعدة والوثائق...')}
-className="flex-1 bg-transparent text-[#141F33] text-sm font-medium placeholder:text-[#141F33]/40 outline-none min-h-[36px]"
+className="flex-1 bg-transparent text-[#141F33] dark:text-[#F8F9FB] text-sm font-medium placeholder:text-[#141F33]/40 dark:placeholder:text-[#F8F9FB]/40 outline-none min-h-[36px]"
 autoComplete="off"
 spellCheck={false}
 />
-<kbd className="hidden sm:inline-flex items-center gap-1 rounded-md border border-[#141F33]/10 bg-[#F8F9FB] px-2 py-1 text-[10px] font-bold text-[#141F33]/60 tracking-wider">
+<kbd className="hidden sm:inline-flex items-center gap-1 rounded-md border border-[#141F33]/10 dark:border-[#F8F9FB]/10 bg-[#F8F9FB] dark:bg-[#141F33] px-2 py-1 text-[10px] font-bold text-[#141F33]/60 dark:text-[#F8F9FB]/60 tracking-wider">
 ESC
 </kbd>
 </div>
@@ -162,10 +162,10 @@ className="max-h-[50vh] overflow-y-auto"
 >
 {query.trim() && results.length === 0 && (
 <div className="px-5 py-8 text-center">
-<p className="text-sm text-[#141F33]/60 font-medium">
+<p className="text-sm text-[#141F33]/60 dark:text-[#F8F9FB]/60 font-medium">
 {t('No results found for', 'لا توجد نتائج لـ')} &quot;{query}&quot;
 </p>
-<p className="text-xs text-[#141F33]/40 mt-2">
+<p className="text-xs text-[#141F33]/40 dark:text-[#F8F9FB]/40 mt-2">
 {t('Try a different search term', 'جرب مصطلح بحث مختلف')}
 </p>
 </div>
@@ -174,7 +174,7 @@ className="max-h-[50vh] overflow-y-auto"
 {Object.entries(grouped).map(([category, items]) => (
 <div key={category}>
 <div className="px-5 pt-3 pb-1">
-<span className="text-[10px] font-extrabold uppercase tracking-widest text-[#141F33]/60">
+<span className="text-[10px] font-extrabold uppercase tracking-widest text-[#141F33]/60 dark:text-[#F8F9FB]/60">
 {category}
 </span>
 </div>
@@ -188,8 +188,8 @@ className="max-h-[50vh] overflow-y-auto"
   onClick={onClose}
   className={`flex items-center gap-4 px-5 py-3 transition-colors ${
   idx === selectedIndex
-  ? 'bg-[#141F33] text-[#141F33]'
-  : 'text-[#141F33]/70 hover:bg-[#141F33]'
+  ? 'bg-[#141F33] text-[#141F33] dark:text-[#F8F9FB]'
+  : 'text-[#141F33]/70 dark:text-[#F8F9FB]/70 hover:bg-[#141F33] dark:hover:bg-[#2A5CFF]'
   }`}
   >
   <PageIcon />
@@ -197,10 +197,10 @@ className="max-h-[50vh] overflow-y-auto"
   <p className="text-sm font-semibold truncate">
   {locale === 'ar' ? item.titleAr : item.title}
   </p>
-  <p className="text-xs text-[#141F33]/60 truncate">{item.href}</p>
+  <p className="text-xs text-[#141F33]/60 dark:text-[#F8F9FB]/60 truncate">{item.href}</p>
   </div>
   <svg aria-hidden="true"
-  className="h-4 w-4 text-[#141F33]/40 flex-shrink-0 rtl:rotate-180"
+  className="h-4 w-4 text-[#141F33]/40 dark:text-[#F8F9FB]/40 flex-shrink-0 rtl:rotate-180"
   viewBox="0 0 20 20"
   fill="currentColor"
   >
@@ -228,7 +228,7 @@ className="max-h-[50vh] overflow-y-auto"
 key={tag}
 type="button"
 onClick={() => setQuery(tag)}
-className="rounded-full border border-[#141F33]/10 bg-[#F8F9FB] px-3 py-1.5 text-xs font-semibold text-[#141F33]/60 hover:bg-[#141F33] transition-colors min-h-[44px]"
+className="rounded-full border border-[#141F33]/10 dark:border-[#F8F9FB]/10 bg-[#F8F9FB] dark:bg-[#141F33] px-3 py-1.5 text-xs font-semibold text-[#141F33]/60 dark:text-[#F8F9FB]/60 hover:bg-[#141F33] dark:hover:bg-[#2A5CFF] transition-colors min-h-[44px]"
 >
 {tag}
 </button>
@@ -239,18 +239,18 @@ className="rounded-full border border-[#141F33]/10 bg-[#F8F9FB] px-3 py-1.5 text
 </div>
 
 {/* Footer */}
-<div className="flex items-center justify-between px-5 py-3 border-t border-[#141F33]/10 bg-[#F8F9FB]">
-<div className="flex items-center gap-4 text-[10px] font-bold text-[#141F33]/60 uppercase tracking-wider">
+<div className="flex items-center justify-between px-5 py-3 border-t border-[#141F33]/10 dark:border-[#F8F9FB]/10 bg-[#F8F9FB] dark:bg-[#141F33]">
+<div className="flex items-center gap-4 text-[10px] font-bold text-[#141F33]/60 dark:text-[#F8F9FB]/60 uppercase tracking-wider">
 <span className="flex items-center gap-1">
-<kbd className="rounded border border-[#141F33]/10 bg-[#F8F9FB] px-1.5 py-0.5">↑↓</kbd>
+<kbd className="rounded border border-[#141F33]/10 dark:border-[#F8F9FB]/10 bg-[#F8F9FB] dark:bg-[#141F33] px-1.5 py-0.5">↑↓</kbd>
 {t('Navigate', 'تنقل')}
 </span>
 <span className="flex items-center gap-1">
-<kbd className="rounded border border-[#141F33]/10 bg-[#F8F9FB] px-1.5 py-0.5">Enter</kbd>
+<kbd className="rounded border border-[#141F33]/10 dark:border-[#F8F9FB]/10 bg-[#F8F9FB] dark:bg-[#141F33] px-1.5 py-0.5">Enter</kbd>
 {t('Open', 'افتح')}
 </span>
 </div>
-<span className="text-[10px] font-bold text-[#141F33]/60 uppercase tracking-wider">
+<span className="text-[10px] font-bold text-[#141F33]/60 dark:text-[#F8F9FB]/60 uppercase tracking-wider">
 {t('Powered by SAQYN', 'مدعوم من ساقين')}
 </span>
 </div>
@@ -261,7 +261,7 @@ className="rounded-full border border-[#141F33]/10 bg-[#F8F9FB] px-3 py-1.5 text
 
 function PageIcon() {
 return (
-<svg aria-hidden="true" className="h-4 w-4 text-[#141F33]/40 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+<svg aria-hidden="true" className="h-4 w-4 text-[#141F33]/40 dark:text-[#F8F9FB]/40 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
 <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" strokeLinecap="round" strokeLinejoin="round" />
 </svg>
 );

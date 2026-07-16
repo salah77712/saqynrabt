@@ -104,18 +104,18 @@ export function ChatWidget() {
 
       {/* Chat Tray */}
       {isOpen && (
-        <div className="w-[380px] h-[500px] bg-white rounded-xl border border-[#141F33]/10 shadow-card flex flex-col overflow-hidden border-t-4 border-t-[#1A3BCC]">
+        <div className="w-[380px] h-[500px] bg-white dark:bg-[#141F33] rounded-xl border border-[#141F33]/10 dark:border-[#F8F9FB]/10 shadow-card flex flex-col overflow-hidden border-t-4 border-t-[#1A3BCC]">
           
           {/* Header */}
-          <div className="bg-white border-b border-[#141F33]/10 px-6 py-4 flex items-center justify-between">
+          <div className="bg-white dark:bg-[#141F33] border-b border-[#141F33]/10 dark:border-[#F8F9FB]/10 px-6 py-4 flex items-center justify-between">
             <div>
-              <h3 className="text-sm font-extrabold text-[#141F33]">Synthetiq Work - HR Bot</h3>
+              <h3 className="text-sm font-extrabold text-[#141F33] dark:text-[#F8F9FB]">Synthetiq Work - HR Bot</h3>
               <p className="text-[10px] text-[#1A3BCC] font-bold uppercase tracking-wider mt-0.5">RAG Operations Agent</p>
             </div>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="text-[#141F33]/40 hover:text-[#141F33] transition-colors p-1"
+              className="text-[#141F33]/40 dark:text-[#F8F9FB]/40 hover:text-[#141F33] dark:hover:text-[#2A5CFF] transition-colors p-1"
               aria-label="Close Chat"
             >
               <X className="w-5 h-5" />
@@ -123,7 +123,7 @@ export function ChatWidget() {
           </div>
 
           {/* Chat Bubble Area */}
-          <div className="flex-1 overflow-y-auto p-6 bg-[#F8F9FB] space-y-4">
+          <div className="flex-1 overflow-y-auto p-6 bg-[#F8F9FB] dark:bg-[#141F33] space-y-4">
             {messages.map((msg) => (
               <div
                 key={msg.id}
@@ -133,14 +133,14 @@ export function ChatWidget() {
                   className={`max-w-[85%] text-xs font-semibold px-4 py-2.5 rounded-[20px] leading-relaxed ${
                     msg.sender === 'user'
                       ? 'bg-[#141F33] text-[#F8F9FB] rounded-tr-none'
-                      : 'bg-white text-[#141F33] border border-[#141F33]/5 rounded-tl-none shadow-sm'
+                      : 'bg-white dark:bg-[#141F33] text-[#141F33] dark:text-[#F8F9FB] border border-[#141F33]/5 dark:border-[#F8F9FB]/5 rounded-tl-none shadow-sm'
                   }`}
                 >
                   <p>{msg.text}</p>
                   
                   {/* Citation Pill Badge */}
                   {msg.citation && (
-                    <div className="bg-[#F8F9FB] rounded-full px-3 py-1 text-[10px] font-bold border border-[#141F33]/10 inline-block mt-2 select-none">
+                    <div className="bg-[#F8F9FB] dark:bg-[#141F33] rounded-full px-3 py-1 text-[10px] font-bold border border-[#141F33]/10 dark:border-[#F8F9FB]/10 inline-block mt-2 select-none">
                       Cite: {msg.citation}
                     </div>
                   )}
@@ -149,7 +149,7 @@ export function ChatWidget() {
             ))}
             
             {loading && (
-              <div className="flex items-center gap-1 bg-white border border-[#141F33]/5 rounded-[20px] rounded-tl-none px-4 py-2.5 max-w-[80px] shadow-sm">
+              <div className="flex items-center gap-1 bg-white dark:bg-[#141F33] border border-[#141F33]/5 dark:border-[#F8F9FB]/5 rounded-[20px] rounded-tl-none px-4 py-2.5 max-w-[80px] shadow-sm">
                 <span className="w-1.5 h-1.5 bg-[#141F33]/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-1.5 h-1.5 bg-[#141F33]/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                 <span className="w-1.5 h-1.5 bg-[#141F33]/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -160,13 +160,13 @@ export function ChatWidget() {
           </div>
 
           {/* Input Form Footer */}
-          <form onSubmit={handleSendMessage} className="p-4 bg-white border-t border-[#141F33]/10 flex items-center gap-3">
+          <form onSubmit={handleSendMessage} className="p-4 bg-white dark:bg-[#141F33] border-t border-[#141F33]/10 dark:border-[#F8F9FB]/10 flex items-center gap-3">
             <input
               type="text"
               placeholder={t({ en: 'Ask a policy or PTO question...', ar: 'اسأل عن السياسات أو الإجازات...' })}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="flex-1 bg-[#F8F9FB] border border-[#141F33]/10 rounded-full px-5 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#2A5CFF] min-h-[44px]"
+              className="flex-1 bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#F8F9FB]/10 rounded-full px-5 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#2A5CFF] min-h-[44px] text-[#141F33] dark:text-[#F8F9FB]"
               required
             />
             <button
