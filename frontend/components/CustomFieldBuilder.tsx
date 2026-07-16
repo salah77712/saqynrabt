@@ -76,10 +76,11 @@ placeholder={t('Field Label (e.g. Booking Code)', 'اسم الحقل (مثال: 
 className="min-h-[44px] w-full rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 text-xs font-semibold outline-none focus:bg-white focus:border-[#141F33]"
 />
 <select
-value={newFieldType}
-onChange={(e) => setNewFieldType(e.target.value as CustomField['type'])}
-className="min-h-[44px] w-full rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 text-xs font-semibold outline-none"
->
+                  value={newFieldType}
+                  onChange={(e) => setNewFieldType(e.target.value as CustomField['type'])}
+                  aria-label={t('Field type', 'نوع الحقل')}
+                  className="min-h-[44px] w-full rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 text-xs font-semibold outline-none"
+                >
 <option value="text">{t('Text Input', 'إدخال نصي')}</option>
 <option value="number">{t('Numeric Value', 'قيمة رقمية')}</option>
 <option value="boolean">{t('Toggle Switch', 'مفتاح تبديل ثنائي')}</option>

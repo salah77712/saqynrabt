@@ -218,6 +218,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
           placeholder={t({ en: 'Filter incidents...', ar: 'تصفية الحوادث...' })}
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
+          aria-label={t({ en: 'Filter incidents', ar: 'تصفية الحوادث' })}
           className="min-h-[44px] w-full ps-10 pe-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal shadow-sm"
         />
       </div>
