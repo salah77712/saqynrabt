@@ -1,5 +1,16 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "context": [
+    ".agents/workflows/mustfollow.md",
+    ".agents/AGENTS.md"
+  ],
+  "cron": [
+    {
+      "name": "dependabot-daily-scan",
+      "schedule": "0 3 * * *",
+      "command": "gh pr list --author dependabot[bot] --state open --json number,title,headRefName --jq '.[] | select(.headRefName | startswith(\"dependabot\")) | .number' | ForEach-Object { gh pr view $_ --json body --jq '.body' | Select-String 'from\\s(\\d+).*to\\s(\\d+)' }"
+    }
+  ],
   "mcp": {
     "postgres": {
       "type": "local",
