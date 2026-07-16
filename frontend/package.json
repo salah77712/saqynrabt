@@ -12,7 +12,7 @@
 
   "dependencies": {
     "@base-ui/react": "^1.6.0",
-    "@clerk/nextjs": "^6.39.5",
+    "@clerk/nextjs": "^7.5.19",
     "@mergeapi/react-merge-link": "^2.4.0",
     "@neondatabase/serverless": "^1.1.0",
     "@pinecone-database/pinecone": "^8.0.0",
