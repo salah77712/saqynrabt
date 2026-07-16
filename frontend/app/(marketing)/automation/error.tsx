@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
+import { useLocale } from '../../providers';
 
 export default function AutomationError({
   error,
@@ -11,6 +12,9 @@ export default function AutomationError({
   reset: () => void;
 }) {
   useEffect(() => { console.error(error); }, [error]);
+
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
     <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans">
@@ -26,12 +30,12 @@ export default function AutomationError({
       <div className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="text-center max-w-md">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#141F33]"><AlertTriangle className="w-6 h-6 text-[#141F33]" /></div>
-          <h1 className="text-2xl font-bold text-primary mb-2">Unable to load this page</h1>
-          <p className="text-[#141F33] mb-2">We couldn&apos;t retrieve the automation content. This may be a temporary issue.</p>
-          <p className="text-sm text-[#141F33]/40 mb-8">Please try again or go back to the homepage.</p>
+          <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Unable to load this page', ar: 'هذه الصفحة غير متوفرة' })}</h1>
+          <p className="text-[#141F33] mb-2">{t({ en: 'We couldn\'t retrieve the automation content. This may be a temporary issue.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}</p>
+          <p className="text-sm text-[#141F33]/40 mb-8">{t({ en: 'Please try again or go back to the homepage.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">Try again</button>
-            <a href="/" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/20 px-6 py-3 text-sm font-semibold text-primary hover:bg-[#F8F9FB] transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">Back to Home</a>
+            <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: 'حاول مرة أخرى' })}</button>
+            <a href="/" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/20 px-6 py-3 text-sm font-semibold text-primary hover:bg-[#F8F9FB] transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Back to Home', ar: 'العودة إلى الرئيسية' })}</a>
           </div>
         </div>
       </div>
