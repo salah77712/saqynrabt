@@ -1,7 +1,7 @@
 name: Dependabot Auto-Merge
 on:
   pull_request_target:
-    types: [opened, synchronize]
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
@@ -22,12 +22,12 @@ jobs:
           DEP=$(echo "$BODY" | grep -oP 'Bumps \`\K[^`]+' | head -1)
           echo "Dependency: $DEP | From major: $FROM | To major: $TO"
           if [ "$FROM" = "$TO" ] || [ "$DEP" = "actions/checkout" ]; then
-            echo "Safe update - approving and enabling auto-merge"
+            echo "Safe update - approving and merging"
             gh pr review --approve "$PR_URL"
-            gh pr merge --auto --squash "$PR_URL"
+            gh api "/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge" -X PUT -f merge_method=squash --silent
           else
             echo "Major version bump - skipping auto-merge"
-            gh pr comment "$PR_URL" --body "⚠️ **Major version bump** (\`${DEP}\`: ${FROM} → ${TO}). Auto-merge skipped. Tracked for consolidated batch PR." || true
+            gh pr comment "$PR_URL" --body "⚠️ **Major version bump** (\`${DEP}\`: ${FROM} → ${TO}). Merge skipped. Tracked for consolidated batch PR." || true
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
