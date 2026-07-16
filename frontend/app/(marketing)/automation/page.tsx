@@ -105,7 +105,7 @@ function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boo
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[#141F33]"
       >
-        <span className="font-bold text-sm text-[#141F33] pr-4">{q}</span>
+        <span className="font-bold text-sm text-[#141F33] pe-4">{q}</span>
         <svg aria-hidden="true"
           className={`h-4 w-4 shrink-0 text-[#141F33]/60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           viewBox="0 0 20 20"

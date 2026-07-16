@@ -78,7 +78,7 @@ href: '/legal/nda',
 
 export default function TrustPage() {
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#F8F9FB] selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir="ltr">
+    <div className="min-h-screen flex flex-col font-sans bg-[#F8F9FB] selection:bg-[#2A5CFF] selection:text-[#F8F9FB]">
       <Header />
 
       <section className="bg-[#141F33] text-[#F8F9FB] py-24 px-6">

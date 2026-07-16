@@ -48,12 +48,12 @@ export default function ChangelogPage() {
         </div>
 
         {/* Changelog Timeline */}
-        <div className="space-y-12 relative border-l border-[#141F33]/10 pl-6 md:pl-10">
+        <div className="space-y-12 relative border-s border-[#141F33]/10 ps-6 md:ps-10">
           {logs.map((log, idx) => (
             <div key={idx} className="relative space-y-3">
               
               {/* Timeline Bullet */}
-              <div className="absolute -left-[31px] md:-left-[47px] top-1.5 h-4 w-4 rounded-full bg-[#141F33] border-4 border-[#F8F9FB] shadow-sm" />
+              <div className="absolute -inset-inline-start-[31px] md:-inset-inline-start-[47px] top-1.5 h-4 w-4 rounded-full bg-[#141F33] border-4 border-[#F8F9FB] shadow-sm" />
 
               <div className="flex items-center gap-4">
                 <span className="text-[10px] font-extrabold uppercase bg-[#F8F9FB] text-[#2A5CFF] px-2.5 py-0.5 rounded-full border border-[#141F33]/10">

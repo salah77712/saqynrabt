@@ -213,12 +213,12 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
 
       {/* Search Input */}
       <div className="relative">
-        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[#141F33]"><SearchSvg /></span>
+        <span className="absolute inset-inline-start-3 top-1/2 -translate-y-1/2 text-[#141F33]"><SearchSvg /></span>
         <input
           placeholder={t({ en: 'Filter incidents...', ar: 'تصفية الحوادث...' })}
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
-          className="min-h-[44px] w-full pl-10 pr-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal shadow-sm"
+          className="min-h-[44px] w-full ps-10 pe-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal shadow-sm"
         />
       </div>
 
