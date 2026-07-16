@@ -3,6 +3,11 @@ import { Redis } from '@upstash/redis';
 import { verifyToken } from '@clerk/backend';
 import type { IRequest } from 'itty-router';
 
+// NOTE: Prisma is not used here because Cloudflare Workers do not support the
+// Prisma engine binary (Node-only `fs`, native query engine). All DB access in
+// the backend uses the Neon serverless `sql` template literal. The Prisma
+// schema in /prisma is the source of truth for the Next.js frontend only.
+
 export interface Env {
   OPENAI_API_KEY: string;
   DATABASE_URL: string;
@@ -139,6 +144,67 @@ export async function checkRateLimit(redis: Redis, companyId: string): Promise<{
   await redis.incr(key);
   await redis.expire(key, 1);
   return { allowed: true, retryAfter: 0 };
+}
+
+/**
+ * Edge-native DB connection limiter.
+ *
+ * Replaces the broken module-level mutable counter that used to live at the
+ * top of backend/index.ts. Cloudflare Workers spin up/down independent
+ * isolates so a per-isolate counter is meaningless — this implementation
+ * uses Upstash Redis as a shared atomic counter at the edge.
+ *
+ *   key          = db_conn:{tenantId}
+ *   window       = 30 seconds (fixed)
+ *   threshold    = 10 requests per window
+ *
+ * Behaviour:
+ *   - Atomic INCR on the key (Redis INCR is atomic).
+ *   - EXPIRE the key to 30 s, but ONLY when the key is new (NX flag) so we
+ *     don't keep extending the window on every increment.
+ *   - If the post-increment value exceeds 10, throw a 429-shaped error. The
+ *     caller catches it and returns a JSON response.
+ *
+ * Throws so that the route handler can map directly to a 429 response via
+ * a single `try/catch` wrapper.
+ */
+export class RateLimitError extends Error {
+  constructor(
+    public readonly status: number,
+    public readonly body: Record<string, any>
+  ) {
+    super(body.error || 'Too Many Requests');
+  }
+}
+
+export async function checkDbRateLimit(
+  redis: Redis,
+  tenantId: string
+): Promise<void> {
+  const key = `db_conn:${tenantId}`;
+  const current = await redis.incr(key);
+
+  // Arm the 30-second window only on the first INCR (returned 1). Using NX so
+  // subsequent calls don't slide the window — we want a hard fixed window.
+  if (current === 1) {
+    await redis.expire(key, 30);
+  } else {
+    // Backstop: if the key died between INCR and EXPIRE (e.g. TTL just
+    // expired), make absolutely sure it has a 30 s ceiling. Cheap.
+    const ttl = await redis.ttl(key);
+    if (ttl < 0) {
+      await redis.expire(key, 30);
+    }
+  }
+
+  if (current > 10) {
+    const ttl = await redis.ttl(key);
+    throw new RateLimitError(429, {
+      error: 'Too Many Requests',
+      message: `DB rate limit exceeded for tenant ${tenantId}`,
+      retryAfter: ttl > 0 ? ttl : 30,
+    });
+  }
 }
 
 export async function checkUsageLimit(sql: any, companyId: string, type: 'questions' | 'texts' | 'voice'): Promise<{ limitReached: boolean; current: number; limit: number }> {

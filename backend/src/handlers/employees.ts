@@ -135,10 +135,16 @@ export async function handleGetUsageStats(request: RequestWithContext): Promise<
     `;
     const documents_used = docCountRow[0]?.count ?? 0;
 
+    const empCountRow = await sql`
+      SELECT COUNT(*)::integer AS count FROM employees WHERE company_id = ${company_id} AND is_active = true
+    `;
+    const employees_used = empCountRow[0]?.count ?? 0;
+
     return new Response(JSON.stringify({
       usage: usage?.[0] || {},
       limits: entitlements?.[0] || {},
       documents_used,
+      employees_used,
     }), { headers });
   } catch (err: any) {
     return new Response(JSON.stringify({ error: 'Internal server error' }), { status: 500, headers });

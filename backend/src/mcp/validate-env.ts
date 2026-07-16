@@ -8,7 +8,7 @@ export function validateEnvironment(env: Record<string, any>) {
     'PINECONE_INDEX_NAME',
     'PINECONE_INDEX_HOST',
     'CLERK_SECRET_KEY',
-    'CLERK_PUBLISHABLE_KEY',
+    'NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY',
     'VAPI_API_KEY',
     'VAPI_WEBHOOK_SECRET',
     'R2_ACCESS_KEY',

@@ -12,11 +12,15 @@
   },
   "dependencies": {
     "@clerk/backend": "^3.10.0",
+    "@langchain/textsplitters": "^1.0.1",
     "@neondatabase/serverless": "^1.1.0",
     "@pinecone-database/pinecone": "^8.0.0",
     "@upstash/redis": "^1.31.5",
     "itty-router": "^5.0.24",
-    "resend": "^6.17.1"
+    "langchain": "^1.5.3",
+    "pdf-parse": "^2.4.5",
+    "resend": "^6.17.1",
+    "tiktoken": "^1.0.22"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260704.1",

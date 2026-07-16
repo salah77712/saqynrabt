@@ -60,7 +60,7 @@ export async function handleChat(request: RequestWithContext): Promise<Response>
       try {
         const queryEmb = await generateEmbedding(safeMessage, env.OPENAI_API_KEY);
         const pineconeHost = env.PINECONE_INDEX_HOST || 'saqyn-index';
-        const pineconeRes = await fetch(`https://${pineconeHost}/query`, {
+        const pineconeRes = await fetch(`${pineconeHost}/query`, {
           method: 'POST',
           headers: { 'Api-Key': env.PINECONE_API_KEY, 'Content-Type': 'application/json' },
           body: JSON.stringify({ vector: queryEmb, topK: 10, includeMetadata: true }),

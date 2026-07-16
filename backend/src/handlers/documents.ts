@@ -79,14 +79,18 @@ export async function handleUploadDocument(request: RequestWithContext): Promise
     const fileBuffer = new Uint8Array(arrayBuffer);
     const fileContent = new TextDecoder().decode(fileBuffer);
 
+    // Deterministic per-upload R2 key. Mitigates same-name collisions across
+    // re-uploads and matches the prefix the consumer expects.
     const docId = `doc_${crypto.randomUUID().substring(0, 8)}`;
-    const fileKey = `${company_id}/${file.name}`;
+    const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+    const fileKey = `${company_id}/${docId}-${safeName}`;
 
     // Upload source file to R2 bucket if BUCKET is configured
     if (env.BUCKET) {
       await env.BUCKET.put(fileKey, fileBuffer, {
         customMetadata: {
           company_id: company_id || '',
+          doc_id: docId,
           name: file.name
         }
       });
@@ -99,33 +103,13 @@ export async function handleUploadDocument(request: RequestWithContext): Promise
     `;
     await logAudit(env, company_id!, userId, 'upload_document', { filename: file.name, size: fileBuffer.byteLength, docId });
 
-    if (env.OPENAI_API_KEY && env.PINECONE_INDEX_HOST?.trim()) {
-      request.ctx?.waitUntil((async () => {
-        try {
-          const chunks = chunkText(fileContent);
-          for (let i = 0; i < chunks.length; i++) {
-            const vector = await generateEmbedding(chunks[i], env.OPENAI_API_KEY!);
-            await fetch(`https://${env.PINECONE_INDEX_HOST}/vectors/upsert`, {
-              method: 'POST',
-              headers: { 'Api-Key': env.PINECONE_API_KEY, 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                vectors: [{
-                  id: `doc-${docId}-chunk-${i}`,
-                  values: vector,
-                  metadata: { docId, companyId: company_id, filename: file.name, text: chunks[i], chunkIndex: i }
-                }]
-              }),
-            });
-          }
-          await sql`UPDATE documents SET status = 'indexed' WHERE id = ${docId}`;
-        } catch (err) {
-          console.error(`Background indexing failed for doc ${docId}:`, err);
-          await sql`UPDATE documents SET status = 'failed' WHERE id = ${docId}`;
-        }
-      })());
-    } else {
-      await sql`UPDATE documents SET status = 'completed' WHERE id = ${docId}`;
-    }
+    await env.INGESTION_QUEUE.send({
+      tenantId: company_id,
+      docId,
+      r2Key: fileKey,
+      filename: file.name,
+      contentType: file.type,
+    });
 
     // Map response for the frontend
     const createdDoc = docResult[0];
@@ -178,7 +162,7 @@ export async function handleDeleteDocument(request: RequestWithContext): Promise
     // 1. Delete vectors from Pinecone if host is set
     if (env.PINECONE_INDEX_HOST && env.PINECONE_API_KEY) {
       try {
-        await fetch(`https://${env.PINECONE_INDEX_HOST}/vectors/delete`, {
+        await fetch(`${env.PINECONE_INDEX_HOST}/vectors/delete`, {
           method: 'POST',
           headers: {
             'Api-Key': env.PINECONE_API_KEY,
@@ -253,7 +237,7 @@ export async function handleIngest(request: RequestWithContext): Promise<Respons
     }
 
     if (vectors.length > 0 && env.PINECONE_INDEX_HOST?.trim()) {
-      await fetch(`https://${env.PINECONE_INDEX_HOST}/vectors/upsert`, {
+      await fetch(`${env.PINECONE_INDEX_HOST}/vectors/upsert`, {
         method: 'POST',
         headers: { 'Api-Key': env.PINECONE_API_KEY, 'Content-Type': 'application/json' },
         body: JSON.stringify({ vectors }),
