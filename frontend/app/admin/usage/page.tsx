@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useLocale } from '../../providers';
@@ -8,10 +8,10 @@ export default function AdminUsagePage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const cards = [
-    { title: t({ en: 'Total Active Tenants', ar: 'إجمالي الشركات النشطة' }), value: '184', change: '+12%', color: 'text-[#2A5CFF] bg-[#F8F9FB]' },
-    { title: t({ en: 'Daily Chat Requests', ar: 'طلبات المحادثة اليومية' }), value: '8,402', change: '+18%', color: 'text-[#2A5CFF] bg-[#F8F9FB]' },
-    { title: t({ en: 'Daily Voice Minutes', ar: 'دقائق الصوت اليومية' }), value: '3,892', change: '+5%', color: 'text-[#2A5CFF] bg-[#F8F9FB]' },
-    { title: t({ en: 'Average Text API Loads', ar: 'متوسط استهلاك النصوص' }), value: '420', change: '-2%', color: 'text-[#2A5CFF] bg-[#F8F9FB]' },
+    { title: t({ en: 'Total Active Tenants', ar: 'إجمالي الشركات النشطة' }), value: '184', change: '+12%', color: 'text-accent bg-[#F8F9FB]' },
+    { title: t({ en: 'Daily Chat Requests', ar: 'طلبات المحادثة اليومية' }), value: '8,402', change: '+18%', color: 'text-accent bg-[#F8F9FB]' },
+    { title: t({ en: 'Daily Voice Minutes', ar: 'دقائق الصوت اليومية' }), value: '3,892', change: '+5%', color: 'text-accent bg-[#F8F9FB]' },
+    { title: t({ en: 'Average Text API Loads', ar: 'متوسط استهلاك النصوص' }), value: '420', change: '-2%', color: 'text-accent bg-[#F8F9FB]' },
   ];
 
   const chartData = [
@@ -41,7 +41,7 @@ export default function AdminUsagePage() {
             <div className="flex items-baseline justify-between mt-3">
               <span className="text-2xl font-black text-[#141F33]">{card.value}</span>
               <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
-                card.change.startsWith('+') ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#141F33]'
+                card.change.startsWith('+') ? 'bg-[#F8F9FB] text-accent' : 'bg-[#F8F9FB] text-[#141F33]'
               }`}>
                 {card.change}
               </span>
@@ -54,12 +54,12 @@ export default function AdminUsagePage() {
       <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-sm font-extrabold text-[#141F33]">{t({ en: '7-Day Platform Request Load', ar: 'أحمال طلبات المنصة خلال 7 أيام' })}</h3>
-          <span className="text-[10px] font-bold text-[#2A5CFF]">{t({ en: 'Updated 2 min ago', ar: 'تم التحديث منذ دقيقتين' })}</span>
+          <span className="text-[10px] font-bold text-accent">{t({ en: 'Updated 2 min ago', ar: 'تم التحديث منذ دقيقتين' })}</span>
         </div>
 
         {/* SVG Vector Graph */}
         <div className="relative w-full h-64 border-b border-l border-[#141F33]/10 flex items-end">
-          <svg className="absolute inset-0 w-full h-full p-4" viewBox="0 0 700 200" preserveAspectRatio="none">
+          <svg aria-hidden="true" className="absolute inset-0 w-full h-full p-4" viewBox="0 0 700 200" preserveAspectRatio="none">
             <line x1="0" y1="50" x2="700" y2="50" stroke="#F8F9FB" strokeWidth="1" />
             <line x1="0" y1="100" x2="700" y2="100" stroke="#F8F9FB" strokeWidth="1" />
             <line x1="0" y1="150" x2="700" y2="150" stroke="#F8F9FB" strokeWidth="1" />

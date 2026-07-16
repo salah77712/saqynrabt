@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import Link from 'next/link';
@@ -15,7 +15,7 @@ export default function VisualSitemapPage() {
     {
       title: t('SAQYN RABT', 'سقن ربط'),
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="text-[#141F33]" viewBox="0 0 256 256">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="text-[#141F33]" viewBox="0 0 256 256">
           <path d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm48-88a8,8,0,0,1-8,8H136v32a8,8,0,0,1-16,0V136H96a8,8,0,0,1,0-16h24V88a8,8,0,0,1,16,0v32h24A8,8,0,0,1,176,128Z" />
         </svg>
       ),
@@ -31,7 +31,7 @@ export default function VisualSitemapPage() {
     {
       title: t('PRODUCTS & PLATFORM', 'المنتجات والمنصة'),
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="text-[#141F33]" viewBox="0 0 256 256">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="text-[#141F33]" viewBox="0 0 256 256">
           <path d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200Zm-96-88a12,12,0,1,1-12-12A12,12,0,0,1,120,112Zm48,0a12,12,0,1,1-12-12A12,12,0,0,1,168,112Z" />
         </svg>
       ),
@@ -50,7 +50,7 @@ export default function VisualSitemapPage() {
     {
       title: t('RESOURCES & DEVELOPERS', 'المصادر والمطورين'),
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="text-[#141F33]" viewBox="0 0 256 256">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="text-[#141F33]" viewBox="0 0 256 256">
           <path d="M228,128a12,12,0,0,1-12,12H140v76a12,12,0,0,1-24,0V140H40a12,12,0,0,1,0-24h76V40a12,12,0,0,1,24,0v76h76A12,12,0,0,1,228,128Z" />
         </svg>
       ),
@@ -68,7 +68,7 @@ export default function VisualSitemapPage() {
     {
       title: t('LEGAL & COMPLIANCE', 'القانون والامتثال'),
       icon: (
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="text-[#141F33]" viewBox="0 0 256 256">
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="text-[#141F33]" viewBox="0 0 256 256">
           <path d="M208,32H48A16,16,0,0,0,32,48V208a16,16,0,0,0,16,16H208a16,16,0,0,0,16-16V48A16,16,0,0,0,208,32Zm0,176H48V48H208V208ZM180,96a12,12,0,1,1-12-12A12,12,0,0,1,180,96Z" />
         </svg>
       ),

@@ -20,7 +20,7 @@ return (
 <p className="text-[#141F33] mb-2">Your document library had trouble loading.</p>
 <p className="text-sm text-[#141F33] mb-8">Your files are safe. Tap try again when you're ready.</p>
 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-<button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all">Try again</button>
+<button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">Try again</button>
 <a href="/dashboard" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/10 px-6 py-3 text-sm font-semibold text-primary hover:bg-[#141F33] transition-all">Back to Dashboard</a>
 </div>
 </div>

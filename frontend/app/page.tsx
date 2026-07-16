@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState } from 'react';
 import { useLocale } from './providers';
@@ -90,7 +90,7 @@ export default function MarketingPage() {
 
               {/* Curved Arrow below CTA, pointing down to dynamic preview */}
               <div className="mt-8">
-                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" className="stroke-[#141F33]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none" className="stroke-[#141F33]" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20,5 Q30,20 20,35 M12,28 L20,35 L28,28" />
                 </svg>
               </div>
@@ -103,7 +103,7 @@ export default function MarketingPage() {
               
               {activeProduct === 'voice' ? (
                 /* Dynamic Voice SVG Mockup (Navy & Canvas only) */
-                <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto max-w-md mx-auto">
+                <svg aria-hidden="true" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto max-w-md mx-auto">
                   <defs>
                     <filter id="shadow-geo" x="-10%" y="-10%" width="130%" height="130%">
                       <feDropShadow dx="0" dy="8" stdDeviation="12" floodColor="#141F33" floodOpacity="0.06" />
@@ -146,7 +146,7 @@ export default function MarketingPage() {
                 </svg>
               ) : (
                 /* Dynamic Work Chat Mockup SVG (Navy & Canvas only) */
-                <svg viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto max-w-md mx-auto">
+                <svg aria-hidden="true" viewBox="0 0 800 400" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto max-w-md mx-auto">
                   <defs>
                     <filter id="shadow-geo" x="-10%" y="-10%" width="130%" height="130%">
                       <feDropShadow dx="0" dy="8" stdDeviation="12" floodColor="#141F33" floodOpacity="0.06" />

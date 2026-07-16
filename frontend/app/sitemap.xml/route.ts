@@ -34,11 +34,31 @@ const routes: { path: string; priority: string; changefreq: string }[] = [
   { path: '/developers/plugins', priority: '0.6', changefreq: 'monthly' },
   { path: '/developers/cli', priority: '0.6', changefreq: 'monthly' },
 
-  // Legal
-  { path: '/privacy-policy', priority: '0.4', changefreq: 'yearly' },
-  { path: '/terms-and-conditions', priority: '0.4', changefreq: 'yearly' },
-  { path: '/cookie-policy', priority: '0.4', changefreq: 'yearly' },
+// Legal
+{ path: '/privacy-policy', priority: '0.4', changefreq: 'yearly' },
+{ path: '/terms-and-conditions', priority: '0.4', changefreq: 'yearly' },
+{ path: '/cookie-policy', priority: '0.4', changefreq: 'yearly' },
 
+// Product
+{ path: '/synthetiq-voice', priority: '0.8', changefreq: 'monthly' },
+{ path: '/synthetiq-work', priority: '0.8', changefreq: 'monthly' },
+{ path: '/voice-agent', priority: '0.8', changefreq: 'monthly' },
+{ path: '/thank-you', priority: '0.5', changefreq: 'monthly' },
+{ path: '/sitemap', priority: '0.3', changefreq: 'weekly' },
+
+// Marketing extensions
+{ path: '/trust', priority: '0.7', changefreq: 'monthly' },
+
+// Portal
+{ path: '/portal/privacy', priority: '0.4', changefreq: 'monthly' },
+
+// Legal
+{ path: '/vulnerability-disclosure', priority: '0.4', changefreq: 'yearly' },
+{ path: '/terms', priority: '0.4', changefreq: 'yearly' },
+{ path: '/security', priority: '0.4', changefreq: 'yearly' },
+{ path: '/privacy', priority: '0.4', changefreq: 'yearly' },
+{ path: '/nda', priority: '0.4', changefreq: 'yearly' },
+{ path: '/dpa', priority: '0.4', changefreq: 'yearly' },
 ];
 
 export async function GET() {

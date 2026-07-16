@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -91,7 +91,7 @@ function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boo
         className="flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[#F8F9FB]"
       >
         <span className="font-bold text-sm text-[#141F33] pr-4">{q}</span>
-        <svg
+        <svg aria-hidden="true"
           className={`h-4 w-4 shrink-0 text-[#141F33] transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           viewBox="0 0 20 20"
           fill="currentColor"

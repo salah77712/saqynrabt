@@ -73,5 +73,7 @@ logs/
 *.tsbuildinfo
 
 
+*.bak
+backend/dry-run-check/
 .vercel
 .env*

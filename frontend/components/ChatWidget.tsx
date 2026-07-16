@@ -95,7 +95,7 @@ export function ChatWidget() {
         <button
           type="button"
           onClick={() => setIsOpen(true)}
-          className="rounded-full bg-[#1A3BCC] hover:bg-[#1A3BCC]/90 text-white p-4 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-105 min-h-[48px] min-w-[48px]"
+          className="rounded-full bg-accent hover:bg-accent/90 text-white p-4 shadow-lg flex items-center justify-center transition-all duration-300 transform hover:scale-105 min-h-[48px] min-w-[48px]"
           aria-label="Open HR Assistant Chatbot"
         >
           <MessageSquare className="w-5 h-5" />

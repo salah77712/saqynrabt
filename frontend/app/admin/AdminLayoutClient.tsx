@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import Link from 'next/link';
@@ -6,7 +6,6 @@ import { usePathname, useRouter } from 'next/navigation';
 import { UserButton, useUser } from '@clerk/nextjs';
 import { useLocale } from '../providers';
 import { Ban, Building2, BarChart3, DollarSign, Shield, Menu } from 'lucide-react';
-import NoIndex from '../../components/NoIndex';
 
 export default function AdminLayout({
   children,
@@ -37,11 +36,11 @@ export default function AdminLayout({
     return (
 <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F9FB] px-6 text-center">
   <Ban className="w-10 h-10 text-[#141F33] mb-4" />
-        <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight">{t({ en: 'Access Denied', ar: '???? ?????? ????????????' })}</h1>
+        <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight">{t({ en: 'Access Denied', ar: '╪¬┘à ╪▒┘ü╪╢ ╪º┘ä┘ê╪╡┘ê┘ä' })}</h1>
         <p className="text-xs font-semibold text-[#141F33]/60 max-w-sm mt-3 leading-relaxed">
           {t({
             en: 'This panel is strictly restricted to SAQYN RABT internal administrators only. Please log in with an admin account to proceed.',
-            ar: '?????? ???????????? ?????????? ?????????????? SAQYN RABT ??????. ???????? ?????????? ???????????? ?????????? ?????????? ????????????????.'
+            ar: '┘ç╪░┘ç ╪º┘ä┘ä┘ê╪¡╪⌐ ┘à╪«╪╡╪╡╪⌐ ┘ä┘à╪│╪ñ┘ê┘ä┘è SAQYN RABT ┘ü┘é╪╖. ┘è╪▒╪¼┘ë ╪¬╪│╪¼┘è┘ä ╪º┘ä╪»╪«┘ê┘ä ╪¿╪¡╪│╪º╪¿ ┘à╪│╪ñ┘ê┘ä ┘ä┘ä┘à╪¬╪º╪¿╪╣╪⌐.'
           })}
         </p>
         <div className="mt-8 flex gap-8">
@@ -49,13 +48,13 @@ export default function AdminLayout({
             href="/sign-in"
             className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-xs font-bold text-[#F8F9FB] shadow-md hover:opacity-95 transition-all"
           >
-            {t({ en: 'Sign In as Admin', ar: '?????????? ???????? ????????????' })}
+            {t({ en: 'Sign In as Admin', ar: '╪¬╪│╪¼┘è┘ä ╪»╪«┘ê┘ä ┘â┘à╪│╪ñ┘ê┘ä' })}
           </Link>
           <Link
             href="/"
             className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 px-8 py-3 text-xs font-bold text-[#141F33] shadow-sm hover:bg-[#141F33] transition-all"
           >
-            {t({ en: 'Back to Home', ar: '???????????? ????????????????' })}
+            {t({ en: 'Back to Home', ar: '╪º┘ä╪╣┘ê╪»╪⌐ ┘ä┘ä╪▒╪ª┘è╪│┘è╪⌐' })}
           </Link>
         </div>
       </div>
@@ -63,15 +62,14 @@ export default function AdminLayout({
   }
 
   const menuItems = [
-    { name: { en: 'Companies', ar: '??????????????' }, path: '/admin/companies', icon: <Building2 className="w-5 h-5" /> },
-    { name: { en: 'Usage Analytics', ar: '?????????????? ??????????????????' }, path: '/admin/usage', icon: <BarChart3 className="w-5 h-5" /> },
-    { name: { en: 'Billing & Invoices', ar: '?????????????? ??????????????????' }, path: '/admin/billing', icon: <DollarSign className="w-5 h-5" /> },
-    { name: { en: 'Audit Security Logs', ar: '?????????? ?????????????? ????????????' }, path: '/admin/audit', icon: <Shield className="w-5 h-5" /> },
+    { name: { en: 'Companies', ar: '╪º┘ä╪┤╪▒┘â╪º╪¬' }, path: '/admin/companies', icon: <Building2 className="w-5 h-5" /> },
+    { name: { en: 'Usage Analytics', ar: '╪¬╪¡┘ä┘è┘ä╪º╪¬ ╪º┘ä╪º╪│╪¬╪«╪»╪º┘à' }, path: '/admin/usage', icon: <BarChart3 className="w-5 h-5" /> },
+    { name: { en: 'Billing & Invoices', ar: '╪º┘ä┘ü┘ê╪¬╪▒╪⌐ ┘ê╪º┘ä┘ü┘ê╪º╪¬┘è╪▒' }, path: '/admin/billing', icon: <DollarSign className="w-5 h-5" /> },
+    { name: { en: 'Audit Security Logs', ar: '╪│╪¼┘ä╪º╪¬ ╪º┘ä╪¬╪»┘é┘è┘é ╪º┘ä╪ú┘à┘å┘è' }, path: '/admin/audit', icon: <Shield className="w-5 h-5" /> },
   ];
 
   return (
     <div className="min-h-screen bg-[#F8F9FB] text-[#141F33] flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<NoIndex />
       
       {/* Mobile Top Header */}
       <header className="flex h-16 w-full items-center justify-between border-b border-[#141F33]/10 bg-[#F8F9FB] px-6 md:hidden sticky top-0 z-40 shadow-sm">
@@ -104,7 +102,7 @@ export default function AdminLayout({
             <div className="flex items-center justify-between px-6 py-6 border-b border-[#141F33]/10 min-h-[80px]">
               <Link href="/" className="flex flex-col items-start gap-0.5">
                 <span className="text-[#141F33] font-extrabold text-xl tracking-tight">SAQYN ADMIN</span>
-                <span className="text-[9px] uppercase tracking-widest text-[#141F33]/60 font-bold">{t({ en: 'Staff Operations', ar: '???????????? ????????????????' })}</span>
+                <span className="text-[9px] uppercase tracking-widest text-[#141F33]/60 font-bold">{t({ en: 'Staff Operations', ar: '╪╣┘à┘ä┘è╪º╪¬ ╪º┘ä┘à┘ê╪╕┘ü┘è┘å' })}</span>
               </Link>
             </div>
 
@@ -156,8 +154,8 @@ export default function AdminLayout({
         <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
           <header className="border-b border-[#141F33]/10 bg-[#F8F9FB] px-8 py-5 sticky top-0 z-30 shadow-sm shrink-0 flex items-center justify-between">
             <div>
-              <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#141F33]/60">{t({ en: 'Internal Control Centre', ar: '???????? ???????????? ??????????????' })}</p>
-              <h2 className="text-2xl font-extrabold text-[#141F33] tracking-tight mt-0.5">{t({ en: 'Staff Console', ar: '???????? ???????? ????????????????' })}</h2>
+              <p className="text-[10px] font-extrabold uppercase tracking-widest text-[#141F33]/60">{t({ en: 'Internal Control Centre', ar: '┘à╪▒┘â╪▓ ╪º┘ä╪¬╪¡┘â┘à ╪º┘ä╪»╪º╪«┘ä┘è' })}</p>
+              <h2 className="text-2xl font-extrabold text-[#141F33] tracking-tight mt-0.5">{t({ en: 'Staff Console', ar: '┘ä┘ê╪¡╪⌐ ╪¬╪¡┘â┘à ╪º┘ä┘à┘ê╪╕┘ü┘è┘å' })}</h2>
             </div>
           </header>
 

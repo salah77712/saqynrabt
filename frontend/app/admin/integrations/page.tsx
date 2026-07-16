@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import { useLocale } from '../../providers';
@@ -126,7 +126,7 @@ export default function AdminIntegrationsPage() {
                     <p className="text-[10px] text-[#141F33]/50 font-bold uppercase tracking-wider mt-0.5">{item.type} Integration</p>
                   </div>
                   <div className="text-right">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A3BCC]/10 text-[#1A3BCC] text-[10px] font-bold">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold">
                       ● {item.status}
                     </span>
                     <p className="text-[9px] text-[#141F33]/40 font-semibold mt-1">Last Synced: {item.lastSynced}</p>
@@ -153,7 +153,7 @@ export default function AdminIntegrationsPage() {
                   type="button"
                   disabled={!isReady}
                   onClick={() => open()}
-                  className="rounded-full bg-[#2A5CFF] hover:bg-[#2A5CFF]/90 text-white py-2.5 px-6 text-xs font-bold transition-all min-h-[44px]"
+                  className="rounded-full bg-accent hover:bg-accent/90 text-white py-2.5 px-6 text-xs font-bold transition-all min-h-[44px]"
                 >
                   Connect New System
                 </button>
@@ -172,7 +172,7 @@ export default function AdminIntegrationsPage() {
                   disabled={uploading}
                   className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 />
-                <svg className="w-8 h-8 mx-auto text-[#141F33]/40 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg aria-hidden="true" className="w-8 h-8 mx-auto text-[#141F33]/40 mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                 </svg>
                 <p className="text-xs font-extrabold text-[#141F33]/70 uppercase tracking-wider">Drag and drop file here</p>
@@ -180,7 +180,7 @@ export default function AdminIntegrationsPage() {
               </div>
               
               {uploadMessage && (
-                <p className="text-[10px] font-bold text-[#1A3BCC] mt-3 uppercase tracking-wider text-center">{uploadMessage}</p>
+                <p className="text-[10px] font-bold text-accent mt-3 uppercase tracking-wider text-center">{uploadMessage}</p>
               )}
             </div>
 

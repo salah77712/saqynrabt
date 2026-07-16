@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
@@ -38,8 +38,8 @@ ar: [
 };
 
 const flagIconMap: Record<string, React.ReactNode> = {
-middleeast: <svg className="w-8 h-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2a15 15 0 0 0 0 20 15 15 0 0 0 0-20z" /><path d="M2 12h20" /></svg>,
-europe: <svg className="w-8 h-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2v20M2 12h20" /><path d="M5 5l14 14M19 5l-14 14" /></svg>,
+middleeast: <svg aria-hidden="true" className="w-8 h-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2a15 15 0 0 0 0 20 15 15 0 0 0 0-20z" /><path d="M2 12h20" /></svg>,
+europe: <svg aria-hidden="true" className="w-8 h-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2v20M2 12h20" /><path d="M5 5l14 14M19 5l-14 14" /></svg>,
 asia: <Globe className="w-8 h-8 text-[#141F33]" />,
 africa: <Globe className="w-8 h-8 text-[#141F33]" />,
 americas: <Globe className="w-8 h-8 text-[#141F33]" />,

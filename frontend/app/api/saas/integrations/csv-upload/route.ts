@@ -1,7 +1,12 @@
 import { NextResponse } from "next/server";
 import { neon } from "@neondatabase/serverless";
+import { safeGetToken } from "@/lib/safe-auth";
 
 export async function POST(request: Request) {
+  const token = await safeGetToken();
+  if (!token) {
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  }
   try {
     const formData = await request.formData();
     const file = formData.get("file") as File;
