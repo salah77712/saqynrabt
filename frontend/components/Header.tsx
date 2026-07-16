@@ -72,7 +72,7 @@ return (
 key={link.href}
 href={link.href}
 className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 rounded-full hover:bg-[#141F33] hover:text-[#141F33] min-h-[44px] flex items-center ${
-      isActive ? 'text-[#141F33]' : 'text-[#141F33]/60'
+      isActive ? 'text-[#141F33]' : 'text-[#141F33]/70'
     }`}
 >
 {t(link.label.en, link.label.fr, link.label.ar, link.label.hi)}

@@ -196,7 +196,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
             <button
               type="button"
               onClick={() => setShowCreate(false)}
-              className="px-6 py-3 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33]/60 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 hover:bg-[#141F33]"
+              className="px-6 py-3 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33]/70 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 hover:bg-[#141F33]"
             >
               {t({ en: 'Cancel', ar: 'إلغاء' })}
             </button>
@@ -225,7 +225,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
       {loading ? (
         <div className="flex justify-center py-12"><LoaderSvg /></div>
       ) : filteredIncidents.length === 0 ? (
-        <div className="text-center py-12 text-xs text-[#141F33]/60">{t({ en: 'No incidents found', ar: 'لا توجد حوادث' })}</div>
+        <div className="text-center py-12 text-xs text-[#141F33]/70">{t({ en: 'No incidents found', ar: 'لا توجد حوادث' })}</div>
       ) : (
         <div className="space-y-3">
           {filteredIncidents.map((inc) => (
@@ -243,21 +243,21 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
                     {inc.status}
                   </span>
                   <span className="text-xs font-medium text-[#141F33] truncate">{inc.title}</span>
-                  <span className="text-[10px] text-[#141F33]/60 uppercase">{inc.incident_type.replace('_', ' ')}</span>
+                  <span className="text-[10px] text-[#141F33]/70 uppercase">{inc.incident_type.replace('_', ' ')}</span>
                 </div>
                 <div className="flex items-center gap-4 shrink-0">
-                  <span className="text-[10px] text-[#141F33]/60">{new Date(inc.created_at).toLocaleDateString()}</span>
+                  <span className="text-[10px] text-[#141F33]/70">{new Date(inc.created_at).toLocaleDateString()}</span>
                   {expandedId === inc.id ? <ChevronUpSvg /> : <ChevronDownSvg />}
                 </div>
               </button>
 
               {expandedId === inc.id && (
                 <div className="px-4 pb-4 border-t border-[#141F33]/10 pt-3 space-y-3">
-                  <p className="text-xs text-[#141F33]/60">{inc.description}</p>
+                  <p className="text-xs text-[#141F33]/70">{inc.description}</p>
                   {inc.affected_resources && (
-                    <p className="text-xs text-[#141F33]/60"><span className="font-bold">{t({ en: 'Affected:', ar: 'متأثر:' })}</span> {inc.affected_resources}</p>
+                    <p className="text-xs text-[#141F33]/70"><span className="font-bold">{t({ en: 'Affected:', ar: 'متأثر:' })}</span> {inc.affected_resources}</p>
                   )}
-                  <div className="flex items-center gap-3 text-[10px] text-[#141F33]/60">
+                  <div className="flex items-center gap-3 text-[10px] text-[#141F33]/70">
                     <span>{t({ en: 'Reported by:', ar: 'أبلغ عن:' })} {inc.reported_by || 'N/A'}</span>
                     <span>{t({ en: 'Assigned to:', ar: 'مسند إلى:' })} {inc.assigned_to || 'Unassigned'}</span>
                   </div>
