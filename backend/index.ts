@@ -3,6 +3,7 @@ import { createRouter } from './src/routes';
 import { checkRateLimit, checkEdgeRateLimit, corsHeaders, initRedis } from './src/utils';
 import { handlePurgeCron } from './src/cron/purge-data';
 import { handleIngestionBatch } from './src/queue/ingestion';
+import { captureException } from './src/monitoring/sentry';
 export type { Env } from './src/utils';
 
 // NOTE: Prisma is not used in the Worker because Cloudflare Workers do not
@@ -108,9 +109,10 @@ export default {
         });
       }
       return response;
-    } catch (err: any) {
-      console.error(`[${requestId}] Unhandled error:`, err);
-      return new Response(JSON.stringify({ error: 'Internal server error', requestId }), {
+} catch (err: any) {
+  captureException(err, request, env);
+  console.error(`[${requestId}] Unhandled error:`, err);
+  return new Response(JSON.stringify({ error: 'Internal server error', requestId }), {
         status: 500,
         headers: { ...headers, 'Content-Type': 'application/json' },
       });

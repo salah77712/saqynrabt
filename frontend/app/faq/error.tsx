@@ -19,8 +19,8 @@ export default function FAQError({ error, reset }: { error: Error & { digest?: s
           <h1 className="text-2xl font-bold text-[#141F33] mb-2">FAQ unavailable</h1>
           <p className="text-[#141F33] mb-8">We couldn&apos;t load the FAQ. Please try again or contact us directly.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all">Try again</button>
-            <a href="/contact" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/10 px-6 py-3 text-sm font-semibold text-[#141F33] hover:bg-[#F8F9FB] transition-all">Contact us</a>
+            <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">Try again</button>
+            <a href="/contact" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/10 px-6 py-3 text-sm font-semibold text-[#141F33] hover:bg-[#F8F9FB] transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">Contact us</a>
           </div>
         </div>
       </div>

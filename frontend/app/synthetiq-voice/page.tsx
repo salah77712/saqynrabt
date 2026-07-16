@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ const MCP_SERVICES = [
 
 function CallFlowSVG() {
   return (
-    <svg viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" className="min-w-[1200px] w-full" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <svg aria-hidden="true" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" className="min-w-[1200px] w-full" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       <defs>
         <filter id="shadow-card">
           <feDropShadow dx="0" dy="8" stdDeviation="24" floodColor="#141F33" floodOpacity="0.06"/>
@@ -196,7 +196,7 @@ export default function SynthetiqVoicePage() {
             <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-[#141F33]/10 flex items-center justify-center p-8 min-h-[160px]">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
+                <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
                   <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
                   <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
                 </svg>
@@ -214,7 +214,7 @@ export default function SynthetiqVoicePage() {
             <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-[#141F33]/10 flex items-center justify-center p-8 min-h-[160px]">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
+                <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
                   <rect x="9" y="1" width="6" height="4" rx="1" />
                   <rect x="1" y="18" width="6" height="5" rx="1" />
                   <rect x="17" y="18" width="6" height="5" rx="1" />
@@ -234,7 +234,7 @@ export default function SynthetiqVoicePage() {
             <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-[#141F33]/10 flex items-center justify-center p-8 min-h-[160px]">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
+                <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
                   <circle cx="12" cy="5" r="1" />
                   <path d="M9,22 L11,15 V11 H13 V15 L15,22 M12,8 V10" />
                 </svg>

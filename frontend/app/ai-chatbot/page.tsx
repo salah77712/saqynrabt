@@ -15,13 +15,13 @@ export default function AIChatbotPage() {
     <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
-      {/* ── Main Hero Container with 4px border top ─────────── */}
+      {/* -- Main Hero Container with 4px border top ----------- */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 lg:px-8">
         
-        <div className="border-t-4 border-[#1A3BCC] rounded-xl bg-white shadow-card p-8 lg:p-12 mb-12">
+        <div className="border-t-4 border-accent rounded-xl bg-white shadow-card p-8 lg:p-12 mb-12">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A3BCC]/10 text-[#1A3BCC] text-[10px] font-bold uppercase tracking-wider mb-6">
-              ● Internal RAG Chatbot Deep Dive
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-wider mb-6">
+              ? Internal RAG Chatbot Deep Dive
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold text-[#141F33] tracking-tight leading-tight">
               Your Internal AI Expert. Connected to SAP, Oracle, and your HR Docs.
@@ -46,7 +46,7 @@ export default function AIChatbotPage() {
           </div>
         </div>
 
-        {/* ── Feature Grid ─────────────────────────────────── */}
+        {/* -- Feature Grid ----------------------------------- */}
         <section className="mb-12">
           <div className="text-center mb-10">
             <h2 className="text-xl md:text-2xl font-bold text-[#141F33]">
@@ -58,7 +58,7 @@ export default function AIChatbotPage() {
             {/* Card 1: RAG Knowledge */}
             <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
               <div>
-                <div className="w-10 h-10 rounded-full bg-[#1A3BCC] flex items-center justify-center text-white mb-6">
+                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white mb-6">
                   <FileText className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <h3 className="text-base font-bold text-[#141F33] mb-3">Instant RAG Answers</h3>
@@ -66,7 +66,7 @@ export default function AIChatbotPage() {
                   Uploads your HR policies and employee handbooks. Employees ask complex operational questions, and the AI resolves answers instantly.
                 </p>
               </div>
-              <div className="border-t border-[#141F33]/10 mt-6 pt-4 flex items-center justify-between text-[10px] font-extrabold uppercase tracking-widest text-[#1A3BCC]">
+              <div className="border-t border-[#141F33]/10 mt-6 pt-4 flex items-center justify-between text-[10px] font-extrabold uppercase tracking-widest text-accent">
                 <span>Vector Indexes</span>
                 <span>Active</span>
               </div>
@@ -80,14 +80,14 @@ export default function AIChatbotPage() {
                   <div className="flex items-center gap-3">
                     <div className="px-2 py-1 bg-white border border-[#141F33]/10 rounded-full text-[8px] font-bold text-[#141F33]">SAP</div>
                     
-                    <svg width="40" height="20" viewBox="0 0 40 20" fill="none" className="stroke-[#141F33] stroke-[1.5]">
+                    <svg aria-hidden="true" width="40" height="20" viewBox="0 0 40 20" fill="none" className="stroke-[#141F33] stroke-[1.5]">
                       <path d="M0,10 H40" strokeDasharray="3,3" />
                       <circle cx="20" cy="10" r="3" fill="#141F33" />
                     </svg>
 
                     <div className="w-8 h-8 rounded-full bg-[#141F33] flex items-center justify-center text-white text-[8px] font-bold">RAG</div>
 
-                    <svg width="40" height="20" viewBox="0 0 40 20" fill="none" className="stroke-[#141F33] stroke-[1.5]">
+                    <svg aria-hidden="true" width="40" height="20" viewBox="0 0 40 20" fill="none" className="stroke-[#141F33] stroke-[1.5]">
                       <path d="M0,10 H40" strokeDasharray="3,3" />
                       <circle cx="20" cy="10" r="3" fill="#141F33" />
                     </svg>
@@ -102,7 +102,7 @@ export default function AIChatbotPage() {
                   Read-only secure access to your live ERP data. Check inventory, fetch dispatch details, or answer operational logs with absolute accuracy.
                 </p>
               </div>
-              <div className="border-t border-[#141F33]/10 mt-6 pt-4 flex items-center justify-between text-[10px] font-extrabold uppercase tracking-widest text-[#1A3BCC]">
+              <div className="border-t border-[#141F33]/10 mt-6 pt-4 flex items-center justify-between text-[10px] font-extrabold uppercase tracking-widest text-accent">
                 <span>ERP Synced</span>
                 <span>Active</span>
               </div>
@@ -111,7 +111,7 @@ export default function AIChatbotPage() {
             {/* Card 3: HR & Work Q&A */}
             <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
               <div>
-                <div className="w-10 h-10 rounded-full bg-[#1A3BCC] flex items-center justify-center text-white mb-6">
+                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white mb-6">
                   <Database className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <h3 className="text-base font-bold text-[#141F33] mb-3">HR & Operations</h3>
@@ -119,7 +119,7 @@ export default function AIChatbotPage() {
                   Answers complex questions regarding payroll logs, annual leave balances, company regulations, and standard operational procedures instantly.
                 </p>
               </div>
-              <div className="border-t border-[#141F33]/10 mt-6 pt-4 flex items-center justify-between text-[10px] font-extrabold uppercase tracking-widest text-[#1A3BCC]">
+              <div className="border-t border-[#141F33]/10 mt-6 pt-4 flex items-center justify-between text-[10px] font-extrabold uppercase tracking-widest text-accent">
                 <span>Knowledgebase</span>
                 <span>Active</span>
               </div>
@@ -127,7 +127,7 @@ export default function AIChatbotPage() {
           </div>
         </section>
 
-        {/* ── Security & Sandboxing Details ────────────────── */}
+        {/* -- Security & Sandboxing Details ------------------ */}
         <section className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-card mb-12">
           <div className="flex items-center gap-3 mb-4">
             <ShieldAlert className="w-6 h-6 text-[#141F33]" />
@@ -155,3 +155,4 @@ export default function AIChatbotPage() {
     </div>
   );
 }
+

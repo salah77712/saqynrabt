@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ const MCP_SERVICES = [
 
 function WorkFlowSVG() {
   return (
-    <svg viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" className="min-w-[1200px] w-full" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <svg aria-hidden="true" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" className="min-w-[1200px] w-full" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       <defs>
         <filter id="shadow-card">
           <feDropShadow dx="0" dy="8" stdDeviation="24" floodColor="#141F33" floodOpacity="0.06"/>
@@ -184,7 +184,7 @@ export default function SynthetiqWorkPage() {
             <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-[#141F33]/10 flex items-center justify-center p-8 min-h-[160px]">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
+                <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
                   <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                   <line x1="16" y1="2" x2="16" y2="6" />
                   <line x1="8" y1="2" x2="8" y2="6" />
@@ -204,7 +204,7 @@ export default function SynthetiqWorkPage() {
             <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-[#141F33]/10 flex items-center justify-center p-8 min-h-[160px]">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
+                <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
                   <rect x="3" y="4" width="18" height="16" rx="2" />
                   <circle cx="12" cy="10" r="3" />
                   <path d="M7,16 c0,-3 10,-3 10,0" />
@@ -223,7 +223,7 @@ export default function SynthetiqWorkPage() {
             <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-[#141F33]/10 flex items-center justify-center p-8 min-h-[160px]">
-                <svg width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
+                <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
                   <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
                 </svg>
               </div>

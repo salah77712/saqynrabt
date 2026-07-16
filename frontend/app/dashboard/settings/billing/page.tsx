@@ -1,11 +1,11 @@
-'use client';
+﻿'use client';
 
 import { useLocale } from '../../../providers';
 import { Card } from '@/components/shadcn/card';
 import { Button } from '@/components/shadcn/button';
 
-function ShieldSvg() { return <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A5CFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>; }
-function AlertTriangleSvg() { return <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A5CFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>; }
+function ShieldSvg() { return <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A5CFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>; }
+function AlertTriangleSvg() { return <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2A5CFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>; }
 
 export default function BillingSettingsPage() {
   const { locale } = useLocale();
@@ -22,11 +22,11 @@ export default function BillingSettingsPage() {
         </p>
       </div>
 
-      <Card className="p-8 border-[#2A5CFF]/10 bg-[#F8F9FB] rounded-xl shadow-sm">
+      <Card className="p-8 border-accent/10 bg-[#F8F9FB] rounded-xl shadow-sm">
         <div className="flex items-start gap-4">
           <span className="shrink-0 mt-0.5"><ShieldSvg /></span>
           <div>
-            <h2 className="text-sm font-bold text-[#2A5CFF]">
+            <h2 className="text-sm font-bold text-accent">
               {t({ en: '14-Day Trial Period', ar: 'فترة تجربة مدتها 14 يوماً' })}
             </h2>
             <p className="text-xs text-[#141F33] mt-1 leading-relaxed">
@@ -35,9 +35,9 @@ export default function BillingSettingsPage() {
                 ar: 'بموجب قانون قطر رقم 8 لسنة 2019 (التجارة الإلكترونية)، لديك فترة تهدئة مدتها 14 يوماً من تاريخ التسجيل الأولي. خلال هذه الفترة، يمكنك الإلغاء واسترداد كامل رسوم الشهر الأول. بعد 14 يوماً، تنطبق سياسة عدم الاسترداد القياسية كما هو منصوص عليه في شروط الخدمة الخاصة بنا.',
               })}
             </p>
-            <div className="mt-3 flex items-center gap-3 text-xs text-[#2A5CFF]">
+            <div className="mt-3 flex items-center gap-3 text-xs text-accent">
 <span className="font-bold text-[#141F33]">{t({ en: 'Status:', ar: 'الحالة:' })}</span>
-<span className="bg-[#2A5CFF] text-[#F8F9FB] px-2 py-0.5 rounded-full text-[10px] font-bold">
+<span className="bg-accent text-[#F8F9FB] px-2 py-0.5 rounded-full text-[10px] font-bold">
                 {t({ en: 'Active', ar: 'نشط' })}
               </span>
             </div>

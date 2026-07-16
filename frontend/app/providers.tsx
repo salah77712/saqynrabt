@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { ClerkProvider, useAuth } from '@clerk/nextjs';
@@ -66,7 +66,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   if (!clerkPublishableKey) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center bg-[#F8F9FB] px-6 text-center">
-        <svg className="w-10 h-10 text-[#2A5CFF] mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+        <svg aria-hidden="true" className="w-10 h-10 text-[#2A5CFF] mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
           <path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" strokeLinecap="round" strokeLinejoin="round"/>
           <line x1="12" y1="9" x2="12" y2="13" strokeLinecap="round" strokeLinejoin="round"/>
           <line x1="12" y1="17" x2="12.01" y2="17" strokeLinecap="round" strokeLinejoin="round"/>

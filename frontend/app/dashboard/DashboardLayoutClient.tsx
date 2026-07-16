@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
@@ -7,7 +7,6 @@ import { useEntitlements, useLocale } from '../providers';
 import { Home, Zap, MessageSquare, FileText, Users, Settings, AlertTriangle } from 'lucide-react';
 import { FeedbackWidget } from '../../components/FeedbackWidget';
 import { MobileBottomNav } from '../../components/MobileBottomNav';
-import NoIndex from '../../components/NoIndex';
 import { useSwipe } from '../../hooks/useSwipe';
 import { EmailVerificationGate } from '../../components/dashboard/EmailVerificationGate';
 import { DashboardSidebar } from '../../components/dashboard/DashboardSidebar';
@@ -34,25 +33,25 @@ export default function DashboardLayout({
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
-    overview: { en: 'Overview', ar: '???????? ????????' },
-    clientDashboard: { en: 'Client Dashboard', ar: '???????? ???????? ????????????' },
+    overview: { en: 'Overview', ar: 'نظرة عامة' },
+    clientDashboard: { en: 'Client Dashboard', ar: 'لوحة تحكم العميل' },
   };
 
   const menuItems = [
     { name: dashboardContent.overview, path: '/dashboard', icon: <Home className="w-5 h-5" /> },
-    { name: { en: 'Automation', ar: '??????????????' }, path: '/dashboard/automation', icon: <Zap className="w-5 h-5" /> },
-    { name: { en: 'Chatbot', ar: '?????????????? ??????????' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
-    { name: { en: 'Documents', ar: '??????????????????' }, path: '/dashboard/documents', icon: <FileText className="w-5 h-5" /> },
-    { name: { en: 'Team', ar: '????????????' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" />, badge: true },
-    { name: { en: 'Settings', ar: '??????????????????' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
+    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <Zap className="w-5 h-5" /> },
+    { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <FileText className="w-5 h-5" /> },
+    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" />, badge: true },
+    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
   ];
 
   const currentRole = mockMode ? 'admin' : userRole;
 
   const filteredMenuItems = currentRole === 'employee'
     ? [
-        { name: { en: 'Chatbot', ar: '?????????????? ??????????' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
-        { name: { en: 'Workflows', ar: '?????? ??????????' }, path: '/dashboard/workflows', icon: <Zap className="w-5 h-5" /> },
+        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <Zap className="w-5 h-5" /> },
       ]
     : menuItems;
 
@@ -114,7 +113,6 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen bg-[#F8F9FB] text-[#141F33] flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<NoIndex />
       <div className="flex flex-1 relative" style={{ minHeight: 'calc(100vh - env(safe-area-inset-top, 0px))' }}>
 
         <DashboardSidebar
@@ -152,9 +150,9 @@ export default function DashboardLayout({
               {!hasAccess ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm p-8">
                   <AlertTriangle className="w-10 h-10 text-[#141F33] mb-4" />
-                  <h2 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Access Denied', ar: '???? ?????? ????????????' })}</h2>
+                  <h2 className="text-lg font-extrabold text-[#141F33]">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h2>
                   <p className="text-xs text-[#141F33] font-semibold mt-1">
-                    {t({ en: 'You do not have permission to access this page.', ar: '?????? ???????? ???????????? ???????????? ?????? ?????? ????????????.' })}
+                    {t({ en: 'You do not have permission to access this page.', ar: 'ليس لديك صلاحية للوصول إلى هذه الصفحة.' })}
                   </p>
                 </div>
               ) : (

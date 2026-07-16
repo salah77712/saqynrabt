@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
@@ -135,7 +135,7 @@ aria-label={t('Search', 'بحث')}
 <div className="w-full max-w-xl bg-[#F8F9FB] rounded-xl shadow-2xl border border-[#141F33]/10 overflow-hidden animate-slideDown">
 {/* Search Input */}
 <div className="flex items-center gap-4 px-5 py-4 border-b border-[#141F33]/10">
-<svg className="h-5 w-5 text-[#141F33]/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+<svg aria-hidden="true" className="h-5 w-5 text-[#141F33]/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
 <circle cx="11" cy="11" r="8" />
 <path d="m21 21-4.35-4.35" strokeLinecap="round" />
 </svg>
@@ -199,7 +199,7 @@ className="max-h-[50vh] overflow-y-auto"
   </p>
   <p className="text-xs text-[#141F33]/60 truncate">{item.href}</p>
   </div>
-  <svg
+  <svg aria-hidden="true"
   className="h-4 w-4 text-[#141F33]/40 flex-shrink-0 rtl:rotate-180"
   viewBox="0 0 20 20"
   fill="currentColor"
@@ -261,7 +261,7 @@ className="rounded-full border border-[#141F33]/10 bg-[#F8F9FB] px-3 py-1.5 text
 
 function PageIcon() {
 return (
-<svg className="h-4 w-4 text-[#141F33]/40 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+<svg aria-hidden="true" className="h-4 w-4 text-[#141F33]/40 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
 <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" strokeLinecap="round" strokeLinejoin="round" />
 </svg>
 );

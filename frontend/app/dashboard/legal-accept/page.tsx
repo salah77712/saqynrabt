@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -7,7 +7,7 @@ import { useLocale } from '../../providers';
 
 function ShieldSvg() {
   return (
-    <svg
+    <svg aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       width="32"
       height="32"
@@ -25,7 +25,7 @@ function ShieldSvg() {
 }
 function CheckCircleSvg() {
   return (
-    <svg
+    <svg aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       width="48"
       height="48"
@@ -44,7 +44,7 @@ function CheckCircleSvg() {
 }
 function AlertTriangleSvg() {
   return (
-    <svg
+    <svg aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="16"
@@ -64,7 +64,7 @@ function AlertTriangleSvg() {
 }
 function LoaderSvg() {
   return (
-    <svg
+    <svg aria-hidden="true"
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -243,7 +243,7 @@ ar: 'لقد قرأت وأوافق على شروط الخدمة.',
 <Link
 href="/terms-and-conditions"
 target="_blank"
-className="text-xs font-bold text-[#2A5CFF] hover:underline mt-1 inline-block"
+className="text-xs font-bold text-accent hover:underline mt-1 inline-block"
 >
 {t({ en: 'Read Full Terms \u2192', ar: 'اقرأ الشروط كاملة \u2190' })}
 </Link>
@@ -272,7 +272,7 @@ ar: 'لقد قرأت وأوافق على اتفاقية معالجة البيا�
 <Link
 href="/terms-and-conditions"
 target="_blank"
-className="text-xs font-bold text-[#2A5CFF] hover:underline mt-1 inline-block"
+className="text-xs font-bold text-accent hover:underline mt-1 inline-block"
 >
 {t({ en: 'Read Full DPA \u2192', ar: 'اقرأ الاتفاقية كاملة \u2190' })}
 </Link>
