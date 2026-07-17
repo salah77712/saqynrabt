@@ -59,7 +59,7 @@ className="bg-[#141F33] text-white font-bold py-3 px-6 rounded-xl text-xs min-h-
 
 {/* Node Card */}
 <div className={`w-full max-w-sm bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm flex justify-between items-center relative ${
-node.type === 'trigger' ? 'border-l-4 border-l-[#2A5CFF]' : 'border-l-4 border-l-[#2A5CFF]'
+node.type === 'trigger' ? 'border-s-4 border-s-[#2A5CFF]' : 'border-s-4 border-s-[#2A5CFF]'
 }`}>
 <div>
 <span className="text-[9px] font-extrabold uppercase text-[#141F33]/60 tracking-widest">{node.type}</span>

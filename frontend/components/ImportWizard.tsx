@@ -45,11 +45,11 @@ setFile(null);
 };
 
 return (
-<div className="bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 p-8 max-w-md w-full shadow-sm" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<h3 className="text-lg font-bold text-[#141F33] mb-2">
+<div className="bg-[#F8F9FB] dark:bg-[#141F33] rounded-xl border border-[#141F33]/10 dark:border-[#F8F9FB]/10 p-8 max-w-md w-full shadow-sm" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<h3 className="text-lg font-bold text-[#141F33] dark:text-[#F8F9FB] mb-2">
 {t('Bulk Import Operations', 'استيراد البيانات دفعة واحدة')}
 </h3>
-<p className="text-xs text-[#141F33]/60 mb-6 leading-relaxed">
+<p className="text-xs text-[#141F33]/60 dark:text-[#F8F9FB]/60 mb-6 leading-relaxed">
 {t(
 'Upload a CSV file containing Employee name, email, and department to batch create member profiles.',
 'قم بتحميل ملف CSV يحتوي على اسم الموظف والبريد الإلكتروني والقسم لإنشاء ملفات تعريف الأعضاء دفعة واحدة.'
@@ -57,22 +57,22 @@ return (
 </p>
 
 {success ? (
-<div className="bg-[#F8F9FB] border border-[#2A5CFF]/20 rounded-xl p-4 text-center mb-6">
+<div className="bg-[#F8F9FB] dark:bg-[#141F33] border border-[#2A5CFF]/20 rounded-xl p-4 text-center mb-6">
 <p className="text-sm font-bold text-[#2A5CFF]">
 {t('Import completed successfully!', 'تم الاستيراد بنجاح!')}
 </p>
 <button
 onClick={() => setSuccess(false)}
-className="text-xs text-[#141F33] underline font-bold mt-2"
+className="text-xs text-[#141F33] dark:text-[#F8F9FB] underline font-bold mt-2"
 >
 {t('Import another file', 'استيراد ملف آخر')}
 </button>
 </div>
 ) : (
 <div className="space-y-4">
-<label className="flex flex-col items-center justify-center border-2 border-dashed border-[#141F33]/10 rounded-xl p-8 hover:bg-[#141F33] cursor-pointer transition-all">
-<FileText className="w-6 h-6 text-[#141F33]/60 mb-2" />
-<span className="text-xs font-bold text-[#141F33]">
+<label className="flex flex-col items-center justify-center border-2 border-dashed border-[#141F33]/10 dark:border-[#F8F9FB]/10 rounded-xl p-8 hover:bg-[#141F33] dark:hover:bg-[#2A5CFF] cursor-pointer transition-all">
+<FileText className="w-6 h-6 text-[#141F33]/60 dark:text-[#F8F9FB]/60 mb-2" />
+<span className="text-xs font-bold text-[#141F33] dark:text-[#F8F9FB]">
 {file ? file.name : t('Select CSV file', 'اختر ملف CSV')}
 </span>
 <input
@@ -84,7 +84,7 @@ className="hidden"
 </label>
 
 {importing && (
-<div className="w-full bg-[#F8F9FB] rounded-full h-1.5 overflow-hidden border border-[#141F33]/10">
+<div className="w-full bg-[#F8F9FB] dark:bg-[#141F33] rounded-full h-1.5 overflow-hidden border border-[#141F33]/10 dark:border-[#F8F9FB]/10">
 <div
 className="bg-[#2A5CFF] h-full transition-all duration-300"
 style={{ width: `${progress}%` }}

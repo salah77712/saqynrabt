@@ -25,9 +25,9 @@ export function AgentToolDisplay({ steps }: AgentToolDisplayProps) {
 
       <div className="space-y-3">
         {steps.map((step, idx) => (
-          <div key={idx} className="text-xs space-y-1.5 border-l border-[#141F33]/10 pl-4 relative">
+          <div key={idx} className="text-xs space-y-1.5 border-s border-[#141F33]/10 ps-4 relative">
             {/* Thought Node */}
-            <div className="absolute -left-[5px] top-1.5 h-2 w-2 rounded-full bg-[#141F33]" />
+            <div className="absolute -inset-inline-start-[5px] top-1.5 h-2 w-2 rounded-full bg-[#141F33]" />
             <p className="font-semibold text-[#141F33]">{step.thought}</p>
             
             {/* Tool Action Details */}

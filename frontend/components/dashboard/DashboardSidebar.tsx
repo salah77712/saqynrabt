@@ -77,8 +77,8 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                   isCollapsed ? 'justify-center px-0' : 'px-4 gap-4.5'
                 } ${
                   isActive
-? 'bg-[#141F33] border-l-4 border-[#141F33] text-[#141F33]'
-: 'border-l-4 border-transparent text-[#141F33] hover:bg-[#141F33] hover:text-[#141F33]'
+? 'bg-[#141F33] border-s-4 border-[#141F33] text-[#141F33]'
+: 'border-s-4 border-transparent text-[#141F33] hover:bg-[#141F33] hover:text-[#141F33]'
                 }`}
                 style={{ minHeight: '44px' }}
               >

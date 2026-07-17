@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
+import { useLocale } from '../providers';
 
 export default function MarketingError({
   error,
@@ -13,6 +14,9 @@ export default function MarketingError({
   useEffect(() => {
     console.error(error);
   }, [error]);
+
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
     <div className="min-h-screen bg-[#F8F9FB] flex flex-col">
@@ -34,26 +38,26 @@ export default function MarketingError({
         <div className="text-center max-w-md">
 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#F8F9FB] border border-[#141F33]/10"><AlertTriangle className="w-6 h-6 text-[#141F33]" />
           </div>
-          <h1 className="text-3xl font-bold text-[#141F33] mb-3">Something went wrong</h1>
+          <h1 className="text-3xl font-bold text-[#141F33] mb-3">{t({ en: 'Something went wrong', ar: 'حدث خطأ غير متوقع' })}</h1>
           <p className="text-sm text-[#141F33] mb-8 leading-relaxed">
-            We encountered an error loading this page. Please try again.
+            {t({ en: 'We encountered an error loading this page. Please try again.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => reset()}
               className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             >
-              Try again
+              {t({ en: 'Try again', ar: 'حاول مرة أخرى' })}
             </button>
             <a
               href="/"
               className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/10 px-6 py-3 text-sm font-semibold text-[#141F33] hover:bg-[#F8F9FB] transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             >
-              Back to Home
+              {t({ en: 'Back to Home', ar: 'العودة إلى الرئيسية' })}
             </a>
           </div>
           {error.digest && (
-            <p className="mt-6 text-xs text-[#141F33] font-mono">Error ID: {error.digest}</p>
+            <p className="mt-6 text-xs text-[#141F33] font-mono">{t({ en: 'Error ID:', ar: 'معرف الخطأ:' })} {error.digest}</p>
           )}
         </div>
       </div>

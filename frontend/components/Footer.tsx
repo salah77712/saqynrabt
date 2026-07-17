@@ -143,6 +143,7 @@ return (
           <input
             type="email"
             placeholder={t({ en: 'Enter your email', ar: 'أدخل بريدك الإلكتروني' })}
+            aria-label={t({ en: 'Email address for updates', ar: 'البريد الإلكتروني للتحديثات' })}
             className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-full pl-4 pr-24 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-royal/25 focus:border-[#141F33]/20 transition-all min-h-[36px]"
             required
           />

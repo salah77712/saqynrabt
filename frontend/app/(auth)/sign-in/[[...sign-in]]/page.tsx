@@ -149,6 +149,7 @@ export default function SignInPage() {
                 maxLength={6}
                 value={twoFactorCode}
                 onChange={(e) => setTwoFactorCode(e.target.value)}
+                aria-label={t({ en: 'Two-factor authentication code', ar: 'رمز التحقق بخطوتين' })}
                 className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
                 required
               />

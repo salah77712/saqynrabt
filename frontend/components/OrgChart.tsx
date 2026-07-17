@@ -35,9 +35,9 @@ reports: [
 const renderNode = (node: EmployeeNode) => {
 return (
 <div key={node.name} className="flex flex-col items-center mt-4">
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm w-48 text-center">
-<p className="text-xs font-bold text-[#141F33]">{node.name}</p>
-<p className="text-[10px] text-[#141F33]/60 font-bold mt-1 uppercase tracking-wider">{node.role}</p>
+<div className="bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#F8F9FB]/10 rounded-xl p-4 shadow-sm w-48 text-center">
+<p className="text-xs font-bold text-[#141F33] dark:text-[#F8F9FB]">{node.name}</p>
+<p className="text-[10px] text-[#141F33]/60 dark:text-[#F8F9FB]/60 font-bold mt-1 uppercase tracking-wider">{node.role}</p>
 </div>
 {node.reports && node.reports.length > 0 && (
 <div className="flex gap-8 mt-4 relative">
@@ -49,11 +49,11 @@ return (
 };
 
 return (
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 overflow-x-auto w-full" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<h3 className="text-base font-bold text-[#141F33] mb-1 text-center">
+<div className="bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#F8F9FB]/10 rounded-xl p-8 overflow-x-auto w-full" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<h3 className="text-base font-bold text-[#141F33] dark:text-[#F8F9FB] mb-1 text-center">
 {t('Organizational Reporting Tree', 'شجرة الهيكل التنظيمي للموظفين')}
 </h3>
-<p className="text-[10px] text-[#141F33]/60 font-semibold text-center mb-6">
+<p className="text-[10px] text-[#141F33]/60 dark:text-[#F8F9FB]/60 font-semibold text-center mb-6">
 {t('Visual representation of team hierarchies & supervisor lines.', 'تمثيل مرئي للتسلسل الهرمي للفريق وخطوط الإشراف.')}
 </p>
 <div className="flex justify-center">

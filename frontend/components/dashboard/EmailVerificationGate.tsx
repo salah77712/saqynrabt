@@ -91,6 +91,7 @@ export function EmailVerificationGate() {
             maxLength={6}
             value={verificationCode}
             onChange={(e) => setVerificationCode(e.target.value)}
+            aria-label={t({ en: 'Email verification code', ar: 'رمز التحقق للبريد الإلكتروني' })}
             className="w-full min-h-[44px]  rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             required
           />

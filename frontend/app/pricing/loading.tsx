@@ -35,7 +35,7 @@ return (
 </div>
 <div className="text-right space-y-1">
 <div className="h-7 w-24 bg-[#141F33] rounded animate-pulse" />
-<div className="h-3 w-16 bg-[#F8F9FB]/[0.12] rounded animate-pulse ml-auto" />
+<div className="h-3 w-16 bg-[#F8F9FB]/[0.12] rounded animate-pulse ms-auto" />
 </div>
 </div>
 <div className="space-y-2">

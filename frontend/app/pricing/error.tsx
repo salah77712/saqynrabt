@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
+import { useLocale } from '../providers';
 
 export default function PricingError({
 error,
@@ -11,6 +12,8 @@ error: Error & { digest?: string };
 reset: () => void;
 }) {
 useEffect(() => { console.error(error); }, [error]);
+const { locale } = useLocale();
+const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
 return (
 <div className="min-h-screen bg-[#F8F9FB] flex flex-col">
@@ -26,12 +29,12 @@ return (
 <main className="flex-1 flex items-center justify-center px-6 py-20">
 <div className="text-center max-w-md">
 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#F8F9FB]"><AlertTriangle className="w-6 h-6 text-[#141F33]" /></div>
-<h1 className="text-2xl font-bold text-primary mb-2">Pricing information unavailable</h1>
-<p className="text-[#141F33] mb-2">We couldn&apos;t load our pricing plans right now.</p>
-<p className="text-sm text-[#141F33]/60 mb-8">Please try again or contact us for pricing details.</p>
+<h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Pricing information unavailable', ar: 'معلومات الأسعار غير متوفرة' })}</h1>
+<p className="text-[#141F33] mb-2">{t({ en: "We couldn&apos;t load our pricing plans right now.", ar: 'تعذر تحميل خطط الأسعار حالياً.' })}</p>
+<p className="text-sm text-[#141F33]/60 mb-8">{t({ en: 'Please try again or contact us for pricing details.', ar: 'يرجى المحاولة مرة أخرى أو الاتصال بنا للحصول على تفاصيل الأسعار.' })}</p>
 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-<button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">Try again</button>
-<a href="/contact" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/20 px-6 py-3 text-sm font-semibold text-[#141F33] hover:bg-[#F8F9FB] transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">Contact us</a>
+<button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: 'حاول مرة أخرى' })}</button>
+<a href="/contact" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/20 px-6 py-3 text-sm font-semibold text-[#141F33] hover:bg-[#F8F9FB] transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Contact us', ar: 'اتصل بنا' })}</a>
 </div>
 </div>
 </main>

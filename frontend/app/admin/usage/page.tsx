@@ -58,7 +58,7 @@ export default function AdminUsagePage() {
         </div>
 
         {/* SVG Vector Graph */}
-        <div className="relative w-full h-64 border-b border-l border-[#141F33]/10 flex items-end">
+        <div className="relative w-full h-64 border-b border-s border-[#141F33]/10 flex items-end">
           <svg aria-hidden="true" className="absolute inset-0 w-full h-full p-4" viewBox="0 0 700 200" preserveAspectRatio="none">
             <line x1="0" y1="50" x2="700" y2="50" stroke="#F8F9FB" strokeWidth="1" />
             <line x1="0" y1="100" x2="700" y2="100" stroke="#F8F9FB" strokeWidth="1" />
