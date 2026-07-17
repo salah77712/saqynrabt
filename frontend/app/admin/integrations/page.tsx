@@ -120,7 +120,7 @@ export default function AdminIntegrationsPage() {
             <h2 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">Active Integrations</h2>
             <div className="space-y-4">
               {integrations.map((item, i) => (
-                <div key={i} className="flex items-center justify-between p-4 bg-surface border border-primary/5 rounded-[24px]">
+                <div key={i} className="flex items-center justify-between p-4 bg-surface border border-primary/5 rounded-xl">
                   <div>
                     <p className="text-sm font-bold text-primary">{item.name}</p>
                     <p className="text-[10px] text-primary/50 font-bold uppercase tracking-wider mt-0.5">{item.type} Integration</p>

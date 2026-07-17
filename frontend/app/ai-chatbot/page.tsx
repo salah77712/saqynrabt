@@ -76,7 +76,7 @@ export default function AIChatbotPage() {
             <div className="bg-white border border-primary/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
               <div>
                 {/* Monochromatic Network Diagram (Navy and Canvas only) */}
-                <div className="bg-surface rounded-[24px] border border-primary/10 p-3 mb-6 flex flex-col items-center justify-center min-h-[110px]">
+                <div className="bg-surface rounded-xl border border-primary/10 p-3 mb-6 flex flex-col items-center justify-center min-h-[110px]">
                   <div className="flex items-center gap-3">
                     <div className="px-2 py-1 bg-white border border-primary/10 rounded-full text-[8px] font-bold text-primary">SAP</div>
                     

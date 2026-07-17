@@ -67,7 +67,7 @@ export default function PricingPage() {
               </div>
 
               {/* Sync Add-On Toggle */}
-              <div className="mt-6 p-4 bg-surface rounded-[24px] border border-primary/5">
+              <div className="mt-6 p-4 bg-surface rounded-xl border border-primary/5">
                 <p className="text-[10px] font-extrabold text-primary uppercase tracking-wider mb-2.5">Want to automate data sync?</p>
                 <div className="flex bg-primary/5 p-0.5 rounded-full border border-primary/10">
                   <button
@@ -149,7 +149,7 @@ export default function PricingPage() {
               </div>
 
               {/* Sync Add-On Toggle */}
-              <div className="mt-6 p-4 bg-surface rounded-[24px] border border-primary/5">
+              <div className="mt-6 p-4 bg-surface rounded-xl border border-primary/5">
                 <p className="text-[10px] font-extrabold text-primary uppercase tracking-wider mb-2.5">Want to automate data sync?</p>
                 <div className="flex bg-primary/5 p-0.5 rounded-full border border-primary/10">
                   <button
@@ -235,7 +235,7 @@ export default function PricingPage() {
               </div>
 
               {/* Employee Limit Disclaimer */}
-              <div className="mt-6 p-4 bg-surface rounded-[24px] border border-primary/5">
+              <div className="mt-6 p-4 bg-surface rounded-xl border border-primary/5">
                 <p className="text-[10px] font-semibold text-primary/70 leading-relaxed">
                   Required for database scale operations with more than 150 active employees.
                 </p>
