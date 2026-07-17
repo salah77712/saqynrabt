@@ -48,6 +48,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
+        <meta charSet="utf-8" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
