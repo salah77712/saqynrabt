@@ -86,38 +86,38 @@ const col4 = [
 ];
 
 return (
-<footer className="bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 rounded-xl shadow-card m-4 overflow-hidden" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<footer className="bg-surface text-primary border border-primary/10 rounded-xl shadow-card m-4 overflow-hidden" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
   
   {/* 1. Top Status Bar */}
-  <div className="border-b border-[#141F33]/10 bg-[#F8F9FB] py-3 px-6 lg:px-8">
+  <div className="border-b border-primary/10 bg-surface py-3 px-6 lg:px-8">
     <div className="mx-auto max-w-7xl flex flex-col sm:flex-row justify-between items-center gap-4 w-full">
-      <div className="flex items-center gap-4 flex-wrap text-[11px] font-bold text-[#141F33]/55">
-<Link href="/trust" className="flex items-center gap-1.5 hover:text-[#141F33] transition-colors">
+      <div className="flex items-center gap-4 flex-wrap text-[11px] font-bold text-primary/55">
+<Link href="/trust" className="flex items-center gap-1.5 hover:text-primary transition-colors">
   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
   </svg>
           {t({ en: 'Trust Center', ar: 'مركز الثقة' })}
         </Link>
-        <span className="w-px h-3 bg-[#141F33]/10" />
+        <span className="w-px h-3 bg-primary/10" />
         <span className="flex items-center gap-1">
           <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-[#2A5CFF]" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           GDPR Ready
         </span>
-        <span className="w-px h-3 bg-[#141F33]/10" />
+        <span className="w-px h-3 bg-primary/10" />
         <span className="flex items-center gap-1">
           ⟳ ISO 27001 In Progress
         </span>
       </div>
       
-      <div className="flex items-center gap-3 text-[11px] font-semibold text-[#141F33]/50">
+      <div className="flex items-center gap-3 text-[11px] font-semibold text-primary/50">
         {incidentStatus?.status === 'all_operational' ? (
-          <span className="flex items-center gap-1.5 text-[#2A5CFF]">
-            <span className="w-2 h-2 rounded-full bg-[#2A5CFF]" />
+          <span className="flex items-center gap-1.5 text-accent">
+            <span className="w-2 h-2 rounded-full bg-accent" />
             All systems operational
           </span>
         ) : (
-          <span className="flex items-center gap-1.5 text-[#2A5CFF]">
-            <span className="w-2 h-2 rounded-full bg-[#2A5CFF] animate-pulse" />
+          <span className="flex items-center gap-1.5 text-accent">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             Incident active ({incidentStatus?.activeIncidents || 0})
           </span>
         )}
@@ -134,7 +134,7 @@ return (
         <Link href="/" className="inline-block" aria-label="SAQYN RABT Home">
           <Logo />
         </Link>
-        <p className="text-xs text-[#141F33]/50 font-bold leading-relaxed">
+        <p className="text-xs text-primary/50 font-bold leading-relaxed">
           {t({ en: 'Sign up to receive updates.', ar: 'سجل للحصول على آخر التحديثات.' })}
         </p>
 
@@ -144,12 +144,12 @@ return (
             type="email"
             placeholder={t({ en: 'Enter your email', ar: 'أدخل بريدك الإلكتروني' })}
             aria-label={t({ en: 'Email address for updates', ar: 'البريد الإلكتروني للتحديثات' })}
-            className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-full pl-4 pr-24 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-royal/25 focus:border-[#141F33]/20 transition-all min-h-[36px]"
+            className="w-full bg-surface border border-primary/10 rounded-full pl-4 pr-24 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-royal/25 focus:border-primary/20 transition-all min-h-[36px]"
             required
           />
           <button
             type="submit"
-            className="absolute right-1 top-[4px] bottom-[4px] bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] font-bold text-[9px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[28px]"
+            className="absolute right-1 top-[4px] bottom-[4px] bg-primary hover:bg-primary/90 text-surface font-bold text-[9px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[28px]"
           >
             {t({ en: 'Submit', ar: 'إرسال' })}
           </button>
@@ -167,34 +167,34 @@ return (
     </div>
 
     {/* 3. Bottom Bar */}
-    <div className="border-t border-[#141F33]/10 mt-10 pt-6 flex flex-col lg:flex-row justify-between items-center gap-6 text-[10px] font-bold text-[#141F33]/40">
+    <div className="border-t border-primary/10 mt-10 pt-6 flex flex-col lg:flex-row justify-between items-center gap-6 text-[10px] font-bold text-primary/40">
       <p className="uppercase tracking-wider">
         © {year} SAQYN RABT. ALL RIGHTS RESERVED.
       </p>
 
       <div className="flex flex-wrap items-center gap-6 justify-center">
         <div className="flex items-center gap-3 flex-wrap justify-center uppercase tracking-wider">
-          <Link href="/sitemap" className="hover:text-[#141F33] transition-colors flex items-center">{t({ en: 'Site Map', ar: 'خريطة الموقع' })}</Link>
+          <Link href="/sitemap" className="hover:text-primary transition-colors flex items-center">{t({ en: 'Site Map', ar: 'خريطة الموقع' })}</Link>
           <span className="flex items-center">|</span>
-          <Link href="/terms-and-conditions" className="hover:text-[#141F33] transition-colors flex items-center">{t({ en: 'Terms', ar: 'الشروط' })}</Link>
+          <Link href="/terms-and-conditions" className="hover:text-primary transition-colors flex items-center">{t({ en: 'Terms', ar: 'الشروط' })}</Link>
           <span className="flex items-center">|</span>
-          <Link href="/privacy-policy" className="hover:text-[#141F33] transition-colors flex items-center">{t({ en: 'Privacy', ar: 'سياسة الخصوصية' })}</Link>
+          <Link href="/privacy-policy" className="hover:text-primary transition-colors flex items-center">{t({ en: 'Privacy', ar: 'سياسة الخصوصية' })}</Link>
           <span className="flex items-center">|</span>
-          <Link href="/trust" className="hover:text-[#141F33] transition-colors flex items-center">{t({ en: 'Trust Center', ar: 'مركز الثقة' })}</Link>
+          <Link href="/trust" className="hover:text-primary transition-colors flex items-center">{t({ en: 'Trust Center', ar: 'مركز الثقة' })}</Link>
         </div>
         
         <SocialLinks />
 
         {/* Systems status indicator pill next to socials */}
-        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#141F33]/5 border border-[#141F33]/10 text-[#2A5CFF] min-h-[28px]">
+        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/5 border border-primary/10 text-accent min-h-[28px]">
           {incidentStatus?.status === 'all_operational' ? (
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2A5CFF]" />
+              <span className="w-1.5 h-1.5 rounded-full bg-accent" />
               {t({ en: 'Operational', ar: 'مستقر' })}
             </span>
           ) : (
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2A5CFF] animate-pulse" />
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
               {t({ en: 'Incident Response', ar: 'الاستجابة للمشكلة' })} ({incidentStatus?.activeIncidents || 0})
             </span>
           )}

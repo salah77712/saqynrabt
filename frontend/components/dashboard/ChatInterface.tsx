@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/shadcn/button';
@@ -41,7 +41,7 @@ export function ChatInterface() {
   };
 
   return (
-    <div className="flex flex-col h-[500px] border border-[#F8F9FB] dark:border-[#141F33] rounded-xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm overflow-hidden">
+    <div className="flex flex-col h-[500px] border border-surface dark:border-primary rounded-xl bg-surface dark:bg-primary shadow-sm overflow-hidden">
       {/* List */}
       <div className="flex-1 overflow-y-auto p-8 space-y-4">
         {list.map((msg) => (
@@ -52,8 +52,8 @@ export function ChatInterface() {
             <div
               className={`max-w-[75%] rounded-xl p-4 text-xs font-semibold leading-relaxed ${
                 msg.sender === 'user'
-                  ? 'bg-[#141F33] dark:bg-[#2A5CFF] text-[#F8F9FB] rounded-tr-none'
-                  : 'bg-[#F8F9FB] dark:bg-[#141F33] border border-[#F8F9FB] dark:border-[#141F33] text-[#141F33] dark:text-[#F8F9FB] rounded-tl-none'
+                  ? 'bg-primary dark:bg-accent text-surface rounded-tr-none'
+                  : 'bg-surface dark:bg-primary border border-surface dark:border-primary text-primary dark:text-surface rounded-tl-none'
               }`}
             >
               {msg.text}
@@ -63,7 +63,7 @@ export function ChatInterface() {
 
         {typing && (
           <div className="flex justify-start">
-            <div className="rounded-xl rounded-tl-none p-4 border border-[#F8F9FB] bg-[#F8F9FB] text-xs text-[#141F33] font-semibold">
+            <div className="rounded-xl rounded-tl-none p-4 border border-surface bg-surface text-xs text-primary font-semibold">
               <span className="inline-flex items-center gap-1">
                 {[0, 160, 320].map((delay) => (
                   <span
@@ -80,7 +80,7 @@ export function ChatInterface() {
       </div>
 
       {/* Input */}
-      <div className="border-t border-[#F8F9FB] dark:border-[#141F33] p-4 flex gap-3 bg-[#F8F9FB] dark:bg-[#141F33]">
+      <div className="border-t border-surface dark:border-primary p-4 flex gap-3 bg-surface dark:bg-primary">
         <Input
           value={query}
           onChange={(e) => setQuery(e.target.value)}

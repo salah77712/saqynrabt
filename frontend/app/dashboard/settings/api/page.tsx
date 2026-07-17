@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '@clerk/nextjs';
@@ -111,7 +111,7 @@ export default function ApiKeysSettingsPage() {
   };
 
   const handleRevoke = (id: string) => {
-    if (!confirm(t({ en: 'Are you sure you want to revoke this API key? Outgoing integrations will break.', ar: 'هل أنت متأكد من إلغاء مفتاح الـ API هذا؟ ستتوقف التكاملات الخارجية.' }))) {
+    if (!confirm(t({ en: 'Are you sure you want to revoke this API key? Outgoing integrations will break.', ar: 'Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† Ø¥Ù„ØºØ§Ø¡ Ù…ÙØªØ§Ø­ Ø§Ù„Ù€ API Ù‡Ø°Ø§ØŸ Ø³ØªØªÙˆÙ‚Ù Ø§Ù„ØªÙƒØ§Ù…Ù„Ø§Øª Ø§Ù„Ø®Ø§Ø±Ø¬ÙŠØ©.' }))) {
       return;
     }
 
@@ -142,35 +142,35 @@ export default function ApiKeysSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Developer API Credentials', ar: 'بيانات وواجهات المطورين' })}</h1>
-        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Create secure access tokens for custom CRM and PMS integrations.', ar: 'إنشاء رموز وصول آمنة لتكاملات CRM و PMS المخصصة.' })}</p>
+        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Developer API Credentials', ar: 'Ø¨ÙŠØ§Ù†Ø§Øª ÙˆÙˆØ§Ø¬Ù‡Ø§Øª Ø§Ù„Ù…Ø·ÙˆØ±ÙŠÙ†' })}</h1>
+        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Create secure access tokens for custom CRM and PMS integrations.', ar: 'Ø¥Ù†Ø´Ø§Ø¡ Ø±Ù…ÙˆØ² ÙˆØµÙˆÙ„ Ø¢Ù…Ù†Ø© Ù„ØªÙƒØ§Ù…Ù„Ø§Øª CRM Ùˆ PMS Ø§Ù„Ù…Ø®ØµØµØ©.' })}</p>
       </div>
 
       {/* New Key Result Banner */}
       {newKeyVal && (
-        <div className="bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-xl p-8 space-y-3">
-          <h3 className="text-xs font-extrabold text-[#2A5CFF] uppercase tracking-widest">{t({ en: 'API Key Created Successfully', ar: 'تم إنشاء مفتاح واجهة التطبيق بنجاح' })}</h3>
-          <p className="text-[10px] text-[#2A5CFF] font-semibold">{t({ en: 'Copy this key now. It will not be shown again for security reasons.', ar: 'انسخ هذا المفتاح الآن. لن يتم عرضه مرة أخرى لأسباب أمنية.' })}</p>
+        <div className="bg-surface border border-accent/10 rounded-xl p-8 space-y-3">
+          <h3 className="text-xs font-extrabold text-accent uppercase tracking-widest">{t({ en: 'API Key Created Successfully', ar: 'ØªÙ… Ø¥Ù†Ø´Ø§Ø¡ Ù…ÙØªØ§Ø­ ÙˆØ§Ø¬Ù‡Ø© Ø§Ù„ØªØ·Ø¨ÙŠÙ‚ Ø¨Ù†Ø¬Ø§Ø­' })}</h3>
+          <p className="text-[10px] text-accent font-semibold">{t({ en: 'Copy this key now. It will not be shown again for security reasons.', ar: 'Ø§Ù†Ø³Ø® Ù‡Ø°Ø§ Ø§Ù„Ù…ÙØªØ§Ø­ Ø§Ù„Ø¢Ù†. Ù„Ù† ÙŠØªÙ… Ø¹Ø±Ø¶Ù‡ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ù„Ø£Ø³Ø¨Ø§Ø¨ Ø£Ù…Ù†ÙŠØ©.' })}</p>
           <div className="flex gap-3">
             <input
               type="text"
               readOnly
               value={newKeyVal}
-              className="flex-1 bg-[#F8F9FB] border border-[#2A5CFF]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold text-[#141F33] min-h-[44px]"
+              className="flex-1 bg-surface border border-accent/10 rounded-xl px-4 py-2 text-xs font-mono font-bold text-primary min-h-[44px]"
             />
             <button
               onClick={() => {
                 navigator.clipboard.writeText(newKeyVal);
                 addToast('Copied to clipboard', 'success');
               }}
-              className="bg-[#2A5CFF] hover:bg-emerald-700 text-[#F8F9FB] font-bold px-6 py-3 min-h-[44px] rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+              className="bg-accent hover:bg-emerald-700 text-surface font-bold px-6 py-3 min-h-[44px] rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
             >
               Copy
             </button>
           </div>
           <button
             onClick={() => setNewKeyVal(null)}
-            className="text-[10px] text-[#2A5CFF] font-bold hover:underline"
+            className="text-[10px] text-accent font-bold hover:underline"
           >
             Dismiss
           </button>
@@ -178,53 +178,53 @@ export default function ApiKeysSettingsPage() {
       )}
 
       {/* Form Generate */}
-      <form onSubmit={handleGenerate} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex gap-8 items-end">
+      <form onSubmit={handleGenerate} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex gap-8 items-end">
         <div className="flex-1">
-          <label htmlFor="keyName" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Credential Key Name', ar: 'اسم المفتاح التعريفي' })}</label>
+          <label htmlFor="keyName" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Credential Key Name', ar: 'Ø§Ø³Ù… Ø§Ù„Ù…ÙØªØ§Ø­ Ø§Ù„ØªØ¹Ø±ÙŠÙÙŠ' })}</label>
           <input
             type="text"
             id="keyName"
             value={keyName}
             onChange={(e) => setKeyName(e.target.value)}
             placeholder="E.g. ERP Scheduler Token"
-            className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
+            className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
             required
           />
         </div>
         <button
           type="submit"
           disabled={generating}
-          className="bg-[#141F33] hover:opacity-95 text-[#F8F9FB] font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] flex items-center shrink-0 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+          className="bg-primary hover:opacity-95 text-surface font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] flex items-center shrink-0 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
-          {generating ? t({ en: 'Generating...', ar: 'جاري الإنشاء...' }) : t({ en: 'Generate Key', ar: 'إنشاء مفتاح' })}
+          {generating ? t({ en: 'Generating...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ù†Ø´Ø§Ø¡...' }) : t({ en: 'Generate Key', ar: 'Ø¥Ù†Ø´Ø§Ø¡ Ù…ÙØªØ§Ø­' })}
         </button>
       </form>
 
       {/* Keys List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
-        <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider mb-4">{t({ en: 'Active API Keys', ar: 'مفاتيح واجهة التطبيقات النشطة' })}</h3>
+      <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
+        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">{t({ en: 'Active API Keys', ar: 'Ù…ÙØ§ØªÙŠØ­ ÙˆØ§Ø¬Ù‡Ø© Ø§Ù„ØªØ·Ø¨ÙŠÙ‚Ø§Øª Ø§Ù„Ù†Ø´Ø·Ø©' })}</h3>
 
         {loading ? (
           <div className="py-6 flex justify-center">
-            <span className="h-6 w-6 rounded-full border-4 border-[#141F33]/10 border-t-[#141F33] animate-spin" />
+            <span className="h-6 w-6 rounded-full border-4 border-primary/10 border-t-[#141F33] animate-spin" />
           </div>
         ) : keys.length === 0 ? (
-          <p className="text-xs text-[#141F33] font-semibold text-center py-6">{t({ en: 'No API keys configured yet.', ar: 'لا توجد مفاتيح واجهة تطبيقات مهيأة حاليًا.' })}</p>
+          <p className="text-xs text-primary font-semibold text-center py-6">{t({ en: 'No API keys configured yet.', ar: 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ù…ÙØ§ØªÙŠØ­ ÙˆØ§Ø¬Ù‡Ø© ØªØ·Ø¨ÙŠÙ‚Ø§Øª Ù…Ù‡ÙŠØ£Ø© Ø­Ø§Ù„ÙŠÙ‹Ø§.' })}</p>
         ) : (
           <div className="divide-y divide-[#141F33]/10">
             {keys.map((k) => (
               <div key={k.id} className="flex justify-between items-center py-4 first:pt-0 last:pb-0 gap-8">
                 <div className="min-w-0">
-                  <p className="text-xs font-bold text-[#141F33] truncate">{k.name}</p>
-                  <p className="text-[10px] font-mono text-[#141F33] font-bold mt-1">{k.key_hint}</p>
+                  <p className="text-xs font-bold text-primary truncate">{k.name}</p>
+                  <p className="text-[10px] font-mono text-primary font-bold mt-1">{k.key_hint}</p>
                 </div>
                 <div className="flex items-center gap-4 shrink-0">
-                  <span className="text-[10px] text-[#141F33] font-bold">{new Date(k.created_at).toLocaleDateString()}</span>
+                  <span className="text-[10px] text-primary font-bold">{new Date(k.created_at).toLocaleDateString()}</span>
                   <button
                     onClick={() => handleRevoke(k.id)}
-                    className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] text-[#141F33] hover:bg-[#F8F9FB] border border-[#141F33]/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                    className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] text-primary hover:bg-surface border border-primary/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                   >
-                    {t({ en: 'Revoke', ar: 'إلغاء' })}
+                    {t({ en: 'Revoke', ar: 'Ø¥Ù„ØºØ§Ø¡' })}
                   </button>
                 </div>
               </div>

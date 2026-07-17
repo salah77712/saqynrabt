@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../app/providers';
@@ -36,17 +36,17 @@ setNodes(prev => prev.filter(n => n.id !== id));
 };
 
 return (
-<div className="border border-[#141F33]/10 rounded-xl p-8 bg-[#F8F9FB] space-y-6">
+<div className="border border-primary/10 rounded-xl p-8 bg-surface space-y-6">
 
 {/* Header */}
 <div className="flex justify-between items-center">
 <div>
-<h3 className="text-sm font-extrabold text-[#141F33]">{t({ en: 'Visual Pipeline Editor', ar: 'محرر مسار التدفق البصري' })}</h3>
-<p className="text-[10px] text-[#141F33]/60 font-semibold mt-0.5">{t({ en: 'Simulated visual flow editor. Configure pipeline dispatches.', ar: 'محرر سير العمل البصري. قم بتهيئة إرسال المهام.' })}</p>
+<h3 className="text-sm font-extrabold text-primary">{t({ en: 'Visual Pipeline Editor', ar: 'Ù…Ø­Ø±Ø± Ù…Ø³Ø§Ø± Ø§Ù„ØªØ¯ÙÙ‚ Ø§Ù„Ø¨ØµØ±ÙŠ' })}</h3>
+<p className="text-[10px] text-primary/60 font-semibold mt-0.5">{t({ en: 'Simulated visual flow editor. Configure pipeline dispatches.', ar: 'Ù…Ø­Ø±Ø± Ø³ÙŠØ± Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ø¨ØµØ±ÙŠ. Ù‚Ù… Ø¨ØªÙ‡ÙŠØ¦Ø© Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ù…Ù‡Ø§Ù….' })}</p>
 </div>
 <button
 onClick={() => handleAddNode('action')}
-className="bg-[#141F33] text-white font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+className="bg-primary text-white font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 + Add Action Node
 </button>
@@ -58,27 +58,27 @@ className="bg-[#141F33] text-white font-bold py-3 px-6 rounded-xl text-xs min-h-
 <React.Fragment key={node.id}>
 
 {/* Node Card */}
-<div className={`w-full max-w-sm bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm flex justify-between items-center relative ${
+<div className={`w-full max-w-sm bg-surface border border-primary/10 rounded-xl p-4 shadow-sm flex justify-between items-center relative ${
 node.type === 'trigger' ? 'border-s-4 border-s-[#2A5CFF]' : 'border-s-4 border-s-[#2A5CFF]'
 }`}>
 <div>
-<span className="text-[9px] font-extrabold uppercase text-[#141F33]/60 tracking-widest">{node.type}</span>
-<p className="text-xs font-mono font-bold text-[#141F33] mt-1">{node.label}</p>
+<span className="text-[9px] font-extrabold uppercase text-primary/60 tracking-widest">{node.type}</span>
+<p className="text-xs font-mono font-bold text-primary mt-1">{node.label}</p>
 </div>
 
 {node.type !== 'trigger' && (
 <button
         onClick={() => handleRemoveNode(node.id)}
-        className="text-xs text-[#141F33]/60 hover:text-[#141F33] transition-all duration-300 p-1 border border-[#141F33]/10 hover:border-[#2A5CFF] rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
+        className="text-xs text-primary/60 hover:text-primary transition-all duration-300 p-1 border border-primary/10 hover:border-accent rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
       >
-<Trash2 className="w-4 h-4 text-[#141F33]/60 hover:text-[#141F33]" />
+<Trash2 className="w-4 h-4 text-primary/60 hover:text-primary" />
 </button>
 )}
 </div>
 
 {/* Connecting Arrow */}
 {idx < nodes.length - 1 && (
-<ArrowDown className="w-5 h-5 text-[#141F33]/40" />
+<ArrowDown className="w-5 h-5 text-primary/40" />
 )}
 
 </React.Fragment>

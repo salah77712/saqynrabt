@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../../providers';
@@ -28,16 +28,16 @@ export default function AdminFeatureFlagsPage() {
 
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Global Feature Flag Manager', ar: 'إدارة مؤشرات الميزات البرمجية' })}</h1>
-        <p className="text-xs text-[#141F33]/60 font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Toggle beta feature scopes.', ar: 'شاشة التحكم لموظفي SAQYN. تعديل وتفعيل صلاحيات الميزات التجريبية.' })}</p>
+        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Global Feature Flag Manager', ar: 'Ø¥Ø¯Ø§Ø±Ø© Ù…Ø¤Ø´Ø±Ø§Øª Ø§Ù„Ù…ÙŠØ²Ø§Øª Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ©' })}</h1>
+        <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Toggle beta feature scopes.', ar: 'Ø´Ø§Ø´Ø© Ø§Ù„ØªØ­ÙƒÙ… Ù„Ù…ÙˆØ¸ÙÙŠ SAQYN. ØªØ¹Ø¯ÙŠÙ„ ÙˆØªÙØ¹ÙŠÙ„ ØµÙ„Ø§Ø­ÙŠØ§Øª Ø§Ù„Ù…ÙŠØ²Ø§Øª Ø§Ù„ØªØ¬Ø±ÙŠØ¨ÙŠØ©.' })}</p>
       </div>
 
       {/* Flags table */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
+      <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
         <div className="divide-y divide-[#141F33]/10">
           {flags.map((flag) => (
             <div key={flag.id} className="py-4 flex justify-between items-center gap-8 first:pt-0 last:pb-0">
-              <span className="text-xs font-mono font-bold text-[#141F33]">{flag.name}</span>
+              <span className="text-xs font-mono font-bold text-primary">{flag.name}</span>
 
               <label className="relative inline-flex items-center cursor-pointer select-none">
                 <input
@@ -46,7 +46,7 @@ export default function AdminFeatureFlagsPage() {
                   onChange={() => handleToggle(flag.id)}
                   className="sr-only peer"
                 />
-                <div className="w-9 h-5 bg-[#141F33] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
+                <div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
               </label>
             </div>
           ))}

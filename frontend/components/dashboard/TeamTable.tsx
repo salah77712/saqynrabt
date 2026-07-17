@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { Badge } from '../ui/Badge';
 
 interface Employee {
@@ -16,10 +16,10 @@ interface TeamTableProps {
 
 export function TeamTable({ members, onAction }: TeamTableProps) {
   return (
-    <div className="overflow-x-auto w-full border border-[#F8F9FB] dark:border-[#141F33] rounded-xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm">
+    <div className="overflow-x-auto w-full border border-surface dark:border-primary rounded-xl bg-surface dark:bg-primary shadow-sm">
       <table className="w-full text-left border-collapse">
         <thead>
-          <tr className="bg-[#F8F9FB] dark:bg-[#141F33] border-b border-[#F8F9FB] dark:border-[#141F33] text-[10px] font-black text-[#141F33] uppercase tracking-wider">
+          <tr className="bg-surface dark:bg-primary border-b border-surface dark:border-primary text-[10px] font-black text-primary uppercase tracking-wider">
             <th className="p-4">Name</th>
             <th className="p-4">Email</th>
             <th className="p-4">Role</th>
@@ -29,12 +29,12 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
         </thead>
         <tbody>
           {members.map((m) => (
-            <tr key={m.id} className="border-b border-[#F8F9FB] dark:border-[#141F33] last:border-0 hover:bg-[#141F33] transition-colors">
-              <td className="p-4 text-xs font-bold text-navy dark:text-[#F8F9FB]">{m.name}</td>
-              <td className="p-4 text-xs text-[#141F33] dark:text-[#141F33]">{m.email}</td>
-              <td className="p-4 text-xs font-semibold text-[#141F33] uppercase tracking-wider">{m.role}</td>
+            <tr key={m.id} className="border-b border-surface dark:border-primary last:border-0 hover:bg-primary transition-colors">
+              <td className="p-4 text-xs font-bold text-navy dark:text-surface">{m.name}</td>
+              <td className="p-4 text-xs text-primary dark:text-primary">{m.email}</td>
+              <td className="p-4 text-xs font-semibold text-primary uppercase tracking-wider">{m.role}</td>
 <td className="p-4">
-<span className={`text-xs font-bold ${m.status === 'active' ? 'text-[#141F33]' : 'text-[#2A5CFF]'}`}>{m.status}</span>
+<span className={`text-xs font-bold ${m.status === 'active' ? 'text-primary' : 'text-accent'}`}>{m.status}</span>
 </td>
               {onAction && (
                 <td className="p-4 text-right">
@@ -42,7 +42,7 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
                     {m.status === 'pending' ? (
                       <button
                         onClick={() => onAction(m.id, 'approve')}
-                        className="px-4 py-2 min-h-[44px] text-xs font-bold text-[#141F33] hover:text-[#141F33]"
+                        className="px-4 py-2 min-h-[44px] text-xs font-bold text-primary hover:text-primary"
                       >
                         Approve
                       </button>
@@ -52,15 +52,15 @@ export function TeamTable({ members, onAction }: TeamTableProps) {
                           onClick={() => onAction(m.id, 'toggle-admin', m.role)}
                           className={`px-4 py-2 min-h-[44px] text-xs font-bold ${
                             m.role === 'admin' 
-? 'text-[#2A5CFF] hover:text-[#2A5CFF]'
-: 'text-[#2A5CFF] hover:text-[#2A5CFF]'
+? 'text-accent hover:text-accent'
+: 'text-accent hover:text-accent'
                           }`}
                         >
                           {m.role === 'admin' ? 'Demote' : 'Make Admin'}
                         </button>
                         <button
                           onClick={() => onAction(m.id, 'suspend')}
-className="px-4 py-2 min-h-[44px] rounded-xl text-xs font-bold text-[#141F33] transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:text-[#141F33]"
+className="px-4 py-2 min-h-[44px] rounded-xl text-xs font-bold text-primary transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:text-primary"
                         >
                           Suspend
                         </button>

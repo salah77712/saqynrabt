@@ -33,24 +33,24 @@ export default function AboutPage() {
   };
 
   return (
-    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <main className="flex-1 max-w-4xl mx-auto py-24 px-6 flex flex-col items-center">
         {/* Hero */}
         <div className="text-center mb-16">
-          <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t(content.eyebrow)}</span>
-          <h1 className="text-4xl lg:text-5xl font-extrabold text-[#141F33] leading-tight tracking-tight mt-3">
+          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t(content.eyebrow)}</span>
+          <h1 className="text-4xl lg:text-5xl font-extrabold text-primary leading-tight tracking-tight mt-3">
             {t(content.title)}
           </h1>
         </div>
 
         {/* Story Section */}
         <div className="bg-white border border-[rgba(20,31,51,0.1)] rounded-xl p-8 shadow-sm w-full mb-12 text-center md:text-start">
-          <h2 className="text-xl font-extrabold text-[#141F33] mb-4">{t(content.storyTitle)}</h2>
+          <h2 className="text-xl font-extrabold text-primary mb-4">{t(content.storyTitle)}</h2>
           <div className="space-y-4">
             {ta(content.storyBody).map((paragraph: string, i: number) => (
-              <p key={i} className="text-sm font-medium text-[#141F33]/60 leading-relaxed">{paragraph}</p>
+              <p key={i} className="text-sm font-medium text-primary/60 leading-relaxed">{paragraph}</p>
             ))}
           </div>
         </div>
@@ -58,34 +58,34 @@ export default function AboutPage() {
         {/* Trust Badges SVG Strip */}
         <div className="border-t border-[rgba(20,31,51,0.1)] pt-12 w-full flex flex-wrap justify-center gap-12 md:gap-12">
           <div className="flex items-center gap-3 opacity-50 grayscale hover:opacity-100 transition-opacity">
-            <svg aria-hidden="true" className="h-6 w-6 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg aria-hidden="true" className="h-6 w-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
               <path d="M7 11V7a5 5 0 0 1 10 0v4" />
             </svg>
-            <span className="text-xs font-bold text-[#141F33]">{t(content.badgeSecure)}</span>
+            <span className="text-xs font-bold text-primary">{t(content.badgeSecure)}</span>
           </div>
 
           <div className="flex items-center gap-3 opacity-50 grayscale hover:opacity-100 transition-opacity">
-            <svg aria-hidden="true" className="h-6 w-6 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg aria-hidden="true" className="h-6 w-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
             </svg>
-            <span className="text-xs font-bold text-[#141F33]">{t(content.badgePrivate)}</span>
+            <span className="text-xs font-bold text-primary">{t(content.badgePrivate)}</span>
           </div>
 
           <div className="flex items-center gap-3 opacity-50 grayscale hover:opacity-100 transition-opacity">
-            <svg aria-hidden="true" className="h-6 w-6 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg aria-hidden="true" className="h-6 w-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <circle cx="12" cy="12" r="10" />
               <polyline points="12 6 12 12 16 14" />
             </svg>
-            <span className="text-xs font-bold text-[#141F33]">{t(content.badgeLive)}</span>
+            <span className="text-xs font-bold text-primary">{t(content.badgeLive)}</span>
           </div>
 
           <div className="flex items-center gap-3 opacity-50 grayscale hover:opacity-100 transition-opacity">
-            <svg aria-hidden="true" className="h-6 w-6 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <svg aria-hidden="true" className="h-6 w-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
               <circle cx="12" cy="10" r="3" />
             </svg>
-            <span className="text-xs font-bold text-[#141F33]">{t(content.badgeLocal)}</span>
+            <span className="text-xs font-bold text-primary">{t(content.badgeLocal)}</span>
           </div>
         </div>
 

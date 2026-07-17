@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../app/providers';
@@ -45,53 +45,53 @@ body: JSON.stringify({
 };
 
 return (
-<div className="mt-3 flex flex-col items-start gap-3 text-[10px] font-bold text-[#141F33]/40 select-none">
+<div className="mt-3 flex flex-col items-start gap-3 text-[10px] font-bold text-primary/40 select-none">
 {!submitted ? (
 <div className="flex items-center gap-3">
-<span>{t({ en: 'Was this helpful?', ar: 'هل كانت هذه الإجابة مفيدة؟' })}</span>
+<span>{t({ en: 'Was this helpful?', ar: 'Ù‡Ù„ ÙƒØ§Ù†Øª Ù‡Ø°Ù‡ Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø© Ù…ÙÙŠØ¯Ø©ØŸ' })}</span>
 <button
 onClick={() => handleRate(5)}
-className="hover:text-[#2A5CFF] transition-all duration-300 p-1 border border-[#141F33]/10 hover:border-[#2A5CFF] rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
+className="hover:text-accent transition-all duration-300 p-1 border border-primary/10 hover:border-accent rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
 title="Good Answer"
 >
-{t({ en: 'Yes', ar: 'نعم' })}
+{t({ en: 'Yes', ar: 'Ù†Ø¹Ù…' })}
 </button>
 <button
 onClick={() => handleRate(1)}
-className="hover:text-[#141F33] transition-all duration-300 p-1 border border-[#141F33]/10 hover:border-[#141F33] rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
+className="hover:text-primary transition-all duration-300 p-1 border border-primary/10 hover:border-primary rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center"
 title="Bad Answer"
 >
-{t({ en: 'No', ar: 'لا' })}
+{t({ en: 'No', ar: 'Ù„Ø§' })}
 </button>
 </div>
 ) : (
-<span className="text-[#2A5CFF] font-extrabold flex items-center gap-1">
-{t({ en: 'Thank you for your feedback!', ar: 'نشكرك على تقييمك!' })}
+<span className="text-accent font-extrabold flex items-center gap-1">
+{t({ en: 'Thank you for your feedback!', ar: 'Ù†Ø´ÙƒØ±Ùƒ Ø¹Ù„Ù‰ ØªÙ‚ÙŠÙŠÙ…Ùƒ!' })}
 </span>
 )}
 
 {isOpen && (
-<div className="p-3 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl w-full max-w-xs space-y-2 mt-2">
-<label className="block text-[9px] uppercase tracking-wider text-[#141F33]">{t({ en: 'Provide feedback (optional)', ar: 'أضف تعليقًا (اختياري)' })}</label>
+<div className="p-3 bg-surface border border-primary/10 rounded-xl w-full max-w-xs space-y-2 mt-2">
+<label className="block text-[9px] uppercase tracking-wider text-primary">{t({ en: 'Provide feedback (optional)', ar: 'Ø£Ø¶Ù ØªØ¹Ù„ÙŠÙ‚Ù‹Ø§ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)' })}</label>
 <textarea
 value={comment}
 onChange={(e) => setComment(e.target.value)}
 rows={2}
-className="w-full bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-2 text-[10px] text-[#141F33] focus:outline-none focus:ring-1 focus:ring-2 focus:ring-royal resize-none"
-placeholder={t({ en: 'E.g. Out of date policy...', ar: 'مثال: سياسة قديمة...' })}
+className="w-full bg-surface border border-primary/10 rounded-xl p-2 text-[10px] text-primary focus:outline-none focus:ring-1 focus:ring-2 focus:ring-royal resize-none"
+placeholder={t({ en: 'E.g. Out of date policy...', ar: 'Ù…Ø«Ø§Ù„: Ø³ÙŠØ§Ø³Ø© Ù‚Ø¯ÙŠÙ…Ø©...' })}
 />
 <div className="flex gap-3 justify-end">
 <button
 onClick={() => submitFeedback(rating || 1, comment || 'No comment provided')}
-className="bg-[#141F33] text-[#F8F9FB] px-3 py-1 rounded-xl hover:opacity-95"
+className="bg-primary text-surface px-3 py-1 rounded-xl hover:opacity-95"
 >
-{t({ en: 'Submit', ar: 'إرسال' })}
+{t({ en: 'Submit', ar: 'Ø¥Ø±Ø³Ø§Ù„' })}
 </button>
 <button
 onClick={() => setIsOpen(false)}
-className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] px-3 py-1 rounded-xl hover:bg-[#141F33]"
+className="bg-surface border border-primary/10 text-primary px-3 py-1 rounded-xl hover:bg-primary"
 >
-{t({ en: 'Cancel', ar: 'إلغاء' })}
+{t({ en: 'Cancel', ar: 'Ø¥Ù„ØºØ§Ø¡' })}
 </button>
 </div>
 </div>

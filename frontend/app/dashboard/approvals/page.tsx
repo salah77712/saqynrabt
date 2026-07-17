@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useLocale, useEntitlements } from '../../providers';
@@ -64,7 +64,7 @@ export default function ApprovalsDashboardPage() {
 
   const handleApprove = (clerkUserId: string) => {
     if (isLimitReached) {
-      addToast(t({ en: 'Plan limit reached. Upgrade to add more active employees.', ar: 'تم الوصول إلى الحد الأقصى للموظفين. قم بترقية الخطة لإضافة المزيد.' }), 'warning');
+      addToast(t({ en: 'Plan limit reached. Upgrade to add more active employees.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰ Ù„Ù„Ù…ÙˆØ¸ÙÙŠÙ†. Ù‚Ù… Ø¨ØªØ±Ù‚ÙŠØ© Ø§Ù„Ø®Ø·Ø© Ù„Ø¥Ø¶Ø§ÙØ© Ø§Ù„Ù…Ø²ÙŠØ¯.' }), 'warning');
       return;
     }
 
@@ -85,7 +85,7 @@ export default function ApprovalsDashboardPage() {
     })
     .catch(err => {
       if (err.message === 'LIMIT_REACHED') {
-        addToast(t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول إلى الحد الأقصى للموظفين.' }), 'warning');
+        addToast(t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰ Ù„Ù„Ù…ÙˆØ¸ÙÙŠÙ†.' }), 'warning');
       } else {
         console.error('Approve failed, simulating fallback:', err);
         setEmployees(prev => prev.map(e => e.clerk_user_id === clerkUserId ? { ...e, status: 'active' } : e));
@@ -102,75 +102,75 @@ export default function ApprovalsDashboardPage() {
 
       {/* Header and Info Bar */}
       <div>
-        <h1 className="text-2xl font-extrabold text-[#141F33] tracking-tight">
-          {t({ en: 'Approvals', ar: 'موافقات دخول الموظفين' })}
+        <h1 className="text-2xl font-extrabold text-primary tracking-tight">
+          {t({ en: 'Approvals', ar: 'Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø¯Ø®ÙˆÙ„ Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†' })}
         </h1>
-        <p className="text-sm font-semibold text-[#141F33] mt-0.5">
-          {t({ en: 'Review and approve teammate access requests.', ar: 'الموافقة على طلبات الموظفين المعلقة وإدارة الحسابات النشطة.' })}
+        <p className="text-sm font-semibold text-primary mt-0.5">
+          {t({ en: 'Review and approve teammate access requests.', ar: 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø© Ø¹Ù„Ù‰ Ø·Ù„Ø¨Ø§Øª Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ† Ø§Ù„Ù…Ø¹Ù„Ù‚Ø© ÙˆØ¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø­Ø³Ø§Ø¨Ø§Øª Ø§Ù„Ù†Ø´Ø·Ø©.' })}
         </p>
 
         {/* Limit Warning Badge */}
-        <div className="mt-4 p-8 rounded-xl border border-[#141F33]/10 flex items-center justify-between gap-8 text-xs font-semibold bg-[#F8F9FB]">
+        <div className="mt-4 p-8 rounded-xl border border-primary/10 flex items-center justify-between gap-8 text-xs font-semibold bg-surface">
           <div className="flex items-center gap-3">
-            <Users className="w-5 h-5 text-[#141F33]" />
-            <span className="text-[#141F33]">
-              {t({ en: 'Plan Active Limits:', ar: 'حدود الموظفين النشطين:' })} <strong>{activeCount} / {maxEmployees}</strong>
+            <Users className="w-5 h-5 text-primary" />
+            <span className="text-primary">
+              {t({ en: 'Plan Active Limits:', ar: 'Ø­Ø¯ÙˆØ¯ Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ† Ø§Ù„Ù†Ø´Ø·ÙŠÙ†:' })} <strong>{activeCount} / {maxEmployees}</strong>
             </span>
           </div>
           {isLimitReached && (
-            <span className="text-[#2A5CFF] font-extrabold flex items-center gap-1">
-              {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول إلى الحد الأقصى للموظفين. قم بالترقية.' })}
+            <span className="text-accent font-extrabold flex items-center gap-1">
+              {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰ Ù„Ù„Ù…ÙˆØ¸ÙÙŠÙ†. Ù‚Ù… Ø¨Ø§Ù„ØªØ±Ù‚ÙŠØ©.' })}
             </span>
           )}
         </div>
       </div>
 
       {/* Pending Employees List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden">
-        <div className="px-6 py-5 border-b border-[#141F33]/10 bg-[#F8F9FB]">
-          <h2 className="text-sm font-extrabold text-[#141F33] uppercase tracking-widest">{t({ en: 'Pending Requests', ar: 'طلبات الدخول المعلقة' })}</h2>
+      <div className="bg-surface border border-primary/10 rounded-xl shadow-sm overflow-hidden">
+        <div className="px-6 py-5 border-b border-primary/10 bg-surface">
+          <h2 className="text-sm font-extrabold text-primary uppercase tracking-widest">{t({ en: 'Pending Requests', ar: 'Ø·Ù„Ø¨Ø§Øª Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©' })}</h2>
         </div>
 
         {loading ? (
           <div className="py-12 flex justify-center">
-            <span className="h-8 w-8 rounded-full border-4 border-[#141F33]/10 border-t-[#2A5CFF] animate-spin" />
+            <span className="h-8 w-8 rounded-full border-4 border-primary/10 border-t-[#2A5CFF] animate-spin" />
           </div>
         ) : pendingEmployees.length === 0 ? (
           <div className="py-12 flex flex-col items-center justify-center text-center">
-            <Users className="w-8 h-8 text-[#141F33] opacity-40 mb-3" />
-            <p className="text-sm font-bold text-[#141F33]">
-              {t({ en: 'No pending access requests.', ar: 'لا توجد طلبات دخول معلقة.' })}
+            <Users className="w-8 h-8 text-primary opacity-40 mb-3" />
+            <p className="text-sm font-bold text-primary">
+              {t({ en: 'No pending access requests.', ar: 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø·Ù„Ø¨Ø§Øª Ø¯Ø®ÙˆÙ„ Ù…Ø¹Ù„Ù‚Ø©.' })}
             </p>
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
               <thead>
-                <tr className="bg-[#F8F9FB] border-b border-[#141F33]/10 text-xs font-extrabold text-[#141F33] uppercase tracking-wider">
-                  <th className="px-6 py-4">{t({ en: 'Name', ar: 'الاسم' })}</th>
-                  <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</th>
-                  <th className="px-6 py-4">{t({ en: 'Role', ar: 'الدور' })}</th>
-                  <th className="px-6 py-4 text-center">{t({ en: 'Action', ar: 'الإجراء' })}</th>
+                <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
+                  <th className="px-6 py-4">{t({ en: 'Name', ar: 'Ø§Ù„Ø§Ø³Ù…' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Role', ar: 'Ø§Ù„Ø¯ÙˆØ±' })}</th>
+                  <th className="px-6 py-4 text-center">{t({ en: 'Action', ar: 'Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡' })}</th>
                 </tr>
               </thead>
               <tbody className="divide-[#141F33]/10 text-sm">
                 {pendingEmployees.map((emp) => (
-                  <tr key={emp.clerk_user_id} className="hover:bg-[#141F33] transition-colors">
-                    <td className="px-6 py-4 font-bold text-[#141F33]">{emp.name}</td>
-                    <td className="px-6 py-4 font-semibold text-[#141F33]">{emp.email}</td>
-                    <td className="px-6 py-4 text-xs font-bold text-[#141F33]/60 uppercase tracking-wider">{emp.role}</td>
+                  <tr key={emp.clerk_user_id} className="hover:bg-primary transition-colors">
+                    <td className="px-6 py-4 font-bold text-primary">{emp.name}</td>
+                    <td className="px-6 py-4 font-semibold text-primary">{emp.email}</td>
+                    <td className="px-6 py-4 text-xs font-bold text-primary/60 uppercase tracking-wider">{emp.role}</td>
                     <td className="px-6 py-4 text-center">
                       <div className="relative group inline-block">
                         <button
                           onClick={() => handleApprove(emp.clerk_user_id)}
                           disabled={isLimitReached || approvingId !== null}
-                          className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] disabled:opacity-40 disabled:cursor-not-allowed"
+                          className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-primary hover:bg-primary text-surface disabled:opacity-40 disabled:cursor-not-allowed"
                         >
-                          {approvingId === emp.clerk_user_id ? t({ en: 'Approving...', ar: 'جاري الموافقة...' }) : t({ en: 'Approve Access', ar: 'الموافقة' })}
+                          {approvingId === emp.clerk_user_id ? t({ en: 'Approving...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø©...' }) : t({ en: 'Approve Access', ar: 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø©' })}
                         </button>
                         {isLimitReached && (
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 bg-[#141F33] text-[#F8F9FB] text-[10px] font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-3 whitespace-nowrap shadow-md">
-                            {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول للحد الأقصى. قم بالترقية.' })}
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 bg-primary text-surface text-[10px] font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-3 whitespace-nowrap shadow-md">
+                            {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ù„Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰. Ù‚Ù… Ø¨Ø§Ù„ØªØ±Ù‚ÙŠØ©.' })}
                           </div>
                         )}
                       </div>
@@ -184,33 +184,33 @@ export default function ApprovalsDashboardPage() {
       </div>
 
       {/* Active Employees List */}
-      <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden">
-        <div className="px-6 py-5 border-b border-[#141F33]/10 bg-[#F8F9FB]">
-          <h2 className="text-sm font-extrabold text-[#141F33] uppercase tracking-widest">{t({ en: 'Authorized Active Staff', ar: 'الموظفون النشطون المعتمدون' })}</h2>
+      <div className="bg-surface border border-primary/10 rounded-xl shadow-sm overflow-hidden">
+        <div className="px-6 py-5 border-b border-primary/10 bg-surface">
+          <h2 className="text-sm font-extrabold text-primary uppercase tracking-widest">{t({ en: 'Authorized Active Staff', ar: 'Ø§Ù„Ù…ÙˆØ¸ÙÙˆÙ† Ø§Ù„Ù†Ø´Ø·ÙˆÙ† Ø§Ù„Ù…Ø¹ØªÙ…Ø¯ÙˆÙ†' })}</h2>
         </div>
 
         {activeEmployees.length === 0 ? (
-          <div className="py-8 text-center text-xs font-bold text-[#141F33]">
-            {t({ en: 'No active staff listed.', ar: 'لا يوجد موظفون نشطون حاليًا.' })}
+          <div className="py-8 text-center text-xs font-bold text-primary">
+            {t({ en: 'No active staff listed.', ar: 'Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ù…ÙˆØ¸ÙÙˆÙ† Ù†Ø´Ø·ÙˆÙ† Ø­Ø§Ù„ÙŠÙ‹Ø§.' })}
           </div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
               <thead>
-                <tr className="bg-[#F8F9FB] border-b border-[#141F33]/10 text-xs font-extrabold text-[#141F33] uppercase tracking-wider">
-                  <th className="px-6 py-4">{t({ en: 'Name', ar: 'الاسم' })}</th>
-                  <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</th>
-                  <th className="px-6 py-4">{t({ en: 'Status', ar: 'الحالة' })}</th>
+                <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
+                  <th className="px-6 py-4">{t({ en: 'Name', ar: 'Ø§Ù„Ø§Ø³Ù…' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Status', ar: 'Ø§Ù„Ø­Ø§Ù„Ø©' })}</th>
                 </tr>
               </thead>
               <tbody className="divide-[#141F33]/10 text-sm">
                 {activeEmployees.map((emp) => (
-                  <tr key={emp.clerk_user_id} className="hover:bg-[#141F33] transition-colors">
-                    <td className="px-6 py-4 font-bold text-[#141F33]">{emp.name}</td>
-                    <td className="px-6 py-4 font-semibold text-[#141F33]">{emp.email}</td>
+                  <tr key={emp.clerk_user_id} className="hover:bg-primary transition-colors">
+                    <td className="px-6 py-4 font-bold text-primary">{emp.name}</td>
+                    <td className="px-6 py-4 font-semibold text-primary">{emp.email}</td>
                     <td className="px-6 py-4">
-                      <span className="bg-[#2A5CFF] text-[#F8F9FB] text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
-                        {t({ en: 'Active', ar: 'نشط' })}
+                      <span className="bg-accent text-surface text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
+                        {t({ en: 'Active', ar: 'Ù†Ø´Ø·' })}
                       </span>
                     </td>
                   </tr>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../../providers';
@@ -30,21 +30,21 @@ export default function AdminIncidentsPage() {
 
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Active System Incidents', ar: 'الحوادث والتقارير الفنية النشطة' })}</h1>
-        <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'SAQYN operations console. Track outages and runtime errors.', ar: 'شاشة العمليات لمتابعة الأعطال وتصحيح الأخطاء التشغيلية.' })}</p>
+        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Active System Incidents', ar: 'Ø§Ù„Ø­ÙˆØ§Ø¯Ø« ÙˆØ§Ù„ØªÙ‚Ø§Ø±ÙŠØ± Ø§Ù„ÙÙ†ÙŠØ© Ø§Ù„Ù†Ø´Ø·Ø©' })}</h1>
+        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'SAQYN operations console. Track outages and runtime errors.', ar: 'Ø´Ø§Ø´Ø© Ø§Ù„Ø¹Ù…Ù„ÙŠØ§Øª Ù„Ù…ØªØ§Ø¨Ø¹Ø© Ø§Ù„Ø£Ø¹Ø·Ø§Ù„ ÙˆØªØµØ­ÙŠØ­ Ø§Ù„Ø£Ø®Ø·Ø§Ø¡ Ø§Ù„ØªØ´ØºÙŠÙ„ÙŠØ©.' })}</p>
       </div>
 
       {/* Incidents List */}
-      <div className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm shadow-card">
+      <div className="bg-white border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
         <div className="divide-y divide-[#141F33]/10">
           {incidents.map((inc) => (
             <div key={inc.id} className="py-4 flex justify-between items-center gap-8 first:pt-0 last:pb-0">
               <div>
-                <p className="text-xs font-extrabold text-[#141F33]">{inc.title}</p>
+                <p className="text-xs font-extrabold text-primary">{inc.title}</p>
                 <div className="flex gap-3 items-center mt-1">
-                  <span className="text-[10px] text-[#141F33]/40 font-bold">Severity: {inc.severity}</span>
+                  <span className="text-[10px] text-primary/40 font-bold">Severity: {inc.severity}</span>
                   <span className={`text-[9px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
-                    inc.status === 'Resolved' ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#2A5CFF]'
+                    inc.status === 'Resolved' ? 'bg-surface text-accent' : 'bg-surface text-accent'
                   }`}>
                     {inc.status}
                   </span>
@@ -56,7 +56,7 @@ export default function AdminIncidentsPage() {
                   onClick={() => handleResolve(inc.id)}
                   className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 >
-                  {t({ en: 'Resolve', ar: 'حل' })}
+                  {t({ en: 'Resolve', ar: 'Ø­Ù„' })}
                 </button>
               )}
             </div>

@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 
 export interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   src?: string;
@@ -26,7 +26,7 @@ export function Avatar({ className = '', src, name, size = 'md', ...props }: Ava
 
   return (
     <div
-      className={`relative flex items-center justify-center rounded-full bg-[#F8F9FB] dark:bg-[#141F33] text-[#141F33] dark:text-[#F8F9FB] font-extrabold border border-[#141F33]/10 dark:border-[#141F33]/30 overflow-hidden ${sizes[size]} ${className}`}
+      className={`relative flex items-center justify-center rounded-full bg-surface dark:bg-primary text-primary dark:text-surface font-extrabold border border-primary/10 dark:border-primary/30 overflow-hidden ${sizes[size]} ${className}`}
       {...props}
     >
       {src && !error ? (

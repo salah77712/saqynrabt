@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useCallback } from 'react';
 import { useLocale } from '../../providers';
@@ -41,7 +41,7 @@ document.body.appendChild(a);
 a.click();
 a.remove();
 URL.revokeObjectURL(url);
-setToast({ message: t({ en: 'File downloaded successfully.', ar: 'تم تنزيل الملف بنجاح.' }), type: 'success' });
+setToast({ message: t({ en: 'File downloaded successfully.', ar: 'ØªÙ… ØªÙ†Ø²ÙŠÙ„ Ø§Ù„Ù…Ù„Ù Ø¨Ù†Ø¬Ø§Ø­.' }), type: 'success' });
 }
 } catch (err: unknown) {
 const message = err instanceof Error ? err.message : 'Export failed';
@@ -54,44 +54,44 @@ setLoading(null);
 return (
 <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
 <div className="mb-6">
-<h1 className="text-2xl font-black text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Reports', ar: 'تقارير التحليلات المخصصة'})}</h1>
-<p className="text-xs text-[#141F33] font-bold">{t({en: 'Download logs, usage stats, and chat transcripts.', ar: 'تجميع سجلات العمليات وإحصائيات المستخدمين وتتبعات المعرفة.'})}</p>
+<h1 className="text-2xl font-black text-primary dark:text-surface">{t({en: 'Reports', ar: 'ØªÙ‚Ø§Ø±ÙŠØ± Ø§Ù„ØªØ­Ù„ÙŠÙ„Ø§Øª Ø§Ù„Ù…Ø®ØµØµØ©'})}</h1>
+<p className="text-xs text-primary font-bold">{t({en: 'Download logs, usage stats, and chat transcripts.', ar: 'ØªØ¬Ù…ÙŠØ¹ Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ø¹Ù…Ù„ÙŠØ§Øª ÙˆØ¥Ø­ØµØ§Ø¦ÙŠØ§Øª Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù…ÙŠÙ† ÙˆØªØªØ¨Ø¹Ø§Øª Ø§Ù„Ù…Ø¹Ø±ÙØ©.'})}</p>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
 <Card className="flex flex-col justify-between">
 <div>
-<h3 className="font-bold text-[#141F33] dark:text-[#F8F9FB] text-base">{t({en: 'Executive Audit PDF', ar: 'تقرير التدقيق التنفيذي PDF'})}</h3>
-<p className="text-xs text-[#141F33] mt-3 leading-relaxed">
-{t({en: 'Generate a formal operations PDF including current workspace metrics and redacting PII details.', ar: 'إنشاء PDF رسمي للعمليات يتضمن مقاييس مساحة العمل الحالية مع إخفاء تفاصيل المعلومات الشخصية.'})}
+<h3 className="font-bold text-primary dark:text-surface text-base">{t({en: 'Executive Audit PDF', ar: 'ØªÙ‚Ø±ÙŠØ± Ø§Ù„ØªØ¯Ù‚ÙŠÙ‚ Ø§Ù„ØªÙ†ÙÙŠØ°ÙŠ PDF'})}</h3>
+<p className="text-xs text-primary mt-3 leading-relaxed">
+{t({en: 'Generate a formal operations PDF including current workspace metrics and redacting PII details.', ar: 'Ø¥Ù†Ø´Ø§Ø¡ PDF Ø±Ø³Ù…ÙŠ Ù„Ù„Ø¹Ù…Ù„ÙŠØ§Øª ÙŠØªØ¶Ù…Ù† Ù…Ù‚Ø§ÙŠÙŠØ³ Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ø­Ø§Ù„ÙŠØ© Ù…Ø¹ Ø¥Ø®ÙØ§Ø¡ ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ø§Ù„Ø´Ø®ØµÙŠØ©.'})}
 </p>
 </div>
 <Button variant="default" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('PDF')}>
-{loading === 'PDF' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export PDF Report', ar: 'تصدير تقرير PDF'})}
+{loading === 'PDF' ? t({en: 'Exporting...', ar: 'Ø¬Ø§Ø±Ù Ø§Ù„ØªØµØ¯ÙŠØ±...'}) : t({en: 'Export PDF Report', ar: 'ØªØµØ¯ÙŠØ± ØªÙ‚Ø±ÙŠØ± PDF'})}
 </Button>
 </Card>
 
 <Card className="flex flex-col justify-between">
 <div>
-<h3 className="font-bold text-[#141F33] dark:text-[#F8F9FB] text-base">{t({en: 'Chat History CSV', ar: 'سجل المحادثات CSV'})}</h3>
-<p className="text-xs text-[#141F33] mt-3 leading-relaxed">
-{t({en: 'Export RAG assistant transcripts to CSV formats for offline review.', ar: 'تصدير نصوص مساعد RAG الشاملة بتنسيق CSV مناسب للمراجعة المحلية.'})}
+<h3 className="font-bold text-primary dark:text-surface text-base">{t({en: 'Chat History CSV', ar: 'Ø³Ø¬Ù„ Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø§Øª CSV'})}</h3>
+<p className="text-xs text-primary mt-3 leading-relaxed">
+{t({en: 'Export RAG assistant transcripts to CSV formats for offline review.', ar: 'ØªØµØ¯ÙŠØ± Ù†ØµÙˆØµ Ù…Ø³Ø§Ø¹Ø¯ RAG Ø§Ù„Ø´Ø§Ù…Ù„Ø© Ø¨ØªÙ†Ø³ÙŠÙ‚ CSV Ù…Ù†Ø§Ø³Ø¨ Ù„Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ù…Ø­Ù„ÙŠØ©.'})}
 </p>
 </div>
 <Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('CSV')}>
-{loading === 'CSV' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export CSV Database', ar: 'تصدير قاعدة البيانات CSV'})}
+{loading === 'CSV' ? t({en: 'Exporting...', ar: 'Ø¬Ø§Ø±Ù Ø§Ù„ØªØµØ¯ÙŠØ±...'}) : t({en: 'Export CSV Database', ar: 'ØªØµØ¯ÙŠØ± Ù‚Ø§Ø¹Ø¯Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª CSV'})}
 </Button>
 </Card>
 
 <Card className="flex flex-col justify-between">
 <div>
-<h3 className="font-bold text-[#141F33] dark:text-[#F8F9FB] text-base">{t({en: 'Usage Ledger Excel', ar: 'دفتر الاستخدام Excel'})}</h3>
-<p className="text-xs text-[#141F33] mt-3 leading-relaxed">
-{t({en: 'Download monthly allocation files detailing voice minute calls and document uploads.', ar: 'تنزيل ملفات التخصيص الشهرية التي توضح دقائق المكالمات الصوتية ورفع المستندات.'})}
+<h3 className="font-bold text-primary dark:text-surface text-base">{t({en: 'Usage Ledger Excel', ar: 'Ø¯ÙØªØ± Ø§Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… Excel'})}</h3>
+<p className="text-xs text-primary mt-3 leading-relaxed">
+{t({en: 'Download monthly allocation files detailing voice minute calls and document uploads.', ar: 'ØªÙ†Ø²ÙŠÙ„ Ù…Ù„ÙØ§Øª Ø§Ù„ØªØ®ØµÙŠØµ Ø§Ù„Ø´Ù‡Ø±ÙŠØ© Ø§Ù„ØªÙŠ ØªÙˆØ¶Ø­ Ø¯Ù‚Ø§Ø¦Ù‚ Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„ØµÙˆØªÙŠØ© ÙˆØ±ÙØ¹ Ø§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª.'})}
 </p>
 </div>
 <Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('EXCEL')}>
-{loading === 'EXCEL' ? t({en: 'Exporting...', ar: 'جارٍ التصدير...'}) : t({en: 'Export Excel Sheet', ar: 'تصدير ورقة Excel'})}
+{loading === 'EXCEL' ? t({en: 'Exporting...', ar: 'Ø¬Ø§Ø±Ù Ø§Ù„ØªØµØ¯ÙŠØ±...'}) : t({en: 'Export Excel Sheet', ar: 'ØªØµØ¯ÙŠØ± ÙˆØ±Ù‚Ø© Excel'})}
 </Button>
 </Card>
 </div>

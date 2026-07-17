@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import Link from 'next/link';
 import { Header } from '../components/Header';
@@ -6,11 +6,11 @@ import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
 
 const suggestions = [
-  { href: '/', en: 'Homepage', ar: 'الرئيسية' },
-  { href: '/features', en: 'Features', ar: 'الميزات' },
-  { href: '/pricing', en: 'Pricing', ar: 'الأسعار' },
-  { href: '/help/getting-started', en: 'Help Center', ar: 'مركز المساعدة' },
-  { href: '/contact', en: 'Contact Us', ar: 'اتصل بنا' },
+  { href: '/', en: 'Homepage', ar: 'Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©' },
+  { href: '/features', en: 'Features', ar: 'Ø§Ù„Ù…ÙŠØ²Ø§Øª' },
+  { href: '/pricing', en: 'Pricing', ar: 'Ø§Ù„Ø£Ø³Ø¹Ø§Ø±' },
+  { href: '/help/getting-started', en: 'Help Center', ar: 'Ù…Ø±ÙƒØ² Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø©' },
+  { href: '/contact', en: 'Contact Us', ar: 'Ø§ØªØµÙ„ Ø¨Ù†Ø§' },
 ];
 
 export default function NotFound() {
@@ -19,7 +19,7 @@ export default function NotFound() {
 
   return (
     <div
-      className="bg-[#F8F9FB] min-h-screen flex flex-col font-sans"
+      className="bg-surface min-h-screen flex flex-col font-sans"
       dir={locale === 'ar' ? 'rtl' : 'ltr'}
     >
       <Header />
@@ -35,18 +35,18 @@ export default function NotFound() {
               404
             </span>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="h-24 w-24 rounded-full bg-[#2A5CFF]/10 animate-pulse-soft" />
+              <div className="h-24 w-24 rounded-full bg-accent/10 animate-pulse-soft" />
             </div>
           </div>
 
-          <h1 className="text-2xl md:text-3xl font-extrabold text-[#141F33] mb-3">
-            {t('Page not found', 'الصفحة غير موجودة')}
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary mb-3">
+            {t('Page not found', 'Ø§Ù„ØµÙØ­Ø© ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø©')}
           </h1>
 
-          <p className="text-[#141F33]/60 text-base mb-10 leading-relaxed max-w-md mx-auto">
+          <p className="text-primary/60 text-base mb-10 leading-relaxed max-w-md mx-auto">
             {t(
               "The page you're looking for doesn't exist or has been moved. Try one of these instead:",
-              'الصفحة التي تبحث عنها غير موجودة أو تم نقلها. جرب واحدة من هذه بدلاً من ذلك:'
+              'Ø§Ù„ØµÙØ­Ø© Ø§Ù„ØªÙŠ ØªØ¨Ø­Ø« Ø¹Ù†Ù‡Ø§ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø© Ø£Ùˆ ØªÙ… Ù†Ù‚Ù„Ù‡Ø§. Ø¬Ø±Ø¨ ÙˆØ§Ø­Ø¯Ø© Ù…Ù† Ù‡Ø°Ù‡ Ø¨Ø¯Ù„Ø§Ù‹ Ù…Ù† Ø°Ù„Ùƒ:'
             )}
           </p>
 
@@ -56,7 +56,7 @@ export default function NotFound() {
               <Link
                 key={s.href}
                 href={s.href}
-                className="rounded-xl border border-[rgba(20,31,51,0.1)] bg-[#F8F9FB] px-4 py-2.5 text-sm font-semibold text-[#141F33] hover:border-[#2A5CFF] hover:bg-[#2A5CFF]/5 hover:text-[#2A5CFF] transition-all shadow-sm"
+                className="rounded-xl border border-[rgba(20,31,51,0.1)] bg-surface px-4 py-2.5 text-sm font-semibold text-primary hover:border-accent hover:bg-accent/5 hover:text-accent transition-all shadow-sm"
               >
                 {t(s.en, s.ar)}
               </Link>
@@ -66,9 +66,9 @@ export default function NotFound() {
           {/* Primary CTA */}
           <Link
             href="/"
-            className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-[#141F33] px-8 py-3 text-sm font-bold text-[#F8F9FB] hover:bg-[#141F33] hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
+            className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-primary px-8 py-3 text-sm font-bold text-surface hover:bg-primary hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
           >
-            {t('Back to Home', 'العودة للرئيسية')}
+            {t('Back to Home', 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„Ø±Ø¦ÙŠØ³ÙŠØ©')}
           </Link>
         </div>
       </main>

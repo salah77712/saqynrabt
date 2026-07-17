@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
@@ -19,13 +19,13 @@ export default function ApprovalsError({
   return (
     <div className="flex items-center justify-center py-20">
       <div className="text-center max-w-md">
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#F8F9FB] border border-[#141F33]/10"><AlertTriangle className="w-6 h-6 text-[#2A5CFF]" /></div>
-        <h2 className="text-2xl font-bold text-[#141F33] mb-2">{t({ en: 'Approvals didn\'t load', ar: 'صفحة الموافقات غير متوفرة' })}</h2>
-        <p className="text-[#141F33]/60 mb-2">{t({ en: 'We couldn\'t fetch the pending approvals list.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}</p>
-        <p className="text-sm text-[#141F33]/40 mb-8">{t({ en: 'Nothing\'s been lost. Try again to reload.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}</p>
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-primary/10"><AlertTriangle className="w-6 h-6 text-accent" /></div>
+        <h2 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Approvals didn\'t load', ar: 'ØµÙØ­Ø© Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø§Øª ØºÙŠØ± Ù…ØªÙˆÙØ±Ø©' })}</h2>
+        <p className="text-primary/60 mb-2">{t({ en: 'We couldn\'t fetch the pending approvals list.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©.' })}</p>
+        <p className="text-sm text-primary/40 mb-8">{t({ en: 'Nothing\'s been lost. Try again to reload.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©.' })}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#141F33] px-6 py-3 text-sm font-semibold text-[#F8F9FB] hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: 'حاول مرة أخرى' })}</button>
-          <a href="/dashboard" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[#141F33]/10 px-6 py-3 text-sm font-semibold text-[#141F33] hover:bg-[#141F33] transition-all">{t({ en: 'Back to Dashboard', ar: 'العودة إلى لوحة التحكم' })}</a>
+          <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: 'Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰' })}</button>
+          <a href="/dashboard" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/10 px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all">{t({ en: 'Back to Dashboard', ar: 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…' })}</a>
         </div>
       </div>
     </div>

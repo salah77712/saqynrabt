@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useGlobalToast } from '../lib/toast';
@@ -14,12 +14,12 @@ return (
 {toasts.map((t) => (
 <div
 key={t.id}
-className="flex items-center gap-8 bg-[#F8F9FB] dark:bg-[#141F33] border border-[#141F33]/10 dark:border-[#141F33]/30 shadow-xl rounded-xl p-4 transition-all animate-slideUp"
+className="flex items-center gap-8 bg-surface dark:bg-primary border border-primary/10 dark:border-primary/30 shadow-xl rounded-xl p-4 transition-all animate-slideUp"
 >
 <span className="text-base">
-{t.type === 'success' ? <Check className="text-[#2A5CFF] w-4 h-4" /> : t.type === 'error' ? <X className="text-[#141F33] w-4 h-4" /> : t.type === 'warning' ? <AlertTriangle className="text-[#2A5CFF] w-4 h-4" /> : <Info className="text-[#2A5CFF] w-4 h-4" />}
+{t.type === 'success' ? <Check className="text-accent w-4 h-4" /> : t.type === 'error' ? <X className="text-primary w-4 h-4" /> : t.type === 'warning' ? <AlertTriangle className="text-accent w-4 h-4" /> : <Info className="text-accent w-4 h-4" />}
 </span>
-<p className="text-xs font-semibold text-[#141F33] dark:text-[#F8F9FB] flex-1 leading-relaxed">
+<p className="text-xs font-semibold text-primary dark:text-surface flex-1 leading-relaxed">
 {t.message}
 </p>
 {t.onUndo && (
@@ -28,14 +28,14 @@ onClick={() => {
 if (t.onUndo) t.onUndo();
 removeToast(t.id);
 }}
-className="text-xs font-extrabold text-[#2A5CFF] hover:text-[#141F33] dark:hover:text-[#F8F9FB] underline"
+className="text-xs font-extrabold text-accent hover:text-primary dark:hover:text-surface underline"
 >
 Undo
 </button>
 )}
 <button
 onClick={() => removeToast(t.id)}
-className="text-xs font-bold text-[#141F33]/40 hover:text-[#141F33] min-h-[44px] min-w-[44px]"
+className="text-xs font-bold text-primary/40 hover:text-primary min-h-[44px] min-w-[44px]"
                   aria-label="Close notification"
 >
 <X className="w-3 h-3" />

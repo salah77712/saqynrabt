@@ -1,23 +1,23 @@
-import { Button as ButtonPrimitive } from "@base-ui/react/button"
+﻿import { Button as ButtonPrimitive } from "@base-ui/react/button"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-xl border border-transparent bg-clip-padding text-xs font-bold whitespace-nowrap transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 outline-none select-none focus-visible:border-[#2A5CFF] focus-visible:ring-[3px] focus-visible:ring-[#2A5CFF]/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-[#141F33] aria-invalid:ring-[3px] aria-invalid:ring-[#141F33]/20 dark:aria-invalid:border-[#141F33]/50 dark:aria-invalid:ring-[#141F33]/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button inline-flex shrink-0 items-center justify-center rounded-xl border border-transparent bg-clip-padding text-xs font-bold whitespace-nowrap transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 outline-none select-none focus-visible:border-accent focus-visible:ring-[3px] focus-visible:ring-[#2A5CFF]/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-primary aria-invalid:ring-[3px] aria-invalid:ring-[#141F33]/20 dark:aria-invalid:border-primary/50 dark:aria-invalid:ring-[#141F33]/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
   {
     variants: {
       variant: {
         default: "bg-gradient-to-b from-accent to-primary text-surface hover:from-accent hover:to-accent",
         outline:
-          "btn-secondary border-[#141F33]/10 bg-[#F8F9FB] hover:bg-gradient-to-b hover:from-[#F8F9FB] hover:to-[#F1F3F5] hover:text-[#141F33] aria-expanded:bg-[#F8F9FB] aria-expanded:text-[#141F33] dark:border-[#141F33]/10 dark:bg-[#141F33] dark:hover:bg-[#141F33]",
+          "btn-secondary border-primary/10 bg-surface hover:bg-gradient-to-b hover:from-[#F8F9FB] hover:to-[#F1F3F5] hover:text-primary aria-expanded:bg-surface aria-expanded:text-primary dark:border-primary/10 dark:bg-primary dark:hover:bg-primary",
         secondary:
-          "btn-secondary bg-[#2A5CFF]/10 text-[#2A5CFF] hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-[#2A5CFF]/10 aria-expanded:text-[#2A5CFF]",
+          "btn-secondary bg-accent/10 text-accent hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-accent/10 aria-expanded:text-accent",
         ghost:
-          "hover:bg-[#F8F9FB] hover:text-[#141F33] aria-expanded:bg-[#F8F9FB] aria-expanded:text-[#141F33] dark:hover:bg-[#141F33]",
+          "hover:bg-surface hover:text-primary aria-expanded:bg-surface aria-expanded:text-primary dark:hover:bg-primary",
         destructive:
-          "bg-[#141F33] text-[#141F33] hover:bg-[#141F33] focus-visible:border-[#141F33]/40 focus-visible:ring-[#141F33]/20 dark:bg-[#141F33] dark:hover:bg-[#141F33] dark:focus-visible:ring-[#141F33]/40",
-        link: "text-[#141F33] underline-offset-4 hover:underline",
+          "bg-primary text-primary hover:bg-primary focus-visible:border-primary/40 focus-visible:ring-[#141F33]/20 dark:bg-primary dark:hover:bg-primary dark:focus-visible:ring-[#141F33]/40",
+        link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
         default:

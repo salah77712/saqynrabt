@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import Link from 'next/link';
 import { Shield, FileText, Lock, Handshake, BadgeCheck, Download, Check, ArrowRight } from 'lucide-react';
 import { Header } from '../../../components/Header';
@@ -78,18 +78,18 @@ href: '/legal/nda',
 
 export default function TrustPage() {
   return (
-    <div className="min-h-screen flex flex-col font-sans bg-[#F8F9FB] selection:bg-[#2A5CFF] selection:text-[#F8F9FB]">
+    <div className="min-h-screen flex flex-col font-sans bg-surface selection:bg-accent selection:text-surface">
       <Header />
 
-      <section className="bg-[#141F33] text-[#F8F9FB] py-24 px-6">
+      <section className="bg-primary text-surface py-24 px-6">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
             Your Data, Our Responsibility.
           </h1>
-          <p className="mt-4 text-lg text-[#F8F9FB]/70 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-surface/70 max-w-2xl mx-auto">
             Built for Global Operations.
           </p>
-          <p className="mt-3 text-sm text-[#F8F9FB]/50 max-w-2xl mx-auto">
+          <p className="mt-3 text-sm text-surface/50 max-w-2xl mx-auto">
             SAQYN RABT is committed to the highest standards of data protection, security, and
             transparency, in full compliance with global data protection regulations and frameworks.
           </p>
@@ -103,22 +103,22 @@ export default function TrustPage() {
               return (
                 <div
                   key={i}
-                  className="rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] p-8 flex flex-col gap-8 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all"
+                  className="rounded-xl border border-primary/10 bg-surface p-8 flex flex-col gap-8 shadow-sm hover:shadow-md hover:scale-[1.01] transition-all"
                 >
                   <div className="flex items-start justify-between">
-                    <div className="w-10 h-10 rounded-xl bg-[#141F33] flex items-center justify-center">
+                    <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
                       {iconMap[card.icon] || <Shield className="w-5 h-5" />}
                     </div>
                     {card.badge && (
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#2A5CFF] bg-[#F8F9FB] px-2 py-1 rounded-full">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-accent bg-surface px-2 py-1 rounded-full">
                         {card.badge}
                       </span>
                     )}
                   </div>
 
                   <div className="flex-1">
-                    <h3 className="text-base font-bold text-[#141F33]">{card.title}</h3>
-                    <p className="mt-1 text-sm text-[#141F33]/60">{card.description}</p>
+                    <h3 className="text-base font-bold text-primary">{card.title}</h3>
+                    <p className="mt-1 text-sm text-primary/60">{card.description}</p>
                   </div>
 
                   {card.badges ? (
@@ -129,18 +129,18 @@ export default function TrustPage() {
                             key={j}
                             className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
                               b.status === 'active'
-                                ? 'bg-[#F8F9FB] text-[#2A5CFF]'
-                                : 'bg-[#F8F9FB] text-[#2A5CFF]'
+                                ? 'bg-surface text-accent'
+                                : 'bg-surface text-accent'
                             }`}
                           >
-                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-[#2A5CFF] border-t-transparent rounded-full animate-spin mr-1" /> : <Check className="w-2.5 h-2.5 text-[#2A5CFF] inline mr-0.5" />}
+                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-accent border-t-transparent rounded-full animate-spin mr-1" /> : <Check className="w-2.5 h-2.5 text-accent inline mr-0.5" />}
                             {b.label}
                           </span>
                         ))}
                       </div>
                       <button
                         type="button"
-                        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#141F33] hover:bg-[#141F33] transition-all hover:scale-[1.01] hover:shadow-md"
+                        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-primary text-primary hover:bg-primary transition-all hover:scale-[1.01] hover:shadow-md"
                       >
                         <Download className="w-4 h-4" />
                         {card.actionLabel}
@@ -149,7 +149,7 @@ export default function TrustPage() {
                   ) : (
                     <Link
                       href={card.href!}
-                      className="inline-flex items-center text-xs font-bold text-[#2A5CFF] hover:text-[#141F33] transition-all hover:scale-[1.01]"
+                      className="inline-flex items-center text-xs font-bold text-accent hover:text-primary transition-all hover:scale-[1.01]"
                     >
                       Read Full {card.title} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
@@ -161,16 +161,16 @@ export default function TrustPage() {
         </div>
       </section>
 
-      <section className="py-16 px-6 bg-[#F8F9FB]">
+      <section className="py-16 px-6 bg-surface">
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-2xl font-bold text-[#141F33]">Need More Information?</h2>
-          <p className="mt-3 text-sm text-[#141F33]/60">
+          <h2 className="text-2xl font-bold text-primary">Need More Information?</h2>
+          <p className="mt-3 text-sm text-primary/60">
             Our DPO is available to answer any compliance or security questions.
           </p>
           <div className="mt-6 flex items-center justify-center gap-8">
             <a
               href="mailto:dpo@saqynrabt.com"
-              className="inline-flex items-center gap-3 bg-[#141F33] text-[#F8F9FB] text-sm font-bold px-6 py-3 rounded-xl hover:bg-[#141F33] transition-all hover:scale-[1.01] hover:shadow-md min-h-[44px]"
+              className="inline-flex items-center gap-3 bg-primary text-surface text-sm font-bold px-6 py-3 rounded-xl hover:bg-primary transition-all hover:scale-[1.01] hover:shadow-md min-h-[44px]"
             >
               Contact DPO: dpo@saqynrabt.com
             </a>

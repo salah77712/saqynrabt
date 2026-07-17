@@ -14,30 +14,30 @@ export default function BillingSettingsPage() {
   return (
     <div className="space-y-6 max-w-xl animate-fadeIn">
       <div>
-        <h1 className="text-xl font-bold text-[#141F33]">
+        <h1 className="text-xl font-bold text-primary">
           {t({ en: 'Billing & Subscription', ar: 'الفواتير والاشتراك' })}
         </h1>
-        <p className="text-sm text-[#141F33] mt-1">
+        <p className="text-sm text-primary mt-1">
           {t({ en: 'Manage your subscription, billing, and cancellation preferences.', ar: 'إدارة اشتراكك وفواتيرك وتفضيلات الإلغاء.' })}
         </p>
       </div>
 
-      <Card className="p-8 border-accent/10 bg-[#F8F9FB] rounded-xl shadow-sm">
+      <Card className="p-8 border-accent/10 bg-surface rounded-xl shadow-sm">
         <div className="flex items-start gap-4">
           <span className="shrink-0 mt-0.5"><ShieldSvg /></span>
           <div>
             <h2 className="text-sm font-bold text-accent">
               {t({ en: '14-Day Trial Period', ar: 'فترة تجربة مدتها 14 يوماً' })}
             </h2>
-            <p className="text-xs text-[#141F33] mt-1 leading-relaxed">
+            <p className="text-xs text-primary mt-1 leading-relaxed">
               {t({
                 en: 'Under Qatari Law No. 8 of 2019 (Electronic Commerce), you have a 14-day cooling-off period from the date of initial sign-up. During this period, you may cancel and receive a full refund of the first month\'s fee. After 14 days, the standard no-refund policy applies as stated in our Terms of Service.',
                 ar: 'بموجب قانون قطر رقم 8 لسنة 2019 (التجارة الإلكترونية)، لديك فترة تهدئة مدتها 14 يوماً من تاريخ التسجيل الأولي. خلال هذه الفترة، يمكنك الإلغاء واسترداد كامل رسوم الشهر الأول. بعد 14 يوماً، تنطبق سياسة عدم الاسترداد القياسية كما هو منصوص عليه في شروط الخدمة الخاصة بنا.',
               })}
             </p>
             <div className="mt-3 flex items-center gap-3 text-xs text-accent">
-<span className="font-bold text-[#141F33]">{t({ en: 'Status:', ar: 'الحالة:' })}</span>
-<span className="bg-accent text-[#F8F9FB] px-2 py-0.5 rounded-full text-[10px] font-bold">
+<span className="font-bold text-primary">{t({ en: 'Status:', ar: 'الحالة:' })}</span>
+<span className="bg-accent text-surface px-2 py-0.5 rounded-full text-[10px] font-bold">
                 {t({ en: 'Active', ar: 'نشط' })}
               </span>
             </div>
@@ -49,16 +49,16 @@ export default function BillingSettingsPage() {
         <div className="flex items-start gap-4">
           <span className="shrink-0 mt-0.5"><AlertTriangleSvg /></span>
           <div>
-            <h2 className="text-sm font-bold text-[#141F33]">
+            <h2 className="text-sm font-bold text-primary">
               {t({ en: 'Cancellation Policy', ar: 'سياسة الإلغاء' })}
             </h2>
-            <p className="text-xs text-[#141F33] mt-1 leading-relaxed">
+            <p className="text-xs text-primary mt-1 leading-relaxed">
               {t({
                 en: 'You may cancel your subscription at any time via the dashboard settings. Upon cancellation, the service remains active until the end of the current billing period. No refunds are issued for partial months of service. Setup fees are non-refundable after the onboarding call has taken place.',
                 ar: 'يمكنك إلغاء اشتراكك في أي وقت عبر إعدادات لوحة التحكم. عند الإلغاء، تظل الخدمة نشطة حتى نهاية فترة الفوترة الحالية. لا يتم إصدار استرداد للأشهر الجزئية من الخدمة. رسوم الإعداد غير قابلة للاسترداد بعد إجراء مكالمة الإعداد.',
               })}
             </p>
-            <Button variant="outline" className="mt-3 border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33] py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
+            <Button variant="outline" className="mt-3 border-primary/10 text-primary hover:bg-primary py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
               {t({ en: 'Cancel Subscription', ar: 'إلغاء الاشتراك' })}
             </Button>
           </div>

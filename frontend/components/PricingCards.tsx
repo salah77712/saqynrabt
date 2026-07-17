@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import Link from 'next/link';
@@ -44,16 +44,16 @@ isPopular && 'ring-2 ring-[#2A5CFF] shadow-lg scale-[1.02] z-10'
 style={{ animationDelay: `${i * 0.1}s` }}
 >
 {isPopular && (
-<span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#2A5CFF] text-[#F8F9FB] text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
-{t({ en: 'Popular', ar: 'الأكثر طلباً' })}
+<span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-surface text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
+{t({ en: 'Popular', ar: 'Ø§Ù„Ø£ÙƒØ«Ø± Ø·Ù„Ø¨Ø§Ù‹' })}
 </span>
 )}
 
-<CardHeader className="text-center border-b border-[#141F33]/10 dark:border-[#F8F9FB]/10 pb-4">
-<CardTitle className="text-xl font-extrabold text-[#141F33] dark:text-[#F8F9FB]">
+<CardHeader className="text-center border-b border-primary/10 dark:border-surface/10 pb-4">
+<CardTitle className="text-xl font-extrabold text-primary dark:text-surface">
 {isAr ? tier.nameAr : tier.name}
 </CardTitle>
-<p className="text-xs text-[#141F33]/60 dark:text-[#F8F9FB]/60 font-medium mt-0.5">
+<p className="text-xs text-primary/60 dark:text-surface/60 font-medium mt-0.5">
 {isAr ? tier.descriptionAr : tier.description}
 </p>
 </CardHeader>
@@ -61,19 +61,19 @@ style={{ animationDelay: `${i * 0.1}s` }}
 <CardContent className="flex-1">
 <div className="text-center mb-5">
 {isCustom(tier) ? (
-<div className="text-4xl font-extrabold text-[#141F33] dark:text-[#F8F9FB]">
-{t({ en: 'Custom', ar: 'مخصص' })}
+<div className="text-4xl font-extrabold text-primary dark:text-surface">
+{t({ en: 'Custom', ar: 'Ù…Ø®ØµØµ' })}
 </div>
 ) : (
 <>
-<div className="text-4xl font-extrabold text-[#141F33] dark:text-[#F8F9FB]">
+<div className="text-4xl font-extrabold text-primary dark:text-surface">
 {formatPrice(price, currency)}
-<span className="text-[#141F33]/60 dark:text-[#F8F9FB]/60 text-sm font-bold mr-1">
-/{t({ en: 'mo', ar: 'شهر' })}
+<span className="text-primary/60 dark:text-surface/60 text-sm font-bold mr-1">
+/{t({ en: 'mo', ar: 'Ø´Ù‡Ø±' })}
 </span>
 </div>
-<p className="text-[#2A5CFF] font-bold text-sm mt-1">
-+ {formatPrice(setup, currency)} {t({ en: 'setup fee', ar: 'رسوم إعداد' })}
+<p className="text-accent font-bold text-sm mt-1">
++ {formatPrice(setup, currency)} {t({ en: 'setup fee', ar: 'Ø±Ø³ÙˆÙ… Ø¥Ø¹Ø¯Ø§Ø¯' })}
 </p>
 </>
 )}
@@ -81,9 +81,9 @@ style={{ animationDelay: `${i * 0.1}s` }}
 
 <ul className="flex flex-col gap-3">
 {(tier.features[locale as keyof typeof tier.features] || tier.features.en).map((f, idx) => (
-<li key={idx} className="flex items-center gap-4 text-[#141F33]/70 dark:text-[#F8F9FB]/70 text-sm font-medium">
-<span className="text-[#2A5CFF] shrink-0">
-<Check className="w-4 h-4 text-[#2A5CFF]" />
+<li key={idx} className="flex items-center gap-4 text-primary/70 dark:text-surface/70 text-sm font-medium">
+<span className="text-accent shrink-0">
+<Check className="w-4 h-4 text-accent" />
 </span>
 {f}
 </li>
@@ -95,7 +95,7 @@ style={{ animationDelay: `${i * 0.1}s` }}
 {isCustom(tier) ? (
 <Link
 href="/contact"
-className="w-full border border-[#141F33]/10 dark:border-[#F8F9FB]/10 bg-[#F8F9FB] dark:bg-[#141F33] text-[#141F33] dark:text-[#F8F9FB] py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:bg-[#141F33] dark:hover:bg-[#2A5CFF] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
+className="w-full border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary text-primary dark:text-surface py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:bg-primary dark:hover:bg-accent hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </Link>
@@ -104,7 +104,7 @@ className="w-full border border-[#141F33]/10 dark:border-[#F8F9FB]/10 bg-[#F8F9F
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="w-full bg-[#2A5CFF] hover:bg-[#141F33] dark:hover:bg-[#2A5CFF] text-white py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
+className="w-full bg-accent hover:bg-primary dark:hover:bg-accent text-white py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </a>
@@ -113,7 +113,7 @@ className="w-full bg-[#2A5CFF] hover:bg-[#141F33] dark:hover:bg-[#2A5CFF] text-w
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="w-full bg-[#141F33] text-[#F8F9FB] py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
+className="w-full bg-primary text-surface py-3 rounded-xl text-xs font-bold transition-all duration-300 min-h-[44px] hover:scale-[1.02] hover:shadow-md active:scale-95 text-center block"
 >
 {isAr ? tier.ctaAr : tier.cta}
 </a>

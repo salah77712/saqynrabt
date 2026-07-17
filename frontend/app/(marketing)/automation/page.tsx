@@ -15,12 +15,12 @@ type Currency = 'USD' | 'QAR';
 const GULF_TZ_KEYWORDS = ['Doha', 'Riyadh', 'Kuwait', 'Dubai', 'Cairo', 'Bahrain', 'Muscat', 'Baghdad', 'Damascus'];
 
 const useCaseIcons: Record<string, React.ReactNode> = {
-  phone: <Zap className="w-5 h-5 text-[#141F33]" />,
-  chat: <MessageSquare className="w-5 h-5 text-[#141F33]" />,
-  alert: <Ambulance className="w-5 h-5 text-[#141F33]" />,
-  clipboard: <ClipboardList className="w-5 h-5 text-[#141F33]" />,
-  chart: <BarChart3 className="w-5 h-5 text-[#141F33]" />,
-  globe: <Globe className="w-5 h-5 text-[#141F33]" />,
+  phone: <Zap className="w-5 h-5 text-primary" />,
+  chat: <MessageSquare className="w-5 h-5 text-primary" />,
+  alert: <Ambulance className="w-5 h-5 text-primary" />,
+  clipboard: <ClipboardList className="w-5 h-5 text-primary" />,
+  chart: <BarChart3 className="w-5 h-5 text-primary" />,
+  globe: <Globe className="w-5 h-5 text-primary" />,
 };
 
 const useCases = {
@@ -85,29 +85,29 @@ const queueItems = {
   en: [
     { label: 'Incoming Call — Room 204 noise complaint', dept: 'Housekeeping', status: 'Routed', color: 'bg-royal/10 text-royal border-royal/20' },
     { label: 'WhatsApp — Late checkout request (2:30 PM)', dept: 'Front Desk', status: 'Approved', color: 'bg-royal/10 text-royal border-royal/20' },
-    { label: 'SMS — Airport transfer booking (07:00 tomorrow)', dept: 'Concierge', status: 'Captured', color: 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10' },
-    { label: 'Web Chat — Spa appointment request', dept: 'Wellness', status: 'Pending', color: 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10' },
+    { label: 'SMS — Airport transfer booking (07:00 tomorrow)', dept: 'Concierge', status: 'Captured', color: 'bg-surface text-primary border-primary/10' },
+    { label: 'Web Chat — Spa appointment request', dept: 'Wellness', status: 'Pending', color: 'bg-surface text-primary border-primary/10' },
   ],
   ar: [
     { label: 'مكالمة واردة — شكوى ضوضاء الغرفة 204', dept: 'التدبير المنزلي', status: 'تم التوجيه', color: 'bg-royal/10 text-royal border-royal/20' },
     { label: 'واتساب — طلب مغادرة متأخر (2:30 مساءً)', dept: 'مكتب الاستقبال', status: 'تمت الموافقة', color: 'bg-royal/10 text-royal border-royal/20' },
-    { label: 'رسالة نصية — حجز نقل المطار (07:00 غداً)', dept: 'الكونسيرج', status: 'تم الالتقاط', color: 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10' },
-    { label: 'دردشة ويب — طلب موعد سبا', dept: 'العافية', status: 'قيد الانتظار', color: 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10' },
+    { label: 'رسالة نصية — حجز نقل المطار (07:00 غداً)', dept: 'الكونسيرج', status: 'تم الالتقاط', color: 'bg-surface text-primary border-primary/10' },
+    { label: 'دردشة ويب — طلب موعد سبا', dept: 'العافية', status: 'قيد الانتظار', color: 'bg-surface text-primary border-primary/10' },
   ],
 };
 
 function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boolean }) {
   const [isOpen, setIsOpen] = useState(defaultOpen || false);
   return (
-    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden">
+    <div className="bg-surface border border-primary/10 rounded-xl shadow-sm overflow-hidden">
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-[#141F33]"
+        className="flex items-center justify-between px-6 py-5 text-left transition-colors hover:bg-primary"
       >
-        <span className="font-bold text-sm text-[#141F33] pe-4">{q}</span>
+        <span className="font-bold text-sm text-primary pe-4">{q}</span>
         <svg aria-hidden="true"
-          className={`h-4 w-4 shrink-0 text-[#141F33]/60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
+          className={`h-4 w-4 shrink-0 text-primary/60 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}
           viewBox="0 0 20 20"
           fill="currentColor"
         >
@@ -115,7 +115,7 @@ function FAQItem({ q, a, open: defaultOpen }: { q: string; a: string; open?: boo
         </svg>
       </button>
       {isOpen && (
-        <div className="px-6 pb-5 text-sm text-[#141F33]/60 leading-relaxed animate-slideDown">
+        <div className="px-6 pb-5 text-sm text-primary/60 leading-relaxed animate-slideDown">
           {a}
         </div>
       )}
@@ -186,7 +186,7 @@ export default function AutomationPage() {
   const queue = queueItems[locale as keyof typeof queueItems] || queueItems.en;
 
   return (
-    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans selection:bg-[#2A5CFF] selection:text-[#F8F9FB]" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans selection:bg-accent selection:text-surface" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <section className="relative overflow-hidden py-20 md:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
@@ -194,23 +194,23 @@ export default function AutomationPage() {
           <span className="inline-block bg-royal/10 text-royal text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 animate-fadeIn">
             {t({ en: 'Business Automation', ar: 'أتمتة الأعمال' })}
           </span>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-[#141F33] leading-tight max-w-4xl mx-auto animate-fadeIn" style={{ animationDelay: '0.1s' }}>
+          <h1 className="text-5xl md:text-6xl font-extrabold text-primary leading-tight max-w-4xl mx-auto animate-fadeIn" style={{ animationDelay: '0.1s' }}>
             {t({ en: 'Never Miss a Customer Call, Booking, or Complaint Again.', ar: 'لا تفوت مكالمة عميل أو حجز أو شكوى مرة أخرى.' })}
           </h1>
-          <p className="mt-6 text-lg md:text-xl text-[#141F33]/60 max-w-2xl mx-auto leading-relaxed font-medium animate-fadeIn" style={{ animationDelay: '0.2s' }}>
+          <p className="mt-6 text-lg md:text-xl text-primary/60 max-w-2xl mx-auto leading-relaxed font-medium animate-fadeIn" style={{ animationDelay: '0.2s' }}>
             {t({ en: 'The 24/7 AI front-desk that handles external inquiries, routes requests, and manages your guest experience.', ar: 'مكتب استقبال ذكاء اصطناعي 24/7 يتعامل مع الاستفسارات الخارجية ويوجه الطلبات وينظم تجربة الضيوف.' })}
           </p>
           <div className="mt-10 flex flex-wrap gap-8 justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
             <button
               type="button"
               onClick={() => setIsModalOpen(true)}
-              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-95 transition-all"
+              className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-primary text-surface hover:opacity-95 transition-all"
             >
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </button>
             <Link
         href="#pricing"
-        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-primary/10 text-primary bg-surface hover:bg-primary transition-all"
       >
               {t({ en: 'View Pricing', ar: 'عرض الأسعار' })}
             </Link>
@@ -218,33 +218,33 @@ export default function AutomationPage() {
         </div>
       </section>
 
-      <section className="bg-[#F8F9FB] border-y border-[#141F33]/10 py-20 md:py-28">
+      <section className="bg-surface border-y border-primary/10 py-20 md:py-28">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-30 items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-8">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-8">
                 {t({ en: 'What it handles for you', ar: 'ماذا يعالج نيابة عنك' })}
               </h2>
               <div className="flex flex-col gap-8">
                 {cases.map((uc, i) => (
                   <div
                     key={uc.title}
-                    className="flex items-start gap-8 bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm card-hover animate-slideUp"
+                    className="flex items-start gap-8 bg-surface border border-primary/10 rounded-xl p-8 shadow-sm card-hover animate-slideUp"
                     style={{ animationDelay: `${i * 0.05}s` }}
                   >
-                    <span className="text-2xl mt-0.5 shrink-0">{useCaseIcons[uc.icon] || <Zap className="w-5 h-5 text-[#141F33]" />}</span>
+                    <span className="text-2xl mt-0.5 shrink-0">{useCaseIcons[uc.icon] || <Zap className="w-5 h-5 text-primary" />}</span>
                     <div>
-                      <p className="font-extrabold text-[#141F33] text-sm">{uc.title}</p>
-                      <p className="text-[#141F33]/60 text-xs mt-0.5 leading-relaxed">{uc.desc}</p>
+                      <p className="font-extrabold text-primary text-sm">{uc.title}</p>
+                      <p className="text-primary/60 text-xs mt-0.5 leading-relaxed">{uc.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 shadow-xl p-8 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-center justify-between pb-4 border-b border-[#141F33]/10">
-                <span className="text-[#141F33] font-black text-base">
+            <div className="bg-surface rounded-xl border border-primary/10 shadow-xl p-8 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
+              <div className="flex items-center justify-between pb-4 border-b border-primary/10">
+                <span className="text-primary font-black text-base">
                   {t({ en: 'Live Queue', ar: 'الطابور المباشر' })}
                 </span>
                 <span className="text-xs bg-royal/10 text-royal font-semibold border border-royal/20 rounded-full px-3 py-1">
@@ -252,16 +252,16 @@ export default function AutomationPage() {
                 </span>
               </div>
               {queue.map((item, i) => (
-                <div key={i} className="flex items-center justify-between py-3 border-b border-[#141F33]/10 last:border-0">
+                <div key={i} className="flex items-center justify-between py-3 border-b border-primary/10 last:border-0">
                   <div>
-                    <p className="text-sm font-semibold text-[#141F33]">{item.label}</p>
-                    <p className="text-xs text-[#141F33]/40 mt-0.5">{item.dept}</p>
+                    <p className="text-sm font-semibold text-primary">{item.label}</p>
+                    <p className="text-xs text-primary/40 mt-0.5">{item.dept}</p>
                   </div>
                   <span className={`text-xs font-semibold border rounded-full px-3 py-1 whitespace-nowrap ml-3 ${item.color}`}>{item.status}</span>
                 </div>
               ))}
               <div className="pt-2 text-center">
-                <Link href="/dashboard/automation" className="text-xs text-[#141F33] font-bold hover:underline">
+                <Link href="/dashboard/automation" className="text-xs text-primary font-bold hover:underline">
                   {t({ en: 'View Full Dashboard Demo →', ar: 'عرض لوحة التحكم الكاملة ←' })}
                 </Link>
               </div>
@@ -271,43 +271,43 @@ export default function AutomationPage() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-20 md:py-28 bg-[#F8F9FB]">
+      <section id="pricing" className="py-20 md:py-28 bg-surface">
         <div className="max-w-5xl mx-auto px-6 lg:px-12">
           <div className="text-center mb-10">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-3">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-3">
               {t({ en: 'Automation Pricing', ar: 'أسعار الأتمتة' })}
             </h2>
-            <p className="text-[#141F33]/60 font-medium">
+            <p className="text-primary/60 font-medium">
               {t({ en: 'All plans include onboarding support and your dedicated dashboard.', ar: 'جميع الخطط تشمل دعم الإعداد ولوحة تحكم مخصصة.' })}
             </p>
           </div>
 
           {/* Currency Toggle */}
           <div className="flex items-center justify-center gap-4 mb-10">
-            <span className={`text-xs font-bold ${currency === 'USD' ? 'text-[#141F33]' : 'text-[#141F33]/40'}`}>USD</span>
+            <span className={`text-xs font-bold ${currency === 'USD' ? 'text-primary' : 'text-primary/40'}`}>USD</span>
             <button
               type="button"
               onClick={() => setCurrency(currency === 'USD' ? 'QAR' : 'USD')}
               className={`relative w-12 h-6 min-h-0 rounded-full transition-colors ${
-                currency === 'QAR' ? 'bg-[#141F33]' : 'bg-[#141F33]'
+                currency === 'QAR' ? 'bg-primary' : 'bg-primary'
               }`}
             >
               <span
-                className={`absolute top-0.5 w-5 h-5 bg-[#F8F9FB] rounded-full shadow-sm transition-transform ${
+                className={`absolute top-0.5 w-5 h-5 bg-surface rounded-full shadow-sm transition-transform ${
                   currency === 'QAR' ? 'ltr:translate-x-6 rtl:translate-x-0.5' : 'ltr:translate-x-0.5 rtl:translate-x-6'
                 }`}
               />
             </button>
-            <span className={`text-xs font-bold ${currency === 'QAR' ? 'text-[#141F33]' : 'text-[#141F33]/40'}`}>QAR</span>
+            <span className={`text-xs font-bold ${currency === 'QAR' ? 'text-primary' : 'text-primary/40'}`}>QAR</span>
           </div>
 
           <PricingCards tiers={AUTOMATION_TIERS} currency={currency} locale={locale} />
         </div>
       </section>
 
-      <section className="bg-[#F8F9FB] border-y border-[#141F33]/10 py-20 md:py-28">
+      <section className="bg-surface border-y border-primary/10 py-20 md:py-28">
         <div className="max-w-3xl mx-auto px-6 lg:px-12">
-          <h2 className="text-3xl md:text-4xl font-extrabold text-[#141F33] mb-10 text-center">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-10 text-center">
             {t({ en: 'Frequently Asked Questions', ar: 'الأسئلة الشائعة' })}
           </h2>
           <div className="flex flex-col gap-8">
@@ -326,12 +326,12 @@ export default function AutomationPage() {
         <div
           ref={modalRef}
           onKeyDown={handleModalKeyDown}
-          className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-[#141F33] backdrop-blur-sm animate-fadeIn">
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
-            <h3 className="text-xl font-extrabold text-[#141F33] mb-2">
+          className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-primary backdrop-blur-sm animate-fadeIn">
+          <div className="bg-surface border border-primary/10 rounded-xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
+            <h3 className="text-xl font-extrabold text-primary mb-2">
               {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
             </h3>
-            <p className="text-sm font-medium text-[#141F33]/60 mb-6 leading-relaxed">
+            <p className="text-sm font-medium text-primary/60 mb-6 leading-relaxed">
               {t({ en: 'We\'ll walk you through setup in a 15-minute call.', ar: 'سنرشدك خلال الإعداد في مكالمة مدتها 15 دقيقة.' })}
             </p>
             <div className="flex flex-col gap-4">
@@ -339,14 +339,14 @@ export default function AutomationPage() {
 href={calendlyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-[#141F33] text-[#F8F9FB] hover:opacity-90 transition-all"
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-primary text-surface hover:opacity-90 transition-all"
               >
                 {t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
               </a>
               <button
 type="button"
         onClick={() => setIsModalOpen(false)}
-        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-[#141F33]/10 text-[#141F33] bg-[#F8F9FB] hover:bg-[#141F33] transition-all"
+        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border border-primary/10 text-primary bg-surface hover:bg-primary transition-all"
               >
                 {t({ en: 'Close', ar: 'إغلاق' })}
               </button>

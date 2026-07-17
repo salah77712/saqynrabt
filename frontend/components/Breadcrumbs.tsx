@@ -75,9 +75,9 @@ return { href, label, isLast };
 
 return (
 <nav aria-label={locale === 'ar' ? 'مسار التنقل' : 'Breadcrumb'} dir={locale === 'ar' ? 'rtl' : 'ltr'} className={`text-sm ${className}`}>
-<ol className="flex flex-wrap items-center gap-1.5 text-[#141F33]/70">
+<ol className="flex flex-wrap items-center gap-1.5 text-primary/70">
 <li className="flex items-center gap-1.5">
-<Link href="/" className="text-[#141F33]/70 hover:text-[#141F33] transition-colors font-medium">
+<Link href="/" className="text-primary/70 hover:text-primary transition-colors font-medium">
 {formatSegment('home', locale) || (locale === 'ar' ? 'الرئيسية' : 'Home')}
 </Link>
 <ChevronIcon />
@@ -85,12 +85,12 @@ return (
 {crumbs.map((crumb) => (
 <li key={crumb.href} className="flex items-center gap-1.5">
 {crumb.isLast ? (
-<span className="text-[#141F33] font-semibold truncate max-w-[200px]" aria-current="page">
+<span className="text-primary font-semibold truncate max-w-[200px]" aria-current="page">
 {crumb.label}
 </span>
 ) : (
 <>
-<Link href={crumb.href} className="text-[#141F33]/70 hover:text-[#141F33] transition-colors font-medium">
+<Link href={crumb.href} className="text-primary/70 hover:text-primary transition-colors font-medium">
 {crumb.label}
 </Link>
 <ChevronIcon />
@@ -105,7 +105,7 @@ return (
 
 function ChevronIcon() {
 return (
-<svg className="h-3.5 w-3.5 text-[#141F33]/40 flex-shrink-0 rtl:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+<svg className="h-3.5 w-3.5 text-primary/40 flex-shrink-0 rtl:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
 <path fillRule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clipRule="evenodd" />
 </svg>
 );

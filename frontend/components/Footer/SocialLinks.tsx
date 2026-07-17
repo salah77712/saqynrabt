@@ -81,7 +81,7 @@ export function SocialLinks() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label={label}
-          className="w-8 h-8 rounded-full border border-[#141F33]/10 flex items-center justify-center text-[#141F33] hover:text-royal hover:border-royal/30 hover:bg-royal/5 transition-all duration-200 shrink-0"
+          className="w-8 h-8 rounded-full border border-primary/10 flex items-center justify-center text-primary hover:text-royal hover:border-royal/30 hover:bg-royal/5 transition-all duration-200 shrink-0"
         >
           {svg}
         </a>

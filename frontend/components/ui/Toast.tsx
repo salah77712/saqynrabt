@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import { X } from 'lucide-react';
@@ -25,9 +25,9 @@ export function Toast({ message, type = 'success', onClose }: ToastProps) {
   }, [onClose, close]);
 
   const bgColors = {
-success: 'bg-[#2A5CFF] text-[#F8F9FB]',
-  error: 'bg-[#141F33] text-[#F8F9FB]',
-  info: 'bg-[#141F33] text-[#F8F9FB] dark:bg-royal',
+success: 'bg-accent text-surface',
+  error: 'bg-primary text-surface',
+  info: 'bg-primary text-surface dark:bg-royal',
   };
 
   return (
@@ -42,7 +42,7 @@ success: 'bg-[#2A5CFF] text-[#F8F9FB]',
       {onClose && (
         <button
           onClick={close}
-          className="text-[#F8F9FB] opacity-80 hover:opacity-100 font-bold text-xs"
+          className="text-surface opacity-80 hover:opacity-100 font-bold text-xs"
           aria-label="Dismiss toast"
         >
           <X className="w-4 h-4" />

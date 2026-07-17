@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocale } from '../../providers';
@@ -100,18 +100,18 @@ export default function SettingsDashboardPage() {
   }, []);
 
   const tabOptions = [
-    { id: 'general', label: t('General', 'عام') },
-    { id: 'billing', label: t('Billing', 'الفواتير') },
-    { id: 'security', label: t('Security', 'الأمان') },
-    { id: 'integrations', label: t('Integrations', 'التكاملات') },
+    { id: 'general', label: t('General', 'Ø¹Ø§Ù…') },
+    { id: 'billing', label: t('Billing', 'Ø§Ù„ÙÙˆØ§ØªÙŠØ±') },
+    { id: 'security', label: t('Security', 'Ø§Ù„Ø£Ù…Ø§Ù†') },
+    { id: 'integrations', label: t('Integrations', 'Ø§Ù„ØªÙƒØ§Ù…Ù„Ø§Øª') },
   ];
 
   if (usageLoading) {
     return (
 <div className="flex flex-col gap-8 md:gap-8 animate-fadeIn max-w-4xl">
   <div className="animate-pulse">
-          <div className="h-8 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-72 mb-2" />
-          <div className="h-4 bg-[#F8F9FB] dark:bg-[#141F33] rounded-lg w-96" />
+          <div className="h-8 bg-surface dark:bg-primary rounded-lg w-72 mb-2" />
+          <div className="h-4 bg-surface dark:bg-primary rounded-lg w-96" />
         </div>
         <SkeletonCard />
         <SkeletonCard />
@@ -122,7 +122,7 @@ export default function SettingsDashboardPage() {
   if (usageError) {
     return (
       <EmptyStateWithRetry
-        message={usageErrorObj?.message || t('Failed to load settings.', 'فشل تحميل الإعدادات.')}
+        message={usageErrorObj?.message || t('Failed to load settings.', 'ÙØ´Ù„ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª.')}
         onRetry={() => refetchUsage()}
       />
     );
@@ -140,11 +140,11 @@ export default function SettingsDashboardPage() {
   return (
     <div className="flex flex-col gap-8 md:gap-8 animate-fadeIn max-w-4xl">
       <div>
-        <h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
-          {t('Settings', 'حدود الاستخدام والإعدادات')}
+        <h1 className="text-xl md:text-2xl font-black text-primary dark:text-surface tracking-tight">
+          {t('Settings', 'Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… ÙˆØ§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª')}
         </h1>
-        <p className="text-[10px] md:text-xs text-[#141F33] font-bold mt-0.5">
-          {t('Billing, exports, and account preferences.', 'تكوين خيارات الفوترة، تصدير سجلات البيانات، وتعديل المعلمات.')}
+        <p className="text-[10px] md:text-xs text-primary font-bold mt-0.5">
+          {t('Billing, exports, and account preferences.', 'ØªÙƒÙˆÙŠÙ† Ø®ÙŠØ§Ø±Ø§Øª Ø§Ù„ÙÙˆØªØ±Ø©ØŒ ØªØµØ¯ÙŠØ± Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ø¨ÙŠØ§Ù†Ø§ØªØŒ ÙˆØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ù…Ø¹Ù„Ù…Ø§Øª.')}
         </p>
       </div>
 
@@ -152,7 +152,7 @@ export default function SettingsDashboardPage() {
         <select
           value={activeTab}
           onChange={(e) => setActiveTab(e.target.value)}
-          className="w-full min-h-[44px] rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] px-4 py-2 text-xs font-semibold text-[#141F33] appearance-none"
+          className="w-full min-h-[44px] rounded-xl border border-primary/10 bg-surface px-4 py-2 text-xs font-semibold text-primary appearance-none"
           style={{
             backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23141F33' d='M6 8L1 3h10z'/%3E%3C/svg%3E")`,
             backgroundRepeat: 'no-repeat',
@@ -170,10 +170,10 @@ export default function SettingsDashboardPage() {
 {activeTab === 'general' && (
   <div className="flex flex-col gap-8 md:gap-8">
   <Card className="p-8">
-            <h2 className="text-[10px] md:text-xs font-black text-[#141F33]/60 uppercase tracking-widest mb-3 md:mb-4">
-              {t('Overage Protection', 'حماية التجاوز التلقائي')}
+            <h2 className="text-[10px] md:text-xs font-black text-primary/60 uppercase tracking-widest mb-3 md:mb-4">
+              {t('Overage Protection', 'Ø­Ù…Ø§ÙŠØ© Ø§Ù„ØªØ¬Ø§ÙˆØ² Ø§Ù„ØªÙ„Ù‚Ø§Ø¦ÙŠ')}
             </h2>
-            <label className="flex items-start gap-8 p-3 md:p-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] cursor-pointer">
+            <label className="flex items-start gap-8 p-3 md:p-4 rounded-xl border border-primary/10 bg-surface cursor-pointer">
               <input
                 type="checkbox"
                 checked={autoOverage}
@@ -182,35 +182,35 @@ export default function SettingsDashboardPage() {
                 className="mt-1 h-5 w-5 md:h-4 md:w-4 rounded text-navy focus:ring-2 focus:ring-royal shrink-0"
               />
               <div className="flex-1">
-                <p className="text-[11px] md:text-xs font-bold text-[#141F33]">
-                  {t('I approve automatic billing overages.', 'أوافق على فواتير التجاوز التلقائي.')}
+                <p className="text-[11px] md:text-xs font-bold text-primary">
+                  {t('I approve automatic billing overages.', 'Ø£ÙˆØ§ÙÙ‚ Ø¹Ù„Ù‰ ÙÙˆØ§ØªÙŠØ± Ø§Ù„ØªØ¬Ø§ÙˆØ² Ø§Ù„ØªÙ„Ù‚Ø§Ø¦ÙŠ.')}
                 </p>
               </div>
             </label>
           </Card>
 
           <Card className="p-8 rounded-xl flex flex-col gap-8">
-            <h2 className="text-[10px] md:text-xs font-black text-[#141F33] uppercase tracking-widest">
-              {t('Usage Limits', 'حدود الاستخدام')}
+            <h2 className="text-[10px] md:text-xs font-black text-primary uppercase tracking-widest">
+              {t('Usage Limits', 'Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù…')}
             </h2>
             <div className="space-y-4">
               <div>
-                <div className="flex justify-between text-[10px] md:text-xs font-bold text-[#141F33] mb-1.5">
-                  <span>{t('Automation Texts', 'نصوص الأتمتة')}</span>
+                <div className="flex justify-between text-[10px] md:text-xs font-bold text-primary mb-1.5">
+                  <span>{t('Automation Texts', 'Ù†ØµÙˆØµ Ø§Ù„Ø£ØªÙ…ØªØ©')}</span>
                   <span>{metrics.textsUsed} / {metrics.textsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.textsLimit > 0 ? (metrics.textsUsed / metrics.textsLimit) * 100 : 0} />
               </div>
               <div>
-                <div className="flex justify-between text-[10px] md:text-xs font-bold text-[#141F33] mb-1.5">
-                  <span>{t('Voice Minutes', 'دقائق الصوت')}</span>
+                <div className="flex justify-between text-[10px] md:text-xs font-bold text-primary mb-1.5">
+                  <span>{t('Voice Minutes', 'Ø¯Ù‚Ø§Ø¦Ù‚ Ø§Ù„ØµÙˆØª')}</span>
                   <span>{metrics.voiceMinsUsed} / {metrics.voiceMinsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.voiceMinsLimit > 0 ? (metrics.voiceMinsUsed / metrics.voiceMinsLimit) * 100 : 0} />
               </div>
               <div>
-                <div className="flex justify-between text-[10px] md:text-xs font-bold text-[#141F33] mb-1.5">
-                  <span>{t('RAG Questions', 'أسئلة RAG')}</span>
+                <div className="flex justify-between text-[10px] md:text-xs font-bold text-primary mb-1.5">
+                  <span>{t('RAG Questions', 'Ø£Ø³Ø¦Ù„Ø© RAG')}</span>
                   <span>{metrics.questionsUsed} / {metrics.questionsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.questionsLimit > 0 ? (metrics.questionsUsed / metrics.questionsLimit) * 100 : 0} />
@@ -220,15 +220,15 @@ export default function SettingsDashboardPage() {
 
           <Card className="p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div>
-              <h3 className="text-[11px] md:text-xs font-bold text-[#141F33]">
-                {t('Export Chat Log Audit', 'تصدير سجل التدقيق للمحادثات')}
+              <h3 className="text-[11px] md:text-xs font-bold text-primary">
+                {t('Export Chat Log Audit', 'ØªØµØ¯ÙŠØ± Ø³Ø¬Ù„ Ø§Ù„ØªØ¯Ù‚ÙŠÙ‚ Ù„Ù„Ù…Ø­Ø§Ø¯Ø«Ø§Øª')}
               </h3>
-              <p className="text-[9px] md:text-[10px] text-[#141F33]/60 mt-1">
-                {t('Download employee RAG chatbot logs and question histories in .csv format.', 'تنزيل جميع سجلات المساعد الذكي وتاريخ الأسئلة بصيغة .csv للتدقيق.')}
+              <p className="text-[9px] md:text-[10px] text-primary/60 mt-1">
+                {t('Download employee RAG chatbot logs and question histories in .csv format.', 'ØªÙ†Ø²ÙŠÙ„ Ø¬Ù…ÙŠØ¹ Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ ÙˆØªØ§Ø±ÙŠØ® Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø¨ØµÙŠØºØ© .csv Ù„Ù„ØªØ¯Ù‚ÙŠÙ‚.')}
               </p>
             </div>
             <Button variant="default" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs py-3 px-6 rounded-xl font-bold">
-              {t('Export Logs', 'تصدير السجلات')}
+              {t('Export Logs', 'ØªØµØ¯ÙŠØ± Ø§Ù„Ø³Ø¬Ù„Ø§Øª')}
             </Button>
           </Card>
         </div>
@@ -236,12 +236,12 @@ export default function SettingsDashboardPage() {
 
 {activeTab === 'billing' && (
   <Card className="p-8 flex flex-col gap-4">
-          <h3 className="font-bold text-navy dark:text-[#F8F9FB] text-sm md:text-base">{t('Subscription Plan', 'خطة الاشتراك')}</h3>
-          <p className="text-[10px] md:text-xs text-[#141F33] leading-relaxed">
-            {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
+          <h3 className="font-bold text-navy dark:text-surface text-sm md:text-base">{t('Subscription Plan', 'Ø®Ø·Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ')}</h3>
+          <p className="text-[10px] md:text-xs text-primary leading-relaxed">
+            {t('Your workspace is currently registered under the Enterprise Growth Package.', 'Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ Ù…Ø³Ø¬Ù„Ø© Ø­Ø§Ù„ÙŠØ§Ù‹ ØªØ­Øª Ø¨Ø§Ù‚Ø© Ù†Ù…Ùˆ Ø§Ù„Ù…Ø¤Ø³Ø³Ø§Øª.')}
           </p>
           <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-xl font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
-            {t('Manage Subscription', 'إدارة الاشتراك')}
+            {t('Manage Subscription', 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ')}
           </Button>
         </Card>
       )}

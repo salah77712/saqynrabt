@@ -1,4 +1,4 @@
-import * as React from "react"
+﻿import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -10,7 +10,7 @@ function Card({
     <div
       data-slot="card"
       className={cn(
-        "flex flex-col overflow-hidden rounded-2xl bg-[#F8F9FB] ring-1 ring-[#141F33]/10 p-6",
+        "flex flex-col overflow-hidden rounded-2xl bg-surface ring-1 ring-[#141F33]/10 p-6",
         className
       )}
       {...props}
@@ -45,7 +45,7 @@ function CardDescription({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-description"
-      className={cn("text-sm text-[#141F33]/70", className)}
+      className={cn("text-sm text-primary/70", className)}
       {...props}
     />
   )

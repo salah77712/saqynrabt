@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { Card } from '@/components/shadcn/card';
 import { ProgressBar } from '../ui/ProgressBar';
 
@@ -15,11 +15,11 @@ export function UsageCard({ title, icon, used, limit, label }: UsageProps) {
 
   return (
     <Card className="p-8">
-      <div className="flex items-center gap-4 border-b border-[#F8F9FB] dark:border-[#141F33] pb-3 mb-4">
+      <div className="flex items-center gap-4 border-b border-surface dark:border-primary pb-3 mb-4">
         <span className="flex items-center">{icon}</span>
-        <h4 className="font-bold text-navy dark:text-[#F8F9FB] text-sm">{title}</h4>
+        <h4 className="font-bold text-navy dark:text-surface text-sm">{title}</h4>
       </div>
-      <div className="flex justify-between text-xs font-bold text-[#141F33] mb-1.5">
+      <div className="flex justify-between text-xs font-bold text-primary mb-1.5">
         <span>{label}</span>
         <span>
           {used} / {limit}

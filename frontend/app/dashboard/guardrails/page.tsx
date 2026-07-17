@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useLocale } from '../../providers';
@@ -62,19 +62,19 @@ return (
 
 {/* Header */}
 <div>
-<h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Safety Filters', ar: 'لوحة التحكم في أمان الذكاء الاصطناعي' })}</h1>
-<p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Redact personal data, block harmful prompts, and filter unsafe content.', ar: 'تفعيل المرشحات لحجب البيانات الشخصية، ومنع الاختراقات، وتصفية المحتوى الضار.' })}</p>
+<h1 className="text-xl font-extrabold text-primary">{t({ en: 'Safety Filters', ar: 'Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ… ÙÙŠ Ø£Ù…Ø§Ù† Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ' })}</h1>
+<p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Redact personal data, block harmful prompts, and filter unsafe content.', ar: 'ØªÙØ¹ÙŠÙ„ Ø§Ù„Ù…Ø±Ø´Ø­Ø§Øª Ù„Ø­Ø¬Ø¨ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø´Ø®ØµÙŠØ©ØŒ ÙˆÙ…Ù†Ø¹ Ø§Ù„Ø§Ø®ØªØ±Ø§Ù‚Ø§ØªØŒ ÙˆØªØµÙÙŠØ© Ø§Ù„Ù…Ø­ØªÙˆÙ‰ Ø§Ù„Ø¶Ø§Ø±.' })}</p>
 </div>
 
 {/* Config Form */}
-<form onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm gap-8">
+<form onSubmit={handleSave} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm gap-8">
 
 <div className="space-y-3">
 {/* PII */}
-<div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB]">
+<div className="flex justify-between items-center p-3 border border-primary/10 rounded-xl bg-surface">
 <div>
-<p className="text-xs font-bold text-[#141F33]">PII Redaction</p>
-<p className="text-[10px] text-[#141F33] font-semibold mt-0.5">Mask emails and phone numbers before querying LLM APIs.</p>
+<p className="text-xs font-bold text-primary">PII Redaction</p>
+<p className="text-[10px] text-primary font-semibold mt-0.5">Mask emails and phone numbers before querying LLM APIs.</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer select-none">
 <input
@@ -83,15 +83,15 @@ checked={settings.pii_redaction}
 onChange={() => handleToggle('pii_redaction')}
 className="sr-only peer"
 />
-<div className="w-9 h-5 bg-[#141F33] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
+<div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
 </label>
 </div>
 
 {/* Jailbreak */}
-<div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB]">
+<div className="flex justify-between items-center p-3 border border-primary/10 rounded-xl bg-surface">
 <div>
-<p className="text-xs font-bold text-[#141F33]">Jailbreak & Prompt Injection Filter</p>
-<p className="text-[10px] text-[#141F33] font-semibold mt-0.5">Restrict jailbreak attempts ("ignore instructions", "system override").</p>
+<p className="text-xs font-bold text-primary">Jailbreak & Prompt Injection Filter</p>
+<p className="text-[10px] text-primary font-semibold mt-0.5">Restrict jailbreak attempts ("ignore instructions", "system override").</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer select-none">
 <input
@@ -100,15 +100,15 @@ checked={settings.jailbreak_prevention}
 onChange={() => handleToggle('jailbreak_prevention')}
 className="sr-only peer"
 />
-<div className="w-9 h-5 bg-[#141F33] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
+<div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
 </label>
 </div>
 
 {/* Toxicity */}
-<div className="flex justify-between items-center p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB]">
+<div className="flex justify-between items-center p-3 border border-primary/10 rounded-xl bg-surface">
 <div>
-<p className="text-xs font-bold text-[#141F33]">Harmful Output Toxicity Filter</p>
-<p className="text-[10px] text-[#141F33] font-semibold mt-0.5">Checks LLM completions for toxic, harassing, or violent outputs.</p>
+<p className="text-xs font-bold text-primary">Harmful Output Toxicity Filter</p>
+<p className="text-[10px] text-primary font-semibold mt-0.5">Checks LLM completions for toxic, harassing, or violent outputs.</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer select-none">
 <input
@@ -117,45 +117,45 @@ checked={settings.toxicity_filter}
 onChange={() => handleToggle('toxicity_filter')}
 className="sr-only peer"
 />
-<div className="w-9 h-5 bg-[#141F33] peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-[#F8F9FB] after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-[#F8F9FB] after:border-[#141F33]/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#141F33]" />
+<div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
 </label>
 </div>
 </div>
 
 <button
         type="submit"
-        className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
+        className="w-full bg-primary text-surface font-bold py-3 px-6 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
       >
-        {t({ en: 'Save Guardrail Configurations', ar: 'حفظ إعدادات جدار الحماية' })}
+        {t({ en: 'Save Guardrail Configurations', ar: 'Ø­ÙØ¸ Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø¬Ø¯Ø§Ø± Ø§Ù„Ø­Ù…Ø§ÙŠØ©' })}
 </button>
 
 </form>
 
 {/* Knowledge Gaps */}
-      <div className="p-8 rounded-xl bg-[#F8F9FB] border border-[#141F33]/10 shadow-sm gap-8">
+      <div className="p-8 rounded-xl bg-surface border border-primary/10 shadow-sm gap-8">
 <div>
-<h2 className="text-sm font-extrabold text-[#141F33]">{t({ en: 'Knowledge Gaps', ar: 'الفجوات المعرفية' })}</h2>
-<p className="text-[10px] text-[#141F33] font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'الأسئلة التي طرحها موظفوك ولم يتمكن الذكاء الاصطناعي من الإجابة عليها.' })}</p>
+<h2 className="text-sm font-extrabold text-primary">{t({ en: 'Knowledge Gaps', ar: 'Ø§Ù„ÙØ¬ÙˆØ§Øª Ø§Ù„Ù…Ø¹Ø±ÙÙŠØ©' })}</h2>
+<p className="text-[10px] text-primary font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø§Ù„ØªÙŠ Ø·Ø±Ø­Ù‡Ø§ Ù…ÙˆØ¸ÙÙˆÙƒ ÙˆÙ„Ù… ÙŠØªÙ…ÙƒÙ† Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ù…Ù† Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø© Ø¹Ù„ÙŠÙ‡Ø§.' })}</p>
 </div>
 
 {loading && (
 <div className="flex items-center justify-center py-8">
-<div className="w-5 h-5 border-2 border-[#141F33] border-t-transparent rounded-full animate-spin" />
-<span className="ml-2 text-xs text-[#141F33] font-semibold">{t({ en: 'Loading gaps...', ar: 'جاري تحميل الفجوات...' })}</span>
+<div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+<span className="ml-2 text-xs text-primary font-semibold">{t({ en: 'Loading gaps...', ar: 'Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„ÙØ¬ÙˆØ§Øª...' })}</span>
 </div>
 )}
 
 {!loading && error && (
 <div className="space-y-2">
-<p className="text-xs text-[#141F33] font-semibold">{t({ en: 'Could not load knowledge gaps. Showing sample data.', ar: 'تعذر تحميل الفجوات المعرفية. يتم عرض بيانات نموذجية.' })}</p>
+<p className="text-xs text-primary font-semibold">{t({ en: 'Could not load knowledge gaps. Showing sample data.', ar: 'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ø§Ù„ÙØ¬ÙˆØ§Øª Ø§Ù„Ù…Ø¹Ø±ÙÙŠØ©. ÙŠØªÙ… Ø¹Ø±Ø¶ Ø¨ÙŠØ§Ù†Ø§Øª Ù†Ù…ÙˆØ°Ø¬ÙŠØ©.' })}</p>
 {MOCK_KNOWLEDGE_GAPS.map((gap, i) => (
-<div key={i} className="p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] space-y-1.5">
-<p className="text-xs font-bold text-[#141F33]">&ldquo;{gap.question}&rdquo;</p>
-<div className="flex items-center gap-3 text-[10px] text-[#141F33] font-semibold">
+<div key={i} className="p-3 border border-primary/10 rounded-xl bg-surface space-y-1.5">
+<p className="text-xs font-bold text-primary">&ldquo;{gap.question}&rdquo;</p>
+<div className="flex items-center gap-3 text-[10px] text-primary font-semibold">
 <span>{gap.employee_name}</span>
-<span className="w-1 h-1 rounded-full bg-[#141F33]" />
+<span className="w-1 h-1 rounded-full bg-primary" />
 <span>{gap.department}</span>
-<span className="w-1 h-1 rounded-full bg-[#141F33]" />
+<span className="w-1 h-1 rounded-full bg-primary" />
 <span>{new Date(gap.asked_at).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
 </div>
 </div>
@@ -165,21 +165,21 @@ className="sr-only peer"
 
 {!loading && !error && knowledgeGaps.length === 0 && (
 <div className="flex flex-col items-center justify-center py-8 text-center">
-<p className="text-xs font-bold text-[#141F33]">{t({ en: 'No knowledge gaps found', ar: 'لا توجد فجوات معرفية' })}</p>
-<p className="text-[10px] text-[#141F33] font-semibold mt-1">{t({ en: 'Your team is getting all the answers they need!', ar: 'فريقك يحصل على جميع الإجابات التي يحتاجها!' })}</p>
+<p className="text-xs font-bold text-primary">{t({ en: 'No knowledge gaps found', ar: 'Ù„Ø§ ØªÙˆØ¬Ø¯ ÙØ¬ÙˆØ§Øª Ù…Ø¹Ø±ÙÙŠØ©' })}</p>
+<p className="text-[10px] text-primary font-semibold mt-1">{t({ en: 'Your team is getting all the answers they need!', ar: 'ÙØ±ÙŠÙ‚Ùƒ ÙŠØ­ØµÙ„ Ø¹Ù„Ù‰ Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø§Øª Ø§Ù„ØªÙŠ ÙŠØ­ØªØ§Ø¬Ù‡Ø§!' })}</p>
 </div>
 )}
 
 {!loading && !error && knowledgeGaps.length > 0 && (
 <div className="space-y-2">
 {knowledgeGaps.map((gap, i) => (
-<div key={i} className="p-3 border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] space-y-1.5">
-<p className="text-xs font-bold text-[#141F33]">&ldquo;{gap.question}&rdquo;</p>
-<div className="flex items-center gap-3 text-[10px] text-[#141F33] font-semibold">
+<div key={i} className="p-3 border border-primary/10 rounded-xl bg-surface space-y-1.5">
+<p className="text-xs font-bold text-primary">&ldquo;{gap.question}&rdquo;</p>
+<div className="flex items-center gap-3 text-[10px] text-primary font-semibold">
 <span>{gap.employee_name}</span>
-<span className="w-1 h-1 rounded-full bg-[#141F33]" />
+<span className="w-1 h-1 rounded-full bg-primary" />
 <span>{gap.department}</span>
-<span className="w-1 h-1 rounded-full bg-[#141F33]" />
+<span className="w-1 h-1 rounded-full bg-primary" />
 <span>{new Date(gap.asked_at).toLocaleDateString(locale === 'ar' ? 'ar-SA' : 'en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
 </div>
 </div>

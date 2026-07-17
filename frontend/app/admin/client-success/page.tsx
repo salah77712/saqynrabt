@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useLocale } from '../../providers';
@@ -27,24 +27,24 @@ export default function ClientSuccessPage() {
     <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-xl font-extrabold text-[#141F33] dark:text-[#F8F9FB]">{t({en: 'Customer Success Console', ar: 'وحدة تحكم نجاح العملاء'})}</h1>
-          <p className="text-xs text-[#141F33] font-medium">{t({en: 'Monitor account health indexes and retention risks.', ar: 'مراقبة مؤشرات صحة الحساب ومخاطر الاحتفاظ.'})}</p>
+          <h1 className="text-xl font-extrabold text-primary dark:text-surface">{t({en: 'Customer Success Console', ar: 'ÙˆØ­Ø¯Ø© ØªØ­ÙƒÙ… Ù†Ø¬Ø§Ø­ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡'})}</h1>
+          <p className="text-xs text-primary font-medium">{t({en: 'Monitor account health indexes and retention risks.', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ù…Ø¤Ø´Ø±Ø§Øª ØµØ­Ø© Ø§Ù„Ø­Ø³Ø§Ø¨ ÙˆÙ…Ø®Ø§Ø·Ø± Ø§Ù„Ø§Ø­ØªÙØ§Ø¸.'})}</p>
         </div>
-        <Badge variant="warning">{t({en: '3 Accounts Need Attention', ar: '3 حسابات تحتاج إلى انتباه'})}</Badge>
+        <Badge variant="warning">{t({en: '3 Accounts Need Attention', ar: '3 Ø­Ø³Ø§Ø¨Ø§Øª ØªØ­ØªØ§Ø¬ Ø¥Ù„Ù‰ Ø§Ù†ØªØ¨Ø§Ù‡'})}</Badge>
       </div>
 
       <div className="space-y-4">
         {clients.map((client) => (
-          <div key={client.id} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
+          <div key={client.id} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8">
             <div>
-              <h4 className="font-bold text-navy dark:text-[#F8F9FB] text-base">{client.name}</h4>
-              <p className="text-xs text-[#141F33] mt-1">{t({en: 'Resource consumption:', ar: 'استهلاك الموارد:'})} {client.usage}</p>
+              <h4 className="font-bold text-navy dark:text-surface text-base">{client.name}</h4>
+              <p className="text-xs text-primary mt-1">{t({en: 'Resource consumption:', ar: 'Ø§Ø³ØªÙ‡Ù„Ø§Ùƒ Ø§Ù„Ù…ÙˆØ§Ø±Ø¯:'})} {client.usage}</p>
             </div>
 
             <div className="flex items-center gap-8">
               <HealthScore score={client.score} />
               <Badge variant={client.status === 'active' ? 'success' : 'danger'}>
-                {client.status === 'active' ? t({en: 'Healthy', ar: 'سليم'}) : t({en: 'Retention Warning', ar: 'تحذير الاحتفاظ'})}
+                {client.status === 'active' ? t({en: 'Healthy', ar: 'Ø³Ù„ÙŠÙ…'}) : t({en: 'Retention Warning', ar: 'ØªØ­Ø°ÙŠØ± Ø§Ù„Ø§Ø­ØªÙØ§Ø¸'})}
               </Badge>
             </div>
           </div>

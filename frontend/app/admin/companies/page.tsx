@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../../providers';
@@ -40,7 +40,7 @@ export default function AdminCompaniesPage() {
   };
 
   const handleDelete = (id: string) => {
-    if (!confirm(t({ en: 'Are you sure you want to delete this company tenant? This cannot be undone.', ar: 'هل أنت متأكد من حذف هذا العميل بالكامل؟ لا يمكن التراجع عن هذا الإجراء.' }))) {
+    if (!confirm(t({ en: 'Are you sure you want to delete this company tenant? This cannot be undone.', ar: 'Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† Ø­Ø°Ù Ù‡Ø°Ø§ Ø§Ù„Ø¹Ù…ÙŠÙ„ Ø¨Ø§Ù„ÙƒØ§Ù…Ù„ØŸ Ù„Ø§ ÙŠÙ…ÙƒÙ† Ø§Ù„ØªØ±Ø§Ø¬Ø¹ Ø¹Ù† Ù‡Ø°Ø§ Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡.' }))) {
       return;
     }
     setCompanies(prev => prev.filter(c => c.id !== id));
@@ -60,72 +60,72 @@ export default function AdminCompaniesPage() {
       {/* Header and Search */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div>
-          <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Client Workspace Directory', ar: 'دليل مساحات عمل العملاء' })}</h1>
-          <p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'Monitor client limits, suspend services, and manage tenants.', ar: 'مراقبة حدود العملاء، تعليق الخدمات، وإدارة الحسابات.' })}</p>
+          <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Client Workspace Directory', ar: 'Ø¯Ù„ÙŠÙ„ Ù…Ø³Ø§Ø­Ø§Øª Ø¹Ù…Ù„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡' })}</h1>
+          <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Monitor client limits, suspend services, and manage tenants.', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ØŒ ØªØ¹Ù„ÙŠÙ‚ Ø§Ù„Ø®Ø¯Ù…Ø§ØªØŒ ÙˆØ¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø­Ø³Ø§Ø¨Ø§Øª.' })}</p>
         </div>
 
         <div>
           <input
             type="text"
-            placeholder={t({ en: 'Search companies...', ar: 'البحث عن الشركات...' })}
+            placeholder={t({ en: 'Search companies...', ar: 'Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø§Ù„Ø´Ø±ÙƒØ§Øª...' })}
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
-            className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal w-64"
+            className="min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal w-64"
           />
         </div>
       </div>
 
       {/* Companies Table */}
-      <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-sm overflow-hidden shadow-card">
+      <div className="bg-white border border-primary/10 rounded-xl shadow-sm overflow-hidden shadow-card">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
-              <tr className="bg-[#F8F9FB] border-b border-[#141F33]/10 text-xs font-extrabold text-[#141F33] uppercase tracking-wider">
-                <th className="px-6 py-4">{t({ en: 'Company Name', ar: 'اسم الشركة' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Plan Tier', ar: 'باقة الاشتراك' })}</th>
-                <th className="px-6 py-4 text-center">{t({ en: 'Employees', ar: 'الموظفون' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Status', ar: 'الحالة' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Join Date', ar: 'تاريخ الانضمام' })}</th>
-                <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'الإجراءات' })}</th>
+              <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
+                <th className="px-6 py-4">{t({ en: 'Company Name', ar: 'Ø§Ø³Ù… Ø§Ù„Ø´Ø±ÙƒØ©' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Plan Tier', ar: 'Ø¨Ø§Ù‚Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ' })}</th>
+                <th className="px-6 py-4 text-center">{t({ en: 'Employees', ar: 'Ø§Ù„Ù…ÙˆØ¸ÙÙˆÙ†' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Status', ar: 'Ø§Ù„Ø­Ø§Ù„Ø©' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Join Date', ar: 'ØªØ§Ø±ÙŠØ® Ø§Ù„Ø§Ù†Ø¶Ù…Ø§Ù…' })}</th>
+                <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª' })}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-[#141F33]">
+            <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-primary">
               {paginated.map((company) => (
-                <tr key={company.id} className="hover:bg-[#141F33] transition-colors">
-                  <td className="px-6 py-4 font-bold text-[#141F33]">{company.name}</td>
+                <tr key={company.id} className="hover:bg-primary transition-colors">
+                  <td className="px-6 py-4 font-bold text-primary">{company.name}</td>
                   <td className="px-6 py-4">{company.plan}</td>
                   <td className="px-6 py-4 text-center">{company.employees} / {company.maxEmployees}</td>
                   <td className="px-6 py-4">
                     <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${
-                      company.status === 'active' ? 'bg-[#F8F9FB] text-[#2A5CFF]' : 'bg-[#F8F9FB] text-[#141F33]'
+                      company.status === 'active' ? 'bg-surface text-accent' : 'bg-surface text-primary'
                     }`}>
-                      {company.status === 'active' ? t({ en: 'Active', ar: 'نشط' }) : t({ en: 'Suspended', ar: 'معلق' })}
+                      {company.status === 'active' ? t({ en: 'Active', ar: 'Ù†Ø´Ø·' }) : t({ en: 'Suspended', ar: 'Ù…Ø¹Ù„Ù‚' })}
                     </span>
                   </td>
-                  <td className="px-6 py-4 text-[#141F33]/40 font-bold">{company.joinDate}</td>
+                  <td className="px-6 py-4 text-primary/40 font-bold">{company.joinDate}</td>
                   <td className="px-6 py-4 text-center">
                     <div className="flex justify-center gap-3">
                       <button
                         onClick={() => addToast(`Viewing detailed logs for ${company.name}`, 'info')}
-                        className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                        className="bg-surface border border-primary/10 text-primary hover:bg-primary font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
-                        {t({ en: 'View', ar: 'عرض' })}
+                        {t({ en: 'View', ar: 'Ø¹Ø±Ø¶' })}
                       </button>
                       <button
                         onClick={() => handleSuspend(company.id)}
                         className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
                           company.status === 'active'
-                            ? 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33]'
-                            : 'bg-[#2A5CFF] text-[#F8F9FB] hover:bg-[#2A5CFF]/90'
+                            ? 'bg-surface text-primary border border-primary/10 hover:bg-primary'
+                            : 'bg-accent text-surface hover:bg-accent/90'
                         }`}
                       >
-                        {company.status === 'active' ? t({ en: 'Suspend', ar: 'تعليق' }) : t({ en: 'Activate', ar: 'تفعيل' })}
+                        {company.status === 'active' ? t({ en: 'Suspend', ar: 'ØªØ¹Ù„ÙŠÙ‚' }) : t({ en: 'Activate', ar: 'ØªÙØ¹ÙŠÙ„' })}
                       </button>
                       <button
                         onClick={() => handleDelete(company.id)}
-                        className="bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33] font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+                        className="bg-surface text-primary border border-primary/10 hover:bg-primary font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
-                        {t({ en: 'Delete', ar: 'حذف' })}
+                        {t({ en: 'Delete', ar: 'Ø­Ø°Ù' })}
                       </button>
                     </div>
                   </td>
@@ -138,23 +138,23 @@ export default function AdminCompaniesPage() {
 
       {/* Pagination Controls */}
       {totalPages > 1 && (
-        <div className="flex justify-between items-center bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm text-xs font-bold text-[#141F33]">
+        <div className="flex justify-between items-center bg-surface border border-primary/10 rounded-xl p-4 shadow-sm text-xs font-bold text-primary">
           <button
             onClick={() => setPage(prev => Math.max(prev - 1, 1))}
             disabled={page === 1}
-            className="bg-[#F8F9FB] hover:bg-[#141F33] border border-[#141F33]/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
+            className="bg-surface hover:bg-primary border border-primary/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
-            {t({ en: 'Previous', ar: 'السابق' })}
+            {t({ en: 'Previous', ar: 'Ø§Ù„Ø³Ø§Ø¨Ù‚' })}
           </button>
           <span>
-            {t({ en: `Page ${page} of ${totalPages}`, ar: `الصفحة ${page} من ${totalPages}` })}
+            {t({ en: `Page ${page} of ${totalPages}`, ar: `Ø§Ù„ØµÙØ­Ø© ${page} Ù…Ù† ${totalPages}` })}
           </span>
           <button
             onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
             disabled={page === totalPages}
-            className="bg-[#F8F9FB] hover:bg-[#141F33] border border-[#141F33]/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
+            className="bg-surface hover:bg-primary border border-primary/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
-            {t({ en: 'Next', ar: 'التالي' })}
+            {t({ en: 'Next', ar: 'Ø§Ù„ØªØ§Ù„ÙŠ' })}
           </button>
         </div>
       )}

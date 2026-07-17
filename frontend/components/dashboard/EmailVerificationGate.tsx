@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useUser } from '@clerk/nextjs';
@@ -59,28 +59,28 @@ export function EmailVerificationGate() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F8F9FB] flex items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <div className="bg-[#F8F9FB] rounded-xl shadow-xl p-8 md:p-12 border border-[#141F33]/10 w-full max-w-md animate-fadeIn text-center">
-        <div className="mb-4"><Mail className="w-8 h-8 text-[#141F33]" /></div>
-        <h2 className="text-xl font-extrabold text-[#141F33] mb-2">
-          {t({ en: 'Verify Your Email', ar: 'تأكيد بريدك الإلكتروني' })}
+    <div className="min-h-screen bg-surface flex items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="bg-surface rounded-xl shadow-xl p-8 md:p-12 border border-primary/10 w-full max-w-md animate-fadeIn text-center">
+        <div className="mb-4"><Mail className="w-8 h-8 text-primary" /></div>
+        <h2 className="text-xl font-extrabold text-primary mb-2">
+          {t({ en: 'Verify Your Email', ar: 'ØªØ£ÙƒÙŠØ¯ Ø¨Ø±ÙŠØ¯Ùƒ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}
         </h2>
         <p className="text-xs font-semibold  mb-6 leading-relaxed">
           {t({
             en: 'Please enter the 6-digit verification code sent to your email.',
-            ar: 'يرجى إدخال رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني.'
+            ar: 'ÙŠØ±Ø¬Ù‰ Ø¥Ø¯Ø®Ø§Ù„ Ø±Ù…Ø² Ø§Ù„ØªØ­Ù‚Ù‚ Ø§Ù„Ù…ÙƒÙˆÙ† Ù…Ù† 6 Ø£Ø±Ù‚Ø§Ù… Ø§Ù„Ù…Ø±Ø³Ù„ Ø¥Ù„Ù‰ Ø¨Ø±ÙŠØ¯Ùƒ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ.'
           })}
         </p>
 
 {verifError && (
-<div className="bg-[#F8F9FB] rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-<AlertTriangle className="w-4 h-4 text-[#2A5CFF] inline mr-1" /> {verifError}
+<div className="bg-surface rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
+<AlertTriangle className="w-4 h-4 text-accent inline mr-1" /> {verifError}
 </div>
 )}
 
 {resendStatus && (
-<div className="bg-[#F8F9FB] rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-<Check className="w-4 h-4 text-[#2A5CFF] inline mr-1" /> {resendStatus}
+<div className="bg-surface rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
+<Check className="w-4 h-4 text-accent inline mr-1" /> {resendStatus}
 </div>
 )}
 
@@ -91,16 +91,16 @@ export function EmailVerificationGate() {
             maxLength={6}
             value={verificationCode}
             onChange={(e) => setVerificationCode(e.target.value)}
-            aria-label={t({ en: 'Email verification code', ar: 'رمز التحقق للبريد الإلكتروني' })}
+            aria-label={t({ en: 'Email verification code', ar: 'Ø±Ù…Ø² Ø§Ù„ØªØ­Ù‚Ù‚ Ù„Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}
             className="w-full min-h-[44px]  rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             required
           />
           <button
             type="submit"
             disabled={verifying}
-            className="w-full bg-[#141F33]  font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center disabled:opacity-40 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+            className="w-full bg-primary  font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center disabled:opacity-40 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
           >
-            {verifying ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Activate Account', ar: 'التحقق وتنشيط الحساب' })}
+            {verifying ? t({ en: 'Verifying...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù‚Ù‚...' }) : t({ en: 'Verify & Activate Account', ar: 'Ø§Ù„ØªØ­Ù‚Ù‚ ÙˆØªÙ†Ø´ÙŠØ· Ø§Ù„Ø­Ø³Ø§Ø¨' })}
           </button>
         </form>
 
@@ -109,13 +109,13 @@ export function EmailVerificationGate() {
             type="button"
             disabled={resending}
             onClick={handleResendCode}
-            className="text-xs font-bold text-[#2A5CFF] hover:underline disabled:opacity-40"
+            className="text-xs font-bold text-accent hover:underline disabled:opacity-40"
           >
-            {resending ? t({ en: 'Resending...', ar: 'جاري إعادة الإرسال...' }) : t({ en: 'Resend Verification Code', ar: 'إعادة إرسال رمز التحقق' })}
+            {resending ? t({ en: 'Resending...', ar: 'Ø¬Ø§Ø±ÙŠ Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...' }) : t({ en: 'Resend Verification Code', ar: 'Ø¥Ø¹Ø§Ø¯Ø© Ø¥Ø±Ø³Ø§Ù„ Ø±Ù…Ø² Ø§Ù„ØªØ­Ù‚Ù‚' })}
           </button>
           <div className="pt-4 border-t  flex items-center justify-center gap-3">
             <UserButton />
-            <span className="text-[10px] text-[#141F33] font-bold">{t({ en: 'Sign Out', ar: 'تسجيل الخروج' })}</span>
+            <span className="text-[10px] text-primary font-bold">{t({ en: 'Sign Out', ar: 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬' })}</span>
           </div>
         </div>
       </div>
