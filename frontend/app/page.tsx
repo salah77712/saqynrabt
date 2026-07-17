@@ -13,7 +13,7 @@ export default function MarketingPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   return (
-    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       {/* ── Hero Section ─────────────────────────────────── */}
@@ -21,8 +21,8 @@ export default function MarketingPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col items-center text-center gap-16 w-full relative">
           
           {/* Floating Tilted Cards (Hidden on mobile) */}
-          <div className="absolute top-10 left-12 w-24 h-24 bg-white border border-[#141F33]/10 rounded-xl shadow-card transform rotate-[15deg] hidden lg:block pointer-events-none" />
-          <div className="absolute top-10 right-12 w-24 h-24 bg-white border border-[#141F33]/10 rounded-xl shadow-card transform -rotate-[15deg] hidden lg:block pointer-events-none" />
+          <div className="absolute top-10 start-12 w-24 h-24 bg-white border border-primary/10 rounded-xl shadow-card transform rotate-[15deg] hidden lg:block pointer-events-none" />
+          <div className="absolute top-10 end-12 w-24 h-24 bg-white border border-primary/10 rounded-xl shadow-card transform -rotate-[15deg] hidden lg:block pointer-events-none" />
           
           {/* Headline and Subtext Block */}
           <div className="flex flex-col items-center gap-8 max-w-3xl">
@@ -31,14 +31,14 @@ export default function MarketingPage() {
             </h1>
             
             {/* Interactive Product Toggle */}
-            <div className="inline-flex rounded-full bg-[#F8F9FB] p-1 border border-[#141F33]/10">
+            <div className="inline-flex rounded-full bg-surface p-1 border border-primary/10">
               <button
                 type="button"
                 onClick={() => setActiveProduct('voice')}
                 className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[38px] ${
                   activeProduct === 'voice'
-                    ? 'bg-[#141F33] text-[#F8F9FB]'
-                    : 'bg-transparent text-[#141F33]'
+                    ? 'bg-primary text-surface'
+                    : 'bg-transparent text-primary'
                 }`}
               >
                 AI Voice Agent
@@ -48,8 +48,8 @@ export default function MarketingPage() {
                 onClick={() => setActiveProduct('work')}
                 className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[38px] ${
                   activeProduct === 'work'
-                    ? 'bg-[#141F33] text-[#F8F9FB]'
-                    : 'bg-transparent text-[#141F33]'
+                    ? 'bg-primary text-surface'
+                    : 'bg-transparent text-primary'
                 }`}
               >
                 Internal HR Chatbot
@@ -57,7 +57,7 @@ export default function MarketingPage() {
             </div>
 
             {/* Dynamic Subheadline */}
-            <p className="text-base md:text-lg text-[#141F33]/70 font-semibold leading-relaxed max-w-2xl min-h-[56px]">
+            <p className="text-base md:text-lg text-primary/70 font-semibold leading-relaxed max-w-2xl min-h-[56px]">
               {activeProduct === 'voice' ? (
                 t({
                   en: "Synthetiq Voice answers incoming business calls with human-like voice, logs routing paths, and escalates to live teams natively.",
@@ -76,13 +76,13 @@ export default function MarketingPage() {
               <div className="flex gap-4">
                 <Link
                   href={activeProduct === 'voice' ? '/synthetiq-voice' : '/synthetiq-work'}
-                  className="bg-[#141F33] hover:bg-[#141F33]/90 text-[#F8F9FB] text-xs font-bold px-8 py-3 rounded-full transition-all duration-200 min-h-[44px] flex items-center shadow-sm"
+                  className="bg-primary hover:bg-primary/90 text-surface text-xs font-bold px-8 py-3 rounded-full transition-all duration-200 min-h-[44px] flex items-center shadow-sm"
                 >
                   {activeProduct === 'voice' ? t({ en: 'Start Voice AI', ar: 'بدء الذكاء الصوتي' }) : t({ en: 'Start Employee AI', ar: 'بدء ذكاء الموظف' })}
                 </Link>
                 <Link
                   href="/pricing"
-                  className="bg-transparent border border-[#141F33]/15 text-[#141F33] hover:bg-[#141F33]/5 text-xs font-bold px-8 py-3 rounded-full transition-all duration-200 min-h-[44px] flex items-center"
+                  className="bg-transparent border border-primary/15 text-primary hover:bg-primary/5 text-xs font-bold px-8 py-3 rounded-full transition-all duration-200 min-h-[44px] flex items-center"
                 >
                   {t({ en: 'View Plans', ar: 'عرض الخطط' })}
                 </Link>
@@ -99,7 +99,7 @@ export default function MarketingPage() {
 
           {/* ── Dynamic Preview Mockup Container ──────────────── */}
           <div className="w-full max-w-xl">
-            <div className="bg-white border border-[#141F33]/10 rounded-xl shadow-card p-8 flex items-center justify-center min-h-[280px]">
+            <div className="bg-white border border-primary/10 rounded-xl shadow-card p-8 flex items-center justify-center min-h-[280px]">
               
               {activeProduct === 'voice' ? (
                 /* Dynamic Voice SVG Mockup (Navy & Canvas only) */
@@ -188,12 +188,12 @@ export default function MarketingPage() {
 
           {/* ── Trust Row ──────────────────────────────────── */}
           <div className="flex flex-col items-center gap-4 mt-6">
-            <p className="text-[10px] font-extrabold tracking-widest text-[#141F33]/40 uppercase">
+            <p className="text-[10px] font-extrabold tracking-widest text-primary/40 uppercase">
               Direct HR & Call Stack Integrations
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               {['SAP', 'Oracle', 'Salesforce', 'Slack', 'Jira', 'HubSpot'].map((logo, i) => (
-                <div key={i} className="bg-white rounded-full border border-[#141F33]/10 px-6 py-2 text-xs font-bold tracking-wider shadow-sm select-none">
+                <div key={i} className="bg-white rounded-full border border-primary/10 px-6 py-2 text-xs font-bold tracking-wider shadow-sm select-none">
                   {logo}
                 </div>
               ))}

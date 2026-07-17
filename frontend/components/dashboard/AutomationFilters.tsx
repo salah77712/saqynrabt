@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { Input } from '../ui/Input';
 
 interface AutomationFiltersProps {
@@ -23,7 +23,7 @@ export function AutomationFilters({ filter, onFilterChange, search, onSearchChan
       </div>
 
       {/* Filter Tabs */}
-      <div className="flex gap-1.5 bg-[#F8F9FB] dark:bg-[#141F33] p-1 rounded-xl">
+      <div className="flex gap-1.5 bg-surface dark:bg-primary p-1 rounded-xl">
         {options.map((opt) => (
           <button
             key={opt}

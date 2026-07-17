@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { Button } from '@/components/shadcn/button';
 import { AlertTriangle, FileText, BellOff, Users } from 'lucide-react';
 
@@ -30,17 +30,17 @@ export function EmptyState({
 }: EmptyStateProps) {
   const containerClass = compact
     ? 'flex flex-col items-center justify-center text-center p-6'
-    : 'flex flex-col items-center justify-center text-center p-8 border border-[#141F33]/10 dark:border-[#141F33]/30 rounded-xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm max-w-sm mx-auto';
+    : 'flex flex-col items-center justify-center text-center p-8 border border-primary/10 dark:border-primary/30 rounded-xl bg-surface dark:bg-primary shadow-sm max-w-sm mx-auto';
 
   return (
     <div className={containerClass}>
       <span className={compact ? 'text-3xl mb-3' : 'text-4xl mb-4'}>
-        {icon || <AlertTriangle className="w-10 h-10 text-[#141F33]/40" />}
+        {icon || <AlertTriangle className="w-10 h-10 text-primary/40" />}
       </span>
-      <h3 className={`font-bold text-[#141F33] dark:text-[#F8F9FB] ${compact ? 'text-sm' : 'text-base'} mb-1`}>
+      <h3 className={`font-bold text-primary dark:text-surface ${compact ? 'text-sm' : 'text-base'} mb-1`}>
         {title}
       </h3>
-      <p className={`text-xs text-[#141F33]/60 leading-relaxed mb-6 ${compact ? 'max-w-xs' : ''}`}>
+      <p className={`text-xs text-primary/60 leading-relaxed mb-6 ${compact ? 'max-w-xs' : ''}`}>
         {description}
       </p>
       <div className={`flex ${secondaryAction ? 'gap-4' : ''}`}>
@@ -68,7 +68,7 @@ export function EmptyStateWithRetry({
 }) {
   return (
     <EmptyState
-      icon={<AlertTriangle className="w-10 h-10 text-[#141F33]/40" />}
+      icon={<AlertTriangle className="w-10 h-10 text-primary/40" />}
       title="Something went wrong"
       description={message}
       actionText="Retry"
@@ -80,7 +80,7 @@ export function EmptyStateWithRetry({
 export function EmptyDocumentsState({ onUpload }: { onUpload: () => void }) {
   return (
     <EmptyState
-      icon={<FileText className="w-10 h-10 text-[#141F33]/40" />}
+      icon={<FileText className="w-10 h-10 text-primary/40" />}
       title="No documents yet"
       description="Upload your first SOP or policy PDF to expand your chatbot knowledge."
       actionText="Upload Document"
@@ -92,7 +92,7 @@ export function EmptyDocumentsState({ onUpload }: { onUpload: () => void }) {
 export function EmptyAutomationState() {
   return (
     <EmptyState
-      icon={<BellOff className="w-10 h-10 text-[#141F33]/40" />}
+      icon={<BellOff className="w-10 h-10 text-primary/40" />}
       title="No automation requests"
       description="All clear! There are no pending automation requests."
       compact
@@ -103,7 +103,7 @@ export function EmptyAutomationState() {
 export function EmptyTeamState({ onInvite }: { onInvite: () => void }) {
   return (
     <EmptyState
-      icon={<Users className="w-10 h-10 text-[#141F33]/40" />}
+      icon={<Users className="w-10 h-10 text-primary/40" />}
       title="No team members"
       description="Invite your colleagues to collaborate on the platform."
       actionText="Invite Colleague"

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 
@@ -23,7 +23,7 @@ export function Tooltip({ content, children }: TooltipProps) {
       {show && (
         <div
           role="tooltip"
-          className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-48 bg-[#141F33] text-[#F8F9FB] text-[10px] font-bold p-2 rounded-lg shadow-xl z-50 text-center animate-fadeIn"
+          className="absolute bottom-full start-1/2 -translate-x-1/2 mb-3 w-48 bg-primary text-surface text-[10px] font-bold p-2 rounded-lg shadow-xl z-50 text-center animate-fadeIn"
         >
           {content}
         </div>

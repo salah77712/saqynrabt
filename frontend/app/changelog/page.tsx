@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useLocale } from '../providers';
@@ -13,58 +13,58 @@ export default function ChangelogPage() {
     {
       version: 'v1.2.0',
       date: 'July 4, 2026',
-      title: t({ en: 'Collapsible Sidebars & Limit Monitors', fr: 'Barres latérales repliables & Moniteurs de limites', ar: 'القوائم القابلة للطي ومراقبة حدود الاستهلاك', hi: 'बंधनेवाला साइडबार और सीमा मॉनिटर' }),
+      title: t({ en: 'Collapsible Sidebars & Limit Monitors', fr: 'Barres latÃ©rales repliables & Moniteurs de limites', ar: 'Ø§Ù„Ù‚ÙˆØ§Ø¦Ù… Ø§Ù„Ù‚Ø§Ø¨Ù„Ø© Ù„Ù„Ø·ÙŠ ÙˆÙ…Ø±Ø§Ù‚Ø¨Ø© Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø§Ø³ØªÙ‡Ù„Ø§Ùƒ', hi: 'à¤¬à¤‚à¤§à¤¨à¥‡à¤µà¤¾à¤²à¤¾ à¤¸à¤¾à¤‡à¤¡à¤¬à¤¾à¤° à¤”à¤° à¤¸à¥€à¤®à¤¾ à¤®à¥‰à¤¨à¤¿à¤Ÿà¤°' }),
       changes: [
-        t({ en: 'Implemented collapsible sidebar with icon-only hovers and tooltips.', fr: 'Implémentation d\'une barre latérale repliable avec survol d\'icônes uniquement et infobulles.', ar: 'تنفيذ شريط جانبي قابل للطي مع تلميحات للأيقونات.', hi: 'केवल आइकन होवर और टूलटिप्स के साथ बंधनेवाला साइडबार लागू किया गया।' }),
-        t({ en: 'Added settings progress bars for metered text, voice, and RAG usage.', fr: 'Ajout de barres de progression des paramètres pour l\'utilisation du texte, de la voix et du RAG.', ar: 'إضافة أشرطة قياس الاستهلاك للنصوص، دقائق الصوت، وأسئلة الـ RAG.', hi: 'मीटर्ड टेक्स्ट, वॉयस और आरएजी उपयोग के लिए सेटिंग प्रोग्रेस बार जोड़े गए।' }),
-        t({ en: 'Integrated employee approvals capacity blocks.', fr: 'Intégration de blocs de capacité pour les approbations des employés.', ar: 'دمج التحقق من السعة والحد الأقصى للموافقة على الموظفين.', hi: 'एकीकृत कर्मचारी अनुमोदन क्षमता ब्लॉक।' }),
+        t({ en: 'Implemented collapsible sidebar with icon-only hovers and tooltips.', fr: 'ImplÃ©mentation d\'une barre latÃ©rale repliable avec survol d\'icÃ´nes uniquement et infobulles.', ar: 'ØªÙ†ÙÙŠØ° Ø´Ø±ÙŠØ· Ø¬Ø§Ù†Ø¨ÙŠ Ù‚Ø§Ø¨Ù„ Ù„Ù„Ø·ÙŠ Ù…Ø¹ ØªÙ„Ù…ÙŠØ­Ø§Øª Ù„Ù„Ø£ÙŠÙ‚ÙˆÙ†Ø§Øª.', hi: 'à¤•à¥‡à¤µà¤² à¤†à¤‡à¤•à¤¨ à¤¹à¥‹à¤µà¤° à¤”à¤° à¤Ÿà¥‚à¤²à¤Ÿà¤¿à¤ªà¥à¤¸ à¤•à¥‡ à¤¸à¤¾à¤¥ à¤¬à¤‚à¤§à¤¨à¥‡à¤µà¤¾à¤²à¤¾ à¤¸à¤¾à¤‡à¤¡à¤¬à¤¾à¤° à¤²à¤¾à¤—à¥‚ à¤•à¤¿à¤¯à¤¾ à¤—à¤¯à¤¾à¥¤' }),
+        t({ en: 'Added settings progress bars for metered text, voice, and RAG usage.', fr: 'Ajout de barres de progression des paramÃ¨tres pour l\'utilisation du texte, de la voix et du RAG.', ar: 'Ø¥Ø¶Ø§ÙØ© Ø£Ø´Ø±Ø·Ø© Ù‚ÙŠØ§Ø³ Ø§Ù„Ø§Ø³ØªÙ‡Ù„Ø§Ùƒ Ù„Ù„Ù†ØµÙˆØµØŒ Ø¯Ù‚Ø§Ø¦Ù‚ Ø§Ù„ØµÙˆØªØŒ ÙˆØ£Ø³Ø¦Ù„Ø© Ø§Ù„Ù€ RAG.', hi: 'à¤®à¥€à¤Ÿà¤°à¥à¤¡ à¤Ÿà¥‡à¤•à¥à¤¸à¥à¤Ÿ, à¤µà¥‰à¤¯à¤¸ à¤”à¤° à¤†à¤°à¤à¤œà¥€ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¥‡ à¤²à¤¿à¤ à¤¸à¥‡à¤Ÿà¤¿à¤‚à¤— à¤ªà¥à¤°à¥‹à¤—à¥à¤°à¥‡à¤¸ à¤¬à¤¾à¤° à¤œà¥‹à¤¡à¤¼à¥‡ à¤—à¤à¥¤' }),
+        t({ en: 'Integrated employee approvals capacity blocks.', fr: 'IntÃ©gration de blocs de capacitÃ© pour les approbations des employÃ©s.', ar: 'Ø¯Ù…Ø¬ Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† Ø§Ù„Ø³Ø¹Ø© ÙˆØ§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰ Ù„Ù„Ù…ÙˆØ§ÙÙ‚Ø© Ø¹Ù„Ù‰ Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†.', hi: 'à¤à¤•à¥€à¤•à¥ƒà¤¤ à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¥€ à¤…à¤¨à¥à¤®à¥‹à¤¦à¤¨ à¤•à¥à¤·à¤®à¤¤à¤¾ à¤¬à¥à¤²à¥‰à¤•à¥¤' }),
       ],
     },
     {
       version: 'v1.1.0',
       date: 'June 29, 2026',
-      title: t({ en: 'Stripe Webhooks & Overage Logs', fr: 'Webhooks Stripe & Journaux de dépassement', ar: 'مدفوعات Stripe وسجلات التجاوز', hi: 'स्ट्राइप वेबहुक्स और ओवरएज लॉग्स' }),
+      title: t({ en: 'Stripe Webhooks & Overage Logs', fr: 'Webhooks Stripe & Journaux de dÃ©passement', ar: 'Ù…Ø¯ÙÙˆØ¹Ø§Øª Stripe ÙˆØ³Ø¬Ù„Ø§Øª Ø§Ù„ØªØ¬Ø§ÙˆØ²', hi: 'à¤¸à¥à¤Ÿà¥à¤°à¤¾à¤‡à¤ª à¤µà¥‡à¤¬à¤¹à¥à¤•à¥à¤¸ à¤”à¤° à¤“à¤µà¤°à¤à¤œ à¤²à¥‰à¤—à¥à¤¸' }),
       changes: [
-        t({ en: 'Configured automated Stripe Checkout triggers and billing callbacks.', fr: 'Configuration des déclencheurs Stripe Checkout automatisés et des rappels de facturation.', ar: 'تهيئة مدفوعات Stripe وبوابات التحقق التلقائي.', hi: 'स्वचालित स्ट्राइप चेकआउट ट्रिगर और बिलिंग कॉलबैक कॉन्फ़िगर किए गए।' }),
-        t({ en: 'Added operational logs CSV exporters.', fr: 'Ajout d\'exportateurs CSV pour les journaux opérationnels.', ar: 'إضافة أدوات تصدير سجلات التشغيل بصيغة CSV.', hi: 'परिचालन लॉग सीएसवी निर्यातक जोड़े गए।' }),
+        t({ en: 'Configured automated Stripe Checkout triggers and billing callbacks.', fr: 'Configuration des dÃ©clencheurs Stripe Checkout automatisÃ©s et des rappels de facturation.', ar: 'ØªÙ‡ÙŠØ¦Ø© Ù…Ø¯ÙÙˆØ¹Ø§Øª Stripe ÙˆØ¨ÙˆØ§Ø¨Ø§Øª Ø§Ù„ØªØ­Ù‚Ù‚ Ø§Ù„ØªÙ„Ù‚Ø§Ø¦ÙŠ.', hi: 'à¤¸à¥à¤µà¤šà¤¾à¤²à¤¿à¤¤ à¤¸à¥à¤Ÿà¥à¤°à¤¾à¤‡à¤ª à¤šà¥‡à¤•à¤†à¤‰à¤Ÿ à¤Ÿà¥à¤°à¤¿à¤—à¤° à¤”à¤° à¤¬à¤¿à¤²à¤¿à¤‚à¤— à¤•à¥‰à¤²à¤¬à¥ˆà¤• à¤•à¥‰à¤¨à¥à¤«à¤¼à¤¿à¤—à¤° à¤•à¤¿à¤ à¤—à¤à¥¤' }),
+        t({ en: 'Added operational logs CSV exporters.', fr: 'Ajout d\'exportateurs CSV pour les journaux opÃ©rationnels.', ar: 'Ø¥Ø¶Ø§ÙØ© Ø£Ø¯ÙˆØ§Øª ØªØµØ¯ÙŠØ± Ø³Ø¬Ù„Ø§Øª Ø§Ù„ØªØ´ØºÙŠÙ„ Ø¨ØµÙŠØºØ© CSV.', hi: 'à¤ªà¤°à¤¿à¤šà¤¾à¤²à¤¨ à¤²à¥‰à¤— à¤¸à¥€à¤à¤¸à¤µà¥€ à¤¨à¤¿à¤°à¥à¤¯à¤¾à¤¤à¤• à¤œà¥‹à¤¡à¤¼à¥‡ à¤—à¤à¥¤' }),
       ],
     },
   ];
 
   return (
-    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <main className="flex-1 max-w-3xl mx-auto py-24 px-6 w-full space-y-12 animate-fadeIn">
         {/* Header */}
         <div>
-          <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Platform Updates', fr: 'Mises à jour de la plateforme', ar: 'تحديثات المنصة', hi: 'प्लेटफ़ॉर्म अपडेट' })}</span>
-          <h1 className="text-3xl font-extrabold text-[#141F33] tracking-tight mt-2">
-            {t({ en: 'System Changelog', fr: 'Journal des modifications du système', ar: 'سجل التغييرات وتحديثات النظام', hi: 'सिस्टम चेंजलॉग' })}
+          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Platform Updates', fr: 'Mises Ã  jour de la plateforme', ar: 'ØªØ­Ø¯ÙŠØ«Ø§Øª Ø§Ù„Ù…Ù†ØµØ©', hi: 'à¤ªà¥à¤²à¥‡à¤Ÿà¤«à¤¼à¥‰à¤°à¥à¤® à¤…à¤ªà¤¡à¥‡à¤Ÿ' })}</span>
+          <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
+            {t({ en: 'System Changelog', fr: 'Journal des modifications du systÃ¨me', ar: 'Ø³Ø¬Ù„ Ø§Ù„ØªØºÙŠÙŠØ±Ø§Øª ÙˆØªØ­Ø¯ÙŠØ«Ø§Øª Ø§Ù„Ù†Ø¸Ø§Ù…', hi: 'à¤¸à¤¿à¤¸à¥à¤Ÿà¤® à¤šà¥‡à¤‚à¤œà¤²à¥‰à¤—' })}
           </h1>
-          <p className="text-xs font-semibold text-[#141F33] mt-2">
-            {t({ en: 'Follow our development path as we roll out new B2B private AI features.', fr: 'Suivez notre parcours de développement alors que nous déployons de nouvelles fonctionnalités d\'IA privée B2B.', ar: 'تابع مسار التطوير الخاص بنا بينما نطلق ميزات الذكاء الاصطناعي الخاص بالشركات.', hi: 'हमारे विकास पथ का अनुसरण करें क्योंकि हम नई बी2बी निजी एआई सुविधाओं को पेश कर रहे हैं।' })}
+          <p className="text-xs font-semibold text-primary mt-2">
+            {t({ en: 'Follow our development path as we roll out new B2B private AI features.', fr: 'Suivez notre parcours de dÃ©veloppement alors que nous dÃ©ployons de nouvelles fonctionnalitÃ©s d\'IA privÃ©e B2B.', ar: 'ØªØ§Ø¨Ø¹ Ù…Ø³Ø§Ø± Ø§Ù„ØªØ·ÙˆÙŠØ± Ø§Ù„Ø®Ø§Øµ Ø¨Ù†Ø§ Ø¨ÙŠÙ†Ù…Ø§ Ù†Ø·Ù„Ù‚ Ù…ÙŠØ²Ø§Øª Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ø§Ù„Ø®Ø§Øµ Ø¨Ø§Ù„Ø´Ø±ÙƒØ§Øª.', hi: 'à¤¹à¤®à¤¾à¤°à¥‡ à¤µà¤¿à¤•à¤¾à¤¸ à¤ªà¤¥ à¤•à¤¾ à¤…à¤¨à¥à¤¸à¤°à¤£ à¤•à¤°à¥‡à¤‚ à¤•à¥à¤¯à¥‹à¤‚à¤•à¤¿ à¤¹à¤® à¤¨à¤ˆ à¤¬à¥€2à¤¬à¥€ à¤¨à¤¿à¤œà¥€ à¤à¤†à¤ˆ à¤¸à¥à¤µà¤¿à¤§à¤¾à¤“à¤‚ à¤•à¥‹ à¤ªà¥‡à¤¶ à¤•à¤° à¤°à¤¹à¥‡ à¤¹à¥ˆà¤‚à¥¤' })}
           </p>
         </div>
 
         {/* Changelog Timeline */}
-        <div className="space-y-12 relative border-s border-[#141F33]/10 ps-6 md:ps-10">
+        <div className="space-y-12 relative border-s border-primary/10 ps-6 md:ps-10">
           {logs.map((log, idx) => (
             <div key={idx} className="relative space-y-3">
               
               {/* Timeline Bullet */}
-              <div className="absolute -inset-inline-start-[31px] md:-inset-inline-start-[47px] top-1.5 h-4 w-4 rounded-full bg-[#141F33] border-4 border-[#F8F9FB] shadow-sm" />
+              <div className="absolute -inset-inline-start-[31px] md:-inset-inline-start-[47px] top-1.5 h-4 w-4 rounded-full bg-primary border-4 border-surface shadow-sm" />
 
               <div className="flex items-center gap-4">
-                <span className="text-[10px] font-extrabold uppercase bg-[#F8F9FB] text-[#2A5CFF] px-2.5 py-0.5 rounded-full border border-[#141F33]/10">
+                <span className="text-[10px] font-extrabold uppercase bg-surface text-accent px-2.5 py-0.5 rounded-full border border-primary/10">
                   {log.version}
                 </span>
-                <span className="text-xs text-[#141F33] font-bold">{log.date}</span>
+                <span className="text-xs text-primary font-bold">{log.date}</span>
               </div>
 
-              <h3 className="text-lg font-extrabold text-[#141F33]">{log.title}</h3>
+              <h3 className="text-lg font-extrabold text-primary">{log.title}</h3>
               
-              <ul className="list-disc pl-5 text-xs font-semibold text-[#141F33] space-y-2 leading-relaxed">
+              <ul className="list-disc ps-5 text-xs font-semibold text-primary space-y-2 leading-relaxed">
                 {log.changes.map((change, cIdx) => (
                   <li key={cIdx}>{change}</li>
                 ))}

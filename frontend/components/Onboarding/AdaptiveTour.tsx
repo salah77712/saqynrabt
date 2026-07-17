@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useLocale } from '../../app/providers';
@@ -8,9 +8,9 @@ export function AdaptiveTour() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [steps, setSteps] = useState([
-    { id: '1', label: t({ en: 'Configure system prompt templates', ar: 'تهيئة قوالب نصوص النظام' }), checked: true },
-    { id: '2', label: t({ en: 'Upload policy files to Documents hub', ar: 'تحميل ملفات السياسات إلى مركز المستندات' }), checked: false },
-    { id: '3', label: t({ en: 'Simulate API Call automation queue', ar: 'اختبار طابور أتمتة المكالمات' }), checked: false },
+    { id: '1', label: t({ en: 'Configure system prompt templates', ar: 'ØªÙ‡ÙŠØ¦Ø© Ù‚ÙˆØ§Ù„Ø¨ Ù†ØµÙˆØµ Ø§Ù„Ù†Ø¸Ø§Ù…' }), checked: true },
+    { id: '2', label: t({ en: 'Upload policy files to Documents hub', ar: 'ØªØ­Ù…ÙŠÙ„ Ù…Ù„ÙØ§Øª Ø§Ù„Ø³ÙŠØ§Ø³Ø§Øª Ø¥Ù„Ù‰ Ù…Ø±ÙƒØ² Ø§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª' }), checked: false },
+    { id: '3', label: t({ en: 'Simulate API Call automation queue', ar: 'Ø§Ø®ØªØ¨Ø§Ø± Ø·Ø§Ø¨ÙˆØ± Ø£ØªÙ…ØªØ© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª' }), checked: false },
   ]);
 
   const handleToggle = (id: string) => {
@@ -23,30 +23,30 @@ export function AdaptiveTour() {
   const progressPct = Math.round((completedCount / steps.length) * 100);
 
   return (
-    <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm space-y-4">
+    <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-4">
       
       <div>
-        <h3 className="text-xs font-extrabold text-[#141F33] uppercase tracking-wider">{t({ en: 'Onboarding Checklist Progress', ar: 'تقدم قائمة متطلبات التهيئة' })}</h3>
+        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider">{t({ en: 'Onboarding Checklist Progress', ar: 'ØªÙ‚Ø¯Ù… Ù‚Ø§Ø¦Ù…Ø© Ù…ØªØ·Ù„Ø¨Ø§Øª Ø§Ù„ØªÙ‡ÙŠØ¦Ø©' })}</h3>
         
         {/* Progress Bar */}
         <div className="flex items-center gap-4 mt-2">
-          <div className="flex-1 bg-[#F8F9FB] rounded-full h-2 overflow-hidden">
-            <div className="bg-[#141F33] h-full transition-all duration-500" style={{ width: `${progressPct}%` }} />
+          <div className="flex-1 bg-surface rounded-full h-2 overflow-hidden">
+            <div className="bg-primary h-full transition-all duration-500" style={{ width: `${progressPct}%` }} />
           </div>
-          <span className="text-[10px] font-extrabold text-[#141F33]">{progressPct}%</span>
+          <span className="text-[10px] font-extrabold text-primary">{progressPct}%</span>
         </div>
       </div>
 
       <div className="space-y-2 text-xs font-semibold">
         {steps.map((step) => (
-          <label key={step.id} className="flex items-center gap-4 cursor-pointer p-2.5 hover:bg-[#141F33] rounded-xl transition-colors">
+          <label key={step.id} className="flex items-center gap-4 cursor-pointer p-2.5 hover:bg-primary rounded-xl transition-colors">
             <input
               type="checkbox"
               checked={step.checked}
               onChange={() => handleToggle(step.id)}
-              className="h-4 w-4 rounded border-[#141F33]/30 text-[#141F33] focus:ring-2 focus:ring-royal"
+              className="h-4 w-4 rounded border-primary/30 text-primary focus:ring-2 focus:ring-royal"
             />
-            <span className={step.checked ? 'line-through  font-medium' : 'text-[#141F33]'}>
+            <span className={step.checked ? 'line-through  font-medium' : 'text-primary'}>
               {step.label}
             </span>
           </label>

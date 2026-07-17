@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { Badge } from '../ui/Badge';
 
 interface RequestItem {
@@ -16,10 +16,10 @@ interface AutomationQueueProps {
 
 export function AutomationQueue({ requests, onSelect }: AutomationQueueProps) {
   return (
-<div className="overflow-x-auto w-full border border-[#F8F9FB] dark:border-[#141F33] rounded-xl bg-[#F8F9FB] dark:bg-[#141F33] shadow-sm">
+<div className="overflow-x-auto w-full border border-surface dark:border-primary rounded-xl bg-surface dark:bg-primary shadow-sm">
       <table className="w-full text-left border-collapse">
         <thead>
-<tr className="bg-[#F8F9FB] dark:bg-[#141F33] border-b text-[10px] font-black text-[#141F33] uppercase tracking-wider">
+<tr className="bg-surface dark:bg-primary border-b text-[10px] font-black text-primary uppercase tracking-wider">
             <th className="p-4">Customer</th>
             <th className="p-4">Request Type</th>
             <th className="p-4">Received</th>
@@ -35,7 +35,7 @@ export function AutomationQueue({ requests, onSelect }: AutomationQueueProps) {
             >
               <td className="p-4 text-xs font-bold ">{req.customer}</td>
               <td className="p-4 text-xs font-semibold ">{req.type}</td>
-              <td className="p-4 text-xs text-[#141F33]">{req.time}</td>
+              <td className="p-4 text-xs text-primary">{req.time}</td>
               <td className="p-4">
                 <Badge variant={req.status === 'completed' ? 'success' : req.status === 'assigned' ? 'primary' : 'danger'}>
                   {req.status}

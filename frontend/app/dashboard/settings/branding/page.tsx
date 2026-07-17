@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '@clerk/nextjs';
@@ -109,20 +109,20 @@ export default function BrandingSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Branding', ar: '??????? ?????? ??????? ??????' })}</h1>
-        <p className="text-xs text-[#141F33]/60 font-medium mt-0.5">{t({ en: 'Your logo, your colors, your AI assistant\'s look.', ar: '????? ????????? ??????? ????????? ????? ??????? ?????.' })}</p>
+        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Branding', ar: '??????? ?????? ??????? ??????' })}</h1>
+        <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'Your logo, your colors, your AI assistant\'s look.', ar: '????? ????????? ??????? ????????? ????? ??????? ?????.' })}</p>
       </div>
 
       {loading ? (
         <div className="py-12 flex justify-center">
-          <span className="h-8 w-8 rounded-full border-4 border-[#141F33]/10 border-t-[#141F33] animate-spin" />
+          <span className="h-8 w-8 rounded-full border-4 border-primary/10 border-t-[#141F33] animate-spin" />
         </div>
       ) : (
-        <form ref={formRef} onSubmit={handleSave} className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm flex flex-col gap-8">
+        <form ref={formRef} onSubmit={handleSave} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col gap-8">
           
           {/* Logo URL */}
           <div>
-            <label htmlFor="logo_url" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Company Logo Image URL', ar: '???? ???? ???? ??????' })}</label>
+            <label htmlFor="logo_url" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Company Logo Image URL', ar: '???? ???? ???? ??????' })}</label>
             <input
               type="text"
               id="logo_url"
@@ -130,14 +130,14 @@ export default function BrandingSettingsPage() {
               value={branding.logo_url}
               onChange={handleChange}
               placeholder="https://alsafa.qa/logo.png"
-              className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
+              className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             />
           </div>
 
           <div className="grid grid-cols-2 gap-8">
             {/* Primary color */}
             <div>
-              <label htmlFor="primary_color_hex" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Primary Hex Color', ar: '????? ??????? (Hex)' })}</label>
+              <label htmlFor="primary_color_hex" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Primary Hex Color', ar: '????? ??????? (Hex)' })}</label>
               <div className="flex gap-3">
                 <input
                   type="color"
@@ -151,14 +151,14 @@ export default function BrandingSettingsPage() {
                   name="primary_color_hex"
                   value={branding.primary_color_hex}
                   onChange={handleChange}
-                  className="flex-1 min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold"
+                  className="flex-1 min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-mono font-bold"
                 />
               </div>
             </div>
 
             {/* Secondary Color */}
             <div>
-              <label htmlFor="secondary_color_hex" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Secondary Hex Color', ar: '????? ??????? (Hex)' })}</label>
+              <label htmlFor="secondary_color_hex" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Secondary Hex Color', ar: '????? ??????? (Hex)' })}</label>
               <div className="flex gap-3">
                 <input
                   type="color"
@@ -172,19 +172,19 @@ export default function BrandingSettingsPage() {
                   name="secondary_color_hex"
                   value={branding.secondary_color_hex}
                   onChange={handleChange}
-                  className="flex-1 min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-mono font-bold"
+                  className="flex-1 min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-mono font-bold"
                 />
               </div>
             </div>
           </div>
 
           {/* AI Persona */}
-          <div className="pt-4 border-t border-[#141F33]/10 space-y-4">
-            <h3 className="text-xs font-extrabold text-[#141F33]/60 uppercase tracking-wider">{t({ en: 'AI Persona Config', ar: '??????? ????? ???????' })}</h3>
+          <div className="pt-4 border-t border-primary/10 space-y-4">
+            <h3 className="text-xs font-extrabold text-primary/60 uppercase tracking-wider">{t({ en: 'AI Persona Config', ar: '??????? ????? ???????' })}</h3>
 
             <div className="grid grid-cols-2 gap-8">
               <div>
-                <label htmlFor="chat_bot_name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'AI Assistant Name', ar: '??? ??????? ?????' })}</label>
+                <label htmlFor="chat_bot_name" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'AI Assistant Name', ar: '??? ??????? ?????' })}</label>
                 <input
                   type="text"
                   id="chat_bot_name"
@@ -192,12 +192,12 @@ export default function BrandingSettingsPage() {
                   value={branding.chat_bot_name}
                   onChange={handleChange}
                   placeholder="SAQYN Assistant"
-                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold"
+                  className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold"
                 />
               </div>
 
               <div>
-                <label htmlFor="chat_bot_avatar_url" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Assistant Avatar URL', ar: '???? ???? ???????' })}</label>
+                <label htmlFor="chat_bot_avatar_url" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Assistant Avatar URL', ar: '???? ???? ???????' })}</label>
                 <input
                   type="text"
                   id="chat_bot_avatar_url"
@@ -205,7 +205,7 @@ export default function BrandingSettingsPage() {
                   value={branding.chat_bot_avatar_url}
                   onChange={handleChange}
                   placeholder="https://alsafa.qa/avatar.png"
-                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold"
+                  className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold"
                 />
               </div>
             </div>
@@ -214,7 +214,7 @@ export default function BrandingSettingsPage() {
           <button
             type="submit"
             disabled={saving}
-            className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 px-6 rounded-xl text-xs hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] flex items-center justify-center disabled:opacity-40"
+            className="w-full bg-primary text-surface font-bold py-3 px-6 rounded-xl text-xs hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] flex items-center justify-center disabled:opacity-40"
           >
             {saving ? t({ en: 'Updating...', ar: '???? ?????...' }) : t({ en: 'Save Branding Options', ar: '??? ??????? ?????? ???????' })}
           </button>

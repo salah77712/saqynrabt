@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { Card } from '@/components/shadcn/card';
@@ -23,25 +23,25 @@ setTimeout(() => {
 };
 
 return (
-<div className="fixed bottom-6 right-6 z-50">
+<div className="fixed bottom-6 end-6 z-50">
 {!isOpen ? (
 <button
 onClick={() => setIsOpen(true)}
-className="bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow-2xl transition-all duration-300 min-h-[44px] hover:shadow-md hover:scale-[1.02] active:scale-95"
+className="bg-primary hover:bg-primary text-surface font-bold text-xs uppercase tracking-wider px-5 py-3 rounded-xl shadow-2xl transition-all duration-300 min-h-[44px] hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 Feedback
 </button>
 ) : (
-<Card className="w-80 shadow-2xl border border-[#141F33]/10 dark:border-[#F8F9FB]/10 p-8 animate-slideUp">
+<Card className="w-80 shadow-2xl border border-primary/10 dark:border-surface/10 p-8 animate-slideUp">
 <div className="flex justify-between items-center mb-4">
-<h4 className="font-bold text-[#141F33] dark:text-[#F8F9FB] text-sm">Rate Your Experience</h4>
-<button onClick={() => setIsOpen(false)} className="text-[#141F33]/40 dark:text-[#F8F9FB]/40 hover:text-[#141F33] dark:hover:text-[#2A5CFF] min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors">
+<h4 className="font-bold text-primary dark:text-surface text-sm">Rate Your Experience</h4>
+<button onClick={() => setIsOpen(false)} className="text-primary/40 dark:text-surface/40 hover:text-primary dark:hover:text-accent min-h-[44px] min-w-[44px] flex items-center justify-center transition-colors">
 <X className="w-4 h-4" />
 </button>
 </div>
 
 {submitted ? (
-<p className="text-xs text-[#2A5CFF] font-bold text-center py-4">Thank you for your feedback!</p>
+<p className="text-xs text-accent font-bold text-center py-4">Thank you for your feedback!</p>
 ) : (
 <div className="space-y-4">
 <div className="flex justify-around">
@@ -50,7 +50,7 @@ Feedback
 key={star}
 onClick={() => setRating(star)}
 className={`transition-transform hover:scale-125 ${
-rating && rating >= star ? 'text-[#2A5CFF]' : 'text-[#141F33]/20 dark:text-[#F8F9FB]/20'
+rating && rating >= star ? 'text-accent' : 'text-primary/20 dark:text-surface/20'
 }`}>
 <Star className="w-5 h-5" />
 </button>
@@ -60,7 +60,7 @@ rating && rating >= star ? 'text-[#2A5CFF]' : 'text-[#141F33]/20 dark:text-[#F8F
 value={comment}
 onChange={(e) => setComment(e.target.value)}
 placeholder="Any suggestions or requests?"
-className="w-full text-xs p-2.5 border border-[#141F33]/10 dark:border-[#F8F9FB]/10 rounded-xl focus:ring-1 focus:ring-2 focus:ring-royal focus:outline-none dark:bg-[#141F33]"
+className="w-full text-xs p-2.5 border border-primary/10 dark:border-surface/10 rounded-xl focus:ring-1 focus:ring-2 focus:ring-royal focus:outline-none dark:bg-primary"
 rows={3}
 />
 <Button variant="default" className="w-full" onClick={handleSubmit} disabled={!rating}>

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import Link from 'next/link';
@@ -20,7 +20,7 @@ export function BottomNav() {
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 h-16  border-t  flex justify-around items-center px-4 md:hidden shadow-lg">
+    <nav className="fixed bottom-0 start-0 end-0 z-50 h-16  border-t  flex justify-around items-center px-4 md:hidden shadow-lg">
       {navItems.map((item) => {
         const isActive = pathname === item.path || (item.path !== '/dashboard' && pathname.startsWith(item.path));
         return (

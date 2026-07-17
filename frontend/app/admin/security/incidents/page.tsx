@@ -28,19 +28,19 @@ interface Incident {
 }
 
 const severityColors: Record<string, string> = {
-  critical: 'bg-red-50 text-red-700 border border-red-200',
-  high: 'bg-orange-50 text-orange-700 border border-orange-200',
-  medium: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
-  low: 'bg-blue-50 text-blue-700 border border-blue-200',
+  critical: 'bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800',
+  high: 'bg-orange-50 dark:bg-orange-950 text-orange-700 dark:text-orange-400 border border-orange-200 dark:border-orange-800',
+  medium: 'bg-yellow-50 dark:bg-yellow-950 text-yellow-700 dark:text-yellow-400 border border-yellow-200 dark:border-yellow-800',
+  low: 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800',
 };
 
 const statusColors: Record<string, string> = {
-  new: 'bg-blue-50 text-blue-700 border border-blue-200',
-  investigation: 'bg-purple-50 text-purple-700 border border-purple-200',
-  containment: 'bg-red-50 text-red-700 border border-red-200',
-  eradication: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
-  recovery: 'bg-green-50 text-green-700 border border-green-200',
-  closed: 'bg-gray-50 text-[#141F33]/40 border border-gray-200',
+  new: 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800',
+  investigation: 'bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-400 border border-purple-200 dark:border-purple-800',
+  containment: 'bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800',
+  eradication: 'bg-yellow-50 dark:bg-yellow-950 text-yellow-700 dark:text-yellow-400 border border-yellow-200 dark:border-yellow-800',
+  recovery: 'bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800',
+  closed: 'bg-gray-50 dark:bg-primary text-primary/40 dark:text-surface/40 border border-gray-200 dark:border-surface/20',
 };
 
 export default function AdminIncidentsPage() {
@@ -128,46 +128,46 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
     <div className="max-w-6xl mx-auto p-8 space-y-6 animate-fadeIn">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-extrabold text-[#141F33] flex items-center gap-3">
+          <h1 className="text-xl font-extrabold text-primary flex items-center gap-3">
             <ShieldSvg />{t({ en: 'Security Incidents', ar: 'حوادث الأمن السيبراني' })}
           </h1>
-          <p className="text-xs text-[#141F33] font-medium mt-1">{t({ en: 'Incident management for Qatari Law No. 13 of 2016 compliance', ar: 'إدارة الحوادث وفقاً للقانون القطري رقم 13 لسنة 2016' })}</p>
+          <p className="text-xs text-primary font-medium mt-1">{t({ en: 'Incident management for Qatari Law No. 13 of 2016 compliance', ar: 'إدارة الحوادث وفقاً للقانون القطري رقم 13 لسنة 2016' })}</p>
         </div>
         <button
           type="button"
           onClick={() => setShowCreate(!showCreate)}
-          className="flex items-center gap-3 bg-[#141F33] text-[#F8F9FB] text-xs font-bold px-6 py-3 rounded-xl min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+          className="flex items-center gap-3 bg-primary text-surface text-xs font-bold px-6 py-3 rounded-xl min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
           <PlusSvg />{t({ en: 'New Incident', ar: 'حادث جديد' })}
         </button>
       </div>
 
       {error && (
-        <div className="flex items-center gap-3 text-[#141F33] text-xs bg-[#F8F9FB] p-3 rounded-xl border border-[#141F33]/10">
+        <div className="flex items-center gap-3 text-primary text-xs bg-surface p-3 rounded-xl border border-primary/10">
           <AlertTriangleSvg /> {error}
         </div>
       )}
 
       {showCreate && (
-        <div className="bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 p-8 space-y-4">
-          <h2 className="text-sm font-bold text-[#141F33]">{t({ en: 'Log New Incident', ar: 'تسجيل حادث جديد' })}</h2>
+        <div className="bg-surface rounded-xl border border-primary/10 p-8 space-y-4">
+          <h2 className="text-sm font-bold text-primary">{t({ en: 'Log New Incident', ar: 'تسجيل حادث جديد' })}</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <input
               placeholder={t({ en: 'Incident Title', ar: 'عنوان الحادث' })}
               value={newIncident.title}
               onChange={(e) => setNewIncident({ ...newIncident, title: e.target.value })}
-              className="col-span-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
+              className="col-span-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             />
             <textarea
               placeholder={t({ en: 'Description', ar: 'الوصف' })}
               value={newIncident.description}
               onChange={(e) => setNewIncident({ ...newIncident, description: e.target.value })}
-              className="col-span-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
+              className="col-span-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             />
             <select
               value={newIncident.incidentType}
               onChange={(e) => setNewIncident({ ...newIncident, incidentType: e.target.value as any })}
-              className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
+              className="min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             >
               <option value="data_breach">{t({ en: 'Data Breach', ar: 'خرق بيانات' })}</option>
               <option value="system_outage">{t({ en: 'System Outage', ar: 'انقطاع النظام' })}</option>
@@ -178,7 +178,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
             <select
               value={newIncident.severity}
               onChange={(e) => setNewIncident({ ...newIncident, severity: e.target.value as any })}
-              className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
+              className="min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             >
               <option value="critical">{t({ en: 'Critical', ar: 'حرج' })}</option>
               <option value="high">{t({ en: 'High', ar: 'عالي' })}</option>
@@ -189,21 +189,21 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
               placeholder={t({ en: 'Affected Resources', ar: 'الموارد المتأثرة' })}
               value={newIncident.affectedResources}
               onChange={(e) => setNewIncident({ ...newIncident, affectedResources: e.target.value })}
-              className="min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
+              className="min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
             />
           </div>
           <div className="flex gap-3 justify-end">
             <button
               type="button"
               onClick={() => setShowCreate(false)}
-              className="px-6 py-3 rounded-xl border border-[#141F33]/10 text-xs font-bold text-[#141F33]/70 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 hover:bg-[#141F33]"
+              className="px-6 py-3 rounded-xl border border-primary/10 text-xs font-bold text-primary/70 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 hover:bg-primary"
             >
               {t({ en: 'Cancel', ar: 'إلغاء' })}
             </button>
             <button
               type="button"
               onClick={handleCreate}
-              className="px-6 py-3 rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+              className="px-6 py-3 rounded-xl bg-primary text-surface text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
             >
               {t({ en: 'Create Incident', ar: 'إنشاء الحادث' })}
             </button>
@@ -213,52 +213,52 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
 
       {/* Search Input */}
       <div className="relative">
-        <span className="absolute inset-inline-start-3 top-1/2 -translate-y-1/2 text-[#141F33]"><SearchSvg /></span>
+        <span className="absolute inset-inline-start-3 top-1/2 -translate-y-1/2 text-primary"><SearchSvg /></span>
         <input
           placeholder={t({ en: 'Filter incidents...', ar: 'تصفية الحوادث...' })}
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           aria-label={t({ en: 'Filter incidents', ar: 'تصفية الحوادث' })}
-          className="min-h-[44px] w-full ps-10 pe-4 rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal shadow-sm"
+          className="min-h-[44px] w-full ps-10 pe-4 rounded-xl border border-primary/10 bg-surface text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal shadow-sm"
         />
       </div>
 
       {loading ? (
         <div className="flex justify-center py-12"><LoaderSvg /></div>
       ) : filteredIncidents.length === 0 ? (
-        <div className="text-center py-12 text-xs text-[#141F33]/70">{t({ en: 'No incidents found', ar: 'لا توجد حوادث' })}</div>
+        <div className="text-center py-12 text-xs text-primary/70">{t({ en: 'No incidents found', ar: 'لا توجد حوادث' })}</div>
       ) : (
         <div className="space-y-3">
           {filteredIncidents.map((inc) => (
-            <div key={inc.id} className="bg-[#F8F9FB] rounded-xl border border-[#141F33]/10 overflow-hidden">
+            <div key={inc.id} className="bg-surface rounded-xl border border-primary/10 overflow-hidden">
               <button
                 type="button"
                 onClick={() => setExpandedId(expandedId === inc.id ? null : inc.id)}
-                className="w-full flex items-center justify-between p-4 hover:bg-[#141F33] transition-colors text-left"
+                className="w-full flex items-center justify-between p-4 hover:bg-primary transition-colors text-left"
               >
                 <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${severityColors[inc.severity] || 'bg-gray-50 text-[#141F33] border border-gray-200'}`}>
+                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${severityColors[inc.severity] || 'bg-gray-50 dark:bg-primary text-primary dark:text-surface border border-gray-200 dark:border-surface/20'}`}>
                     {inc.severity}
                   </span>
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${statusColors[inc.status] || 'bg-gray-50 text-[#141F33] border border-gray-200'}`}>
+                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${statusColors[inc.status] || 'bg-gray-50 dark:bg-primary text-primary dark:text-surface border border-gray-200 dark:border-surface/20'}`}>
                     {inc.status}
                   </span>
-                  <span className="text-xs font-medium text-[#141F33] truncate">{inc.title}</span>
-                  <span className="text-[10px] text-[#141F33]/70 uppercase">{inc.incident_type.replace('_', ' ')}</span>
+                  <span className="text-xs font-medium text-primary truncate">{inc.title}</span>
+                  <span className="text-[10px] text-primary/70 uppercase">{inc.incident_type.replace('_', ' ')}</span>
                 </div>
                 <div className="flex items-center gap-4 shrink-0">
-                  <span className="text-[10px] text-[#141F33]/70">{new Date(inc.created_at).toLocaleDateString()}</span>
+                  <span className="text-[10px] text-primary/70">{new Date(inc.created_at).toLocaleDateString()}</span>
                   {expandedId === inc.id ? <ChevronUpSvg /> : <ChevronDownSvg />}
                 </div>
               </button>
 
               {expandedId === inc.id && (
-                <div className="px-4 pb-4 border-t border-[#141F33]/10 pt-3 space-y-3">
-                  <p className="text-xs text-[#141F33]/70">{inc.description}</p>
+                <div className="px-4 pb-4 border-t border-primary/10 pt-3 space-y-3">
+                  <p className="text-xs text-primary/70">{inc.description}</p>
                   {inc.affected_resources && (
-                    <p className="text-xs text-[#141F33]/70"><span className="font-bold">{t({ en: 'Affected:', ar: 'متأثر:' })}</span> {inc.affected_resources}</p>
+                    <p className="text-xs text-primary/70"><span className="font-bold">{t({ en: 'Affected:', ar: 'متأثر:' })}</span> {inc.affected_resources}</p>
                   )}
-                  <div className="flex items-center gap-3 text-[10px] text-[#141F33]/70">
+                  <div className="flex items-center gap-3 text-[10px] text-primary/70">
                     <span>{t({ en: 'Reported by:', ar: 'أبلغ عن:' })} {inc.reported_by || 'N/A'}</span>
                     <span>{t({ en: 'Assigned to:', ar: 'مسند إلى:' })} {inc.assigned_to || 'Unassigned'}</span>
                   </div>
@@ -270,8 +270,8 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
                         onClick={() => handleStatusUpdate(inc.id, s)}
                         className={`px-2.5 py-1.5 rounded-xl text-[10px] font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
                           inc.status === s
-                            ? 'bg-[#141F33] text-[#F8F9FB]'
-                            : 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 hover:bg-[#141F33]'
+                            ? 'bg-primary text-surface'
+                            : 'bg-surface text-primary border border-primary/10 hover:bg-primary'
                         }`}
                       >
                         {s}

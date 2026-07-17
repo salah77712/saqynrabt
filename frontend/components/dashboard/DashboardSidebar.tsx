@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import Link from 'next/link';
@@ -26,39 +26,39 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
-    clientPortal: { en: 'Client Portal', ar: 'بوابة العميل' },
-    sandbox: { en: 'Sandbox', ar: 'وضع الرمل' },
-    demo: { en: 'Demo', ar: 'عرض توضيحي' },
-    exit: { en: 'Exit', ar: 'خروج' },
-    activeClient: { en: 'Active Client Admin', ar: 'مسؤول العميل النشط' },
+    clientPortal: { en: 'Client Portal', ar: 'Ø¨ÙˆØ§Ø¨Ø© Ø§Ù„Ø¹Ù…ÙŠÙ„' },
+    sandbox: { en: 'Sandbox', ar: 'ÙˆØ¶Ø¹ Ø§Ù„Ø±Ù…Ù„' },
+    demo: { en: 'Demo', ar: 'Ø¹Ø±Ø¶ ØªÙˆØ¶ÙŠØ­ÙŠ' },
+    exit: { en: 'Exit', ar: 'Ø®Ø±ÙˆØ¬' },
+    activeClient: { en: 'Active Client Admin', ar: 'Ù…Ø³Ø¤ÙˆÙ„ Ø§Ù„Ø¹Ù…ÙŠÙ„ Ø§Ù„Ù†Ø´Ø·' },
   };
 
   return (
-    <aside className={`fixed inset-y-0 left-0 z-50 bg-[#F8F9FB] border-r border-[#141F33]/10 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static ${
+    <aside className={`fixed inset-y-0 start-0 z-50 bg-surface border-e border-primary/10 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static ${
       isCollapsed ? 'md:w-20' : 'md:w-64'
     } ${
       isSidebarOpen
         ? locale === 'ar'
-          ? 'translate-x-0 right-0 left-auto w-64'
+          ? 'translate-x-0 end-0 start-auto w-64'
           : 'translate-x-0 w-64'
         : locale === 'ar'
-          ? 'translate-x-full right-0 left-auto md:translate-x-0'
+          ? 'translate-x-full end-0 start-auto md:translate-x-0'
           : '-translate-x-full md:translate-x-0'
     }`}>
       <div className="flex flex-col overflow-y-auto flex-1">
-        <div className="flex items-center justify-between px-6 py-6 border-b border-[#F8F9FB] min-h-[80px]">
+        <div className="flex items-center justify-between px-6 py-6 border-b border-surface min-h-[80px]">
           <Link href="/" className="flex flex-col items-start gap-0.5 min-w-0">
-            <span className={`text-[#141F33] font-extrabold tracking-tight transition-colors hover:text-[#2A5CFF] truncate ${
+            <span className={`text-primary font-extrabold tracking-tight transition-colors hover:text-accent truncate ${
               isCollapsed ? 'text-sm' : 'text-xl'
             }`}>
               {isCollapsed ? 'SR' : 'SAQYN RABT'}
             </span>
             {!isCollapsed && (
-              <span className="text-[9px] uppercase tracking-[0.15em] text-[#141F33] font-bold truncate">{t(dashboardContent.clientPortal)}</span>
+              <span className="text-[9px] uppercase tracking-[0.15em] text-primary font-bold truncate">{t(dashboardContent.clientPortal)}</span>
             )}
           </Link>
           {mockMode && !isCollapsed && (
-            <span className="rounded-full bg-[#141F33] px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-widest text-[#141F33] border border-[#141F33]/20 shrink-0">
+            <span className="rounded-full bg-primary px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-widest text-primary border border-primary/20 shrink-0">
               {t(dashboardContent.sandbox)}
             </span>
           )}
@@ -77,8 +77,8 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                   isCollapsed ? 'justify-center px-0' : 'px-4 gap-4.5'
                 } ${
                   isActive
-? 'bg-[#141F33] border-s-4 border-[#141F33] text-[#141F33]'
-: 'border-s-4 border-transparent text-[#141F33] hover:bg-[#141F33] hover:text-[#141F33]'
+? 'bg-primary border-s-4 border-primary text-primary'
+: 'border-s-4 border-transparent text-primary hover:bg-primary hover:text-primary'
                 }`}
                 style={{ minHeight: '44px' }}
               >
@@ -86,8 +86,8 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                 {!isCollapsed && <span className="truncate">{t(item.name)}</span>}
 
                 {item.badge && pendingCount > 0 && (
-                  <span className={`absolute bg-[#141F33] text-[#F8F9FB] rounded-full text-[9px] font-extrabold flex items-center justify-center ${
-                    isCollapsed ? '-top-1 -right-1 h-4 w-4' : 'right-4 px-2 py-0.5'
+                  <span className={`absolute bg-primary text-surface rounded-full text-[9px] font-extrabold flex items-center justify-center ${
+                    isCollapsed ? '-top-1 -end-1 h-4 w-4' : 'end-4 px-2 py-0.5'
                   }`}>
                     {pendingCount}
                   </span>
@@ -98,31 +98,31 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
         </nav>
       </div>
 
-      <div className="hidden md:flex justify-end px-4 py-2 border-t border-[#141F33]/10">
+      <div className="hidden md:flex justify-end px-4 py-2 border-t border-primary/10">
         <button
           type="button"
           onClick={onToggleCollapse}
-className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justify-center text-[#141F33] hover:text-[#141F33] hover:bg-[#141F33] transition-colors min-h-[44px] min-w-[44px]"
+className="h-8 w-8 rounded-lg border border-primary/10 flex items-center justify-center text-primary hover:text-primary hover:bg-primary transition-colors min-h-[44px] min-w-[44px]"
           title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >
           {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
         </button>
       </div>
 
-      <div className="p-4 border-t border-[#F8F9FB] bg-[#F8F9FB]">
+      <div className="p-4 border-t border-surface bg-surface">
         {mockMode ? (
-          <div className="rounded-xl border border-[#141F33]/10 bg-[#F8F9FB] p-3 flex flex-col gap-3 min-w-0">
+          <div className="rounded-xl border border-primary/10 bg-surface p-3 flex flex-col gap-3 min-w-0">
             <div className="flex items-center justify-between gap-3 min-w-0">
               <div className="min-w-0">
-                <p className="text-xs font-extrabold text-[#141F33] truncate">Salah ({t(dashboardContent.demo)})</p>
-                {!isCollapsed && <p className="text-[10px] font-medium text-[#141F33] truncate">admin@alsafa.qa</p>}
+                <p className="text-xs font-extrabold text-primary truncate">Salah ({t(dashboardContent.demo)})</p>
+                {!isCollapsed && <p className="text-[10px] font-medium text-primary truncate">admin@alsafa.qa</p>}
               </div>
               <button
                 onClick={() => {
                   setMockMode(false);
                   router.push('/');
                 }}
-                className="text-[10px] font-bold text-[#2A5CFF] hover:underline shrink-0"
+                className="text-[10px] font-bold text-accent hover:underline shrink-0"
               >
                 {t(dashboardContent.exit)}
               </button>
@@ -133,7 +133,7 @@ className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justi
             <UserButton showName={!isCollapsed} />
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-semibold text-[#141F33] uppercase tracking-wider truncate">{t(dashboardContent.activeClient)}</p>
+                <p className="text-[10px] font-semibold text-primary uppercase tracking-wider truncate">{t(dashboardContent.activeClient)}</p>
               </div>
             )}
           </div>

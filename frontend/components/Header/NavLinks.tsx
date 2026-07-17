@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import Link from 'next/link';
@@ -24,8 +24,8 @@ export function NavLinks({ navItems }: NavLinksProps) {
           href={item.href}
           className={`text-sm font-semibold transition-colors relative py-1 rounded-xl px-3 ${
             isActive(item.href)
-? 'text-[#141F33] dark:text-[#F8F9FB] bg-[#F8F9FB] dark:bg-[#141F33]'
-: 'text-[#141F33] dark:text-[#141F33] hover:text-[#141F33] dark:hover:text-[#F8F9FB]'
+? 'text-primary dark:text-surface bg-surface dark:bg-primary'
+: 'text-primary dark:text-primary hover:text-primary dark:hover:text-surface'
           }`}
         >
           {t(item.en, item.ar)}

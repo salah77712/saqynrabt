@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import ReactMarkdown from 'react-markdown';
@@ -10,19 +10,19 @@ import { ArrowLeft } from 'lucide-react';
 
 export default function LegalPage({ title, content }: { title: string; content: string }) {
 return (
-<div className="min-h-screen bg-[#F8F9FB] text-[#141F33] font-sans">
+<div className="min-h-screen bg-surface text-primary font-sans">
 <Header />
 <main className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
 <Link
 href="/trust"
-className="group inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-wider text-[#141F33]/50 hover:text-[#141F33] transition-colors mb-12"
+className="group inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-wider text-primary/50 hover:text-primary transition-colors mb-12"
 >
 <span className="transition-transform group-hover:-translate-x-1 duration-150 inline-block">
 <ArrowLeft className="w-4 h-4" />
 </span>
 Back to Trust Center
 </Link>
-<article className="prose prose-slate max-w-none prose-headings:text-[#141F33] prose-headings:font-black prose-h1:text-3xl prose-h2:text-xl prose-h3:text-lg prose-a:text-[#2A5CFF] prose-strong:text-[#141F33] prose-code:text-sm">
+<article className="prose prose-slate max-w-none prose-headings:text-primary prose-headings:font-black prose-h1:text-3xl prose-h2:text-xl prose-h3:text-lg prose-a:text-accent prose-strong:text-primary prose-code:text-sm">
 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
 </article>
 </main>

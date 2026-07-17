@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useLocale } from '../../../providers';
@@ -11,9 +11,9 @@ export default function IntegrationsSettingsPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const integrations = [
-    { id: 'slack', name: 'Slack Workspace', desc: t({en: 'Sync alert channels.', ar: 'مزامنة قنوات التنبيهات.'}), active: true },
-    { id: 'teams', name: 'Microsoft Teams', desc: t({en: 'Sync incident tickets.', ar: 'مزامنة تذاكر الحوادث.'}), active: false },
-    { id: 'zapier', name: 'Zapier Webhooks', desc: t({en: 'Trigger outgoing automations.', ar: 'تشغيل الأتمتة الصادرة.'}), active: true },
+    { id: 'slack', name: 'Slack Workspace', desc: t({en: 'Sync alert channels.', ar: 'Ù…Ø²Ø§Ù…Ù†Ø© Ù‚Ù†ÙˆØ§Øª Ø§Ù„ØªÙ†Ø¨ÙŠÙ‡Ø§Øª.'}), active: true },
+    { id: 'teams', name: 'Microsoft Teams', desc: t({en: 'Sync incident tickets.', ar: 'Ù…Ø²Ø§Ù…Ù†Ø© ØªØ°Ø§ÙƒØ± Ø§Ù„Ø­ÙˆØ§Ø¯Ø«.'}), active: false },
+    { id: 'zapier', name: 'Zapier Webhooks', desc: t({en: 'Trigger outgoing automations.', ar: 'ØªØ´ØºÙŠÙ„ Ø§Ù„Ø£ØªÙ…ØªØ© Ø§Ù„ØµØ§Ø¯Ø±Ø©.'}), active: true },
   ];
 
   return (
@@ -22,17 +22,17 @@ export default function IntegrationsSettingsPage() {
         <Card key={int.id} className="flex flex-col justify-between p-8">
           <div>
             <div className="flex justify-between items-start gap-8 mb-2">
-              <h4 className="font-bold text-navy dark:text-[#F8F9FB] text-sm">{int.name}</h4>
+              <h4 className="font-bold text-navy dark:text-surface text-sm">{int.name}</h4>
               <Badge variant={int.active ? 'success' : 'primary'}>
-                {int.active ? t({en: 'Connected', ar: 'متصل'}) : t({en: 'Configure', ar: 'تكوين'})}
+                {int.active ? t({en: 'Connected', ar: 'Ù…ØªØµÙ„'}) : t({en: 'Configure', ar: 'ØªÙƒÙˆÙŠÙ†'})}
               </Badge>
             </div>
-            <p className="text-[10px] text-[#141F33] mt-1 leading-relaxed">
+            <p className="text-[10px] text-primary mt-1 leading-relaxed">
               {int.desc}
             </p>
           </div>
           <Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
-            {int.active ? t({en: 'Manage', ar: 'إدارة'}) : t({en: 'Connect API', ar: 'ربط API'})}
+            {int.active ? t({en: 'Manage', ar: 'Ø¥Ø¯Ø§Ø±Ø©'}) : t({en: 'Connect API', ar: 'Ø±Ø¨Ø· API'})}
           </Button>
         </Card>
       ))}

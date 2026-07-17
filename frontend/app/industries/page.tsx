@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import { useLocale } from '../providers';
@@ -7,22 +7,22 @@ import { Footer } from '../../components/Footer';
 import { Building2, HeartPulse, Wrench, Car, Utensils, Ambulance, DollarSign, Bell, Flag, Construction, Scale, BarChart3, ShoppingBag } from 'lucide-react';
 
 const industryIcons: Record<string, React.ReactNode> = {
-  hospitality: <Building2 className="w-8 h-8 text-[#141F33]" />,
-  healthcare: <HeartPulse className="w-8 h-8 text-[#141F33]" />,
-  homeServices: <Wrench className="w-8 h-8 text-[#141F33]" />,
-  realEstate: <Building2 className="w-8 h-8 text-[#141F33]" />,
-  automotive: <Car className="w-8 h-8 text-[#141F33]" />,
-  food: <Utensils className="w-8 h-8 text-[#141F33]" />,
-  towing: <Ambulance className="w-8 h-8 text-[#141F33]" />,
-  veterinary: <HeartPulse className="w-8 h-8 text-[#141F33]" />,
-  plumbing: <DollarSign className="w-8 h-8 text-[#141F33]" />,
-  boutique: <Bell className="w-8 h-8 text-[#141F33]" />,
-  catering: <Utensils className="w-8 h-8 text-[#141F33]" />,
-  dealerships: <Flag className="w-8 h-8 text-[#141F33]" />,
-  construction: <Construction className="w-8 h-8 text-[#141F33]" />,
-  law: <Scale className="w-8 h-8 text-[#141F33]" />,
-  accounting: <BarChart3 className="w-8 h-8 text-[#141F33]" />,
-  retail: <ShoppingBag className="w-8 h-8 text-[#141F33]" />,
+  hospitality: <Building2 className="w-8 h-8 text-primary" />,
+  healthcare: <HeartPulse className="w-8 h-8 text-primary" />,
+  homeServices: <Wrench className="w-8 h-8 text-primary" />,
+  realEstate: <Building2 className="w-8 h-8 text-primary" />,
+  automotive: <Car className="w-8 h-8 text-primary" />,
+  food: <Utensils className="w-8 h-8 text-primary" />,
+  towing: <Ambulance className="w-8 h-8 text-primary" />,
+  veterinary: <HeartPulse className="w-8 h-8 text-primary" />,
+  plumbing: <DollarSign className="w-8 h-8 text-primary" />,
+  boutique: <Bell className="w-8 h-8 text-primary" />,
+  catering: <Utensils className="w-8 h-8 text-primary" />,
+  dealerships: <Flag className="w-8 h-8 text-primary" />,
+  construction: <Construction className="w-8 h-8 text-primary" />,
+  law: <Scale className="w-8 h-8 text-primary" />,
+  accounting: <BarChart3 className="w-8 h-8 text-primary" />,
+  retail: <ShoppingBag className="w-8 h-8 text-primary" />,
 };
 
 const industries = {
@@ -38,65 +38,65 @@ const industries = {
     { icon: 'plumbing', title: 'Plumbing & HVAC', desc: 'Stop losing money from missed after-hours repair calls. Capture every lead and dispatch your field team.' },
     { icon: 'boutique', title: 'Boutique Hotels', desc: 'Let guests au digital door codes at midnight. Handle late arrivals without front-desk staff.' },
     { icon: 'catering', title: 'Restaurants & Catering', desc: 'Quote and book catering orders with no phone tag. Standardize large event bookings.' },
-    { icon: 'dealerships', title: 'Auto Dealerships', desc: 'Answer real-time inventory questions about used cars on your lot —  even after hours.' },
+    { icon: 'dealerships', title: 'Auto Dealerships', desc: 'Answer real-time inventory questions about used cars on your lot â€”  even after hours.' },
     { icon: 'construction', title: 'Construction', desc: 'Keep subcontractors updated on material delivery times and site work permits without manual calls.' },
     { icon: 'law', title: 'Law Firms', desc: 'Au retainer fee questions and intake form inquiries. Free up paralegals for billable work.' },
     { icon: 'accounting', title: 'Accounting & Tax', desc: 'Handle tax season refund status checks without a receptionist. Route complex cases to senior accountants.' },
     { icon: 'retail', title: 'Retail & E-commerce', desc: 'Answer product questions, process returns, and handle customer inquiries across every channel.' },
   ],
   ar: [
-    { icon: 'hospitality', title: 'الضيافة', desc: 'تستخدم الفنادق والمنتجعات SAQYN RABT للتعامل مع تسجيلات الوصول المتأخرة وطلبات الغرف وشكاوى الضيوف 24/7.' },
-    { icon: 'healthcare', title: 'الرعاية الصحية', desc: 'تؤتمت العيادات والمستشفيات حجوزات المرضى وفرز الحالات الطارئة وتوجيه الاستفسارات للقسم المناسب فوراً.' },
-    { icon: 'homeServices', title: 'الخدمات المنزلية', desc: 'يلتقط السباكون والكهربائيون مكالمات الطوارئ بعد ساعات العمل ويرسلون الفنيين فوراً.' },
-    { icon: 'realEstate', title: 'العقارات', desc: 'يوجه مديرو العقارات طلبات الصيانة لفرق العمل ويتعاملون مع استفسارات المستأجرين دون موظف استقبال.' },
-    { icon: 'automotive', title: 'السيارات', desc: 'تؤتمت الوكالات وورش الإصلاح حجوزات الخدمة واستفسارات المخزون وطلبات عروض الأسعار على مدار الساعة.' },
-    { icon: 'food', title: 'الأغذية والمشروبات', desc: 'تحجز المطاعم والمقاهي وخدمات التموين الطلبات خلال ساعات الذروة دون مكالمات فائتة.' },
-    { icon: 'towing', title: 'السحب والخدمات على الطريق', desc: 'التقط السائقين العالقين واحصل على بيانات الموقع GPS وأرسل أقرب شاحنة دون مكالمة هاتفية.' },
-    { icon: 'veterinary', title: 'الطب البيطري', desc: 'افرز زيارات الحيوانات الأليفة الطارئة ووجّه الحالات العاجلة للممرض المناوب فوراً.' },
-    { icon: 'plumbing', title: 'السباكة والتدفئة والتكييف', desc: 'توقف عن خسارة الأموال من مكالمات الإصلاح الفائتة بعد ساعات العمل. التقط كل فرصة وأرسل فريقك الميداني.' },
-    { icon: 'boutique', title: 'الفنادق البوتيكية', desc: 'دع الضيوف يخصصون رموز الأبواب الرقمية في منتصف الليل. تعامل مع الوصول المتأخر دون موظفي استقبال.' },
-    { icon: 'catering', title: 'المطاعم والتموين', desc: 'سعّر واحجز طلبات التموين دون الحاجة للاتصالات المتكررة. وحّد حجوزات الفعاليات الكبيرة.' },
-    { icon: 'dealerships', title: 'وكالات السيارات', desc: 'أجب عن أسئلة المخزون في الوقت الفعلي حول السيارات المستعملة في ساحتك — حتى بعد ساعات العمل.' },
-    { icon: 'construction', title: 'البناء', desc: 'أبقِ مقاولي الباطن على علم بمواعيد تسليم المواد وتصاريح العمل في الموقع دون مكالمات يدوية.' },
-    { icon: 'law', title: 'شركات المحاماة', desc: 'أجب تلقائياً عن أسئلة رسوم التوكيل واستفسارات نماذج القبول. فرّغ المساعدين القانونيين للعمل المدفوع.' },
-    { icon: 'accounting', title: 'المحاسبة والضرائب', desc: 'تعامل مع التحقق من حالة الاسترداد في موسم الضرائب دون موظف استقبال. وجّه الحالات المعقدة لكبار المحاسبين.' },
-    { icon: 'retail', title: 'التجزئة والتجارة الإلكترونية', desc: 'أجب عن أسئلة المنتجات وعالج المرتجعات وتولى استفسارات العملاء عبر كل قنوات الاتصال.' },
+    { icon: 'hospitality', title: 'Ø§Ù„Ø¶ÙŠØ§ÙØ©', desc: 'ØªØ³ØªØ®Ø¯Ù… Ø§Ù„ÙÙ†Ø§Ø¯Ù‚ ÙˆØ§Ù„Ù…Ù†ØªØ¬Ø¹Ø§Øª SAQYN RABT Ù„Ù„ØªØ¹Ø§Ù…Ù„ Ù…Ø¹ ØªØ³Ø¬ÙŠÙ„Ø§Øª Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù…ØªØ£Ø®Ø±Ø© ÙˆØ·Ù„Ø¨Ø§Øª Ø§Ù„ØºØ±Ù ÙˆØ´ÙƒØ§ÙˆÙ‰ Ø§Ù„Ø¶ÙŠÙˆÙ 24/7.' },
+    { icon: 'healthcare', title: 'Ø§Ù„Ø±Ø¹Ø§ÙŠØ© Ø§Ù„ØµØ­ÙŠØ©', desc: 'ØªØ¤ØªÙ…Øª Ø§Ù„Ø¹ÙŠØ§Ø¯Ø§Øª ÙˆØ§Ù„Ù…Ø³ØªØ´ÙÙŠØ§Øª Ø­Ø¬ÙˆØ²Ø§Øª Ø§Ù„Ù…Ø±Ø¶Ù‰ ÙˆÙØ±Ø² Ø§Ù„Ø­Ø§Ù„Ø§Øª Ø§Ù„Ø·Ø§Ø±Ø¦Ø© ÙˆØªÙˆØ¬ÙŠÙ‡ Ø§Ù„Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª Ù„Ù„Ù‚Ø³Ù… Ø§Ù„Ù…Ù†Ø§Ø³Ø¨ ÙÙˆØ±Ø§Ù‹.' },
+    { icon: 'homeServices', title: 'Ø§Ù„Ø®Ø¯Ù…Ø§Øª Ø§Ù„Ù…Ù†Ø²Ù„ÙŠØ©', desc: 'ÙŠÙ„ØªÙ‚Ø· Ø§Ù„Ø³Ø¨Ø§ÙƒÙˆÙ† ÙˆØ§Ù„ÙƒÙ‡Ø±Ø¨Ø§Ø¦ÙŠÙˆÙ† Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ø·ÙˆØ§Ø±Ø¦ Ø¨Ø¹Ø¯ Ø³Ø§Ø¹Ø§Øª Ø§Ù„Ø¹Ù…Ù„ ÙˆÙŠØ±Ø³Ù„ÙˆÙ† Ø§Ù„ÙÙ†ÙŠÙŠÙ† ÙÙˆØ±Ø§Ù‹.' },
+    { icon: 'realEstate', title: 'Ø§Ù„Ø¹Ù‚Ø§Ø±Ø§Øª', desc: 'ÙŠÙˆØ¬Ù‡ Ù…Ø¯ÙŠØ±Ùˆ Ø§Ù„Ø¹Ù‚Ø§Ø±Ø§Øª Ø·Ù„Ø¨Ø§Øª Ø§Ù„ØµÙŠØ§Ù†Ø© Ù„ÙØ±Ù‚ Ø§Ù„Ø¹Ù…Ù„ ÙˆÙŠØªØ¹Ø§Ù…Ù„ÙˆÙ† Ù…Ø¹ Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª Ø§Ù„Ù…Ø³ØªØ£Ø¬Ø±ÙŠÙ† Ø¯ÙˆÙ† Ù…ÙˆØ¸Ù Ø§Ø³ØªÙ‚Ø¨Ø§Ù„.' },
+    { icon: 'automotive', title: 'Ø§Ù„Ø³ÙŠØ§Ø±Ø§Øª', desc: 'ØªØ¤ØªÙ…Øª Ø§Ù„ÙˆÙƒØ§Ù„Ø§Øª ÙˆÙˆØ±Ø´ Ø§Ù„Ø¥ØµÙ„Ø§Ø­ Ø­Ø¬ÙˆØ²Ø§Øª Ø§Ù„Ø®Ø¯Ù…Ø© ÙˆØ§Ø³ØªÙØ³Ø§Ø±Ø§Øª Ø§Ù„Ù…Ø®Ø²ÙˆÙ† ÙˆØ·Ù„Ø¨Ø§Øª Ø¹Ø±ÙˆØ¶ Ø§Ù„Ø£Ø³Ø¹Ø§Ø± Ø¹Ù„Ù‰ Ù…Ø¯Ø§Ø± Ø§Ù„Ø³Ø§Ø¹Ø©.' },
+    { icon: 'food', title: 'Ø§Ù„Ø£ØºØ°ÙŠØ© ÙˆØ§Ù„Ù…Ø´Ø±ÙˆØ¨Ø§Øª', desc: 'ØªØ­Ø¬Ø² Ø§Ù„Ù…Ø·Ø§Ø¹Ù… ÙˆØ§Ù„Ù…Ù‚Ø§Ù‡ÙŠ ÙˆØ®Ø¯Ù…Ø§Øª Ø§Ù„ØªÙ…ÙˆÙŠÙ† Ø§Ù„Ø·Ù„Ø¨Ø§Øª Ø®Ù„Ø§Ù„ Ø³Ø§Ø¹Ø§Øª Ø§Ù„Ø°Ø±ÙˆØ© Ø¯ÙˆÙ† Ù…ÙƒØ§Ù„Ù…Ø§Øª ÙØ§Ø¦ØªØ©.' },
+    { icon: 'towing', title: 'Ø§Ù„Ø³Ø­Ø¨ ÙˆØ§Ù„Ø®Ø¯Ù…Ø§Øª Ø¹Ù„Ù‰ Ø§Ù„Ø·Ø±ÙŠÙ‚', desc: 'Ø§Ù„ØªÙ‚Ø· Ø§Ù„Ø³Ø§Ø¦Ù‚ÙŠÙ† Ø§Ù„Ø¹Ø§Ù„Ù‚ÙŠÙ† ÙˆØ§Ø­ØµÙ„ Ø¹Ù„Ù‰ Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù…ÙˆÙ‚Ø¹ GPS ÙˆØ£Ø±Ø³Ù„ Ø£Ù‚Ø±Ø¨ Ø´Ø§Ø­Ù†Ø© Ø¯ÙˆÙ† Ù…ÙƒØ§Ù„Ù…Ø© Ù‡Ø§ØªÙÙŠØ©.' },
+    { icon: 'veterinary', title: 'Ø§Ù„Ø·Ø¨ Ø§Ù„Ø¨ÙŠØ·Ø±ÙŠ', desc: 'Ø§ÙØ±Ø² Ø²ÙŠØ§Ø±Ø§Øª Ø§Ù„Ø­ÙŠÙˆØ§Ù†Ø§Øª Ø§Ù„Ø£Ù„ÙŠÙØ© Ø§Ù„Ø·Ø§Ø±Ø¦Ø© ÙˆÙˆØ¬Ù‘Ù‡ Ø§Ù„Ø­Ø§Ù„Ø§Øª Ø§Ù„Ø¹Ø§Ø¬Ù„Ø© Ù„Ù„Ù…Ù…Ø±Ø¶ Ø§Ù„Ù…Ù†Ø§ÙˆØ¨ ÙÙˆØ±Ø§Ù‹.' },
+    { icon: 'plumbing', title: 'Ø§Ù„Ø³Ø¨Ø§ÙƒØ© ÙˆØ§Ù„ØªØ¯ÙØ¦Ø© ÙˆØ§Ù„ØªÙƒÙŠÙŠÙ', desc: 'ØªÙˆÙ‚Ù Ø¹Ù† Ø®Ø³Ø§Ø±Ø© Ø§Ù„Ø£Ù…ÙˆØ§Ù„ Ù…Ù† Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ø¥ØµÙ„Ø§Ø­ Ø§Ù„ÙØ§Ø¦ØªØ© Ø¨Ø¹Ø¯ Ø³Ø§Ø¹Ø§Øª Ø§Ù„Ø¹Ù…Ù„. Ø§Ù„ØªÙ‚Ø· ÙƒÙ„ ÙØ±ØµØ© ÙˆØ£Ø±Ø³Ù„ ÙØ±ÙŠÙ‚Ùƒ Ø§Ù„Ù…ÙŠØ¯Ø§Ù†ÙŠ.' },
+    { icon: 'boutique', title: 'Ø§Ù„ÙÙ†Ø§Ø¯Ù‚ Ø§Ù„Ø¨ÙˆØªÙŠÙƒÙŠØ©', desc: 'Ø¯Ø¹ Ø§Ù„Ø¶ÙŠÙˆÙ ÙŠØ®ØµØµÙˆÙ† Ø±Ù…ÙˆØ² Ø§Ù„Ø£Ø¨ÙˆØ§Ø¨ Ø§Ù„Ø±Ù‚Ù…ÙŠØ© ÙÙŠ Ù…Ù†ØªØµÙ Ø§Ù„Ù„ÙŠÙ„. ØªØ¹Ø§Ù…Ù„ Ù…Ø¹ Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù…ØªØ£Ø®Ø± Ø¯ÙˆÙ† Ù…ÙˆØ¸ÙÙŠ Ø§Ø³ØªÙ‚Ø¨Ø§Ù„.' },
+    { icon: 'catering', title: 'Ø§Ù„Ù…Ø·Ø§Ø¹Ù… ÙˆØ§Ù„ØªÙ…ÙˆÙŠÙ†', desc: 'Ø³Ø¹Ù‘Ø± ÙˆØ§Ø­Ø¬Ø² Ø·Ù„Ø¨Ø§Øª Ø§Ù„ØªÙ…ÙˆÙŠÙ† Ø¯ÙˆÙ† Ø§Ù„Ø­Ø§Ø¬Ø© Ù„Ù„Ø§ØªØµØ§Ù„Ø§Øª Ø§Ù„Ù…ØªÙƒØ±Ø±Ø©. ÙˆØ­Ù‘Ø¯ Ø­Ø¬ÙˆØ²Ø§Øª Ø§Ù„ÙØ¹Ø§Ù„ÙŠØ§Øª Ø§Ù„ÙƒØ¨ÙŠØ±Ø©.' },
+    { icon: 'dealerships', title: 'ÙˆÙƒØ§Ù„Ø§Øª Ø§Ù„Ø³ÙŠØ§Ø±Ø§Øª', desc: 'Ø£Ø¬Ø¨ Ø¹Ù† Ø£Ø³Ø¦Ù„Ø© Ø§Ù„Ù…Ø®Ø²ÙˆÙ† ÙÙŠ Ø§Ù„ÙˆÙ‚Øª Ø§Ù„ÙØ¹Ù„ÙŠ Ø­ÙˆÙ„ Ø§Ù„Ø³ÙŠØ§Ø±Ø§Øª Ø§Ù„Ù…Ø³ØªØ¹Ù…Ù„Ø© ÙÙŠ Ø³Ø§Ø­ØªÙƒ â€” Ø­ØªÙ‰ Ø¨Ø¹Ø¯ Ø³Ø§Ø¹Ø§Øª Ø§Ù„Ø¹Ù…Ù„.' },
+    { icon: 'construction', title: 'Ø§Ù„Ø¨Ù†Ø§Ø¡', desc: 'Ø£Ø¨Ù‚Ù Ù…Ù‚Ø§ÙˆÙ„ÙŠ Ø§Ù„Ø¨Ø§Ø·Ù† Ø¹Ù„Ù‰ Ø¹Ù„Ù… Ø¨Ù…ÙˆØ§Ø¹ÙŠØ¯ ØªØ³Ù„ÙŠÙ… Ø§Ù„Ù…ÙˆØ§Ø¯ ÙˆØªØµØ§Ø±ÙŠØ­ Ø§Ù„Ø¹Ù…Ù„ ÙÙŠ Ø§Ù„Ù…ÙˆÙ‚Ø¹ Ø¯ÙˆÙ† Ù…ÙƒØ§Ù„Ù…Ø§Øª ÙŠØ¯ÙˆÙŠØ©.' },
+    { icon: 'law', title: 'Ø´Ø±ÙƒØ§Øª Ø§Ù„Ù…Ø­Ø§Ù…Ø§Ø©', desc: 'Ø£Ø¬Ø¨ ØªÙ„Ù‚Ø§Ø¦ÙŠØ§Ù‹ Ø¹Ù† Ø£Ø³Ø¦Ù„Ø© Ø±Ø³ÙˆÙ… Ø§Ù„ØªÙˆÙƒÙŠÙ„ ÙˆØ§Ø³ØªÙØ³Ø§Ø±Ø§Øª Ù†Ù…Ø§Ø°Ø¬ Ø§Ù„Ù‚Ø¨ÙˆÙ„. ÙØ±Ù‘Øº Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ÙŠÙ† Ø§Ù„Ù‚Ø§Ù†ÙˆÙ†ÙŠÙŠÙ† Ù„Ù„Ø¹Ù…Ù„ Ø§Ù„Ù…Ø¯ÙÙˆØ¹.' },
+    { icon: 'accounting', title: 'Ø§Ù„Ù…Ø­Ø§Ø³Ø¨Ø© ÙˆØ§Ù„Ø¶Ø±Ø§Ø¦Ø¨', desc: 'ØªØ¹Ø§Ù…Ù„ Ù…Ø¹ Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† Ø­Ø§Ù„Ø© Ø§Ù„Ø§Ø³ØªØ±Ø¯Ø§Ø¯ ÙÙŠ Ù…ÙˆØ³Ù… Ø§Ù„Ø¶Ø±Ø§Ø¦Ø¨ Ø¯ÙˆÙ† Ù…ÙˆØ¸Ù Ø§Ø³ØªÙ‚Ø¨Ø§Ù„. ÙˆØ¬Ù‘Ù‡ Ø§Ù„Ø­Ø§Ù„Ø§Øª Ø§Ù„Ù…Ø¹Ù‚Ø¯Ø© Ù„ÙƒØ¨Ø§Ø± Ø§Ù„Ù…Ø­Ø§Ø³Ø¨ÙŠÙ†.' },
+    { icon: 'retail', title: 'Ø§Ù„ØªØ¬Ø²Ø¦Ø© ÙˆØ§Ù„ØªØ¬Ø§Ø±Ø© Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠØ©', desc: 'Ø£Ø¬Ø¨ Ø¹Ù† Ø£Ø³Ø¦Ù„Ø© Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª ÙˆØ¹Ø§Ù„Ø¬ Ø§Ù„Ù…Ø±ØªØ¬Ø¹Ø§Øª ÙˆØªÙˆÙ„Ù‰ Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ Ø¹Ø¨Ø± ÙƒÙ„ Ù‚Ù†ÙˆØ§Øª Ø§Ù„Ø§ØªØµØ§Ù„.' },
   ],
   fr: [
-    { icon: 'hospitality', title: 'Hospitalité', desc: 'Les hôtels et complexes utilisent SAQYN RABT pour gérer les arrivées tardives, le service d\'étage et les plaintes des clients 24/7.' },
-    { icon: 'healthcare', title: 'Santé', desc: 'Les cliniques et hôpitaux automatisent les réservations, trient les urgences et orientent les demandes instantanément.' },
-    { icon: 'homeServices', title: 'Services à Domicile', desc: 'Les plombiers et électriciens capturent les appels d\'urgence hors heures et envoient des techniciens immédiatement.' },
-    { icon: 'realEstate', title: 'Immobilier', desc: 'Les gestionnaires immobiliers orientent les demandes de maintenance et gèrent les requêtes des locataires sans réceptionniste.' },
+    { icon: 'hospitality', title: 'HospitalitÃ©', desc: 'Les hÃ´tels et complexes utilisent SAQYN RABT pour gÃ©rer les arrivÃ©es tardives, le service d\'Ã©tage et les plaintes des clients 24/7.' },
+    { icon: 'healthcare', title: 'SantÃ©', desc: 'Les cliniques et hÃ´pitaux automatisent les rÃ©servations, trient les urgences et orientent les demandes instantanÃ©ment.' },
+    { icon: 'homeServices', title: 'Services Ã  Domicile', desc: 'Les plombiers et Ã©lectriciens capturent les appels d\'urgence hors heures et envoient des techniciens immÃ©diatement.' },
+    { icon: 'realEstate', title: 'Immobilier', desc: 'Les gestionnaires immobiliers orientent les demandes de maintenance et gÃ¨rent les requÃªtes des locataires sans rÃ©ceptionniste.' },
     { icon: 'automotive', title: 'Automobile', desc: 'Les concessions et ateliers automatisent les rendez-vous, les questions de stock et les demandes de devis 24/7.' },
-    { icon: 'food', title: 'Restauration', desc: 'Les restaurants et services traiteurs réservent des tables et prennent des commandes en heures de pointe sans appels manqués.' },
-    { icon: 'towing', title: 'Dépannage', desc: 'Capturez les conducteurs en panne, obtenez les données GPS et envoyez la dépanneuse la plus proche sans appel téléphonique.' },
-    { icon: 'veterinary', title: 'Vétérinaire', desc: 'Triez les visites d\'urgence et orientez les cas urgents vers l\'infirmier de garde immédiatement.' },
-    { icon: 'plumbing', title: 'Plomberie & Chauffage', desc: 'Arrêtez de perdre de l\'argent avec les appels de réparation manqués. Capturez chaque prospect et envoyez votre équipe.' },
-    { icon: 'boutique', title: 'Hôtels Boutique', desc: 'Laissez les clients s\'attribuer des codes de porte à minuit. Gérez les arrivées tardives sans personnel de réception.' },
-    { icon: 'catering', title: 'Restaurants & Traiteurs', desc: 'Faites des devis et réservez des commandes traiteur sans perdre de temps. Standardisez les grandes réservations.' },
-    { icon: 'dealerships', title: 'Concessions Auto', desc: 'Répondez aux questions de stock en temps réel sur les voitures d\'occasion de votre parc, même après les heures d\'ouverture.' },
-    { icon: 'construction', title: 'Construction', desc: 'Tenez les sous-traitants informés des heures de livraison des matériaux et des permis de travail sans appels manuels.' },
-    { icon: 'law', title: 'Cabinets d\'Avocats', desc: 'Répondez aux questions de frais de provision. Libérez les assistants juridiques pour le travail facturable.' },
-    { icon: 'accounting', title: 'Comptabilité & Fiscalité', desc: 'Gerez le suivi des remboursements fiscaux sans réceptionniste. Orientez les cas complexes vers les comptables principaux.' },
-    { icon: 'retail', title: 'Commerce & E-commerce', desc: 'Répondez aux questions sur les produits, gérez les retours et traitez les demandes des clients sur tous les canaux.' },
+    { icon: 'food', title: 'Restauration', desc: 'Les restaurants et services traiteurs rÃ©servent des tables et prennent des commandes en heures de pointe sans appels manquÃ©s.' },
+    { icon: 'towing', title: 'DÃ©pannage', desc: 'Capturez les conducteurs en panne, obtenez les donnÃ©es GPS et envoyez la dÃ©panneuse la plus proche sans appel tÃ©lÃ©phonique.' },
+    { icon: 'veterinary', title: 'VÃ©tÃ©rinaire', desc: 'Triez les visites d\'urgence et orientez les cas urgents vers l\'infirmier de garde immÃ©diatement.' },
+    { icon: 'plumbing', title: 'Plomberie & Chauffage', desc: 'ArrÃªtez de perdre de l\'argent avec les appels de rÃ©paration manquÃ©s. Capturez chaque prospect et envoyez votre Ã©quipe.' },
+    { icon: 'boutique', title: 'HÃ´tels Boutique', desc: 'Laissez les clients s\'attribuer des codes de porte Ã  minuit. GÃ©rez les arrivÃ©es tardives sans personnel de rÃ©ception.' },
+    { icon: 'catering', title: 'Restaurants & Traiteurs', desc: 'Faites des devis et rÃ©servez des commandes traiteur sans perdre de temps. Standardisez les grandes rÃ©servations.' },
+    { icon: 'dealerships', title: 'Concessions Auto', desc: 'RÃ©pondez aux questions de stock en temps rÃ©el sur les voitures d\'occasion de votre parc, mÃªme aprÃ¨s les heures d\'ouverture.' },
+    { icon: 'construction', title: 'Construction', desc: 'Tenez les sous-traitants informÃ©s des heures de livraison des matÃ©riaux et des permis de travail sans appels manuels.' },
+    { icon: 'law', title: 'Cabinets d\'Avocats', desc: 'RÃ©pondez aux questions de frais de provision. LibÃ©rez les assistants juridiques pour le travail facturable.' },
+    { icon: 'accounting', title: 'ComptabilitÃ© & FiscalitÃ©', desc: 'Gerez le suivi des remboursements fiscaux sans rÃ©ceptionniste. Orientez les cas complexes vers les comptables principaux.' },
+    { icon: 'retail', title: 'Commerce & E-commerce', desc: 'RÃ©pondez aux questions sur les produits, gÃ©rez les retours et traitez les demandes des clients sur tous les canaux.' },
   ],
   hi: [
-    { icon: 'hospitality', title: 'अतिथ्य सत्कार', desc: 'होटल और रिसॉर्ट देर से चेक-इन, रूम सर्विस अनुरोध और अतिथि शिकायतों को 24/7 संभालने के लिए SAQYN RABT का उपयोग करते हैं।' },
-    { icon: 'healthcare', title: 'स्वास्थ्य सेवा', desc: 'क्लिनिक और अस्पताल रोगी बुकिंग को स्वचालित करते हैं, आपात स्थितियों को छांटते हैं, और पूछताछ को तुरंत सही विभाग में भेजते हैं।' },
-    { icon: 'homeServices', title: 'गृह सेवाएं', desc: 'प्लंबर, इलेक्ट्रीशियन और एचवीएसी कंपनियां काम के घंटों के बाद आपातकालीन कॉल कैप्चर करती हैं और तकनीशियनों को तुरंत भेजती हैं।' },
-    { icon: 'realEstate', title: 'रियल एस्टेट', desc: 'संपत्ति प्रबंधक रखरखाव अनुरोधों को ऑन-साइट क्रू को भेजते हैं और बिना रिसेप्शनिस्ट के किरायेदार पूछताछ को संभालते हैं।' },
-    { icon: 'automotive', title: 'ऑटोमोटिव', desc: 'डीलरशिप और मरम्मत दुकानें चौबीसों घंटे सर्विस बुकिंग, इन्वेंट्री पूछताछ और कोट अनुरोधों को स्वचालित करती हैं।' },
-    { icon: 'food', title: 'खाद्य और पेय', desc: 'रेस्टोरेंट, कैफे और खान-पान सेवाएं बिना मिस्ड कॉल के व्यस्त घंटों के दौरान आरक्षण और टेकआउट ऑर्डर बुक करती हैं।' },
-    { icon: 'towing', title: 'टowing और सड़क सहायता', desc: 'फंसे हुए ड्राइवरों को कैप्चर करें, जीपीएस डेटा प्राप्त करें, और बिना फोन कॉल के निकटतम ट्रक को भेजें।' },
-    { icon: 'veterinary', title: 'पशु चिकित्सा', desc: 'आपातकालीन पालतू जानवरों की यात्राओं को छांटें और तत्काल मामलों को ऑन-कॉल नर्स को तुरंत भेजें।' },
-    { icon: 'plumbing', title: 'प्लंबिंग और एचवीएसी', desc: 'काम के घंटों के बाद मिस्ड रिपेयर कॉल से पैसा खोना बंद करें। हर लीड को कैप्चर करें और अपनी फील्ड टीम को भेजें।' },
-    { icon: 'boutique', title: 'बुटीक होटल', desc: 'अतिथियों को आधी रात को डिजिटल डोर कोड स्वतः असाइन करने दें। फ्रंट-डेस्क कर्मचारियों के बिना देर से आने वालों को संभालें।' },
-    { icon: 'catering', title: 'रेस्टोरेंट और खान-पान', desc: 'बिना किसी फोन टैग के खान-पान के ऑर्डर कोट और बुक करें। बड़े इवेंट बुकिंग को मानकीकृत करें।' },
-    { icon: 'dealerships', title: 'ऑटो डीलरशिप', desc: 'अपने लॉट पर इस्तेमाल की गई कारों के बारे में वास्तविक समय में इन्वेंट्री सवालों के जवाब दें — काम के घंटों के बाद भी।' },
-    { icon: 'construction', title: 'निर्माण', desc: 'बिना मैन्युअल कॉल के उपठेकेदारों को सामग्री वितरण समय और साइट कार्य परमिट पर अपडेट रखें।' },
-    { icon: 'law', title: 'लॉ फर्म', desc: 'रिटेनर शुल्क सवालों और इनटेक फॉर्म पूछताछ का स्वतः उत्तर दें। बिल योग्य काम के लिए पैरालीगल को खाली करें।' },
-    { icon: 'accounting', title: 'लेखांकन और कर', desc: 'रिसेप्शनिस्ट के बिना टैक्स सीजन रिफंड स्थिति की जांच को संभालें। जटिल मामलों को वरिष्ठ लेखाकारों को भेजें।' },
-    { icon: 'retail', title: 'खुदरा और ई-कॉमर्स', desc: 'उत्पाद सवालों के जवाब दें, रिटर्न प्रोसेस करें और हर चैनल पर ग्राहकों की पूछताछ संभालें।' },
+    { icon: 'hospitality', title: 'à¤…à¤¤à¤¿à¤¥à¥à¤¯ à¤¸à¤¤à¥à¤•à¤¾à¤°', desc: 'à¤¹à¥‹à¤Ÿà¤² à¤”à¤° à¤°à¤¿à¤¸à¥‰à¤°à¥à¤Ÿ à¤¦à¥‡à¤° à¤¸à¥‡ à¤šà¥‡à¤•-à¤‡à¤¨, à¤°à¥‚à¤® à¤¸à¤°à¥à¤µà¤¿à¤¸ à¤…à¤¨à¥à¤°à¥‹à¤§ à¤”à¤° à¤…à¤¤à¤¿à¤¥à¤¿ à¤¶à¤¿à¤•à¤¾à¤¯à¤¤à¥‹à¤‚ à¤•à¥‹ 24/7 à¤¸à¤‚à¤­à¤¾à¤²à¤¨à¥‡ à¤•à¥‡ à¤²à¤¿à¤ SAQYN RABT à¤•à¤¾ à¤‰à¤ªà¤¯à¥‹à¤— à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤' },
+    { icon: 'healthcare', title: 'à¤¸à¥à¤µà¤¾à¤¸à¥à¤¥à¥à¤¯ à¤¸à¥‡à¤µà¤¾', desc: 'à¤•à¥à¤²à¤¿à¤¨à¤¿à¤• à¤”à¤° à¤…à¤¸à¥à¤ªà¤¤à¤¾à¤² à¤°à¥‹à¤—à¥€ à¤¬à¥à¤•à¤¿à¤‚à¤— à¤•à¥‹ à¤¸à¥à¤µà¤šà¤¾à¤²à¤¿à¤¤ à¤•à¤°à¤¤à¥‡ à¤¹à¥ˆà¤‚, à¤†à¤ªà¤¾à¤¤ à¤¸à¥à¤¥à¤¿à¤¤à¤¿à¤¯à¥‹à¤‚ à¤•à¥‹ à¤›à¤¾à¤‚à¤Ÿà¤¤à¥‡ à¤¹à¥ˆà¤‚, à¤”à¤° à¤ªà¥‚à¤›à¤¤à¤¾à¤› à¤•à¥‹ à¤¤à¥à¤°à¤‚à¤¤ à¤¸à¤¹à¥€ à¤µà¤¿à¤­à¤¾à¤— à¤®à¥‡à¤‚ à¤­à¥‡à¤œà¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤' },
+    { icon: 'homeServices', title: 'à¤—à¥ƒà¤¹ à¤¸à¥‡à¤µà¤¾à¤à¤‚', desc: 'à¤ªà¥à¤²à¤‚à¤¬à¤°, à¤‡à¤²à¥‡à¤•à¥à¤Ÿà¥à¤°à¥€à¤¶à¤¿à¤¯à¤¨ à¤”à¤° à¤à¤šà¤µà¥€à¤à¤¸à¥€ à¤•à¤‚à¤ªà¤¨à¤¿à¤¯à¤¾à¤‚ à¤•à¤¾à¤® à¤•à¥‡ à¤˜à¤‚à¤Ÿà¥‹à¤‚ à¤•à¥‡ à¤¬à¤¾à¤¦ à¤†à¤ªà¤¾à¤¤à¤•à¤¾à¤²à¥€à¤¨ à¤•à¥‰à¤² à¤•à¥ˆà¤ªà¥à¤šà¤° à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¤‚ à¤”à¤° à¤¤à¤•à¤¨à¥€à¤¶à¤¿à¤¯à¤¨à¥‹à¤‚ à¤•à¥‹ à¤¤à¥à¤°à¤‚à¤¤ à¤­à¥‡à¤œà¤¤à¥€ à¤¹à¥ˆà¤‚à¥¤' },
+    { icon: 'realEstate', title: 'à¤°à¤¿à¤¯à¤² à¤à¤¸à¥à¤Ÿà¥‡à¤Ÿ', desc: 'à¤¸à¤‚à¤ªà¤¤à¥à¤¤à¤¿ à¤ªà¥à¤°à¤¬à¤‚à¤§à¤• à¤°à¤–à¤°à¤–à¤¾à¤µ à¤…à¤¨à¥à¤°à¥‹à¤§à¥‹à¤‚ à¤•à¥‹ à¤‘à¤¨-à¤¸à¤¾à¤‡à¤Ÿ à¤•à¥à¤°à¥‚ à¤•à¥‹ à¤­à¥‡à¤œà¤¤à¥‡ à¤¹à¥ˆà¤‚ à¤”à¤° à¤¬à¤¿à¤¨à¤¾ à¤°à¤¿à¤¸à¥‡à¤ªà¥à¤¶à¤¨à¤¿à¤¸à¥à¤Ÿ à¤•à¥‡ à¤•à¤¿à¤°à¤¾à¤¯à¥‡à¤¦à¤¾à¤° à¤ªà¥‚à¤›à¤¤à¤¾à¤› à¤•à¥‹ à¤¸à¤‚à¤­à¤¾à¤²à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤' },
+    { icon: 'automotive', title: 'à¤‘à¤Ÿà¥‹à¤®à¥‹à¤Ÿà¤¿à¤µ', desc: 'à¤¡à¥€à¤²à¤°à¤¶à¤¿à¤ª à¤”à¤° à¤®à¤°à¤®à¥à¤®à¤¤ à¤¦à¥à¤•à¤¾à¤¨à¥‡à¤‚ à¤šà¥Œà¤¬à¥€à¤¸à¥‹à¤‚ à¤˜à¤‚à¤Ÿà¥‡ à¤¸à¤°à¥à¤µà¤¿à¤¸ à¤¬à¥à¤•à¤¿à¤‚à¤—, à¤‡à¤¨à¥à¤µà¥‡à¤‚à¤Ÿà¥à¤°à¥€ à¤ªà¥‚à¤›à¤¤à¤¾à¤› à¤”à¤° à¤•à¥‹à¤Ÿ à¤…à¤¨à¥à¤°à¥‹à¤§à¥‹à¤‚ à¤•à¥‹ à¤¸à¥à¤µà¤šà¤¾à¤²à¤¿à¤¤ à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¤‚à¥¤' },
+    { icon: 'food', title: 'à¤–à¤¾à¤¦à¥à¤¯ à¤”à¤° à¤ªà¥‡à¤¯', desc: 'à¤°à¥‡à¤¸à¥à¤Ÿà¥‹à¤°à¥‡à¤‚à¤Ÿ, à¤•à¥ˆà¤«à¥‡ à¤”à¤° à¤–à¤¾à¤¨-à¤ªà¤¾à¤¨ à¤¸à¥‡à¤µà¤¾à¤à¤‚ à¤¬à¤¿à¤¨à¤¾ à¤®à¤¿à¤¸à¥à¤¡ à¤•à¥‰à¤² à¤•à¥‡ à¤µà¥à¤¯à¤¸à¥à¤¤ à¤˜à¤‚à¤Ÿà¥‹à¤‚ à¤•à¥‡ à¤¦à¥Œà¤°à¤¾à¤¨ à¤†à¤°à¤•à¥à¤·à¤£ à¤”à¤° à¤Ÿà¥‡à¤•à¤†à¤‰à¤Ÿ à¤‘à¤°à¥à¤¡à¤° à¤¬à¥à¤• à¤•à¤°à¤¤à¥€ à¤¹à¥ˆà¤‚à¥¤' },
+    { icon: 'towing', title: 'à¤Ÿowing à¤”à¤° à¤¸à¤¡à¤¼à¤• à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾', desc: 'à¤«à¤‚à¤¸à¥‡ à¤¹à¥à¤ à¤¡à¥à¤°à¤¾à¤‡à¤µà¤°à¥‹à¤‚ à¤•à¥‹ à¤•à¥ˆà¤ªà¥à¤šà¤° à¤•à¤°à¥‡à¤‚, à¤œà¥€à¤ªà¥€à¤à¤¸ à¤¡à¥‡à¤Ÿà¤¾ à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤•à¤°à¥‡à¤‚, à¤”à¤° à¤¬à¤¿à¤¨à¤¾ à¤«à¥‹à¤¨ à¤•à¥‰à¤² à¤•à¥‡ à¤¨à¤¿à¤•à¤Ÿà¤¤à¤® à¤Ÿà¥à¤°à¤• à¤•à¥‹ à¤­à¥‡à¤œà¥‡à¤‚à¥¤' },
+    { icon: 'veterinary', title: 'à¤ªà¤¶à¥ à¤šà¤¿à¤•à¤¿à¤¤à¥à¤¸à¤¾', desc: 'à¤†à¤ªà¤¾à¤¤à¤•à¤¾à¤²à¥€à¤¨ à¤ªà¤¾à¤²à¤¤à¥‚ à¤œà¤¾à¤¨à¤µà¤°à¥‹à¤‚ à¤•à¥€ à¤¯à¤¾à¤¤à¥à¤°à¤¾à¤“à¤‚ à¤•à¥‹ à¤›à¤¾à¤‚à¤Ÿà¥‡à¤‚ à¤”à¤° à¤¤à¤¤à¥à¤•à¤¾à¤² à¤®à¤¾à¤®à¤²à¥‹à¤‚ à¤•à¥‹ à¤‘à¤¨-à¤•à¥‰à¤² à¤¨à¤°à¥à¤¸ à¤•à¥‹ à¤¤à¥à¤°à¤‚à¤¤ à¤­à¥‡à¤œà¥‡à¤‚à¥¤' },
+    { icon: 'plumbing', title: 'à¤ªà¥à¤²à¤‚à¤¬à¤¿à¤‚à¤— à¤”à¤° à¤à¤šà¤µà¥€à¤à¤¸à¥€', desc: 'à¤•à¤¾à¤® à¤•à¥‡ à¤˜à¤‚à¤Ÿà¥‹à¤‚ à¤•à¥‡ à¤¬à¤¾à¤¦ à¤®à¤¿à¤¸à¥à¤¡ à¤°à¤¿à¤ªà¥‡à¤¯à¤° à¤•à¥‰à¤² à¤¸à¥‡ à¤ªà¥ˆà¤¸à¤¾ à¤–à¥‹à¤¨à¤¾ à¤¬à¤‚à¤¦ à¤•à¤°à¥‡à¤‚à¥¤ à¤¹à¤° à¤²à¥€à¤¡ à¤•à¥‹ à¤•à¥ˆà¤ªà¥à¤šà¤° à¤•à¤°à¥‡à¤‚ à¤”à¤° à¤…à¤ªà¤¨à¥€ à¤«à¥€à¤²à¥à¤¡ à¤Ÿà¥€à¤® à¤•à¥‹ à¤­à¥‡à¤œà¥‡à¤‚à¥¤' },
+    { icon: 'boutique', title: 'à¤¬à¥à¤Ÿà¥€à¤• à¤¹à¥‹à¤Ÿà¤²', desc: 'à¤…à¤¤à¤¿à¤¥à¤¿à¤¯à¥‹à¤‚ à¤•à¥‹ à¤†à¤§à¥€ à¤°à¤¾à¤¤ à¤•à¥‹ à¤¡à¤¿à¤œà¤¿à¤Ÿà¤² à¤¡à¥‹à¤° à¤•à¥‹à¤¡ à¤¸à¥à¤µà¤¤à¤ƒ à¤…à¤¸à¤¾à¤‡à¤¨ à¤•à¤°à¤¨à¥‡ à¤¦à¥‡à¤‚à¥¤ à¤«à¥à¤°à¤‚à¤Ÿ-à¤¡à¥‡à¤¸à¥à¤• à¤•à¤°à¥à¤®à¤šà¤¾à¤°à¤¿à¤¯à¥‹à¤‚ à¤•à¥‡ à¤¬à¤¿à¤¨à¤¾ à¤¦à¥‡à¤° à¤¸à¥‡ à¤†à¤¨à¥‡ à¤µà¤¾à¤²à¥‹à¤‚ à¤•à¥‹ à¤¸à¤‚à¤­à¤¾à¤²à¥‡à¤‚à¥¤' },
+    { icon: 'catering', title: 'à¤°à¥‡à¤¸à¥à¤Ÿà¥‹à¤°à¥‡à¤‚à¤Ÿ à¤”à¤° à¤–à¤¾à¤¨-à¤ªà¤¾à¤¨', desc: 'à¤¬à¤¿à¤¨à¤¾ à¤•à¤¿à¤¸à¥€ à¤«à¥‹à¤¨ à¤Ÿà¥ˆà¤— à¤•à¥‡ à¤–à¤¾à¤¨-à¤ªà¤¾à¤¨ à¤•à¥‡ à¤‘à¤°à¥à¤¡à¤° à¤•à¥‹à¤Ÿ à¤”à¤° à¤¬à¥à¤• à¤•à¤°à¥‡à¤‚à¥¤ à¤¬à¤¡à¤¼à¥‡ à¤‡à¤µà¥‡à¤‚à¤Ÿ à¤¬à¥à¤•à¤¿à¤‚à¤— à¤•à¥‹ à¤®à¤¾à¤¨à¤•à¥€à¤•à¥ƒà¤¤ à¤•à¤°à¥‡à¤‚à¥¤' },
+    { icon: 'dealerships', title: 'à¤‘à¤Ÿà¥‹ à¤¡à¥€à¤²à¤°à¤¶à¤¿à¤ª', desc: 'à¤…à¤ªà¤¨à¥‡ à¤²à¥‰à¤Ÿ à¤ªà¤° à¤‡à¤¸à¥à¤¤à¥‡à¤®à¤¾à¤² à¤•à¥€ à¤—à¤ˆ à¤•à¤¾à¤°à¥‹à¤‚ à¤•à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚ à¤µà¤¾à¤¸à¥à¤¤à¤µà¤¿à¤• à¤¸à¤®à¤¯ à¤®à¥‡à¤‚ à¤‡à¤¨à¥à¤µà¥‡à¤‚à¤Ÿà¥à¤°à¥€ à¤¸à¤µà¤¾à¤²à¥‹à¤‚ à¤•à¥‡ à¤œà¤µà¤¾à¤¬ à¤¦à¥‡à¤‚ â€” à¤•à¤¾à¤® à¤•à¥‡ à¤˜à¤‚à¤Ÿà¥‹à¤‚ à¤•à¥‡ à¤¬à¤¾à¤¦ à¤­à¥€à¥¤' },
+    { icon: 'construction', title: 'à¤¨à¤¿à¤°à¥à¤®à¤¾à¤£', desc: 'à¤¬à¤¿à¤¨à¤¾ à¤®à¥ˆà¤¨à¥à¤¯à¥à¤…à¤² à¤•à¥‰à¤² à¤•à¥‡ à¤‰à¤ªà¤ à¥‡à¤•à¥‡à¤¦à¤¾à¤°à¥‹à¤‚ à¤•à¥‹ à¤¸à¤¾à¤®à¤—à¥à¤°à¥€ à¤µà¤¿à¤¤à¤°à¤£ à¤¸à¤®à¤¯ à¤”à¤° à¤¸à¤¾à¤‡à¤Ÿ à¤•à¤¾à¤°à¥à¤¯ à¤ªà¤°à¤®à¤¿à¤Ÿ à¤ªà¤° à¤…à¤ªà¤¡à¥‡à¤Ÿ à¤°à¤–à¥‡à¤‚à¥¤' },
+    { icon: 'law', title: 'à¤²à¥‰ à¤«à¤°à¥à¤®', desc: 'à¤°à¤¿à¤Ÿà¥‡à¤¨à¤° à¤¶à¥à¤²à¥à¤• à¤¸à¤µà¤¾à¤²à¥‹à¤‚ à¤”à¤° à¤‡à¤¨à¤Ÿà¥‡à¤• à¤«à¥‰à¤°à¥à¤® à¤ªà¥‚à¤›à¤¤à¤¾à¤› à¤•à¤¾ à¤¸à¥à¤µà¤¤à¤ƒ à¤‰à¤¤à¥à¤¤à¤° à¤¦à¥‡à¤‚à¥¤ à¤¬à¤¿à¤² à¤¯à¥‹à¤—à¥à¤¯ à¤•à¤¾à¤® à¤•à¥‡ à¤²à¤¿à¤ à¤ªà¥ˆà¤°à¤¾à¤²à¥€à¤—à¤² à¤•à¥‹ à¤–à¤¾à¤²à¥€ à¤•à¤°à¥‡à¤‚à¥¤' },
+    { icon: 'accounting', title: 'à¤²à¥‡à¤–à¤¾à¤‚à¤•à¤¨ à¤”à¤° à¤•à¤°', desc: 'à¤°à¤¿à¤¸à¥‡à¤ªà¥à¤¶à¤¨à¤¿à¤¸à¥à¤Ÿ à¤•à¥‡ à¤¬à¤¿à¤¨à¤¾ à¤Ÿà¥ˆà¤•à¥à¤¸ à¤¸à¥€à¤œà¤¨ à¤°à¤¿à¤«à¤‚à¤¡ à¤¸à¥à¤¥à¤¿à¤¤à¤¿ à¤•à¥€ à¤œà¤¾à¤‚à¤š à¤•à¥‹ à¤¸à¤‚à¤­à¤¾à¤²à¥‡à¤‚à¥¤ à¤œà¤Ÿà¤¿à¤² à¤®à¤¾à¤®à¤²à¥‹à¤‚ à¤•à¥‹ à¤µà¤°à¤¿à¤·à¥à¤  à¤²à¥‡à¤–à¤¾à¤•à¤¾à¤°à¥‹à¤‚ à¤•à¥‹ à¤­à¥‡à¤œà¥‡à¤‚à¥¤' },
+    { icon: 'retail', title: 'à¤–à¥à¤¦à¤°à¤¾ à¤”à¤° à¤ˆ-à¤•à¥‰à¤®à¤°à¥à¤¸', desc: 'à¤‰à¤¤à¥à¤ªà¤¾à¤¦ à¤¸à¤µà¤¾à¤²à¥‹à¤‚ à¤•à¥‡ à¤œà¤µà¤¾à¤¬ à¤¦à¥‡à¤‚, à¤°à¤¿à¤Ÿà¤°à¥à¤¨ à¤ªà¥à¤°à¥‹à¤¸à¥‡à¤¸ à¤•à¤°à¥‡à¤‚ à¤”à¤° à¤¹à¤° à¤šà¥ˆà¤¨à¤² à¤ªà¤° à¤—à¥à¤°à¤¾à¤¹à¤•à¥‹à¤‚ à¤•à¥€ à¤ªà¥‚à¤›à¤¤à¤¾à¤› à¤¸à¤‚à¤­à¤¾à¤²à¥‡à¤‚à¥¤' },
   ]
 };
 
@@ -108,29 +108,29 @@ export default function IndustriesPage() {
   const list = industries[locale as keyof typeof industries] || industries.en;
 
   return (
-    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
-        <span className="inline-block bg-[#141F33] text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-          {t({ en: 'Industries', fr: 'Secteurs d\'activité', ar: 'القطاعات', hi: 'उद्योग' })}
+        <span className="inline-block bg-primary text-primary text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+          {t({ en: 'Industries', fr: 'Secteurs d\'activitÃ©', ar: 'Ø§Ù„Ù‚Ø·Ø§Ø¹Ø§Øª', hi: 'à¤‰à¤¦à¥à¤¯à¥‹à¤—' })}
         </span>
-        <h1 className="text-4xl md:text-5xl font-bold text-[#141F33] leading-tight max-w-4xl mx-auto">
-          {t({ en: 'Built for 16 Industries — Worldwide', fr: 'Conçu pour 16 secteurs — Dans le monde entier', ar: 'مصمم لـ 16 قطاعاً — حول العالم', hi: '16 उद्योगों के लिए निर्मित — दुनिया भर में' })}
+        <h1 className="text-4xl md:text-5xl font-bold text-primary leading-tight max-w-4xl mx-auto">
+          {t({ en: 'Built for 16 Industries â€” Worldwide', fr: 'ConÃ§u pour 16 secteurs â€” Dans le monde entier', ar: 'Ù…ØµÙ…Ù… Ù„Ù€ 16 Ù‚Ø·Ø§Ø¹Ø§Ù‹ â€” Ø­ÙˆÙ„ Ø§Ù„Ø¹Ø§Ù„Ù…', hi: '16 à¤‰à¤¦à¥à¤¯à¥‹à¤—à¥‹à¤‚ à¤•à¥‡ à¤²à¤¿à¤ à¤¨à¤¿à¤°à¥à¤®à¤¿à¤¤ â€” à¤¦à¥à¤¨à¤¿à¤¯à¤¾ à¤­à¤° à¤®à¥‡à¤‚' })}
         </h1>
-        <p className="mt-4 text-lg text-[#141F33] max-w-2xl mx-auto">
-          {t({ en: 'Global headquarters with local expertise. Our platform adapts to your industry, language, and time zone.', fr: 'Siège mondial avec expertise locale. Notre plateforme s\'adapte à votre secteur, votre langue et votre fuseau horaire.', ar: 'مقر عالمي مع خبرة محلية. منصتنا تتكيف مع قطاعك ولغتك ومنطقتك الزمنية.', hi: 'स्थानीय विशेषज्ञता के साथ वैश्विक मुख्यालय। हमारा मंच आपके उद्योग, भाषा और समय क्षेत्र के अनुकूल है।' })}
+        <p className="mt-4 text-lg text-primary max-w-2xl mx-auto">
+          {t({ en: 'Global headquarters with local expertise. Our platform adapts to your industry, language, and time zone.', fr: 'SiÃ¨ge mondial avec expertise locale. Notre plateforme s\'adapte Ã  votre secteur, votre langue et votre fuseau horaire.', ar: 'Ù…Ù‚Ø± Ø¹Ø§Ù„Ù…ÙŠ Ù…Ø¹ Ø®Ø¨Ø±Ø© Ù…Ø­Ù„ÙŠØ©. Ù…Ù†ØµØªÙ†Ø§ ØªØªÙƒÙŠÙ Ù…Ø¹ Ù‚Ø·Ø§Ø¹Ùƒ ÙˆÙ„ØºØªÙƒ ÙˆÙ…Ù†Ø·Ù‚ØªÙƒ Ø§Ù„Ø²Ù…Ù†ÙŠØ©.', hi: 'à¤¸à¥à¤¥à¤¾à¤¨à¥€à¤¯ à¤µà¤¿à¤¶à¥‡à¤·à¤œà¥à¤žà¤¤à¤¾ à¤•à¥‡ à¤¸à¤¾à¤¥ à¤µà¥ˆà¤¶à¥à¤µà¤¿à¤• à¤®à¥à¤–à¥à¤¯à¤¾à¤²à¤¯à¥¤ à¤¹à¤®à¤¾à¤°à¤¾ à¤®à¤‚à¤š à¤†à¤ªà¤•à¥‡ à¤‰à¤¦à¥à¤¯à¥‹à¤—, à¤­à¤¾à¤·à¤¾ à¤”à¤° à¤¸à¤®à¤¯ à¤•à¥à¤·à¥‡à¤¤à¥à¤° à¤•à¥‡ à¤…à¤¨à¥à¤•à¥‚à¤² à¤¹à¥ˆà¥¤' })}
         </p>
       </section>
 
-      <section className="bg-[#F8F9FB] py-20">
+      <section className="bg-surface py-20">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {list.map((ind) => (
-              <div key={ind.title} className="bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm hover:shadow-md transition-all shadow-card">
-                <span className="text-3xl mb-3 block">{industryIcons[ind.icon] || <Building2 className="w-8 h-8 text-[#141F33]" />}</span>
-                <h3 className="text-lg font-bold text-[#141F33] mb-2">{ind.title}</h3>
-                <p className="text-sm text-[#141F33] leading-relaxed">{ind.desc}</p>
+              <div key={ind.title} className="bg-white border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md transition-all shadow-card">
+                <span className="text-3xl mb-3 block">{industryIcons[ind.icon] || <Building2 className="w-8 h-8 text-primary" />}</span>
+                <h3 className="text-lg font-bold text-primary mb-2">{ind.title}</h3>
+                <p className="text-sm text-primary leading-relaxed">{ind.desc}</p>
               </div>
             ))}
           </div>
@@ -139,19 +139,19 @@ export default function IndustriesPage() {
 
       <section className="py-20">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <h2 className="text-3xl font-bold text-[#141F33] mb-4">
-            {t({ en: 'Don\'t see your industry?', fr: 'Vous ne voyez pas votre secteur ?', ar: 'لا ترى قطاعك؟', hi: 'अपना उद्योग नहीं दिख रहा है?' })}
+          <h2 className="text-3xl font-bold text-primary mb-4">
+            {t({ en: 'Don\'t see your industry?', fr: 'Vous ne voyez pas votre secteur ?', ar: 'Ù„Ø§ ØªØ±Ù‰ Ù‚Ø·Ø§Ø¹ÙƒØŸ', hi: 'à¤…à¤ªà¤¨à¤¾ à¤‰à¤¦à¥à¤¯à¥‹à¤— à¤¨à¤¹à¥€à¤‚ à¤¦à¤¿à¤– à¤°à¤¹à¤¾ à¤¹à¥ˆ?' })}
           </h2>
-          <p className="text-[#141F33] mb-8">
-            {t({ en: 'SAQYN RABT is industry-agnostic. We build custom workflows for any business type.', fr: 'SAQYN RABT est indépendant du secteur. Nous construisons des flux de travail personnalisés pour tout type d\'entreprise.', ar: 'SAQYN RABT غير مقيدة بصناعة معينة. نبني سير عمل مخصص لأي نوع عمل.', hi: 'SAQYN RABT उद्योग-अज्ञेयवादी है। हम किसी भी प्रकार के व्यवसाय के लिए कस्टम वर्कफ़्लो बनाते हैं।' })}
+          <p className="text-primary mb-8">
+            {t({ en: 'SAQYN RABT is industry-agnostic. We build custom workflows for any business type.', fr: 'SAQYN RABT est indÃ©pendant du secteur. Nous construisons des flux de travail personnalisÃ©s pour tout type d\'entreprise.', ar: 'SAQYN RABT ØºÙŠØ± Ù…Ù‚ÙŠØ¯Ø© Ø¨ØµÙ†Ø§Ø¹Ø© Ù…Ø¹ÙŠÙ†Ø©. Ù†Ø¨Ù†ÙŠ Ø³ÙŠØ± Ø¹Ù…Ù„ Ù…Ø®ØµØµ Ù„Ø£ÙŠ Ù†ÙˆØ¹ Ø¹Ù…Ù„.', hi: 'SAQYN RABT à¤‰à¤¦à¥à¤¯à¥‹à¤—-à¤…à¤œà¥à¤žà¥‡à¤¯à¤µà¤¾à¤¦à¥€ à¤¹à¥ˆà¥¤ à¤¹à¤® à¤•à¤¿à¤¸à¥€ à¤­à¥€ à¤ªà¥à¤°à¤•à¤¾à¤° à¤•à¥‡ à¤µà¥à¤¯à¤µà¤¸à¤¾à¤¯ à¤•à¥‡ à¤²à¤¿à¤ à¤•à¤¸à¥à¤Ÿà¤® à¤µà¤°à¥à¤•à¤«à¤¼à¥à¤²à¥‹ à¤¬à¤¨à¤¾à¤¤à¥‡ à¤¹à¥ˆà¤‚à¥¤' })}
           </p>
           <a
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-xl bg-[#141F33] px-6 py-3 text-xs font-bold min-h-[44px] text-[#F8F9FB] hover:opacity-90 transition-all"
+            className="inline-flex items-center justify-center rounded-xl bg-primary px-6 py-3 text-xs font-bold min-h-[44px] text-surface hover:opacity-90 transition-all"
           >
-            {t({ en: 'See how it works', fr: 'Découvrez comment ça marche', ar: 'شاهد كيف يعمل', hi: 'देखें यह कैसे काम करता है' })}
+            {t({ en: 'See how it works', fr: 'DÃ©couvrez comment Ã§a marche', ar: 'Ø´Ø§Ù‡Ø¯ ÙƒÙŠÙ ÙŠØ¹Ù…Ù„', hi: 'à¤¦à¥‡à¤–à¥‡à¤‚ à¤¯à¤¹ à¤•à¥ˆà¤¸à¥‡ à¤•à¤¾à¤® à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ' })}
           </a>
         </div>
       </section>

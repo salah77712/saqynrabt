@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLocale } from '../../providers';
@@ -59,24 +59,24 @@ return (
 <div className="space-y-6 md:space-y-8 animate-fadeIn">
 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
 <div>
-<h1 className="text-xl md:text-2xl font-black text-[#141F33] dark:text-[#F8F9FB] tracking-tight">
-{t('Automation', 'مركز أتمتة العمليات')}
+<h1 className="text-xl md:text-2xl font-black text-primary dark:text-surface tracking-tight">
+{t('Automation', 'Ù…Ø±ÙƒØ² Ø£ØªÙ…ØªØ© Ø§Ù„Ø¹Ù…Ù„ÙŠØ§Øª')}
 </h1>
-<p className="text-[10px] md:text-xs text-[#141F33] font-bold">
-{t('Live calls, dispatch tasks, and channel activity.', 'إدارة المكالمات المباشرة، وتوزيع المهام، وتنسيق قنوات الاستجابة.')}
+<p className="text-[10px] md:text-xs text-primary font-bold">
+{t('Live calls, dispatch tasks, and channel activity.', 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø©ØŒ ÙˆØªÙˆØ²ÙŠØ¹ Ø§Ù„Ù…Ù‡Ø§Ù…ØŒ ÙˆØªÙ†Ø³ÙŠÙ‚ Ù‚Ù†ÙˆØ§Øª Ø§Ù„Ø§Ø³ØªØ¬Ø§Ø¨Ø©.')}
 </p>
 </div>
 </div>
 
 <Card className="p-8 rounded-xl">
-<div className="flex items-center justify-between pb-3 md:pb-4 border-b border-[#141F33]/10 mb-4 md:mb-6">
-<h2 className="text-xs md:text-sm font-black text-[#141F33] dark:text-[#F8F9FB] flex items-center gap-3 md:gap-4">
-<Zap className="w-4 h-4 text-[#141F33]" />
-<span>{t('Live Customer Calls', 'المكالمات الواردة المباشرة')}</span>
+<div className="flex items-center justify-between pb-3 md:pb-4 border-b border-primary/10 mb-4 md:mb-6">
+<h2 className="text-xs md:text-sm font-black text-primary dark:text-surface flex items-center gap-3 md:gap-4">
+<Zap className="w-4 h-4 text-primary" />
+<span>{t('Live Customer Calls', 'Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„ÙˆØ§Ø±Ø¯Ø© Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø©')}</span>
 </h2>
-<div className="flex items-center gap-1.5 rounded-full bg-[#F8F9FB] border border-[#141F33]/10 px-2.5 md:px-3 py-1 text-[8px] md:text-[9px] font-black text-[#141F33] uppercase tracking-widest">
-<span className="h-1.5 w-1.5 rounded-full bg-[#141F33] animate-pulse" />
-<span>{t('Live', 'مباشر')}</span>
+<div className="flex items-center gap-1.5 rounded-full bg-surface border border-primary/10 px-2.5 md:px-3 py-1 text-[8px] md:text-[9px] font-black text-primary uppercase tracking-widest">
+<span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
+<span>{t('Live', 'Ù…Ø¨Ø§Ø´Ø±')}</span>
 </div>
 </div>
 
@@ -85,12 +85,12 @@ return (
 ) : (
         <div className="gap-8 md:space-y-6">
 {activeCalls.map((call) => (
-<div key={call.id} className="bg-[#F8F9FB] rounded-xl p-8 border border-[#141F33]/10 animate-fadeIn">
-<div className="flex items-center justify-between gap-8 border-b border-[#141F33]/10 pb-3 mb-3">
+<div key={call.id} className="bg-surface rounded-xl p-8 border border-primary/10 animate-fadeIn">
+<div className="flex items-center justify-between gap-8 border-b border-primary/10 pb-3 mb-3">
 <span className="text-[11px] md:text-xs font-bold text-navy">{call.caller}</span>
-<span className="text-[9px] md:text-[10px] font-bold text-[#141F33]">{call.timestamp}</span>
+<span className="text-[9px] md:text-[10px] font-bold text-primary">{call.timestamp}</span>
 </div>
-<div className="font-mono text-[10px] md:text-xs text-[#141F33] space-y-2 max-h-36 md:max-h-48 overflow-y-auto leading-relaxed">
+<div className="font-mono text-[10px] md:text-xs text-primary space-y-2 max-h-36 md:max-h-48 overflow-y-auto leading-relaxed">
 {call.transcript.map((line, idx) => (
 <p key={idx}>{line}</p>
 ))}
@@ -118,14 +118,14 @@ onSearchChange={setSearch}
 <div
 key={req.id}
 onClick={() => handleRequestSelect(req)}
-className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm active:scale-[0.98] transition-transform"
+className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm active:scale-[0.98] transition-transform"
 >
 <div className="flex items-center justify-between mb-2">
-<span className="text-xs font-bold text-[#141F33]">{req.customer}</span>
+<span className="text-xs font-bold text-primary">{req.customer}</span>
 <Badge variant={statusVariant(req.status) as any}>{req.status}</Badge>
 </div>
-<p className="text-[11px] font-semibold text-[#141F33]">{req.type}</p>
-<p className="text-[10px] text-[#141F33]/40 mt-1.5">{req.time}</p>
+<p className="text-[11px] font-semibold text-primary">{req.type}</p>
+<p className="text-[10px] text-primary/40 mt-1.5">{req.time}</p>
 </div>
 ))}
 </div>

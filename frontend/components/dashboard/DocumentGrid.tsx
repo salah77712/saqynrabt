@@ -1,4 +1,4 @@
-import * as React from 'react';
+﻿import * as React from 'react';
 import { Card } from '@/components/shadcn/card';
 import { Badge } from '../ui/Badge';
 import { FileText, Trash2 } from 'lucide-react';
@@ -25,13 +25,13 @@ export function DocumentGrid({ docs, onDelete }: DocumentGridProps) {
               <FileText className="w-6 h-6 " />
               <button
                 onClick={() => onDelete(doc.id)}
-className="text-xs hover:text-[#141F33] font-bold px-3 py-1.5 min-h-[44px] rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
+className="text-xs hover:text-primary font-bold px-3 py-1.5 min-h-[44px] rounded-xl transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 aria-label={`Delete ${doc.name}`}
               >
                 <Trash2 className="w-5 h-5" />
               </button>
             </div>
-            <h4 className="font-bold text-navy dark:text-[#F8F9FB] text-sm truncate" title={doc.name}>
+            <h4 className="font-bold text-navy dark:text-surface text-sm truncate" title={doc.name}>
               {doc.name}
             </h4>
             <p className="text-[10px]  mt-1">{doc.size}</p>

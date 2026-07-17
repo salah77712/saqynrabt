@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import { useLocale } from '../app/providers';
@@ -15,8 +15,8 @@ const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
 return (
 <div className="flex flex-col items-center gap-8">
-<p className="text-xs font-extrabold tracking-widest text-[#141F33]/60 dark:text-[#F8F9FB]/60 uppercase text-center">
-{t('Engineered for Global Operations — Select Your Industry', 'مصمم خصيصًا للعمليات العالمية - اختر قطاعك')}
+<p className="text-xs font-extrabold tracking-widest text-primary/60 dark:text-surface/60 uppercase text-center">
+{t('Engineered for Global Operations â€” Select Your Industry', 'Ù…ØµÙ…Ù… Ø®ØµÙŠØµÙ‹Ø§ Ù„Ù„Ø¹Ù…Ù„ÙŠØ§Øª Ø§Ù„Ø¹Ø§Ù„Ù…ÙŠØ© - Ø§Ø®ØªØ± Ù‚Ø·Ø§Ø¹Ùƒ')}
 </p>
 
 <div className="w-full flex flex-wrap justify-center gap-8 py-2">
@@ -26,11 +26,11 @@ key={ind.id}
 onClick={() => onChange(ind.id)}
 className={`min-h-[44px] px-6 py-3 rounded-xl border text-xs font-bold transition-all hover:shadow-md hover:scale-[1.02] active:scale-95 cursor-pointer ${
 activeId === ind.id
-? 'bg-[#141F33] text-[#F8F9FB] border-[#141F33] dark:border-[#F8F9FB] shadow-md dark:bg-[#2A5CFF]'
-: 'bg-[#F8F9FB] text-[#141F33] border-[#141F33]/10 shadow-sm hover:shadow-md dark:bg-[#141F33] dark:text-[#F8F9FB] dark:border-[#141F33]/30'
+? 'bg-primary text-surface border-primary dark:border-surface shadow-md dark:bg-accent'
+: 'bg-surface text-primary border-primary/10 shadow-sm hover:shadow-md dark:bg-primary dark:text-surface dark:border-primary/30'
 }`}
 >
-{locale === 'ar' && ind.id === 'default' ? 'كل القطاعات' : ind.label}
+{locale === 'ar' && ind.id === 'default' ? 'ÙƒÙ„ Ø§Ù„Ù‚Ø·Ø§Ø¹Ø§Øª' : ind.label}
 </button>
 ))}
 </div>

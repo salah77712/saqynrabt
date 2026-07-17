@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import { useLocale } from '../../providers';
@@ -50,13 +50,13 @@ return (
 
 {/* Header */}
 <div>
-<h1 className="text-xl font-extrabold text-[#141F33]">{t({ en: 'Inbox', ar: 'صندوق البريد الموحد للقنوات' })}</h1>
-<p className="text-xs text-[#141F33] font-medium mt-0.5">{t({ en: 'WhatsApp, SMS, web chat, and email — all in one place.', ar: 'تجميع رسائل العملاء من الواتساب، الرسائل النصية، المحادثات، والبريد الإلكتروني.' })}</p>
+<h1 className="text-xl font-extrabold text-primary">{t({ en: 'Inbox', ar: 'ØµÙ†Ø¯ÙˆÙ‚ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ù…ÙˆØ­Ø¯ Ù„Ù„Ù‚Ù†ÙˆØ§Øª' })}</h1>
+<p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'WhatsApp, SMS, web chat, and email â€” all in one place.', ar: 'ØªØ¬Ù…ÙŠØ¹ Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ Ù…Ù† Ø§Ù„ÙˆØ§ØªØ³Ø§Ø¨ØŒ Ø§Ù„Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ù†ØµÙŠØ©ØŒ Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø§ØªØŒ ÙˆØ§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ.' })}</p>
 </div>
 
 {error && (
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 text-[#2A5CFF] rounded-xl p-3 text-xs font-semibold">
-{t({ en: 'Could not load fresh data. Showing sample messages.', ar: 'تعذر تحميل البيانات الحديثة. يتم عرض رسائل نموذجية.' })}
+<div className="bg-surface border border-primary/10 text-accent rounded-xl p-3 text-xs font-semibold">
+{t({ en: 'Could not load fresh data. Showing sample messages.', ar: 'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø­Ø¯ÙŠØ«Ø©. ÙŠØªÙ… Ø¹Ø±Ø¶ Ø±Ø³Ø§Ø¦Ù„ Ù†Ù…ÙˆØ°Ø¬ÙŠØ©.' })}
 </div>
 )}
 
@@ -68,8 +68,8 @@ key={ch}
 onClick={() => setFilterChannel(ch)}
 className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
             filterChannel === ch
-              ? 'bg-[#141F33] border-[#141F33] text-[#F8F9FB]'
-              : 'bg-[#F8F9FB] border-[#141F33]/10 text-[#141F33] hover:bg-[#141F33]'
+              ? 'bg-primary border-primary text-surface'
+              : 'bg-surface border-primary/10 text-primary hover:bg-primary'
             }`}
 >
 {ch}
@@ -78,14 +78,14 @@ className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transitio
 </div>
 
 {/* Inbox List */}
-<div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
+<div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
 {loading ? (
-<p className="text-xs text-[#141F33] font-semibold text-center py-6">
-{t({ en: 'Loading messages...', ar: 'جاري تحميل الرسائل...' })}
+<p className="text-xs text-primary font-semibold text-center py-6">
+{t({ en: 'Loading messages...', ar: 'Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø±Ø³Ø§Ø¦Ù„...' })}
 </p>
 ) : filtered.length === 0 ? (
-<p className="text-xs text-[#141F33] font-semibold text-center py-6">
-{t({ en: 'No messages found.', ar: 'لم يتم العثور على رسائل.' })}
+<p className="text-xs text-primary font-semibold text-center py-6">
+{t({ en: 'No messages found.', ar: 'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø±Ø³Ø§Ø¦Ù„.' })}
 </p>
 ) : (
 <div className="divide-y divide-[#141F33]/10">
@@ -93,14 +93,14 @@ className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transitio
 <div key={msg.id} className="py-4 first:pt-0 last:pb-0 flex justify-between items-start gap-8">
 <div className="min-w-0">
 <div className="flex items-center gap-3">
-<span className="text-xs font-extrabold text-[#141F33]">{msg.sender}</span>
-<span className="bg-[#F8F9FB] text-[#141F33] font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-[#141F33]/10">
+<span className="text-xs font-extrabold text-primary">{msg.sender}</span>
+<span className="bg-surface text-primary font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-primary/10">
 {msg.channel}
 </span>
 </div>
-<p className="text-xs text-[#141F33] font-semibold mt-1 leading-normal">{msg.body}</p>
+<p className="text-xs text-primary font-semibold mt-1 leading-normal">{msg.body}</p>
 </div>
-<span className="text-[10px] text-[#141F33] font-bold shrink-0">{new Date(msg.timestamp).toLocaleTimeString()}</span>
+<span className="text-[10px] text-primary font-bold shrink-0">{new Date(msg.timestamp).toLocaleTimeString()}</span>
 </div>
 ))}
 </div>

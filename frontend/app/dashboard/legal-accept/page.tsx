@@ -171,7 +171,7 @@ setSubmitting(false);
 
 if (loading) {
 return (
-<div className="min-h-screen flex items-center justify-center bg-[#F8F9FB]">
+<div className="min-h-screen flex items-center justify-center bg-surface">
 <LoaderSvg />
 </div>
 );
@@ -179,13 +179,13 @@ return (
 
 if (accepted) {
 return (
-<div className="min-h-screen flex items-center justify-center bg-[#F8F9FB] p-8">
+<div className="min-h-screen flex items-center justify-center bg-surface p-8">
 <div className="max-w-md text-center">
 <CheckCircleSvg />
-<h1 className="mt-4 text-xl font-bold text-[#141F33]">
+<h1 className="mt-4 text-xl font-bold text-primary">
 {t({ en: 'All Legal Terms Accepted', ar: 'تم قبول جميع الشروط القانونية' })}
 </h1>
-<p className="mt-3 text-sm text-[#141F33]">
+<p className="mt-3 text-sm text-primary">
 {t({
 en: 'Redirecting you to the dashboard...',
 ar: 'جاري إعادة توجيهك إلى لوحة التحكم...',
@@ -204,15 +204,15 @@ return null;
 }
 
 return (
-<div className="min-h-screen flex items-center justify-center bg-[#F8F9FB] p-8 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<div className="max-w-lg w-full bg-[#F8F9FB] rounded-xl shadow-xl p-8">
+<div className="min-h-screen flex items-center justify-center bg-surface p-8 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="max-w-lg w-full bg-surface rounded-xl shadow-xl p-8">
 <div className="flex items-center gap-4 mb-6">
 <ShieldSvg />
 <div>
-<h1 className="text-lg font-bold text-[#141F33]">
+<h1 className="text-lg font-bold text-primary">
 {t({ en: 'Acceptance of Legal Terms', ar: 'قبول الشروط القانونية' })}
 </h1>
-<p className="text-xs text-[#141F33]">
+<p className="text-xs text-primary">
 {t({
 en: 'Under Qatari Law No. 8 of 2019, you must accept these terms to continue.',
 ar: 'بموجب قانون قطر رقم 8 لسنة 2019، يجب عليك قبول هذه الشروط للمتابعة.',
@@ -223,7 +223,7 @@ ar: 'بموجب قانون قطر رقم 8 لسنة 2019، يجب عليك قب�
 
 <div className="gap-8">
 {status?.tos.needsAccept && (
-<label className="flex items-start gap-4 p-4 rounded-xl border border-[#141F33]/10 hover:border-[#141F33]/30 cursor-pointer transition-colors">
+<label className="flex items-start gap-4 p-4 rounded-xl border border-primary/10 hover:border-primary/30 cursor-pointer transition-colors">
 <input
 type="checkbox"
 checked={tosChecked}
@@ -231,10 +231,10 @@ onChange={(e) => setTosChecked(e.target.checked)}
 className="mt-0.5 accent-[#141F33]"
 />
 <div>
-<p className="text-sm font-bold text-[#141F33]">
+<p className="text-sm font-bold text-primary">
 {t({ en: 'Terms of Service', ar: 'شروط الخدمة' })}
 </p>
-<p className="text-xs text-[#141F33] mt-1">
+<p className="text-xs text-primary mt-1">
 {t({
 en: 'I have read and agree to the Terms of Service.',
 ar: 'لقد قرأت وأوافق على شروط الخدمة.',
@@ -252,7 +252,7 @@ className="text-xs font-bold text-accent hover:underline mt-1 inline-block"
 )}
 
 {status?.dpa.needsAccept && (
-<label className="flex items-start gap-4 p-4 rounded-xl border border-[#141F33]/10 hover:border-[#141F33]/30 cursor-pointer transition-colors">
+<label className="flex items-start gap-4 p-4 rounded-xl border border-primary/10 hover:border-primary/30 cursor-pointer transition-colors">
 <input
 type="checkbox"
 checked={dpaChecked}
@@ -260,10 +260,10 @@ onChange={(e) => setDpaChecked(e.target.checked)}
 className="mt-0.5 accent-[#141F33]"
 />
 <div>
-<p className="text-sm font-bold text-[#141F33]">
+<p className="text-sm font-bold text-primary">
 {t({ en: 'Data Processing Agreement (DPA)', ar: 'اتفاقية معالجة البيانات' })}
 </p>
-<p className="text-xs text-[#141F33] mt-1">
+<p className="text-xs text-primary mt-1">
 {t({
 en: 'I have read and agree to the Data Processing Agreement.',
 ar: 'لقد قرأت وأوافق على اتفاقية معالجة البيانات.',
@@ -282,7 +282,7 @@ className="text-xs font-bold text-accent hover:underline mt-1 inline-block"
 </div>
 
 {error && (
-<div className="mt-4 flex items-start gap-3 text-[#141F33] text-xs bg-[#F8F9FB] border border-[#141F33]/10 p-3 rounded-xl">
+<div className="mt-4 flex items-start gap-3 text-primary text-xs bg-surface border border-primary/10 p-3 rounded-xl">
 <AlertTriangleSvg />
 <p>{error}</p>
 </div>
@@ -292,7 +292,7 @@ className="text-xs font-bold text-accent hover:underline mt-1 inline-block"
 type="button"
 onClick={handleAccept}
 disabled={!tosChecked || !dpaChecked || submitting}
-className="mt-6 w-full py-3 px-6 min-h-[44px] rounded-xl bg-[#141F33] text-[#F8F9FB] text-xs font-bold hover:bg-[#141F33] transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+className="mt-6 w-full py-3 px-6 min-h-[44px] rounded-xl bg-primary text-surface text-xs font-bold hover:bg-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-3"
 >
 {submitting ? (
 <>
@@ -304,7 +304,7 @@ t({ en: 'Accept & Continue', ar: 'قبول والمتابعة' })
 )}
 </button>
 
-<p className="mt-3 text-xs text-[#141F33] text-center">
+<p className="mt-3 text-xs text-primary text-center">
 {t({
 en: 'By clicking "Accept & Continue", you electronically sign these documents. Your acceptance is recorded with your IP address and user agent for audit purposes.',
 ar: 'بالنقر على "قبول والمتابعة"، فإنك توقع إلكترونياً على هذه المستندات. يتم تسجيل قبولك مع عنوان IP الخاص بك ووكيل المستخدم لأغراض التدقيق.',

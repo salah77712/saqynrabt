@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
@@ -26,18 +26,18 @@ export default function ContactPage() {
   const validate = () => {
     const newErrors: Record<string, string> = {};
     if (!formData.name.trim()) {
-      newErrors.name = t({ en: 'Name is required.', ar: 'الاسم مطلوب.' });
+      newErrors.name = t({ en: 'Name is required.', ar: 'Ø§Ù„Ø§Ø³Ù… Ù…Ø·Ù„ÙˆØ¨.' });
     }
     if (!formData.email.trim()) {
-      newErrors.email = t({ en: 'Email is required.', ar: 'البريد الإلكتروني مطلوب.' });
+      newErrors.email = t({ en: 'Email is required.', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ù…Ø·Ù„ÙˆØ¨.' });
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = t({ en: 'Email is invalid.', ar: 'البريد الإلكتروني غير صالح.' });
+      newErrors.email = t({ en: 'Email is invalid.', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ ØºÙŠØ± ØµØ§Ù„Ø­.' });
     }
     if (!formData.phone.trim()) {
-      newErrors.phone = t({ en: 'Phone number is required.', ar: 'رقم الهاتف مطلوب.' });
+      newErrors.phone = t({ en: 'Phone number is required.', ar: 'Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ Ù…Ø·Ù„ÙˆØ¨.' });
     }
     if (!formData.message.trim()) {
-      newErrors.message = t({ en: 'Message is required.', ar: 'الرسالة مطلوبة.' });
+      newErrors.message = t({ en: 'Message is required.', ar: 'Ø§Ù„Ø±Ø³Ø§Ù„Ø© Ù…Ø·Ù„ÙˆØ¨Ø©.' });
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -61,7 +61,7 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       <Header />
 
       <main className="flex-1 max-w-6xl mx-auto py-24 px-6 lg:px-12 w-full">
@@ -70,18 +70,18 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-30 items-start">
           
           {/* Left Column: Contact Form */}
-          <div className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-8 shadow-sm">
-            <h2 className="text-2xl font-extrabold text-[#141F33] mb-2">
-              {t({ en: 'Send us a message', ar: 'أرسل لنا رسالة' })}
+          <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
+            <h2 className="text-2xl font-extrabold text-primary mb-2">
+              {t({ en: 'Send us a message', ar: 'Ø£Ø±Ø³Ù„ Ù„Ù†Ø§ Ø±Ø³Ø§Ù„Ø©' })}
             </h2>
-            <p className="text-xs font-semibold text-[#141F33] mb-6">
-              {t({ en: 'Fill out the form below and our team will get back to you shortly.', ar: 'املأ النموذج أدناه وسيتصل بك فريقنا قريبًا.' })}
+            <p className="text-xs font-semibold text-primary mb-6">
+              {t({ en: 'Fill out the form below and our team will get back to you shortly.', ar: 'Ø§Ù…Ù„Ø£ Ø§Ù„Ù†Ù…ÙˆØ°Ø¬ Ø£Ø¯Ù†Ø§Ù‡ ÙˆØ³ÙŠØªØµÙ„ Ø¨Ùƒ ÙØ±ÙŠÙ‚Ù†Ø§ Ù‚Ø±ÙŠØ¨Ù‹Ø§.' })}
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* Name */}
               <div>
-                <label htmlFor="name" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Name', ar: 'الاسم' })}</label>
+                <label htmlFor="name" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Name', ar: 'Ø§Ù„Ø§Ø³Ù…' })}</label>
                 <input
                   type="text"
                   id="name"
@@ -89,16 +89,16 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   aria-invalid={!!errors.name}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal ${
-                    errors.name ? 'border-red-600' : 'border-[#141F33]/10'
+                  className={`w-full min-h-[44px] bg-surface border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal ${
+                    errors.name ? 'border-red-600' : 'border-primary/10'
                   }`}
                 />
-                {errors.name && <p className="text-[#141F33] text-[10px] font-bold mt-1">{errors.name}</p>}
+                {errors.name && <p className="text-primary text-[10px] font-bold mt-1">{errors.name}</p>}
               </div>
 
               {/* Email */}
               <div>
-                <label htmlFor="email" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
+                <label htmlFor="email" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Email Address', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</label>
                 <input
                   type="email"
                   id="email"
@@ -106,16 +106,16 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   aria-invalid={!!errors.email}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal ${
-                    errors.email ? 'border-red-600' : 'border-[#141F33]/10'
+                  className={`w-full min-h-[44px] bg-surface border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal ${
+                    errors.email ? 'border-red-600' : 'border-primary/10'
                   }`}
                 />
-                {errors.email && <p className="text-[#141F33] text-[10px] font-bold mt-1">{errors.email}</p>}
+                {errors.email && <p className="text-primary text-[10px] font-bold mt-1">{errors.email}</p>}
               </div>
 
               {/* Phone */}
               <div>
-                <label htmlFor="phone" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Phone Number', ar: 'رقم الهاتف' })}</label>
+                <label htmlFor="phone" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Phone Number', ar: 'Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ' })}</label>
                 <input
                   type="text"
                   id="phone"
@@ -123,33 +123,33 @@ export default function ContactPage() {
                   value={formData.phone}
                   onChange={handleChange}
                   aria-invalid={!!errors.phone}
-                  className={`w-full min-h-[44px] bg-[#F8F9FB] border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal ${
-                    errors.phone ? 'border-red-600' : 'border-[#141F33]/10'
+                  className={`w-full min-h-[44px] bg-surface border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal ${
+                    errors.phone ? 'border-red-600' : 'border-primary/10'
                   }`}
                 />
-                {errors.phone && <p className="text-[#141F33] text-[10px] font-bold mt-1">{errors.phone}</p>}
+                {errors.phone && <p className="text-primary text-[10px] font-bold mt-1">{errors.phone}</p>}
               </div>
 
               {/* Subject */}
               <div>
-                <label htmlFor="subject" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Subject', ar: 'الموضوع' })}</label>
+                <label htmlFor="subject" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Subject', ar: 'Ø§Ù„Ù…ÙˆØ¶ÙˆØ¹' })}</label>
                 <select
                   id="subject"
                   name="subject"
                   value={formData.subject}
                   onChange={handleChange}
-                  className="w-full min-h-[44px] bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl px-4 py-2 text-xs font-semibold text-[#141F33] focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
+                  className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold text-primary focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
                 >
-                  <option value="Demo Request">{t({ en: 'Demo Request', ar: 'طلب عرض توضيحي' })}</option>
-                  <option value="Support">{t({ en: 'Support', ar: 'الدعم الفني' })}</option>
-                  <option value="Partnership">{t({ en: 'Partnership', ar: 'شراكة' })}</option>
-                  <option value="Sales">{t({ en: 'Sales & Billing', ar: 'المبيعات والفوترة' })}</option>
+                  <option value="Demo Request">{t({ en: 'Demo Request', ar: 'Ø·Ù„Ø¨ Ø¹Ø±Ø¶ ØªÙˆØ¶ÙŠØ­ÙŠ' })}</option>
+                  <option value="Support">{t({ en: 'Support', ar: 'Ø§Ù„Ø¯Ø¹Ù… Ø§Ù„ÙÙ†ÙŠ' })}</option>
+                  <option value="Partnership">{t({ en: 'Partnership', ar: 'Ø´Ø±Ø§ÙƒØ©' })}</option>
+                  <option value="Sales">{t({ en: 'Sales & Billing', ar: 'Ø§Ù„Ù…Ø¨ÙŠØ¹Ø§Øª ÙˆØ§Ù„ÙÙˆØªØ±Ø©' })}</option>
                 </select>
               </div>
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-xs font-bold text-[#141F33] mb-1.5">{t({ en: 'Message', ar: 'الرسالة' })}</label>
+                <label htmlFor="message" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Message', ar: 'Ø§Ù„Ø±Ø³Ø§Ù„Ø©' })}</label>
                 <textarea
                   id="message"
                   name="message"
@@ -157,20 +157,20 @@ export default function ContactPage() {
                   value={formData.message}
                   onChange={handleChange}
                   aria-invalid={!!errors.message}
-                  className={`w-full bg-[#F8F9FB] border rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal resize-none ${
-                    errors.message ? 'border-red-600' : 'border-[#141F33]/10'
+                  className={`w-full bg-surface border rounded-xl px-4 py-3 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal resize-none ${
+                    errors.message ? 'border-red-600' : 'border-primary/10'
                   }`}
                 />
-                {errors.message && <p className="text-[#141F33] text-[10px] font-bold mt-1">{errors.message}</p>}
+                {errors.message && <p className="text-primary text-[10px] font-bold mt-1">{errors.message}</p>}
               </div>
 
               {/* Submit button */}
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-[#141F33] text-[#F8F9FB] font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
+                className="w-full bg-primary text-surface font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
               >
-                {submitting ? t({ en: 'Submitting...', ar: 'جاري الإرسال...' }) : t({ en: 'Submit Message', ar: 'إرسال الرسالة' })}
+                {submitting ? t({ en: 'Submitting...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...' }) : t({ en: 'Submit Message', ar: 'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø±Ø³Ø§Ù„Ø©' })}
               </button>
             </form>
           </div>
@@ -178,37 +178,37 @@ export default function ContactPage() {
           {/* Right Column: Office Info */}
           <div className="space-y-8 lg:pt-8 text-center lg:text-start">
             <div>
-              <span className="text-xs font-extrabold tracking-widest text-[#2A5CFF] uppercase">{t({ en: 'Get in touch', ar: 'تواصل معنا' })}</span>
-              <h1 className="text-4xl font-extrabold text-[#141F33] tracking-tight mt-3">
-                {t({ en: 'Tell us what you need.', ar: 'أخبرنا بما تحتاجه.' })}
+              <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Get in touch', ar: 'ØªÙˆØ§ØµÙ„ Ù…Ø¹Ù†Ø§' })}</span>
+              <h1 className="text-4xl font-extrabold text-primary tracking-tight mt-3">
+                {t({ en: 'Tell us what you need.', ar: 'Ø£Ø®Ø¨Ø±Ù†Ø§ Ø¨Ù…Ø§ ØªØ­ØªØ§Ø¬Ù‡.' })}
               </h1>
-              <p className="text-sm font-semibold text-[#141F33] mt-4 leading-relaxed max-w-md mx-auto lg:mx-0">
-                {t({ en: 'Bottlenecks in your operations? Questions about setup? Fill in the form and we\'ll get back to you within 24 hours.', ar: 'عقبات في عملياتك؟ أسئلة حول الإعداد؟ املأ النموذج وسنعود إليك خلال 24 ساعة.' })}
+              <p className="text-sm font-semibold text-primary mt-4 leading-relaxed max-w-md mx-auto lg:mx-0">
+                {t({ en: 'Bottlenecks in your operations? Questions about setup? Fill in the form and we\'ll get back to you within 24 hours.', ar: 'Ø¹Ù‚Ø¨Ø§Øª ÙÙŠ Ø¹Ù…Ù„ÙŠØ§ØªÙƒØŸ Ø£Ø³Ø¦Ù„Ø© Ø­ÙˆÙ„ Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯ØŸ Ø§Ù…Ù„Ø£ Ø§Ù„Ù†Ù…ÙˆØ°Ø¬ ÙˆØ³Ù†Ø¹ÙˆØ¯ Ø¥Ù„ÙŠÙƒ Ø®Ù„Ø§Ù„ 24 Ø³Ø§Ø¹Ø©.' })}
               </p>
             </div>
 
-            <div className="space-y-6 pt-6 border-t border-[#141F33]/10">
+            <div className="space-y-6 pt-6 border-t border-primary/10">
               <div className="flex flex-col lg:flex-row items-center gap-8 text-xs font-semibold">
                 <MapPin className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-[#141F33]">{t({ en: 'Office Address', ar: 'عنوان المكتب' })}</p>
-                  <p className="text-[#141F33] mt-0.5">Global Operations</p>
+                  <p className="text-primary">{t({ en: 'Office Address', ar: 'Ø¹Ù†ÙˆØ§Ù† Ø§Ù„Ù…ÙƒØªØ¨' })}</p>
+                  <p className="text-primary mt-0.5">Global Operations</p>
                 </div>
               </div>
 
               <div className="flex flex-col lg:flex-row items-center gap-8 text-xs font-semibold">
                 <Mail className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-[#141F33]">{t({ en: 'General Inquiry', ar: 'البريد الإلكتروني' })}</p>
-                  <p className="text-[#141F33] mt-0.5">saqynrabt@gmail.com</p>
+                  <p className="text-primary">{t({ en: 'General Inquiry', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</p>
+                  <p className="text-primary mt-0.5">saqynrabt@gmail.com</p>
                 </div>
               </div>
 
               <div className="flex flex-col lg:flex-row items-center gap-8 text-xs font-semibold">
                 <Phone className="w-5 h-5 text-primary" />
                 <div>
-                  <p className="text-[#141F33]">{t({ en: 'Support Hotline', ar: 'خط الدعم' })}</p>
-                  <p className="text-[#141F33] mt-0.5">+974 5500 0000</p>
+                  <p className="text-primary">{t({ en: 'Support Hotline', ar: 'Ø®Ø· Ø§Ù„Ø¯Ø¹Ù…' })}</p>
+                  <p className="text-primary mt-0.5">+974 5500 0000</p>
                 </div>
               </div>
             </div>

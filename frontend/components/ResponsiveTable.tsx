@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import * as React from 'react';
 import { useMediaQuery } from '../hooks/useMediaQuery';
@@ -34,20 +34,20 @@ return (
 <div
 key={keyExtractor(item)}
 onClick={() => onRowClick?.(item)}
-className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm active:scale-[0.98] transition-transform"
+className="bg-surface border border-primary/10 rounded-xl p-4 shadow-sm active:scale-[0.98] transition-transform"
 >
 {cardTitle && (
-<h4 className="text-sm font-bold text-[#141F33] mb-3 pb-2 border-b border-[#141F33]/10">
+<h4 className="text-sm font-bold text-primary mb-3 pb-2 border-b border-primary/10">
 {cardTitle(item)}
 </h4>
 )}
 <div className="space-y-2">
 {columns.filter((col) => !col.hideOnMobile).map((col) => (
 <div key={col.key} className="flex items-center justify-between">
-<span className="text-[10px] font-bold uppercase tracking-wider text-[#141F33]/50">
+<span className="text-[10px] font-bold uppercase tracking-wider text-primary/50">
 {col.header}
 </span>
-<span className="text-xs font-semibold text-[#141F33]/70">
+<span className="text-xs font-semibold text-primary/70">
 {col.render(item)}
 </span>
 </div>
@@ -60,10 +60,10 @@ className="bg-[#F8F9FB] border border-[#141F33]/10 rounded-xl p-4 shadow-sm acti
 }
 
 return (
-<div className="overflow-x-auto w-full border border-[#141F33]/10 rounded-xl bg-[#F8F9FB] shadow-sm">
+<div className="overflow-x-auto w-full border border-primary/10 rounded-xl bg-surface shadow-sm">
 <table className="w-full text-left border-collapse">
 <thead>
-<tr className="bg-[#F8F9FB] border-b border-[#141F33]/10 text-[10px] font-black text-[#141F33]/40 uppercase tracking-wider">
+<tr className="bg-surface border-b border-primary/10 text-[10px] font-black text-primary/40 uppercase tracking-wider">
 {columns.map((col) => (
 <th key={col.key} className="p-4">{col.header}</th>
 ))}
@@ -74,10 +74,10 @@ return (
 <tr
 key={keyExtractor(item)}
 onClick={() => onRowClick?.(item)}
-className="border-b border-[#141F33]/5 last:border-0 hover:bg-[#141F33] cursor-pointer transition-colors"
+className="border-b border-primary/5 last:border-0 hover:bg-primary cursor-pointer transition-colors"
 >
 {columns.map((col) => (
-<td key={col.key} className="p-4 text-xs font-semibold text-[#141F33]">
+<td key={col.key} className="p-4 text-xs font-semibold text-primary">
 {col.render(item)}
 </td>
 ))}

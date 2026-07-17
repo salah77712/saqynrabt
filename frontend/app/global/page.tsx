@@ -23,7 +23,7 @@ ar: [
 const regions = {
 en: [
 { name: 'Middle East', flag: 'middleeast', cities: 'Dubai, Riyadh, Doha, Kuwait City, Muscat, Manama', desc: 'Deep understanding of regional hospitality, healthcare, and service industry needs across the Gulf and Levant.' },
-{ name: 'Europe', flag: 'europe', cities: 'London, Berlin, Paris, Amsterdam, Madrid', desc: 'GDPR-compliant data hosting. Serving hotels, clinics, and service businesses across the EU.' },
+{ name: 'Europe', flag: 'europe', cities: 'London, Berlin, Paris, Amsterdam, Madrid', desc: 'GDpe-compliant data hosting. Serving hotels, clinics, and service businesses across the EU.' },
 { name: 'Asia', flag: 'asia', cities: 'Singapore, Tokyo, Dubai, Mumbai, Bangkok', desc: 'Fast-growing presence in Southeast Asia and the subcontinent. Multi-language support included.' },
 { name: 'Africa', flag: 'africa', cities: 'Cairo, Nairobi, Cape Town, Lagos, Casablanca', desc: 'Expanding across the continent with Arabic, English, and French language support.' },
 { name: 'Americas', flag: 'americas', cities: 'New York, Toronto, Sao Paulo, Mexico City', desc: 'US-East and US-West data regions available. Serving clients from Canada to Brazil.' },
@@ -38,11 +38,11 @@ ar: [
 };
 
 const flagIconMap: Record<string, React.ReactNode> = {
-middleeast: <svg aria-hidden="true" className="w-8 h-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2a15 15 0 0 0 0 20 15 15 0 0 0 0-20z" /><path d="M2 12h20" /></svg>,
-europe: <svg aria-hidden="true" className="w-8 h-8 text-[#141F33]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2v20M2 12h20" /><path d="M5 5l14 14M19 5l-14 14" /></svg>,
-asia: <Globe className="w-8 h-8 text-[#141F33]" />,
-africa: <Globe className="w-8 h-8 text-[#141F33]" />,
-americas: <Globe className="w-8 h-8 text-[#141F33]" />,
+middleeast: <svg aria-hidden="true" className="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2a15 15 0 0 0 0 20 15 15 0 0 0 0-20z" /><path d="M2 12h20" /></svg>,
+europe: <svg aria-hidden="true" className="w-8 h-8 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10" /><path d="M12 2v20M2 12h20" /><path d="M5 5l14 14M19 5l-14 14" /></svg>,
+asia: <Globe className="w-8 h-8 text-primary" />,
+africa: <Globe className="w-8 h-8 text-primary" />,
+americas: <Globe className="w-8 h-8 text-primary" />,
 };
 
 export default function GlobalPage() {
@@ -52,28 +52,28 @@ const highlightList = highlights[locale as keyof typeof highlights] || highlight
 const regionList = regions[locale as keyof typeof regions] || regions.en;
 
 return (
-<div className="bg-[#F8F9FB] text-[#141F33] min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="bg-surface text-primary min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <Header />
 
 <section className="max-w-7xl mx-auto px-6 py-20 md:py-28 text-center">
-<span className="inline-block bg-[#141F33] text-[#141F33] text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+<span className="inline-block bg-primary text-primary text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
 {t({ en: 'Global Presence', fr: 'Présence mondiale', ar: 'الوجود العالمي', hi: 'वैश्विक उपस्थिति' })}
 </span>
-<h1 className="text-4xl md:text-5xl font-bold text-[#141F33] leading-tight max-w-4xl mx-auto">
+<h1 className="text-4xl md:text-5xl font-bold text-primary leading-tight max-w-4xl mx-auto">
 {t({ en: 'Global Headquarters. Serving the World.', fr: 'Siège mondial. Au service du monde.', ar: 'مقر عالمي. نخدم العالم.', hi: 'वैश्विक मुख्यालय। दुनिया की सेवा कर रहे हैं।' })}
 </h1>
-<p className="mt-4 text-lg text-[#141F33] max-w-2xl mx-auto">
+<p className="mt-4 text-lg text-primary max-w-2xl mx-auto">
 {t({ en: 'Headquartered globally, we bring AI-powered tools to businesses across every continent.', fr: 'Basés à l\'échelle mondiale, nous apportons des outils alimentés par l\'IA aux entreprises de tous les continents.', ar: 'مقرنا عالمي، نقدم أدوات الذكاء الاصطناعي للمؤسسات في جميع القارات.', hi: 'वैश्विक स्तर पर मुख्यालय, हम हर महाद्वीप में व्यवसायों के लिए एआई-संचालित उपकरण लाते हैं।' })}
 </p>
 </section>
 
-<section className="bg-[#F8F9FB] py-16">
+<section className="bg-surface py-16">
 <div className="max-w-5xl mx-auto px-6">
 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
 {highlightList.map((h) =>
-<div key={h.label} className="text-center bg-white border border-[#141F33]/10 rounded-xl p-8 shadow-sm shadow-card">
-<p className="text-4xl font-extrabold text-[#141F33]">{h.stat}</p>
-<p className="text-sm text-[#141F33] mt-1">{h.label}</p>
+<div key={h.label} className="text-center bg-white border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
+<p className="text-4xl font-extrabold text-primary">{h.stat}</p>
+<p className="text-sm text-primary mt-1">{h.label}</p>
 </div>
 )}
 </div>
@@ -82,35 +82,35 @@ return (
 
 <section className="py-20">
 <div className="max-w-7xl mx-auto px-6">
-<h2 className="text-3xl font-bold text-[#141F33] text-center mb-12">
+<h2 className="text-3xl font-bold text-primary text-center mb-12">
 {t({ en: 'Where We Operate', fr: 'Où nous opérons', ar: 'أين نعمل', hi: 'हम कहाँ काम करते हैं' })}
 </h2>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 {regionList.map((r) =>
-<div key={r.name} className="border border-[#141F33]/10 rounded-xl p-8 shadow-sm hover:shadow-md transition-all">
-<span className="text-4xl mb-3 block">{flagIconMap[r.flag] || <Globe className="w-8 h-8 text-[#141F33]" />}</span>
-<h3 className="text-xl font-bold text-[#141F33] mb-1">{r.name}</h3>
-<p className="text-xs text-[#141F33] mb-3">{r.cities}</p>
-<p className="text-sm text-[#141F33] leading-relaxed">{r.desc}</p>
+<div key={r.name} className="border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md transition-all">
+<span className="text-4xl mb-3 block">{flagIconMap[r.flag] || <Globe className="w-8 h-8 text-primary" />}</span>
+<h3 className="text-xl font-bold text-primary mb-1">{r.name}</h3>
+<p className="text-xs text-primary mb-3">{r.cities}</p>
+<p className="text-sm text-primary leading-relaxed">{r.desc}</p>
 </div>
 )}
 </div>
 </div>
 </section>
 
-<section className="bg-[#141F33] py-16">
-<div className="max-w-3xl mx-auto px-6 text-center text-[#F8F9FB]">
+<section className="bg-primary py-16">
+<div className="max-w-3xl mx-auto px-6 text-center text-surface">
 <h2 className="text-3xl font-bold mb-4">
 {t({ en: 'Wherever You Are, We\'re Ready', fr: 'Où que vous soyez, nous sommes prêts', ar: 'أينما كنت، نحن جاهزون', hi: 'आप जहां भी हों, हम तैयार हैं' })}
 </h2>
-<p className="text-[#F8F9FB] mb-8">
+<p className="text-surface mb-8">
 {t({ en: 'From a 5-star hotel to a clinic in Nairobi — your AI operations start here, wherever you are.', fr: 'D\'un hôtel 5 étoiles à une clinique à Nairobi — vos opérations d\'IA commencent ici, où que vous soyez.', ar: 'من فندق 5 نجوم إلى عيادة في نيروبي — عملياتك الذكية تبدأ هنا، أينما كنت.', hi: '5-सितारा होटल से लेकर नैरोबी में एक क्लिनिक तक — आपके एआई संचालन यहाँ से शुरू होते हैं, आप जहाँ भी हों।' })}
 </p>
 <a
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-[#F8F9FB] text-[#141F33] px-6 py-3 text-sm font-semibold hover:bg-white transition-all"
+className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-surface text-primary px-6 py-3 text-sm font-semibold hover:bg-white transition-all"
 >
 {t({ en: 'See how it works', fr: 'Découvrez comment ça marche', ar: 'شاهد كيف يعمل', hi: 'देखें यह कैसे काम करता है' })}
 </a>

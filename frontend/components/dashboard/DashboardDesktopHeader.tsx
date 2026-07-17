@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { useLocale } from '../../app/providers';
@@ -14,8 +14,8 @@ export function DashboardDesktopHeader({ currentTitle }: DashboardDesktopHeaderP
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
-    clientDashboard: { en: 'Client Dashboard', ar: 'لوحة تحكم العميل' },
-    live: { en: 'Live', ar: 'مباشر' },
+    clientDashboard: { en: 'Client Dashboard', ar: 'Ù„ÙˆØ­Ø© ØªØ­ÙƒÙ… Ø§Ù„Ø¹Ù…ÙŠÙ„' },
+    live: { en: 'Live', ar: 'Ù…Ø¨Ø§Ø´Ø±' },
   };
 
   return (
@@ -23,12 +23,12 @@ export function DashboardDesktopHeader({ currentTitle }: DashboardDesktopHeaderP
       <div className="flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-[10px] font-extrabold uppercase tracking-widest ">{t(dashboardContent.clientDashboard)}</p>
-          <h2 className="text-2xl font-extrabold text-[#141F33] tracking-tight mt-0.5">{currentTitle}</h2>
+          <h2 className="text-2xl font-extrabold text-primary tracking-tight mt-0.5">{currentTitle}</h2>
         </div>
         <div className="flex items-center gap-8">
           <LanguageSwitcher />
           <DarkModeToggle />
-          <div className="flex items-center gap-3 rounded-full border border-[#141F33]/20 bg-[#F8F9FB] px-4 py-1.5 text-xs font-bold text-[#141F33]">
+          <div className="flex items-center gap-3 rounded-full border border-primary/20 bg-surface px-4 py-1.5 text-xs font-bold text-primary">
             <span className="h-2 w-2 rounded-full  animate-pulse" />
             {t(dashboardContent.live)}
           </div>
