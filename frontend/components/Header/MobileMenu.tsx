@@ -25,7 +25,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
       <div>
         <div className="flex items-center justify-between mb-8">
           <span className="text-sm font-black text-primary dark:text-surface uppercase tracking-wider">
-            {t('Navigation', 'Ø§Ù„ØªÙ†Ù‚Ù„')}
+            {t('Navigation', 'التنقل')}
           </span>
           <button
             onClick={onClose}
@@ -63,7 +63,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
 
       <div className="border-t border-primary/10 dark:border-primary/30 pt-6 flex flex-col gap-8">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold text-primary">{t('Select Language', 'Ø§Ø®ØªØ± Ø§Ù„Ù„ØºØ©')}</span>
+          <span className="text-xs font-bold text-primary">{t('Select Language', 'اختر اللغة')}</span>
           <LanguageSwitcher />
         </div>
         <a
@@ -73,7 +73,7 @@ export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }
           onClick={onClose}
           className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-primary dark:bg-primary text-surface font-bold text-sm text-center py-3"
         >
-          {t('See how it works', 'Ø´Ø§Ù‡Ø¯ ÙƒÙŠÙ ÙŠØ¹Ù…Ù„')}
+          {t('See how it works', 'شاهد كيف يعمل')}
         </a>
       </div>
     </div>

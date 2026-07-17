@@ -39,10 +39,10 @@ return en;
 };
 
 const navLinks = [
-{ label: { en: 'Features', fr: 'FonctionnalitÃ©s', ar: 'Ø§Ù„Ù…ÙŠØ²Ø§Øª', hi: 'à¤µà¤¿à¤¶à¥‡à¤·à¤¤à¤¾à¤à¤' }, href: '/features' },
-{ label: { en: 'Industries', fr: 'Industries', ar: 'Ø§Ù„ØµÙ†Ø§Ø¹Ø§Øª', hi: 'à¤‰à¤¦à¥à¤¯à¥‹à¤—' }, href: '/industries' },
-{ label: { en: 'How It Works', fr: 'Comment Ã§a Marche', ar: 'Ø¢Ù„ÙŠØ© Ø§Ù„Ø¹Ù…Ù„', hi: 'à¤¯à¤¹ à¤•à¥ˆà¤¸à¥‡ à¤•à¤¾à¤® à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ' }, href: '/how-it-works' },
-{ label: { en: 'Pricing', fr: 'Tarifs', ar: 'Ø§Ù„Ø£Ø³Ø¹Ø§Ø±', hi: 'à¤®à¥‚à¤²à¥à¤¯ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£' }, href: '/pricing' },
+{ label: { en: 'Features', fr: 'Fonctionnalités', ar: 'الميزات', hi: 'विशेषताएँ' }, href: '/features' },
+{ label: { en: 'Industries', fr: 'Industries', ar: 'الصناعات', hi: 'उद्योग' }, href: '/industries' },
+{ label: { en: 'How It Works', fr: 'Comment ça Marche', ar: 'آلية العمل', hi: 'यह कैसे काम करता है' }, href: '/how-it-works' },
+{ label: { en: 'Pricing', fr: 'Tarifs', ar: 'الأسعار', hi: 'मूल्य निर्धारण' }, href: '/pricing' },
 ];
 
 const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
@@ -60,7 +60,7 @@ style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
 S
 </div>
 <span className="text-primary font-black text-sm md:text-lg tracking-[0.05em]">
-{locale === 'ar' ? 'Ø³Ù‚Ù†' : 'SAQYN'}
+      {locale === 'ar' ? 'سقن' : 'SAQYN'}
 </span>
 </Link>
 
@@ -90,9 +90,9 @@ className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 r
 <div className="flex items-center gap-3">
 <Link
 href="/contact"
-className="hidden md:inline-flex bg-primary hover:bg-primary text-surface font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
+  className="hidden md:inline-flex bg-primary hover:bg-primary text-surface font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
 >
-{t('See how it works', 'Voir comment Ã§a marche', 'Ø´Ø§Ù‡Ø¯ ÙƒÙŠÙ ÙŠØ¹Ù…Ù„', 'à¤¯à¤¹ à¤•à¥ˆà¤¸à¥‡ à¤•à¤¾à¤® à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤¦à¥‡à¤–à¥‡à¤‚')}
+{t('See how it works', 'Voir comment ça marche', 'شاهد كيف يعمل', 'यह कैसे काम करता है देखें')}
 </Link>
 
 {isSignedIn ? (
@@ -101,7 +101,7 @@ className="hidden md:inline-flex bg-primary hover:bg-primary text-surface font-b
 href="/dashboard"
 className="hidden md:inline-flex bg-primary hover:bg-primary text-surface font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
 >
-{t('Dashboard', 'Tableau de Bord', 'Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…', 'à¤¡à¥ˆà¤¶à¤¬à¥‹à¤°à¥à¤¡')}
+{t('Dashboard', 'Tableau de Bord', 'لوحة التحكم', 'डैशबोर्ड')}
 </Link>
 <UserButton showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user">
 <UserButton.MenuItems>
@@ -123,13 +123,13 @@ href="/dashboard"
 ) : (
 <div className="flex items-center gap-3">
 <Link href="/sign-in" className="text-xs font-extrabold text-primary hover:underline min-h-[44px] flex items-center px-2">
-{t('Sign In', 'Connexion', 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„', 'à¤¸à¤¾à¤‡à¤¨ à¤‡à¤¨ à¤•à¤°à¥‡à¤‚')}
+{t('Sign In', 'Connexion', 'تسجيل الدخول', 'साइन इन करें')}
 </Link>
 <Link
 href="/sign-up"
 className="hidden md:inline-flex bg-primary hover:bg-primary text-surface font-bold text-xs uppercase tracking-wider px-6 py-3 rounded-full transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 shadow-sm min-h-[44px] items-center"
 >
-{t('Register', 'S\'inscrire', 'Ø³Ø¬Ù„ Ø§Ù„Ø¢Ù†', 'à¤ªà¤‚à¤œà¥€à¤•à¤°à¤£ à¤•à¤°à¥‡à¤‚')}
+{t('Register', 'S\'inscrire', 'سجل الآن', 'पंजीकरण करें')}
 </Link>
 </div>
 )}
@@ -173,7 +173,7 @@ animation: 'slideInLeft 0.3s ease-out',
 >
 <div className="flex items-center justify-between px-5 py-4 border-b border-primary/10">
 <span className="text-sm font-extrabold text-primary uppercase tracking-wider">
-{t('Menu', 'Menu', 'Ø§Ù„Ù‚Ø§Ø¦Ù…Ø©', 'à¤®à¥‡à¤¨à¥à¤¯à¥‚')}
+{t('Menu', 'Menu', 'القائمة', 'मेन्यू')}
 </span>
 <button
 onClick={closeMenu}
@@ -209,16 +209,16 @@ isActive
 
 <div className="px-4 py-4 border-t border-primary/10 space-y-3">
 <div className="flex items-center justify-between">
-<span className="text-xs font-bold text-primary/50">{t('Language', 'Langue', 'Ø§Ù„Ù„ØºØ©', 'à¤­à¤¾à¤·à¤¾')}</span>
+<span className="text-xs font-bold text-primary/50">{t('Language', 'Langue', 'اللغة', 'भाषा')}</span>
 <LanguageSwitcher />
 </div>
 
 <Link
 href="/contact"
 onClick={closeMenu}
-className="flex min-h-[44px] w-full items-center justify-center rounded-full bg-primary text-surface font-bold text-sm py-3"
+  className="flex min-h-[44px] w-full items-center justify-center rounded-full bg-primary text-surface font-bold text-sm py-3"
 >
-{t('See how it works', 'Voir comment Ã§a marche', 'Ø´Ø§Ù‡Ø¯ ÙƒÙŠÙ ÙŠØ¹Ù…Ù„', 'à¤¯à¤¹ à¤•à¥ˆà¤¸à¥‡ à¤•à¤¾à¤® à¤•à¤°à¤¤à¤¾ à¤¹à¥ˆ à¤¦à¥‡à¤–à¥‡à¤‚')}
+{t('See how it works', 'Voir comment ça marche', 'شاهد كيف يعمل', 'यह कैसे काम करता है देखें')}
 </Link>
 </div>
 </div>
