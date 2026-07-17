@@ -90,7 +90,7 @@ export default function DashboardOverviewPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Trial Balance & Status Card */}
           <div className="lg:col-span-1 p-8 rounded-xl r   text-surface shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[220px]">
-            <div className="absolute right-0 top-0 translate-x-1/4 -translate-y-1/4 w-32 h-32 bg-accent/10 rounded-full blur-xl pointer-events-none" />
+            <div className="absolute end-0 top-0 translate-x-1/4 -translate-y-1/4 w-32 h-32 bg-accent/10 rounded-full blur-xl pointer-events-none" />
             <div>
               <div className="flex justify-between items-center mb-4">
                 <span className="text-[9px] font-black uppercase tracking-widest bg-accent/25 text-accent border border-accent/30 px-2 py-0.5 rounded-md">

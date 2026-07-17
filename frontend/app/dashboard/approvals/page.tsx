@@ -169,7 +169,7 @@ export default function ApprovalsDashboardPage() {
                           {approvingId === emp.clerk_user_id ? t({ en: 'Approving...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø©...' }) : t({ en: 'Approve Access', ar: 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø©' })}
                         </button>
                         {isLimitReached && (
-                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 bg-primary text-surface text-[10px] font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-3 whitespace-nowrap shadow-md">
+                          <div className="absolute bottom-full start-1/2 -translate-x-1/2 bg-primary text-surface text-[10px] font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-3 whitespace-nowrap shadow-md">
                             {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ù„Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰. Ù‚Ù… Ø¨Ø§Ù„ØªØ±Ù‚ÙŠØ©.' })}
                           </div>
                         )}

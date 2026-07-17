@@ -68,7 +68,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
             {/* Stylized Solid Backdrop Section (Vector graphic design, no image) */}
             <div className="w-full min-h-[260px] md:min-h-[340px] rounded-xl bg-primary text-surface p-8 md:p-12 relative overflow-hidden flex flex-col justify-between shadow-xl">
               {/* Decorative graphic background glows */}
-              <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-accent/15 rounded-full filter blur-[80px] pointer-events-none" />
+              <div className="absolute top-0 end-0 w-[300px] h-[300px] bg-accent/15 rounded-full filter blur-[80px] pointer-events-none" />
               
               <div className="flex items-start justify-between relative z-10">
                 <div className="flex flex-col gap-1">
@@ -145,7 +145,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
 
             {/* CTA Box */}
             <div className="bg-primary rounded-xl p-8 text-center text-surface shadow-xl relative overflow-hidden">
-              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-accent/10 rounded-full filter blur-2xl" />
+              <div className="absolute -bottom-10 -end-10 w-40 h-40 bg-accent/10 rounded-full filter blur-2xl" />
               
               <h4 className="text-lg font-extrabold mb-3 relative z-10">
                 {t({ en: 'Get Similar Results', ar: 'احصل على نتائج مماثلة' })}

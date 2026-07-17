@@ -100,7 +100,7 @@ export default function VisualSitemapPage() {
         <div className="mb-20">
           <h1 className="text-5xl md:text-7xl font-black tracking-tight select-none">
             <span className="text-primary">SAQYN</span>
-            <span className="text-primary/20 ml-1">MAP</span>
+            <span className="text-primary/20 ms-1">MAP</span>
           </h1>
           <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-primary/40 mt-4 leading-none">
             {t('SAQYN RABT SITEMAP — COMPLETE DIRECTORY OF PAGES & SERVICES', 'خريطة موقع سقن ربط - دليل كامل بالصفحات والخدمات')}

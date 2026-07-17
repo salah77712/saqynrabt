@@ -33,7 +33,7 @@ const filteredNavItems = userRole === 'employee'
 return (
 <nav
 aria-label="Mobile navigation"
-className="fixed bottom-0 left-0 right-0 z-50 bg-surface border-t border-primary/10 md:hidden shadow-lg"
+className="fixed bottom-0 start-0 end-0 z-50 bg-surface border-t border-primary/10 md:hidden shadow-lg"
 style={{ paddingBottom: 'env(safe-area-inset-bottom, 0px)', height: 'calc(64px + env(safe-area-inset-bottom, 0px))' }}
 >
 <div className="flex justify-around items-center h-16 px-2">
@@ -49,7 +49,7 @@ isActive ? 'text-primary' : 'text-primary/40'
 }`}
 >
 {isActive && (
-<span className="absolute top-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
+<span className="absolute top-0 start-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
 )}
 {item.icon}
 <span className={`text-[9px] font-bold uppercase tracking-wider ${

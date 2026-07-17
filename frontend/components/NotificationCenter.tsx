@@ -40,14 +40,14 @@ aria-label="Open notifications"
 >
 <Bell className="w-5 h-5 text-primary dark:text-surface" />
 {unreadCount > 0 && (
-<span className="absolute top-0.5 right-0.5 bg-primary text-surface text-[9px] font-black h-4 w-4 rounded-full flex items-center justify-center border border-surface">
+<span className="absolute top-0.5 end-0.5 bg-primary text-surface text-[9px] font-black h-4 w-4 rounded-full flex items-center justify-center border border-surface">
 {unreadCount}
 </span>
 )}
 </button>
 
 {isOpen && (
-<div className="absolute right-0 rtl:right-auto rtl:left-0 mt-3 w-80 bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-xl shadow-xl z-50 overflow-hidden animate-slideDown">
+<div className="absolute end-0 rtl:end-auto rtl:start-0 mt-3 w-80 bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-xl shadow-xl z-50 overflow-hidden animate-slideDown">
 <div className="flex items-center justify-between px-4 py-3 border-b border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary">
 <span className="text-xs font-bold text-primary dark:text-surface">
             {t('Notifications', 'Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª')}

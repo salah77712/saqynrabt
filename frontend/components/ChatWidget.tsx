@@ -89,7 +89,7 @@ export function ChatWidget() {
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="fixed bottom-4 end-4 z-50 font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
       {/* Floating Toggle Button */}
       {!isOpen && (
         <button
@@ -132,8 +132,8 @@ export function ChatWidget() {
                 <div
                   className={`max-w-[85%] text-xs font-semibold px-4 py-2.5 rounded-[20px] leading-relaxed ${
                     msg.sender === 'user'
-                      ? 'bg-primary text-surface rounded-tr-none'
-                      : 'bg-white dark:bg-primary text-primary dark:text-surface border border-primary/5 dark:border-surface/5 rounded-tl-none shadow-sm'
+                      ? 'bg-primary text-surface rounded-te-none'
+                      : 'bg-white dark:bg-primary text-primary dark:text-surface border border-primary/5 dark:border-surface/5 rounded-ts-none shadow-sm'
                   }`}
                 >
                   <p>{msg.text}</p>
@@ -149,7 +149,7 @@ export function ChatWidget() {
             ))}
             
             {loading && (
-              <div className="flex items-center gap-1 bg-white dark:bg-primary border border-primary/5 dark:border-surface/5 rounded-[20px] rounded-tl-none px-4 py-2.5 max-w-[80px] shadow-sm">
+              <div className="flex items-center gap-1 bg-white dark:bg-primary border border-primary/5 dark:border-surface/5 rounded-[20px] rounded-ts-none px-4 py-2.5 max-w-[80px] shadow-sm">
                 <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                 <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />

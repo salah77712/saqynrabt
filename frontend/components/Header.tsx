@@ -77,7 +77,7 @@ className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 r
 >
 {t(link.label.en, link.label.fr, link.label.ar, link.label.hi)}
 {isActive && (
-<span className="absolute -bottom-1 left-0 w-full h-0.5 bg-primary rounded-full scale-x-100" />
+<span className="absolute -bottom-1 start-0 w-full h-0.5 bg-primary rounded-full scale-x-100" />
 )}
 </Link>
 );
@@ -165,7 +165,7 @@ onClick={closeMenu}
 />
 <div
 className={`relative w-72 max-w-[85vw] bg-surface backdrop-blur-md shadow-2xl flex flex-col animate-slide-in-left ${
-locale === 'ar' ? 'mr-auto' : 'ml-0'
+locale === 'ar' ? 'me-auto' : 'ms-0'
 }`}
 style={{
 animation: 'slideInLeft 0.3s ease-out',

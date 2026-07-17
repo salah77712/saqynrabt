@@ -52,8 +52,8 @@ export function ChatInterface() {
             <div
               className={`max-w-[75%] rounded-xl p-4 text-xs font-semibold leading-relaxed ${
                 msg.sender === 'user'
-                  ? 'bg-primary dark:bg-accent text-surface rounded-tr-none'
-                  : 'bg-surface dark:bg-primary border border-surface dark:border-primary text-primary dark:text-surface rounded-tl-none'
+                  ? 'bg-primary dark:bg-accent text-surface rounded-te-none'
+                  : 'bg-surface dark:bg-primary border border-surface dark:border-primary text-primary dark:text-surface rounded-ts-none'
               }`}
             >
               {msg.text}
@@ -63,7 +63,7 @@ export function ChatInterface() {
 
         {typing && (
           <div className="flex justify-start">
-            <div className="rounded-xl rounded-tl-none p-4 border border-surface bg-surface text-xs text-primary font-semibold">
+            <div className="rounded-xl rounded-ts-none p-4 border border-surface bg-surface text-xs text-primary font-semibold">
               <span className="inline-flex items-center gap-1">
                 {[0, 160, 320].map((delay) => (
                   <span

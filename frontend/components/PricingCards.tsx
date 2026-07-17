@@ -44,7 +44,7 @@ isPopular && 'ring-2 ring-[#2A5CFF] shadow-lg scale-[1.02] z-10'
 style={{ animationDelay: `${i * 0.1}s` }}
 >
 {isPopular && (
-<span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-surface text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
+<span className="absolute -top-3 start-1/2 -translate-x-1/2 bg-accent text-surface text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
 {t({ en: 'Popular', ar: 'Ø§Ù„Ø£ÙƒØ«Ø± Ø·Ù„Ø¨Ø§Ù‹' })}
 </span>
 )}
@@ -68,7 +68,7 @@ style={{ animationDelay: `${i * 0.1}s` }}
 <>
 <div className="text-4xl font-extrabold text-primary dark:text-surface">
 {formatPrice(price, currency)}
-<span className="text-primary/60 dark:text-surface/60 text-sm font-bold mr-1">
+<span className="text-primary/60 dark:text-surface/60 text-sm font-bold me-1">
 /{t({ en: 'mo', ar: 'Ø´Ù‡Ø±' })}
 </span>
 </div>

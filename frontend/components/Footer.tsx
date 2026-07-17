@@ -144,12 +144,12 @@ return (
             type="email"
             placeholder={t({ en: 'Enter your email', ar: 'أدخل بريدك الإلكتروني' })}
             aria-label={t({ en: 'Email address for updates', ar: 'البريد الإلكتروني للتحديثات' })}
-            className="w-full bg-surface border border-primary/10 rounded-full pl-4 pr-24 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-royal/25 focus:border-primary/20 transition-all min-h-[36px]"
+            className="w-full bg-surface border border-primary/10 rounded-full ps-4 pe-24 py-1.5 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-royal/25 focus:border-primary/20 transition-all min-h-[36px]"
             required
           />
           <button
             type="submit"
-            className="absolute right-1 top-[4px] bottom-[4px] bg-primary hover:bg-primary/90 text-surface font-bold text-[9px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[28px]"
+            className="absolute end-1 top-[4px] bottom-[4px] bg-primary hover:bg-primary/90 text-surface font-bold text-[9px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[28px]"
           >
             {t({ en: 'Submit', ar: 'إرسال' })}
           </button>

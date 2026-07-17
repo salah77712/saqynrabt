@@ -32,7 +32,7 @@ success: 'bg-accent text-surface',
 
   return (
     <div
-      className={`fixed bottom-6 right-6 z-50 flex items-center justify-between gap-8 px-4 py-3 rounded-xl shadow-2xl max-w-sm ${
+      className={`fixed bottom-6 end-6 z-50 flex items-center justify-between gap-8 px-4 py-3 rounded-xl shadow-2xl max-w-sm ${
         isExiting ? 'animate-slideDownExit' : 'animate-slideUp'
       } ${bgColors[type]}`}
       role="status"

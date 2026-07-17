@@ -88,13 +88,13 @@ export default function AdminLayout({
       <div className="flex flex-1 relative h-screen overflow-hidden">
         
         {/* Sidebar */}
-        <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-surface border-r border-primary/10 flex flex-col justify-between transition-transform duration-300 md:translate-x-0 md:static md:h-screen ${
+        <aside className={`fixed inset-y-0 start-0 z-50 w-64 bg-surface border-e border-primary/10 flex flex-col justify-between transition-transform duration-300 md:translate-x-0 md:static md:h-screen ${
           isSidebarOpen
             ? locale === 'ar'
-              ? 'translate-x-0 right-0 left-auto'
+              ? 'translate-x-0 end-0 start-auto'
               : 'translate-x-0'
             : locale === 'ar'
-              ? 'translate-x-full right-0 left-auto md:translate-x-0'
+              ? 'translate-x-full end-0 start-auto md:translate-x-0'
               : '-translate-x-full md:translate-x-0'
         }`}>
           

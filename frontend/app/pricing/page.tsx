@@ -219,7 +219,7 @@ export default function PricingPage() {
           {/* Card 3: Saqyn Rabt Enterprise Bundle */}
           <div className="bg-white border border-primary/10 rounded-xl shadow-card p-8 flex flex-col justify-between ring-2 ring-[#2A5CFF] relative">
             {/* Absolute Recommended badge */}
-            <div className="absolute top-4 right-6 bg-accent text-white rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider select-none shadow-sm">
+            <div className="absolute top-4 end-6 bg-accent text-white rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider select-none shadow-sm">
               Recommended
             </div>
 

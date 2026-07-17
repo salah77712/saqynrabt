@@ -23,7 +23,7 @@ ar: [
 const regions = {
 en: [
 { name: 'Middle East', flag: 'middleeast', cities: 'Dubai, Riyadh, Doha, Kuwait City, Muscat, Manama', desc: 'Deep understanding of regional hospitality, healthcare, and service industry needs across the Gulf and Levant.' },
-{ name: 'Europe', flag: 'europe', cities: 'London, Berlin, Paris, Amsterdam, Madrid', desc: 'GDPR-compliant data hosting. Serving hotels, clinics, and service businesses across the EU.' },
+{ name: 'Europe', flag: 'europe', cities: 'London, Berlin, Paris, Amsterdam, Madrid', desc: 'GDpe-compliant data hosting. Serving hotels, clinics, and service businesses across the EU.' },
 { name: 'Asia', flag: 'asia', cities: 'Singapore, Tokyo, Dubai, Mumbai, Bangkok', desc: 'Fast-growing presence in Southeast Asia and the subcontinent. Multi-language support included.' },
 { name: 'Africa', flag: 'africa', cities: 'Cairo, Nairobi, Cape Town, Lagos, Casablanca', desc: 'Expanding across the continent with Arabic, English, and French language support.' },
 { name: 'Americas', flag: 'americas', cities: 'New York, Toronto, Sao Paulo, Mexico City', desc: 'US-East and US-West data regions available. Serving clients from Canada to Brazil.' },

@@ -27,7 +27,7 @@ if (step < steps.length) {
 };
 
 return (
-<div className="fixed bottom-6 left-6 z-50 animate-slideUp">
+<div className="fixed bottom-6 start-6 z-50 animate-slideUp">
 <Card className="w-80 shadow-2xl border border-primary/10 dark:border-surface/10">
 <span className="text-[10px] font-black uppercase text-accent">Onboarding Guide</span>
 <h4 className="font-bold text-primary dark:text-surface text-sm mt-1">{current.title}</h4>

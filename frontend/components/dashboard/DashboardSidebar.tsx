@@ -34,15 +34,15 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
   };
 
   return (
-    <aside className={`fixed inset-y-0 left-0 z-50 bg-surface border-r border-primary/10 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static ${
+    <aside className={`fixed inset-y-0 start-0 z-50 bg-surface border-e border-primary/10 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static ${
       isCollapsed ? 'md:w-20' : 'md:w-64'
     } ${
       isSidebarOpen
         ? locale === 'ar'
-          ? 'translate-x-0 right-0 left-auto w-64'
+          ? 'translate-x-0 end-0 start-auto w-64'
           : 'translate-x-0 w-64'
         : locale === 'ar'
-          ? 'translate-x-full right-0 left-auto md:translate-x-0'
+          ? 'translate-x-full end-0 start-auto md:translate-x-0'
           : '-translate-x-full md:translate-x-0'
     }`}>
       <div className="flex flex-col overflow-y-auto flex-1">
@@ -87,7 +87,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
 
                 {item.badge && pendingCount > 0 && (
                   <span className={`absolute bg-primary text-surface rounded-full text-[9px] font-extrabold flex items-center justify-center ${
-                    isCollapsed ? '-top-1 -right-1 h-4 w-4' : 'right-4 px-2 py-0.5'
+                    isCollapsed ? '-top-1 -end-1 h-4 w-4' : 'end-4 px-2 py-0.5'
                   }`}>
                     {pendingCount}
                   </span>

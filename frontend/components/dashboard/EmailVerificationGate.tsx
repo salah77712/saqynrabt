@@ -74,13 +74,13 @@ export function EmailVerificationGate() {
 
 {verifError && (
 <div className="bg-surface rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-<AlertTriangle className="w-4 h-4 text-accent inline mr-1" /> {verifError}
+<AlertTriangle className="w-4 h-4 text-accent inline me-1" /> {verifError}
 </div>
 )}
 
 {resendStatus && (
 <div className="bg-surface rounded-xl p-3.5 text-xs font-bold mb-6 text-left">
-<Check className="w-4 h-4 text-accent inline mr-1" /> {resendStatus}
+<Check className="w-4 h-4 text-accent inline me-1" /> {resendStatus}
 </div>
 )}
 

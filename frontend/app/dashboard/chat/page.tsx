@@ -169,7 +169,7 @@ aria-label={t('Chat messages', 'Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ù…Ø­Ø§Ø¯
 <div
 key={msg.id}
 className={`flex flex-col ${
-(msg.role as string) === 'user' ? 'ml-auto items-end' : 'mr-auto items-start'
+(msg.role as string) === 'user' ? 'ms-auto items-end' : 'me-auto items-start'
 }`}
 style={{ maxWidth: '85%' }}
 onTouchStart={() => handleTouchStart(getMessageText(msg))}
@@ -182,8 +182,8 @@ copyToClipboard(getMessageText(msg));
 <div
 className={`p-3 md:p-4 rounded-xl text-[11px] md:text-xs font-semibold leading-relaxed shadow-sm ${
 (msg.role as string) === 'user'
-? 'bg-primary text-surface rounded-br-none'
-: 'bg-surface text-primary border border-primary/10 rounded-bl-none'
+? 'bg-primary text-surface rounded-be-none'
+: 'bg-surface text-primary border border-primary/10 rounded-bs-none'
 }`}
 >
 {getMessageText(msg)}

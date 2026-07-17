@@ -257,7 +257,7 @@ export default function AutomationPage() {
                     <p className="text-sm font-semibold text-primary">{item.label}</p>
                     <p className="text-xs text-primary/40 mt-0.5">{item.dept}</p>
                   </div>
-                  <span className={`text-xs font-semibold border rounded-full px-3 py-1 whitespace-nowrap ml-3 ${item.color}`}>{item.status}</span>
+                  <span className={`text-xs font-semibold border rounded-full px-3 py-1 whitespace-nowrap ms-3 ${item.color}`}>{item.status}</span>
                 </div>
               ))}
               <div className="pt-2 text-center">

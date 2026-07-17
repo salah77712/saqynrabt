@@ -64,7 +64,7 @@ export default function ChangelogPage() {
 
               <h3 className="text-lg font-extrabold text-primary">{log.title}</h3>
               
-              <ul className="list-disc pl-5 text-xs font-semibold text-primary space-y-2 leading-relaxed">
+              <ul className="list-disc ps-5 text-xs font-semibold text-primary space-y-2 leading-relaxed">
                 {log.changes.map((change, cIdx) => (
                   <li key={cIdx}>{change}</li>
                 ))}

@@ -20,7 +20,7 @@ export default function TermsError({
       <header className="sticky top-0 z-50 w-full border-b border-[rgba(20,31,51,0.1)] bg-surface backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-surface">S</div>
-          <div className="ml-3">
+          <div className="ms-3">
             <p className="text-sm font-semibold tracking-[0.2em] text-primary">SAQYN RABT</p>
             <p className="text-[10px] uppercase tracking-[0.35em] text-primary/50">Connecting teams, automating workflows</p>
           </div>

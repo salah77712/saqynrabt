@@ -77,7 +77,7 @@ const bannerId = 'cookie-consent-banner';
 return (
 <div
 id={bannerId}
-className={`fixed bottom-0 left-0 right-0 z-50 p-4 ${!visible ? 'hidden' : ''}`}
+className={`fixed bottom-0 start-0 end-0 z-50 p-4 ${!visible ? 'hidden' : ''}`}
 dir={locale === 'ar' ? 'rtl' : 'ltr'}
 >
 <div className="mx-auto max-w-4xl bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-xl shadow-2xl p-8">

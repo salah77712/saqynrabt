@@ -133,7 +133,7 @@ export default function TrustPage() {
                                 : 'bg-surface text-accent'
                             }`}
                           >
-                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-accent border-t-transparent rounded-full animate-spin mr-1" /> : <Check className="w-2.5 h-2.5 text-accent inline mr-0.5" />}
+                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-accent border-t-transparent rounded-full animate-spin me-1" /> : <Check className="w-2.5 h-2.5 text-accent inline me-0.5" />}
                             {b.label}
                           </span>
                         ))}

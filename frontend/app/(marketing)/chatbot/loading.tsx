@@ -42,7 +42,7 @@
               <div className="h-6 w-32 bg-surface rounded animate-pulse" />
               <div className="space-y-3">
                 {[...Array(4)].map((_, i) => (
-                  <div key={i} className={`rounded-xl p-3 max-w-[80%] ${i % 2 === 0 ? 'ml-auto' : ''}`}>
+                  <div key={i} className={`rounded-xl p-3 max-w-[80%] ${i % 2 === 0 ? 'ms-auto' : ''}`}>
                     <div className={`h-8 ${i % 2 === 0 ? 'w-40' : 'w-56'} bg-surface rounded animate-pulse`} />
                   </div>
                 ))}

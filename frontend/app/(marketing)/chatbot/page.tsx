@@ -193,16 +193,16 @@ export default function ChatbotPage() {
               </div>
 
               <div className="flex flex-col gap-4">
-                <div className="self-end bg-primary text-surface text-sm px-4 py-2.5 rounded-xl rounded-br-sm max-w-[80%]">
+                <div className="self-end bg-primary text-surface text-sm px-4 py-2.5 rounded-xl rounded-be-sm max-w-[80%]">
                   {t({ en: 'How many vacation days do I have left?', ar: 'كم يوم إجازة متبقي لدي؟' })}
                 </div>
-                <div className="self-start bg-surface text-primary text-sm px-4 py-2.5 rounded-xl rounded-bl-sm max-w-[85%]">
+                <div className="self-start bg-surface text-primary text-sm px-4 py-2.5 rounded-xl rounded-bs-sm max-w-[85%]">
                   {t({ en: 'Based on your profile, you have', ar: 'بناءً على ملفك، لديك' })} <strong>{t({ en: '14 days', ar: '14 يوماً' })}</strong> {t({ en: 'remaining this cycle. Your next accrual of 2.5 days is on August 1st.', ar: 'متبقية هذه الدورة. استحقاقك القادم 2.5 يوم في 1 أغسطس.' })}
                 </div>
-                <div className="self-end bg-primary text-surface text-sm px-4 py-2.5 rounded-xl rounded-br-sm max-w-[80%]">
+                <div className="self-end bg-primary text-surface text-sm px-4 py-2.5 rounded-xl rounded-be-sm max-w-[80%]">
                   {t({ en: 'What\'s the SOP for reporting a maintenance issue?', ar: 'ما هو الإجراء المعياري للإبلاغ عن مشكلة صيانة؟' })}
                 </div>
-                <div className="self-start bg-surface text-primary text-sm px-4 py-2.5 rounded-xl rounded-bl-sm max-w-[85%]">
+                <div className="self-start bg-surface text-primary text-sm px-4 py-2.5 rounded-xl rounded-bs-sm max-w-[85%]">
                   {t({ en: 'According to', ar: 'وفقاً لـ' })} <em>{t({ en: 'Operations Manual v3.2', ar: 'دليل العمليات الإصدار 3.2' })}</em>{t({ en: ', submit a ticket via the portal under', ar: '، أرسل تذكرة عبر البوابة تحت' })} <strong>{t({ en: 'Facilities → Maintenance', ar: 'المرافق ← الصيانة' })}</strong>. {t({ en: 'Urgent issues can be escalated directly to your floor supervisor.', ar: 'يمكن رفع المشكلات العاجلة مباشرة إلى مشرف الطابق.' })}
                 </div>
                 <div className="self-start bg-surface border border-dashed border-primary/20 text-primary text-xs px-4 py-2.5 rounded-xl max-w-[85%] italic">

@@ -28,7 +28,7 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
 
   return (
     <aside
-      className={`fixed inset-y-0 left-0 z-50 bg-surface dark:bg-primary border-r border-surface dark:border-primary flex flex-col justify-between transition-all duration-300 md:static h-full ${
+      className={`fixed inset-y-0 start-0 z-50 bg-surface dark:bg-primary border-e border-surface dark:border-primary flex flex-col justify-between transition-all duration-300 md:static h-full ${
         isCollapsed ? 'w-20' : 'w-64'
       }`}
     >
@@ -60,7 +60,7 @@ export function Sidebar({ isCollapsed, onToggle, pendingCount = 0 }: SidebarProp
 
                 {item.badge && pendingCount > 0 && (
                   <span className={`absolute bg-primary text-surface rounded-full text-[9px] font-bold flex items-center justify-center ${
-                    isCollapsed ? '-top-1 -right-1 h-4 w-4' : 'right-4 px-2 py-0.5'
+                    isCollapsed ? '-top-1 -end-1 h-4 w-4' : 'end-4 px-2 py-0.5'
                   }`}>
                     {pendingCount}
                   </span>

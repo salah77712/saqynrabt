@@ -83,7 +83,7 @@ checked={settings.pii_redaction}
 onChange={() => handleToggle('pii_redaction')}
 className="sr-only peer"
 />
-<div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
+<div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
 </label>
 </div>
 
@@ -100,7 +100,7 @@ checked={settings.jailbreak_prevention}
 onChange={() => handleToggle('jailbreak_prevention')}
 className="sr-only peer"
 />
-<div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
+<div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
 </label>
 </div>
 
@@ -117,7 +117,7 @@ checked={settings.toxicity_filter}
 onChange={() => handleToggle('toxicity_filter')}
 className="sr-only peer"
 />
-<div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
+<div className="w-9 h-5 bg-primary peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-surface after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-surface after:border-primary/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-primary" />
 </label>
 </div>
 </div>
@@ -141,7 +141,7 @@ className="sr-only peer"
 {loading && (
 <div className="flex items-center justify-center py-8">
 <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-<span className="ml-2 text-xs text-primary font-semibold">{t({ en: 'Loading gaps...', ar: 'Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„ÙØ¬ÙˆØ§Øª...' })}</span>
+<span className="ms-2 text-xs text-primary font-semibold">{t({ en: 'Loading gaps...', ar: 'Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„ÙØ¬ÙˆØ§Øª...' })}</span>
 </div>
 )}
 

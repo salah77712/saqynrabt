@@ -21,8 +21,8 @@ export default function MarketingPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col items-center text-center gap-16 w-full relative">
           
           {/* Floating Tilted Cards (Hidden on mobile) */}
-          <div className="absolute top-10 left-12 w-24 h-24 bg-white border border-primary/10 rounded-xl shadow-card transform rotate-[15deg] hidden lg:block pointer-events-none" />
-          <div className="absolute top-10 right-12 w-24 h-24 bg-white border border-primary/10 rounded-xl shadow-card transform -rotate-[15deg] hidden lg:block pointer-events-none" />
+          <div className="absolute top-10 start-12 w-24 h-24 bg-white border border-primary/10 rounded-xl shadow-card transform rotate-[15deg] hidden lg:block pointer-events-none" />
+          <div className="absolute top-10 end-12 w-24 h-24 bg-white border border-primary/10 rounded-xl shadow-card transform -rotate-[15deg] hidden lg:block pointer-events-none" />
           
           {/* Headline and Subtext Block */}
           <div className="flex flex-col items-center gap-8 max-w-3xl">
