@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-gradient-to-b from-accent to-primary text-surface hover:from-accent hover:to-accent",
         outline:
-          "btn-secondary border-primary/10 bg-surface hover:bg-gradient-to-b hover:from-[#F8F9FB] hover:to-[#F1F3F5] hover:text-primary aria-expanded:bg-surface aria-expanded:text-primary dark:border-primary/10 dark:bg-primary dark:hover:bg-primary",
+          "btn-secondary border-primary/10 bg-surface hover:bg-gradient-to-b hover:from-[#F8F9FB] hover:to-[#F1F3F5] hover:text-primary aria-expanded:bg-surface aria-expanded:text-primary dark:border-surface/20 dark:bg-primary dark:hover:bg-dark-700 dark:hover:text-surface",
         secondary:
           "btn-secondary bg-accent/10 text-accent hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-accent/10 aria-expanded:text-accent",
         ghost:

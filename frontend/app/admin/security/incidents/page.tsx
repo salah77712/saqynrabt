@@ -28,19 +28,19 @@ interface Incident {
 }
 
 const severityColors: Record<string, string> = {
-  critical: 'bg-red-50 text-red-700 border border-red-200',
-  high: 'bg-orange-50 text-orange-700 border border-orange-200',
-  medium: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
-  low: 'bg-blue-50 text-blue-700 border border-blue-200',
+  critical: 'bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800',
+  high: 'bg-orange-50 dark:bg-orange-950 text-orange-700 dark:text-orange-400 border border-orange-200 dark:border-orange-800',
+  medium: 'bg-yellow-50 dark:bg-yellow-950 text-yellow-700 dark:text-yellow-400 border border-yellow-200 dark:border-yellow-800',
+  low: 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800',
 };
 
 const statusColors: Record<string, string> = {
-  new: 'bg-blue-50 text-blue-700 border border-blue-200',
-  investigation: 'bg-purple-50 text-purple-700 border border-purple-200',
-  containment: 'bg-red-50 text-red-700 border border-red-200',
-  eradication: 'bg-yellow-50 text-yellow-700 border border-yellow-200',
-  recovery: 'bg-green-50 text-green-700 border border-green-200',
-  closed: 'bg-gray-50 text-primary/40 border border-gray-200',
+  new: 'bg-blue-50 dark:bg-blue-950 text-blue-700 dark:text-blue-400 border border-blue-200 dark:border-blue-800',
+  investigation: 'bg-purple-50 dark:bg-purple-950 text-purple-700 dark:text-purple-400 border border-purple-200 dark:border-purple-800',
+  containment: 'bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-400 border border-red-200 dark:border-red-800',
+  eradication: 'bg-yellow-50 dark:bg-yellow-950 text-yellow-700 dark:text-yellow-400 border border-yellow-200 dark:border-yellow-800',
+  recovery: 'bg-green-50 dark:bg-green-950 text-green-700 dark:text-green-400 border border-green-200 dark:border-green-800',
+  closed: 'bg-gray-50 dark:bg-primary text-primary/40 dark:text-surface/40 border border-gray-200 dark:border-surface/20',
 };
 
 export default function AdminIncidentsPage() {
@@ -237,10 +237,10 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
                 className="w-full flex items-center justify-between p-4 hover:bg-primary transition-colors text-left"
               >
                 <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${severityColors[inc.severity] || 'bg-gray-50 text-primary border border-gray-200'}`}>
+                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${severityColors[inc.severity] || 'bg-gray-50 dark:bg-primary text-primary dark:text-surface border border-gray-200 dark:border-surface/20'}`}>
                     {inc.severity}
                   </span>
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${statusColors[inc.status] || 'bg-gray-50 text-primary border border-gray-200'}`}>
+                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${statusColors[inc.status] || 'bg-gray-50 dark:bg-primary text-primary dark:text-surface border border-gray-200 dark:border-surface/20'}`}>
                     {inc.status}
                   </span>
                   <span className="text-xs font-medium text-primary truncate">{inc.title}</span>
