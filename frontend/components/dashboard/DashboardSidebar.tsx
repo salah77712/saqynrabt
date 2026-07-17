@@ -130,7 +130,7 @@ className="h-8 w-8 rounded-lg border border-[#141F33]/10 flex items-center justi
           </div>
         ) : (
           <div className={`flex items-center p-1 rounded-xl min-w-0 ${isCollapsed ? 'justify-center' : 'gap-4'}`}>
-            <UserButton afterSignOutUrl="/" showName={!isCollapsed} />
+            <UserButton showName={!isCollapsed} />
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
                 <p className="text-[10px] font-semibold text-[#141F33] uppercase tracking-wider truncate">{t(dashboardContent.activeClient)}</p>

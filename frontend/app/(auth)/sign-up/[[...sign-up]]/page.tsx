@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useSignUp } from '@clerk/nextjs';
+import { useSignUp } from '@clerk/nextjs/legacy';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useLocale } from '../../../providers';

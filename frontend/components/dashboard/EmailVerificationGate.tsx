@@ -113,7 +113,7 @@ export function EmailVerificationGate() {
             {resending ? t({ en: 'Resending...', ar: 'جاري إعادة الإرسال...' }) : t({ en: 'Resend Verification Code', ar: 'إعادة إرسال رمز التحقق' })}
           </button>
           <div className="pt-4 border-t  flex items-center justify-center gap-3">
-            <UserButton afterSignOutUrl="/" />
+            <UserButton />
             <span className="text-[10px] text-[#141F33] font-bold">{t({ en: 'Sign Out', ar: 'تسجيل الخروج' })}</span>
           </div>
         </div>
