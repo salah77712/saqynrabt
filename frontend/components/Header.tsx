@@ -103,7 +103,7 @@ className="hidden md:inline-flex bg-[#141F33] hover:bg-[#141F33] text-[#F8F9FB] 
 >
 {t('Dashboard', 'Tableau de Bord', 'لوحة التحكم', 'डैशबोर्ड')}
 </Link>
-<UserButton afterSignOutUrl="/" showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user">
+<UserButton showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user">
 <UserButton.MenuItems>
 <UserButton.Link
 label={t("Dashboard", "Tableau de Bord", "لوحة التحكم", "डैशबोर्ड")}

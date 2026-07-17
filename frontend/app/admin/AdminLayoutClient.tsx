@@ -131,7 +131,7 @@ export default function AdminLayout({
 
           {/* Profile bottom */}
           <div className="p-4 border-t border-[#141F33]/10 bg-[#F8F9FB] flex items-center gap-4">
-            <UserButton afterSignOutUrl="/" />
+            <UserButton />
             <div className="flex-1 min-w-0">
               <p className="text-xs font-extrabold text-[#141F33] truncate">{user?.fullName || 'Staff Administrator'}</p>
 <span className="inline-block mt-1 text-[8px] font-extrabold uppercase tracking-widest text-[#2A5CFF] bg-[#F8F9FB] px-2 py-0.5 rounded-full border border-[#141F33]/10">

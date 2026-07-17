@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { X, ClipboardList } from 'lucide-react';
-import { useChat } from 'ai/react';
+import { useChat } from '@ai-sdk/react';
 import { useLocale } from '../../providers';
 import { Button } from '@/components/shadcn/button';
 import { Card } from '@/components/shadcn/card';
@@ -32,6 +32,7 @@ const [gapsError, setGapsError] = useState(false);
 const [selectedGap, setSelectedGap] = useState<string | null>(null);
 const [isGapModalOpen, setIsGapModalOpen] = useState(false);
 const [showGapsSheet, setShowGapsSheet] = useState(false);
+const [chatInput, setChatInput] = useState('');
 const messagesEndRef = useRef<HTMLDivElement>(null);
 
 const { data: chatHistory, isLoading: historyLoading } = useChatHistory();
@@ -66,18 +67,20 @@ const interval = setInterval(fetchGaps, 30_000);
 return () => clearInterval(interval);
 }, [fetchGaps]);
 
-const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-api: '/api/chat',
-initialMessages: [
+const { messages, sendMessage, status } = useChat({
+messages: [
 {
 id: 'welcome-msg',
 role: 'system',
-content: locale === 'ar'
+parts: [{ type: 'text' as const, text: locale === 'ar'
 ? 'مرحباً! أنا مساعد المعرفة الداخلي لشركة SAQYN RABT. اسألني أي سؤال حول الموارد البشرية، أو سياسات التشغيل.'
-: 'Welcome! I am the SAQYN RABT Internal Staff Knowledge Assistant. Ask me anything about HR policies, SOPs, or company guidelines.',
+: 'Welcome! I am the SAQYN RABT Internal Staff Knowledge Assistant. Ask me anything about HR policies, SOPs, or company guidelines.' }],
 },
 ],
 });
+const isLoading = status === 'submitted';
+const getMessageText = (msg: typeof messages[number]) =>
+  msg.parts?.map(p => (p as any).type === 'text' ? (p as any).text : '').filter(Boolean).join('') || '';
 
 useEffect(() => {
 scrollToBottom();
@@ -166,39 +169,39 @@ aria-label={t('Chat messages', 'رسائل المحادثة')}>
 <div
 key={msg.id}
 className={`flex flex-col ${
-msg.role === 'user' ? 'ml-auto items-end' : 'mr-auto items-start'
+(msg.role as string) === 'user' ? 'ml-auto items-end' : 'mr-auto items-start'
 }`}
 style={{ maxWidth: '85%' }}
-onTouchStart={() => handleTouchStart(msg.content)}
+onTouchStart={() => handleTouchStart(getMessageText(msg))}
 onTouchEnd={handleTouchEnd}
 onContextMenu={(e) => {
 e.preventDefault();
-copyToClipboard(msg.content);
+copyToClipboard(getMessageText(msg));
 }}
 >
 <div
 className={`p-3 md:p-4 rounded-xl text-[11px] md:text-xs font-semibold leading-relaxed shadow-sm ${
-msg.role === 'user'
+(msg.role as string) === 'user'
 ? 'bg-[#141F33] text-[#F8F9FB] rounded-br-none'
 : 'bg-[#F8F9FB] text-[#141F33] border border-[#141F33]/10 rounded-bl-none'
 }`}
 >
-{msg.content}
+{getMessageText(msg)}
 </div>
 </div>
 ))}
 <div ref={messagesEndRef} />
 </div>
 
-<form onSubmit={handleSubmit} className="p-3 md:p-4 border-t border-[#141F33]/10 bg-[#F8F9FB] shrink-0">
+<form onSubmit={(e) => { e.preventDefault(); sendMessage({ text: chatInput }); setChatInput(''); }} className="p-3 md:p-4 border-t border-[#141F33]/10 bg-[#F8F9FB] shrink-0">
 <div className="flex items-center gap-3 md:gap-4">
 <Input
-value={input}
-onChange={handleInputChange}
+value={chatInput}
+onChange={(e) => setChatInput(e.target.value)}
 placeholder={t('Ask a question...', 'اسأل سؤالاً...')}
 className="min-h-[44px] text-xs md:text-sm"
 />
-<Button type="submit" disabled={isLoading || !input} className="min-h-[44px] min-w-[44px] whitespace-nowrap text-xs md:text-sm py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95">
+<Button type="submit" disabled={isLoading || !chatInput} className="min-h-[44px] min-w-[44px] whitespace-nowrap text-xs md:text-sm py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95">
 {t('Send', 'إرسال')}
 </Button>
 </div>

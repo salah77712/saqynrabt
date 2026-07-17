@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useSignIn } from '@clerk/nextjs';
+import { useSignIn } from '@clerk/nextjs/legacy';
 import Link from 'next/link';
 import { useLocale } from '../../providers';
 import { Mail } from 'lucide-react';
