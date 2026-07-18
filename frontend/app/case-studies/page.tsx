@@ -255,7 +255,7 @@ export default function CaseStudiesPage() {
 
         {/* Detailed Metrics Panel of Active Card */}
 <div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
-<div className="bg-white border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 shadow-card">
+<div className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 shadow-card">
             <div className="flex-1">
               <span className="text-[10px] font-black uppercase tracking-widest text-primary/60 mb-1 block">
                 {list[currentIndex].meta}

@@ -104,13 +104,13 @@ export function ChatWidget() {
 
       {/* Chat Tray */}
       {isOpen && (
-        <div className="w-[380px] h-[500px] bg-white dark:bg-primary rounded-xl border border-primary/10 dark:border-surface/10 shadow-card flex flex-col overflow-hidden border-t-4 border-t-[#1A3BCC]">
+        <div className="w-[380px] h-[500px] bg-[#F8F9FB] dark:bg-primary rounded-xl border border-primary/10 dark:border-surface/10 shadow-card flex flex-col overflow-hidden border-t-4 border-t-[#2A5CFF]">
           
           {/* Header */}
-          <div className="bg-white dark:bg-primary border-b border-primary/10 dark:border-surface/10 px-6 py-4 flex items-center justify-between">
+          <div className="bg-[#F8F9FB] dark:bg-primary border-b border-primary/10 dark:border-surface/10 px-6 py-4 flex items-center justify-between">
             <div>
               <h3 className="text-sm font-extrabold text-primary dark:text-surface">Synthetiq Work - HR Bot</h3>
-              <p className="text-[10px] text-[#1A3BCC] font-bold uppercase tracking-wider mt-0.5">RAG Operations Agent</p>
+              <p className="text-[10px] text-[#2A5CFF] font-bold uppercase tracking-wider mt-0.5">RAG Operations Agent</p>
             </div>
             <button
               type="button"
@@ -133,7 +133,7 @@ export function ChatWidget() {
                   className={`max-w-[85%] text-xs font-semibold px-4 py-2.5 rounded-[20px] leading-relaxed ${
                     msg.sender === 'user'
                       ? 'bg-primary text-surface rounded-te-none'
-                      : 'bg-white dark:bg-primary text-primary dark:text-surface border border-primary/5 dark:border-surface/5 rounded-ts-none shadow-sm'
+                      : 'bg-[#F8F9FB] dark:bg-primary text-primary dark:text-surface border border-primary/5 dark:border-surface/5 rounded-ts-none shadow-sm'
                   }`}
                 >
                   <p>{msg.text}</p>
@@ -149,7 +149,7 @@ export function ChatWidget() {
             ))}
             
             {loading && (
-              <div className="flex items-center gap-1 bg-white dark:bg-primary border border-primary/5 dark:border-surface/5 rounded-[20px] rounded-ts-none px-4 py-2.5 max-w-[80px] shadow-sm">
+              <div className="flex items-center gap-1 bg-[#F8F9FB] dark:bg-primary border border-primary/5 dark:border-surface/5 rounded-[20px] rounded-ts-none px-4 py-2.5 max-w-[80px] shadow-sm">
                 <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                 <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -160,7 +160,7 @@ export function ChatWidget() {
           </div>
 
           {/* Input Form Footer */}
-          <form onSubmit={handleSendMessage} className="p-4 bg-white dark:bg-primary border-t border-primary/10 dark:border-surface/10 flex items-center gap-3">
+          <form onSubmit={handleSendMessage} className="p-4 bg-[#F8F9FB] dark:bg-primary border-t border-primary/10 dark:border-surface/10 flex items-center gap-3">
             <input
               type="text"
               placeholder={t({ en: 'Ask a policy or PTO question...', ar: 'Ø§Ø³Ø£Ù„ Ø¹Ù† Ø§Ù„Ø³ÙŠØ§Ø³Ø§Øª Ø£Ùˆ Ø§Ù„Ø¥Ø¬Ø§Ø²Ø§Øª...' })}
@@ -172,7 +172,7 @@ export function ChatWidget() {
             <button
               type="submit"
               disabled={!inputText.trim() || loading}
-              className="w-11 h-11 rounded-full bg-[#1A3BCC] hover:bg-[#1A3BCC]/90 text-white flex items-center justify-center transition-colors min-h-[44px] min-w-[44px]"
+              className="w-11 h-11 rounded-full bg-[#2A5CFF] hover:bg-[#2A5CFF]/90 text-white flex items-center justify-center transition-colors min-h-[44px] min-w-[44px]"
             >
               <Send className="w-4 h-4" />
             </button>

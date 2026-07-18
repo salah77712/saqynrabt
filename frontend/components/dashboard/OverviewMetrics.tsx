@@ -22,7 +22,7 @@ export function OverviewMetrics({ metrics }: { metrics: MetricProps[] }) {
           {metric.change && (
             <p
               className={`text-xs font-semibold mt-3 ${
-                metric.isPositive ? 'text-primary' : 'text-primary'
+                metric.isPositive ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'
               }`}
             >
               {metric.change}

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useSignIn } from '@clerk/nextjs/legacy';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import { Eye, EyeOff } from 'lucide-react';
 import { useLocale } from '../../../providers';
 import { useGlobalToast } from '../../../../lib/toast';
 
@@ -18,6 +19,7 @@ export default function SignInPage() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [show2FA, setShow2FA] = useState(false);
   const [twoFactorCode, setTwoFactorCode] = useState('');
   const [factorStrategy, setFactorStrategy] = useState<'totp' | 'email_code' | 'phone_code' | null>(null);
@@ -122,7 +124,7 @@ export default function SignInPage() {
         </div>
 
 {error && (
-<div className="bg-primary border border-primary/10 text-primary rounded-xl p-3.5 text-xs font-bold mb-6" role="alert" aria-live="assertive">
+<div id="sign-in-error" className="bg-red-50 border border-red-200 text-red-700 rounded-xl p-3.5 text-xs font-bold mb-6" role="alert" aria-live="assertive">
 {error}
 </div>
 )}
@@ -174,12 +176,13 @@ export default function SignInPage() {
         ) : (
           /* Standard Sign-In Form */
           <>
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" aria-describedby={error ? 'sign-in-error' : undefined}>
               <div>
                 <label htmlFor="email" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
                 <input
                   type="email"
                   id="email"
+                  autoComplete="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
@@ -194,14 +197,25 @@ export default function SignInPage() {
                     {t({ en: 'Forgot Password?', ar: 'نسيت كلمة المرور؟' })}
                   </Link>
                 </div>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
-                  required
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                    autoComplete="current-password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl pe-10 px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label={showPassword ? 'Hide password' : 'Show password'}
+                    className="absolute end-2 top-1/2 -translate-y-1/2 flex items-center justify-center w-8 h-8 text-primary/50 hover:text-primary rounded-full hover:bg-primary transition-colors"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
               </div>
 
               <button

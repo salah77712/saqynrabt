@@ -71,7 +71,8 @@ return (
 <Link
 key={link.href}
 href={link.href}
-className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 rounded-full hover:bg-primary hover:text-primary min-h-[44px] flex items-center ${
+aria-current={isActive ? "page" : undefined}
+className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 rounded-full hover:bg-primary hover:text-surface min-h-[44px] flex items-center ${
       isActive ? 'text-primary' : 'text-primary/70'
     }`}
 >
@@ -160,7 +161,7 @@ aria-label="Mobile navigation menu"
 className="fixed inset-0 z-50 flex"
 >
 <div
-className="fixed inset-0 bg-primary backdrop-blur-sm"
+className="fixed inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300 ease-in-out"
 onClick={closeMenu}
 />
 <div
@@ -195,10 +196,11 @@ return (
 key={link.href}
 href={link.href}
 onClick={closeMenu}
+aria-current={isActive ? "page" : undefined}
 className={`flex items-center min-h-[44px] px-3 py-2.5 text-base font-semibold rounded-full transition-colors ${
 isActive
-? 'text-primary bg-primary'
-: 'text-primary/70 hover:text-primary hover:bg-primary'
+        ? 'text-surface bg-primary'
+        : 'text-primary/70 hover:text-surface hover:bg-primary'
 }`}
 >
 {t(link.label.en, link.label.fr, link.label.ar, link.label.hi)}

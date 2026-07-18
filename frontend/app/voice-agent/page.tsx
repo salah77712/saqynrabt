@@ -18,7 +18,7 @@ export default function VoiceAgentPage() {
       {/* â”€â”€ Main Hero Container with 4px border top â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 lg:px-8">
         
-        <div className="border-t-4 border-accent rounded-xl bg-white shadow-card p-8 lg:p-12 mb-12">
+        <div className="border-t-4 border-accent rounded-xl bg-[#F8F9FB] shadow-card p-8 lg:p-12 mb-12">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-wider mb-6">
               â— AI Voice Agent Deep Dive
@@ -56,9 +56,9 @@ export default function VoiceAgentPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Card 1: Smart Answering */}
-            <div className="bg-white border border-primary/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
               <div>
-                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white mb-6">
+                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-surface mb-6">
                   <Phone className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <h3 className="text-base font-bold text-primary mb-3">Natural Voice AI</h3>
@@ -73,9 +73,9 @@ export default function VoiceAgentPage() {
             </div>
 
             {/* Card 2: Workflow Routing */}
-            <div className="bg-white border border-primary/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
               <div>
-                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white mb-6">
+                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-surface mb-6">
                   <Zap className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <h3 className="text-base font-bold text-primary mb-3">Intelligent Routing</h3>
@@ -90,9 +90,9 @@ export default function VoiceAgentPage() {
             </div>
 
             {/* Card 3: Escalation */}
-            <div className="bg-white border border-primary/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-card flex flex-col justify-between">
               <div>
-                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-white mb-6">
+                <div className="w-10 h-10 rounded-full bg-accent flex items-center justify-center text-surface mb-6">
                   <ShieldCheck className="w-5 h-5" strokeWidth={2} />
                 </div>
                 <h3 className="text-base font-bold text-primary mb-3">Smart Human Escalation</h3>
@@ -109,7 +109,7 @@ export default function VoiceAgentPage() {
         </section>
 
         {/* â”€â”€ Technical Overview â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
-        <section className="bg-white border border-primary/10 rounded-xl p-8 shadow-card mb-12">
+        <section className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-card mb-12">
           <h2 className="text-lg font-bold text-primary mb-4">Security & Latency Standards</h2>
           <p className="text-xs text-primary/60 font-semibold leading-relaxed mb-6">
             All calls are routed securely through regional telecom nodes. Audio encryption is enforced end-to-end, compliant with local operations regulations. Under 150ms speech-to-speech response latency ensures smooth conversation.

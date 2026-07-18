@@ -10,7 +10,7 @@
   --color-muted: #718096;
   --color-muted-foreground: #A0AEC0;
   --color-border: rgba(20, 31, 51, 0.1);
-  --radius: 40px;
+  --radius: 0.75rem;
   --shadow-geo: 0 10px 40px rgba(0,0,0,0.05);
   --shadow-geo-hover: 0 20px 60px rgba(42,92,255,0.08);
   --spacing-pill: 9999px;
@@ -19,4 +19,13 @@
 @layer base {
   body { background: var(--color-background); color: var(--color-foreground); }
   *:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

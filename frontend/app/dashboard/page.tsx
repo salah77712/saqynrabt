@@ -89,7 +89,7 @@ export default function DashboardOverviewPage() {
       {isTrial && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Trial Balance & Status Card */}
-          <div className="lg:col-span-1 p-8 rounded-xl r   text-surface shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+          <div className="lg:col-span-1 p-8 rounded-xl bg-primary text-surface shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[220px]">
             <div className="absolute end-0 top-0 translate-x-1/4 -translate-y-1/4 w-32 h-32 bg-accent/10 rounded-full blur-xl pointer-events-none" />
             <div>
               <div className="flex justify-between items-center mb-4">

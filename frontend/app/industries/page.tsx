@@ -127,7 +127,7 @@ export default function IndustriesPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {list.map((ind) => (
-              <div key={ind.title} className="bg-white border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md transition-all shadow-card">
+              <div key={ind.title} className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md transition-all shadow-card">
                 <span className="text-3xl mb-3 block">{industryIcons[ind.icon] || <Building2 className="w-8 h-8 text-primary" />}</span>
                 <h3 className="text-lg font-bold text-primary mb-2">{ind.title}</h3>
                 <p className="text-sm text-primary leading-relaxed">{ind.desc}</p>

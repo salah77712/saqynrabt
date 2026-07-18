@@ -21,8 +21,8 @@ export default function MarketingPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-12 flex flex-col items-center text-center gap-16 w-full relative">
           
           {/* Floating Tilted Cards (Hidden on mobile) */}
-          <div className="absolute top-10 start-12 w-24 h-24 bg-white border border-primary/10 rounded-xl shadow-card transform rotate-[15deg] hidden lg:block pointer-events-none" />
-          <div className="absolute top-10 end-12 w-24 h-24 bg-white border border-primary/10 rounded-xl shadow-card transform -rotate-[15deg] hidden lg:block pointer-events-none" />
+          <div className="absolute top-10 start-12 w-24 h-24 bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card transform rotate-[15deg] hidden lg:block pointer-events-none" />
+          <div className="absolute top-10 end-12 w-24 h-24 bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card transform -rotate-[15deg] hidden lg:block pointer-events-none" />
           
           {/* Headline and Subtext Block */}
           <div className="flex flex-col items-center gap-8 max-w-3xl">
@@ -35,7 +35,7 @@ export default function MarketingPage() {
               <button
                 type="button"
                 onClick={() => setActiveProduct('voice')}
-                className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[38px] ${
+                className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[44px] ${
                   activeProduct === 'voice'
                     ? 'bg-primary text-surface'
                     : 'bg-transparent text-primary'
@@ -46,7 +46,7 @@ export default function MarketingPage() {
               <button
                 type="button"
                 onClick={() => setActiveProduct('work')}
-                className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[38px] ${
+                className={`rounded-full px-6 py-2.5 text-xs font-bold transition-all duration-300 min-h-[44px] ${
                   activeProduct === 'work'
                     ? 'bg-primary text-surface'
                     : 'bg-transparent text-primary'
@@ -99,7 +99,7 @@ export default function MarketingPage() {
 
           {/* ── Dynamic Preview Mockup Container ──────────────── */}
           <div className="w-full max-w-xl">
-            <div className="bg-white border border-primary/10 rounded-xl shadow-card p-8 flex items-center justify-center min-h-[280px]">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card p-8 flex items-center justify-center min-h-[280px]">
               
               {activeProduct === 'voice' ? (
                 /* Dynamic Voice SVG Mockup (Navy & Canvas only) */
@@ -193,7 +193,7 @@ export default function MarketingPage() {
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               {['SAP', 'Oracle', 'Salesforce', 'Slack', 'Jira', 'HubSpot'].map((logo, i) => (
-                <div key={i} className="bg-white rounded-full border border-primary/10 px-6 py-2 text-xs font-bold tracking-wider shadow-sm select-none">
+                <div key={i} className="bg-[#F8F9FB] rounded-full border border-primary/10 px-6 py-2 text-xs font-bold tracking-wider shadow-sm select-none">
                   {logo}
                 </div>
               ))}

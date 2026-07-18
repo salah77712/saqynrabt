@@ -106,7 +106,7 @@ export default function AdminIntegrationsPage() {
       <main className="flex-1 max-w-4xl mx-auto w-full px-6 py-12 lg:px-8">
         
         {/* Main Workspace Frame */}
-        <div className="bg-white rounded-xl border border-primary/10 p-8 shadow-card">
+        <div className="bg-[#F8F9FB] rounded-xl border border-primary/10 p-8 shadow-card">
           
           <div className="border-b border-primary/10 pb-6 mb-8">
             <h1 className="text-2xl font-extrabold text-primary">Connect your HR Database to Saqyn Rabt.</h1>

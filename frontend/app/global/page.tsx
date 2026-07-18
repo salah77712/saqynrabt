@@ -71,7 +71,7 @@ return (
 <div className="max-w-5xl mx-auto px-6">
 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
 {highlightList.map((h) =>
-<div key={h.label} className="text-center bg-white border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
+<div key={h.label} className="text-center bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
 <p className="text-4xl font-extrabold text-primary">{h.stat}</p>
 <p className="text-sm text-primary mt-1">{h.label}</p>
 </div>
@@ -110,7 +110,7 @@ return (
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-surface text-primary px-6 py-3 text-sm font-semibold hover:bg-white transition-all"
+className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-surface text-primary px-6 py-3 text-sm font-semibold hover:bg-[#F8F9FB] transition-all"
 >
 {t({ en: 'See how it works', fr: 'Découvrez comment ça marche', ar: 'شاهد كيف يعمل', hi: 'देखें यह कैसे काम करता है' })}
 </a>

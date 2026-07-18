@@ -160,7 +160,7 @@ export default function SynthetiqVoicePage() {
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 lg:px-12">
         
         {/* Hero wrapping div with 4px Royal Blue border top */}
-        <div className="border-t-4 border-accent rounded-xl bg-white shadow-card p-8 lg:p-12 mb-16 border border-primary/10">
+        <div className="border-t-4 border-accent rounded-xl bg-[#F8F9FB] shadow-card p-8 lg:p-12 mb-16 border border-primary/10">
           <div className="max-w-3xl">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-wider mb-6">
               ● Synthetiq Voice Call Agent
@@ -193,7 +193,7 @@ export default function SynthetiqVoicePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             {/* Card 1: Natural Voice AI */}
-            <div className="bg-white border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-primary/10 flex items-center justify-center p-8 min-h-[160px]">
                 <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
@@ -211,7 +211,7 @@ export default function SynthetiqVoicePage() {
             </div>
 
             {/* Card 2: Intelligent Routing */}
-            <div className="bg-white border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-primary/10 flex items-center justify-center p-8 min-h-[160px]">
                 <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
@@ -231,7 +231,7 @@ export default function SynthetiqVoicePage() {
             </div>
 
             {/* Card 3: Smart Human Escalation */}
-            <div className="bg-white border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-primary/10 flex items-center justify-center p-8 min-h-[160px]">
                 <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
@@ -253,7 +253,7 @@ export default function SynthetiqVoicePage() {
 
         {/* Call to Resolution Flow — SVG Diagram with Live MCP Status */}
         <section className="mb-16">
-          <div className="bg-white border border-primary/10 rounded-xl shadow-card p-8 lg:p-10 overflow-hidden">
+          <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card p-8 lg:p-10 overflow-hidden">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-2xl font-extrabold text-primary">Call to Resolution Flow</h2>
               <div className="flex items-center gap-3">

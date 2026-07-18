@@ -116,8 +116,8 @@ export default function AdminLayout({
                     onClick={() => setIsSidebarOpen(false)}
                     className={`flex items-center gap-4.5 px-4 rounded-xl text-sm font-bold transition-all ${
                       isActive
-                        ? 'bg-primary border-s-4 border-primary text-primary'
-                        : 'text-primary/60 hover:bg-primary hover:text-primary'
+                        ? 'bg-primary border-s-4 border-accent text-surface'
+                        : 'text-primary/60 hover:bg-primary hover:text-surface'
                     }`}
                     style={{ minHeight: '44px' }}
                   >

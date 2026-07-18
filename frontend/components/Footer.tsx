@@ -149,7 +149,7 @@ return (
           />
           <button
             type="submit"
-            className="absolute end-1 top-[4px] bottom-[4px] bg-primary hover:bg-primary/90 text-surface font-bold text-[9px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[28px]"
+            className="absolute end-1 top-[4px] bottom-[4px] bg-primary hover:bg-primary/90 text-surface font-bold text-[9px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[44px] min-w-[44px]"
           >
             {t({ en: 'Submit', ar: 'إرسال' })}
           </button>

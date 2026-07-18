@@ -77,8 +77,8 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                   isCollapsed ? 'justify-center px-0' : 'px-4 gap-4.5'
                 } ${
                   isActive
-? 'bg-primary border-s-4 border-primary text-primary'
-: 'border-s-4 border-transparent text-primary hover:bg-primary hover:text-primary'
+? 'bg-primary border-s-4 border-accent text-surface'
+: 'border-s-4 border-transparent text-primary hover:bg-primary hover:text-surface'
                 }`}
                 style={{ minHeight: '44px' }}
               >
@@ -102,7 +102,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
         <button
           type="button"
           onClick={onToggleCollapse}
-className="h-8 w-8 rounded-lg border border-primary/10 flex items-center justify-center text-primary hover:text-primary hover:bg-primary transition-colors min-h-[44px] min-w-[44px]"
+className="h-8 w-8 rounded-lg border border-primary/10 flex items-center justify-center text-primary hover:text-surface hover:bg-primary transition-colors min-h-[44px] min-w-[44px]"
           title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >
           {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}

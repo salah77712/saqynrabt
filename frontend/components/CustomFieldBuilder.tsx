@@ -73,7 +73,7 @@ type="text"
 value={newFieldName}
 onChange={(e) => setNewFieldName(e.target.value)}
 placeholder={t('Field Label (e.g. Booking Code)', 'Ø§Ø³Ù… Ø§Ù„Ø­Ù‚Ù„ (Ù…Ø«Ø§Ù„: Ø±Ù…Ø² Ø§Ù„Ø­Ø¬Ø²)')}
-className="min-h-[44px] w-full rounded-xl border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary px-4 text-xs font-semibold outline-none focus:bg-white dark:focus:bg-primary focus:border-primary dark:focus:border-surface text-primary dark:text-surface"
+className="min-h-[44px] w-full rounded-xl border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary px-4 text-xs font-semibold outline-none focus:bg-[#F8F9FB] dark:focus:bg-primary focus:border-primary dark:focus:border-surface text-primary dark:text-surface"
 />
 <select
                   value={newFieldType}

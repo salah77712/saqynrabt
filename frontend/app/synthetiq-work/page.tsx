@@ -26,7 +26,7 @@ function WorkFlowSVG() {
           <feDropShadow dx="0" dy="4" stdDeviation="8" floodColor="#141F33" floodOpacity="0.04"/>
         </filter>
         <filter id="shadow-glow">
-          <feDropShadow dx="0" dy="8" stdDeviation="16" floodColor="#1A3BCC" floodOpacity="0.2"/>
+          <feDropShadow dx="0" dy="8" stdDeviation="16" floodColor="#2A5CFF" floodOpacity="0.2"/>
         </filter>
       </defs>
       <rect x="40" y="40" width="1520" height="820" rx="40" fill="#F8F9FB" stroke="#141F33" strokeWidth="1.5" filter="url(#shadow-card)" />
@@ -43,10 +43,10 @@ function WorkFlowSVG() {
       <text x="175" y="186" fill="#141F33" fontSize="18" fontWeight="800">Admin Uploads Policies</text>
       <text x="145" y="220" fill="#141F33" fontSize="14" fontWeight="500">HR admins upload handbooks,</text>
       <text x="145" y="242" fill="#141F33" fontSize="14" fontWeight="500">SOPs, and policy documents.</text>
-      <text x="145" y="268" fill="#1A3BCC" fontSize="12" fontWeight="700">Source: Admin Dashboard</text>
+      <text x="145" y="268" fill="#2A5CFF" fontSize="12" fontWeight="700">Source: Admin Dashboard</text>
 
       <path d="M 440 225 L 560 225" stroke="#141F33" strokeWidth="2.5" strokeDasharray="8,6" strokeLinecap="round" />
-      <circle cx="550" cy="225" r="5" fill="#1A3BCC" />
+      <circle cx="550" cy="225" r="5" fill="#2A5CFF" />
 
       <rect x="570" y="160" width="320" height="130" rx="24" fill="#FFFFFF" stroke="#141F33" strokeWidth="2" filter="url(#shadow-node)" />
       <circle cx="590" cy="180" r="18" fill="#FFFFFF" stroke="#141F33" strokeWidth="2.5" filter="url(#shadow-node)"/>
@@ -54,10 +54,10 @@ function WorkFlowSVG() {
       <text x="625" y="186" fill="#141F33" fontSize="18" fontWeight="800">System Syncs Data</text>
       <text x="595" y="220" fill="#141F33" fontSize="14" fontWeight="500">The system securely imports</text>
       <text x="595" y="242" fill="#141F33" fontSize="14" fontWeight="500">employee records and roles.</text>
-      <text x="595" y="268" fill="#1A3BCC" fontSize="12" fontWeight="700">Action: Secure Import</text>
+      <text x="595" y="268" fill="#2A5CFF" fontSize="12" fontWeight="700">Action: Secure Import</text>
 
       <path d="M 890 225 L 1010 225" stroke="#141F33" strokeWidth="2.5" strokeDasharray="8,6" strokeLinecap="round" />
-      <circle cx="1000" cy="225" r="5" fill="#1A3BCC" />
+      <circle cx="1000" cy="225" r="5" fill="#2A5CFF" />
 
       <rect x="1020" y="160" width="320" height="130" rx="24" fill="#FFFFFF" stroke="#141F33" strokeWidth="2" filter="url(#shadow-node)" />
       <circle cx="1040" cy="180" r="18" fill="#FFFFFF" stroke="#141F33" strokeWidth="2.5" filter="url(#shadow-node)"/>
@@ -65,10 +65,10 @@ function WorkFlowSVG() {
       <text x="1075" y="186" fill="#141F33" fontSize="18" fontWeight="800">Employee Asks Question</text>
       <text x="1045" y="220" fill="#141F33" fontSize="14" fontWeight="500">An employee opens the chat</text>
       <text x="1045" y="242" fill="#141F33" fontSize="14" fontWeight="500">and asks about PTO or policy.</text>
-      <text x="1045" y="268" fill="#1A3BCC" fontSize="12" fontWeight="700">Source: Chat Widget</text>
+      <text x="1045" y="268" fill="#2A5CFF" fontSize="12" fontWeight="700">Source: Chat Widget</text>
 
       <path d="M 800 290 L 800 340" stroke="#141F33" strokeWidth="2.5" />
-      <circle cx="800" cy="340" r="6" fill="#1A3BCC" />
+      <circle cx="800" cy="340" r="6" fill="#2A5CFF" />
 
       <rect x="220" y="360" width="1160" height="130" rx="24" fill="#FFFFFF" stroke="#141F33" strokeWidth="2" filter="url(#shadow-node)" />
       <circle cx="240" cy="380" r="18" fill="#FFFFFF" stroke="#141F33" strokeWidth="2.5" filter="url(#shadow-node)"/>
@@ -81,18 +81,18 @@ function WorkFlowSVG() {
       <text x="700" y="445" textAnchor="middle" fill="#141F33" fontSize="14" fontWeight="600">Employee Records</text>
       <rect x="820" y="415" width="160" height="50" rx="14" fill="#F8F9FB" stroke="#141F33" strokeWidth="1.5" />
       <text x="900" y="445" textAnchor="middle" fill="#141F33" fontSize="14" fontWeight="600">Company SOPs</text>
-      <text x="1110" y="465" fill="#1A3BCC" fontSize="12" fontWeight="700">Action: Data Lookup</text>
+      <text x="1110" y="465" fill="#2A5CFF" fontSize="12" fontWeight="700">Action: Data Lookup</text>
 
       <path d="M 800 490 L 800 540" stroke="#141F33" strokeWidth="2.5" />
-      <circle cx="800" cy="540" r="6" fill="#1A3BCC" />
+      <circle cx="800" cy="540" r="6" fill="#2A5CFF" />
 
-      <rect x="220" y="560" width="1160" height="130" rx="24" fill="#FFFFFF" stroke="#1A3BCC" strokeWidth="3" filter="url(#shadow-glow)" />
-      <circle cx="240" cy="580" r="18" fill="#FFFFFF" stroke="#1A3BCC" strokeWidth="2.5" filter="url(#shadow-glow)"/>
-      <text x="240" y="586" textAnchor="middle" fill="#1A3BCC" fontSize="16" fontWeight="800">5</text>
+      <rect x="220" y="560" width="1160" height="130" rx="24" fill="#FFFFFF" stroke="#2A5CFF" strokeWidth="3" filter="url(#shadow-glow)" />
+      <circle cx="240" cy="580" r="18" fill="#FFFFFF" stroke="#2A5CFF" strokeWidth="2.5" filter="url(#shadow-glow)"/>
+      <text x="240" y="586" textAnchor="middle" fill="#2A5CFF" fontSize="16" fontWeight="800">5</text>
       <text x="275" y="586" fill="#141F33" fontSize="18" fontWeight="800">Instant Answer Given &amp; Dashboard Updated</text>
       <text x="245" y="620" fill="#141F33" fontSize="14" fontWeight="500">The AI provides the employee with a precise, verified answer with citations.</text>
       <text x="245" y="642" fill="#141F33" fontSize="14" fontWeight="500">The system also logs the question, answer, and employee ID in the live dashboard.</text>
-      <text x="245" y="670" fill="#1A3BCC" fontSize="12" fontWeight="700">Outcome: Employee satisfied · Request logged · Audit trail updated</text>
+      <text x="245" y="670" fill="#2A5CFF" fontSize="12" fontWeight="700">Outcome: Employee satisfied · Request logged · Audit trail updated</text>
 
       <rect x="70" y="780" width="1460" height="50" rx="40" fill="#F8F9FB" stroke="#141F33" strokeWidth="1.5" strokeDasharray="6,6" />
       <text x="800" y="810" textAnchor="middle" fill="#141F33" fontSize="14" fontWeight="700" letterSpacing="1.5">SECURE INFRASTRUCTURE · ENCRYPTED DATA · ROLE-BASED ACCESS · AUDIT LOGS</text>
@@ -148,9 +148,9 @@ export default function SynthetiqWorkPage() {
       <main className="flex-1 max-w-7xl mx-auto w-full px-6 py-12 lg:px-12">
         
         {/* Hero wrapping div with 4px Deep Indigo border top */}
-        <div className="border-t-4 border-[#1A3BCC] rounded-xl bg-white shadow-card p-8 lg:p-12 mb-16 border border-primary/10">
+        <div className="border-t-4 border-[#2A5CFF] rounded-xl bg-[#F8F9FB] shadow-card p-8 lg:p-12 mb-16 border border-primary/10">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1A3BCC]/10 text-[#1A3BCC] text-[10px] font-bold uppercase tracking-wider mb-6">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#2A5CFF]/10 text-[#2A5CFF] text-[10px] font-bold uppercase tracking-wider mb-6">
               ● Synthetiq Work HR Bot
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight">
@@ -181,7 +181,7 @@ export default function SynthetiqWorkPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             {/* Card 1: Vacation & Leave Balance */}
-            <div className="bg-white border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-primary/10 flex items-center justify-center p-8 min-h-[160px]">
                 <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
@@ -201,7 +201,7 @@ export default function SynthetiqWorkPage() {
             </div>
 
             {/* Card 2: Role & Designation Lookup */}
-            <div className="bg-white border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-primary/10 flex items-center justify-center p-8 min-h-[160px]">
                 <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
@@ -220,7 +220,7 @@ export default function SynthetiqWorkPage() {
             </div>
 
             {/* Card 3: Work & Policy Q&A */}
-            <div className="bg-white border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
+            <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card p-0 overflow-hidden flex flex-col items-stretch">
               {/* Top 50% */}
               <div className="bg-accent/5 border-b border-primary/10 flex items-center justify-center p-8 min-h-[160px]">
                 <svg aria-hidden="true" width="60" height="60" viewBox="0 0 24 24" fill="none" className="text-accent" strokeWidth="1.75">
@@ -241,7 +241,7 @@ export default function SynthetiqWorkPage() {
 
         {/* Employee Q&A Flow — SVG Diagram with Live MCP Status */}
         <section className="mb-16">
-          <div className="bg-white border border-primary/10 rounded-xl shadow-card p-8 lg:p-10 overflow-hidden">
+          <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-card p-8 lg:p-10 overflow-hidden">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-2xl font-extrabold text-primary">Employee Q&A to Resolution Flow</h2>
               <div className="flex items-center gap-3">

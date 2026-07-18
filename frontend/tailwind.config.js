@@ -9,7 +9,6 @@ module.exports = {
 theme: {
   extend: {
     borderRadius: {
-      xl: '40px',
       pill: '9999px',
     },
     boxShadow: {
