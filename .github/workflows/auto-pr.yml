@@ -22,7 +22,7 @@ jobs:
       - name: Check if PR already exists
         id: check
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_PERSONAL_ACCESS_TOKEN }}
         run: |
           EXISTING=$(gh pr list --head "${{ github.ref_name }}" --state open --json number --jq 'length')
           echo "count=$EXISTING" >> "$GITHUB_OUTPUT"
@@ -30,7 +30,7 @@ jobs:
       - name: Create PR
         if: steps.check.outputs.count == '0'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_PERSONAL_ACCESS_TOKEN }}
         run: |
           BRANCH="${{ github.ref_name }}"
           COMMIT_MSG=$(git log -1 --format=%s)
