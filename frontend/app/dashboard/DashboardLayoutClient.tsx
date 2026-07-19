@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { useEntitlements, useLocale } from '../providers';
+import { useTheme } from '../../hooks/useTheme';
 import { Home, Zap, MessageSquare, FileText, Users, Settings, AlertTriangle } from 'lucide-react';
 import { FeedbackWidget } from '../../components/FeedbackWidget';
 import { MobileBottomNav } from '../../components/MobileBottomNav';
@@ -29,6 +30,7 @@ export default function DashboardLayout({
   const [pendingCount, setPendingCount] = useState(0);
   const [userRole, setUserRole] = useState<string>('employee');
   const [roleLoaded, setRoleLoaded] = useState(false);
+  useTheme();
 
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
@@ -146,7 +148,7 @@ export default function DashboardLayout({
 
           <div className="flex-1 overflow-y-auto p-4 md:p-8 lg:p-8"
             style={{ WebkitOverflowScrolling: 'touch' }}>
-            <div className="max-w-7xl mx-auto w-full">
+            <div className="max-w-6xl mx-auto w-full">
               {!hasAccess ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center bg-surface border border-primary/10 rounded-xl shadow-sm p-8">
                   <AlertTriangle className="w-10 h-10 text-primary mb-4" />
@@ -162,7 +164,7 @@ export default function DashboardLayout({
           </div>
 
           <FeedbackWidget />
-          <MobileBottomNav userRole={currentRole} />
+          {!isSidebarOpen && <MobileBottomNav userRole={currentRole} />}
         </main>
       </div>
     </div>

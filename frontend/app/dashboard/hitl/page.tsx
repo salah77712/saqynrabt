@@ -36,13 +36,13 @@ export default function HitlQueuePage() {
 
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Review Queue', ar: 'Ø·Ø§Ø¨ÙˆØ± Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ø¨Ø´Ø±ÙŠØ© HITL' })}</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Review Queue', ar: 'Ø·Ø§Ø¨ÙˆØ± Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ø¨Ø´Ø±ÙŠØ© HITL' })}</h1>
         <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Check and override AI responses that need a human touch.', ar: 'Ù…Ø±Ø§Ø¬Ø¹Ø© Ù…Ø®Ø±Ø¬Ø§Øª Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ Ù…Ù†Ø®ÙØ¶Ø© Ø§Ù„Ø«Ù‚Ø© ÙˆØªØ¹Ø¯ÙŠÙ„Ù‡Ø§ ÙŠØ¯ÙˆÙŠÙ‹Ø§.' })}</p>
       </div>
 
       {/* Queue list */}
       <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
-        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">{t({ en: 'Pending Review Tasks', ar: 'Ù…Ù‡Ø§Ù… Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©' })}</h3>
+        <h3 className="text-lg font-extrabold text-primary mb-4">{t({ en: 'Pending Review Tasks', ar: 'Ù…Ù‡Ø§Ù… Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©' })}</h3>
 
         {tasks.length === 0 ? (
           <p className="text-xs text-primary font-semibold text-center py-6">Nothing needs review right now.</p>
@@ -53,7 +53,7 @@ export default function HitlQueuePage() {
                 <div className="min-w-0 space-y-1">
                   <p className="text-xs font-extrabold text-primary">"{task.request}"</p>
                   <p className="text-[10px] text-primary font-semibold leading-normal">{task.context}</p>
-                  <span className={`inline-block text-[8px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
+                  <span className={`inline-block text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
                     task.status === 'claimed' ? 'bg-primary text-surface' : 'bg-accent text-surface'
                   }`}>
                     {task.status}

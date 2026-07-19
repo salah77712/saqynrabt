@@ -46,7 +46,7 @@ export default function AboutPage() {
         </div>
 
         {/* Story Section */}
-        <div className="bg-[#F8F9FB] border border-[rgba(20,31,51,0.1)] rounded-xl p-8 shadow-sm w-full mb-12 text-center md:text-start">
+        <div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm w-full mb-12 text-center md:text-start">
           <h2 className="text-xl font-extrabold text-primary mb-4">{t(content.storyTitle)}</h2>
           <div className="space-y-4">
             {ta(content.storyBody).map((paragraph: string, i: number) => (
@@ -56,7 +56,7 @@ export default function AboutPage() {
         </div>
 
         {/* Trust Badges SVG Strip */}
-        <div className="border-t border-[rgba(20,31,51,0.1)] pt-12 w-full flex flex-wrap justify-center gap-12 md:gap-12">
+        <div className="border-t border-primary/10 pt-12 w-full flex flex-wrap justify-center gap-12 md:gap-12">
           <div className="flex items-center gap-3 opacity-50 grayscale hover:opacity-100 transition-opacity">
             <svg aria-hidden="true" className="h-6 w-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />

@@ -141,7 +141,7 @@ export default function WebhooksSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Webhooks', ar: 'ØªÙƒØ§Ù…Ù„Ø§Øª Ø§Ù„ÙˆÙŠØ¨ Ù‡ÙˆÙƒ Ø§Ù„ØµØ§Ø¯Ø±Ø©' })}</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Webhooks', ar: 'ØªÙƒØ§Ù…Ù„Ø§Øª Ø§Ù„ÙˆÙŠØ¨ Ù‡ÙˆÙƒ Ø§Ù„ØµØ§Ø¯Ø±Ø©' })}</h1>
         <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'Send real-time updates to your own systems.', ar: 'ØªØ³Ø¬ÙŠÙ„ Ø±ÙˆØ§Ø¨Ø· Ø§Ù„ÙˆÙŠØ¨ Ù‡ÙˆÙƒ Ù„Ø§Ø³ØªÙ„Ø§Ù… ØªØ­Ø¯ÙŠØ«Ø§Øª ÙÙˆØ±ÙŠØ© Ø­ÙˆÙ„ Ø£Ø­Ø¯Ø§Ø« Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„.' })}</p>
       </div>
 
@@ -206,7 +206,7 @@ export default function WebhooksSettingsPage() {
                   <p className="text-xs font-bold text-primary truncate">{w.url}</p>
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {w.events.map((e) => (
-                      <span key={e} className="bg-surface text-primary font-mono text-[8px] font-extrabold px-2 py-0.5 rounded-full border border-primary/10">
+                      <span key={e} className="bg-surface text-primary font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-primary/10">
                         {e}
                       </span>
                     ))}

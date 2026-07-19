@@ -102,7 +102,7 @@ export default function ApprovalsDashboardPage() {
 
       {/* Header and Info Bar */}
       <div>
-        <h1 className="text-2xl font-extrabold text-primary tracking-tight">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
           {t({ en: 'Approvals', ar: 'Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø¯Ø®ÙˆÙ„ Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†' })}
         </h1>
         <p className="text-sm font-semibold text-primary mt-0.5">

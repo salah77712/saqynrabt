@@ -37,7 +37,7 @@ export default function PluginsMarketplacePage() {
         {/* Header */}
         <div>
           <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Community Ecosystem', fr: 'Ã‰cosystÃ¨me communautaire', ar: 'Ø§Ù„Ù…Ù†Ø¸ÙˆÙ…Ø© Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ© Ù„Ù„Ù…Ø¬ØªÙ…Ø¹', hi: 'à¤¸à¤¾à¤®à¥à¤¦à¤¾à¤¯à¤¿à¤• à¤ªà¤¾à¤°à¤¿à¤¸à¥à¤¥à¤¿à¤¤à¤¿à¤•à¥€ à¤¤à¤‚à¤¤à¥à¤°' })}</span>
-          <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
+          <h1 className="text-xl md:text-3xl font-extrabold text-primary tracking-tight mt-2">
             {t({ en: 'Integration Plugin Marketplace', fr: 'Marketplace de plugins d\'intÃ©gration', ar: 'Ù…ØªØ¬Ø± Ø¥Ø¶Ø§ÙØ§Øª Ø§Ù„ØªÙƒØ§Ù…Ù„ Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠ', hi: 'à¤à¤•à¥€à¤•à¤°à¤£ à¤ªà¥à¤²à¤—à¤‡à¤¨ à¤®à¤¾à¤°à¥à¤•à¥‡à¤Ÿà¤ªà¥à¤²à¥‡à¤¸' })}
           </h1>
           <p className="text-xs font-semibold text-primary mt-2">
@@ -56,7 +56,7 @@ export default function PluginsMarketplacePage() {
               </div>
 
               <div className="mt-6 pt-4 border-t border-primary/10 flex items-center justify-between">
-                <span className={`text-[9px] font-extrabold uppercase px-2.5 py-0.5 rounded-full ${
+                <span className={`text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full ${
                   plugin.installed ? 'bg-surface text-accent' : 'bg-surface text-primary'
                 }`}>
                   {plugin.installed ? t({ en: 'Installed', fr: 'InstallÃ©', ar: 'Ù…Ø«Ø¨Ù‘Øª', hi: 'à¤¸à¥à¤¥à¤¾à¤ªà¤¿à¤¤' }) : t({ en: 'Available', fr: 'Disponible', ar: 'Ù…ØªØ§Ø­', hi: 'à¤‰à¤ªà¤²à¤¬à¥à¤§' })}

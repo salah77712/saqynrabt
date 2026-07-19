@@ -36,7 +36,7 @@ return (
 {/* Header */}
 <div className="text-center">
 <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Privacy & Sovereignty', ar: 'Ø§Ù„Ø®ØµÙˆØµÙŠØ© ÙˆØ³ÙŠØ§Ø¯Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª' })}</span>
-<h1 className="text-3xl font-extrabold text-primary dark:text-surface tracking-tight mt-2">
+<h1 className="text-xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight mt-2">
 {t({ en: 'Data Subject Access Request (DSAR)', ar: 'Ø·Ù„Ø¨ Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ø®ØµÙˆØµÙŠØ© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª (DSAR)' })}
 </h1>
 <p className="text-xs font-semibold text-primary mt-2">

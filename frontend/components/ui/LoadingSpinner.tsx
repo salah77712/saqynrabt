@@ -15,8 +15,9 @@ export function LoadingSpinner({ size = 'md', className = '' }: SpinnerProps) {
   };
 
   return (
-    <div className={`flex items-center justify-center ${className}`}>
-      <span className={`rounded-full border-primary/10 border-t-[#141F33] animate-spin ${sizes[size]}`} />
+    <div className={`flex items-center justify-center ${className}`} role="progressbar" aria-busy="true">
+      <span className={`rounded-full border-primary/10 border-t-primary animate-spin ${sizes[size]}`} />
+      <span className="sr-only">Loading...</span>
     </div>
   );
 }

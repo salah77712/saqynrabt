@@ -45,28 +45,28 @@ export default function FeaturesPage() {
         {/* 2x2 Feature Grid */}
         <div ref={featureGridRef} className={`grid grid-cols-1 md:grid-cols-2 gap-12 w-full animate-stagger ${featureGridVisible ? 'revealed' : ''}`}>
           {/* Card 1: Automation */}
-          <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
+          <div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
             <div className="h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6"><Zap className="w-6 h-6 text-accent" /></div>
             <h3 className="text-xl font-extrabold text-primary">{t(content.automationTitle)}</h3>
             <p className="text-xs font-normal text-primary leading-relaxed mt-3">{t(content.automationDesc)}</p>
           </div>
 
           {/* Card 2: Chatbot */}
-          <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
+          <div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
             <div className="h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6"><MessageSquare className="w-6 h-6 text-accent" /></div>
             <h3 className="text-xl font-extrabold text-primary">{t(content.chatbotTitle)}</h3>
             <p className="text-xs font-normal text-primary leading-relaxed mt-3">{t(content.chatbotDesc)}</p>
           </div>
 
           {/* Card 3: Custom */}
-          <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
+          <div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
             <div className="h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6"><Wrench className="w-6 h-6 text-accent" /></div>
             <h3 className="text-xl font-extrabold text-primary">{t(content.customTitle)}</h3>
             <p className="text-xs font-normal text-primary leading-relaxed mt-3">{t(content.customDesc)}</p>
           </div>
 
           {/* Card 4: Reporting */}
-          <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
+          <div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all duration-300 shadow-card">
             <div className="h-12 w-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6"><BarChart3 className="w-6 h-6 text-accent" /></div>
             <h3 className="text-xl font-extrabold text-primary">{t(content.reportingTitle)}</h3>
             <p className="text-xs font-normal text-primary leading-relaxed mt-3">{t(content.reportingDesc)}</p>

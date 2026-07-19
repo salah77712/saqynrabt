@@ -8,9 +8,9 @@ export function AdaptiveTour() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [steps, setSteps] = useState([
-    { id: '1', label: t({ en: 'Configure system prompt templates', ar: 'ØªÙ‡ÙŠØ¦Ø© Ù‚ÙˆØ§Ù„Ø¨ Ù†ØµÙˆØµ Ø§Ù„Ù†Ø¸Ø§Ù…' }), checked: true },
-    { id: '2', label: t({ en: 'Upload policy files to Documents hub', ar: 'ØªØ­Ù…ÙŠÙ„ Ù…Ù„ÙØ§Øª Ø§Ù„Ø³ÙŠØ§Ø³Ø§Øª Ø¥Ù„Ù‰ Ù…Ø±ÙƒØ² Ø§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª' }), checked: false },
-    { id: '3', label: t({ en: 'Simulate API Call automation queue', ar: 'Ø§Ø®ØªØ¨Ø§Ø± Ø·Ø§Ø¨ÙˆØ± Ø£ØªÙ…ØªØ© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª' }), checked: false },
+    { id: '1', label: t({ en: 'Configure system prompt templates', ar: 'تهيئة قوالب نصوص النظام' }), checked: true },
+    { id: '2', label: t({ en: 'Upload policy files to Documents hub', ar: 'تحميل ملفات السياسات إلى مركز المستندات' }), checked: false },
+    { id: '3', label: t({ en: 'Simulate API Call automation queue', ar: 'اختبار طابور أتمتة المكالمات' }), checked: false },
   ]);
 
   const handleToggle = (id: string) => {
@@ -26,7 +26,7 @@ export function AdaptiveTour() {
     <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-4">
       
       <div>
-        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider">{t({ en: 'Onboarding Checklist Progress', ar: 'ØªÙ‚Ø¯Ù… Ù‚Ø§Ø¦Ù…Ø© Ù…ØªØ·Ù„Ø¨Ø§Øª Ø§Ù„ØªÙ‡ÙŠØ¦Ø©' })}</h3>
+        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider">{t({ en: 'Onboarding Checklist Progress', ar: 'تقدم قائمة متطلبات التهيئة' })}</h3>
         
         {/* Progress Bar */}
         <div className="flex items-center gap-4 mt-2">

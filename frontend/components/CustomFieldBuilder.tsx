@@ -39,12 +39,12 @@ setFields((prev) => prev.filter((f) => f.id !== id));
 return (
 <div className="bg-surface dark:bg-primary rounded-xl border border-primary/10 dark:border-surface/10 p-8 max-w-md w-full shadow-sm" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <h3 className="text-lg font-bold text-primary dark:text-surface mb-2">
-{t('Custom Form Fields', 'Ø­Ù‚ÙˆÙ„ Ù…Ø®ØµØµØ© Ù„Ù„Ù†Ù…Ø§Ø°Ø¬')}
+{t('Custom Form Fields', 'حقول مخصصة للنماذج')}
 </h3>
 <p className="text-xs text-primary/60 dark:text-surface/60 mb-6 leading-relaxed">
 {t(
 'Customize metadata requirements for automation entries or staff logs.',
-'ØªØ®ØµÙŠØµ Ù…ØªØ·Ù„Ø¨Ø§Øª Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø¥Ø¶Ø§ÙÙŠØ© Ù„Ù…Ø¯Ø®Ù„Ø§Øª Ø§Ù„Ø£ØªÙ…ØªØ© Ø£Ùˆ Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†.'
+'تخصيص متطلبات البيانات الإضافية لمدخلات الأتمتة أو سجلات الموظفين.'
 )}
 </p>
 
@@ -60,7 +60,7 @@ return (
         onClick={() => handleRemoveField(f.id)}
         className="text-xs font-bold px-3 py-1.5 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-primary dark:text-surface hover:text-primary/70 dark:hover:text-surface/70 transition-all duration-300"
       >
-{t('Delete', 'Ø­Ø°Ù')}
+{t('Delete', 'حذف')}
 </button>
 </div>
 ))}
@@ -72,24 +72,24 @@ return (
 type="text"
 value={newFieldName}
 onChange={(e) => setNewFieldName(e.target.value)}
-placeholder={t('Field Label (e.g. Booking Code)', 'Ø§Ø³Ù… Ø§Ù„Ø­Ù‚Ù„ (Ù…Ø«Ø§Ù„: Ø±Ù…Ø² Ø§Ù„Ø­Ø¬Ø²)')}
-className="min-h-[44px] w-full rounded-xl border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary px-4 text-xs font-semibold outline-none focus:bg-[#F8F9FB] dark:focus:bg-primary focus:border-primary dark:focus:border-surface text-primary dark:text-surface"
+placeholder={t('Field Label (e.g. Booking Code)', 'اسم الحقل (مثال: رمز الحجز)')}
+className="min-h-[44px] w-full rounded-xl border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary px-4 text-xs font-semibold outline-none focus:bg-surface dark:focus:bg-primary focus:border-primary dark:focus:border-surface text-primary dark:text-surface"
 />
 <select
                   value={newFieldType}
                   onChange={(e) => setNewFieldType(e.target.value as CustomField['type'])}
-                  aria-label={t('Field type', 'Ù†ÙˆØ¹ Ø§Ù„Ø­Ù‚Ù„')}
+                  aria-label={t('Field type', 'نوع الحقل')}
                   className="min-h-[44px] w-full rounded-xl border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary px-4 text-xs font-semibold outline-none text-primary dark:text-surface"
                 >
-<option value="text">{t('Text Input', 'Ø¥Ø¯Ø®Ø§Ù„ Ù†ØµÙŠ')}</option>
-<option value="number">{t('Numeric Value', 'Ù‚ÙŠÙ…Ø© Ø±Ù‚Ù…ÙŠØ©')}</option>
-<option value="boolean">{t('Toggle Switch', 'Ù…ÙØªØ§Ø­ ØªØ¨Ø¯ÙŠÙ„ Ø«Ù†Ø§Ø¦ÙŠ')}</option>
+<option value="text">{t('Text Input', 'إدخال نصي')}</option>
+<option value="number">{t('Numeric Value', 'قيمة رقمية')}</option>
+<option value="boolean">{t('Toggle Switch', 'مفتاح تبديل ثنائي')}</option>
 </select>
 <button
 onClick={handleAddField}
 className="w-full bg-primary hover:opacity-95 text-surface font-bold py-3 rounded-xl text-xs transition-all min-h-[44px]"
 >
-{t('Add Attribute', 'Ø¥Ø¶Ø§ÙØ© Ø®Ø§ØµÙŠØ©')}
+{t('Add Attribute', 'إضافة خاصية')}
 </button>
 </div>
 </div>

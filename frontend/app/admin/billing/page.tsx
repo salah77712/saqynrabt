@@ -40,12 +40,12 @@ export default function AdminBillingPage() {
 
       {/* Page Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Billing & Invoice Ledger', ar: 'Ø¯ÙØªØ± Ø§Ù„ÙÙˆØ§ØªÙŠØ± ÙˆØ§Ù„Ø­Ø³Ø§Ø¨Ø§Øª' })}</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Billing & Invoice Ledger', ar: 'Ø¯ÙØªØ± Ø§Ù„ÙÙˆØ§ØªÙŠØ± ÙˆØ§Ù„Ø­Ø³Ø§Ø¨Ø§Øª' })}</h1>
         <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Track tenant invoices, monthly subscription charges, and manual payments.', ar: 'Ù…ØªØ§Ø¨Ø¹Ø© ÙÙˆØ§ØªÙŠØ± Ø§Ù„Ø´Ø±ÙƒØ§ØªØŒ Ø§Ù„Ø§Ø´ØªØ±Ø§ÙƒØ§Øª Ø§Ù„Ø´Ù‡Ø±ÙŠØ©ØŒ ÙˆØ§Ù„Ù…Ø¯ÙÙˆØ¹Ø§Øª Ø§Ù„ÙŠØ¯ÙˆÙŠØ©.' })}</p>
       </div>
 
       {/* Invoices List */}
-      <div className="bg-[#F8F9FB] border border-primary/10 rounded-xl shadow-sm overflow-hidden shadow-card">
+      <div className="bg-background border border-primary/10 rounded-xl shadow-sm overflow-hidden shadow-card">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
@@ -70,7 +70,7 @@ export default function AdminBillingPage() {
                   <td className="px-6 py-4 font-black text-accent">{inv.totalPaid} QAR</td>
                   <td className="px-6 py-4 text-primary/40 font-bold">{inv.lastInvoiceDate}</td>
                   <td className="px-6 py-4">
-                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${
+                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase ${
                       inv.status === 'paid' ? 'bg-royal/10 text-royal border border-royal/20' : 'bg-surface text-accent'
                     }`}>
                       {inv.status === 'paid' ? t({ en: 'Paid', ar: 'Ù…Ø¯ÙÙˆØ¹' }) : t({ en: 'Unpaid', ar: 'ØºÙŠØ± Ù…Ø¯ÙÙˆØ¹' })}

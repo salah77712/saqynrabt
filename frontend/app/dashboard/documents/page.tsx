@@ -99,7 +99,7 @@ return (
 <div className="space-y-6 md:space-y-8 animate-fadeIn">
 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
 <div>
-<h1 className="text-xl md:text-2xl font-black text-primary dark:text-surface tracking-tight">
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
 {t('Document Library', 'Ù…Ø³ØªÙ†Ø¯Ø§Øª Ø§Ù„Ù…Ø¹Ø±ÙØ© Ø§Ù„Ø®Ø§ØµØ©')}
 </h1>
 <p className="text-[10px] md:text-xs text-primary font-bold">

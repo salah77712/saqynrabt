@@ -71,8 +71,8 @@ return (
 <div className="max-w-5xl mx-auto px-6">
 <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
 {highlightList.map((h) =>
-<div key={h.label} className="text-center bg-[#F8F9FB] border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
-<p className="text-4xl font-extrabold text-primary">{h.stat}</p>
+<div key={h.label} className="text-center bg-background border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
+<p className="text-2xl md:text-4xl font-extrabold text-primary">{h.stat}</p>
 <p className="text-sm text-primary mt-1">{h.label}</p>
 </div>
 )}
@@ -82,7 +82,7 @@ return (
 
 <section className="py-20">
 <div className="max-w-7xl mx-auto px-6">
-<h2 className="text-3xl font-bold text-primary text-center mb-12">
+<h2 className="text-xl md:text-3xl font-bold text-primary text-center mb-12">
 {t({ en: 'Where We Operate', fr: 'Où nous opérons', ar: 'أين نعمل', hi: 'हम कहाँ काम करते हैं' })}
 </h2>
 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -100,7 +100,7 @@ return (
 
 <section className="bg-primary py-16">
 <div className="max-w-3xl mx-auto px-6 text-center text-surface">
-<h2 className="text-3xl font-bold mb-4">
+<h2 className="text-xl md:text-3xl font-bold mb-4">
 {t({ en: 'Wherever You Are, We\'re Ready', fr: 'Où que vous soyez, nous sommes prêts', ar: 'أينما كنت، نحن جاهزون', hi: 'आप जहां भी हों, हम तैयार हैं' })}
 </h2>
 <p className="text-surface mb-8">
@@ -110,7 +110,7 @@ return (
 href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
 target="_blank"
 rel="noopener noreferrer"
-className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-surface text-primary px-6 py-3 text-sm font-semibold hover:bg-[#F8F9FB] transition-all"
+className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-surface text-primary px-6 py-3 text-sm font-semibold hover:bg-background transition-all"
 >
 {t({ en: 'See how it works', fr: 'Découvrez comment ça marche', ar: 'شاهد كيف يعمل', hi: 'देखें यह कैसे काम करता है' })}
 </a>

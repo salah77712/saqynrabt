@@ -22,7 +22,7 @@ className="group inline-flex items-center gap-3 text-[10px] font-black uppercase
 </span>
 Back to Trust Center
 </Link>
-<article className="prose prose-slate max-w-none prose-headings:text-primary prose-headings:font-black prose-h1:text-3xl prose-h2:text-xl prose-h3:text-lg prose-a:text-accent prose-strong:text-primary prose-code:text-sm">
+<article className="prose prose-slate max-w-none prose-headings:text-primary prose-headings:font-black prose-h1:text-3xl prose-h2:text-xl prose-h3:text-lg prose-a:text-accent prose-strong:text-primary prose-code:text-sm prose-p:text-primary/85 prose-p:leading-relaxed prose-li:text-primary/85 prose-li:leading-relaxed prose-table:text-primary/85 prose-th:text-primary prose-th:font-black prose-th:text-xs prose-th:uppercase prose-th:tracking-wider prose-td:text-sm prose-td:py-3 prose-tr:border-b prose-tr:border-primary/10 prose-blockquote:border-accent prose-blockquote:text-primary/70 prose-blockquote:font-semibold prose-hr:border-primary/10">
 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
 </article>
 </main>

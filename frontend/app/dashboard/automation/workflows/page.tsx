@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import { useLocale } from '../../../providers';
+import { Button } from '@/components/shadcn/button';
+import { LoadingSpinner } from '../../../../components/ui/LoadingSpinner';
 
 interface WorkflowItem {
 id: string;
@@ -25,6 +27,8 @@ name: '',
 trigger: 'booking.created',
 action: 'Send Slack Notification',
 });
+const [nameError, setNameError] = useState('');
+const [submitting, setSubmitting] = useState(false);
 
 const handleToggle = (id: string) => {
   setWorkflows(prev => prev.map(w => w.id === id ? { ...w, active: !w.active } : w));
@@ -32,11 +36,19 @@ const handleToggle = (id: string) => {
 
 const handleCreate = (e: React.FormEvent) => {
 e.preventDefault();
-if (!newWorkflow.name.trim()) return;
+setSubmitting(true);
+
+const trimmed = newWorkflow.name.trim();
+if (!trimmed) {
+  setNameError(t({ en: 'Workflow name is required', ar: 'Ø§Ø³Ù… Ù‚Ø§Ø¹Ø¯Ø© Ø³ÙŠØ± Ø§Ù„Ø¹Ù…Ù„ Ù…Ø·Ù„ÙˆØ¨' }));
+  setSubmitting(false);
+  return;
+}
+setNameError('');
 
 const mockNew: WorkflowItem = {
 id: `w-${Date.now()}`,
-name: newWorkflow.name,
+name: trimmed,
 trigger: newWorkflow.trigger,
 action: newWorkflow.action,
 active: true,
@@ -44,6 +56,7 @@ active: true,
 
 setWorkflows(prev => [...prev, mockNew]);
 setNewWorkflow({ name: '', trigger: 'booking.created', action: 'Send Slack Notification' });
+setSubmitting(false);
 };
 
 return (
@@ -51,12 +64,12 @@ return (
 
 {/* Header */}
 <div>
-<h1 className="text-xl font-extrabold text-primary">{t({ en: 'Workflows', ar: 'Ù…Ù†Ø´Ø¦ Ù…Ø³Ø§Ø±Ø§Øª Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ù…Ø®ØµØµØ©' })}</h1>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Workflows', ar: 'Ù…Ù†Ø´Ø¦ Ù…Ø³Ø§Ø±Ø§Øª Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ù…Ø®ØµØµØ©' })}</h1>
 <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Set up actions and notifications for automation events.', ar: 'ØªÙ‡ÙŠØ¦Ø© Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª ÙˆØ§Ù„ØªÙ†Ø¨ÙŠÙ‡Ø§Øª Ø§Ù„Ù†Ø§ØªØ¬Ø© Ø¹Ù† Ø£Ø­Ø¯Ø§Ø« Ø§Ù„Ø£ØªÙ…ØªØ©.' })}</p>
 </div>
 
 {/* Form Builder */}
-<form onSubmit={handleCreate} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
+<form onSubmit={handleCreate} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6" noValidate>
 
 <div>
 <label htmlFor="name" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Workflow Rule Name', ar: 'Ø§Ø³Ù… Ù‚Ø§Ø¹Ø¯Ø© Ø³ÙŠØ± Ø§Ù„Ø¹Ù…Ù„' })}</label>
@@ -64,11 +77,15 @@ return (
 type="text"
 id="name"
 value={newWorkflow.name}
-onChange={(e) => setNewWorkflow(prev => ({ ...prev, name: e.target.value }))}
+onChange={(e) => { setNewWorkflow(prev => ({ ...prev, name: e.target.value })); if (nameError) setNameError(''); }}
 placeholder="E.g. Slack alert for emergency bookings"
-className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none"
-required
+className={`w-full min-h-[44px] bg-surface border rounded-xl px-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 ${
+nameError ? 'border-red-500 focus:ring-red-200' : 'border-primary/10 focus:ring-accent'
+}`}
+aria-invalid={!!nameError}
+aria-describedby={nameError ? 'workflow-name-error' : undefined}
 />
+{nameError && <p id="workflow-name-error" className="mt-1.5 text-xs font-bold text-red-500">{nameError}</p>}
 </div>
 
 <div className="grid grid-cols-2 gap-8">
@@ -101,12 +118,18 @@ className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px
 </div>
 </div>
 
-<button
-        type="submit"
-        className="w-full bg-primary text-surface font-bold py-3 px-6 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
-      >
-{t({ en: 'Add Workflow Rule', ar: 'Ø¥Ø¶Ø§ÙØ© Ù‚Ø§Ø¹Ø¯Ø© Ø³ÙŠØ± Ø§Ù„Ø¹Ù…Ù„' })}
-</button>
+<Button
+type="submit"
+disabled={submitting}
+variant="default"
+className="w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] flex items-center justify-center gap-2"
+>
+{submitting ? (
+<><LoadingSpinner size="sm" /> {t({ en: 'Adding...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ø¶Ø§ÙØ©...' })}</>
+) : (
+t({ en: 'Add Workflow Rule', ar: 'Ø¥Ø¶Ø§ÙØ© Ù‚Ø§Ø¹Ø¯Ø© Ø³ÙŠØ± Ø§Ù„Ø¹Ù…Ù„' })
+)}
+</Button>
 
 </form>
 

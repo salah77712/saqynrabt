@@ -142,7 +142,7 @@ export default function ApiKeysSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Developer API Credentials', ar: 'Ø¨ÙŠØ§Ù†Ø§Øª ÙˆÙˆØ§Ø¬Ù‡Ø§Øª Ø§Ù„Ù…Ø·ÙˆØ±ÙŠÙ†' })}</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Developer API Credentials', ar: 'Ø¨ÙŠØ§Ù†Ø§Øª ÙˆÙˆØ§Ø¬Ù‡Ø§Øª Ø§Ù„Ù…Ø·ÙˆØ±ÙŠÙ†' })}</h1>
         <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Create secure access tokens for custom CRM and PMS integrations.', ar: 'Ø¥Ù†Ø´Ø§Ø¡ Ø±Ù…ÙˆØ² ÙˆØµÙˆÙ„ Ø¢Ù…Ù†Ø© Ù„ØªÙƒØ§Ù…Ù„Ø§Øª CRM Ùˆ PMS Ø§Ù„Ù…Ø®ØµØµØ©.' })}</p>
       </div>
 

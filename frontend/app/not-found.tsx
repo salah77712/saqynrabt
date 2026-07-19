@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { useLocale } from './providers';
+import { Bug } from 'lucide-react';
 
 const suggestions = [
   { href: '/', en: 'Homepage', ar: 'Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©' },
@@ -63,13 +64,23 @@ export default function NotFound() {
             ))}
           </div>
 
-          {/* Primary CTA */}
-          <Link
-            href="/"
-            className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-primary px-8 py-3 text-sm font-bold text-surface hover:bg-primary hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
-          >
-            {t('Back to Home', 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„Ø±Ø¦ÙŠØ³ÙŠØ©')}
-          </Link>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href="/"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-primary px-8 py-3 text-sm font-bold text-surface hover:bg-primary hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
+            >
+              {t('Back to Home', 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„Ø±Ø¦ÙŠØ³ÙŠØ©')}
+            </Link>
+            <button
+              onClick={() => {
+                window.location.href = `mailto:support@saqynrabt.com?subject=404%20Report&body=URL:${encodeURIComponent(window.location.href)}`;
+              }}
+              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[rgba(20,31,51,0.1)] px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
+            >
+              <Bug className="w-4 h-4" />
+              {t('Report broken link', 'Ø§Ø¨Ù„Ø§Øº Ø¹Ù† Ø±Ø§Ø¨Ø· Ù…Ø¹Ø·Ù„')}
+            </button>
+          </div>
         </div>
       </main>
 

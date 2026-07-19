@@ -10,7 +10,7 @@ function Card({
     <div
       data-slot="card"
       className={cn(
-        "flex flex-col overflow-hidden rounded-2xl bg-surface dark:bg-primary ring-1 ring-[#141F33]/10 dark:ring-[#F8F9FB]/10 p-6",
+        "relative flex flex-col overflow-hidden rounded-2xl bg-surface dark:bg-primary ring-1 ring-primary/10 dark:ring-surface/10 p-6",
         className
       )}
       {...props}
@@ -56,7 +56,7 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-action"
       className={cn(
-        "col-start-2 row-span-2 row-start-1 self-start justify-self-end",
+        "absolute end-6 top-6 z-10",
         className
       )}
       {...props}

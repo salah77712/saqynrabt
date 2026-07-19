@@ -13,14 +13,14 @@ return (
 <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
 <div className="flex justify-between items-center mb-6">
 <div>
-<h1 className="text-2xl font-black text-primary dark:text-surface">{t({en: 'Model Oversight', ar: 'Ø­ÙˆÙƒÙ…Ø© Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ ÙˆØ§Ù„Ø´ÙØ§ÙÙŠØ©'})}</h1>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Model Oversight', ar: 'Ø­ÙˆÙƒÙ…Ø© Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ ÙˆØ§Ù„Ø´ÙØ§ÙÙŠØ©'})}</h1>
 <p className="text-xs text-primary font-bold">{t({en: 'Track model performance, audit decisions, and check for bias.', ar: 'ØªØªØ¨Ø¹ ØªÙˆØ§ÙÙ‚ Ø§Ù„Ø§Ù…ØªØ«Ø§Ù„ ÙˆØªØ¯Ù‚ÙŠÙ‚ Ø§Ù„Ù†Ù…Ø§Ø°Ø¬ ÙˆÙ…Ù‚Ø§ÙŠÙŠØ³ Ø¹Ø¯Ø§Ù„Ø© Ø§Ù„Ø£Ù†Ø§Ø¨ÙŠØ¨.'})}</p>
 </div>
 <Badge variant="success">{t({en: 'ISO 42001 Standard', ar: 'Ù…Ø¹ÙŠØ§Ø± ISO 42001'})}</Badge>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-<Card>
+<Card className="p-8">
 <h3 className="font-bold text-navy dark:text-surface text-sm mb-2">{t({en: 'Model Inventory', ar: 'Ø¬Ø±Ø¯ Ø§Ù„Ù†Ù…Ø§Ø°Ø¬'})}</h3>
 <ul className="space-y-2 text-xs">
 <li className="flex justify-between border-b border-primary/10 pb-1">
@@ -38,7 +38,7 @@ return (
 </ul>
 </Card>
 
-<Card>
+<Card className="p-8">
 <h3 className="font-bold text-navy dark:text-surface text-sm mb-2">{t({en: 'Decisions Audit', ar: 'ØªØ¯Ù‚ÙŠÙ‚ Ø§Ù„Ù‚Ø±Ø§Ø±Ø§Øª'})}</h3>
 <ul className="space-y-2 text-xs">
 <li className="flex justify-between border-b border-primary/10 pb-1">
@@ -56,7 +56,7 @@ return (
 </ul>
 </Card>
 
-<Card>
+<Card className="p-8">
 <h3 className="font-bold text-navy dark:text-surface text-sm mb-2">{t({en: 'Bias Evaluation', ar: 'ØªÙ‚ÙŠÙŠÙ… Ø§Ù„ØªØ­ÙŠØ²'})}</h3>
 <ul className="space-y-2 text-xs">
 <li className="flex justify-between border-b border-primary/10 pb-1">

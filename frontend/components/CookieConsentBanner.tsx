@@ -133,7 +133,7 @@ ar: 'ÙŠÙ…ÙƒÙ†Ùƒ Ø§Ø®ØªÙŠØ§Ø± Ù…Ù„ÙØ§Øª Øª
 </p>
 <div className="space-y-2">
 <label className="flex items-center gap-4 p-3 rounded-xl border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary">
-<input type="checkbox" checked disabled className="accent-[#141F33]" />
+<input type="checkbox" checked disabled className="accent-primary" />
 <div>
 <p className="text-xs font-bold text-primary dark:text-surface">
 {t({ en: 'Essential Cookies', ar: 'Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø§Ø±ØªØ¨Ø§Ø· Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ©' })}
@@ -144,7 +144,7 @@ ar: 'ÙŠÙ…ÙƒÙ†Ùƒ Ø§Ø®ØªÙŠØ§Ø± Ù…Ù„ÙØ§Øª Øª
 </div>
 </label>
 <label className="flex items-center gap-4 p-3 rounded-xl border border-primary/10 dark:border-surface/10">
-<input type="checkbox" defaultChecked className="accent-[#141F33]" id="analytics-cookies" />
+<input type="checkbox" defaultChecked className="accent-primary" id="analytics-cookies" />
 <div>
 <p className="text-xs font-bold text-primary dark:text-surface">
 {t({ en: 'Analytics Cookies', ar: 'Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø§Ø±ØªØ¨Ø§Ø· Ø§Ù„ØªØ­Ù„ÙŠÙ„ÙŠØ©' })}

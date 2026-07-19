@@ -40,7 +40,7 @@ export default function PromptsSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'AI Prompts', ar: 'Ù‡Ù†Ø¯Ø³Ø© Ø§Ù„Ù†ØµÙˆØµ ÙˆØ§Ù„ØªØ¹Ù„ÙŠÙ…Ø§Øª Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ©' })}</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'AI Prompts', ar: 'Ù‡Ù†Ø¯Ø³Ø© Ø§Ù„Ù†ØµÙˆØµ ÙˆØ§Ù„ØªØ¹Ù„ÙŠÙ…Ø§Øª Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ©' })}</h1>
         <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Customize how your AI assistant responds to questions.', ar: 'ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„ØªØ¹Ù„ÙŠÙ…Ø§Øª ÙˆØ§Ù„ØªØ¹Ù„ÙŠÙ…Ø§Øª Ø§Ù„ÙØ±Ø¹ÙŠØ© ÙˆØ¨Ø§Ø±Ø§Ù…ØªØ±Ø§Øª Ù…Ø®Ø±Ø¬Ø§Øª Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ.' })}</p>
       </div>
 

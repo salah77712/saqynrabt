@@ -28,7 +28,7 @@ export default function AdminFeatureFlagsPage() {
 
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Global Feature Flag Manager', ar: 'Ø¥Ø¯Ø§Ø±Ø© Ù…Ø¤Ø´Ø±Ø§Øª Ø§Ù„Ù…ÙŠØ²Ø§Øª Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ©' })}</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Global Feature Flag Manager', ar: 'Ø¥Ø¯Ø§Ø±Ø© Ù…Ø¤Ø´Ø±Ø§Øª Ø§Ù„Ù…ÙŠØ²Ø§Øª Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ©' })}</h1>
         <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Toggle beta feature scopes.', ar: 'Ø´Ø§Ø´Ø© Ø§Ù„ØªØ­ÙƒÙ… Ù„Ù…ÙˆØ¸ÙÙŠ SAQYN. ØªØ¹Ø¯ÙŠÙ„ ÙˆØªÙØ¹ÙŠÙ„ ØµÙ„Ø§Ø­ÙŠØ§Øª Ø§Ù„Ù…ÙŠØ²Ø§Øª Ø§Ù„ØªØ¬Ø±ÙŠØ¨ÙŠØ©.' })}</p>
       </div>
 

@@ -21,7 +21,7 @@ const preview: Preview = {
   },
   decorators: [
     (Story) => (
-      <div className="font-sans antialiased text-[#141F33] p-8 min-h-screen">
+      <div className="font-sans antialiased text-primary p-8 min-h-screen">
         <Story />
       </div>
     ),

@@ -132,10 +132,10 @@ return (
 <Card className="flex flex-col overflow-hidden p-0 h-[500px] xl:h-[650px]">
 <div className="px-4 md:px-6 py-3 md:py-4 border-b border-primary/10 bg-surface flex items-center justify-between shrink-0">
 <div className="flex-1 min-w-0">
-<h2 className="text-xs md:text-sm font-black text-primary uppercase truncate">
+<h2 className="text-xs md:text-sm font-extrabold text-primary uppercase truncate">
 {t('Staff Knowledge Assistant', 'Ù…Ø³Ø§Ø¹Ø¯ Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†')}
 </h2>
-<p className="text-[9px] md:text-[10px] text-primary font-bold mt-0.5 truncate">
+<p className="text-[10px] md:text-[10px] text-primary font-bold mt-0.5 truncate">
 {t('Answers from your documents only', 'Ø¥Ø¬Ø§Ø¨Ø§Øª Ù…ÙˆØ«ÙˆÙ‚Ø© ÙˆÙ…Ø³ØªØ®Ø±Ø¬Ø© Ù…Ù† Ø§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª ÙÙ‚Ø·')}
 </p>
 </div>
@@ -211,7 +211,7 @@ className="min-h-[44px] text-xs md:text-sm"
 <Card className="hidden xl:flex flex-col justify-between p-8">
 <div className="space-y-4">
 <div className="pb-3 border-b border-primary/10">
-<h3 className="text-sm font-black text-primary uppercase tracking-wide">
+<h3 className="text-sm font-extrabold text-primary uppercase tracking-wide">
 {t('Unanswered Questions', 'ÙØ¬ÙˆØ§Øª Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†')}
 </h3>
 <p className="text-[10px] text-primary font-bold mt-1">
@@ -275,7 +275,7 @@ className="bg-surface border border-primary/10 rounded-xl p-3.5 hover:border-roy
 <div className="relative w-full bg-surface rounded-t-2xl shadow-2xl max-h-[70vh] overflow-y-auto animate-fadeIn p-5"
 style={{ paddingBottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}>
 <div className="flex items-center justify-between mb-4">
-<h3 className="text-sm font-black text-primary uppercase tracking-wide">
+<h3 className="text-sm font-extrabold text-primary uppercase tracking-wide">
 {t('Knowledge Gaps', 'ÙØ¬ÙˆØ§Øª Ø§Ù„Ù…Ø¹Ø±ÙØ©')}
 </h3>
 <button

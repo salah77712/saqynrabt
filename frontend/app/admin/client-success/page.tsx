@@ -27,7 +27,7 @@ export default function ClientSuccessPage() {
     <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-xl font-extrabold text-primary dark:text-surface">{t({en: 'Customer Success Console', ar: 'ÙˆØ­Ø¯Ø© ØªØ­ÙƒÙ… Ù†Ø¬Ø§Ø­ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡'})}</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface">{t({en: 'Customer Success Console', ar: 'ÙˆØ­Ø¯Ø© ØªØ­ÙƒÙ… Ù†Ø¬Ø§Ø­ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡'})}</h1>
           <p className="text-xs text-primary font-medium">{t({en: 'Monitor account health indexes and retention risks.', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ù…Ø¤Ø´Ø±Ø§Øª ØµØ­Ø© Ø§Ù„Ø­Ø³Ø§Ø¨ ÙˆÙ…Ø®Ø§Ø·Ø± Ø§Ù„Ø§Ø­ØªÙØ§Ø¸.'})}</p>
         </div>
         <Badge variant="warning">{t({en: '3 Accounts Need Attention', ar: '3 Ø­Ø³Ø§Ø¨Ø§Øª ØªØ­ØªØ§Ø¬ Ø¥Ù„Ù‰ Ø§Ù†ØªØ¨Ø§Ù‡'})}</Badge>

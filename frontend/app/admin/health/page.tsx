@@ -22,7 +22,7 @@ export default function HealthPage() {
 
   return (
     <div className="p-8 max-w-4xl animate-fadeIn">
-      <h1 className="text-xl font-extrabold text-primary mb-4">{t({en: 'Live MCP Health Dashboard', ar: 'Ù„ÙˆØ­Ø© ØµØ­Ø© MCP Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø©'})}</h1>
+      <h1 className="text-2xl md:text-3xl font-extrabold text-primary mb-4">{t({en: 'Live MCP Health Dashboard', ar: 'Ù„ÙˆØ­Ø© ØµØ­Ø© MCP Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø©'})}</h1>
       {loading ? (
         <p className="text-xs text-primary">{t({en: 'Checking MCP providers...', ar: 'Ø¬Ø§Ø±Ù Ø§Ù„ØªØ­Ù‚Ù‚ Ù…Ù† Ù…ÙˆÙØ±ÙŠ MCP...'})}</p>
       ) : (

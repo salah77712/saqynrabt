@@ -4,9 +4,17 @@ import './globals.css';
 import { Providers } from './providers';
 import { ToastProvider } from '../lib/toast';
 import { GlobalToast } from '../components/GlobalToast';
-import { GlobalStatusBar } from '../components/GlobalStatusBar';
+import { KeyboardShortcutsBar } from '../components/KeyboardShortcutsBar';
+import { OfflineBanner } from '../components/OfflineBanner';
+import { PageTransitionWrapper } from '../components/PageTransitionWrapper';
 import { CookieConsentBanner } from '../components/CookieConsentBanner';
 import { AnalyticsGate } from './analytics-gate';
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+};
 
 export const metadata: Metadata = {
   title: 'SAQYN RABT | Staff Hub & Guest Queue Automation',
@@ -50,6 +58,11 @@ export default function RootLayout({
       <head>
         <meta charSet="utf-8" />
         <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('saqyn-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})()`,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
@@ -70,11 +83,19 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-white focus:rounded-lg">
+          Skip to content
+        </a>
         <AnalyticsGate />
         <ToastProvider>
-          <GlobalStatusBar />
+          <OfflineBanner />
+          <KeyboardShortcutsBar />
           <Providers>
-            {children}
+            <main id="main-content">
+              <PageTransitionWrapper>
+                {children}
+              </PageTransitionWrapper>
+            </main>
           </Providers>
           <GlobalToast />
           <CookieConsentBanner />

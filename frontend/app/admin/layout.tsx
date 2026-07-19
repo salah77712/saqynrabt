@@ -104,7 +104,7 @@ export default function AdminLayout({
             <div className="flex items-center justify-between px-6 py-6 border-b border-primary/10 min-h-[80px]">
               <Link href="/" className="flex flex-col items-start gap-0.5">
                 <span className="text-primary font-extrabold text-xl tracking-tight">SAQYN ADMIN</span>
-                <span className="text-[9px] uppercase tracking-widest text-primary/60 font-bold">{t({ en: 'Staff Operations', ar: '???????????? ????????????????' })}</span>
+                <span className="text-[10px] uppercase tracking-widest text-primary/60 font-bold">{t({ en: 'Staff Operations', ar: '???????????? ????????????????' })}</span>
               </Link>
             </div>
 
@@ -136,7 +136,7 @@ export default function AdminLayout({
             <UserButton />
             <div className="flex-1 min-w-0">
               <p className="text-xs font-extrabold text-primary truncate">{user?.fullName || 'Staff Administrator'}</p>
-<span className="inline-block mt-1 text-[8px] font-extrabold uppercase tracking-widest text-accent bg-surface px-2 py-0.5 rounded-full border border-primary/10">
+<span className="inline-block mt-1 text-[10px] font-extrabold uppercase tracking-widest text-accent bg-surface px-2 py-0.5 rounded-full border border-primary/10">
   SAQYN ADMIN
 </span>
             </div>

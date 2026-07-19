@@ -1,7 +1,7 @@
 ﻿'use client';
 
 import { useEffect } from 'react';
-import { AlertTriangle } from 'lucide-react';
+import { AlertTriangle, Bug } from 'lucide-react';
 
 export default function Error({
   error,
@@ -20,7 +20,7 @@ export default function Error({
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
           <AlertTriangle className="w-6 h-6 text-primary" />
         </div>
-        <h1 className="text-3xl font-bold text-primary mb-4 leading-snug">
+        <h1 className="text-xl md:text-3xl font-bold text-primary mb-4 leading-snug">
           <span lang="en">Something went wrong</span>
           <br />
           <span lang="ar" className="text-2xl font-semibold text-primary/70" dir="rtl">
@@ -46,6 +46,18 @@ export default function Error({
           >
             Back to Home / Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„Ø±Ø¦ÙŠØ³ÙŠØ©
           </a>
+          <button
+            onClick={() => {
+              const body = error?.digest
+                ? `Error digest: ${error.digest}\n\n${error.message || ''}`
+                : error?.message || 'Unknown error';
+              window.location.href = `mailto:support@saqynrabt.com?subject=Bug%20Report&body=${encodeURIComponent(body)}`;
+            }}
+            className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[rgba(20,31,51,0.1)] px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
+          >
+            <Bug className="w-4 h-4" />
+            Report this issue / Ø§Ø¨Ù„Ø§Øº Ø¹Ù† Ù…Ø´ÙƒÙ„Ø©
+          </button>
         </div>
       </div>
     </div>

@@ -1,15 +1,14 @@
 ﻿'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useLocale } from '../providers';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { MapPin, Mail, Phone } from 'lucide-react';
+import { MapPin, Mail, Phone, LoaderCircle } from 'lucide-react';
+import { useGlobalToast } from '../../lib/toast';
 
 export default function ContactPage() {
   const { locale } = useLocale();
-  const router = useRouter();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [formData, setFormData] = useState({
@@ -22,22 +21,25 @@ export default function ContactPage() {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
+  const { addToast } = useGlobalToast();
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
     if (!formData.name.trim()) {
-      newErrors.name = t({ en: 'Name is required.', ar: 'Ø§Ù„Ø§Ø³Ù… Ù…Ø·Ù„ÙˆØ¨.' });
+      newErrors.name = t({ en: 'Name is required.', ar: 'الاسم مطلوب.' });
     }
     if (!formData.email.trim()) {
-      newErrors.email = t({ en: 'Email is required.', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ù…Ø·Ù„ÙˆØ¨.' });
+      newErrors.email = t({ en: 'Email is required.', ar: 'البريد الإلكتروني مطلوب.' });
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = t({ en: 'Email is invalid.', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ ØºÙŠØ± ØµØ§Ù„Ø­.' });
+      newErrors.email = t({ en: 'Email is invalid.', ar: 'البريد الإلكتروني غير صالح.' });
     }
     if (!formData.phone.trim()) {
-      newErrors.phone = t({ en: 'Phone number is required.', ar: 'Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ Ù…Ø·Ù„ÙˆØ¨.' });
+      newErrors.phone = t({ en: 'Phone number is required.', ar: 'رقم الهاتف مطلوب.' });
+    } else if (!/^\+?[\d\s\-().]{7,20}$/.test(formData.phone)) {
+      newErrors.phone = t({ en: 'Enter a valid phone number (e.g. +974 5500 0000).', ar: 'أدخل رقم هاتف صحيح (مثال: 974+ 5500 0000).' });
     }
     if (!formData.message.trim()) {
-      newErrors.message = t({ en: 'Message is required.', ar: 'Ø§Ù„Ø±Ø³Ø§Ù„Ø© Ù…Ø·Ù„ÙˆØ¨Ø©.' });
+      newErrors.message = t({ en: 'Message is required.', ar: 'الرسالة مطلوبة.' });
     }
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -48,16 +50,32 @@ export default function ContactPage() {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
 
     setSubmitting(true);
-    // Simulate submission api call
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) throw new Error('Submission failed');
+      addToast(
+        t({ en: 'Message sent successfully! We\'ll get back to you within 24 hours.', ar: 'تم إرسال الرسالة بنجاح! سنعاود الاتصال بك خلال 24 ساعة.' }),
+        'success',
+      );
+      setFormData({ name: '', email: '', phone: '', subject: 'Demo Request', message: '' });
+      setErrors({});
+    } catch {
+      addToast(
+        t({ en: 'Failed to send message. Please try again.', ar: 'فشل في إرسال الرسالة. حاول مرة أخرى.' }),
+        'error',
+      );
+    } finally {
       setSubmitting(false);
-      router.push('/thank-you');
-    }, 1000);
+    }
   };
 
   return (
@@ -117,9 +135,10 @@ export default function ContactPage() {
               <div>
                 <label htmlFor="phone" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Phone Number', ar: 'Ø±Ù‚Ù… Ø§Ù„Ù‡Ø§ØªÙ' })}</label>
                 <input
-                  type="text"
+                  type="tel"
                   id="phone"
                   name="phone"
+                  pattern="^\+?[\d\s\-().]{7,20}$"
                   value={formData.phone}
                   onChange={handleChange}
                   aria-invalid={!!errors.phone}
@@ -170,7 +189,7 @@ export default function ContactPage() {
                 disabled={submitting}
                 className="w-full bg-primary text-surface font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
               >
-                {submitting ? t({ en: 'Submitting...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...' }) : t({ en: 'Submit Message', ar: 'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø±Ø³Ø§Ù„Ø©' })}
+                {submitting ? <LoaderCircle className="w-4 h-4 animate-spin" /> : t({ en: 'Submit Message', ar: 'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø±Ø³Ø§Ù„Ø©' })}
               </button>
             </form>
           </div>
@@ -179,7 +198,7 @@ export default function ContactPage() {
           <div className="space-y-8 lg:pt-8 text-center lg:text-start">
             <div>
               <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Get in touch', ar: 'ØªÙˆØ§ØµÙ„ Ù…Ø¹Ù†Ø§' })}</span>
-              <h1 className="text-4xl font-extrabold text-primary tracking-tight mt-3">
+              <h1 className="text-2xl md:text-4xl font-extrabold text-primary tracking-tight mt-3">
                 {t({ en: 'Tell us what you need.', ar: 'Ø£Ø®Ø¨Ø±Ù†Ø§ Ø¨Ù…Ø§ ØªØ­ØªØ§Ø¬Ù‡.' })}
               </h1>
               <p className="text-sm font-semibold text-primary mt-4 leading-relaxed max-w-md mx-auto lg:mx-0">

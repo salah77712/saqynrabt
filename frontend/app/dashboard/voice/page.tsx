@@ -60,9 +60,9 @@ const statusConfig: Record<CallStatus, { label: Record<string, string>; color: s
 const cfg = statusConfig[callStatus];
 
 return (
-<main id="main-content" className="max-w-4xl mx-auto space-y-6 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<main id="main-content" className="mx-auto space-y-6 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <div className="border-b border-primary/10 dark:border-primary pb-6">
-<h1 className="text-2xl font-bold text-primary dark:text-surface">{t({ en: 'Voice Calls', ar: 'Ù…Ø±ÙƒØ² ØªÙˆØ²ÙŠØ¹ Ø§Ù„ØµÙˆØª' })}</h1>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Voice Calls', ar: 'Ù…Ø±ÙƒØ² ØªÙˆØ²ÙŠØ¹ Ø§Ù„ØµÙˆØª' })}</h1>
 <p className="text-sm text-primary mt-1">
 {t({ en: 'Monitor live calls and read transcripts as they happen.', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„ØµÙˆØªÙŠØ© Ø§Ù„Ù†Ø´Ø·Ø© ÙˆØ¨Ø« Ù†ØµÙˆØµ Ø§Ù„Ù…ØªØµÙ„ÙŠÙ† Ù…Ø¨Ø§Ø´Ø±Ø© Ø¥Ù„Ù‰ Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ….' })}
 </p>

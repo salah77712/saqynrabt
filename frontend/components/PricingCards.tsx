@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import type { ProductTier } from '../lib/pricing-config';
 import { Check } from 'lucide-react';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/shadcn/card';
@@ -39,13 +40,13 @@ key={tier.id}
 className={cn(
 'relative flex flex-col animate-slideUp transition-all duration-300 hover:shadow-xl hover:-translate-y-1 !overflow-visible',
 isCustom(tier) && 'opacity-90',
-isPopular && 'ring-2 ring-[#2A5CFF] shadow-lg scale-[1.02] z-10'
+isPopular && 'ring-2 ring-accent shadow-lg scale-[1.02] z-10'
 )}
 style={{ animationDelay: `${i * 0.1}s` }}
 >
 {isPopular && (
 <span className="absolute -top-3 start-1/2 -translate-x-1/2 bg-accent text-surface text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
-{t({ en: 'Popular', ar: 'Ø§Ù„Ø£ÙƒØ«Ø± Ø·Ù„Ø¨Ø§Ù‹' })}
+{t({ en: 'Popular', ar: 'الأكثر طلباً' })}
 </span>
 )}
 
@@ -62,18 +63,18 @@ style={{ animationDelay: `${i * 0.1}s` }}
 <div className="text-center mb-5">
 {isCustom(tier) ? (
 <div className="text-4xl font-extrabold text-primary dark:text-surface">
-{t({ en: 'Custom', ar: 'Ù…Ø®ØµØµ' })}
+{t({ en: 'Custom', ar: 'مخصص' })}
 </div>
 ) : (
 <>
 <div className="text-4xl font-extrabold text-primary dark:text-surface">
 {formatPrice(price, currency)}
 <span className="text-primary/60 dark:text-surface/60 text-sm font-bold me-1">
-/{t({ en: 'mo', ar: 'Ø´Ù‡Ø±' })}
+/{t({ en: 'mo', ar: 'شهر' })}
 </span>
 </div>
 <p className="text-accent font-bold text-sm mt-1">
-+ {formatPrice(setup, currency)} {t({ en: 'setup fee', ar: 'Ø±Ø³ÙˆÙ… Ø¥Ø¹Ø¯Ø§Ø¯' })}
++ {formatPrice(setup, currency)} {t({ en: 'setup fee', ar: 'رسوم إعداد' })}
 </p>
 </>
 )}
@@ -81,12 +82,23 @@ style={{ animationDelay: `${i * 0.1}s` }}
 
 <ul className="flex flex-col gap-3">
 {(tier.features[locale as keyof typeof tier.features] || tier.features.en).map((f, idx) => (
-<li key={idx} className="flex items-center gap-4 text-primary/70 dark:text-surface/70 text-sm font-medium">
-<span className="text-accent shrink-0">
+<motion.li
+key={idx}
+initial={{ opacity: 0, x: -12 }}
+animate={{ opacity: 1, x: 0 }}
+transition={{ delay: 0.3 + idx * 0.05, duration: 0.3, ease: 'easeOut' }}
+className="flex items-center gap-4 text-primary/70 dark:text-surface/70 text-sm font-medium"
+>
+<motion.span
+initial={{ scale: 0 }}
+animate={{ scale: 1 }}
+transition={{ delay: 0.4 + idx * 0.05, type: 'spring', stiffness: 400, damping: 15 }}
+className="text-accent shrink-0"
+>
 <Check className="w-4 h-4 text-accent" />
-</span>
+</motion.span>
 {f}
-</li>
+</motion.li>
 ))}
 </ul>
 </CardContent>

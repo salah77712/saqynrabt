@@ -148,7 +148,7 @@ export default function DashboardLayout({
 
           <div className="flex-1 overflow-y-auto p-4 md:p-8 lg:p-8"
             style={{ WebkitOverflowScrolling: 'touch' }}>
-            <div className="max-w-7xl mx-auto w-full">
+            <div className="max-w-6xl mx-auto w-full">
               {!hasAccess ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center bg-surface border border-primary/10 rounded-xl shadow-sm p-8">
                   <AlertTriangle className="w-10 h-10 text-primary mb-4" />

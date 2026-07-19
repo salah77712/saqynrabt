@@ -2,7 +2,7 @@
 
 ## 1. Visual Theme & Atmosphere
 
-Authoritative, premium, and tech-forward with a dual-brand identity. Marketing surfaces use a crisp white-and-navy palette with generous whitespace — projecting trust and enterprise readiness. Dashboard surfaces shift to a dark-slate theme with a vibrant cyan accent, communicating power-user tooling and real-time operations. The overall feel is polished but restrained: no gradients-for-effect, no decorative flourishes that lack purpose.
+Authoritative, premium, and tech-forward. Marketing surfaces use a crisp white-and-navy palette with generous whitespace — projecting trust and enterprise readiness. The overall feel is polished but restrained: no gradients-for-effect, no decorative flourishes that lack purpose.
 
 Every page exists in three states: the **main page** (fully loaded content), the **loading skeleton** (pulsing placeholder shapes that mirror the final layout), and the **error boundary** (centered alert with icon, explanation, and recovery actions).
 
@@ -69,7 +69,7 @@ Every route is wrapped in a `'use client'` error boundary with a consistent stru
 
 | Descriptive Name | Hex | Role |
 |---|---|---|
-| Deep Navy Authority | `#1A365D` | Primary buttons, headings, hero backgrounds, link hovers |
+| Deep Navy Authority | `#141F33` | Primary buttons, headings, hero backgrounds, link hovers |
 | Crisp White | `#FFFFFF` | Page backgrounds, card surfaces |
 | Warm Off-White | `#F8FBFF` | Hero section gradient base, subtle section alternation |
 | Slate Mist | `#F1F5F9` | Alternating section backgrounds, hover states |
@@ -86,8 +86,8 @@ Every route is wrapped in a `'use client'` error boundary with a consistent stru
 | Near-Black Slate | `#0F172A` | Sidebar background (slate-950) |
 | Midnight Card | `#1E293B` | Card surfaces in dashboard |
 | Soft Background | `#F8FAFC` | Dashboard page background (slate-50) |
-| Cyan Accent | `#4CC9F0` | Active nav links, key interactive elements |
-| Darker Cyan Hover | `#2CB3D6` | Hover state for cyan accent elements |
+| Cyan Accent | `#2A5CFF` | Active nav links, key interactive elements |
+| Darker Accent Hover | `#1A4BCC` | Hover state for accent elements |
 | Light Border | `#E2E8F0` | Card borders, dividers |
 
 ### Shared States
@@ -181,3 +181,11 @@ All buttons enforce `min-height: 44px` for touch accessibility.
 - **Selection Color:** Custom `::selection` with Deep Navy background and white text.
 - **Error ID:** Error digest shown in `text-xs text-slate-400 font-mono` for support diagnostics.
 - **Reduced Motion:** Skeleton animations use `animate-pulse` which respects `prefers-reduced-motion`.
+
+---
+
+## 10. Known Gaps
+
+| Gap | Description | Priority |
+|-----|-------------|----------|
+| Dark Dashboard Theme | Dashboard pages use the same light palette as marketing surfaces. A dedicated dark-slate theme (sidebar `#0F172A`, cards `#1E293B`, cyan accent `#4CC9F0`) is documented in the design system but not yet implemented in code. | Medium |

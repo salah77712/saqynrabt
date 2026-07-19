@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { useLocale } from '../../providers';
+import { EmptyState } from '../../../components/ui/EmptyState';
+import { Inbox } from 'lucide-react';
 
 interface OmnichannelMessage {
 id: string;
@@ -46,11 +48,11 @@ setMessages(MOCK_MESSAGES);
 const filtered = filterChannel === 'All' ? messages : messages.filter(m => m.channel === filterChannel);
 
 return (
-<div className="space-y-6 animate-fadeIn max-w-xl">
+<div className="space-y-6 animate-fadeIn">
 
 {/* Header */}
 <div>
-<h1 className="text-xl font-extrabold text-primary">{t({ en: 'Inbox', ar: 'ØµÙ†Ø¯ÙˆÙ‚ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ù…ÙˆØ­Ø¯ Ù„Ù„Ù‚Ù†ÙˆØ§Øª' })}</h1>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Inbox', ar: 'ØµÙ†Ø¯ÙˆÙ‚ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ù…ÙˆØ­Ø¯ Ù„Ù„Ù‚Ù†ÙˆØ§Øª' })}</h1>
 <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'WhatsApp, SMS, web chat, and email â€” all in one place.', ar: 'ØªØ¬Ù…ÙŠØ¹ Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ Ù…Ù† Ø§Ù„ÙˆØ§ØªØ³Ø§Ø¨ØŒ Ø§Ù„Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ù†ØµÙŠØ©ØŒ Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø§ØªØŒ ÙˆØ§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ.' })}</p>
 </div>
 
@@ -84,9 +86,12 @@ className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transitio
 {t({ en: 'Loading messages...', ar: 'Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø±Ø³Ø§Ø¦Ù„...' })}
 </p>
 ) : filtered.length === 0 ? (
-<p className="text-xs text-primary font-semibold text-center py-6">
-{t({ en: 'No messages found.', ar: 'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø±Ø³Ø§Ø¦Ù„.' })}
-</p>
+<EmptyState
+icon={<Inbox className="w-10 h-10 text-primary/40" />}
+              title={t({ en: 'No messages found', ar: 'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø±Ø³Ø§Ø¦Ù„' })}
+              description={t({ en: 'Your inbox is empty. Messages from WhatsApp, SMS, email, and web chat will appear here.', ar: 'ØµÙ†Ø¯ÙˆÙ‚ Ø§Ù„Ø¨Ø±ÙŠØ¯ ÙØ§Ø±Øº. Ø³ØªØ¸Ù‡Ø± Ø±Ø³Ø§Ø¦Ù„ Ù…Ù† ÙˆØ§ØªØ³Ø§Ø¨ØŒ Ø§Ù„Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ù†ØµÙŠØ©ØŒ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠØŒ ÙˆØ§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© Ù‡Ù†Ø§.' })}
+compact
+/>
 ) : (
 <div className="divide-y divide-[#141F33]/10">
 {filtered.map((msg) => (

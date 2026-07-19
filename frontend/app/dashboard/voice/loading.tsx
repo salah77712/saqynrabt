@@ -4,7 +4,7 @@ return (
 <div className="h-6 w-40 bg-primary rounded animate-pulse" />
 <div className="grid gap-8 md:grid-cols-3">
 {[...Array(3)].map((_, i) => (
-<div key={i} className="rounded-xl border border-primary/10 bg-surface p-5 shadow-sm">
+<div key={i} className="rounded-xl border border-primary/10 bg-surface p-8 shadow-sm">
 <div className="h-3 w-24 bg-primary rounded animate-pulse mb-3" />
 <div className="h-8 w-16 bg-primary rounded animate-pulse mb-2" />
 <div className="h-3 w-20 bg-surface rounded animate-pulse" />

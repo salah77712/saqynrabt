@@ -62,7 +62,7 @@ return (
 
 {/* Header */}
 <div>
-<h1 className="text-xl font-extrabold text-primary">{t({ en: 'Safety Filters', ar: 'Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ… ÙÙŠ Ø£Ù…Ø§Ù† Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ' })}</h1>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Safety Filters', ar: 'Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ… ÙÙŠ Ø£Ù…Ø§Ù† Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ' })}</h1>
 <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Redact personal data, block harmful prompts, and filter unsafe content.', ar: 'ØªÙØ¹ÙŠÙ„ Ø§Ù„Ù…Ø±Ø´Ø­Ø§Øª Ù„Ø­Ø¬Ø¨ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø´Ø®ØµÙŠØ©ØŒ ÙˆÙ…Ù†Ø¹ Ø§Ù„Ø§Ø®ØªØ±Ø§Ù‚Ø§ØªØŒ ÙˆØªØµÙÙŠØ© Ø§Ù„Ù…Ø­ØªÙˆÙ‰ Ø§Ù„Ø¶Ø§Ø±.' })}</p>
 </div>
 
