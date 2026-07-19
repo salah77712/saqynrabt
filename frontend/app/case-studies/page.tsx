@@ -146,7 +146,7 @@ export default function CaseStudiesPage() {
                     }}
                     className={`relative w-[300px] md:w-[360px] h-[480px] rounded-xl overflow-hidden cursor-pointer shadow-xl transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] flex flex-col justify-between p-8 border ${
                       isActive 
-                        ? 'bg-primary text-surface border-transparent scale-100 opacity-100 z-35 ring-4 ring-[#2A5CFF]/35 shadow-[0_20px_50px_rgba(42,92,255,0.25)]' 
+                        ? 'bg-primary text-surface border-transparent scale-100 opacity-100 z-35 ring-4 ring-accent/35 shadow-[0_20px_50px_color-mix(in_srgb,var(--color-accent)_25%,_transparent)]' 
                         : 'bg-surface text-primary border-primary/10 scale-90 opacity-40 filter blur-[1px] z-10 hover:opacity-60'
                     }`}
                   >
@@ -170,7 +170,7 @@ export default function CaseStudiesPage() {
                       {/* Stylized Circular Icon Container */}
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 ${
                         isActive 
-                          ? 'bg-accent/15 text-accent scale-110 shadow-[0_0_20px_rgba(42,92,255,0.2)] animate-pulse' 
+                          ? 'bg-accent/15 text-accent scale-110 shadow-[0_0_20px_color-mix(in_srgb,var(--color-accent)_20%,_transparent)] animate-pulse' 
                           : 'bg-surface text-primary/40'
                       }`}>
                         <IconComponent className="w-6 h-6 stroke-[2]" />
@@ -200,7 +200,7 @@ export default function CaseStudiesPage() {
                         href={`/case-studies/${item.slug}`}
                         className={`w-full flex items-center justify-between min-h-[44px] font-bold text-xs px-6 py-3 rounded-xl border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
                           isActive
-                            ? 'bg-accent hover:bg-accent/95 text-surface border-transparent hover:shadow-[0_8px_25px_rgba(42,92,255,0.4)] hover:translate-y-[-1px] active:translate-y-0'
+                            ? 'bg-accent hover:bg-accent/95 text-surface border-transparent hover:shadow-[0_8px_25px_color-mix(in_srgb,var(--color-accent)_40%,_transparent)] hover:translate-y-[-1px] active:translate-y-0'
                             : 'bg-surface hover:bg-primary text-primary border-primary/10'
                         }`}
                       >
@@ -255,7 +255,7 @@ export default function CaseStudiesPage() {
 
         {/* Detailed Metrics Panel of Active Card */}
 <div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
-<div className="bg-white border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 shadow-card">
+<div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 shadow-card">
             <div className="flex-1">
               <span className="text-[10px] font-black uppercase tracking-widest text-primary/60 mb-1 block">
                 {list[currentIndex].meta}

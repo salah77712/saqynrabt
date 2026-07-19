@@ -41,7 +41,7 @@ export default function WorkflowsPage() {
     <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-black text-primary">{t({en: 'Workflow Builder', ar: 'Ù„ÙˆØ­Ø© Ø£ØªÙ…ØªØ© Ø³ÙŠØ± Ø§Ù„Ø¹Ù…Ù„'})}</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Workflow Builder', ar: 'Ù„ÙˆØ­Ø© Ø£ØªÙ…ØªØ© Ø³ÙŠØ± Ø§Ù„Ø¹Ù…Ù„'})}</h1>
           <p className="text-xs text-primary font-bold">{t({en: 'Design routing for calls, chats, and escalations.', ar: 'ØªØµÙ…ÙŠÙ… Ù…Ù†Ø·Ù‚ Ø§Ù„ØªÙˆØ¬ÙŠÙ‡ Ù„Ù„Ù‡Ø§ØªÙ ÙˆØ§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© ÙˆØ§Ù„ØªØµØ¹ÙŠØ¯.'})}</p>
         </div>
         <div className="flex gap-3">

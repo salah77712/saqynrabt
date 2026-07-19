@@ -59,7 +59,7 @@ return (
 <div className="space-y-6 md:space-y-8 animate-fadeIn">
 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
 <div>
-<h1 className="text-xl md:text-2xl font-black text-primary dark:text-surface tracking-tight">
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
 {t('Automation', 'Ù…Ø±ÙƒØ² Ø£ØªÙ…ØªØ© Ø§Ù„Ø¹Ù…Ù„ÙŠØ§Øª')}
 </h1>
 <p className="text-[10px] md:text-xs text-primary font-bold">
@@ -70,11 +70,11 @@ return (
 
 <Card className="p-8 rounded-xl">
 <div className="flex items-center justify-between pb-3 md:pb-4 border-b border-primary/10 mb-4 md:mb-6">
-<h2 className="text-xs md:text-sm font-black text-primary dark:text-surface flex items-center gap-3 md:gap-4">
+<h2 className="text-xs md:text-sm font-extrabold text-primary dark:text-surface flex items-center gap-3 md:gap-4">
 <Zap className="w-4 h-4 text-primary" />
 <span>{t('Live Customer Calls', 'Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„ÙˆØ§Ø±Ø¯Ø© Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø©')}</span>
 </h2>
-<div className="flex items-center gap-1.5 rounded-full bg-surface border border-primary/10 px-2.5 md:px-3 py-1 text-[8px] md:text-[9px] font-black text-primary uppercase tracking-widest">
+<div className="flex items-center gap-1.5 rounded-full bg-surface border border-primary/10 px-2.5 md:px-3 py-1 text-[10px] md:text-[10px] font-extrabold text-primary uppercase tracking-widest">
 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
 <span>{t('Live', 'Ù…Ø¨Ø§Ø´Ø±')}</span>
 </div>
@@ -88,7 +88,7 @@ return (
 <div key={call.id} className="bg-surface rounded-xl p-8 border border-primary/10 animate-fadeIn">
 <div className="flex items-center justify-between gap-8 border-b border-primary/10 pb-3 mb-3">
 <span className="text-[11px] md:text-xs font-bold text-navy">{call.caller}</span>
-<span className="text-[9px] md:text-[10px] font-bold text-primary">{call.timestamp}</span>
+<span className="text-[10px] md:text-[10px] font-bold text-primary">{call.timestamp}</span>
 </div>
 <div className="font-mono text-[10px] md:text-xs text-primary space-y-2 max-h-36 md:max-h-48 overflow-y-auto leading-relaxed">
 {call.transcript.map((line, idx) => (

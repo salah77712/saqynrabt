@@ -8,7 +8,7 @@ const { theme, toggleTheme, isDark } = useTheme();
 return (
 <button
 onClick={toggleTheme}
-className="p-2 rounded-xl hover:bg-primary dark:hover:bg-primary text-xs font-bold transition-all duration-300 min-h-[44px] min-w-[44px] border border-primary/10 dark:border-primary/30"
+className="p-2 rounded-xl hover:bg-primary/5 dark:hover:bg-white/5 text-xs font-bold transition-all duration-300 min-h-[44px] min-w-[44px] border border-primary/10 dark:border-white/20 hover:border-accent/30 hover:shadow-glow"
 title={isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
 >
 {isDark ? (

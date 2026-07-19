@@ -1,19 +1,29 @@
-﻿export default function SettingsLoading() {
+﻿import { Skeleton } from '../../../components/ui/Skeleton';
+
+export default function SettingsLoading() {
   return (
-    <div className="space-y-6">
-      <div className="h-6 w-40 bg-surface rounded animate-pulse mb-2" />
-      <div className="rounded-xl border border-primary/10 bg-surface p-8 shadow-sm space-y-6">
-        {[...Array(4)].map((_, i) => (
-          <div key={i} className="flex items-center justify-between pb-6 border-b border-primary/10 last:border-0 last:pb-0">
-            <div className="space-y-1.5">
-              <div className="h-4 w-32 bg-surface rounded animate-pulse" />
-              <div className="h-3 w-48 bg-surface rounded animate-pulse" />
-            </div>
-            <div className="h-8 w-16 bg-surface rounded-full animate-pulse" />
-          </div>
-        ))}
+    <div className="flex flex-col gap-8 md:gap-8 animate-fadeIn">
+      <div className="animate-pulse">
+        <div className="h-8 bg-primary/10 dark:bg-white/10 rounded-lg w-48 mb-2" />
+        <div className="h-4 bg-primary/10 dark:bg-white/10 rounded-lg w-64" />
       </div>
+      {[...Array(3)].map((_, i) => (
+        <div key={i} className="animate-pulse bg-primary/5 dark:bg-white/10 border border-primary/10 dark:border-white/10 rounded-xl p-8 space-y-4">
+          <Skeleton variant="text" className="w-1/4" />
+          <div className="flex items-center gap-4 p-4 rounded-xl border border-primary/10">
+            <Skeleton variant="rectangular" className="h-5 w-5 rounded" />
+            <Skeleton variant="text" className="w-3/4" />
+          </div>
+          <div className="space-y-3">
+            {[...Array(3)].map((_, j) => (
+              <div key={j} className="flex items-center justify-between">
+                <Skeleton variant="text" className="w-1/3" />
+                <Skeleton variant="text" className="w-1/4" />
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
-

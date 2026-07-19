@@ -34,25 +34,25 @@ export default function DashboardLayout({
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
-    overview: { en: 'Overview', ar: '???????? ????????' },
-    clientDashboard: { en: 'Client Dashboard', ar: '???????? ???????? ????????????' },
+    overview: { en: 'Overview', ar: 'نظرة عامة' },
+    clientDashboard: { en: 'Client Dashboard', ar: 'لوحة تحكم العميل' },
   };
 
   const menuItems = [
     { name: dashboardContent.overview, path: '/dashboard', icon: <Home className="w-5 h-5" /> },
-    { name: { en: 'Automation', ar: '??????????????' }, path: '/dashboard/automation', icon: <Zap className="w-5 h-5" /> },
-    { name: { en: 'Chatbot', ar: '?????????????? ??????????' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
-    { name: { en: 'Documents', ar: '??????????????????' }, path: '/dashboard/documents', icon: <FileText className="w-5 h-5" /> },
-    { name: { en: 'Team', ar: '????????????' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" />, badge: true },
-    { name: { en: 'Settings', ar: '??????????????????' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
+    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <Zap className="w-5 h-5" /> },
+    { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <FileText className="w-5 h-5" /> },
+    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" />, badge: true },
+    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
   ];
 
   const currentRole = mockMode ? 'admin' : userRole;
 
   const filteredMenuItems = currentRole === 'employee'
     ? [
-        { name: { en: 'Chatbot', ar: '?????????????? ??????????' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
-        { name: { en: 'Workflows', ar: '?????? ??????????' }, path: '/dashboard/workflows', icon: <Zap className="w-5 h-5" /> },
+        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
+        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <Zap className="w-5 h-5" /> },
       ]
     : menuItems;
 
@@ -130,7 +130,7 @@ export default function DashboardLayout({
         {isSidebarOpen && (
           <div
             onClick={() => setIsSidebarOpen(false)}
-            className="fixed inset-0 z-40 bg-primary md:hidden backdrop-blur-sm"
+            className="fixed inset-0 z-40 bg-black/60 md:hidden backdrop-blur-sm transition-opacity duration-300"
           />
         )}
 
@@ -148,13 +148,13 @@ export default function DashboardLayout({
 
           <div className="flex-1 overflow-y-auto p-4 md:p-8 lg:p-8"
             style={{ WebkitOverflowScrolling: 'touch' }}>
-            <div className="max-w-7xl mx-auto w-full">
+            <div className="max-w-6xl mx-auto w-full">
               {!hasAccess ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center bg-surface border border-primary/10 rounded-xl shadow-sm p-8">
                   <AlertTriangle className="w-10 h-10 text-primary mb-4" />
-                  <h2 className="text-lg font-extrabold text-primary">{t({ en: 'Access Denied', ar: '???? ?????? ????????????' })}</h2>
+                  <h2 className="text-lg font-extrabold text-primary">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h2>
                   <p className="text-xs text-primary font-semibold mt-1">
-                    {t({ en: 'You do not have permission to access this page.', ar: '?????? ???????? ???????????? ???????????? ?????? ?????? ????????????.' })}
+                    {t({ en: 'You do not have permission to access this page.', ar: 'ليس لديك إذن للوصول إلى هذه الصفحة.' })}
                   </p>
                 </div>
               ) : (

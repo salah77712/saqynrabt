@@ -34,7 +34,7 @@ return (
 <div className="space-y-6 animate-fadeIn">
 {/* Header */}
 <div className="mb-6">
-<h1 className="text-xl font-extrabold text-primary">{t({ en: 'Global Client Accounts', ar: 'Ø­Ø³Ø§Ø¨Ø§Øª Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ Ø§Ù„Ø´Ø§Ù…Ù„Ø©' })}</h1>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Global Client Accounts', ar: 'Ø­Ø³Ø§Ø¨Ø§Øª Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ Ø§Ù„Ø´Ø§Ù…Ù„Ø©' })}</h1>
 <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Suspend/enable tenant access.', ar: 'Ù„ÙˆØ­Ø© Ø¥Ø¯Ø§Ø±Ø© Ù…ÙˆØ¸ÙÙŠ SAQYN. Ø¥ÙŠÙ‚Ø§Ù ÙˆØªÙØ¹ÙŠÙ„ ØµÙ„Ø§Ø­ÙŠØ§Øª ÙˆØµÙˆÙ„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡.' })}</p>
 </div>
 
@@ -52,7 +52,7 @@ return (
 </div>
 
 <div className="flex items-center gap-4">
-<span className={`text-[8px] font-extrabold uppercase px-2 py-0.5 rounded-full ${c.status === 'active' ? 'bg-surface text-accent' : 'bg-surface text-primary'}`}>
+<span className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${c.status === 'active' ? 'bg-surface text-accent' : 'bg-surface text-primary'}`}>
 {c.status}
 </span>
 

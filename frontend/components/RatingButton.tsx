@@ -72,7 +72,7 @@ title="Bad Answer"
 
 {isOpen && (
 <div className="p-3 bg-surface border border-primary/10 rounded-xl w-full max-w-xs space-y-2 mt-2">
-<label className="block text-[9px] uppercase tracking-wider text-primary">{t({ en: 'Provide feedback (optional)', ar: 'Ø£Ø¶Ù ØªØ¹Ù„ÙŠÙ‚Ù‹Ø§ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)' })}</label>
+<label className="block text-[10px] uppercase tracking-wider text-primary">{t({ en: 'Provide feedback (optional)', ar: 'Ø£Ø¶Ù ØªØ¹Ù„ÙŠÙ‚Ù‹Ø§ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)' })}</label>
 <textarea
 value={comment}
 onChange={(e) => setComment(e.target.value)}

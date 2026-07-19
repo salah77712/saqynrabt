@@ -38,7 +38,7 @@ export default function MarketingError({
         <div className="text-center max-w-md">
 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-primary/10"><AlertTriangle className="w-6 h-6 text-primary" />
           </div>
-          <h1 className="text-3xl font-bold text-primary mb-3">{t({ en: 'Something went wrong', ar: 'Ø­Ø¯Ø« Ø®Ø·Ø£ ØºÙŠØ± Ù…ØªÙˆÙ‚Ø¹' })}</h1>
+          <h1 className="text-xl md:text-3xl font-bold text-primary mb-3">{t({ en: 'Something went wrong', ar: 'Ø­Ø¯Ø« Ø®Ø·Ø£ ØºÙŠØ± Ù…ØªÙˆÙ‚Ø¹' })}</h1>
           <p className="text-sm text-primary mb-8 leading-relaxed">
             {t({ en: 'We encountered an error loading this page. Please try again.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©.' })}
           </p>

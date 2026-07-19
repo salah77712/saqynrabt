@@ -108,7 +108,7 @@ export default function HowItWorksPage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="space-y-8">
             {stepList.map((s) => (
-              <div key={s.step} className="flex items-start gap-8 bg-white border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
+              <div key={s.step} className="flex items-start gap-8 bg-background border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
                 <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-primary text-lg font-bold text-surface">
                   {s.step}
                 </div>

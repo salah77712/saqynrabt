@@ -6,7 +6,7 @@ import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
 
 type Status = 'loading' | 'online' | 'offline';
 
-export function GlobalStatusBar() {
+export function KeyboardShortcutsBar() {
 const [status, setStatus] = useState<Status>('loading');
 const [latency, setLatency] = useState(0);
 const [modalOpen, setModalOpen] = useState(false);
@@ -46,4 +46,4 @@ return (
 );
 }
 
-export default GlobalStatusBar;
+export default KeyboardShortcutsBar;

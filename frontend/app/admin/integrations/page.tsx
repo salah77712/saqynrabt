@@ -106,10 +106,10 @@ export default function AdminIntegrationsPage() {
       <main className="flex-1 max-w-4xl mx-auto w-full px-6 py-12 lg:px-8">
         
         {/* Main Workspace Frame */}
-        <div className="bg-white rounded-xl border border-primary/10 p-8 shadow-card">
+        <div className="bg-background rounded-xl border border-primary/10 p-8 shadow-card">
           
           <div className="border-b border-primary/10 pb-6 mb-8">
-            <h1 className="text-2xl font-extrabold text-primary">Connect your HR Database to Saqyn Rabt.</h1>
+            <h1 className="text-2xl md:text-3xl font-extrabold text-primary">Connect your HR Database to Saqyn Rabt.</h1>
             <p className="text-xs text-primary/60 font-semibold mt-2">
               Sync employee records, job roles, and PTO leave structures securely via Merge Link or manual CSV uploads.
             </p>
@@ -129,7 +129,7 @@ export default function AdminIntegrationsPage() {
                     <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold">
                       ● {item.status}
                     </span>
-                    <p className="text-[9px] text-primary/40 font-semibold mt-1">Last Synced: {item.lastSynced}</p>
+                    <p className="text-[10px] text-primary/40 font-semibold mt-1">Last Synced: {item.lastSynced}</p>
                   </div>
                 </div>
               ))}

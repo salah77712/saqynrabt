@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useLocale } from '../../providers';
 import { useGlobalToast } from '../../../lib/toast';
 
@@ -60,7 +60,7 @@ export default function AdminCompaniesPage() {
       {/* Header and Search */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div>
-          <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Client Workspace Directory', ar: 'Ø¯Ù„ÙŠÙ„ Ù…Ø³Ø§Ø­Ø§Øª Ø¹Ù…Ù„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡' })}</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Client Workspace Directory', ar: 'Ø¯Ù„ÙŠÙ„ Ù…Ø³Ø§Ø­Ø§Øª Ø¹Ù…Ù„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡' })}</h1>
           <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Monitor client limits, suspend services, and manage tenants.', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ØŒ ØªØ¹Ù„ÙŠÙ‚ Ø§Ù„Ø®Ø¯Ù…Ø§ØªØŒ ÙˆØ¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø­Ø³Ø§Ø¨Ø§Øª.' })}</p>
         </div>
 
@@ -76,7 +76,7 @@ export default function AdminCompaniesPage() {
       </div>
 
       {/* Companies Table */}
-      <div className="bg-white border border-primary/10 rounded-xl shadow-sm overflow-hidden shadow-card">
+      <div className="bg-background border border-primary/10 rounded-xl shadow-sm overflow-hidden shadow-card">
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
@@ -96,7 +96,7 @@ export default function AdminCompaniesPage() {
                   <td className="px-6 py-4">{company.plan}</td>
                   <td className="px-6 py-4 text-center">{company.employees} / {company.maxEmployees}</td>
                   <td className="px-6 py-4">
-                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-[9px] font-extrabold uppercase ${
+                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase ${
                       company.status === 'active' ? 'bg-surface text-accent' : 'bg-surface text-primary'
                     }`}>
                       {company.status === 'active' ? t({ en: 'Active', ar: 'Ù†Ø´Ø·' }) : t({ en: 'Suspended', ar: 'Ù…Ø¹Ù„Ù‚' })}

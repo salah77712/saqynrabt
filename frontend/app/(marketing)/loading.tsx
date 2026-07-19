@@ -23,7 +23,7 @@
         </div>
       </header>
       <div className="flex-1 flex items-center justify-center">
-        <div className="h-10 w-10 rounded-full border-4 border-primary/10 border-t-[#141F33] animate-spin" />
+        <div className="h-10 w-10 rounded-full border-4 border-primary/10 border-t-primary animate-spin" />
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export default function SSOPage() {
     <main id="main-content" className="p-8 space-y-6">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl font-black text-primary dark:text-surface">{t({en: 'Single Sign-On (SSO)', ar: 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø§Ù„Ù…ÙˆØ­Ø¯ Ù„Ù„Ù…Ø¤Ø³Ø³Ø§Øª (SSO)'})}</h1>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Single Sign-On (SSO)', ar: 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø§Ù„Ù…ÙˆØ­Ø¯ Ù„Ù„Ù…Ø¤Ø³Ø³Ø§Øª (SSO)'})}</h1>
           <p className="text-xs text-primary font-bold">{t({en: 'Connect your company\'s identity system for one-click login.', ar: 'ØªÙƒÙˆÙŠÙ† ØªÙƒØ§Ù…Ù„Ø§Øª Ø§Ù„Ù‡ÙˆÙŠØ© Ø§Ù„Ù…Ø¤Ø³Ø³ÙŠØ© (SAML 2.0 / OIDC).'})}</p>
         </div>
         <Badge variant={samlEnabled ? 'success' : 'primary'}>

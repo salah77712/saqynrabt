@@ -108,7 +108,7 @@ export default function SettingsDashboardPage() {
 
   if (usageLoading) {
     return (
-<div className="flex flex-col gap-8 md:gap-8 animate-fadeIn max-w-4xl">
+<div className="flex flex-col gap-8 md:gap-8 animate-fadeIn">
   <div className="animate-pulse">
           <div className="h-8 bg-surface dark:bg-primary rounded-lg w-72 mb-2" />
           <div className="h-4 bg-surface dark:bg-primary rounded-lg w-96" />
@@ -138,9 +138,9 @@ export default function SettingsDashboardPage() {
   };
 
   return (
-    <div className="flex flex-col gap-8 md:gap-8 animate-fadeIn max-w-4xl">
+    <div className="flex flex-col gap-8 md:gap-8 animate-fadeIn">
       <div>
-        <h1 className="text-xl md:text-2xl font-black text-primary dark:text-surface tracking-tight">
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
           {t('Settings', 'Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… ÙˆØ§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª')}
         </h1>
         <p className="text-[10px] md:text-xs text-primary font-bold mt-0.5">
@@ -170,7 +170,7 @@ export default function SettingsDashboardPage() {
 {activeTab === 'general' && (
   <div className="flex flex-col gap-8 md:gap-8">
   <Card className="p-8">
-            <h2 className="text-[10px] md:text-xs font-black text-primary/60 uppercase tracking-widest mb-3 md:mb-4">
+            <h2 className="text-sm font-bold text-primary">
               {t('Overage Protection', 'Ø­Ù…Ø§ÙŠØ© Ø§Ù„ØªØ¬Ø§ÙˆØ² Ø§Ù„ØªÙ„Ù‚Ø§Ø¦ÙŠ')}
             </h2>
             <label className="flex items-start gap-8 p-3 md:p-4 rounded-xl border border-primary/10 bg-surface cursor-pointer">
@@ -190,7 +190,7 @@ export default function SettingsDashboardPage() {
           </Card>
 
           <Card className="p-8 rounded-xl flex flex-col gap-8">
-            <h2 className="text-[10px] md:text-xs font-black text-primary uppercase tracking-widest">
+            <h2 className="text-sm font-bold text-primary">
               {t('Usage Limits', 'Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù…')}
             </h2>
             <div className="space-y-4">
@@ -220,10 +220,10 @@ export default function SettingsDashboardPage() {
 
           <Card className="p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div>
-              <h3 className="text-[11px] md:text-xs font-bold text-primary">
+              <h3 className="text-sm font-bold text-primary">
                 {t('Export Chat Log Audit', 'ØªØµØ¯ÙŠØ± Ø³Ø¬Ù„ Ø§Ù„ØªØ¯Ù‚ÙŠÙ‚ Ù„Ù„Ù…Ø­Ø§Ø¯Ø«Ø§Øª')}
               </h3>
-              <p className="text-[9px] md:text-[10px] text-primary/60 mt-1">
+              <p className="text-[10px] md:text-[10px] text-primary/60 mt-1">
                 {t('Download employee RAG chatbot logs and question histories in .csv format.', 'ØªÙ†Ø²ÙŠÙ„ Ø¬Ù…ÙŠØ¹ Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ ÙˆØªØ§Ø±ÙŠØ® Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø¨ØµÙŠØºØ© .csv Ù„Ù„ØªØ¯Ù‚ÙŠÙ‚.')}
               </p>
             </div>
@@ -236,7 +236,7 @@ export default function SettingsDashboardPage() {
 
 {activeTab === 'billing' && (
   <Card className="p-8 flex flex-col gap-4">
-          <h3 className="font-bold text-navy dark:text-surface text-sm md:text-base">{t('Subscription Plan', 'Ø®Ø·Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ')}</h3>
+          <h3 className="text-sm font-bold text-navy dark:text-surface">{t('Subscription Plan', 'Ø®Ø·Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ')}</h3>
           <p className="text-[10px] md:text-xs text-primary leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ Ù…Ø³Ø¬Ù„Ø© Ø­Ø§Ù„ÙŠØ§Ù‹ ØªØ­Øª Ø¨Ø§Ù‚Ø© Ù†Ù…Ùˆ Ø§Ù„Ù…Ø¤Ø³Ø³Ø§Øª.')}
           </p>

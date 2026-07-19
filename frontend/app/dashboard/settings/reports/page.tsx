@@ -34,7 +34,7 @@ export default function ReportBuilderSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Reports', ar: 'Ù…Ù†Ø´Ø¦ ØªÙ‚Ø§Ø±ÙŠØ± Ø°ÙƒØ§Ø¡ Ø§Ù„Ø£Ø¹Ù…Ø§Ù„ Ø§Ù„Ù…Ø®ØµØµØ©' })}</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Reports', ar: 'Ù…Ù†Ø´Ø¦ ØªÙ‚Ø§Ø±ÙŠØ± Ø°ÙƒØ§Ø¡ Ø§Ù„Ø£Ø¹Ù…Ø§Ù„ Ø§Ù„Ù…Ø®ØµØµØ©' })}</h1>
         <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Combine activity data and export as CSV.', ar: 'ØªØ¬Ù…ÙŠØ¹ Ø£Ù†Ø´Ø·Ø© Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„ ÙˆØªØµØ¯ÙŠØ± Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ù‚ÙŠØ§Ø³ Ø¨ØµÙŠØºØ© CSV.' })}</p>
       </div>
 

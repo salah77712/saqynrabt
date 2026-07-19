@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useLocale } from '../../providers';
 
 export default function AdminMetricsPage() {
@@ -27,13 +27,41 @@ export default function AdminMetricsPage() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleExportCSV = useCallback(() => {
+    const rows = [
+      ['Metric', 'Value', 'Status'],
+      ['Requests / Sec', String(metrics.requestsPerSecond), 'Healthy'],
+      ['Total OpenAI Calls', String(metrics.openaiCalls), 'Accumulated'],
+      ['Active DB Pools', String(metrics.dbConnections), 'Neon Serverless'],
+      ['Response Delay', `${metrics.responseTimeMs} ms`, 'Avg Latency'],
+    ];
+    const csv = rows.map(r => r.map(c => `"${c.replace(/"/g, '""')}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `sysadmin_metrics_${new Date().toISOString().slice(0, 10)}.csv`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }, [metrics]);
+
   return (
     <div className="space-y-8 animate-fadeIn">
       
       {/* Header */}
-      <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Real-Time Health & Metrics Telemetry', ar: 'Ù…Ø¤Ø´Ø±Ø§Øª Ø§Ù„ØµØ­Ø© ÙˆØ§Ù„Ø£Ø¯Ø§Ø¡ Ø§Ù„ÙÙˆØ±ÙŠ Ù„Ù„Ø´Ø¨ÙƒØ©' })}</h1>
-        <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'Expose live container status, connection pools, and downstream response delays.', ar: 'Ø¹Ø±Ø¶ Ø­Ø§Ù„Ø© Ø§Ù„Ø­Ø§ÙˆÙŠØ© Ø§Ù„ÙÙˆØ±ÙŠØ©ØŒ ØªØ¬Ù…Ø¹Ø§Øª Ø§Ù„Ø§ØªØµØ§Ù„ØŒ ÙˆØªØ£Ø®ÙŠØ± Ø§Ø³ØªØ¬Ø§Ø¨Ø© OpenAI.' })}</p>
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-8">
+        <div>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Real-Time Health & Metrics Telemetry', ar: 'Ù…Ø¤Ø´Ø±Ø§Øª Ø§Ù„ØµØ­Ø© ÙˆØ§Ù„Ø£Ø¯Ø§Ø¡ Ø§Ù„ÙÙˆØ±ÙŠ Ù„Ù„Ø´Ø¨ÙƒØ©' })}</h1>
+          <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'Expose live container status, connection pools, and downstream response delays.', ar: 'Ø¹Ø±Ø¶ Ø­Ø§Ù„Ø© Ø§Ù„Ø­Ø§ÙˆÙŠØ© Ø§Ù„ÙÙˆØ±ÙŠØ©ØŒ ØªØ¬Ù…Ø¹Ø§Øª Ø§Ù„Ø§ØªØµØ§Ù„ØŒ ÙˆØªØ£Ø®ÙŠØ± Ø§Ø³ØªØ¬Ø§Ø¨Ø© OpenAI.' })}</p>
+        </div>
+        <button
+          onClick={handleExportCSV}
+          className="inline-flex items-center gap-2 min-h-[44px] px-4 py-2 rounded-xl bg-surface border border-primary/10 text-xs font-bold text-primary hover:bg-primary transition-all"
+        >
+          Export CSV
+        </button>
       </div>
 
       {/* Metrics Row */}
@@ -44,7 +72,7 @@ export default function AdminMetricsPage() {
           <p className="text-[10px] font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Requests / Sec', ar: 'Ø§Ù„Ø·Ù„Ø¨Ø§Øª ÙÙŠ Ø§Ù„Ø«Ø§Ù†ÙŠØ©' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-primary">{metrics.requestsPerSecond}</span>
-            <span className="text-[9px] font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">{t({ en: 'Healthy', ar: 'Ø³Ù„ÙŠÙ…' })}</span>
+            <span className="text-[10px] font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">{t({ en: 'Healthy', ar: 'Ø³Ù„ÙŠÙ…' })}</span>
           </div>
         </div>
 
@@ -53,7 +81,7 @@ export default function AdminMetricsPage() {
           <p className="text-[10px] font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Total OpenAI Calls', ar: 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø·Ù„Ø¨Ø§Øª OpenAI' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-primary">{metrics.openaiCalls}</span>
-            <span className="text-[9px] font-extrabold text-primary/40 uppercase tracking-wider">Accumulated</span>
+            <span className="text-[10px] font-extrabold text-primary/40 uppercase tracking-wider">Accumulated</span>
           </div>
         </div>
 
@@ -62,7 +90,7 @@ export default function AdminMetricsPage() {
           <p className="text-[10px] font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Active DB Pools', ar: 'Ø§ØªØµØ§Ù„Ø§Øª Ù‚Ø§Ø¹Ø¯Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù†Ø´Ø·Ø©' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-primary">{metrics.dbConnections}</span>
-            <span className="text-[9px] font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">Neon Serverless</span>
+            <span className="text-[10px] font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">Neon Serverless</span>
           </div>
         </div>
 
@@ -71,7 +99,7 @@ export default function AdminMetricsPage() {
           <p className="text-[10px] font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Response Delay', ar: 'ØªØ£Ø®Ø± Ø§Ù„Ø§Ø³ØªØ¬Ø§Ø¨Ø©' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-primary">{metrics.responseTimeMs} ms</span>
-            <span className="text-[9px] font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">Avg Latency</span>
+            <span className="text-[10px] font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">Avg Latency</span>
           </div>
         </div>
 

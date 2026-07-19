@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef, type CSSProperties } from 'react';
 import Link from 'next/link';
+import { useSwipe } from '../hooks/useSwipe';
 import {
   Hotel, Activity, Wrench, Home, ShoppingBag, Truck,
   Briefcase, Car, GraduationCap, Database, HeartPulse,
@@ -22,7 +23,7 @@ const iconMap: Record<string, React.ComponentType<any>> = {
 };
 
 const CARD_BG = [
-  'linear-gradient(135deg, #141F33 0%, #1a2b4a 50%, #2A5CFF 100%)',
+  'linear-gradient(135deg, var(--color-primary) 0%, #1a2b4a 50%, var(--color-accent) 100%)',
   'linear-gradient(135deg, #0d1829 0%, #1a3bcc 50%, #4a7cff 100%)',
   'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
   'linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%)',
@@ -56,6 +57,14 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
 
   const n = slides.length;
   const [active, setActive] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     setActive((a) => Math.max(0, Math.min(n - 1, a)));
@@ -92,6 +101,12 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
     else if (e.key === 'ArrowLeft') { e.preventDefault(); step(isRtl ? 1 : -1); }
   }, [step, dir]);
 
+  const swipeHandlers = useSwipe({
+    onSwipeLeft: () => step(dir === 'rtl' ? -1 : 1),
+    onSwipeRight: () => step(dir === 'rtl' ? 1 : -1),
+    threshold: 50,
+  });
+
   const loop = true;
   const { dur, ease } = cssTransition(transition);
   const transitionCss = `transform ${dur}s ${ease}, opacity ${dur}s ${ease}`;
@@ -100,7 +115,7 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
     position: 'relative',
     width: '100%',
     height: '100%',
-    minWidth: 320,
+    minWidth: 280,
     minHeight: 480,
     display: 'flex',
     alignItems: 'center',
@@ -118,13 +133,15 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
       aria-roledescription="carousel"
       onKeyDown={onKeyDown}
       dir={dir}
+      {...swipeHandlers}
     >
       <div
         style={{
           position: 'relative',
-          width: 560,
-          height: 440,
-          transformStyle: 'preserve-3d',
+          width: isMobile ? '100%' : 560,
+          height: isMobile ? 400 : 440,
+          maxWidth: '100%',
+          transformStyle: isMobile ? undefined : 'preserve-3d',
         }}
       >
         {slides.map((item, i) => {
@@ -145,12 +162,28 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
 
           const IconComponent = iconMap[item.iconName] || Briefcase;
 
-          const cardStyle: CSSProperties = {
+          const cardStyle: CSSProperties = isMobile ? {
             position: 'absolute',
             left: '50%',
             top: '50%',
-            width: 520,
+            width: 'calc(100vw - 48px)',
+            height: 380,
+            maxWidth: 400,
+            borderRadius: 24,
+            overflow: 'hidden',
+            transformOrigin: 'center center',
+            transform: `translate(-50%, -50%) translateX(${tx}px) scale(${sc})`,
+            transition: transitionCss,
+            opacity: visible ? 1 : 0,
+            cursor: isActive ? 'default' : 'pointer',
+            pointerEvents: visible ? 'auto' : 'none',
+          } : {
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            width: '100%',
             height: 400,
+            maxWidth: 520,
             borderRadius: 24,
             overflow: 'hidden',
             transformStyle: 'preserve-3d',
@@ -188,7 +221,7 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
                   width: 300,
                   height: 300,
                   borderRadius: '50%',
-                  background: 'radial-gradient(circle, rgba(42,92,255,0.15) 0%, transparent 70%)',
+                  background: 'radial-gradient(circle, color-mix(in srgb, var(--color-accent) 15%, transparent) 0%, transparent 70%)',
                   transform: 'translate(-50%, -50%)',
                   pointerEvents: 'none',
                 }}
@@ -214,8 +247,8 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
                       fontWeight: 900,
                       letterSpacing: '0.15em',
                       textTransform: 'uppercase',
-                      color: '#2A5CFF',
-                      background: 'rgba(42,92,255,0.15)',
+                      color: 'var(--color-accent)',
+                      background: 'color-mix(in srgb, var(--color-accent) 15%, transparent)',
                       padding: '4px 10px',
                       borderRadius: 999,
                     }}>
@@ -234,7 +267,7 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
                         fontWeight: 800,
                         letterSpacing: '0.1em',
                         textTransform: 'uppercase',
-                        color: '#F8F9FB',
+                        color: 'var(--color-primary-foreground)',
                       }}>
                         {item.location}
                       </span>
@@ -249,8 +282,8 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    background: 'rgba(42,92,255,0.15)',
-                    color: '#2A5CFF',
+                    background: 'color-mix(in srgb, var(--color-accent) 15%, transparent)',
+                    color: 'var(--color-accent)',
                     flexShrink: 0,
                   }}>
                     <IconComponent style={{ width: 24, height: 24, strokeWidth: 2 }} />
@@ -264,7 +297,7 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
                     fontWeight: 900,
                     lineHeight: '1.2em',
                     letterSpacing: '-0.02em',
-                    color: '#F8F9FB',
+                    color: 'var(--color-primary-foreground)',
                     marginBottom: 8,
                   }}>
                     {item.title}
@@ -273,7 +306,7 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
                     fontSize: 12,
                     fontWeight: 600,
                     lineHeight: '1.5em',
-                    color: 'rgba(248,249,251,0.65)',
+                    color: 'color-mix(in srgb, var(--color-primary-foreground) 65%, transparent)',
                     marginBottom: 16,
                     display: '-webkit-box',
                     WebkitLineClamp: 2,
@@ -292,20 +325,20 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
                       fontSize: 11,
                       fontWeight: 800,
                       letterSpacing: '0.05em',
-                      color: '#2A5CFF',
+                      color: 'var(--color-accent)',
                       textDecoration: 'none',
                       padding: '8px 18px',
                       borderRadius: 999,
-                      border: '1.5px solid rgba(42,92,255,0.3)',
+                      border: '1.5px solid color-mix(in srgb, var(--color-accent) 30%, transparent)',
                       transition: 'all 0.3s ease',
                     }}
                     onMouseEnter={(e) => {
-                      (e.currentTarget as HTMLElement).style.background = 'rgba(42,92,255,0.15)';
-                      (e.currentTarget as HTMLElement).style.borderColor = '#2A5CFF';
+                      (e.currentTarget as HTMLElement).style.background = 'color-mix(in srgb, var(--color-accent) 15%, transparent)';
+                      (e.currentTarget as HTMLElement).style.borderColor = 'var(--color-accent)';
                     }}
                     onMouseLeave={(e) => {
                       (e.currentTarget as HTMLElement).style.background = 'transparent';
-                      (e.currentTarget as HTMLElement).style.borderColor = 'rgba(42,92,255,0.3)';
+                      (e.currentTarget as HTMLElement).style.borderColor = 'color-mix(in srgb, var(--color-accent) 30%, transparent)';
                     }}
                   >
                     {t({ en: 'View Study', ar: 'عرض الدراسة' })}
@@ -320,7 +353,7 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
                   style={{
                     position: 'absolute',
                     inset: 0,
-                    background: '#000000',
+                    background: 'color-mix(in srgb, var(--color-primary) 60%, transparent)',
                     opacity: dim,
                     transition: `opacity ${dur}s ${ease}`,
                     pointerEvents: 'none',
@@ -343,19 +376,19 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
           width: 44,
           height: 44,
           borderRadius: '50%',
-          border: '1px solid rgba(20,31,51,0.1)',
-          background: 'rgba(248,249,251,0.9)',
+          border: '1px solid color-mix(in srgb, var(--color-primary) 10%, transparent)',
+          background: 'color-mix(in srgb, var(--color-background) 90%, transparent)',
           backdropFilter: 'blur(8px)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          color: '#141F33',
+          color: 'var(--color-primary)',
           transition: 'all 0.2s ease',
           zIndex: 10,
         }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#141F33'; (e.currentTarget as HTMLElement).style.color = '#F8F9FB'; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(248,249,251,0.9)'; (e.currentTarget as HTMLElement).style.color = '#141F33'; }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'var(--color-primary)'; (e.currentTarget as HTMLElement).style.color = 'var(--color-primary-foreground)'; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'color-mix(in srgb, var(--color-background) 90%, transparent)'; (e.currentTarget as HTMLElement).style.color = 'var(--color-primary)'; }}
         aria-label={t({ en: 'Previous', ar: 'السابق' })}
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -372,19 +405,19 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
           width: 44,
           height: 44,
           borderRadius: '50%',
-          border: '1px solid rgba(20,31,51,0.1)',
-          background: 'rgba(248,249,251,0.9)',
+          border: '1px solid color-mix(in srgb, var(--color-primary) 10%, transparent)',
+          background: 'color-mix(in srgb, var(--color-background) 90%, transparent)',
           backdropFilter: 'blur(8px)',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           cursor: 'pointer',
-          color: '#141F33',
+          color: 'var(--color-primary)',
           transition: 'all 0.2s ease',
           zIndex: 10,
         }}
-        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = '#141F33'; (e.currentTarget as HTMLElement).style.color = '#F8F9FB'; }}
-        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'rgba(248,249,251,0.9)'; (e.currentTarget as HTMLElement).style.color = '#141F33'; }}
+        onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = 'var(--color-primary)'; (e.currentTarget as HTMLElement).style.color = 'var(--color-primary-foreground)'; }}
+        onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = 'color-mix(in srgb, var(--color-background) 90%, transparent)'; (e.currentTarget as HTMLElement).style.color = 'var(--color-primary)'; }}
         aria-label={t({ en: 'Next', ar: 'التالي' })}
       >
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
@@ -413,7 +446,7 @@ export function CoverflowGallery({ slides, onActiveChange }: CoverflowGalleryPro
               height: 8,
               borderRadius: 999,
               border: 'none',
-              background: i === active ? '#2A5CFF' : 'rgba(20,31,51,0.2)',
+              background: i === active ? 'var(--color-accent)' : 'color-mix(in srgb, var(--color-primary) 20%, transparent)',
               transition: 'all 0.3s ease',
               cursor: 'pointer',
               padding: 0,

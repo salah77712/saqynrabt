@@ -89,17 +89,17 @@ export default function DashboardOverviewPage() {
       {isTrial && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Trial Balance & Status Card */}
-          <div className="lg:col-span-1 p-8 rounded-xl r   text-surface shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[220px]">
+          <div className="lg:col-span-1 p-8 rounded-xl bg-primary text-surface shadow-xl relative overflow-hidden flex flex-col justify-between min-h-[220px]">
             <div className="absolute end-0 top-0 translate-x-1/4 -translate-y-1/4 w-32 h-32 bg-accent/10 rounded-full blur-xl pointer-events-none" />
             <div>
               <div className="flex justify-between items-center mb-4">
-                <span className="text-[9px] font-black uppercase tracking-widest bg-accent/25 text-accent border border-accent/30 px-2 py-0.5 rounded-md">
+                <span className="text-[10px] font-extrabold uppercase tracking-widest bg-accent/25 text-accent border border-accent/30 px-2 py-0.5 rounded-md">
                   {t('Free Trial Active', 'Ø§Ù„Ù†Ø³Ø®Ø© Ø§Ù„ØªØ¬Ø±ÙŠØ¨ÙŠØ© Ù†Ø´Ø·Ø©')}
                 </span>
                 <span className="text-[10px] font-bold text-primary">{t('Illusion Balance', 'Ø±ØµÙŠØ¯ ÙˆÙ‡Ù…ÙŠ')}</span>
               </div>
 <h3 className="text-xs text-primary font-bold uppercase tracking-wider">{t('Trial Credit', 'Ø§Ù„Ø±ØµÙŠØ¯ Ø§Ù„ØªØ¬Ø±ÙŠØ¨ÙŠ')}</h3>
-<p className="text-4xl font-black mt-1.5 font-mono">${trialBalance} <span className="text-sm font-bold text-primary">USD</span></p>
+<p className="text-4xl font-extrabold mt-1.5 font-mono">${trialBalance} <span className="text-sm font-bold text-primary">USD</span></p>
             </div>
             <div className="mt-4 pt-4 border-t border-primary/10 space-y-1 text-primary text-[10px] font-bold">
               <div className="flex justify-between">
@@ -116,7 +116,7 @@ export default function DashboardOverviewPage() {
           {/* Step-by-Step Trial Checklist Guide */}
           <div className="lg:col-span-2 p-8 rounded-xl bg-surface border border-primary/10 shadow-sm space-y-6">
             <div>
-              <h3 className="text-sm font-black text-primary uppercase tracking-wide">{t('Trial Onboarding: Step-by-Step Guide', 'Ø¥Ø±Ø´Ø§Ø¯ Ø§Ù„ØªØ¬Ø±Ø¨Ø©: Ø®Ø·ÙˆØ© Ø¨Ø®Ø·ÙˆØ©')}</h3>
+              <h3 className="text-sm font-extrabold text-primary uppercase tracking-wide">{t('Trial Onboarding: Step-by-Step Guide', 'Ø¥Ø±Ø´Ø§Ø¯ Ø§Ù„ØªØ¬Ø±Ø¨Ø©: Ø®Ø·ÙˆØ© Ø¨Ø®Ø·ÙˆØ©')}</h3>
               <p className="text-[10px] text-primary font-semibold mt-0.5">{t('Follow these 3 steps to configure and test your AI platform.', 'Ø§ØªØ¨Ø¹ Ù‡Ø°Ù‡ Ø§Ù„Ø®Ø·ÙˆØ§Øª Ø§Ù„Ù€ 3 Ù„ØªÙ‡ÙŠØ¦Ø© ÙˆØ§Ø®ØªØ¨Ø§Ø± Ù…Ù†ØµØ© Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ.')}</p>
             </div>
             
@@ -124,14 +124,14 @@ export default function DashboardOverviewPage() {
               {/* Step 1 */}
 <div className="flex items-start gap-4.5 p-3 rounded-xl border border-primary/10 hover:bg-primary transition-colors">
 <span className="text-lg leading-none mt-0.5 select-none">
-{step1Completed ? <Check className="w-5 h-5 text-accent" /> : <span className="font-black text-primary text-lg">1</span>}
+{step1Completed ? <Check className="w-5 h-5 text-accent" /> : <span className="font-extrabold text-primary text-lg">1</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-3">
                     <h4 className={`text-xs font-bold ${step1Completed ? 'text-primary line-through font-semibold' : 'text-primary'}`}>
                       {t('Train Your Chatbot (Upload 1 Document)', 'ØªØ¯Ø±ÙŠØ¨ Ø±ÙˆØ¨ÙˆØª Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© (ØªØ­Ù…ÙŠÙ„ Ù…Ø³ØªÙ†Ø¯ 1)')}
                     </h4>
-                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${step1Completed ? 'bg-surface text-accent border border-accent/10' : 'bg-surface text-accent border border-accent/10'}`}>
+                    <span className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${step1Completed ? 'bg-surface text-accent border border-accent/10' : 'bg-surface text-accent border border-accent/10'}`}>
                       {step1Completed ? t('Completed', 'Ù…ÙƒØªÙ…Ù„') : t('Action Required', 'Ù…Ø·Ù„ÙˆØ¨ Ø¥Ø¬Ø±Ø§Ø¡')}
                     </span>
                   </div>
@@ -139,7 +139,7 @@ export default function DashboardOverviewPage() {
 {t('Upload an employee handbook, policy SOP, or FAQ PDF (Limit: 1 PDF during trial) to populate your chatbot knowledge base.', 'Ù‚Ù… Ø¨ØªØ­Ù…ÙŠÙ„ Ø¯Ù„ÙŠÙ„ Ù…ÙˆØ¸Ù Ø£Ùˆ Ù…Ù„Ù PDF Ù„Ù„Ø³ÙŠØ§Ø³Ø§Øª (Ø§Ù„Ø­Ø¯: 1 Ù…Ù„Ù PDF ÙÙŠ Ø§Ù„ØªØ¬Ø±Ø¨Ø©) Ù„ØªØºØ°ÙŠØ© Ù‚Ø§Ø¹Ø¯Ø© Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯.')}
                   </p>
                     {!step1Completed && (
-                    <Link href="/dashboard/documents" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 inline-block mt-2.5 text-[10px] font-black text-accent hover:underline">
+                    <Link href="/dashboard/documents" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 inline-block mt-2.5 text-[10px] font-extrabold text-accent hover:underline">
                       {t('Upload PDF Document', 'ØªØ­Ù…ÙŠÙ„ Ù…Ø³ØªÙ†Ø¯ PDF')} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
@@ -149,14 +149,14 @@ export default function DashboardOverviewPage() {
               {/* Step 2 */}
               <div className="flex items-start gap-4.5 p-3 rounded-xl border border-primary/10 hover:bg-surface transition-colors">
                 <span className="text-lg leading-none mt-0.5 select-none">
-                  {step2Completed ? <Check className="w-5 h-5 text-accent" /> : <span className="font-black text-primary text-lg">2</span>}
+                  {step2Completed ? <Check className="w-5 h-5 text-accent" /> : <span className="font-extrabold text-primary text-lg">2</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-3">
                     <h4 className={`text-xs font-bold ${step2Completed ? 'text-primary line-through font-semibold' : 'text-primary'}`}>
                       {t('Ask Chatbot Questions (15 Trial Messages)', 'Ø§Ø³Ø£Ù„ Ø±ÙˆØ¨ÙˆØª Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© (15 Ø±Ø³Ø§Ù„Ø© ØªØ¬Ø±ÙŠØ¨ÙŠØ©)')}
                     </h4>
-                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${step2Completed ? 'bg-surface text-accent border border-accent/10' : 'bg-surface text-accent border border-accent/10'}`}>
+                    <span className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${step2Completed ? 'bg-surface text-accent border border-accent/10' : 'bg-surface text-accent border border-accent/10'}`}>
                       {step2Completed ? t('Completed', 'Ù…ÙƒØªÙ…Ù„') : t('Action Required', 'Ù…Ø·Ù„ÙˆØ¨ Ø¥Ø¬Ø±Ø§Ø¡')}
                     </span>
                   </div>
@@ -164,7 +164,7 @@ export default function DashboardOverviewPage() {
 {t('Open the staff knowledge base chatbot and ask a question to test its RAG search accuracy (limit: 15 messages).', 'Ø§ÙØªØ­ Ù…Ø³Ø§Ø¹Ø¯ Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ† ÙˆØ§Ø³Ø£Ù„Ù‡ Ø³Ø¤Ø§Ù„Ø§Ù‹ Ù„Ø§Ø®ØªØ¨Ø§Ø± Ø¯Ù‚Ø© Ø¨Ø­Ø« RAG (Ø§Ù„Ø­Ø¯: 15 Ø±Ø³Ø§Ù„Ø©).')}
                   </p>
                     {!step2Completed && (
-                    <Link href="/dashboard/chat" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 inline-block mt-2.5 text-[10px] font-black text-accent hover:underline">
+                    <Link href="/dashboard/chat" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 inline-block mt-2.5 text-[10px] font-extrabold text-accent hover:underline">
                       {t('Open Knowledge Chatbot', 'ÙØªØ­ Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ù…Ø¹Ø±ÙØ©')} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
@@ -174,14 +174,14 @@ export default function DashboardOverviewPage() {
               {/* Step 3 */}
               <div className="flex items-start gap-4.5 p-3 rounded-xl border border-primary/10 hover:bg-surface transition-colors">
                 <span className="text-lg leading-none mt-0.5 select-none">
-                  {step3Completed ? <Check className="w-5 h-5 text-accent" /> : <span className="font-black text-primary text-lg">3</span>}
+                  {step3Completed ? <Check className="w-5 h-5 text-accent" /> : <span className="font-extrabold text-primary text-lg">3</span>}
                 </span>
                 <div className="flex-1 min-w-0">
                   <div className="flex justify-between items-start gap-3">
                     <h4 className={`text-xs font-bold ${step3Completed ? 'text-primary line-through font-semibold' : 'text-primary'}`}>
                       {t('Try Voice Calls (5 Trial Minutes)', 'ØªØ¬Ø±Ø¨Ø© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„ØµÙˆØªÙŠØ© (5 Ø¯Ù‚Ø§Ø¦Ù‚ ØªØ¬Ø±ÙŠØ¨ÙŠØ©)')}
                     </h4>
-                    <span className={`text-[8px] font-black uppercase px-2 py-0.5 rounded ${step3Completed ? 'bg-surface text-accent border border-accent/10' : 'bg-surface text-accent border border-accent/10'}`}>
+                    <span className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded ${step3Completed ? 'bg-surface text-accent border border-accent/10' : 'bg-surface text-accent border border-accent/10'}`}>
                       {step3Completed ? t('Completed', 'Ù…ÙƒØªÙ…Ù„') : t('Action Required', 'Ù…Ø·Ù„ÙˆØ¨ Ø¥Ø¬Ø±Ø§Ø¡')}
                     </span>
                   </div>
@@ -189,7 +189,7 @@ export default function DashboardOverviewPage() {
 {t('Configure your own PBX, SIP trunk, or virtual number to test the automated front-desk voice reception calls.', 'Ù‚Ù… Ø¨ØªÙ‡ÙŠØ¦Ø© Ø¨Ø¯Ø§Ù„Ø© PBX Ø£Ùˆ Ø®Ø· SIP Ø£Ùˆ Ø§Ù„Ø±Ù‚Ù… Ø§Ù„Ø§ÙØªØ±Ø§Ø¶ÙŠ Ø§Ù„Ø®Ø§Øµ Ø¨Ùƒ Ù„ØªØ¬Ø±Ø¨Ø© Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ø³ØªÙ‚Ø¨Ø§Ù„ Ø§Ù„ØµÙˆØª Ø§Ù„ØªÙ„Ù‚Ø§Ø¦ÙŠ.')}
                   </p>
                     {!step3Completed && (
-                    <Link href="/dashboard/automation" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 inline-block mt-2.5 text-[10px] font-black text-accent hover:underline">
+                    <Link href="/dashboard/automation" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 inline-block mt-2.5 text-[10px] font-extrabold text-accent hover:underline">
                       {t('Configure Voice Setup', 'ØªÙ‡ÙŠØ¦Ø© Ø¥Ø¹Ø¯Ø§Ø¯ Ø§Ù„ØµÙˆØª')} <ArrowRight className="w-3 h-3 inline" />
                     </Link>
                   )}
@@ -204,7 +204,7 @@ export default function DashboardOverviewPage() {
       <OverviewMetrics metrics={metrics} />
 
       <div className="space-y-3">
-        <h3 className="text-[10px] md:text-xs font-black uppercase tracking-wider text-primary">
+        <h3 className="text-[10px] md:text-xs font-extrabold uppercase tracking-wider text-primary">
           {t('Quick Actions', 'Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª Ø³Ø±ÙŠØ¹Ø©')}
         </h3>
         <QuickActions actions={quickActions} />

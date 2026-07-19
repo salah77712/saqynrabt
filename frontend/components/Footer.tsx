@@ -44,9 +44,9 @@ hi: {
 function Logo() {
 return (
 <svg aria-hidden="true" width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SAQYN RABT">
-<rect width="62" height="32" rx="4" className="fill-[#141F33]" />
-<text x="8" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" letterSpacing="1" fill="#F8F9FB">SAQYN</text>
-<text x="68" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="300" letterSpacing="1" className="fill-[#141F33] opacity-40">RABT</text>
+<rect width="62" height="32" rx="4" fill="var(--color-primary)" />
+<text x="8" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" letterSpacing="1" fill="var(--color-primary-foreground)">SAQYN</text>
+<text x="68" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="300" letterSpacing="1" fill="var(--color-primary)" className="opacity-40">RABT</text>
 </svg>
 );
 }
@@ -100,7 +100,7 @@ return (
         </Link>
         <span className="w-px h-3 bg-primary/10" />
         <span className="flex items-center gap-1">
-          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-[#2A5CFF]" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" className="stroke-accent" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
           GDPR Ready
         </span>
         <span className="w-px h-3 bg-primary/10" />
@@ -149,7 +149,7 @@ return (
           />
           <button
             type="submit"
-            className="absolute end-1 top-[4px] bottom-[4px] bg-primary hover:bg-primary/90 text-surface font-bold text-[9px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[28px]"
+            className="absolute end-1 top-[4px] bottom-[4px] bg-primary hover:bg-primary/90 text-surface font-bold text-[10px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[44px] min-w-[44px]"
           >
             {t({ en: 'Submit', ar: 'إرسال' })}
           </button>

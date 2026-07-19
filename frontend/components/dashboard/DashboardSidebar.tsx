@@ -26,15 +26,15 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
-    clientPortal: { en: 'Client Portal', ar: 'Ø¨ÙˆØ§Ø¨Ø© Ø§Ù„Ø¹Ù…ÙŠÙ„' },
-    sandbox: { en: 'Sandbox', ar: 'ÙˆØ¶Ø¹ Ø§Ù„Ø±Ù…Ù„' },
-    demo: { en: 'Demo', ar: 'Ø¹Ø±Ø¶ ØªÙˆØ¶ÙŠØ­ÙŠ' },
-    exit: { en: 'Exit', ar: 'Ø®Ø±ÙˆØ¬' },
-    activeClient: { en: 'Active Client Admin', ar: 'Ù…Ø³Ø¤ÙˆÙ„ Ø§Ù„Ø¹Ù…ÙŠÙ„ Ø§Ù„Ù†Ø´Ø·' },
+    clientPortal: { en: 'Client Portal', ar: 'بوابة العميل' },
+    sandbox: { en: 'Sandbox', ar: 'وضع الرمل' },
+    demo: { en: 'Demo', ar: 'عرض توضيحي' },
+    exit: { en: 'Exit', ar: 'خروج' },
+    activeClient: { en: 'Active Client Admin', ar: 'مسؤول العميل النشط' },
   };
 
   return (
-    <aside className={`fixed inset-y-0 start-0 z-50 bg-surface border-e border-primary/10 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static ${
+    <aside className={`fixed inset-y-0 start-0 z-50 bg-surface/95 dark:bg-background/95 backdrop-blur-xl border-e border-primary/10 flex flex-col justify-between transition-all duration-300 md:translate-x-0 md:static ${
       isCollapsed ? 'md:w-20' : 'md:w-64'
     } ${
       isSidebarOpen
@@ -54,11 +54,11 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
               {isCollapsed ? 'SR' : 'SAQYN RABT'}
             </span>
             {!isCollapsed && (
-              <span className="text-[9px] uppercase tracking-[0.15em] text-primary font-bold truncate">{t(dashboardContent.clientPortal)}</span>
+              <span className="text-[10px] uppercase tracking-[0.15em] text-primary font-bold truncate">{t(dashboardContent.clientPortal)}</span>
             )}
           </Link>
           {mockMode && !isCollapsed && (
-            <span className="rounded-full bg-primary px-2 py-0.5 text-[8px] font-extrabold uppercase tracking-widest text-primary border border-primary/20 shrink-0">
+            <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-primary border border-primary/20 shrink-0">
               {t(dashboardContent.sandbox)}
             </span>
           )}
@@ -77,8 +77,8 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                   isCollapsed ? 'justify-center px-0' : 'px-4 gap-4.5'
                 } ${
                   isActive
-? 'bg-primary border-s-4 border-primary text-primary'
-: 'border-s-4 border-transparent text-primary hover:bg-primary hover:text-primary'
+? 'bg-primary border-s-4 border-accent text-surface'
+: 'border-s-4 border-transparent text-primary hover:bg-primary hover:text-surface'
                 }`}
                 style={{ minHeight: '44px' }}
               >
@@ -86,7 +86,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                 {!isCollapsed && <span className="truncate">{t(item.name)}</span>}
 
                 {item.badge && pendingCount > 0 && (
-                  <span className={`absolute bg-primary text-surface rounded-full text-[9px] font-extrabold flex items-center justify-center ${
+                  <span className={`absolute bg-primary text-surface rounded-full text-[10px] font-extrabold flex items-center justify-center ${
                     isCollapsed ? '-top-1 -end-1 h-4 w-4' : 'end-4 px-2 py-0.5'
                   }`}>
                     {pendingCount}
@@ -102,7 +102,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
         <button
           type="button"
           onClick={onToggleCollapse}
-className="h-8 w-8 rounded-lg border border-primary/10 flex items-center justify-center text-primary hover:text-primary hover:bg-primary transition-colors min-h-[44px] min-w-[44px]"
+className="h-8 w-8 rounded-lg border border-primary/10 flex items-center justify-center text-primary hover:text-surface hover:bg-primary transition-colors min-h-[44px] min-w-[44px]"
           title={isCollapsed ? 'Expand Sidebar' : 'Collapse Sidebar'}
         >
           {isCollapsed ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}

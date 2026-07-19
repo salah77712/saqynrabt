@@ -4,19 +4,19 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "group/button inline-flex shrink-0 items-center justify-center rounded-xl border border-transparent bg-clip-padding text-xs font-bold whitespace-nowrap transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 outline-none select-none focus-visible:border-accent focus-visible:ring-[3px] focus-visible:ring-[#2A5CFF]/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-primary aria-invalid:ring-[3px] aria-invalid:ring-[#141F33]/20 dark:aria-invalid:border-primary/50 dark:aria-invalid:ring-[#141F33]/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+  "group/button relative overflow-hidden inline-flex shrink-0 items-center justify-center rounded-xl border border-transparent bg-clip-padding text-xs font-bold whitespace-nowrap transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 outline-none select-none focus-visible:border-accent focus-visible:ring-[3px] focus-visible:ring-accent/50 disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-primary aria-invalid:ring-[3px] aria-invalid:ring-primary/20 dark:aria-invalid:border-primary/50 dark:aria-invalid:ring-primary/40 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 after:absolute after:inset-0 after:rounded-xl after:bg-white/20 after:scale-0 after:transition-transform after:duration-300 after:content-[''] active:after:scale-100",
   {
     variants: {
       variant: {
         default: "bg-gradient-to-b from-accent to-primary text-surface hover:from-accent hover:to-accent",
         outline:
-          "btn-secondary border-primary/10 bg-surface hover:bg-gradient-to-b hover:from-[#F8F9FB] hover:to-[#F1F3F5] hover:text-primary aria-expanded:bg-surface aria-expanded:text-primary dark:border-surface/20 dark:bg-primary dark:hover:bg-dark-700 dark:hover:text-surface",
+          "btn-secondary border-primary/10 bg-surface hover:bg-gradient-to-b hover:from-background hover:to-background/80 hover:text-primary aria-expanded:bg-surface aria-expanded:text-primary dark:border-surface/20 dark:bg-primary dark:hover:bg-dark-700 dark:hover:text-surface",
         secondary:
           "btn-secondary bg-accent/10 text-accent hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] aria-expanded:bg-accent/10 aria-expanded:text-accent",
         ghost:
           "hover:bg-surface hover:text-primary aria-expanded:bg-surface aria-expanded:text-primary dark:hover:bg-primary",
         destructive:
-          "bg-primary text-primary hover:bg-primary focus-visible:border-primary/40 focus-visible:ring-[#141F33]/20 dark:bg-primary dark:hover:bg-primary dark:focus-visible:ring-[#141F33]/40",
+          "bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 hover:text-red-800 focus-visible:ring-red-300",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

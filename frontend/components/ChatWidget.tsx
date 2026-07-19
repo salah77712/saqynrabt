@@ -88,8 +88,40 @@ export function ChatWidget() {
     }
   };
 
+  const [keyboardOffset, setKeyboardOffset] = React.useState(0);
+  const [isMobileKeyboard, setIsMobileKeyboard] = React.useState(false);
+
+  React.useEffect(() => {
+    const handleResize = () => {
+      if (typeof window !== 'undefined' && window.visualViewport) {
+        const vp = window.visualViewport;
+        const diff = window.innerHeight - vp.height;
+        const offset = Math.max(0, diff);
+        setKeyboardOffset(offset);
+        setIsMobileKeyboard(offset > 0);
+      }
+    };
+    if (typeof window !== 'undefined' && window.visualViewport) {
+      window.visualViewport.addEventListener('resize', handleResize);
+      handleResize();
+    }
+    return () => {
+      if (typeof window !== 'undefined' && window.visualViewport) {
+        window.visualViewport.removeEventListener('resize', handleResize);
+      }
+    };
+  }, []);
+
   return (
-    <div className="fixed bottom-4 end-4 z-50 font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div
+      className="fixed end-4 z-50 font-sans"
+      style={{
+        bottom: isMobileKeyboard
+          ? `calc(env(safe-area-inset-bottom, 0px) + ${keyboardOffset}px + 16px)`
+          : undefined,
+      }}
+      dir={locale === 'ar' ? 'rtl' : 'ltr'}
+    >
       {/* Floating Toggle Button */}
       {!isOpen && (
         <button
@@ -104,13 +136,13 @@ export function ChatWidget() {
 
       {/* Chat Tray */}
       {isOpen && (
-        <div className="w-[380px] h-[500px] bg-white dark:bg-primary rounded-xl border border-primary/10 dark:border-surface/10 shadow-card flex flex-col overflow-hidden border-t-4 border-t-[#1A3BCC]">
+        <div className="w-[calc(100vw-24px)] max-w-[380px] max-h-[500px] h-[calc(100vh-180px)] bg-background dark:bg-primary rounded-xl border border-primary/10 dark:border-surface/10 shadow-card flex flex-col overflow-hidden border-t-4 border-t-accent">
           
           {/* Header */}
-          <div className="bg-white dark:bg-primary border-b border-primary/10 dark:border-surface/10 px-6 py-4 flex items-center justify-between">
+          <div className="bg-background dark:bg-primary border-b border-primary/10 dark:border-surface/10 px-6 py-4 flex items-center justify-between">
             <div>
               <h3 className="text-sm font-extrabold text-primary dark:text-surface">Synthetiq Work - HR Bot</h3>
-              <p className="text-[10px] text-[#1A3BCC] font-bold uppercase tracking-wider mt-0.5">RAG Operations Agent</p>
+              <p className="text-[10px] text-accent font-bold uppercase tracking-wider mt-0.5">RAG Operations Agent</p>
             </div>
             <button
               type="button"
@@ -133,7 +165,7 @@ export function ChatWidget() {
                   className={`max-w-[85%] text-xs font-semibold px-4 py-2.5 rounded-[20px] leading-relaxed ${
                     msg.sender === 'user'
                       ? 'bg-primary text-surface rounded-te-none'
-                      : 'bg-white dark:bg-primary text-primary dark:text-surface border border-primary/5 dark:border-surface/5 rounded-ts-none shadow-sm'
+                      : 'bg-background dark:bg-primary text-primary dark:text-surface border border-primary/5 dark:border-surface/5 rounded-ts-none shadow-sm'
                   }`}
                 >
                   <p>{msg.text}</p>
@@ -149,7 +181,7 @@ export function ChatWidget() {
             ))}
             
             {loading && (
-              <div className="flex items-center gap-1 bg-white dark:bg-primary border border-primary/5 dark:border-surface/5 rounded-[20px] rounded-ts-none px-4 py-2.5 max-w-[80px] shadow-sm">
+              <div className="flex items-center gap-1 bg-background dark:bg-primary border border-primary/5 dark:border-surface/5 rounded-[20px] rounded-ts-none px-4 py-2.5 max-w-[80px] shadow-sm">
                 <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} />
                 <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '150ms' }} />
                 <span className="w-1.5 h-1.5 bg-primary/40 rounded-full animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -160,19 +192,19 @@ export function ChatWidget() {
           </div>
 
           {/* Input Form Footer */}
-          <form onSubmit={handleSendMessage} className="p-4 bg-white dark:bg-primary border-t border-primary/10 dark:border-surface/10 flex items-center gap-3">
+          <form onSubmit={handleSendMessage} className="p-4 bg-background dark:bg-primary border-t border-primary/10 dark:border-surface/10 flex items-center gap-3">
             <input
               type="text"
-              placeholder={t({ en: 'Ask a policy or PTO question...', ar: 'Ø§Ø³Ø£Ù„ Ø¹Ù† Ø§Ù„Ø³ÙŠØ§Ø³Ø§Øª Ø£Ùˆ Ø§Ù„Ø¥Ø¬Ø§Ø²Ø§Øª...' })}
+              placeholder={t({ en: 'Ask a policy or PTO question...', ar: 'اطرح سؤالك هنا...' })}
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
-              className="flex-1 bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-full px-5 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-[#2A5CFF] min-h-[44px] text-primary dark:text-surface"
+              className="flex-1 bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-full px-5 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent min-h-[44px] text-primary dark:text-surface"
               required
             />
             <button
               type="submit"
               disabled={!inputText.trim() || loading}
-              className="w-11 h-11 rounded-full bg-[#1A3BCC] hover:bg-[#1A3BCC]/90 text-white flex items-center justify-center transition-colors min-h-[44px] min-w-[44px]"
+              className="w-11 h-11 rounded-full bg-accent hover:bg-accent/90 text-white flex items-center justify-center transition-colors min-h-[44px] min-w-[44px]"
             >
               <Send className="w-4 h-4" />
             </button>

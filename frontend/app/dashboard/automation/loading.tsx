@@ -8,7 +8,7 @@ return (
 </div>
 <div className="grid gap-8 md:grid-cols-2">
 {[...Array(4)].map((_, i) => (
-<div key={i} className="rounded-xl border border-primary/10 bg-surface p-5 shadow-sm">
+<div key={i} className="rounded-xl border border-primary/10 bg-surface p-8 shadow-sm">
 <div className="flex items-center gap-4 mb-3">
 <div className="h-8 w-8 rounded-lg bg-primary animate-pulse" />
 <div className="h-4 w-32 bg-primary rounded animate-pulse" />

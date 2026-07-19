@@ -55,7 +55,7 @@ return (
 <div className="bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-xl max-w-sm w-full p-8 shadow-2xl space-y-6 relative" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 
 <div>
-<span className="text-[9px] font-extrabold uppercase tracking-widest text-accent">{t({ en: 'Quick Workspace Tour', ar: 'Ø¬ÙˆÙ„Ø© Ø³Ø±ÙŠØ¹Ø© ÙÙŠ Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„' })}</span>
+<span className="text-[10px] font-extrabold uppercase tracking-widest text-accent">{t({ en: 'Quick Workspace Tour', ar: 'Ø¬ÙˆÙ„Ø© Ø³Ø±ÙŠØ¹Ø© ÙÙŠ Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„' })}</span>
 <h3 className="text-lg font-extrabold text-primary dark:text-surface mt-1.5">{current.title}</h3>
 <p className="text-xs font-semibold text-primary/60 dark:text-surface/60 mt-3 leading-relaxed">{current.body}</p>
 </div>

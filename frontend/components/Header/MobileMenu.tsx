@@ -17,11 +17,45 @@ interface MobileMenuProps {
 export function MobileMenu({ isOpen, onClose, navItems, moreLinks, calendlyUrl }: MobileMenuProps) {
   const { locale } = useLocale();
   const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (!isOpen) return;
+
+    const container = containerRef.current;
+    if (!container) return;
+
+    const focusable = container.querySelectorAll<HTMLElement>(
+      'a[href], button, [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable.length > 0) focusable[0].focus();
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (e.key === 'Tab') {
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-surface dark:bg-primary backdrop-blur-md px-6 py-6 flex flex-col justify-between animate-fadeIn">
+    <div ref={containerRef} className="fixed inset-0 z-50 bg-surface dark:bg-primary backdrop-blur-md px-6 py-6 flex flex-col justify-between animate-fadeIn">
       <div>
         <div className="flex items-center justify-between mb-8">
           <span className="text-sm font-black text-primary dark:text-surface uppercase tracking-wider">

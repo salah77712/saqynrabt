@@ -23,7 +23,7 @@ return (
 {demoTasks.map((t, idx) => (
 <div key={idx} className="flex justify-between items-center text-xs font-bold p-3 border border-primary/10 rounded-xl bg-surface">
 <span>{t.request}</span>
-<span className="bg-surface text-primary text-[8px] font-extrabold uppercase px-2 py-0.5 rounded-full border border-primary/10">
+<span className="bg-surface text-primary text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full border border-primary/10">
 {t.status}
 </span>
 </div>

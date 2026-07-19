@@ -37,7 +37,7 @@ export default function ABTestingSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'A/B Testing', ar: 'Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª A/B Ù„Ù„Ù…ÙˆØ¯ÙŠÙ„Ø§Øª' })}</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'A/B Testing', ar: 'Ø§Ø®ØªØ¨Ø§Ø±Ø§Øª A/B Ù„Ù„Ù…ÙˆØ¯ÙŠÙ„Ø§Øª' })}</h1>
         <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Compare model versions by splitting traffic between them.', ar: 'ØªÙƒÙˆÙŠÙ† ØªÙ‚Ø³ÙŠÙ… Ø§Ù„Ø²ÙˆØ§Ø± Ø¨ÙŠÙ† Ø§Ù„Ù…ÙˆØ¯ÙŠÙ„ Ø§Ù„Ù‚ÙŠØ§Ø³ÙŠ ÙˆØ§Ù„Ù…ÙˆØ¯ÙŠÙ„ Ø§Ù„Ù…Ø®ØµØµ.' })}</p>
       </div>
 

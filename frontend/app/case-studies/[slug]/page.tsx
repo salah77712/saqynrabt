@@ -129,7 +129,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
 
           {/* Right Columns: Metrics Panel */}
           <div className="space-y-8 lg:sticky lg:top-24">
-            <div className="bg-white border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
+            <div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm shadow-card">
               <h3 className="text-base font-extrabold text-primary mb-6">
                 {t({ en: 'Performance Metrics', ar: 'مقاييس الأداء المحققة' })}
               </h3>

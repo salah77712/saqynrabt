@@ -54,7 +54,7 @@ export default function RolesSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-xl font-extrabold text-primary">{t({ en: 'Roles & Permissions', ar: 'Ø£Ø¯ÙˆØ§Ø± Ø§Ù„ÙØ±ÙŠÙ‚ ÙˆØµÙ„Ø§Ø­ÙŠØ§Øª Ø§Ù„Ø¯Ø®ÙˆÙ„' })}</h1>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Roles & Permissions', ar: 'Ø£Ø¯ÙˆØ§Ø± Ø§Ù„ÙØ±ÙŠÙ‚ ÙˆØµÙ„Ø§Ø­ÙŠØ§Øª Ø§Ù„Ø¯Ø®ÙˆÙ„' })}</h1>
         <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Control what each team member can see and do.', ar: 'ØªØ­Ø¯ÙŠØ¯ Ø£Ø¯ÙˆØ§Ø± Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù…Ø®ØµØµØ© ÙˆØªØ¹ÙŠÙŠÙ† ØµÙ„Ø§Ø­ÙŠØ§Øª Ø§Ù„Ù†Ø¸Ø§Ù….' })}</p>
       </div>
 
@@ -116,7 +116,7 @@ export default function RolesSettingsPage() {
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {r.permissions.map((p) => (
-                  <span key={p} className="bg-surface text-accent border border-accent/10 font-mono text-[8px] font-extrabold px-2 py-0.5 rounded-full">
+                  <span key={p} className="bg-surface text-accent border border-accent/10 font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full">
                     {p}
                   </span>
                 ))}

@@ -128,7 +128,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
     <div className="max-w-6xl mx-auto p-8 space-y-6 animate-fadeIn">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-xl font-extrabold text-primary flex items-center gap-3">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary flex items-center gap-3">
             <ShieldSvg />{t({ en: 'Security Incidents', ar: 'حوادث الأمن السيبراني' })}
           </h1>
           <p className="text-xs text-primary font-medium mt-1">{t({ en: 'Incident management for Qatari Law No. 13 of 2016 compliance', ar: 'إدارة الحوادث وفقاً للقانون القطري رقم 13 لسنة 2016' })}</p>

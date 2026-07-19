@@ -1,11 +1,13 @@
 ﻿'use client';
 
 import React, { useState, useCallback } from 'react';
+import { Search } from 'lucide-react';
 import { useLocale } from '../../providers';
 import { Card } from '@/components/shadcn/card';
 import { Button } from '@/components/shadcn/button';
 import { Badge } from '../../../components/ui/Badge';
 import { TeamTable } from '../../../components/dashboard/TeamTable';
+import { LoadingSpinner } from '../../../components/ui/LoadingSpinner';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/shadcn/dialog';
 import { Input } from '../../../components/ui/Input';
 import { Skeleton, SkeletonCard, SkeletonTable } from '../../../components/ui/Skeleton';
@@ -32,9 +34,24 @@ const isMobile = useMediaQuery('(max-width: 767px)');
 const [inviteModalOpen, setInviteModalOpen] = useState(false);
 const [inviteName, setInviteName] = useState('');
 const [inviteEmail, setInviteEmail] = useState('');
+const [inviteErrors, setInviteErrors] = useState<{ name?: string; email?: string }>({});
+const [inviteSubmitting, setInviteSubmitting] = useState(false);
+const [teamSearch, setTeamSearch] = useState('');
 
 const pending = data?.pending ?? [];
 const active = data?.active ?? [];
+
+const q = teamSearch.toLowerCase();
+const filteredPending = pending.filter(m =>
+  m.name.toLowerCase().includes(q) ||
+  m.email.toLowerCase().includes(q) ||
+  m.role.toLowerCase().includes(q)
+);
+const filteredActive = active.filter(m =>
+  m.name.toLowerCase().includes(q) ||
+  m.email.toLowerCase().includes(q) ||
+  m.role.toLowerCase().includes(q)
+);
 
 const handleAction = useCallback(async (id: string, action: 'approve' | 'suspend' | 'toggle-admin', currentRole?: string) => {
 try {
@@ -68,28 +85,40 @@ addToast('Action failed. Please try again.', 'error');
 }
 }, [refetch, addToast]);
 
-const handleSendInvite = useCallback(async () => {
-if (!inviteName || !inviteEmail) return;
+const validateInvite = () => {
+    const errors: { name?: string; email?: string } = {};
+    if (!inviteName.trim()) errors.name = t('Name is required', 'Ø§Ù„Ø§Ø³Ù… Ù…Ø·Ù„ÙˆØ¨');
+    if (!inviteEmail.trim()) errors.email = t('Email is required', 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ù…Ø·Ù„ÙˆØ¨');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inviteEmail)) errors.email = t('Invalid email format', 'ØªÙ†Ø³ÙŠÙ‚ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ ØºÙŠØ± ØµØ§Ù„Ø­');
+    setInviteErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
 
-try {
-const token = await (window as any).Clerk?.session?.getToken();
-const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-if (token) headers['Authorization'] = `Bearer ${token}`;
-await fetch('/api/approvals', {
-method: 'POST',
-headers,
-body: JSON.stringify({ action: 'invite', name: inviteName, email: inviteEmail }),
-});
-addToast('Invitation sent successfully', 'success');
-refetch();
-} catch {
-addToast('Failed to send invitation. Please try again.', 'error');
-}
+  const handleSendInvite = useCallback(async () => {
+    if (!validateInvite()) return;
+    setInviteSubmitting(true);
 
-setInviteModalOpen(false);
-setInviteName('');
-setInviteEmail('');
-}, [inviteName, inviteEmail, refetch, addToast]);
+    try {
+      const token = await (window as any).Clerk?.session?.getToken();
+      const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+      if (token) headers['Authorization'] = `Bearer ${token}`;
+      await fetch('/api/approvals', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ action: 'invite', name: inviteName.trim(), email: inviteEmail.trim() }),
+      });
+      addToast('Invitation sent successfully', 'success');
+      refetch();
+      setInviteModalOpen(false);
+      setInviteName('');
+      setInviteEmail('');
+      setInviteErrors({});
+    } catch {
+      addToast('Failed to send invitation. Please try again.', 'error');
+    }
+
+    setInviteSubmitting(false);
+  }, [inviteName, inviteEmail, refetch, addToast]);
 
 const renderMobileCard = (m: Employee) => (
 <div key={m.id} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
@@ -158,34 +187,47 @@ return (
 <main id="main-content" className="space-y-6">
 <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8 mb-6">
 <div>
-<h1 className="text-xl md:text-2xl font-black text-primary dark:text-surface">
-{t('Team', 'Ø¯Ù„ÙŠÙ„ Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„')}
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
+          {t('Team', 'Ø¯Ù„ÙŠÙ„ Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„')}
 </h1>
 <p className="text-[10px] md:text-xs text-primary font-bold">
 {t('Invite teammates, manage roles, and approve access requests.', 'Ø¥Ø¯Ø§Ø±Ø© Ø¶ÙˆØ§Ø¨Ø· Ø§Ù„ÙˆØµÙˆÙ„ Ù„Ù„ÙØ±ÙŠÙ‚ ÙˆØªÙ†Ø³ÙŠÙ‚ Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†.')}
 </p>
 </div>
-<Button variant="default" onClick={() => setInviteModalOpen(true)} className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] w-full md:w-auto">
-{t('Invite Colleague', 'Ø¯Ø¹ÙˆØ© Ø²Ù…ÙŠÙ„')}
-</Button>
-</div>
+        <div className="flex gap-4 w-full md:w-auto">
+          <div className="relative flex-1 md:w-64">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-primary/40" />
+            <input
+              type="text"
+              value={teamSearch}
+              onChange={(e) => setTeamSearch(e.target.value)}
+              placeholder={t('Search team members...', 'Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø£Ø¹Ø¶Ø§Ø¡ Ø§Ù„ÙØ±ÙŠÙ‚...')}
+              className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl pl-9 pr-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent"
+              aria-label={t('Search team members', 'Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø£Ø¹Ø¶Ø§Ø¡ Ø§Ù„ÙØ±ÙŠÙ‚')}
+            />
+          </div>
+          <Button variant="default" onClick={() => { setInviteModalOpen(true); setInviteErrors({}); }} className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] whitespace-nowrap">
+            {t('Invite Colleague', 'Ø¯Ø¹ÙˆØ© Ø²Ù…ÙŠÙ„')}
+          </Button>
+        </div>
+      </div>
 
-<div className="space-y-6">
+      <div className="space-y-6">
 {pending.length > 0 ? (
-<div className="space-y-3">
-<h3 className="text-xs md:text-sm font-black uppercase tracking-wider text-accent">
-{t('Pending Approvals', 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©')} ({pending.length})
+            <div className="space-y-3">
+<h3 className="text-lg font-extrabold text-accent">
+                {t('Pending Approvals', 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©')} ({filteredPending.length})
 </h3>
-{isMobile ? (
-<div className="space-y-3">{pending.map(renderMobileCard)}</div>
-) : (
-<TeamTable members={pending} onAction={handleAction} />
-)}
+          {isMobile ? (
+            <div className="space-y-3">{filteredPending.map(renderMobileCard)}</div>
+          ) : (
+            <TeamTable members={filteredPending} onAction={handleAction} />
+          )}
 </div>
 ) : (
 <div className="space-y-3">
-<h3 className="text-xs md:text-sm font-black uppercase tracking-wider text-accent">
-{t('Pending Approvals', 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©')}
+<h3 className="text-lg font-extrabold text-accent">
+            {t('Pending Approvals', 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©')}
 </h3>
 <p className="text-xs text-primary">
 {t('No pending approvals.', 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ù…ÙˆØ§ÙÙ‚Ø§Øª Ù…Ø¹Ù„Ù‚Ø©.')}
@@ -194,16 +236,16 @@ return (
 )}
 
 <div className="space-y-3">
-<h3 className="text-xs md:text-sm font-black uppercase tracking-wider text-navy dark:text-surface">
-{t('Active Members', 'Ø§Ù„Ø£Ø¹Ø¶Ø§Ø¡ Ø§Ù„Ù†Ø´Ø·ÙˆÙ†')} ({active.length})
+<h3 className="text-lg font-extrabold text-navy dark:text-surface">
+            {t('Active Members', 'Ø§Ù„Ø£Ø¹Ø¶Ø§Ø¡ Ø§Ù„Ù†Ø´Ø·ÙˆÙ†')} ({filteredActive.length})
 </h3>
-{active.length === 0 ? (
-<EmptyTeamState onInvite={() => setInviteModalOpen(true)} />
-) : isMobile ? (
-<div className="space-y-3">{active.map(renderMobileCard)}</div>
-) : (
-<TeamTable members={active} onAction={handleAction} />
-)}
+          {filteredActive.length === 0 && active.length === 0 ? (
+            <EmptyTeamState onInvite={() => setInviteModalOpen(true)} />
+          ) : isMobile ? (
+            <div className="space-y-3">{filteredActive.map(renderMobileCard)}</div>
+          ) : (
+            <TeamTable members={filteredActive} onAction={handleAction} />
+          )}
 </div>
 </div>
 
@@ -212,19 +254,54 @@ return (
 <DialogHeader>
 <DialogTitle>{t('Invite Colleague', 'Ø¯Ø¹ÙˆØ© Ø²Ù…ÙŠÙ„')}</DialogTitle>
 </DialogHeader>
-<div className="space-y-4">
-<div>
-<label className="block text-[10px] font-bold text-primary uppercase mb-1">{t('Full Name', 'Ø§Ù„Ø§Ø³Ù… Ø§Ù„ÙƒØ§Ù…Ù„')}</label>
-<Input value={inviteName} onChange={(e) => setInviteName(e.target.value)} placeholder="Sara Al-Thani" className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold" />
-</div>
-<div>
-<label className="block text-[10px] font-bold text-primary uppercase mb-1">{t('Email Address', 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ')}</label>
-<Input value={inviteEmail} onChange={(e) => setInviteEmail(e.target.value)} placeholder="sara@company.com" className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold" />
-</div>
-<Button variant="default" className="w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" onClick={handleSendInvite}>
-{t('Send Invitation', 'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø¯Ø¹ÙˆØ©')}
-</Button>
-</div>
+        <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleSendInvite(); }} noValidate>
+          <div>
+            <label htmlFor="invite-name" className="block text-[10px] font-bold text-primary uppercase mb-1">{t('Full Name', 'Ø§Ù„Ø§Ø³Ù… Ø§Ù„ÙƒØ§Ù…Ù„')}</label>
+            <Input
+              id="invite-name"
+              name="invite-name"
+              value={inviteName}
+              onChange={(e) => { setInviteName(e.target.value); setInviteErrors(prev => ({ ...prev, name: undefined })); }}
+              placeholder="Sara Al-Thani"
+              error={inviteErrors.name}
+              aria-invalid={!!inviteErrors.name}
+              aria-describedby={inviteErrors.name ? 'invite-name-error' : undefined}
+              className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold"
+            />
+            {inviteErrors.name && <p id="invite-name-error" className="mt-1.5 text-xs font-bold text-red-500">{inviteErrors.name}</p>}
+          </div>
+          <div>
+            <label htmlFor="invite-email" className="block text-[10px] font-bold text-primary uppercase mb-1">{t('Email Address', 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ')}</label>
+            <Input
+              id="invite-email"
+              name="invite-email"
+              type="email"
+              value={inviteEmail}
+              onChange={(e) => { setInviteEmail(e.target.value); setInviteErrors(prev => ({ ...prev, email: undefined })); }}
+              placeholder="sara@company.com"
+              error={inviteErrors.email}
+              aria-invalid={!!inviteErrors.email}
+              aria-describedby={inviteErrors.email ? 'invite-email-error' : undefined}
+              className="min-h-[44px] rounded-xl px-4 py-2 text-xs font-semibold"
+            />
+            {inviteErrors.email && <p id="invite-email-error" className="mt-1.5 text-xs font-bold text-red-500">{inviteErrors.email}</p>}
+          </div>
+          <Button
+            variant="default"
+            type="submit"
+            disabled={inviteSubmitting}
+            className="w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] flex items-center justify-center gap-2"
+          >
+            {inviteSubmitting ? (
+              <>
+                <LoadingSpinner size="sm" />
+                {t('Sending...', 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...')}
+              </>
+            ) : (
+              t('Send Invitation', 'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø¯Ø¹ÙˆØ©')
+            )}
+          </Button>
+        </form>
 </DialogContent>
 </Dialog>
 </main>
