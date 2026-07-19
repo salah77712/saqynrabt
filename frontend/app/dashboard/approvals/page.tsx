@@ -19,45 +19,50 @@ export default function ApprovalsDashboardPage() {
   const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
-  const [employees, setEmployees] = useState<EmployeeItem[]>([]);
-  const [maxEmployees, setMaxEmployees] = useState(50);
-  const [loading, setLoading] = useState(false);
-  const [approvingId, setApprovingId] = useState<string | null>(null);
+const [employees, setEmployees] = useState<EmployeeItem[]>([]);
+const [maxEmployees, setMaxEmployees] = useState(50);
+const [loading, setLoading] = useState(false);
+const [approvingId, setApprovingId] = useState<string | null>(null);
+const [lastUpdated, setLastUpdated] = useState<number | null>(null);
 
-  const fetchEmployeesAndEntitlements = () => {
-    setLoading(true);
+const fetchEmployeesAndEntitlements = () => {
+setLoading(true);
 
-    const fetchEmployeesPromise = fetch('/api/employees').then(res => res.json());
-    const fetchEntitlementsPromise = fetch('/api/entitlements').then(res => res.json());
+const fetchEmployeesPromise = fetch('/api/employees').then(res => res.json());
+const fetchEntitlementsPromise = fetch('/api/entitlements').then(res => res.json());
 
-    Promise.all([fetchEmployeesPromise, fetchEntitlementsPromise])
-    .then(([empData, entData]) => {
-      if (Array.isArray(empData)) {
-        setEmployees(empData);
-      } else if (empData && Array.isArray(empData.employees)) {
-        setEmployees(empData.employees);
-      }
+Promise.all([fetchEmployeesPromise, fetchEntitlementsPromise])
+.then(([empData, entData]) => {
+if (Array.isArray(empData)) {
+setEmployees(empData);
+} else if (empData && Array.isArray(empData.employees)) {
+setEmployees(empData.employees);
+}
 
-      if (entData && entData.max_employees) {
-        setMaxEmployees(entData.max_employees);
-      }
-    })
-    .catch(err => {
-      console.warn('Failed to fetch data, loading mock items:', err);
-      setEmployees([
-        { clerk_user_id: 'u-1', email: 'ahmed@alsafa.qa', name: 'Ahmed Al-Thani', status: 'pending', role: 'member' },
-        { clerk_user_id: 'u-2', email: 'fatima@alsafa.qa', name: 'Fatima Al-Harazi', status: 'pending', role: 'member' },
-        { clerk_user_id: 'u-3', email: 'sara@alsafa.qa', name: 'Sara Al-Mansoori', status: 'active', role: 'member' },
-        { clerk_user_id: 'u-4', email: 'john@alsafa.qa', name: 'John Doe', status: 'active', role: 'member' },
-      ]);
-      setMaxEmployees(3);
-    })
-    .finally(() => setLoading(false));
-  };
+if (entData && entData.max_employees) {
+setMaxEmployees(entData.max_employees);
+}
+setLastUpdated(Date.now());
+})
+.catch(err => {
+console.warn('Failed to fetch data, loading mock items:', err);
+setEmployees([
+{ clerk_user_id: 'u-1', email: 'ahmed@alsafa.qa', name: 'Ahmed Al-Thani', status: 'pending', role: 'member' },
+{ clerk_user_id: 'u-2', email: 'fatima@alsafa.qa', name: 'Fatima Al-Harazi', status: 'pending', role: 'member' },
+{ clerk_user_id: 'u-3', email: 'sara@alsafa.qa', name: 'Sara Al-Mansoori', status: 'active', role: 'member' },
+{ clerk_user_id: 'u-4', email: 'john@alsafa.qa', name: 'John Doe', status: 'active', role: 'member' },
+]);
+setMaxEmployees(3);
+setLastUpdated(Date.now());
+})
+.finally(() => setLoading(false));
+};
 
-  useEffect(() => {
-    fetchEmployeesAndEntitlements();
-  }, []);
+useEffect(() => {
+fetchEmployeesAndEntitlements();
+const interval = setInterval(fetchEmployeesAndEntitlements, 20000);
+return () => clearInterval(interval);
+}, []);
 
   const activeCount = employees.filter(e => e.status === 'active').length;
   const isLimitReached = activeCount >= maxEmployees;
@@ -113,22 +118,27 @@ export default function ApprovalsDashboardPage() {
         <div className="mt-4 p-8 rounded-xl border border-primary/10 flex items-center justify-between gap-8 text-xs font-semibold bg-surface">
           <div className="flex items-center gap-3">
             <Users className="w-5 h-5 text-primary" />
-            <span className="text-primary">
-              {t({ en: 'Plan Active Limits:', ar: 'Ø­Ø¯ÙˆØ¯ Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ† Ø§Ù„Ù†Ø´Ø·ÙŠÙ†:' })} <strong>{activeCount} / {maxEmployees}</strong>
-            </span>
+<span className="text-primary">
+{t({ en: 'Plan Active Limits:', ar: 'حد الموظفين النشطين:' })} <strong>{activeCount} / {maxEmployees}</strong>
+</span>
           </div>
-          {isLimitReached && (
-            <span className="text-accent font-extrabold flex items-center gap-1">
-              {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰ Ù„Ù„Ù…ÙˆØ¸ÙÙŠÙ†. Ù‚Ù… Ø¨Ø§Ù„ØªØ±Ù‚ÙŠØ©.' })}
-            </span>
-          )}
-        </div>
+{isLimitReached && (
+<span className="text-accent font-extrabold flex items-center gap-1">
+{t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول لحد الخطة. ترقية لإضافة المزيد.' })}
+</span>
+)}
+{lastUpdated && (
+<div className="text-[10px] font-bold text-primary/60 flex items-center gap-1">
+{t({en: 'Last updated:', ar: 'آخر تحديث:'})} {new Date(lastUpdated).toLocaleTimeString()}
+</div>
+)}
+</div>
       </div>
 
       {/* Pending Employees List */}
       <div className="bg-surface border border-primary/10 rounded-xl shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-primary/10 bg-surface">
-          <h2 className="text-sm font-extrabold text-primary uppercase tracking-widest">{t({ en: 'Pending Requests', ar: 'Ø·Ù„Ø¨Ø§Øª Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©' })}</h2>
+          <h2 className="text-sm font-extrabold text-primary uppercase tracking-widest">{t({ en: 'Pending Requests', ar: 'طلبات الدخول المعلقة' })}</h2>
         </div>
 
         {loading ? (
@@ -139,7 +149,7 @@ export default function ApprovalsDashboardPage() {
           <div className="py-12 flex flex-col items-center justify-center text-center">
             <Users className="w-8 h-8 text-primary opacity-40 mb-3" />
             <p className="text-sm font-bold text-primary">
-              {t({ en: 'No pending access requests.', ar: 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø·Ù„Ø¨Ø§Øª Ø¯Ø®ÙˆÙ„ Ù…Ø¹Ù„Ù‚Ø©.' })}
+              {t({ en: 'No pending access requests.', ar: 'لا توجد طلبات دخول معلقة.' })}
             </p>
           </div>
         ) : (
@@ -149,8 +159,8 @@ export default function ApprovalsDashboardPage() {
                 <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
                   <th className="px-6 py-4">{t({ en: 'Name', ar: 'Ø§Ù„Ø§Ø³Ù…' })}</th>
                   <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</th>
-                  <th className="px-6 py-4">{t({ en: 'Role', ar: 'Ø§Ù„Ø¯ÙˆØ±' })}</th>
-                  <th className="px-6 py-4 text-center">{t({ en: 'Action', ar: 'Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Role', ar: 'الدور' })}</th>
+                  <th className="px-6 py-4 text-center">{t({ en: 'Action', ar: 'الإجراء' })}</th>
                 </tr>
               </thead>
               <tbody className="divide-[#141F33]/10 text-sm">
@@ -166,7 +176,7 @@ export default function ApprovalsDashboardPage() {
                           disabled={isLimitReached || approvingId !== null}
                           className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 bg-primary hover:bg-primary text-surface disabled:opacity-40 disabled:cursor-not-allowed"
                         >
-                          {approvingId === emp.clerk_user_id ? t({ en: 'Approving...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø©...' }) : t({ en: 'Approve Access', ar: 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø©' })}
+                          {approvingId === emp.clerk_user_id ? t({ en: 'Approving...', ar: 'جاري الموافقة...' }) : t({ en: 'Approve Access', ar: 'الموافقة' })}
                         </button>
                         {isLimitReached && (
                           <div className="absolute bottom-full start-1/2 -translate-x-1/2 bg-primary text-surface text-[10px] font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-3 whitespace-nowrap shadow-md">
@@ -186,12 +196,12 @@ export default function ApprovalsDashboardPage() {
       {/* Active Employees List */}
       <div className="bg-surface border border-primary/10 rounded-xl shadow-sm overflow-hidden">
         <div className="px-6 py-5 border-b border-primary/10 bg-surface">
-          <h2 className="text-sm font-extrabold text-primary uppercase tracking-widest">{t({ en: 'Authorized Active Staff', ar: 'Ø§Ù„Ù…ÙˆØ¸ÙÙˆÙ† Ø§Ù„Ù†Ø´Ø·ÙˆÙ† Ø§Ù„Ù…Ø¹ØªÙ…Ø¯ÙˆÙ†' })}</h2>
+          <h2 className="text-sm font-extrabold text-primary uppercase tracking-widest">{t({ en: 'Authorized Active Staff', ar: 'الموظفون النشطون المعتمدون' })}</h2>
         </div>
 
         {activeEmployees.length === 0 ? (
           <div className="py-8 text-center text-xs font-bold text-primary">
-            {t({ en: 'No active staff listed.', ar: 'Ù„Ø§ ÙŠÙˆØ¬Ø¯ Ù…ÙˆØ¸ÙÙˆÙ† Ù†Ø´Ø·ÙˆÙ† Ø­Ø§Ù„ÙŠÙ‹Ø§.' })}
+            {t({ en: 'No active staff listed.', ar: 'لا يوجد موظفون نشطون حالياً.' })}
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -200,7 +210,7 @@ export default function ApprovalsDashboardPage() {
                 <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
                   <th className="px-6 py-4">{t({ en: 'Name', ar: 'Ø§Ù„Ø§Ø³Ù…' })}</th>
                   <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</th>
-                  <th className="px-6 py-4">{t({ en: 'Status', ar: 'Ø§Ù„Ø­Ø§Ù„Ø©' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Status', ar: 'الحالة' })}</th>
                 </tr>
               </thead>
               <tbody className="divide-[#141F33]/10 text-sm">
@@ -210,7 +220,7 @@ export default function ApprovalsDashboardPage() {
                     <td className="px-6 py-4 font-semibold text-primary">{emp.email}</td>
                     <td className="px-6 py-4">
                       <span className="bg-accent text-surface text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
-                        {t({ en: 'Active', ar: 'Ù†Ø´Ø·' })}
+                        {t({ en: 'Active', ar: 'نشط' })}
                       </span>
                     </td>
                   </tr>

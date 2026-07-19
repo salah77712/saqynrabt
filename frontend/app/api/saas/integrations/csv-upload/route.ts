@@ -5,7 +5,7 @@ import { safeGetToken } from "@/lib/safe-auth";
 export async function POST(request: Request) {
   const token = await safeGetToken();
   if (!token) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   }
   try {
     const formData = await request.formData();
@@ -13,7 +13,7 @@ export async function POST(request: Request) {
     const tenantId = (formData.get("tenantId") as string) || "demo-tenant-id";
 
     if (!file) {
-      return NextResponse.json({ message: "No file uploaded" }, { status: 400 });
+      return NextResponse.json({ message: "No file uploaded" }, { status: 400, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     const text = await file.text();
@@ -59,8 +59,8 @@ export async function POST(request: Request) {
       importedCount++;
     }
 
-    return NextResponse.json({ success: true, count: importedCount });
+    return NextResponse.json({ success: true, count: importedCount }, { headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   } catch (error: any) {
-    return NextResponse.json({ message: error.message || "CSV Import Failed" }, { status: 500 });
+    return NextResponse.json({ message: error.message || "CSV Import Failed" }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   }
 }

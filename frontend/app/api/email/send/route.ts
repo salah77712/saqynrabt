@@ -7,7 +7,7 @@ export async function POST(request: Request) {
   try {
     const token = await safeGetToken();
     if (!token) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     // Rate limiting: 50 emails per user per day
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
         const emailKey = `email_limit:${token.substring(0, 16)}`;
         const count = await redis.get(emailKey);
         if (count && typeof count === 'number' && count >= 50) {
-          return NextResponse.json({ success: false, error: 'Daily email limit reached (50/day).' }, { status: 429 });
+          return NextResponse.json({ success: false, error: 'Daily email limit reached (50/day).' }, { status: 429, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
         }
         await redis.incr(emailKey);
         await redis.expire(emailKey, 86400);
@@ -32,7 +32,7 @@ export async function POST(request: Request) {
     if (!apiKey) {
       return NextResponse.json(
         { success: false, error: 'Email service is not configured.' },
-        { status: 500 }
+        { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }
       );
     }
 
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
     if (!to || !subject || !html) {
       return NextResponse.json(
         { success: false, error: 'Missing required fields: to, subject, html.' },
-        { status: 400 }
+        { status: 400, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }
       );
     }
 
@@ -53,7 +53,7 @@ export async function POST(request: Request) {
     if (allowedDomains.length > 0) {
       const recipientDomain = to.split('@')[1]?.toLowerCase();
       if (!recipientDomain || !allowedDomains.some(d => recipientDomain === d || recipientDomain.endsWith('.' + d))) {
-        return NextResponse.json({ success: false, error: 'Recipient domain not allowed.' }, { status: 403 });
+        return NextResponse.json({ success: false, error: 'Recipient domain not allowed.' }, { status: 403, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
       }
     }
 
@@ -64,12 +64,12 @@ export async function POST(request: Request) {
       html: html,
     });
 
-    return NextResponse.json({ success: true, data });
+    return NextResponse.json({ success: true, data }, { headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   } catch (error) {
     console.error('Email send error:', error);
     return NextResponse.json(
       { success: false, error: 'Failed to send email.' },
-      { status: 500 }
+      { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }
     );
   }
 }

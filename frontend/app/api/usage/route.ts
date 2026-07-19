@@ -6,12 +6,12 @@ export async function GET() {
     const token = await safeGetToken();
 
     if (!token) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
     if (!apiBase) {
-      return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
+      return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     const response = await fetch(
@@ -34,12 +34,12 @@ export async function GET() {
       documents_used: data.documents_used ?? 0,
       documents_limit: data.limits?.max_documents ?? 5,
     };
-    return NextResponse.json(flattened, { status: response.status });
+    return NextResponse.json(flattened, { status: response.status, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   } catch (error) {
     console.error("BFF error:", error);
     return NextResponse.json(
       { error: "Internal Server Error" },
-      { status: 500 }
+      { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }
     );
   }
 }

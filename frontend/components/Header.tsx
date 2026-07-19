@@ -109,7 +109,7 @@ className="hidden md:inline-flex bg-primary hover:bg-primary text-surface font-b
 <UserButton showName={false} userProfileMode="navigation" userProfileUrl="https://accounts.saqynrabt.com/user">
 <UserButton.MenuItems>
 <UserButton.Link
-label={t("Dashboard", "Tableau de Bord", "Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ…", "à¤¡à¥ˆà¤¶à¤¬à¥‹à¤°à¥à¤¡")}
+label={t("Dashboard", "Tableau de Bord", "لوحة التحكم", "डैशबोर्ड")}
 labelIcon={
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" style={{ width: '14px', height: '14px' }} aria-hidden="true">
 <rect x="3" y="3" width="7" height="9" />

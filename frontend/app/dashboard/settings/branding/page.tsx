@@ -1,8 +1,7 @@
 ﻿'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { useAuth } from '@clerk/nextjs';
-import { useLocale, useEntitlements } from '../../../providers';
+import { useLocale } from '../../../providers';
 import { useGlobalToast } from '../../../../lib/toast';
 import { useUnsavedChanges } from '../../../../hooks/useUnsavedChanges';
 import { UnsavedChangesModal } from '../../../../components/settings/UnsavedChangesModal';
@@ -10,15 +9,12 @@ import { useKeyboardShortcut } from '../../../../hooks/useKeyboardShortcut';
 
 export default function BrandingSettingsPage() {
   const { locale } = useLocale();
-  const { mockMode } = useEntitlements();
-  const { getToken, isLoaded: authLoaded } = useAuth();
   const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const formRef = useRef<HTMLFormElement>(null);
   const { isDirty, setDirty, markClean, showModal, confirmNavigation, cancelNavigation } = useUnsavedChanges();
 
-  const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [branding, setBranding] = useState({
@@ -30,26 +26,18 @@ export default function BrandingSettingsPage() {
     chat_bot_avatar_url: '',
   });
 
-  useEffect(() => {
-    if (authLoaded && !mockMode) {
-      getToken({ template: 'saqyn-jwt' })
-        .then(token => setJwtToken(token))
-        .catch(err => console.error('Failed to get token:', err));
-    }
-  }, [authLoaded, mockMode, getToken]);
+  const apiFetch = (path: string, options?: RequestInit) =>
+    fetch(`/api/branding${path}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers,
+      },
+    });
 
-  // Fetch current branding settings
   useEffect(() => {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
     setLoading(true);
-    fetch(`${apiBase}/api/branding`, { headers })
+    apiFetch('')
       .then(res => res.json())
       .then((data: any) => {
         if (data && data.branding) {
@@ -60,40 +48,28 @@ export default function BrandingSettingsPage() {
         console.warn('Failed to load branding settings, using defaults:', err);
       })
       .finally(() => setLoading(false));
-  }, [jwtToken]);
+  }, []);
 
   useKeyboardShortcut('s', () => {
     formRef.current?.requestSubmit();
   }, true);
 
-  // Handle saving configurations
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     setSaving(true);
 
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
-    };
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
-    fetch(`${apiBase}/api/branding`, {
+    apiFetch('', {
       method: 'POST',
-      headers,
-      body: JSON.stringify({ branding })
+      body: JSON.stringify({ branding }),
     })
       .then(res => res.json())
       .then(() => {
         markClean();
-        addToast(t({ en: 'Branding options updated successfully!', ar: '?? ????? ?????? ?????? ??????? ?????!' }), 'success');
+        addToast(t({ en: 'Branding options updated successfully!', ar: 'تم تحديث خيارات العلامة التجارية بنجاح!' }), 'success');
       })
       .catch(err => {
         console.error('Failed to save branding:', err);
-        addToast(t({ en: 'Failed to update branding settings.', ar: '??? ??? ??????? ?????? ???????.' }), 'error');
+        addToast(t({ en: 'Failed to update branding settings.', ar: 'فشل تحديث إعدادات العلامة التجارية.' }), 'error');
       })
       .finally(() => setSaving(false));
   };
@@ -109,8 +85,8 @@ export default function BrandingSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Branding', ar: '??????? ?????? ??????? ??????' })}</h1>
-        <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'Your logo, your colors, your AI assistant\'s look.', ar: '????? ????????? ??????? ????????? ????? ??????? ?????.' })}</p>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Branding', ar: 'إعدادات العلامة التجارية' })}</h1>
+        <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'Your logo, your colors, your AI assistant\'s look.', ar: 'شعارك وألوانك ومظهر مساعدك الذكي.' })}</p>
       </div>
 
       {loading ? (
@@ -122,7 +98,7 @@ export default function BrandingSettingsPage() {
           
           {/* Logo URL */}
           <div>
-            <label htmlFor="logo_url" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Company Logo Image URL', ar: '???? ???? ???? ??????' })}</label>
+            <label htmlFor="logo_url" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Company Logo Image URL', ar: 'رابط صورة شعار الشركة' })}</label>
             <input
               type="text"
               id="logo_url"
@@ -137,7 +113,7 @@ export default function BrandingSettingsPage() {
           <div className="grid grid-cols-2 gap-8">
             {/* Primary color */}
             <div>
-              <label htmlFor="primary_color_hex" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Primary Hex Color', ar: '????? ??????? (Hex)' })}</label>
+              <label htmlFor="primary_color_hex" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Primary Hex Color', ar: 'اللون الأساسي (Hex)' })}</label>
               <div className="flex gap-3">
                 <input
                   type="color"
@@ -158,7 +134,7 @@ export default function BrandingSettingsPage() {
 
             {/* Secondary Color */}
             <div>
-              <label htmlFor="secondary_color_hex" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Secondary Hex Color', ar: '????? ??????? (Hex)' })}</label>
+              <label htmlFor="secondary_color_hex" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Secondary Hex Color', ar: 'اللون الثانوي (Hex)' })}</label>
               <div className="flex gap-3">
                 <input
                   type="color"
@@ -180,11 +156,11 @@ export default function BrandingSettingsPage() {
 
           {/* AI Persona */}
           <div className="pt-4 border-t border-primary/10 space-y-4">
-            <h3 className="text-xs font-extrabold text-primary/60 uppercase tracking-wider">{t({ en: 'AI Persona Config', ar: '??????? ????? ???????' })}</h3>
+            <h3 className="text-xs font-extrabold text-primary/60 uppercase tracking-wider">{t({ en: 'AI Persona Config', ar: 'تكوين شخصية المساعد' })}</h3>
 
             <div className="grid grid-cols-2 gap-8">
               <div>
-                <label htmlFor="chat_bot_name" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'AI Assistant Name', ar: '??? ??????? ?????' })}</label>
+                <label htmlFor="chat_bot_name" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'AI Assistant Name', ar: 'اسم المساعد الذكي' })}</label>
                 <input
                   type="text"
                   id="chat_bot_name"
@@ -197,7 +173,7 @@ export default function BrandingSettingsPage() {
               </div>
 
               <div>
-                <label htmlFor="chat_bot_avatar_url" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Assistant Avatar URL', ar: '???? ???? ???????' })}</label>
+                <label htmlFor="chat_bot_avatar_url" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Assistant Avatar URL', ar: 'رابط صورة المساعد' })}</label>
                 <input
                   type="text"
                   id="chat_bot_avatar_url"
@@ -216,7 +192,7 @@ export default function BrandingSettingsPage() {
             disabled={saving}
             className="w-full bg-primary text-surface font-bold py-3 px-6 rounded-xl text-xs hover:shadow-md hover:scale-[1.02] active:scale-95 transition-all duration-300 min-h-[44px] flex items-center justify-center disabled:opacity-40"
           >
-            {saving ? t({ en: 'Updating...', ar: '???? ?????...' }) : t({ en: 'Save Branding Options', ar: '??? ??????? ?????? ???????' })}
+            {saving ? t({ en: 'Updating...', ar: 'جاري التحديث...' }) : t({ en: 'Save Branding Options', ar: 'حفظ إعدادات العلامة التجارية' })}
           </button>
 
         </form>

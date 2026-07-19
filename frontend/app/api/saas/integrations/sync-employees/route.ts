@@ -5,13 +5,13 @@ import { safeGetToken } from "@/lib/safe-auth";
 export async function POST(request: Request) {
   const token = await safeGetToken();
   if (!token) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ message: "Unauthorized" }, { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   }
   try {
     const { token, tenantId } = await request.json();
 
     if (!token || !tenantId) {
-      return NextResponse.json({ message: "Missing token or tenantId" }, { status: 400 });
+      return NextResponse.json({ message: "Missing token or tenantId" }, { status: 400, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     const sql = neon(process.env.DATABASE_URL!);
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     const tenant = tenants[0] as { id: string; plan_tier: string } | undefined;
 
     if (!tenant) {
-      return NextResponse.json({ message: "Tenant not found" }, { status: 404 });
+      return NextResponse.json({ message: "Tenant not found" }, { status: 404, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     const countResult = await sql`
@@ -42,7 +42,7 @@ export async function POST(request: Request) {
 
     if (!response.ok) {
       const errorMsg = await response.text();
-      return NextResponse.json({ message: `Merge API Error: ${errorMsg}` }, { status: response.status });
+      return NextResponse.json({ message: `Merge API Error: ${errorMsg}` }, { status: response.status, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     const mergeData = await response.json();
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     if (tenant.plan_tier !== "Enterprise" && currentCount + incomingCount > 150) {
       return NextResponse.json(
         { message: "Please upgrade to Enterprise to manage >150 employees." },
-        { status: 403 }
+        { status: 403, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }
       );
     }
 
@@ -92,8 +92,8 @@ export async function POST(request: Request) {
         "is_active" = true
     `;
 
-    return NextResponse.json({ success: true, count: upsertCount });
+    return NextResponse.json({ success: true, count: upsertCount }, { headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   } catch (error: any) {
-    return NextResponse.json({ message: error.message || "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ message: error.message || "Internal Server Error" }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   }
 }

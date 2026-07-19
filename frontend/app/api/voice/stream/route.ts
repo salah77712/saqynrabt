@@ -6,12 +6,12 @@ export async function GET(req: NextRequest) {
   try {
     const token = await safeGetToken();
     if (!token) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
     if (!apiBase) {
-      return NextResponse.json({ error: "Backend URL not configured" }, { status: 500 });
+      return NextResponse.json({ error: "Backend URL not configured" }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     const { searchParams } = new URL(req.url);
@@ -43,12 +43,12 @@ export async function GET(req: NextRequest) {
     const textBody = await res.text();
     try {
       const data = JSON.parse(textBody);
-      return NextResponse.json(data, { status: res.status });
+      return NextResponse.json(data, { status: res.status, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     } catch {
       return new Response(textBody, { status: res.status });
     }
   } catch (err: unknown) {
     console.error("[/api/voice/stream GET] Proxy error:", err);
-    return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ error: "Internal Server Error" }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   }
 }

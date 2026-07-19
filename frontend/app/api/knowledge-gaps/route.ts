@@ -10,7 +10,7 @@ export async function GET(req: NextRequest) {
     if (!token) {
       return NextResponse.json(
         { error: "Unauthorized - no auth token found" },
-        { status: 401 }
+        { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }
       );
     }
 
@@ -18,7 +18,7 @@ export async function GET(req: NextRequest) {
     if (!apiBase) {
       return NextResponse.json(
         { error: "Backend URL is not configured." },
-        { status: 500 }
+        { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }
       );
     }
 
@@ -33,13 +33,13 @@ export async function GET(req: NextRequest) {
     const text = await res.text();
     try {
       const data = JSON.parse(text);
-      return NextResponse.json(data, { status: res.status });
+      return NextResponse.json(data, { status: res.status, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     } catch {
       console.error("[/api/knowledge-gaps GET] Invalid JSON from backend:", text);
-      return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 });
+      return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
   } catch (err: unknown) {
     console.error("[/api/knowledge-gaps GET] Handler error:", err);
-    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   }
 }

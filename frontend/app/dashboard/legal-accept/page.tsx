@@ -105,10 +105,7 @@ const [tosChecked, setTosChecked] = useState(false);
 const [dpaChecked, setDpaChecked] = useState(false);
 const [submitting, setSubmitting] = useState(false);
 const [accepted, setAccepted] = useState(false);
-
-useEffect(() => {
-checkStatus();
-}, []);
+const [lastUpdated, setLastUpdated] = useState<number | null>(null);
 
 const checkStatus = async () => {
 try {
@@ -119,6 +116,7 @@ headers: { Authorization: `Bearer ${token}` },
 if (!res.ok) throw new Error('Failed to check status');
 const data = await res.json();
 setStatus(data);
+setLastUpdated(Date.now());
 
 if (!data.tos.needsAccept && !data.dpa.needsAccept) {
 setAccepted(true);
@@ -126,9 +124,15 @@ setAccepted(true);
 } catch (err: any) {
 setError(err.message);
 } finally {
-setLoading(false);
-}
+setLoading(false)
 };
+};
+
+useEffect(() => {
+checkStatus();
+const interval = setInterval(checkStatus, 30000);
+return () => clearInterval(interval);
+}, []);
 
 const handleAccept = async () => {
 setSubmitting(true);
@@ -206,6 +210,11 @@ return null;
 return (
 <div className="min-h-screen flex items-center justify-center bg-surface p-8 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <div className="max-w-lg w-full bg-surface rounded-xl shadow-xl p-8">
+{lastUpdated && (
+<div className="text-[10px] font-bold text-primary/60 flex items-center gap-1 mb-4" style={{direction: 'ltr'}}>
+{t({en: 'Last updated:', ar: 'آخر تحديث:'})} {new Date(lastUpdated).toLocaleTimeString()}
+</div>
+)}
 <div className="flex items-center gap-4 mb-6">
 <ShieldSvg />
 <div>

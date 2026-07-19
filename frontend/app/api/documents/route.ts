@@ -6,9 +6,9 @@ import type { NextRequest } from "next/server";
 export async function GET(req: NextRequest) {
   try {
     const token = await safeGetToken();
-    if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401 });
+    if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
-    if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
+    if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     const res = await fetch(`${apiBase}/api/documents`, {
       method: "GET",
       headers: {
@@ -19,23 +19,23 @@ export async function GET(req: NextRequest) {
     const text = await res.text();
     try {
       const data = JSON.parse(text);
-      return NextResponse.json(data, { status: res.status });
+      return NextResponse.json(data, { status: res.status, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     } catch {
       console.error("[/api/documents GET] Invalid JSON from backend:", text);
-      return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 });
+      return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 } catch (err: unknown) {
   console.error("[/api/documents GET CRASH]", err);
-  return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
+  return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
 }
 }
 
 export async function POST(req: NextRequest) {
   try {
     const token = await safeGetToken();
-    if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401 });
+    if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
-    if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
+    if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     const formData = await req.formData();
     const res = await fetch(`${apiBase}/api/documents`, {
       method: "POST",
@@ -43,32 +43,32 @@ export async function POST(req: NextRequest) {
       body: formData,
     });
     const text = await res.text();
-    try { const data = JSON.parse(text); return NextResponse.json(data, { status: res.status }); }
-    catch { return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 }); }
+    try { const data = JSON.parse(text); return NextResponse.json(data, { status: res.status, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }); }
+    catch { return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }); }
   } catch (err: unknown) {
     console.error("[/api/documents POST]", err);
-    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   }
 }
 
 export async function DELETE(req: NextRequest) {
   try {
     const token = await safeGetToken();
-    if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401 });
+    if (!token) return NextResponse.json({ error: "Unauthorized - no auth token found" }, { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     const apiBase = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
-    if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500 });
+    if (!apiBase) return NextResponse.json({ error: "Backend URL is not configured." }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     const { searchParams } = new URL(req.url);
     const id = searchParams.get("id");
-    if (!id) return NextResponse.json({ error: "Document ID is required" }, { status: 400 });
+    if (!id) return NextResponse.json({ error: "Document ID is required" }, { status: 400, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     const res = await fetch(`${apiBase}/api/documents/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
     });
     const text = await res.text();
-    try { const data = JSON.parse(text); return NextResponse.json(data, { status: res.status }); }
-    catch { return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502 }); }
+    try { const data = JSON.parse(text); return NextResponse.json(data, { status: res.status, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }); }
+    catch { return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 502, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } }); }
   } catch (err: unknown) {
     console.error("[/api/documents DELETE]", err);
-    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ success: false, error: "Internal Server Error" }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   }
 }
