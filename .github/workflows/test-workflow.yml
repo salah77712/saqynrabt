@@ -1,0 +1,12 @@
+name: Test Workflow
+
+on:
+  push:
+    branches:
+      - fix/metadata-seo-and-design-tokens
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "Hello World"
