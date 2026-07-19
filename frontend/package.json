@@ -40,7 +40,7 @@
     "@types/react-dom": "^19.0.0",
     "autoprefixer": "^10.4.19",
     "husky": "^9.1.7",
-    "lint-staged": "^16.4.0",
+    "lint-staged": "^17.1.0",
     "postcss": "^8.4.38",
     "shadcn": "^4.13.0",
     "tailwindcss": "^4.3.3",
