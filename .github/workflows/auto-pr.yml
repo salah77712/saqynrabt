@@ -1,0 +1,54 @@
+name: Auto-create PR
+
+on:
+  push:
+    branches:
+      - '*'  # Every branch except those listed below
+    branches-ignore:
+      - main
+      - dependabot/*
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  create-pr:
+    if: github.actor != 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check if PR already exists
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          EXISTING=$(gh pr list --head "${{ github.ref_name }}" --state open --json number --jq 'length')
+          echo "count=$EXISTING" >> "$GITHUB_OUTPUT"
+
+      - name: Create PR
+        if: steps.check.outputs.count == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          BRANCH="${{ github.ref_name }}"
+          COMMIT_MSG=$(git log -1 --format=%s)
+          PR_BODY="## Description
+
+Automated PR for branch \`${BRANCH}\`.
+
+### Changes
+$(git log main..${BRANCH} --oneline --no-decorate | sed 's/^/- /')
+
+### Checklist
+- [ ] CI passes
+- [ ] Code reviewed"
+          
+          gh pr create \
+            --base main \
+            --head "$BRANCH" \
+            --title "$COMMIT_MSG" \
+            --body "$PR_BODY" \
+            --label "auto-pr" \
+            --reviewer "${{ github.actor }}"
