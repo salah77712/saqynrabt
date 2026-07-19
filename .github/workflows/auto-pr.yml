@@ -6,10 +6,6 @@ on:
       - main
       - dependabot/*
 
-permissions:
-  contents: write
-  pull-requests: write
-
 jobs:
   create-pr:
     runs-on: ubuntu-latest
