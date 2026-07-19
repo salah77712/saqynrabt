@@ -26,11 +26,10 @@ export function Avatar({ className = '', src, name, size = 'md', ...props }: Ava
 
   return (
     <div
-      className={`relative flex items-center justify-center rounded-full bg-primary/5 dark:bg-white/10 text-primary dark:text-surface font-extrabold border border-primary/10 dark:border-white/10 overflow-hidden ${sizes[size]} ${className}`}
+      className={`relative flex items-center justify-center rounded-full bg-primary/5 dark:bg-primary/10 text-primary font-extrabold border border-border overflow-hidden ${sizes[size]} ${className}`}
       {...props}
     >
       {src && !error ? (
-        // eslint-disable-next-line @next/next/no-img-element
         <img
           src={src}
           alt={name}

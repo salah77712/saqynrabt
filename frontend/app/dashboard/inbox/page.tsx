@@ -26,8 +26,9 @@ const [messages, setMessages] = useState<OmnichannelMessage[]>([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(false);
 const [filterChannel, setFilterChannel] = useState<string>('All');
+const [lastUpdated, setLastUpdated] = useState<number | null>(null);
 
-useEffect(() => {
+const fetchMessages = () => {
 fetch('/api/chat/history')
 .then(res => res.json())
 .then((data: any) => {
@@ -37,12 +38,20 @@ setMessages(list.slice(0, 20));
 } else {
 setMessages(MOCK_MESSAGES);
 }
+setLastUpdated(Date.now());
 })
 .catch(() => {
 setError(true);
 setMessages(MOCK_MESSAGES);
+setLastUpdated(Date.now());
 })
 .finally(() => setLoading(false));
+};
+
+useEffect(() => {
+fetchMessages();
+const interval = setInterval(fetchMessages, 15000);
+return () => clearInterval(interval);
 }, []);
 
 const filtered = filterChannel === 'All' ? messages : messages.filter(m => m.channel === filterChannel);
@@ -52,13 +61,19 @@ return (
 
 {/* Header */}
 <div>
-<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Inbox', ar: 'ØµÙ†Ø¯ÙˆÙ‚ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ù…ÙˆØ­Ø¯ Ù„Ù„Ù‚Ù†ÙˆØ§Øª' })}</h1>
-<p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'WhatsApp, SMS, web chat, and email â€” all in one place.', ar: 'ØªØ¬Ù…ÙŠØ¹ Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ Ù…Ù† Ø§Ù„ÙˆØ§ØªØ³Ø§Ø¨ØŒ Ø§Ù„Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ù†ØµÙŠØ©ØŒ Ø§Ù„Ù…Ø­Ø§Ø¯Ø«Ø§ØªØŒ ÙˆØ§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ.' })}</p>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Inbox', ar: 'صندوق البريد الموحد للقنوات' })}</h1>
+<p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'WhatsApp, SMS, web chat, and email — all in one place.', ar: 'تجميع رسائل العملاء من الواتساب، والرسائل النصية، والمحادثات المباشرة، والبريد الإلكتروني.' })}</p>
 </div>
+
+{lastUpdated && (
+<div className="text-[10px] font-bold text-primary/60 flex items-center gap-1">
+{t({en: 'Last updated:', ar: 'آخر تحديث:'})} {new Date(lastUpdated).toLocaleTimeString()}
+</div>
+)}
 
 {error && (
 <div className="bg-surface border border-primary/10 text-accent rounded-xl p-3 text-xs font-semibold">
-{t({ en: 'Could not load fresh data. Showing sample messages.', ar: 'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø­Ø¯ÙŠØ«Ø©. ÙŠØªÙ… Ø¹Ø±Ø¶ Ø±Ø³Ø§Ø¦Ù„ Ù†Ù…ÙˆØ°Ø¬ÙŠØ©.' })}
+{t({ en: 'Could not load fresh data. Showing sample messages.', ar: 'تعذر تحميل البيانات الحديثة. يتم عرض رسائل نموذجية.' })}
 </div>
 )}
 

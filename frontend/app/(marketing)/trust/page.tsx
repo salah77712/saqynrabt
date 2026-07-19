@@ -3,6 +3,15 @@ import Link from 'next/link';
 import { Shield, FileText, Lock, Handshake, BadgeCheck, Download, Check, ArrowRight } from 'lucide-react';
 import { Header } from '../../../components/Header';
 import { Footer } from '../../../components/Footer';
+import { pageMetadata } from '../../../lib/metadata';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = pageMetadata({
+  title: 'Trust Center — SAQYN RABT',
+  description: 'Real-time system status, compliance certifications, and security docs.',
+  path: '/trust',
+  keywords: ['trust center', 'system status', 'compliance'],
+});
 
 interface Badge {
   label: string;

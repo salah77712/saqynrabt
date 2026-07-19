@@ -63,12 +63,12 @@ export function EmailVerificationGate() {
       <div className="bg-surface rounded-xl shadow-xl p-8 md:p-12 border border-primary/10 w-full max-w-md animate-fadeIn text-center">
         <div className="mb-4"><Mail className="w-8 h-8 text-primary" /></div>
         <h2 className="text-xl font-extrabold text-primary mb-2">
-          {t({ en: 'Verify Your Email', ar: 'ØªØ£ÙƒÙŠØ¯ Ø¨Ø±ÙŠØ¯Ùƒ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}
+          {t({ en: 'Verify Your Email', ar: 'تأكيد بريدك الإلكتروني' })}
         </h2>
-        <p className="text-xs font-semibold  mb-6 leading-relaxed">
+        <p className="text-xs font-semibold mb-6 leading-relaxed text-primary/60">
           {t({
             en: 'Please enter the 6-digit verification code sent to your email.',
-            ar: 'ÙŠØ±Ø¬Ù‰ Ø¥Ø¯Ø®Ø§Ù„ Ø±Ù…Ø² Ø§Ù„ØªØ­Ù‚Ù‚ Ø§Ù„Ù…ÙƒÙˆÙ† Ù…Ù† 6 Ø£Ø±Ù‚Ø§Ù… Ø§Ù„Ù…Ø±Ø³Ù„ Ø¥Ù„Ù‰ Ø¨Ø±ÙŠØ¯Ùƒ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ.'
+            ar: 'يرجى إدخال رمز التحقق المكون من 6 أرقام المرسل إلى بريدك الإلكتروني.'
           })}
         </p>
 
@@ -91,8 +91,8 @@ export function EmailVerificationGate() {
             maxLength={6}
             value={verificationCode}
             onChange={(e) => setVerificationCode(e.target.value)}
-            aria-label={t({ en: 'Email verification code', ar: 'Ø±Ù…Ø² Ø§Ù„ØªØ­Ù‚Ù‚ Ù„Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}
-            className="w-full min-h-[44px]  rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal"
+            aria-label={t({ en: 'Email verification code', ar: 'رمز التحقق للبريد الإلكتروني' })}
+            className="w-full min-h-[44px] rounded-xl px-4 py-2 text-center text-lg font-bold tracking-widest bg-surface border border-primary/10 focus:outline-none focus:ring-2 focus:ring-accent"
             required
           />
           <button
@@ -100,7 +100,7 @@ export function EmailVerificationGate() {
             disabled={verifying}
             className="w-full bg-primary  font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center disabled:opacity-40 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
           >
-            {verifying ? t({ en: 'Verifying...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ­Ù‚Ù‚...' }) : t({ en: 'Verify & Activate Account', ar: 'Ø§Ù„ØªØ­Ù‚Ù‚ ÙˆØªÙ†Ø´ÙŠØ· Ø§Ù„Ø­Ø³Ø§Ø¨' })}
+            {verifying ? t({ en: 'Verifying...', ar: 'جاري التحقق...' }) : t({ en: 'Verify & Activate Account', ar: 'التحقق وتنشيط الحساب' })}
           </button>
         </form>
 
@@ -111,11 +111,11 @@ export function EmailVerificationGate() {
             onClick={handleResendCode}
             className="text-xs font-bold text-accent hover:underline disabled:opacity-40"
           >
-            {resending ? t({ en: 'Resending...', ar: 'Ø¬Ø§Ø±ÙŠ Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...' }) : t({ en: 'Resend Verification Code', ar: 'Ø¥Ø¹Ø§Ø¯Ø© Ø¥Ø±Ø³Ø§Ù„ Ø±Ù…Ø² Ø§Ù„ØªØ­Ù‚Ù‚' })}
+            {resending ? t({ en: 'Resending...', ar: 'جاري إعادة الإرسال...' }) : t({ en: 'Resend Verification Code', ar: 'إعادة إرسال رمز التحقق' })}
           </button>
           <div className="pt-4 border-t  flex items-center justify-center gap-3">
             <UserButton />
-            <span className="text-[10px] text-primary font-bold">{t({ en: 'Sign Out', ar: 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø®Ø±ÙˆØ¬' })}</span>
+            <span className="text-[10px] text-primary font-bold">{t({ en: 'Sign Out', ar: 'تسجيل الخروج' })}</span>
           </div>
         </div>
       </div>

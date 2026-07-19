@@ -7,11 +7,11 @@ import { useLocale } from './providers';
 import { Bug } from 'lucide-react';
 
 const suggestions = [
-  { href: '/', en: 'Homepage', ar: 'Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©' },
-  { href: '/features', en: 'Features', ar: 'Ø§Ù„Ù…ÙŠØ²Ø§Øª' },
-  { href: '/pricing', en: 'Pricing', ar: 'Ø§Ù„Ø£Ø³Ø¹Ø§Ø±' },
-  { href: '/help/getting-started', en: 'Help Center', ar: 'Ù…Ø±ÙƒØ² Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø©' },
-  { href: '/contact', en: 'Contact Us', ar: 'Ø§ØªØµÙ„ Ø¨Ù†Ø§' },
+  { href: '/', en: 'Homepage', ar: 'الرئيسية' },
+  { href: '/features', en: 'Features', ar: 'الميزات' },
+  { href: '/pricing', en: 'Pricing', ar: 'الأسعار' },
+  { href: '/help/getting-started', en: 'Help Center', ar: 'مركز المساعدة' },
+  { href: '/contact', en: 'Contact Us', ar: 'اتصل بنا' },
 ];
 
 export default function NotFound() {
@@ -32,7 +32,7 @@ export default function NotFound() {
         <div className="text-center max-w-lg animate-slideUp">
           {/* Large 404 with gradient */}
           <div className="relative mb-8">
-            <span className="text-[140px] lg:text-[180px] font-extrabold leading-none r    bg-clip-text text-transparent select-none">
+            <span className="text-gradient text-[140px] lg:text-[180px] font-extrabold leading-none select-none">
               404
             </span>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -41,13 +41,13 @@ export default function NotFound() {
           </div>
 
           <h1 className="text-2xl md:text-3xl font-extrabold text-primary mb-3">
-            {t('Page not found', 'Ø§Ù„ØµÙØ­Ø© ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø©')}
+            {t('Page not found', 'الصفحة غير موجودة')}
           </h1>
 
           <p className="text-primary/60 text-base mb-10 leading-relaxed max-w-md mx-auto">
             {t(
               "The page you're looking for doesn't exist or has been moved. Try one of these instead:",
-              'Ø§Ù„ØµÙØ­Ø© Ø§Ù„ØªÙŠ ØªØ¨Ø­Ø« Ø¹Ù†Ù‡Ø§ ØºÙŠØ± Ù…ÙˆØ¬ÙˆØ¯Ø© Ø£Ùˆ ØªÙ… Ù†Ù‚Ù„Ù‡Ø§. Ø¬Ø±Ø¨ ÙˆØ§Ø­Ø¯Ø© Ù…Ù† Ù‡Ø°Ù‡ Ø¨Ø¯Ù„Ø§Ù‹ Ù…Ù† Ø°Ù„Ùƒ:'
+              'الصفحة التي تبحث عنها غير موجودة أو تم نقلها. جرب واحدة من هذه بدلاً من ذلك:'
             )}
           </p>
 
@@ -69,7 +69,7 @@ export default function NotFound() {
               href="/"
               className="inline-flex min-h-[48px] items-center justify-center rounded-xl bg-primary px-8 py-3 text-sm font-bold text-surface hover:bg-primary hover:shadow-lg hover:scale-[1.02] active:scale-95 transition-all"
             >
-              {t('Back to Home', 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„Ø±Ø¦ÙŠØ³ÙŠØ©')}
+              {t('Back to Home', 'العودة للرئيسية')}
             </Link>
             <button
               onClick={() => {
@@ -78,7 +78,7 @@ export default function NotFound() {
               className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[rgba(20,31,51,0.1)] px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
             >
               <Bug className="w-4 h-4" />
-              {t('Report broken link', 'Ø§Ø¨Ù„Ø§Øº Ø¹Ù† Ø±Ø§Ø¨Ø· Ù…Ø¹Ø·Ù„')}
+              {t('Report broken link', 'ابلاغ عن رابط معطل')}
             </button>
           </div>
         </div>

@@ -44,19 +44,30 @@ const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 const [stats, setStats] = useState<UsageStats | null>(null);
 const [loading, setLoading] = useState(true);
+const [lastUpdated, setLastUpdated] = useState<number | null>(null);
 
-useEffect(() => {
+const fetchStats = () => {
 fetch('/api/usage-stats')
 .then((res) => {
 if (!res.ok) throw new Error('Failed to fetch');
 return res.json();
 })
-.then((data) => setStats(data))
+.then((data) => {
+setStats(data);
+setLastUpdated(Date.now());
+})
 .catch((err) => {
 console.error('Usage stats fetch failed, using fallback:', err);
 setStats(MOCK_STATS);
+setLastUpdated(Date.now());
 })
 .finally(() => setLoading(false));
+};
+
+useEffect(() => {
+fetchStats();
+const interval = setInterval(fetchStats, 60000);
+return () => clearInterval(interval);
 }, []);
 
 const s = stats ?? MOCK_STATS;
@@ -65,7 +76,7 @@ if (loading) {
 return (
       <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
         <div className="flex justify-center items-center h-64">
-<p className="text-primary font-bold">{t({en: 'Loading metrics...', ar: 'Ø¬Ø§Ø±Ù ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ù…Ù‚Ø§ÙŠÙŠØ³...'})}</p>
+<p className="text-xs text-primary font-bold">{t({en: 'Loading metrics...', ar: 'جاري تحميل المقاييس...'})}</p>
 </div>
 </main>
 );
@@ -75,32 +86,39 @@ return (
 <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
 <div className="flex justify-between items-center mb-6">
 <div>
-<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Analytics', ar: 'ÙˆØ­Ø¯Ø© ØªØ­ÙƒÙ… Ø§Ù„Ø¹Ù…Ù„ÙŠØ§Øª Ø§Ù„Ø¥Ø¯Ø§Ø±ÙŠØ©'})}</h1>
-<p className="text-xs text-primary font-bold">{t({en: 'Usage stats, billing overview, and key metrics.', ar: 'Ù…Ù‚Ø§ÙŠÙŠØ³ ÙÙˆØ±ÙŠØ©ØŒ ÙÙˆØ§ØªÙŠØ± Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ Ø§Ù„Ù†Ø´Ø·ÙŠÙ† ÙˆØªØªØ¨Ø¹ Ø§Ù„Ø¥ÙŠØ±Ø§Ø¯Ø§Øª Ø§Ù„Ø³Ù†ÙˆÙŠØ©.'})}</p>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Analytics', ar: 'وحة تحليلات الأداء'})}</h1>
+<p className="text-xs text-primary font-bold">{t({en: 'Usage stats, billing overview, and key metrics.', ar: 'مقاييس الاستخدام، نظرة عامة على الفوترة، والمؤشرات الرئيسية.'})}</p>
 </div>
-<Badge variant="success">{t({en: 'Active Nodes', ar: 'Ø§Ù„Ø¹Ù‚Ø¯ Ø§Ù„Ø·Ø±ÙÙŠØ© Ù†Ø´Ø·Ø©'})}</Badge>
+<div className="flex items-center gap-4">
+{lastUpdated && (
+<span className="text-[10px] font-bold text-primary/60 flex items-center gap-1">
+{t({en: 'Last updated:', ar: 'آخر تحديث:'})} {new Date(lastUpdated).toLocaleTimeString()}
+</span>
+)}
+<Badge variant="success">{t({en: 'Active Nodes', ar: 'العقد النشطة'})}</Badge>
+</div>
 </div>
 
 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
       <Card className="p-8 rounded-xl">
-<p className="text-[10px] uppercase font-bold text-primary">{t({en: 'Monthly Recurring Revenue', ar: 'Ø§Ù„Ø¥ÙŠØ±Ø§Ø¯Ø§Øª Ø§Ù„Ø´Ù‡Ø±ÙŠØ© Ø§Ù„Ù…ØªÙƒØ±Ø±Ø©'})}</p>
+<p className="text-[10px] uppercase font-bold text-primary">{t({en: 'Monthly Recurring Revenue', ar: 'الإيرادات الشهرية المتكررة'})}</p>
 <p className="text-3xl font-extrabold text-primary dark:text-surface mt-1">QAR {formatNumber(s.mrr)}</p>
-<p className="text-xs text-accent font-bold mt-2"><TrendingUp className="w-3.5 h-3.5 inline text-accent" /> {s.mrr_growth}% {t({en: 'from last month', ar: 'Ø¹Ù† Ø§Ù„Ø´Ù‡Ø± Ø§Ù„Ù…Ø§Ø¶ÙŠ'})}</p>
+<p className="text-xs text-accent font-bold mt-2"><TrendingUp className="w-3.5 h-3.5 inline text-accent" /> {s.mrr_growth}% {t({en: 'from last month', ar: 'من الشهر الماضي'})}</p>
 </Card>
       <Card className="p-8 rounded-xl">
-        <p className="text-[10px] uppercase font-bold text-primary">{t({en: 'Annual Run Rate', ar: 'Ù…Ø¹Ø¯Ù„ Ø§Ù„ØªØ´ØºÙŠÙ„ Ø§Ù„Ø³Ù†ÙˆÙŠ'})}</p>
+        <p className="text-[10px] uppercase font-bold text-primary">{t({en: 'Annual Run Rate', ar: 'معدل التشغيل السنوي'})}</p>
 <p className="text-3xl font-extrabold text-primary dark:text-surface mt-1">QAR {formatArr(s.arr)}</p>
-<p className="text-xs text-accent font-bold mt-2"><TrendingUp className="w-3.5 h-3.5 inline text-accent" /> {s.arr_growth}% {t({en: 'YoY growth', ar: 'Ù†Ù…Ùˆ Ø³Ù†ÙˆÙŠ'})}</p>
+<p className="text-xs text-accent font-bold mt-2"><TrendingUp className="w-3.5 h-3.5 inline text-accent" /> {s.arr_growth}% {t({en: 'YoY growth', ar: 'نمو سنوي'})}</p>
 </Card>
       <Card className="p-8 rounded-xl">
-        <p className="text-[10px] uppercase font-bold text-primary">{t({en: 'Active Companies', ar: 'Ø§Ù„Ø´Ø±ÙƒØ§Øª Ø§Ù„Ù†Ø´Ø·Ø©'})}</p>
+        <p className="text-[10px] uppercase font-bold text-primary">{t({en: 'Active Companies', ar: 'الشركات النشطة'})}</p>
 <p className="text-3xl font-extrabold text-primary dark:text-surface mt-1">{formatNumber(s.active_companies)}</p>
-<p className="text-xs text-primary font-bold mt-2">{t({en: '0 churn cases', ar: '0 Ø­Ø§Ù„Ø§Øª Ø§Ù†Ø³Ø­Ø§Ø¨'})}</p>
+<p className="text-xs text-primary font-bold mt-2">{t({en: '0 churn cases', ar: '0 حالات انسحاب'})}</p>
 </Card>
       <Card className="p-8 rounded-xl">
-        <p className="text-[10px] uppercase font-bold text-primary">{t({en: 'Monthly Questions Usage', ar: 'Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø§Ù„Ø´Ù‡Ø±ÙŠ'})}</p>
+        <p className="text-[10px] uppercase font-bold text-primary">{t({en: 'Monthly Questions Usage', ar: 'استخدام الأسئلة الشهري'})}</p>
 <p className="text-3xl font-extrabold text-primary dark:text-surface mt-1">{formatNumber(s.questions_used)}</p>
-<p className="text-xs text-accent font-bold mt-2">{t({en: `${s.usage_pct}% of total capacity`, ar: `${s.usage_pct}% Ù…Ù† Ø§Ù„Ø³Ø¹Ø© Ø§Ù„Ø¥Ø¬Ù…Ø§Ù„ÙŠØ©`})}</p>
+<p className="text-xs text-accent font-bold mt-2">{t({en: `${s.usage_pct}% of total capacity`, ar: `${s.usage_pct}% من السعة الإجمالية`})}</p>
 </Card>
 </div>
 

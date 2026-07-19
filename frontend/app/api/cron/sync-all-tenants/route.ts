@@ -7,7 +7,7 @@ export async function GET(request: Request) {
     const expectedToken = `Bearer ${process.env.CRON_SECRET}`;
 
     if (!process.env.CRON_SECRET || authHeader !== expectedToken) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
     }
 
     const sql = neon(process.env.DATABASE_URL!);
@@ -72,8 +72,8 @@ export async function GET(request: Request) {
       }
     }
 
-    return NextResponse.json({ success: true, reports: syncReports });
+    return NextResponse.json({ success: true, reports: syncReports }, { headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   } catch (error: any) {
-    return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500 });
+    return NextResponse.json({ error: error.message || "Internal Server Error" }, { status: 500, headers: { "Cache-Control": "no-store, no-cache, must-revalidate" } });
   }
 }

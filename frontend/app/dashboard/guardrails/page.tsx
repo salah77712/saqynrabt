@@ -31,21 +31,26 @@ toxicity_filter: true,
 const [knowledgeGaps, setKnowledgeGaps] = useState<KnowledgeGap[]>([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(false);
+const [lastUpdated, setLastUpdated] = useState<number | null>(null);
 
-useEffect(() => {
 const fetchGaps = async () => {
 try {
 const res = await fetch('/api/knowledge-gaps');
 if (!res.ok) throw new Error('Failed to fetch');
 const data = await res.json();
 setKnowledgeGaps(data);
+setLastUpdated(Date.now());
 } catch {
 setError(true);
 } finally {
 setLoading(false);
 }
 };
+
+useEffect(() => {
 fetchGaps();
+const interval = setInterval(fetchGaps, 30000);
+return () => clearInterval(interval);
 }, []);
 
 const handleToggle = (key: 'pii_redaction' | 'jailbreak_prevention' | 'toxicity_filter') => {
@@ -62,9 +67,15 @@ return (
 
 {/* Header */}
 <div>
-<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Safety Filters', ar: 'Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ… ÙÙŠ Ø£Ù…Ø§Ù† Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ' })}</h1>
-<p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Redact personal data, block harmful prompts, and filter unsafe content.', ar: 'ØªÙØ¹ÙŠÙ„ Ø§Ù„Ù…Ø±Ø´Ø­Ø§Øª Ù„Ø­Ø¬Ø¨ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø´Ø®ØµÙŠØ©ØŒ ÙˆÙ…Ù†Ø¹ Ø§Ù„Ø§Ø®ØªØ±Ø§Ù‚Ø§ØªØŒ ÙˆØªØµÙÙŠØ© Ø§Ù„Ù…Ø­ØªÙˆÙ‰ Ø§Ù„Ø¶Ø§Ø±.' })}</p>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Safety Filters', ar: 'مرشحات السلامة في أمان الذكاء الاصطناعي' })}</h1>
+<p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Redact personal data, block harmful prompts, and filter unsafe content.', ar: 'تفعيل مرشحات البيانات الحساسة، ومنع الاختراقات، وتصفية المحتوى الضار.' })}</p>
 </div>
+
+{lastUpdated && (
+<div className="text-[10px] font-bold text-primary/60 flex items-center gap-1">
+{t({en: 'Last updated:', ar: 'آخر تحديث:'})} {new Date(lastUpdated).toLocaleTimeString()}
+</div>
+)}
 
 {/* Config Form */}
 <form onSubmit={handleSave} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm gap-8">
@@ -126,7 +137,7 @@ className="sr-only peer"
         type="submit"
         className="w-full bg-primary text-surface font-bold py-3 px-6 rounded-xl text-xs transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 min-h-[44px] flex items-center justify-center"
       >
-        {t({ en: 'Save Guardrail Configurations', ar: 'Ø­ÙØ¸ Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø¬Ø¯Ø§Ø± Ø§Ù„Ø­Ù…Ø§ÙŠØ©' })}
+        {t({ en: 'Save Guardrail Configurations', ar: 'حفظ إعدادات جدار الحماية' })}
 </button>
 
 </form>
@@ -134,20 +145,20 @@ className="sr-only peer"
 {/* Knowledge Gaps */}
       <div className="p-8 rounded-xl bg-surface border border-primary/10 shadow-sm gap-8">
 <div>
-<h2 className="text-sm font-extrabold text-primary">{t({ en: 'Knowledge Gaps', ar: 'Ø§Ù„ÙØ¬ÙˆØ§Øª Ø§Ù„Ù…Ø¹Ø±ÙÙŠØ©' })}</h2>
-<p className="text-[10px] text-primary font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø§Ù„ØªÙŠ Ø·Ø±Ø­Ù‡Ø§ Ù…ÙˆØ¸ÙÙˆÙƒ ÙˆÙ„Ù… ÙŠØªÙ…ÙƒÙ† Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ù…Ù† Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø© Ø¹Ù„ÙŠÙ‡Ø§.' })}</p>
+<h2 className="text-sm font-extrabold text-primary">{t({ en: 'Knowledge Gaps', ar: 'الفجوات المعرفية' })}</h2>
+<p className="text-[10px] text-primary font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'الأسئلة التي طرحها موظفوك ولم يتمكن الذكاء الاصطناعي من الإجابة عليها.' })}</p>
 </div>
 
 {loading && (
 <div className="flex items-center justify-center py-8">
 <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-<span className="ms-2 text-xs text-primary font-semibold">{t({ en: 'Loading gaps...', ar: 'Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„ÙØ¬ÙˆØ§Øª...' })}</span>
+<span className="ms-2 text-xs text-primary font-semibold">{t({ en: 'Loading gaps...', ar: 'جاري تحميل الفجوات...' })}</span>
 </div>
 )}
 
 {!loading && error && (
 <div className="space-y-2">
-<p className="text-xs text-primary font-semibold">{t({ en: 'Could not load knowledge gaps. Showing sample data.', ar: 'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ø§Ù„ÙØ¬ÙˆØ§Øª Ø§Ù„Ù…Ø¹Ø±ÙÙŠØ©. ÙŠØªÙ… Ø¹Ø±Ø¶ Ø¨ÙŠØ§Ù†Ø§Øª Ù†Ù…ÙˆØ°Ø¬ÙŠØ©.' })}</p>
+<p className="text-xs text-primary font-semibold">{t({ en: 'Could not load knowledge gaps. Showing sample data.', ar: 'تعذر تحميل الفجوات المعرفية. يتم عرض بيانات نموذجية.' })}</p>
 {MOCK_KNOWLEDGE_GAPS.map((gap, i) => (
 <div key={i} className="p-3 border border-primary/10 rounded-xl bg-surface space-y-1.5">
 <p className="text-xs font-bold text-primary">&ldquo;{gap.question}&rdquo;</p>
@@ -165,8 +176,8 @@ className="sr-only peer"
 
 {!loading && !error && knowledgeGaps.length === 0 && (
 <div className="flex flex-col items-center justify-center py-8 text-center">
-<p className="text-xs font-bold text-primary">{t({ en: 'No knowledge gaps found', ar: 'Ù„Ø§ ØªÙˆØ¬Ø¯ ÙØ¬ÙˆØ§Øª Ù…Ø¹Ø±ÙÙŠØ©' })}</p>
-<p className="text-[10px] text-primary font-semibold mt-1">{t({ en: 'Your team is getting all the answers they need!', ar: 'ÙØ±ÙŠÙ‚Ùƒ ÙŠØ­ØµÙ„ Ø¹Ù„Ù‰ Ø¬Ù…ÙŠØ¹ Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø§Øª Ø§Ù„ØªÙŠ ÙŠØ­ØªØ§Ø¬Ù‡Ø§!' })}</p>
+<p className="text-xs font-bold text-primary">{t({ en: 'No knowledge gaps found', ar: 'لا توجد فجوات معرفية' })}</p>
+<p className="text-[10px] text-primary font-semibold mt-1">{t({ en: 'Your team is getting all the answers they need!', ar: 'فريقك يحصل على جميع الإجابات التي يحتاجها!' })}</p>
 </div>
 )}
 

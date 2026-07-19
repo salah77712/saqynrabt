@@ -3,26 +3,23 @@ name: Auto-create PR
 on:
   push:
     branches:
-      - '*'  # Every branch except those listed below
-    branches-ignore:
-      - main
-      - dependabot/*
-
-permissions:
-  contents: write
-  pull-requests: write
+      - fix/metadata-seo-and-design-tokens
 
 jobs:
   create-pr:
-    if: github.actor != 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch main branch
+        run: git fetch origin main
 
       - name: Check if PR already exists
         id: check
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           EXISTING=$(gh pr list --head "${{ github.ref_name }}" --state open --json number --jq 'length')
           echo "count=$EXISTING" >> "$GITHUB_OUTPUT"
@@ -30,25 +27,24 @@ jobs:
       - name: Create PR
         if: steps.check.outputs.count == '0'
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: |
           BRANCH="${{ github.ref_name }}"
           COMMIT_MSG=$(git log -1 --format=%s)
-          PR_BODY="## Description
-
-Automated PR for branch \`${BRANCH}\`.
-
-### Changes
-$(git log main..${BRANCH} --oneline --no-decorate | sed 's/^/- /')
-
-### Checklist
-- [ ] CI passes
-- [ ] Code reviewed"
+          echo "## Description" > pr_body.md
+          echo "" >> pr_body.md
+          echo "Automated PR for branch \`${BRANCH}\`." >> pr_body.md
+          echo "" >> pr_body.md
+          echo "### Changes" >> pr_body.md
+          git log --oneline --no-decorate | sed 's/^/- /' >> pr_body.md
+          echo "" >> pr_body.md
+          echo "### Checklist" >> pr_body.md
+          echo "- [ ] CI passes" >> pr_body.md
+          echo "- [ ] Code reviewed" >> pr_body.md
           
           gh pr create \
             --base main \
             --head "$BRANCH" \
             --title "$COMMIT_MSG" \
-            --body "$PR_BODY" \
-            --label "auto-pr" \
-            --reviewer "${{ github.actor }}"
+            --body-file pr_body.md \
+            --label "auto-pr"

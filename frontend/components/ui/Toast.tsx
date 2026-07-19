@@ -24,10 +24,10 @@ export function Toast({ message, type = 'success', onClose }: ToastProps) {
   }, [onClose, close]);
 
   const variants = {
-    success: 'bg-emerald-50 border-emerald-200 text-emerald-700 dark:bg-emerald-900/30 dark:border-emerald-800 dark:text-emerald-400',
-    error: 'bg-red-50 border-red-200 text-red-700 dark:bg-red-900/30 dark:border-red-800 dark:text-red-400',
-    warning: 'bg-amber-50 border-amber-200 text-amber-700 dark:bg-amber-900/30 dark:border-amber-800 dark:text-amber-400',
-    info: 'bg-sky-50 border-sky-200 text-sky-700 dark:bg-sky-900/30 dark:border-sky-800 dark:text-sky-400',
+    success: 'bg-success/10 border-success/20 text-success dark:bg-success/20 dark:border-success/30 dark:text-success',
+    error: 'bg-danger/10 border-danger/20 text-danger dark:bg-danger/20 dark:border-danger/30 dark:text-danger',
+    warning: 'bg-warning/10 border-warning/20 text-warning dark:bg-warning/20 dark:border-warning/30 dark:text-warning',
+    info: 'bg-info/10 border-info/20 text-info dark:bg-info/20 dark:border-info/30 dark:text-info',
   };
 
   const icons = {
@@ -41,9 +41,7 @@ export function Toast({ message, type = 'success', onClose }: ToastProps) {
 
   return (
     <div
-      className={`fixed bottom-6 end-6 z-50 flex items-center justify-between gap-3 px-4 py-3 rounded-xl shadow-2xl max-w-sm border ${
-        isExiting ? 'animate-slideDownExit' : 'animate-slideUp'
-      } ${variants[type]}`}
+      className={`fixed bottom-6 end-6 z-50 flex items-center justify-between gap-3 px-4 py-3 rounded-xl shadow-elevation-high max-w-sm border ${isExiting ? 'animate-slideDownExit' : 'animate-slideUp'} ${variants[type]}`}
       onAnimationEnd={() => { if (isExiting) onClose?.(); }}
       role="status"
       aria-live="polite"

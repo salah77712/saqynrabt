@@ -1,8 +1,7 @@
 ﻿'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '@clerk/nextjs';
-import { useLocale, useEntitlements } from '../../../providers';
+import { useLocale } from '../../../providers';
 import { useGlobalToast } from '../../../../lib/toast';
 
 interface ApiKeyItem {
@@ -14,37 +13,27 @@ interface ApiKeyItem {
 
 export default function ApiKeysSettingsPage() {
   const { locale } = useLocale();
-  const { mockMode } = useEntitlements();
-  const { getToken, isLoaded: authLoaded } = useAuth();
   const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
-  const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [keys, setKeys] = useState<ApiKeyItem[]>([]);
   const [keyName, setKeyName] = useState('');
   const [newKeyVal, setNewKeyVal] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [generating, setGenerating] = useState(false);
 
-  useEffect(() => {
-    if (authLoaded && !mockMode) {
-      getToken({ template: 'saqyn-jwt' })
-        .then(token => setJwtToken(token))
-        .catch(err => console.error('Failed to get token:', err));
-    }
-  }, [authLoaded, mockMode, getToken]);
+  const apiFetch = (path: string, options?: RequestInit) =>
+    fetch(`/api/api-keys${path}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers,
+      },
+    });
 
   const fetchKeys = () => {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
     setLoading(true);
-    fetch(`${apiBase}/api/api-keys`, { headers })
+    apiFetch('')
       .then(res => res.json())
       .then((data: any) => {
         if (Array.isArray(data)) {
@@ -54,37 +43,23 @@ export default function ApiKeysSettingsPage() {
         }
       })
       .catch(err => {
-        console.warn('Failed to load keys, displaying mocks:', err);
-        setKeys([
-          { id: 'k-1', name: 'Billing Hook ERP', key_hint: 'saqyn_live_****h492', created_at: '2026-07-02T12:00:00Z' },
-        ]);
+        console.warn('Failed to load keys:', err);
       })
       .finally(() => setLoading(false));
   };
 
   useEffect(() => {
     fetchKeys();
-  }, [jwtToken]);
+  }, []);
 
   const handleGenerate = (e: React.FormEvent) => {
     e.preventDefault();
     if (!keyName.trim()) return;
 
     setGenerating(true);
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json'
-    };
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
-    fetch(`${apiBase}/api/api-keys`, {
+    apiFetch('', {
       method: 'POST',
-      headers,
-      body: JSON.stringify({ name: keyName })
+      body: JSON.stringify({ name: keyName }),
     })
       .then(res => res.json())
       .then((data: any) => {
@@ -95,45 +70,25 @@ export default function ApiKeysSettingsPage() {
         }
       })
       .catch(err => {
-        console.error('Failed to generate key, using local fallback:', err);
-        const fallbackVal = `saqyn_live_${Math.random().toString(36).substring(2, 12)}`;
-        setNewKeyVal(fallbackVal);
-        const mockNew: ApiKeyItem = {
-          id: `k-${Date.now()}`,
-          name: keyName,
-          key_hint: `${fallbackVal.substring(0, 11)}****`,
-          created_at: new Date().toISOString(),
-        };
-        setKeys(prev => [mockNew, ...prev]);
-        setKeyName('');
+        console.error('Failed to generate key:', err);
+        addToast(t({ en: 'Failed to generate API key.', ar: 'فشل إنشاء مفتاح API.' }), 'error');
       })
       .finally(() => setGenerating(false));
   };
 
   const handleRevoke = (id: string) => {
-    if (!confirm(t({ en: 'Are you sure you want to revoke this API key? Outgoing integrations will break.', ar: 'Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† Ø¥Ù„ØºØ§Ø¡ Ù…ÙØªØ§Ø­ Ø§Ù„Ù€ API Ù‡Ø°Ø§ØŸ Ø³ØªØªÙˆÙ‚Ù Ø§Ù„ØªÙƒØ§Ù…Ù„Ø§Øª Ø§Ù„Ø®Ø§Ø±Ø¬ÙŠØ©.' }))) {
+    if (!confirm(t({ en: 'Are you sure you want to revoke this API key? Outgoing integrations will break.', ar: 'هل أنت متأكد من إلغاء مفتاح API هذا؟ ستتوقف التكاملات الخارجية.' }))) {
       return;
     }
 
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
-    fetch(`${apiBase}/api/api-keys?id=${id}`, {
-      method: 'DELETE',
-      headers
-    })
+    apiFetch(`?id=${id}`, { method: 'DELETE' })
       .then(res => res.json())
       .then(() => {
         setKeys(prev => prev.filter(k => k.id !== id));
       })
       .catch(err => {
         console.error('Failed to revoke:', err);
-        setKeys(prev => prev.filter(k => k.id !== id));
+        addToast(t({ en: 'Failed to revoke API key.', ar: 'فشل إلغاء مفتاح API.' }), 'error');
       });
   };
 
@@ -142,15 +97,15 @@ export default function ApiKeysSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Developer API Credentials', ar: 'Ø¨ÙŠØ§Ù†Ø§Øª ÙˆÙˆØ§Ø¬Ù‡Ø§Øª Ø§Ù„Ù…Ø·ÙˆØ±ÙŠÙ†' })}</h1>
-        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Create secure access tokens for custom CRM and PMS integrations.', ar: 'Ø¥Ù†Ø´Ø§Ø¡ Ø±Ù…ÙˆØ² ÙˆØµÙˆÙ„ Ø¢Ù…Ù†Ø© Ù„ØªÙƒØ§Ù…Ù„Ø§Øª CRM Ùˆ PMS Ø§Ù„Ù…Ø®ØµØµØ©.' })}</p>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Developer API Credentials', ar: 'بيانات وواجهات المطورين' })}</h1>
+        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Create secure access tokens for custom CRM and PMS integrations.', ar: 'إنشاء رموز وصول آمنة لتكاملات CRM و PMS المخصصة.' })}</p>
       </div>
 
       {/* New Key Result Banner */}
       {newKeyVal && (
         <div className="bg-surface border border-accent/10 rounded-xl p-8 space-y-3">
-          <h3 className="text-xs font-extrabold text-accent uppercase tracking-widest">{t({ en: 'API Key Created Successfully', ar: 'ØªÙ… Ø¥Ù†Ø´Ø§Ø¡ Ù…ÙØªØ§Ø­ ÙˆØ§Ø¬Ù‡Ø© Ø§Ù„ØªØ·Ø¨ÙŠÙ‚ Ø¨Ù†Ø¬Ø§Ø­' })}</h3>
-          <p className="text-[10px] text-accent font-semibold">{t({ en: 'Copy this key now. It will not be shown again for security reasons.', ar: 'Ø§Ù†Ø³Ø® Ù‡Ø°Ø§ Ø§Ù„Ù…ÙØªØ§Ø­ Ø§Ù„Ø¢Ù†. Ù„Ù† ÙŠØªÙ… Ø¹Ø±Ø¶Ù‡ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ù„Ø£Ø³Ø¨Ø§Ø¨ Ø£Ù…Ù†ÙŠØ©.' })}</p>
+          <h3 className="text-xs font-extrabold text-accent uppercase tracking-widest">{t({ en: 'API Key Created Successfully', ar: 'تم إنشاء مفتاح واجهة التطبيق بنجاح' })}</h3>
+          <p className="text-[10px] text-accent font-semibold">{t({ en: 'Copy this key now. It will not be shown again for security reasons.', ar: 'انسخ هذا المفتاح الآن. لن يتم عرضه مرة أخرى لأسباب أمنية.' })}</p>
           <div className="flex gap-3">
             <input
               type="text"
@@ -196,20 +151,20 @@ export default function ApiKeysSettingsPage() {
           disabled={generating}
           className="bg-primary hover:opacity-95 text-surface font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] flex items-center shrink-0 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
-          {generating ? t({ en: 'Generating...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ù†Ø´Ø§Ø¡...' }) : t({ en: 'Generate Key', ar: 'Ø¥Ù†Ø´Ø§Ø¡ Ù…ÙØªØ§Ø­' })}
+          {generating ? t({ en: 'Generating...', ar: 'جاري الإنشاء...' }) : t({ en: 'Generate Key', ar: 'إنشاء مفتاح' })}
         </button>
       </form>
 
       {/* Keys List */}
       <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
-        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">{t({ en: 'Active API Keys', ar: 'Ù…ÙØ§ØªÙŠØ­ ÙˆØ§Ø¬Ù‡Ø© Ø§Ù„ØªØ·Ø¨ÙŠÙ‚Ø§Øª Ø§Ù„Ù†Ø´Ø·Ø©' })}</h3>
+        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">{t({ en: 'Active API Keys', ar: 'مفاتيح واجهة التطبيقات النشطة' })}</h3>
 
         {loading ? (
           <div className="py-6 flex justify-center">
             <span className="h-6 w-6 rounded-full border-4 border-primary/10 border-t-[#141F33] animate-spin" />
           </div>
         ) : keys.length === 0 ? (
-          <p className="text-xs text-primary font-semibold text-center py-6">{t({ en: 'No API keys configured yet.', ar: 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ù…ÙØ§ØªÙŠØ­ ÙˆØ§Ø¬Ù‡Ø© ØªØ·Ø¨ÙŠÙ‚Ø§Øª Ù…Ù‡ÙŠØ£Ø© Ø­Ø§Ù„ÙŠÙ‹Ø§.' })}</p>
+          <p className="text-xs text-primary font-semibold text-center py-6">{t({ en: 'No API keys configured yet.', ar: 'لا توجد مفاتيح واجهة تطبيقات مهيأة حالياً.' })}</p>
         ) : (
           <div className="divide-y divide-[#141F33]/10">
             {keys.map((k) => (
@@ -224,7 +179,7 @@ export default function ApiKeysSettingsPage() {
                     onClick={() => handleRevoke(k.id)}
                     className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] text-primary hover:bg-surface border border-primary/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                   >
-                    {t({ en: 'Revoke', ar: 'Ø¥Ù„ØºØ§Ø¡' })}
+                    {t({ en: 'Revoke', ar: 'إلغاء' })}
                   </button>
                 </div>
               </div>

@@ -8,12 +8,12 @@ export function Badge({ className = '', variant = 'primary', children, ...props 
   const baseStyle = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold tracking-wide uppercase';
 
   const variants = {
-    primary: 'bg-primary text-surface dark:bg-accent/10 dark:text-accent',
+    primary: 'bg-primary text-primary-foreground dark:bg-accent/10 dark:text-accent',
     secondary: 'bg-accent/10 text-accent',
-    success: 'bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
-    danger: 'bg-red-50 text-red-700 dark:bg-red-900/30 dark:text-red-400',
-    warning: 'bg-amber-50 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
-    info: 'bg-sky-50 text-sky-700 dark:bg-sky-900/30 dark:text-sky-400',
+    success: 'bg-success/10 text-success dark:bg-success/20 dark:text-success',
+    danger: 'bg-danger/10 text-danger dark:bg-danger/20 dark:text-danger',
+    warning: 'bg-warning/10 text-warning dark:bg-warning/20 dark:text-warning',
+    info: 'bg-info/10 text-info dark:bg-info/20 dark:text-info',
   };
 
   return (

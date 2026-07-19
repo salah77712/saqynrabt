@@ -44,6 +44,6 @@
     "postcss": "^8.4.38",
     "shadcn": "^4.13.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^6.0.3"
+    "typescript": "^5.5.4"
   }
 }

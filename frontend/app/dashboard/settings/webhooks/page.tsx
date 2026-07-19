@@ -1,8 +1,7 @@
 ﻿'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useAuth } from '@clerk/nextjs';
-import { useLocale, useEntitlements } from '../../../providers';
+import { useLocale } from '../../../providers';
 
 interface WebhookItem {
   id: string;
@@ -13,36 +12,26 @@ interface WebhookItem {
 
 export default function WebhooksSettingsPage() {
   const { locale } = useLocale();
-  const { mockMode } = useEntitlements();
-  const { getToken, isLoaded: authLoaded } = useAuth();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
-  const [jwtToken, setJwtToken] = useState<string | null>(null);
   const [webhooks, setWebhooks] = useState<WebhookItem[]>([]);
   const [url, setUrl] = useState('');
   const [selectedEvents, setSelectedEvents] = useState<string[]>(['booking.created']);
   const [loading, setLoading] = useState(false);
   const [registering, setRegistering] = useState(false);
 
-  useEffect(() => {
-    if (authLoaded && !mockMode) {
-      getToken({ template: 'saqyn-jwt' })
-        .then(token => setJwtToken(token))
-        .catch(err => console.error('Failed to get token:', err));
-    }
-  }, [authLoaded, mockMode, getToken]);
+  const apiFetch = (path: string, options?: RequestInit) =>
+    fetch(`/api/webhooks-outgoing${path}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...options?.headers,
+      },
+    });
 
   const fetchWebhooks = () => {
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
     setLoading(true);
-    fetch(`${apiBase}/api/webhooks-outgoing`, { headers })
+    apiFetch('')
       .then(res => res.json())
       .then((data: any) => {
         if (Array.isArray(data)) {
@@ -52,37 +41,23 @@ export default function WebhooksSettingsPage() {
         }
       })
       .catch(err => {
-        console.warn('Failed to load webhooks, using mock:', err);
-        setWebhooks([
-          { id: 'w-1', url: 'https://api.alsafa.qa/webhook-receiver', events: ['booking.created', 'complaint.routed'], created_at: '2026-07-03T10:00:00Z' },
-        ]);
+        console.warn('Failed to load webhooks:', err);
       })
       .finally(() => setLoading(false));
   };
 
   useEffect(() => {
     fetchWebhooks();
-  }, [jwtToken]);
+  }, []);
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
     if (!url.trim()) return;
 
     setRegistering(true);
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {
-      'Content-Type': 'application/json'
-    };
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
-    fetch(`${apiBase}/api/webhooks-outgoing`, {
+    apiFetch('', {
       method: 'POST',
-      headers,
-      body: JSON.stringify({ url, events: selectedEvents })
+      body: JSON.stringify({ url, events: selectedEvents }),
     })
       .then(res => res.json())
       .then(() => {
@@ -90,15 +65,7 @@ export default function WebhooksSettingsPage() {
         fetchWebhooks();
       })
       .catch(err => {
-        console.error('Failed to register webhook, using mock fallback:', err);
-        const mockNew: WebhookItem = {
-          id: `w-${Date.now()}`,
-          url,
-          events: selectedEvents,
-          created_at: new Date().toISOString(),
-        };
-        setWebhooks(prev => [mockNew, ...prev]);
-        setUrl('');
+        console.error('Failed to register webhook:', err);
       })
       .finally(() => setRegistering(false));
   };
@@ -110,29 +77,17 @@ export default function WebhooksSettingsPage() {
   };
 
   const handleDelete = (id: string) => {
-    if (!confirm(t({ en: 'Are you sure you want to delete this webhook destination?', ar: 'Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† Ø­Ø°Ù ÙˆØ¬Ù‡Ø© Ø§Ù„ÙˆÙŠØ¨ Ù‡ÙˆÙƒ Ù‡Ø°Ù‡ØŸ' }))) {
+    if (!confirm(t({ en: 'Are you sure you want to delete this webhook destination?', ar: 'هل أنت متأكد من حذف وجهة الويب هوك هذه؟' }))) {
       return;
     }
 
-    const apiBase = process.env.NEXT_PUBLIC_API_URL || '';
-    const headers: Record<string, string> = {};
-    if (jwtToken) {
-      headers['Authorization'] = `Bearer ${jwtToken}`;
-    } else {
-      headers['Authorization'] = 'Bearer mock-token-salah-admin';
-    }
-
-    fetch(`${apiBase}/api/webhooks-outgoing?id=${id}`, {
-      method: 'DELETE',
-      headers
-    })
+    apiFetch(`?id=${id}`, { method: 'DELETE' })
       .then(res => res.json())
       .then(() => {
         setWebhooks(prev => prev.filter(w => w.id !== id));
       })
       .catch(err => {
-        console.error('Revoke failed:', err);
-        setWebhooks(prev => prev.filter(w => w.id !== id));
+        console.error('Delete failed:', err);
       });
   };
 
@@ -141,8 +96,8 @@ export default function WebhooksSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Webhooks', ar: 'ØªÙƒØ§Ù…Ù„Ø§Øª Ø§Ù„ÙˆÙŠØ¨ Ù‡ÙˆÙƒ Ø§Ù„ØµØ§Ø¯Ø±Ø©' })}</h1>
-        <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'Send real-time updates to your own systems.', ar: 'ØªØ³Ø¬ÙŠÙ„ Ø±ÙˆØ§Ø¨Ø· Ø§Ù„ÙˆÙŠØ¨ Ù‡ÙˆÙƒ Ù„Ø§Ø³ØªÙ„Ø§Ù… ØªØ­Ø¯ÙŠØ«Ø§Øª ÙÙˆØ±ÙŠØ© Ø­ÙˆÙ„ Ø£Ø­Ø¯Ø§Ø« Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„.' })}</p>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Webhooks', ar: 'تسجيل روابط الويب هوك الصادرة' })}</h1>
+        <p className="text-xs text-primary/60 font-medium mt-0.5">{t({ en: 'Send real-time updates to your own systems.', ar: 'تسجيل روابط الويب هوك لاستلام تحديثات فورية حول أحداث مساحة العمل.' })}</p>
       </div>
 
       {/* Form Register */}
@@ -183,21 +138,21 @@ export default function WebhooksSettingsPage() {
           disabled={registering}
           className="w-full bg-primary text-surface font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40"
         >
-          {registering ? t({ en: 'Registering...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„ØªØ³Ø¬ÙŠÙ„...' }) : t({ en: 'Register Destination Webhook', ar: 'ØªØ³Ø¬ÙŠÙ„ Ø§Ù„ÙˆÙŠØ¨ Ù‡ÙˆÙƒ Ø§Ù„ØµØ§Ø¯Ø±' })}
+          {registering ? t({ en: 'Registering...', ar: 'جاري التسجيل...' }) : t({ en: 'Register Destination Webhook', ar: 'تسجيل الويب هوك الصادر' })}
         </button>
 
       </form>
 
       {/* Webhooks List */}
       <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
-        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">{t({ en: 'Active Webhook Endpoints', ar: 'Ø±ÙˆØ§Ø¨Ø· Ø§Ù„ÙˆÙŠØ¨ Ù‡ÙˆÙƒ Ø§Ù„Ù†Ø´Ø·Ø©' })}</h3>
+        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">{t({ en: 'Active Webhook Endpoints', ar: 'روابط الويب هوك النشطة' })}</h3>
 
         {loading ? (
           <div className="py-6 flex justify-center">
             <span className="h-6 w-6 rounded-full border-4 border-primary/10 border-t-[#141F33] animate-spin" />
           </div>
         ) : webhooks.length === 0 ? (
-          <p className="text-xs text-primary font-semibold text-center py-6">{t({ en: 'No outgoing webhooks registered.', ar: 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ø±ÙˆØ§Ø¨Ø· ÙˆÙŠØ¨ Ù‡ÙˆÙƒ ØµØ§Ø¯Ø±Ø© Ø­Ø§Ù„ÙŠÙ‹Ø§.' })}</p>
+          <p className="text-xs text-primary font-semibold text-center py-6">{t({ en: 'No outgoing webhooks registered.', ar: 'لا توجد روابط ويب هوك صادرة حالياً.' })}</p>
         ) : (
           <div className="divide-y divide-[#141F33]/10">
             {webhooks.map((w) => (
@@ -216,7 +171,7 @@ export default function WebhooksSettingsPage() {
                   onClick={() => handleDelete(w.id)}
                   className="text-[10px] font-bold text-primary hover:bg-surface px-3 py-1.5 rounded-lg border border-primary/10 shrink-0"
                 >
-                  {t({ en: 'Delete', ar: 'Ø­Ø°Ù' })}
+                  {t({ en: 'Delete', ar: 'حذف' })}
                 </button>
               </div>
             ))}

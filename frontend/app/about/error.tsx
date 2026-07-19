@@ -1,8 +1,7 @@
 ﻿'use client';
 
 import { useEffect } from 'react';
-import { AlertTriangle } from 'lucide-react';
-import { useLocale } from '../providers';
+import { AlertTriangle, Bug } from 'lucide-react';
 
 export default function AboutError({
   error,
@@ -11,43 +10,44 @@ export default function AboutError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  useEffect(() => { console.error(error); }, [error]);
-  const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
 
   return (
-    <div className="min-h-screen bg-surface flex flex-col">
-      <header className="sticky top-0 z-50 w-full border-b border-[rgba(20,31,51,0.1)] bg-surface backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center px-4 py-4 sm:px-6 lg:px-8">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-surface">S</div>
-          <div className="ms-3">
-            <p className="text-sm font-semibold tracking-[0.2em] text-primary">SAQYN RABT</p>
-            <p className="text-[10px] uppercase tracking-[0.35em] text-primary/50">Private AI operations</p>
-          </div>
-        </div>
-      </header>
-      <main className="mx-auto max-w-4xl px-6 py-20 lg:px-8 w-full text-center">
+    <div className="min-h-screen bg-surface flex items-center justify-center px-6" dir="auto">
+      <div className="text-center max-w-md">
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
-          <AlertTriangle className="w-6 h-6 text-primary" />
+          <AlertTriangle className="w-6 h-6 text-surface" />
         </div>
-        <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'About page unavailable', ar: 'ØµÙØ­Ø© Ø­ÙˆÙ„ ØºÙŠØ± Ù…ØªÙˆÙØ±Ø©' })}</h1>
-        <p className="text-primary/60 mb-2">{t({ en: "We couldn&apos;t load the about content.", ar: 'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ù…Ø­ØªÙˆÙ‰ Ø§Ù„ØµÙØ­Ø©.' })}</p>
-        <p className="text-sm text-primary/40 mb-8">{t({ en: 'Please try again or return to the homepage.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©.' })}</p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+        <h1 className="text-xl md:text-3xl font-bold text-primary mb-4 leading-snug">
+          <span lang="en">Something went wrong</span>
+          <br />
+          <span lang="ar" className="text-2xl font-semibold text-primary/70" dir="rtl">
+            حدث خطأ غير متوقع
+          </span>
+        </h1>
+        <p className="text-primary/60 mb-3 leading-relaxed" lang="en">
+          We encountered an unexpected error. Please try again, or return to the homepage.
+        </p>
+        <p className="text-primary/40 mb-8 leading-relaxed text-sm" lang="ar" dir="rtl">
+          حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.
+        </p>
+        <div className="flex flex-col sm:flex_row gap-4 justify-center">
           <button
             onClick={() => reset()}
             className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
           >
-            {t({ en: 'Try again', ar: 'Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰' })}
+            Try again / حاول مرة أخرى
           </button>
           <a
             href="/"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[rgba(20,31,51,0.1)] px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/10 px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
           >
-            {t({ en: 'Back to Home', ar: 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©' })}
+            Back to Home / العودة للرئيسية
           </a>
         </div>
-      </main>
+      </div>
     </div>
   );
 }
