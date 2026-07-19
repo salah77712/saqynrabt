@@ -2,8 +2,6 @@ name: Auto-create PR
 
 on:
   push:
-    branches:
-      - '*'  # Every branch except those listed below
     branches-ignore:
       - main
       - dependabot/*
