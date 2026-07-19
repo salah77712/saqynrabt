@@ -2,9 +2,8 @@ name: Auto-create PR
 
 on:
   push:
-    branches-ignore:
-      - main
-      - dependabot/*
+    branches:
+      - fix/metadata-seo-and-design-tokens
 
 jobs:
   create-pr:
