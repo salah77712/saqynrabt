@@ -9,4 +9,5 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "Hello World"
+      - name: Hello
+        run: echo "Test workflow running"
