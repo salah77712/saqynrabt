@@ -10,6 +10,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch main branch
+        run: git fetch origin main
 
       - name: Check if PR already exists
         id: check
@@ -26,13 +31,12 @@ jobs:
         run: |
           BRANCH="${{ github.ref_name }}"
           COMMIT_MSG=$(git log -1 --format=%s)
-          CHANGES=$(git log main..${BRANCH} --oneline --no-decorate | sed 's/^/- /')
           echo "## Description" > pr_body.md
           echo "" >> pr_body.md
           echo "Automated PR for branch \`${BRANCH}\`." >> pr_body.md
           echo "" >> pr_body.md
           echo "### Changes" >> pr_body.md
-          echo "${CHANGES}" >> pr_body.md
+          git log --oneline --no-decorate | sed 's/^/- /' >> pr_body.md
           echo "" >> pr_body.md
           echo "### Checklist" >> pr_body.md
           echo "- [ ] CI passes" >> pr_body.md
