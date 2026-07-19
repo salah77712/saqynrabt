@@ -54,6 +54,16 @@ cd frontend; npm run build
 ```
 Production builds MUST compile with zero errors.
 
+## 📊 Monitoring — https://github.com/salah77712/saqynrabt/actions
+
+All workflow runs are visible in real-time on the GitHub Actions tab. Status badges are shown at the top of `README.md`. GitHub sends **email notifications** for any failed workflow by default — no extra setup needed.
+
+| What to Watch | Where |
+|---|---|
+| All workflow runs | `https://github.com/salah77712/saqynrabt/actions` |
+| Live status badges | `README.md` (top) |
+| Failure alerts | GitHub email (automatic) |
+
 ## 🤖 GitHub Automation — Fully Automatic (READ ONLY)
 
 The entire GitHub lifecycle is automated. **Do NOT manually create PRs, merge, or delete branches.** The workflows handle everything:

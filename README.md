@@ -1,5 +1,11 @@
 # SAQYN RABT — Unified Queue & Staff Knowledge Hub
 
+![CI](https://github.com/salah77712/saqynrabt/actions/workflows/ci.yml/badge.svg)
+![Auto PR](https://github.com/salah77712/saqynrabt/actions/workflows/auto-pr.yml/badge.svg)
+![Auto Merge](https://github.com/salah77712/saqynrabt/actions/workflows/auto-merge-passing.yml/badge.svg)
+![Dependabot](https://github.com/salah77712/saqynrabt/actions/workflows/auto-merge.yml/badge.svg)
+![Cleanup](https://github.com/salah77712/saqynrabt/actions/workflows/cleanup.yml/badge.svg)
+
 A secure, tenant-isolated, RAG-enabled SaaS platform for hospitality, clinic, and industrial operations. Combines a Staff Knowledge Hub (chat interface) and a Guest & Client Queue (automated router) with optional Voice AI Integration (Vapi).
 
 ## Structure
