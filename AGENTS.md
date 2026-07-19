@@ -53,3 +53,39 @@ This repository contains **production code deployed to saqynrabt.com**. AI codin
 cd frontend; npm run build
 ```
 Production builds MUST compile with zero errors.
+
+## 🤖 GitHub Automation — Fully Automatic (READ ONLY)
+
+The entire GitHub lifecycle is automated. **Do NOT manually create PRs, merge, or delete branches.** The workflows handle everything:
+
+### Workflows (`.github/workflows/`)
+
+| Workflow | Trigger | What It Does |
+|---|---|---|
+| `ci.yml` | Push/PR to `main` affecting `frontend/` | Runs `npm run typecheck` + `npm run build` |
+| `auto-pr.yml` | Push to any non-main branch (except `dependabot/*`) | Creates a PR to `main` with changelog and auto-label |
+| `auto-merge-passing.yml` | PR labeled `auto-pr` or self-reviewed with passing CI | Squash-merges the PR automatically |
+| `auto-merge.yml` | Dependabot opens a PR | Approves + squash-merges dependency updates |
+| `cleanup.yml` | PR is merged/closed | Deletes the source branch |
+| `deploy.yml` | (Pre-existing) | Deploys to Vercel |
+
+### The Automated Cycle
+
+1. **Push code** to any branch → `auto-pr.yml` creates a PR
+2. **CI runs** on the PR → `ci.yml` validates typecheck + build
+3. **CI passes** → `auto-merge-passing.yml` squash-merges to `main`
+4. **PR merges** → `cleanup.yml` deletes the branch
+5. **Dependencies** → `dependabot.yml` opens weekly update PRs → `auto-merge.yml` approves + merges
+
+### Pre-commit Hook
+`npm run typecheck` runs automatically before every local `git commit` (via `package.json` scripts).
+
+### GitHub MCP Server
+Configured in `opencode.json` — uses `GITHUB_PERSONAL_ACCESS_TOKEN` from `.env.local`. AI agents can use it for GitHub operations, but the automated workflows should handle most cases.
+
+### What This Means for AI Agents
+- **Never** manually create a PR — the workflow does it on push
+- **Never** manually merge — the workflow does it when CI passes
+- **Never** delete branches — the cleanup workflow handles it
+- **Do** push code to feature branches and let automation run
+- **Do** let Dependabot handle dependency bumps
