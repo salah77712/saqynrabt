@@ -26,19 +26,17 @@ jobs:
         run: |
           BRANCH="${{ github.ref_name }}"
           COMMIT_MSG=$(git log -1 --format=%s)
-          PR_BODY=$(cat <<'EOF'
-## Description
+          CHANGES=$(git log main..${BRANCH} --oneline --no-decorate | sed 's/^/- /')
+          PR_BODY="## Description
 
-Automated PR for branch `${BRANCH}`.
+Automated PR for branch \`${BRANCH}\`.
 
 ### Changes
-$(git log main..${BRANCH} --oneline --no-decorate | sed 's/^/- /')
+${CHANGES}
 
 ### Checklist
 - [ ] CI passes
-- [ ] Code reviewed
-EOF
-)
+- [ ] Code reviewed"
           
           gh pr create \
             --base main \
