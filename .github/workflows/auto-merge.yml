@@ -1,33 +1,48 @@
-name: Dependabot Auto-Merge
+name: Auto-merge Dependabot
+
 on:
-  pull_request_target:
-    types: [opened, synchronize, reopened]
+  pull_request:
+    types: [opened, synchronize]
 
 permissions:
   contents: write
   pull-requests: write
-  issues: write
 
 jobs:
   auto-merge:
     if: github.actor == 'dependabot[bot]'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - run: |
-          PR_URL="https://github.com/${{ github.repository }}/pull/${{ github.event.pull_request.number }}"
-          BODY=$(gh pr view "$PR_URL" --json body --jq '.body')
-          FROM=$(echo "$BODY" | grep -oP 'from \K\d+' | head -1)
-          TO=$(echo "$BODY" | grep -oP 'to \K\d+' | head -1)
-          DEP=$(echo "$BODY" | grep -oP 'Bumps \`\K[^`]+' | head -1)
-          echo "Dependency: $DEP | From major: $FROM | To major: $TO"
-          if [ "$FROM" = "$TO" ] || [ "$DEP" = "actions/checkout" ]; then
-            echo "Safe update - approving and merging"
-            gh pr review --approve "$PR_URL"
-            gh api "/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/merge" -X PUT -f merge_method=squash --silent
-          else
-            echo "Major version bump - skipping auto-merge"
-            gh pr comment "$PR_URL" --body "⚠️ **Major version bump** (\`${DEP}\`: ${FROM} → ${TO}). Merge skipped. Tracked for consolidated batch PR." || true
-          fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            if (pr.user.login !== 'dependabot[bot]') return;
+
+            const { data: reviews } = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+            });
+
+            const alreadyApproved = reviews.some(r => r.state === 'APPROVED');
+            if (!alreadyApproved) {
+              await github.rest.pulls.createReview({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                event: 'APPROVE',
+                body: 'Auto-approved dependabot PR.',
+              });
+            }
+
+            try {
+              await github.rest.pulls.merge({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: pr.number,
+                merge_method: 'squash',
+              });
+            } catch (e) {
+              console.log('Merge failed (may have conflicts):', e.message);
+            }
