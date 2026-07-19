@@ -50,5 +50,4 @@ $(git log main..${BRANCH} --oneline --no-decorate | sed 's/^/- /')
             --head "$BRANCH" \
             --title "$COMMIT_MSG" \
             --body "$PR_BODY" \
-            --label "auto-pr" \
-            --reviewer "${{ github.actor }}"
+            --label "auto-pr"
