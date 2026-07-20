@@ -143,7 +143,7 @@ export default function SettingsDashboardPage() {
         <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
           {t('Settings', 'Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… ÙˆØ§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª')}
         </h1>
-        <p className="text-[10px] md:text-xs text-primary font-bold mt-0.5">
+        <p className="text-xs md:text-xs text-primary font-bold mt-0.5">
           {t('Billing, exports, and account preferences.', 'ØªÙƒÙˆÙŠÙ† Ø®ÙŠØ§Ø±Ø§Øª Ø§Ù„ÙÙˆØªØ±Ø©ØŒ ØªØµØ¯ÙŠØ± Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ø¨ÙŠØ§Ù†Ø§ØªØŒ ÙˆØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ù…Ø¹Ù„Ù…Ø§Øª.')}
         </p>
       </div>
@@ -195,21 +195,21 @@ export default function SettingsDashboardPage() {
             </h2>
             <div className="space-y-4">
               <div>
-                <div className="flex justify-between text-[10px] md:text-xs font-bold text-primary mb-1.5">
+                <div className="flex justify-between text-xs md:text-xs font-bold text-primary mb-1.5">
                   <span>{t('Automation Texts', 'Ù†ØµÙˆØµ Ø§Ù„Ø£ØªÙ…ØªØ©')}</span>
                   <span>{metrics.textsUsed} / {metrics.textsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.textsLimit > 0 ? (metrics.textsUsed / metrics.textsLimit) * 100 : 0} />
               </div>
               <div>
-                <div className="flex justify-between text-[10px] md:text-xs font-bold text-primary mb-1.5">
+                <div className="flex justify-between text-xs md:text-xs font-bold text-primary mb-1.5">
                   <span>{t('Voice Minutes', 'Ø¯Ù‚Ø§Ø¦Ù‚ Ø§Ù„ØµÙˆØª')}</span>
                   <span>{metrics.voiceMinsUsed} / {metrics.voiceMinsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.voiceMinsLimit > 0 ? (metrics.voiceMinsUsed / metrics.voiceMinsLimit) * 100 : 0} />
               </div>
               <div>
-                <div className="flex justify-between text-[10px] md:text-xs font-bold text-primary mb-1.5">
+                <div className="flex justify-between text-xs md:text-xs font-bold text-primary mb-1.5">
                   <span>{t('RAG Questions', 'Ø£Ø³Ø¦Ù„Ø© RAG')}</span>
                   <span>{metrics.questionsUsed} / {metrics.questionsLimit}</span>
                 </div>
@@ -223,11 +223,11 @@ export default function SettingsDashboardPage() {
               <h3 className="text-sm font-bold text-primary">
                 {t('Export Chat Log Audit', 'ØªØµØ¯ÙŠØ± Ø³Ø¬Ù„ Ø§Ù„ØªØ¯Ù‚ÙŠÙ‚ Ù„Ù„Ù…Ø­Ø§Ø¯Ø«Ø§Øª')}
               </h3>
-              <p className="text-[10px] md:text-[10px] text-primary/60 mt-1">
+              <p className="text-xs md:text-xs text-primary/60 mt-1">
                 {t('Download employee RAG chatbot logs and question histories in .csv format.', 'ØªÙ†Ø²ÙŠÙ„ Ø¬Ù…ÙŠØ¹ Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ ÙˆØªØ§Ø±ÙŠØ® Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø¨ØµÙŠØºØ© .csv Ù„Ù„ØªØ¯Ù‚ÙŠÙ‚.')}
               </p>
             </div>
-            <Button variant="default" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs py-3 px-6 rounded-xl font-bold">
+            <Button variant="primary" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs py-3 px-6 rounded-xl font-bold">
               {t('Export Logs', 'ØªØµØ¯ÙŠØ± Ø§Ù„Ø³Ø¬Ù„Ø§Øª')}
             </Button>
           </Card>
@@ -237,10 +237,10 @@ export default function SettingsDashboardPage() {
 {activeTab === 'billing' && (
   <Card className="p-8 flex flex-col gap-4">
           <h3 className="text-sm font-bold text-navy dark:text-surface">{t('Subscription Plan', 'Ø®Ø·Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ')}</h3>
-          <p className="text-[10px] md:text-xs text-primary leading-relaxed">
+          <p className="text-xs md:text-xs text-primary leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ Ù…Ø³Ø¬Ù„Ø© Ø­Ø§Ù„ÙŠØ§Ù‹ ØªØ­Øª Ø¨Ø§Ù‚Ø© Ù†Ù…Ùˆ Ø§Ù„Ù…Ø¤Ø³Ø³Ø§Øª.')}
           </p>
-          <Button variant="default" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-xl font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
+          <Button variant="primary" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-xl font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
             {t('Manage Subscription', 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ')}
           </Button>
         </Card>

@@ -146,7 +146,7 @@ export function TeamTable({ members, onAction, searchQuery = '', onSearchChange,
       <div className="overflow-x-auto w-full border border-surface dark:border-slate-700 rounded-xl bg-surface dark:bg-dark-900 shadow-sm">
         <table className="w-full text-left border-collapse">
           <thead className="sticky top-0 z-10 bg-surface dark:bg-dark-900">
-            <tr className="border-b border-surface dark:border-slate-700 text-[10px] font-black text-primary dark:text-surface uppercase tracking-wider">
+            <tr className="border-b border-surface dark:border-slate-700 text-xs font-black text-primary dark:text-surface uppercase tracking-wider">
               <th className="p-4 w-10" scope="col">
                 <input
                   ref={selectAllRef}

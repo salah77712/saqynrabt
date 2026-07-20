@@ -34,7 +34,7 @@ export default function AdminFeatureFlagsPage() {
 
       {/* Flags table */}
       <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
-        <div className="divide-y divide-[#141F33]/10">
+        <div className="divide-y divide-primary/10">
           {flags.map((flag) => (
             <div key={flag.id} className="py-4 flex justify-between items-center gap-8 first:pt-0 last:pb-0">
               <span className="text-xs font-mono font-bold text-primary">{flag.name}</span>

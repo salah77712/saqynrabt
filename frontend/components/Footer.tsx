@@ -149,7 +149,7 @@ return (
           />
           <button
             type="submit"
-            className="absolute end-1 top-[4px] bottom-[4px] bg-primary hover:bg-primary/90 text-surface font-bold text-[10px] uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[44px] min-w-[44px]"
+            className="absolute end-1 top-[4px] bottom-[4px] bg-primary hover:bg-primary/90 text-surface font-bold text-xs uppercase tracking-wider px-3 rounded-full transition-all duration-200 min-h-[44px] min-w-[44px]"
           >
             {t({ en: 'Submit', ar: 'إرسال' })}
           </button>
@@ -167,7 +167,7 @@ return (
     </div>
 
     {/* 3. Bottom Bar */}
-    <div className="border-t border-primary/10 mt-10 pt-6 flex flex-col lg:flex-row justify-between items-center gap-6 text-[10px] font-bold text-primary/40">
+    <div className="border-t border-primary/10 mt-10 pt-6 flex flex-col lg:flex-row justify-between items-center gap-6 text-xs font-bold text-primary/40">
       <p className="uppercase tracking-wider">
         © {year} SAQYN RABT. ALL RIGHTS RESERVED.
       </p>

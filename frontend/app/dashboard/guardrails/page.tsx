@@ -72,7 +72,7 @@ return (
 </div>
 
 {lastUpdated && (
-<div className="text-[10px] font-bold text-primary/60 flex items-center gap-1">
+<div className="text-xs font-bold text-primary/60 flex items-center gap-1">
 {t({en: 'Last updated:', ar: 'آخر تحديث:'})} {new Date(lastUpdated).toLocaleTimeString()}
 </div>
 )}
@@ -85,7 +85,7 @@ return (
 <div className="flex justify-between items-center p-3 border border-primary/10 rounded-xl bg-surface">
 <div>
 <p className="text-xs font-bold text-primary">PII Redaction</p>
-<p className="text-[10px] text-primary font-semibold mt-0.5">Mask emails and phone numbers before querying LLM APIs.</p>
+<p className="text-xs text-primary font-semibold mt-0.5">Mask emails and phone numbers before querying LLM APIs.</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer select-none">
 <input
@@ -102,7 +102,7 @@ className="sr-only peer"
 <div className="flex justify-between items-center p-3 border border-primary/10 rounded-xl bg-surface">
 <div>
 <p className="text-xs font-bold text-primary">Jailbreak & Prompt Injection Filter</p>
-<p className="text-[10px] text-primary font-semibold mt-0.5">Restrict jailbreak attempts ("ignore instructions", "system override").</p>
+<p className="text-xs text-primary font-semibold mt-0.5">Restrict jailbreak attempts ("ignore instructions", "system override").</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer select-none">
 <input
@@ -119,7 +119,7 @@ className="sr-only peer"
 <div className="flex justify-between items-center p-3 border border-primary/10 rounded-xl bg-surface">
 <div>
 <p className="text-xs font-bold text-primary">Harmful Output Toxicity Filter</p>
-<p className="text-[10px] text-primary font-semibold mt-0.5">Checks LLM completions for toxic, harassing, or violent outputs.</p>
+<p className="text-xs text-primary font-semibold mt-0.5">Checks LLM completions for toxic, harassing, or violent outputs.</p>
 </div>
 <label className="relative inline-flex items-center cursor-pointer select-none">
 <input
@@ -146,7 +146,7 @@ className="sr-only peer"
       <div className="p-8 rounded-xl bg-surface border border-primary/10 shadow-sm gap-8">
 <div>
 <h2 className="text-sm font-extrabold text-primary">{t({ en: 'Knowledge Gaps', ar: 'الفجوات المعرفية' })}</h2>
-<p className="text-[10px] text-primary font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'الأسئلة التي طرحها موظفوك ولم يتمكن الذكاء الاصطناعي من الإجابة عليها.' })}</p>
+<p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Questions your employees asked that the AI could not answer.', ar: 'الأسئلة التي طرحها موظفوك ولم يتمكن الذكاء الاصطناعي من الإجابة عليها.' })}</p>
 </div>
 
 {loading && (
@@ -162,7 +162,7 @@ className="sr-only peer"
 {MOCK_KNOWLEDGE_GAPS.map((gap, i) => (
 <div key={i} className="p-3 border border-primary/10 rounded-xl bg-surface space-y-1.5">
 <p className="text-xs font-bold text-primary">&ldquo;{gap.question}&rdquo;</p>
-<div className="flex items-center gap-3 text-[10px] text-primary font-semibold">
+<div className="flex items-center gap-3 text-xs text-primary font-semibold">
 <span>{gap.employee_name}</span>
 <span className="w-1 h-1 rounded-full bg-primary" />
 <span>{gap.department}</span>
@@ -177,7 +177,7 @@ className="sr-only peer"
 {!loading && !error && knowledgeGaps.length === 0 && (
 <div className="flex flex-col items-center justify-center py-8 text-center">
 <p className="text-xs font-bold text-primary">{t({ en: 'No knowledge gaps found', ar: 'لا توجد فجوات معرفية' })}</p>
-<p className="text-[10px] text-primary font-semibold mt-1">{t({ en: 'Your team is getting all the answers they need!', ar: 'فريقك يحصل على جميع الإجابات التي يحتاجها!' })}</p>
+<p className="text-xs text-primary font-semibold mt-1">{t({ en: 'Your team is getting all the answers they need!', ar: 'فريقك يحصل على جميع الإجابات التي يحتاجها!' })}</p>
 </div>
 )}
 
@@ -186,7 +186,7 @@ className="sr-only peer"
 {knowledgeGaps.map((gap, i) => (
 <div key={i} className="p-3 border border-primary/10 rounded-xl bg-surface space-y-1.5">
 <p className="text-xs font-bold text-primary">&ldquo;{gap.question}&rdquo;</p>
-<div className="flex items-center gap-3 text-[10px] text-primary font-semibold">
+<div className="flex items-center gap-3 text-xs text-primary font-semibold">
 <span>{gap.employee_name}</span>
 <span className="w-1 h-1 rounded-full bg-primary" />
 <span>{gap.department}</span>

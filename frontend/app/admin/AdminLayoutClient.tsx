@@ -26,7 +26,7 @@ export default function AdminLayout({
   if (!isLoaded) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-surface">
-        <span className="h-8 w-8 rounded-full border-4 border-primary/10 border-t-[#141F33] animate-spin" />
+        <span className="h-8 w-8 rounded-full border-4 border-primary/10 border-t-primary animate-spin" />
       </div>
     );
   }
@@ -102,7 +102,7 @@ export default function AdminLayout({
             <div className="flex items-center justify-between px-6 py-6 border-b border-primary/10 min-h-[80px]">
               <Link href="/" className="flex flex-col items-start gap-0.5">
                 <span className="text-primary font-extrabold text-xl tracking-tight">SAQYN ADMIN</span>
-                <span className="text-[10px] uppercase tracking-widest text-primary/60 font-bold">{t({ en: 'Staff Operations', ar: '╪╣┘à┘ä┘è╪º╪¬ ╪º┘ä┘à┘ê╪╕┘ü┘è┘å' })}</span>
+                <span className="text-xs uppercase tracking-widest text-primary/60 font-bold">{t({ en: 'Staff Operations', ar: '╪╣┘à┘ä┘è╪º╪¬ ╪º┘ä┘à┘ê╪╕┘ü┘è┘å' })}</span>
               </Link>
             </div>
 
@@ -134,7 +134,7 @@ export default function AdminLayout({
             <UserButton />
             <div className="flex-1 min-w-0">
               <p className="text-xs font-extrabold text-primary truncate">{user?.fullName || 'Staff Administrator'}</p>
-<span className="inline-block mt-1 text-[10px] font-extrabold uppercase tracking-widest text-accent bg-surface px-2 py-0.5 rounded-full border border-primary/10">
+<span className="inline-block mt-1 text-xs font-extrabold uppercase tracking-widest text-accent bg-surface px-2 py-0.5 rounded-full border border-primary/10">
   SAQYN ADMIN
 </span>
             </div>
@@ -154,7 +154,7 @@ export default function AdminLayout({
         <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
           <header className="border-b border-primary/10 bg-surface px-8 py-5 sticky top-0 z-30 shadow-sm shrink-0 flex items-center justify-between">
             <div>
-              <p className="text-[10px] font-extrabold uppercase tracking-widest text-primary/60">{t({ en: 'Internal Control Centre', ar: '┘à╪▒┘â╪▓ ╪º┘ä╪¬╪¡┘â┘à ╪º┘ä╪»╪º╪«┘ä┘è' })}</p>
+              <p className="text-xs font-extrabold uppercase tracking-widest text-primary/60">{t({ en: 'Internal Control Centre', ar: '┘à╪▒┘â╪▓ ╪º┘ä╪¬╪¡┘â┘à ╪º┘ä╪»╪º╪«┘ä┘è' })}</p>
               <h2 className="text-2xl font-extrabold text-primary tracking-tight mt-0.5">{t({ en: 'Staff Console', ar: '┘ä┘ê╪¡╪⌐ ╪¬╪¡┘â┘à ╪º┘ä┘à┘ê╪╕┘ü┘è┘å' })}</h2>
             </div>
           </header>

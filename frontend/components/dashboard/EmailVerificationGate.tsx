@@ -115,7 +115,7 @@ export function EmailVerificationGate() {
           </button>
           <div className="pt-4 border-t  flex items-center justify-center gap-3">
             <UserButton />
-            <span className="text-[10px] text-primary font-bold">{t({ en: 'Sign Out', ar: 'تسجيل الخروج' })}</span>
+            <span className="text-xs text-primary font-bold">{t({ en: 'Sign Out', ar: 'تسجيل الخروج' })}</span>
           </div>
         </div>
       </div>

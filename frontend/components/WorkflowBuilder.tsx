@@ -42,7 +42,7 @@ return (
 <div className="flex justify-between items-center">
 <div>
 <h3 className="text-sm font-extrabold text-primary">{t({ en: 'Visual Pipeline Editor', ar: 'محرر مسار التدفق البصري' })}</h3>
-<p className="text-[10px] text-primary/60 font-semibold mt-0.5">{t({ en: 'Simulated visual flow editor. Configure pipeline dispatches.', ar: 'محرر سير العمل البصري. قم بتهيئة إرسال المهام.' })}</p>
+<p className="text-xs text-primary/60 font-semibold mt-0.5">{t({ en: 'Simulated visual flow editor. Configure pipeline dispatches.', ar: 'محرر سير العمل البصري. قم بتهيئة إرسال المهام.' })}</p>
 </div>
 <button
 onClick={() => handleAddNode('action')}
@@ -62,7 +62,7 @@ className="bg-primary text-white font-bold py-3 px-6 rounded-xl text-xs min-h-[4
 node.type === 'trigger' ? 'border-s-4 border-s-accent' : 'border-s-4 border-s-accent'
 }`}>
 <div>
-<span className="text-[10px] font-extrabold uppercase text-primary/60 tracking-widest">{node.type}</span>
+<span className="text-xs font-extrabold uppercase text-primary/60 tracking-widest">{node.type}</span>
 <p className="text-xs font-mono font-bold text-primary mt-1">{node.label}</p>
 </div>
 

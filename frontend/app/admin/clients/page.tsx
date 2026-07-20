@@ -40,19 +40,19 @@ return (
 
 {/* Clients list */}
 <div className="bg-surface border border-primary/10 rounded-xl shadow-sm overflow-hidden">
-<div className="p-8 divide-y divide-[#141F33]/10">
+<div className="p-8 divide-y divide-primary/10">
 {clients.map((c) => (
 <div key={c.id} className="py-4 flex justify-between items-center gap-8 first:pt-0 last:pb-0">
 <div>
 <p className="text-xs font-extrabold text-primary">{c.name}</p>
 <div className="flex gap-3 items-center mt-1">
-<span className="text-[10px] text-primary font-bold">{c.plan}</span>
-<span className="text-[10px] text-accent font-bold">CHS: {c.healthScore}%</span>
+<span className="text-xs text-primary font-bold">{c.plan}</span>
+<span className="text-xs text-accent font-bold">CHS: {c.healthScore}%</span>
 </div>
 </div>
 
 <div className="flex items-center gap-4">
-<span className={`text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${c.status === 'active' ? 'bg-surface text-accent' : 'bg-surface text-primary'}`}>
+<span className={`text-xs font-extrabold uppercase px-2 py-0.5 rounded-full ${c.status === 'active' ? 'bg-surface text-accent' : 'bg-surface text-primary'}`}>
 {c.status}
 </span>
 

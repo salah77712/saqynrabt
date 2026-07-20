@@ -60,7 +60,7 @@ export default function AdminBillingPage() {
                 <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª' })}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-primary">
+            <tbody className="divide-y divide-primary/10 text-xs font-semibold text-primary">
               {invoices.map((inv) => (
                 <tr key={inv.id} className="hover:bg-primary transition-colors">
                   <td className="px-6 py-4 font-bold text-primary">{inv.company}</td>
@@ -70,7 +70,7 @@ export default function AdminBillingPage() {
                   <td className="px-6 py-4 font-black text-accent">{inv.totalPaid} QAR</td>
                   <td className="px-6 py-4 text-primary/40 font-bold">{inv.lastInvoiceDate}</td>
                   <td className="px-6 py-4">
-                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase ${
+                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase ${
                       inv.status === 'paid' ? 'bg-royal/10 text-royal border border-royal/20' : 'bg-surface text-accent'
                     }`}>
                       {inv.status === 'paid' ? t({ en: 'Paid', ar: 'Ù…Ø¯ÙÙˆØ¹' }) : t({ en: 'Unpaid', ar: 'ØºÙŠØ± Ù…Ø¯ÙÙˆØ¹' })}

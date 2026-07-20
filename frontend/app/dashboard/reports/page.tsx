@@ -66,7 +66,7 @@ return (
 {t({en: 'Generate a formal operations PDF including current workspace metrics and redacting PII details.', ar: 'Ø¥Ù†Ø´Ø§Ø¡ PDF Ø±Ø³Ù…ÙŠ Ù„Ù„Ø¹Ù…Ù„ÙŠØ§Øª ÙŠØªØ¶Ù…Ù† Ù…Ù‚Ø§ÙŠÙŠØ³ Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ø­Ø§Ù„ÙŠØ© Ù…Ø¹ Ø¥Ø®ÙØ§Ø¡ ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ø§Ù„Ø´Ø®ØµÙŠØ©.'})}
 </p>
 </div>
-<Button variant="default" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('PDF')}>
+<Button variant="primary" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('PDF')}>
 {loading === 'PDF' ? t({en: 'Exporting...', ar: 'Ø¬Ø§Ø±Ù Ø§Ù„ØªØµØ¯ÙŠØ±...'}) : t({en: 'Export PDF Report', ar: 'ØªØµØ¯ÙŠØ± ØªÙ‚Ø±ÙŠØ± PDF'})}
 </Button>
 </Card>
@@ -78,7 +78,7 @@ return (
 {t({en: 'Export RAG assistant transcripts to CSV formats for offline review.', ar: 'ØªØµØ¯ÙŠØ± Ù†ØµÙˆØµ Ù…Ø³Ø§Ø¹Ø¯ RAG Ø§Ù„Ø´Ø§Ù…Ù„Ø© Ø¨ØªÙ†Ø³ÙŠÙ‚ CSV Ù…Ù†Ø§Ø³Ø¨ Ù„Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ù…Ø­Ù„ÙŠØ©.'})}
 </p>
 </div>
-<Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('CSV')}>
+<Button variant="ghost" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('CSV')}>
 {loading === 'CSV' ? t({en: 'Exporting...', ar: 'Ø¬Ø§Ø±Ù Ø§Ù„ØªØµØ¯ÙŠØ±...'}) : t({en: 'Export CSV Database', ar: 'ØªØµØ¯ÙŠØ± Ù‚Ø§Ø¹Ø¯Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª CSV'})}
 </Button>
 </Card>
@@ -90,7 +90,7 @@ return (
 {t({en: 'Download monthly allocation files detailing voice minute calls and document uploads.', ar: 'ØªÙ†Ø²ÙŠÙ„ Ù…Ù„ÙØ§Øª Ø§Ù„ØªØ®ØµÙŠØµ Ø§Ù„Ø´Ù‡Ø±ÙŠØ© Ø§Ù„ØªÙŠ ØªÙˆØ¶Ø­ Ø¯Ù‚Ø§Ø¦Ù‚ Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„ØµÙˆØªÙŠØ© ÙˆØ±ÙØ¹ Ø§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª.'})}
 </p>
 </div>
-<Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('EXCEL')}>
+<Button variant="ghost" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" disabled={loading !== null} onClick={() => handleExport('EXCEL')}>
 {loading === 'EXCEL' ? t({en: 'Exporting...', ar: 'Ø¬Ø§Ø±Ù Ø§Ù„ØªØµØ¯ÙŠØ±...'}) : t({en: 'Export Excel Sheet', ar: 'ØªØµØ¯ÙŠØ± ÙˆØ±Ù‚Ø© Excel'})}
 </Button>
 </Card>

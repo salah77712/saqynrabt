@@ -38,7 +38,7 @@ export function OverviewMetrics({ metrics }: { metrics: MetricProps[] }) {
       <div className="flex items-center justify-between mb-6">
         <div />
         <Button
-          variant="outline"
+          variant="ghost"
           size="sm"
           onClick={() => downloadMetricsCSV(metrics, () => addToast('Report downloaded successfully', 'success'))}
           className="inline-flex items-center gap-2 text-xs font-bold"
@@ -50,7 +50,7 @@ export function OverviewMetrics({ metrics }: { metrics: MetricProps[] }) {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {metrics.map((metric) => (
           <Card key={metric.label} className="p-8 card-hover">
-            <p className="text-[10px] uppercase font-bold text-primary tracking-wider">
+            <p className="text-xs uppercase font-bold text-primary tracking-wider">
               {metric.label}
             </p>
             <p className="text-3xl font-extrabold text-navy dark:text-surface mt-2">

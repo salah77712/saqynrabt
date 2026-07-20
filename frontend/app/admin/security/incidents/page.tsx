@@ -237,17 +237,17 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
                 className="w-full flex items-center justify-between p-4 hover:bg-primary transition-colors text-left"
               >
                 <div className="flex items-center gap-4 flex-1 min-w-0">
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${severityColors[inc.severity] || 'bg-gray-50 dark:bg-primary text-primary dark:text-surface border border-gray-200 dark:border-surface/20'}`}>
+                  <span className={`text-xs font-bold px-2 py-1 rounded-full uppercase border ${severityColors[inc.severity] || 'bg-gray-50 dark:bg-primary text-primary dark:text-surface border border-gray-200 dark:border-surface/20'}`}>
                     {inc.severity}
                   </span>
-                  <span className={`text-[10px] font-bold px-2 py-1 rounded-full uppercase border ${statusColors[inc.status] || 'bg-gray-50 dark:bg-primary text-primary dark:text-surface border border-gray-200 dark:border-surface/20'}`}>
+                  <span className={`text-xs font-bold px-2 py-1 rounded-full uppercase border ${statusColors[inc.status] || 'bg-gray-50 dark:bg-primary text-primary dark:text-surface border border-gray-200 dark:border-surface/20'}`}>
                     {inc.status}
                   </span>
                   <span className="text-xs font-medium text-primary truncate">{inc.title}</span>
-                  <span className="text-[10px] text-primary/70 uppercase">{inc.incident_type.replace('_', ' ')}</span>
+                  <span className="text-xs text-primary/70 uppercase">{inc.incident_type.replace('_', ' ')}</span>
                 </div>
                 <div className="flex items-center gap-4 shrink-0">
-                  <span className="text-[10px] text-primary/70">{new Date(inc.created_at).toLocaleDateString()}</span>
+                  <span className="text-xs text-primary/70">{new Date(inc.created_at).toLocaleDateString()}</span>
                   {expandedId === inc.id ? <ChevronUpSvg /> : <ChevronDownSvg />}
                 </div>
               </button>
@@ -258,7 +258,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
                   {inc.affected_resources && (
                     <p className="text-xs text-primary/70"><span className="font-bold">{t({ en: 'Affected:', ar: 'متأثر:' })}</span> {inc.affected_resources}</p>
                   )}
-                  <div className="flex items-center gap-3 text-[10px] text-primary/70">
+                  <div className="flex items-center gap-3 text-xs text-primary/70">
                     <span>{t({ en: 'Reported by:', ar: 'أبلغ عن:' })} {inc.reported_by || 'N/A'}</span>
                     <span>{t({ en: 'Assigned to:', ar: 'مسند إلى:' })} {inc.assigned_to || 'Unassigned'}</span>
                   </div>
@@ -268,7 +268,7 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
                         key={s}
                         type="button"
                         onClick={() => handleStatusUpdate(inc.id, s)}
-                        className={`px-2.5 py-1.5 rounded-xl text-[10px] font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
+                        className={`px-2.5 py-1.5 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
                           inc.status === s
                             ? 'bg-primary text-surface'
                             : 'bg-surface text-primary border border-primary/10 hover:bg-primary'

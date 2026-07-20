@@ -27,7 +27,7 @@ export function DashboardMobileHeader({ isSidebarOpen, onToggleSidebar }: Dashbo
         <span className="text-primary font-extrabold text-sm tracking-tight">SAQYN</span>
       </Link>
       <div className="flex items-center gap-3">
-        <div className="flex items-center gap-1.5 rounded-full border border-primary/20 bg-surface px-2.5 py-1 text-[10px] font-bold text-primary">
+        <div className="flex items-center gap-1.5 rounded-full border border-primary/20 bg-surface px-2.5 py-1 text-xs font-bold text-primary">
           <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
           {t(dashboardContent.live)}
         </div>

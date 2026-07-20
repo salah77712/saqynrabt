@@ -52,7 +52,7 @@ isActive ? 'text-primary' : 'text-primary/40'
 <span className="absolute top-0 start-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-primary" />
 )}
 {item.icon}
-<span className={`text-[10px] font-bold uppercase tracking-wider ${
+<span className={`text-xs font-bold uppercase tracking-wider ${
 isActive ? 'text-primary' : 'text-primary/40'
 }`}>
 {t(item.name.en, item.name.ar)}

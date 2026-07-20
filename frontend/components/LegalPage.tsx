@@ -15,7 +15,7 @@ return (
 <main className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
 <Link
 href="/trust"
-className="group inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-wider text-primary/50 hover:text-primary transition-colors mb-12"
+className="group inline-flex items-center gap-3 text-xs font-black uppercase tracking-wider text-primary/50 hover:text-primary transition-colors mb-12"
 >
 <span className="transition-transform group-hover:-translate-x-1 duration-150 inline-block">
 <ArrowLeft className="w-4 h-4" />

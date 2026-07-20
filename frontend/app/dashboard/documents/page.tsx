@@ -102,7 +102,7 @@ return (
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
 {t('Document Library', 'Ù…Ø³ØªÙ†Ø¯Ø§Øª Ø§Ù„Ù…Ø¹Ø±ÙØ© Ø§Ù„Ø®Ø§ØµØ©')}
 </h1>
-<p className="text-[10px] md:text-xs text-primary font-bold">
+<p className="text-xs md:text-xs text-primary font-bold">
 {t('Upload PDFs so your AI can answer questions from your policies and manuals.', 'ØªØ­Ù…ÙŠÙ„ ÙˆÙÙ‡Ø±Ø³Ø© Ù…Ù„ÙØ§Øª PDF Ù„ØªÙˆØ³ÙŠØ¹ Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ.')}
 </p>
 </div>
@@ -123,7 +123,7 @@ className="min-h-[44px] text-xs md:text-sm"
         <h3 className="text-xs md:text-sm font-extrabold text-primary">
           {t('Tap to upload PDFs', 'Ø§Ø¶ØºØ· Ù„Ø±ÙØ¹ Ù…Ù„ÙØ§Øª PDF')}
         </h3>
-        <p className="text-[10px] md:text-xs text-primary font-medium mt-1">
+        <p className="text-xs md:text-xs text-primary font-medium mt-1">
           {t('PDF up to 10MB', 'PDF Ø­ØªÙ‰ 10 Ù…ÙŠØ¬Ø§Ø¨Ø§ÙŠØª')}
         </p>
 
@@ -145,7 +145,7 @@ if (fileInputRef.current) fileInputRef.current.value = '';
 
 {uploading && (
 <div className="absolute inset-0 bg-surface backdrop-blur-sm flex items-center justify-center">
-<span className="h-6 w-6 md:h-8 md:w-8 rounded-full border-3 border-primary/10 border-t-[#141F33] animate-spin" />
+<span className="h-6 w-6 md:h-8 md:w-8 rounded-full border-3 border-primary/10 border-t-primary animate-spin" />
 </div>
 )}
 </div>
@@ -169,14 +169,14 @@ if (fileInputRef.current) fileInputRef.current.value = '';
 </DialogHeader>
 <div className="flex items-center justify-end gap-4 mt-6">
 <Button
-variant="outline"
+variant="ghost"
 onClick={() => setDeleteTargetId(null)}
 className="min-h-[44px] rounded-xl text-xs font-bold px-6 border-primary/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
 {t('Cancel', 'Ø¥Ù„ØºØ§Ø¡')}
 </Button>
 <Button
-variant="destructive"
+variant="danger"
 onClick={confirmDelete}
 className="min-h-[44px] rounded-xl text-xs font-bold px-6 bg-primary hover:bg-primary text-surface transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >

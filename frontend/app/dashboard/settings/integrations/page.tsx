@@ -27,11 +27,11 @@ export default function IntegrationsSettingsPage() {
                 {int.active ? t({en: 'Connected', ar: 'Ù…ØªØµÙ„'}) : t({en: 'Configure', ar: 'ØªÙƒÙˆÙŠÙ†'})}
               </Badge>
             </div>
-            <p className="text-[10px] text-primary mt-1 leading-relaxed">
+            <p className="text-xs text-primary mt-1 leading-relaxed">
               {int.desc}
             </p>
           </div>
-          <Button variant="outline" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
+          <Button variant="ghost" className="mt-6 w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
             {int.active ? t({en: 'Manage', ar: 'Ø¥Ø¯Ø§Ø±Ø©'}) : t({en: 'Connect API', ar: 'Ø±Ø¨Ø· API'})}
           </Button>
         </Card>

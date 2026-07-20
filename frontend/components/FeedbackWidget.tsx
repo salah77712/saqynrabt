@@ -86,7 +86,7 @@ placeholder="Any suggestions or requests?"
 className="w-full text-xs p-2.5 border border-primary/10 dark:border-surface/10 rounded-xl focus:ring-1 focus:ring-2 focus:ring-royal focus:outline-none dark:bg-primary"
 rows={3}
 />
-<Button variant="default" className="w-full" onClick={handleSubmit} disabled={!rating}>
+<Button variant="primary" className="w-full" onClick={handleSubmit} disabled={!rating}>
 Submit Review
 </Button>
 </div>

@@ -45,7 +45,7 @@ body: JSON.stringify({
 };
 
 return (
-<div className="mt-3 flex flex-col items-start gap-3 text-[10px] font-bold text-primary/40 select-none">
+<div className="mt-3 flex flex-col items-start gap-3 text-xs font-bold text-primary/40 select-none">
 {!submitted ? (
 <div className="flex items-center gap-3">
 <span>{t({ en: 'Was this helpful?', ar: 'هل كانت هذه الإجابة مفيدة؟' })}</span>
@@ -72,12 +72,12 @@ title="Bad Answer"
 
 {isOpen && (
 <div className="p-3 bg-surface border border-primary/10 rounded-xl w-full max-w-xs space-y-2 mt-2">
-<label className="block text-[10px] uppercase tracking-wider text-primary">{t({ en: 'Provide feedback (optional)', ar: 'أضف تعليقًا (اختياري)' })}</label>
+<label className="block text-xs uppercase tracking-wider text-primary">{t({ en: 'Provide feedback (optional)', ar: 'أضف تعليقًا (اختياري)' })}</label>
 <textarea
 value={comment}
 onChange={(e) => setComment(e.target.value)}
 rows={2}
-className="w-full bg-surface border border-primary/10 rounded-xl p-2 text-[10px] text-primary focus:outline-none focus:ring-1 focus:ring-2 focus:ring-royal resize-none"
+className="w-full bg-surface border border-primary/10 rounded-xl p-2 text-xs text-primary focus:outline-none focus:ring-1 focus:ring-2 focus:ring-royal resize-none"
 placeholder={t({ en: 'E.g. Out of date policy...', ar: 'مثال: سياسة قديمة...' })}
 />
 <div className="flex gap-3 justify-end">

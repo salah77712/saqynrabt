@@ -86,7 +86,7 @@ export default function RolesSettingsPage() {
                 />
                 <div>
                   <p className="text-xs font-bold text-primary">{perm.key}</p>
-                  <p className="text-[10px] text-primary font-medium mt-0.5">{perm.label}</p>
+                  <p className="text-xs text-primary font-medium mt-0.5">{perm.label}</p>
                 </div>
               </label>
             ))}
@@ -105,18 +105,18 @@ export default function RolesSettingsPage() {
       <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
         <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">{t({ en: 'Configured Access Roles', ar: 'Ø£Ø¯ÙˆØ§Ø± Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù…Ù‡ÙŠØ£Ø©' })}</h3>
 
-        <div className="divide-y divide-[#141F33]/10">
+        <div className="divide-y divide-primary/10">
           {roles.map((r) => (
             <div key={r.name} className="py-4 first:pt-0 last:pb-0 space-y-2">
               <div className="flex justify-between items-center">
                 <p className="text-xs font-extrabold text-primary">{r.name}</p>
-                <span className="bg-surface text-primary text-[10px] font-extrabold px-2.5 py-0.5 rounded-full">
+                <span className="bg-surface text-primary text-xs font-extrabold px-2.5 py-0.5 rounded-full">
                   {r.userCount} {t({ en: 'members', ar: 'Ø£Ø¹Ø¶Ø§Ø¡' })}
                 </span>
               </div>
               <div className="flex flex-wrap gap-1.5">
                 {r.permissions.map((p) => (
-                  <span key={p} className="bg-surface text-accent border border-accent/10 font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full">
+                  <span key={p} className="bg-surface text-accent border border-accent/10 font-mono text-xs font-extrabold px-2 py-0.5 rounded-full">
                     {p}
                   </span>
                 ))}

@@ -74,7 +74,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <h1 className="text-3xl font-extrabold text-primary tracking-tight">Configuration Error</h1>
         <p className="text-xs font-semibold text-primary max-w-sm mt-3 leading-relaxed">
           Clerk authentication keys are missing. Please set{' '}
-          <code className="bg-surface px-1.5 py-0.5 rounded text-[10px] font-bold">NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code>{' '}
+          <code className="bg-surface px-1.5 py-0.5 rounded text-xs font-bold">NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY</code>{' '}
           in your environment variables to proceed.
         </p>
       </div>

@@ -50,13 +50,13 @@ export default function PluginsMarketplacePage() {
           {plugins.map((plugin) => (
             <div key={plugin.id} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col justify-between hover:shadow-md hover:scale-[1.02] transition-all duration-300">
               <div className="space-y-2">
-                <span className="text-[10px] font-extrabold text-accent uppercase tracking-wider">by {plugin.author}</span>
+                <span className="text-xs font-extrabold text-accent uppercase tracking-wider">by {plugin.author}</span>
                 <h3 className="text-base font-extrabold text-primary">{plugin.name}</h3>
                 <p className="text-xs text-primary font-semibold leading-relaxed">{plugin.desc}</p>
               </div>
 
               <div className="mt-6 pt-4 border-t border-primary/10 flex items-center justify-between">
-                <span className={`text-[10px] font-extrabold uppercase px-2.5 py-0.5 rounded-full ${
+                <span className={`text-xs font-extrabold uppercase px-2.5 py-0.5 rounded-full ${
                   plugin.installed ? 'bg-surface text-accent' : 'bg-surface text-primary'
                 }`}>
                   {plugin.installed ? t({ en: 'Installed', fr: 'InstallÃ©', ar: 'Ù…Ø«Ø¨Ù‘Øª', hi: 'à¤¸à¥à¤¥à¤¾à¤ªà¤¿à¤¤' }) : t({ en: 'Available', fr: 'Disponible', ar: 'Ù…ØªØ§Ø­', hi: 'à¤‰à¤ªà¤²à¤¬à¥à¤§' })}

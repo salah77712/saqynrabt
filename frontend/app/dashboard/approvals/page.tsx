@@ -128,7 +128,7 @@ return () => clearInterval(interval);
 </span>
 )}
 {lastUpdated && (
-<div className="text-[10px] font-bold text-primary/60 flex items-center gap-1">
+<div className="text-xs font-bold text-primary/60 flex items-center gap-1">
 {t({en: 'Last updated:', ar: 'آخر تحديث:'})} {new Date(lastUpdated).toLocaleTimeString()}
 </div>
 )}
@@ -163,7 +163,7 @@ return () => clearInterval(interval);
                   <th className="px-6 py-4 text-center">{t({ en: 'Action', ar: 'الإجراء' })}</th>
                 </tr>
               </thead>
-              <tbody className="divide-[#141F33]/10 text-sm">
+              <tbody className="divide-primary/10 text-sm">
                 {pendingEmployees.map((emp) => (
                   <tr key={emp.clerk_user_id} className="hover:bg-primary transition-colors">
                     <td className="px-6 py-4 font-bold text-primary">{emp.name}</td>
@@ -179,7 +179,7 @@ return () => clearInterval(interval);
                           {approvingId === emp.clerk_user_id ? t({ en: 'Approving...', ar: 'جاري الموافقة...' }) : t({ en: 'Approve Access', ar: 'الموافقة' })}
                         </button>
                         {isLimitReached && (
-                          <div className="absolute bottom-full start-1/2 -translate-x-1/2 bg-primary text-surface text-[10px] font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-3 whitespace-nowrap shadow-md">
+                          <div className="absolute bottom-full start-1/2 -translate-x-1/2 bg-primary text-surface text-xs font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-3 whitespace-nowrap shadow-md">
                             {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ù„Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰. Ù‚Ù… Ø¨Ø§Ù„ØªØ±Ù‚ÙŠØ©.' })}
                           </div>
                         )}
@@ -213,13 +213,13 @@ return () => clearInterval(interval);
                   <th className="px-6 py-4">{t({ en: 'Status', ar: 'الحالة' })}</th>
                 </tr>
               </thead>
-              <tbody className="divide-[#141F33]/10 text-sm">
+              <tbody className="divide-primary/10 text-sm">
                 {activeEmployees.map((emp) => (
                   <tr key={emp.clerk_user_id} className="hover:bg-primary transition-colors">
                     <td className="px-6 py-4 font-bold text-primary">{emp.name}</td>
                     <td className="px-6 py-4 font-semibold text-primary">{emp.email}</td>
                     <td className="px-6 py-4">
-                      <span className="bg-accent text-surface text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
+                      <span className="bg-accent text-surface text-xs font-extrabold px-2.5 py-0.5 rounded-full uppercase">
                         {t({ en: 'Active', ar: 'نشط' })}
                       </span>
                     </td>

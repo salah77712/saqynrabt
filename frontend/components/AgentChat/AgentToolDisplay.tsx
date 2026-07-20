@@ -18,7 +18,7 @@ export function AgentToolDisplay({ steps }: AgentToolDisplayProps) {
 
   return (
     <div className="mt-4 p-4 rounded-xl border border-primary/10 bg-surface space-y-3">
-      <div className="flex items-center gap-3 text-[10px] font-extrabold uppercase text-primary tracking-wider">
+      <div className="flex items-center gap-3 text-xs font-extrabold uppercase text-primary tracking-wider">
         <span className="h-2.5 w-2.5 rounded-full bg-accent animate-pulse" />
         <span>Agent Execution Reasoning Trace</span>
       </div>
@@ -32,14 +32,14 @@ export function AgentToolDisplay({ steps }: AgentToolDisplayProps) {
             
             {/* Tool Action Details */}
             {step.tool && (
-              <div className="p-2 bg-surface border border-primary/10 rounded-lg text-[10px] font-mono text-primary">
+              <div className="p-2 bg-surface border border-primary/10 rounded-lg text-xs font-mono text-primary">
                 <span className="font-extrabold text-accent">CALL TOOL:</span> {step.tool} ({JSON.stringify(step.toolInput)})
               </div>
             )}
 
             {/* Tool Output Result */}
             {step.observation && (
-              <div className="p-2 bg-surface rounded-lg text-[10px] font-mono text-primary">
+              <div className="p-2 bg-surface rounded-lg text-xs font-mono text-primary">
                 <span className="font-extrabold text-accent">OBSERVE RESULT:</span> {step.observation}
               </div>
             )}

@@ -129,7 +129,7 @@ const renderMobileCard = (m: Employee) => (
 </div>
 <Badge variant={m.status === 'active' ? 'success' : 'primary'}>{m.status}</Badge>
 </div>
-<p className="text-[10px] font-semibold text-primary uppercase tracking-wider mb-3">{m.role}</p>
+<p className="text-xs font-semibold text-primary uppercase tracking-wider mb-3">{m.role}</p>
 <div className="flex gap-3">
 {m.status === 'pending' ? (
 <button
@@ -190,7 +190,7 @@ return (
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
           {t('Team', 'Ø¯Ù„ÙŠÙ„ Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„')}
 </h1>
-<p className="text-[10px] md:text-xs text-primary font-bold">
+<p className="text-xs md:text-xs text-primary font-bold">
 {t('Invite teammates, manage roles, and approve access requests.', 'Ø¥Ø¯Ø§Ø±Ø© Ø¶ÙˆØ§Ø¨Ø· Ø§Ù„ÙˆØµÙˆÙ„ Ù„Ù„ÙØ±ÙŠÙ‚ ÙˆØªÙ†Ø³ÙŠÙ‚ Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†.')}
 </p>
 </div>
@@ -206,7 +206,7 @@ return (
               aria-label={t('Search team members', 'Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø£Ø¹Ø¶Ø§Ø¡ Ø§Ù„ÙØ±ÙŠÙ‚')}
             />
           </div>
-          <Button variant="default" onClick={() => { setInviteModalOpen(true); setInviteErrors({}); }} className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] whitespace-nowrap">
+          <Button variant="primary" onClick={() => { setInviteModalOpen(true); setInviteErrors({}); }} className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] whitespace-nowrap">
             {t('Invite Colleague', 'Ø¯Ø¹ÙˆØ© Ø²Ù…ÙŠÙ„')}
           </Button>
         </div>
@@ -256,7 +256,7 @@ return (
 </DialogHeader>
         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleSendInvite(); }} noValidate>
           <div>
-            <label htmlFor="invite-name" className="block text-[10px] font-bold text-primary uppercase mb-1">{t('Full Name', 'Ø§Ù„Ø§Ø³Ù… Ø§Ù„ÙƒØ§Ù…Ù„')}</label>
+            <label htmlFor="invite-name" className="block text-xs font-bold text-primary uppercase mb-1">{t('Full Name', 'Ø§Ù„Ø§Ø³Ù… Ø§Ù„ÙƒØ§Ù…Ù„')}</label>
             <Input
               id="invite-name"
               name="invite-name"
@@ -271,7 +271,7 @@ return (
             {inviteErrors.name && <p id="invite-name-error" className="mt-1.5 text-xs font-bold text-red-500">{inviteErrors.name}</p>}
           </div>
           <div>
-            <label htmlFor="invite-email" className="block text-[10px] font-bold text-primary uppercase mb-1">{t('Email Address', 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ')}</label>
+            <label htmlFor="invite-email" className="block text-xs font-bold text-primary uppercase mb-1">{t('Email Address', 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ')}</label>
             <Input
               id="invite-email"
               name="invite-email"
@@ -287,7 +287,7 @@ return (
             {inviteErrors.email && <p id="invite-email-error" className="mt-1.5 text-xs font-bold text-red-500">{inviteErrors.email}</p>}
           </div>
           <Button
-            variant="default"
+            variant="primary"
             type="submit"
             disabled={inviteSubmitting}
             className="w-full py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] flex items-center justify-center gap-2"

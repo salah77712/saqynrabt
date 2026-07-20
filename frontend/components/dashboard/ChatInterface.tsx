@@ -89,7 +89,7 @@ export function ChatInterface() {
             if (e.key === 'Enter') handleSend();
           }}
         />
-        <Button variant="default" onClick={handleSend}>
+        <Button variant="primary" onClick={handleSend}>
           Send
         </Button>
       </div>

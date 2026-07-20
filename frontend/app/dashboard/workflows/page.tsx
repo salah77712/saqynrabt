@@ -45,8 +45,8 @@ export default function WorkflowsPage() {
           <p className="text-xs text-primary font-bold">{t({en: 'Design routing for calls, chats, and escalations.', ar: 'ØªØµÙ…ÙŠÙ… Ù…Ù†Ø·Ù‚ Ø§Ù„ØªÙˆØ¬ÙŠÙ‡ Ù„Ù„Ù‡Ø§ØªÙ ÙˆØ§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© ÙˆØ§Ù„ØªØµØ¹ÙŠØ¯.'})}</p>
         </div>
         <div className="flex gap-3">
-<Button variant="outline" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ Ù‚Ø±Ø§Ø±'})}</Button>
-<Button variant="default" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('action')}>{t({en: '+ Action', ar: '+ Ø¥Ø¬Ø±Ø§Ø¡'})}</Button>
+<Button variant="ghost" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ Ù‚Ø±Ø§Ø±'})}</Button>
+<Button variant="primary" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('action')}>{t({en: '+ Action', ar: '+ Ø¥Ø¬Ø±Ø§Ø¡'})}</Button>
         </div>
       </div>
 
@@ -58,7 +58,7 @@ export default function WorkflowsPage() {
                 {node.type.toUpperCase()}
               </Badge>
               <h4 className="font-bold text-primary text-sm">{node.label}</h4>
-              <p className="text-[10px] text-primary">{node.desc}</p>
+              <p className="text-xs text-primary">{node.desc}</p>
             </Card>
             {index < nodes.length - 1 && (
               <ArrowRight className="w-6 h-6 text-primary rotate-90 md:rotate-0" />

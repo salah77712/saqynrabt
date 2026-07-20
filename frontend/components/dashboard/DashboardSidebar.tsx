@@ -54,11 +54,11 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
               {isCollapsed ? 'SR' : 'SAQYN RABT'}
             </span>
             {!isCollapsed && (
-              <span className="text-[10px] uppercase tracking-[0.15em] text-primary font-bold truncate">{t(dashboardContent.clientPortal)}</span>
+              <span className="text-xs uppercase tracking-[0.15em] text-primary font-bold truncate">{t(dashboardContent.clientPortal)}</span>
             )}
           </Link>
           {mockMode && !isCollapsed && (
-            <span className="rounded-full bg-primary px-2 py-0.5 text-[10px] font-extrabold uppercase tracking-widest text-primary border border-primary/20 shrink-0">
+            <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-extrabold uppercase tracking-widest text-primary border border-primary/20 shrink-0">
               {t(dashboardContent.sandbox)}
             </span>
           )}
@@ -86,7 +86,7 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
                 {!isCollapsed && <span className="truncate">{t(item.name)}</span>}
 
                 {item.badge && pendingCount > 0 && (
-                  <span className={`absolute bg-primary text-surface rounded-full text-[10px] font-extrabold flex items-center justify-center ${
+                  <span className={`absolute bg-primary text-surface rounded-full text-xs font-extrabold flex items-center justify-center ${
                     isCollapsed ? '-top-1 -end-1 h-4 w-4' : 'end-4 px-2 py-0.5'
                   }`}>
                     {pendingCount}
@@ -115,14 +115,14 @@ className="h-8 w-8 rounded-lg border border-primary/10 flex items-center justify
             <div className="flex items-center justify-between gap-3 min-w-0">
               <div className="min-w-0">
                 <p className="text-xs font-extrabold text-primary truncate">Salah ({t(dashboardContent.demo)})</p>
-                {!isCollapsed && <p className="text-[10px] font-medium text-primary truncate">admin@alsafa.qa</p>}
+                {!isCollapsed && <p className="text-xs font-medium text-primary truncate">admin@alsafa.qa</p>}
               </div>
               <button
                 onClick={() => {
                   setMockMode(false);
                   router.push('/');
                 }}
-                className="text-[10px] font-bold text-accent hover:underline shrink-0"
+                className="text-xs font-bold text-accent hover:underline shrink-0"
               >
                 {t(dashboardContent.exit)}
               </button>
@@ -133,7 +133,7 @@ className="h-8 w-8 rounded-lg border border-primary/10 flex items-center justify
             <UserButton showName={!isCollapsed} />
             {!isCollapsed && (
               <div className="flex-1 min-w-0">
-                <p className="text-[10px] font-semibold text-primary uppercase tracking-wider truncate">{t(dashboardContent.activeClient)}</p>
+                <p className="text-xs font-semibold text-primary uppercase tracking-wider truncate">{t(dashboardContent.activeClient)}</p>
               </div>
             )}
           </div>

@@ -55,7 +55,7 @@ return (
 <div className="bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-xl max-w-sm w-full p-8 shadow-2xl space-y-6 relative" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 
 <div>
-<span className="text-[10px] font-extrabold uppercase tracking-widest text-accent">{t({ en: 'Quick Workspace Tour', ar: 'جولة سريعة في مساحة العمل' })}</span>
+<span className="text-xs font-extrabold uppercase tracking-widest text-accent">{t({ en: 'Quick Workspace Tour', ar: 'جولة سريعة في مساحة العمل' })}</span>
 <h3 className="text-lg font-extrabold text-primary dark:text-surface mt-1.5">{current.title}</h3>
 <p className="text-xs font-semibold text-primary/60 dark:text-surface/60 mt-3 leading-relaxed">{current.body}</p>
 </div>
@@ -63,13 +63,13 @@ return (
 <div className="flex justify-between items-center pt-4 border-t border-primary/10 dark:border-surface/10">
 <button
 onClick={handleSkip}
-className="text-[10px] font-bold text-primary/40 dark:text-surface/40 hover:text-primary dark:hover:text-surface"
+className="text-xs font-bold text-primary/40 dark:text-surface/40 hover:text-primary dark:hover:text-surface"
 >
 {t({ en: 'Skip Tour', ar: 'تخطي الجولة' })}
 </button>
 
 <div className="flex items-center gap-8">
-<span className="text-[10px] font-bold text-primary/50 dark:text-surface/50">{step} / 3</span>
+<span className="text-xs font-bold text-primary/50 dark:text-surface/50">{step} / 3</span>
 <button
 onClick={handleNext}
 className="bg-primary hover:opacity-95 text-surface font-bold px-6 py-3 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"

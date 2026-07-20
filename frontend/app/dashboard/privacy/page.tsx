@@ -111,7 +111,7 @@ ar: 'قم بتنزيل أرشيف كامل لبيانات شركتك، بما ف
 </div>
 ) : (
 <Button
-variant="default"
+variant="primary"
 className="mt-3 py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]"
 onClick={handleExport}
 disabled={exporting}
@@ -172,7 +172,7 @@ ar: 'تم استلام طلبك. فترة سماح مدتها 30 يوماً سا
 type="checkbox"
 checked={confirmDelete}
 onChange={(e) => setConfirmDelete(e.target.checked)}
-className="accent-[#141F33]"
+className="accent-primary"
 />
 {t({
 en: 'I confirm that I want to delete my account and all associated data. I understand there is a 30-day grace period.',
@@ -181,7 +181,7 @@ ar: 'أؤكد أنني أرغب في حذف حسابي وجميع البيانا
 </label>
 <div className="flex gap-3">
 <Button
-variant="destructive"
+variant="danger"
 className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]"
 onClick={handleDeleteRequest}
 disabled={!confirmDelete || deleting}
@@ -195,14 +195,14 @@ disabled={!confirmDelete || deleting}
 t({ en: 'Confirm Deletion', ar: 'تأكيد الحذف' })
 )}
 </Button>
-<Button variant="outline" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" onClick={() => setDeletionRequested(false)}>
+<Button variant="ghost" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" onClick={() => setDeletionRequested(false)}>
 {t({ en: 'Cancel', ar: 'إلغاء' })}
 </Button>
 </div>
 </div>
 ) : (
 <Button
-variant="outline"
+variant="ghost"
           className="mt-3 py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] border-primary/10 text-primary hover:bg-primary"
 onClick={() => setDeletionRequested(true)}
 >

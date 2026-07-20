@@ -20,12 +20,12 @@ export default function SecuritySettingsPage() {
       <div className="flex justify-between items-center py-2 border-b border-primary/10">
         <div>
           <p className="text-xs font-bold text-navy dark:text-surface">{t({en: 'Multi-Factor Authentication (MFA)', ar: 'Ø§Ù„Ù…ØµØ§Ø¯Ù‚Ø© Ù…ØªØ¹Ø¯Ø¯Ø© Ø§Ù„Ø¹ÙˆØ§Ù…Ù„ (MFA)'})}</p>
-          <p className="text-[10px] text-primary mt-0.5">{t({en: 'Protect logins via standard SMS/TOTP codes.', ar: 'Ø­Ù…Ø§ÙŠØ© ØªØ³Ø¬ÙŠÙ„Ø§Øª Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø¹Ø¨Ø± Ø±Ù…ÙˆØ² SMS/TOTP Ø§Ù„Ù‚ÙŠØ§Ø³ÙŠØ©.'})}</p>
+          <p className="text-xs text-primary mt-0.5">{t({en: 'Protect logins via standard SMS/TOTP codes.', ar: 'Ø­Ù…Ø§ÙŠØ© ØªØ³Ø¬ÙŠÙ„Ø§Øª Ø§Ù„Ø¯Ø®ÙˆÙ„ Ø¹Ø¨Ø± Ø±Ù…ÙˆØ² SMS/TOTP Ø§Ù„Ù‚ÙŠØ§Ø³ÙŠØ©.'})}</p>
         </div>
         <Badge variant="primary">{t({en: 'Active', ar: 'Ù†Ø´Ø·'})}</Badge>
       </div>
 
-      <Button variant="outline" className="w-full">
+      <Button variant="ghost" className="w-full">
         {t({en: 'Reset Workspace Password', ar: 'Ø¥Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ù…Ø±ÙˆØ± Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„'})}
       </Button>
     </Card>

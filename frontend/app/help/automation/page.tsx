@@ -46,7 +46,7 @@ export default function AutomationHelpPage() {
         {/* Content Panel */}
         <div className="flex-1 bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
           <div>
-            <span className="text-[10px] font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ ÙˆØ§Ù„ÙƒØªÙŠØ¨Ø§Øª', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼à¥€à¤•à¤°à¤£' })}</span>
+            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ ÙˆØ§Ù„ÙƒØªÙŠØ¨Ø§Øª', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼à¥€à¤•à¤°à¤£' })}</span>
             <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
               {t({ en: 'Business Call Automation', fr: 'Automatisation des appels d\'entreprise', ar: 'Ø£ØªÙ…ØªØ© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ù‡Ø§ØªÙÙŠØ©', hi: 'à¤¬à¤¿à¤œà¤¨à¥‡à¤¸ à¤•à¥‰à¤² à¤‘à¤Ÿà¥‹à¤®à¥‡à¤¶à¤¨' })}
             </h1>

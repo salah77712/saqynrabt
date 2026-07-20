@@ -98,7 +98,7 @@ export default function OnboardingWizardPage() {
           <div>
             {/* Header info */}
             <div className="flex justify-between items-center mb-8">
-              <span className="text-[10px] font-extrabold uppercase tracking-widest text-primary">
+              <span className="text-xs font-extrabold uppercase tracking-widest text-primary">
                 {t({ en: `Step ${step} of 5`, ar: `Ø§Ù„Ø®Ø·ÙˆØ© ${step} Ù…Ù† 5` })}
               </span>
               <span className="text-xs font-bold text-accent">{getProgressPercentage()}%</span>
@@ -209,7 +209,7 @@ export default function OnboardingWizardPage() {
                     />
                     <div>
                       <p className="text-xs font-bold text-primary">{t({ en: 'Set up Business Automation', ar: 'ØªÙ‡ÙŠØ¦Ø© Ø£ØªÙ…ØªØ© Ø§Ù„Ø£Ø¹Ù…Ø§Ù„' })}</p>
-                      <p className="text-[10px] text-primary font-medium mt-0.5">{t({ en: 'Automate guest phone bookings & complaints.', ar: 'Ø£ØªÙ…ØªØ© Ø­Ø¬ÙˆØ²Ø§Øª Ø§Ù„Ù‡Ø§ØªÙ ÙˆØ´ÙƒØ§ÙˆÙ‰ Ø§Ù„Ø¶ÙŠÙˆÙ.' })}</p>
+                      <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Automate guest phone bookings & complaints.', ar: 'Ø£ØªÙ…ØªØ© Ø­Ø¬ÙˆØ²Ø§Øª Ø§Ù„Ù‡Ø§ØªÙ ÙˆØ´ÙƒØ§ÙˆÙ‰ Ø§Ù„Ø¶ÙŠÙˆÙ.' })}</p>
                     </div>
                   </label>
 
@@ -224,7 +224,7 @@ export default function OnboardingWizardPage() {
                     />
                     <div>
                       <p className="text-xs font-bold text-primary">{t({ en: 'Set up Staff Knowledge Chatbot', ar: 'ØªÙ‡ÙŠØ¦Ø© Ù…Ø³Ø§Ø¹Ø¯ Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†' })}</p>
-                      <p className="text-[10px] text-primary font-medium mt-0.5">{t({ en: 'Train AI on internal policies and handbook.', ar: 'ØªØ¯Ø±ÙŠØ¨ Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ø¹Ù„Ù‰ Ø§Ù„Ø³ÙŠØ§Ø³Ø§Øª ÙˆØ§Ù„ÙƒØªÙŠØ¨ Ø§Ù„Ø¯Ø§Ø®Ù„ÙŠ.' })}</p>
+                      <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Train AI on internal policies and handbook.', ar: 'ØªØ¯Ø±ÙŠØ¨ Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ø¹Ù„Ù‰ Ø§Ù„Ø³ÙŠØ§Ø³Ø§Øª ÙˆØ§Ù„ÙƒØªÙŠØ¨ Ø§Ù„Ø¯Ø§Ø®Ù„ÙŠ.' })}</p>
                     </div>
                   </label>
 
@@ -239,7 +239,7 @@ export default function OnboardingWizardPage() {
                     />
                     <div>
                       <p className="text-xs font-bold text-primary">{t({ en: 'Set up Both Products', ar: 'ØªÙ‡ÙŠØ¦Ø© ÙƒÙ„Ø§ Ø§Ù„Ù…Ù†ØªØ¬ÙŠÙ†' })}</p>
-                      <p className="text-[10px] text-primary font-medium mt-0.5">{t({ en: 'Unify internal knowledge and front-desk call automation.', ar: 'ØªÙˆØ­ÙŠØ¯ Ø§Ù„Ù…Ø¹Ø±ÙØ© Ø§Ù„Ø¯Ø§Ø®Ù„ÙŠØ© ÙˆØ£ØªÙ…ØªØ© Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ø§Ø³ØªÙ‚Ø¨Ø§Ù„.' })}</p>
+                      <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Unify internal knowledge and front-desk call automation.', ar: 'ØªÙˆØ­ÙŠØ¯ Ø§Ù„Ù…Ø¹Ø±ÙØ© Ø§Ù„Ø¯Ø§Ø®Ù„ÙŠØ© ÙˆØ£ØªÙ…ØªØ© Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ø§Ø³ØªÙ‚Ø¨Ø§Ù„.' })}</p>
                     </div>
                   </label>
                 </div>
@@ -286,7 +286,7 @@ export default function OnboardingWizardPage() {
                 <div className="border-2 border-dashed border-primary/10 rounded-xl p-8 bg-surface flex flex-col items-center justify-center text-center">
                   <FileText className="w-8 h-8 text-primary mb-2" />
                   <p className="text-xs font-bold text-primary">{t({ en: 'Drop policy PDF here to start', ar: 'Ø§Ø³Ù‚Ø· Ù…Ù„Ù PDF Ù„Ù„Ø³ÙŠØ§Ø³Ø© Ù‡Ù†Ø§ Ù„Ù„Ø¨Ø¯Ø¡' })}</p>
-                  <span className="text-[10px] text-primary font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'Ø£Ùˆ Ø§Ø¶ØºØ· Ø£Ø¯Ù†Ø§Ù‡ Ù„Ù„ØªØµÙØ­ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)' })}</span>
+                  <span className="text-xs text-primary font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'Ø£Ùˆ Ø§Ø¶ØºØ· Ø£Ø¯Ù†Ø§Ù‡ Ù„Ù„ØªØµÙØ­ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)' })}</span>
                 </div>
               </div>
             )}

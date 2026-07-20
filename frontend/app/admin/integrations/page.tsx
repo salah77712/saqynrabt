@@ -123,13 +123,13 @@ export default function AdminIntegrationsPage() {
                 <div key={i} className="flex items-center justify-between p-4 bg-surface border border-primary/5 rounded-xl">
                   <div>
                     <p className="text-sm font-bold text-primary">{item.name}</p>
-                    <p className="text-[10px] text-primary/50 font-bold uppercase tracking-wider mt-0.5">{item.type} Integration</p>
+                    <p className="text-xs text-primary/50 font-bold uppercase tracking-wider mt-0.5">{item.type} Integration</p>
                   </div>
                   <div className="text-right">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 text-accent text-xs font-bold">
                       ● {item.status}
                     </span>
-                    <p className="text-[10px] text-primary/40 font-semibold mt-1">Last Synced: {item.lastSynced}</p>
+                    <p className="text-xs text-primary/40 font-semibold mt-1">Last Synced: {item.lastSynced}</p>
                   </div>
                 </div>
               ))}
@@ -157,7 +157,7 @@ export default function AdminIntegrationsPage() {
                 >
                   Connect New System
                 </button>
-                <span className="text-[10px] text-primary/50 font-bold uppercase">Status: {syncStatus}</span>
+                <span className="text-xs text-primary/50 font-bold uppercase">Status: {syncStatus}</span>
               </div>
             </div>
 
@@ -176,11 +176,11 @@ export default function AdminIntegrationsPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
                 </svg>
                 <p className="text-xs font-extrabold text-primary/70 uppercase tracking-wider">Drag and drop file here</p>
-                <p className="text-[10px] text-primary/40 mt-1 font-semibold">Only .csv files supported</p>
+                <p className="text-xs text-primary/40 mt-1 font-semibold">Only .csv files supported</p>
               </div>
               
               {uploadMessage && (
-                <p className="text-[10px] font-bold text-accent mt-3 uppercase tracking-wider text-center">{uploadMessage}</p>
+                <p className="text-xs font-bold text-accent mt-3 uppercase tracking-wider text-center">{uploadMessage}</p>
               )}
             </div>
 

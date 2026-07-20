@@ -150,7 +150,7 @@ className="flex-1 bg-transparent text-primary dark:text-surface text-sm font-med
 autoComplete="off"
 spellCheck={false}
 />
-<kbd className="hidden sm:inline-flex items-center gap-1 rounded-md border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary px-2 py-1 text-[10px] font-bold text-primary/60 dark:text-surface/60 tracking-wider">
+<kbd className="hidden sm:inline-flex items-center gap-1 rounded-md border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary px-2 py-1 text-xs font-bold text-primary/60 dark:text-surface/60 tracking-wider">
 ESC
 </kbd>
 </div>
@@ -174,7 +174,7 @@ className="max-h-[50vh] overflow-y-auto"
 {Object.entries(grouped).map(([category, items]) => (
 <div key={category}>
 <div className="px-5 pt-3 pb-1">
-<span className="text-[10px] font-extrabold uppercase tracking-widest text-primary/60 dark:text-surface/60">
+<span className="text-xs font-extrabold uppercase tracking-widest text-primary/60 dark:text-surface/60">
 {category}
 </span>
 </div>
@@ -240,7 +240,7 @@ className="rounded-full border border-primary/10 dark:border-surface/10 bg-surfa
 
 {/* Footer */}
 <div className="flex items-center justify-between px-5 py-3 border-t border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary">
-<div className="flex items-center gap-4 text-[10px] font-bold text-primary/60 dark:text-surface/60 uppercase tracking-wider">
+<div className="flex items-center gap-4 text-xs font-bold text-primary/60 dark:text-surface/60 uppercase tracking-wider">
 <span className="flex items-center gap-1">
 <kbd className="rounded border border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary px-1.5 py-0.5">↑↓</kbd>
 {t('Navigate', 'تنقل')}
@@ -250,7 +250,7 @@ className="rounded-full border border-primary/10 dark:border-surface/10 bg-surfa
 {t('Open', 'افتح')}
 </span>
 </div>
-<span className="text-[10px] font-bold text-primary/60 dark:text-surface/60 uppercase tracking-wider">
+<span className="text-xs font-bold text-primary/60 dark:text-surface/60 uppercase tracking-wider">
 {t('Powered by SAQYN', 'مدعوم من ساقين')}
 </span>
 </div>

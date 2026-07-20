@@ -135,7 +135,7 @@ return (
 <h2 className="text-xs md:text-sm font-extrabold text-primary uppercase truncate">
 {t('Staff Knowledge Assistant', 'Ù…Ø³Ø§Ø¹Ø¯ Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†')}
 </h2>
-<p className="text-[10px] md:text-[10px] text-primary font-bold mt-0.5 truncate">
+<p className="text-xs md:text-xs text-primary font-bold mt-0.5 truncate">
 {t('Answers from your documents only', 'Ø¥Ø¬Ø§Ø¨Ø§Øª Ù…ÙˆØ«ÙˆÙ‚Ø© ÙˆÙ…Ø³ØªØ®Ø±Ø¬Ø© Ù…Ù† Ø§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª ÙÙ‚Ø·')}
 </p>
 </div>
@@ -214,7 +214,7 @@ className="min-h-[44px] text-xs md:text-sm"
 <h3 className="text-sm font-extrabold text-primary uppercase tracking-wide">
 {t('Unanswered Questions', 'ÙØ¬ÙˆØ§Øª Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†')}
 </h3>
-<p className="text-[10px] text-primary font-bold mt-1">
+<p className="text-xs text-primary font-bold mt-1">
 {t('Questions your team asked that the AI couldn\'t answer. Upload docs to fill the gaps.', 'Ø§Ø³ØªÙØ³Ø§Ø±Ø§Øª Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ† ØºÙŠØ± Ø§Ù„Ù…Ø¬Ø§Ø¨Ø©. ÙŠØ±Ø¬Ù‰ ØªØ­Ø¯ÙŠØ« Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª Ù„ØªØºØ·ÙŠØªÙ‡Ø§.')}
 </p>
 </div>
@@ -263,7 +263,7 @@ className="bg-surface border border-primary/10 rounded-xl p-3.5 hover:border-roy
 )}
 </div>
 
-<Button variant="outline" className="w-full mt-6 min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
+<Button variant="ghost" className="w-full mt-6 min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
 {t('Review Gaps', 'Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„ÙØ¬ÙˆØ§Øª')}
 </Button>
 </Card>
@@ -319,7 +319,7 @@ className="bg-surface border border-primary/10 rounded-xl p-3.5 flex items-start
 ))
 )}
 </div>
-<Button variant="outline" className="w-full mt-4 min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
+<Button variant="ghost" className="w-full mt-4 min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(true)}>
 {t('Review All Gaps', 'Ù…Ø±Ø§Ø¬Ø¹Ø© Ø¬Ù…ÙŠØ¹ Ø§Ù„ÙØ¬ÙˆØ§Øª')}
 </Button>
 </div>
@@ -343,10 +343,10 @@ className="bg-surface border border-primary/10 rounded-xl p-3.5 flex items-start
 </p>
 </div>
 <div className="flex gap-4">
-<Button variant="default" className="flex-1 min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
+<Button variant="primary" className="flex-1 min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
 Upload Document
 </Button>
-<Button variant="outline" className="min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
+<Button variant="ghost" className="min-h-[44px] py-3 px-6 rounded-xl font-bold transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95" onClick={() => setIsGapModalOpen(false)}>
 Cancel
 </Button>
 </div>

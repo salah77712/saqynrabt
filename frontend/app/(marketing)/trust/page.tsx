@@ -119,7 +119,7 @@ export default function TrustPage() {
                       {iconMap[card.icon] || <Shield className="w-5 h-5" />}
                     </div>
                     {card.badge && (
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-accent bg-surface px-2 py-1 rounded-full">
+                      <span className="text-xs font-bold uppercase tracking-wider text-accent bg-surface px-2 py-1 rounded-full">
                         {card.badge}
                       </span>
                     )}
@@ -136,7 +136,7 @@ export default function TrustPage() {
                         {card.badges.map((b, j) => (
                           <span
                             key={j}
-                            className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
+                            className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
                               b.status === 'active'
                                 ? 'bg-surface text-accent'
                                 : 'bg-surface text-accent'

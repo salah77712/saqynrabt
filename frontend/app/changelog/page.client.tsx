@@ -56,7 +56,7 @@ export default function ChangelogPage() {
               <div className="absolute -inset-inline-start-[31px] md:-inset-inline-start-[47px] top-1.5 h-4 w-4 rounded-full bg-primary border-4 border-surface shadow-sm" />
 
               <div className="flex items-center gap-4">
-                <span className="text-[10px] font-extrabold uppercase bg-surface text-accent px-2.5 py-0.5 rounded-full border border-primary/10">
+                <span className="text-xs font-extrabold uppercase bg-surface text-accent px-2.5 py-0.5 rounded-full border border-primary/10">
                   {log.version}
                 </span>
                 <span className="text-xs text-primary font-bold">{log.date}</span>

@@ -158,10 +158,10 @@ export default function CaseStudiesPage() {
                     {/* Card Header: Industry & Icon */}
                     <div className="flex items-start justify-between w-full z-25">
                       <div className="flex flex-col gap-1.5">
-                        <span className={`text-[10px] font-black uppercase tracking-widest ${isActive ? 'text-accent' : 'text-primary/40'}`}>
+                        <span className={`text-xs font-black uppercase tracking-widest ${isActive ? 'text-accent' : 'text-primary/40'}`}>
                           {item.industry}
                         </span>
-                        <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider opacity-60">
+                        <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider opacity-60">
                           <MapPin className="w-3 h-3" />
                           <span>{item.location}</span>
                         </div>
@@ -182,7 +182,7 @@ export default function CaseStudiesPage() {
                       {/* Flag & Location Header */}
                       <div className="flex items-center gap-3 mb-3">
                         <span className="text-xl">{item.flag}</span>
-                        <span className={`text-[10px] tracking-widest uppercase font-black ${isActive ? 'text-surface/60' : 'text-primary/40'}`}>
+                        <span className={`text-xs tracking-widest uppercase font-black ${isActive ? 'text-surface/60' : 'text-primary/40'}`}>
                           {item.location.split(',')[0]}
                         </span>
                       </div>
@@ -257,7 +257,7 @@ export default function CaseStudiesPage() {
 <div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
 <div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 shadow-card">
             <div className="flex-1">
-              <span className="text-[10px] font-black uppercase tracking-widest text-primary/60 mb-1 block">
+              <span className="text-xs font-black uppercase tracking-widest text-primary/60 mb-1 block">
                 {list[currentIndex].meta}
               </span>
               <h3 className="text-lg font-extrabold text-primary">

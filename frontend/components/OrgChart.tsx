@@ -37,7 +37,7 @@ return (
 <div key={node.name} className="flex flex-col items-center mt-4">
 <div className="bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-xl p-4 shadow-sm w-48 text-center">
 <p className="text-xs font-bold text-primary dark:text-surface">{node.name}</p>
-<p className="text-[10px] text-primary/60 dark:text-surface/60 font-bold mt-1 uppercase tracking-wider">{node.role}</p>
+<p className="text-xs text-primary/60 dark:text-surface/60 font-bold mt-1 uppercase tracking-wider">{node.role}</p>
 </div>
 {node.reports && node.reports.length > 0 && (
 <div className="flex gap-8 mt-4 relative">
@@ -53,7 +53,7 @@ return (
 <h3 className="text-base font-bold text-primary dark:text-surface mb-1 text-center">
 {t('Organizational Reporting Tree', 'Ø´Ø¬Ø±Ø© Ø§Ù„Ù‡ÙŠÙƒÙ„ Ø§Ù„ØªÙ†Ø¸ÙŠÙ…ÙŠ Ù„Ù„Ù…ÙˆØ¸ÙÙŠÙ†')}
 </h3>
-<p className="text-[10px] text-primary/60 dark:text-surface/60 font-semibold text-center mb-6">
+<p className="text-xs text-primary/60 dark:text-surface/60 font-semibold text-center mb-6">
 {t('Visual representation of team hierarchies & supervisor lines.', 'ØªÙ…Ø«ÙŠÙ„ Ù…Ø±Ø¦ÙŠ Ù„Ù„ØªØ³Ù„Ø³Ù„ Ø§Ù„Ù‡Ø±Ù…ÙŠ Ù„Ù„ÙØ±ÙŠÙ‚ ÙˆØ®Ø·ÙˆØ· Ø§Ù„Ø¥Ø´Ø±Ø§Ù.')}
 </p>
 <div className="flex justify-center">

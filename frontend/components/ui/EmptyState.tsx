@@ -45,12 +45,12 @@ export function EmptyState({
       </p>
       <div className={`flex ${secondaryAction ? 'gap-4' : ''}`}>
         {((actionText && onAction) || retry) && (
-          <Button variant="default" size="sm" onClick={onAction || retry}>
+          <Button variant="primary" size="sm" onClick={onAction || retry}>
             {actionText || "Retry"}
           </Button>
         )}
         {secondaryAction && (
-          <Button variant="outline" size="sm" onClick={secondaryAction.onClick}>
+          <Button variant="ghost" size="sm" onClick={secondaryAction.onClick}>
             {secondaryAction.label}
           </Button>
         )}

@@ -119,7 +119,7 @@ export default function SignInPage() {
         <div className="text-center mb-8">
           <Link href="/" className="flex flex-col items-center gap-1">
             <span className="text-primary font-extrabold text-2xl tracking-tight">SAQYN RABT</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-primary/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
+            <span className="text-xs uppercase tracking-[0.2em] text-primary/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
           </Link>
         </div>
 
@@ -193,7 +193,7 @@ export default function SignInPage() {
               <div>
                 <div className="flex justify-between items-center mb-1.5">
                   <label htmlFor="password" className="block text-xs font-bold text-primary">{t({ en: 'Password', ar: 'كلمة المرور' })}</label>
-                  <Link href="/forgot-password" className="text-[10px] font-bold text-accent hover:underline">
+                  <Link href="/forgot-password" className="text-xs font-bold text-accent hover:underline">
                     {t({ en: 'Forgot Password?', ar: 'نسيت كلمة المرور؟' })}
                   </Link>
                 </div>

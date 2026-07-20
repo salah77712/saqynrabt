@@ -34,7 +34,7 @@ className="text-xs hover:text-primary font-bold px-3 py-1.5 min-h-[44px] rounded
             <h4 className="font-bold text-navy dark:text-surface text-sm truncate" title={doc.name}>
               {doc.name}
             </h4>
-            <p className="text-[10px]  mt-1">{doc.size}</p>
+            <p className="text-xs  mt-1">{doc.size}</p>
           </div>
 
           <div className="mt-4 pt-3 border-t  flex justify-between items-center">

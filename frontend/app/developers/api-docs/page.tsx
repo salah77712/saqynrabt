@@ -54,7 +54,7 @@ export default function DevelopersApiDocsPage() {
             <div key={idx} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
               
               <div className="flex items-center gap-4">
-                <span className="bg-accent text-surface text-[10px] font-extrabold px-3 py-1 rounded-lg uppercase tracking-wider">
+                <span className="bg-accent text-surface text-xs font-extrabold px-3 py-1 rounded-lg uppercase tracking-wider">
                   {ep.method}
                 </span>
                 <span className="text-xs font-mono font-bold text-primary bg-surface border border-primary/10 px-3 py-1 rounded-lg">
@@ -68,7 +68,7 @@ export default function DevelopersApiDocsPage() {
                 <h4 className="text-xs font-extrabold text-primary mb-2">Request Headers</h4>
                 <div className="space-y-1.5">
                   {ep.headers.map((h, i) => (
-                    <div key={i} className="flex justify-between items-center text-[10px] font-bold py-2 border-b border-primary/10">
+                    <div key={i} className="flex justify-between items-center text-xs font-bold py-2 border-b border-primary/10">
                       <span className="font-mono text-accent">{h.name}</span>
                       <span className="text-primary">{h.desc}</span>
                     </div>
@@ -78,7 +78,7 @@ export default function DevelopersApiDocsPage() {
 
               <div>
                 <h4 className="text-xs font-extrabold text-primary mb-2">JSON Request Example</h4>
-                <pre className="bg-primary text-primary/20 rounded-xl p-4 text-[10px] font-mono overflow-x-auto leading-relaxed">
+                <pre className="bg-primary text-primary/20 rounded-xl p-4 text-xs font-mono overflow-x-auto leading-relaxed">
                   {ep.body}
                 </pre>
               </div>

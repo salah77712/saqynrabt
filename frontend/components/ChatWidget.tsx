@@ -142,7 +142,7 @@ export function ChatWidget() {
           <div className="bg-background dark:bg-primary border-b border-primary/10 dark:border-surface/10 px-6 py-4 flex items-center justify-between">
             <div>
               <h3 className="text-sm font-extrabold text-primary dark:text-surface">Synthetiq Work - HR Bot</h3>
-              <p className="text-[10px] text-accent font-bold uppercase tracking-wider mt-0.5">RAG Operations Agent</p>
+              <p className="text-xs text-accent font-bold uppercase tracking-wider mt-0.5">RAG Operations Agent</p>
             </div>
             <button
               type="button"
@@ -172,7 +172,7 @@ export function ChatWidget() {
                   
                   {/* Citation Pill Badge */}
                   {msg.citation && (
-                    <div className="bg-surface dark:bg-primary rounded-full px-3 py-1 text-[10px] font-bold border border-primary/10 dark:border-surface/10 inline-block mt-2 select-none">
+                    <div className="bg-surface dark:bg-primary rounded-full px-3 py-1 text-xs font-bold border border-primary/10 dark:border-surface/10 inline-block mt-2 select-none">
                       Cite: {msg.citation}
                     </div>
                   )}

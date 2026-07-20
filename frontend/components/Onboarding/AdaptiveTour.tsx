@@ -33,7 +33,7 @@ export function AdaptiveTour() {
           <div className="flex-1 bg-surface rounded-full h-2 overflow-hidden">
             <div className="bg-primary h-full transition-all duration-500" style={{ width: `${progressPct}%` }} />
           </div>
-          <span className="text-[10px] font-extrabold text-primary">{progressPct}%</span>
+          <span className="text-xs font-extrabold text-primary">{progressPct}%</span>
         </div>
       </div>
 

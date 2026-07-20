@@ -45,7 +45,7 @@ isPopular && 'ring-2 ring-accent shadow-lg scale-[1.02] z-10'
 style={{ animationDelay: `${i * 0.1}s` }}
 >
 {isPopular && (
-<span className="absolute -top-3 start-1/2 -translate-x-1/2 bg-accent text-surface text-[10px] font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
+<span className="absolute -top-3 start-1/2 -translate-x-1/2 bg-accent text-surface text-xs font-extrabold tracking-widest px-4 py-1.5 rounded-full uppercase shadow-sm z-10">
 {t({ en: 'Popular', ar: 'الأكثر طلباً' })}
 </span>
 )}

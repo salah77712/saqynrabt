@@ -38,7 +38,7 @@ export default function PricingPage() {
         
         {/* Pricing Header */}
         <div className="mb-16">
-          <span className="inline-block bg-primary/5 border border-primary/15 text-primary text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
+          <span className="inline-block bg-primary/5 border border-primary/15 text-primary text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
             Transparent Pricing
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold text-primary tracking-tight leading-tight max-w-2xl mx-auto">
@@ -57,23 +57,23 @@ export default function PricingPage() {
             <div>
               <div className="pb-6 border-b border-primary/10">
                 <h3 className="text-xl font-bold text-primary">Synthetiq Voice Core</h3>
-                <p className="text-[10px] text-primary/50 font-bold uppercase tracking-wider mt-1">AI Call Agent</p>
+                <p className="text-xs text-primary/50 font-bold uppercase tracking-wider mt-1">AI Call Agent</p>
                 
                 <div className="mt-4 flex items-baseline gap-1">
                   <span className="text-3xl font-extrabold">{currentVoicePrice.toLocaleString()} QAR</span>
                   <span className="text-xs text-primary/60 font-bold">/mo</span>
                 </div>
-                <p className="text-[10px] text-primary/50 font-bold uppercase tracking-wider mt-1">+ 4,999 QAR setup fee</p>
+                <p className="text-xs text-primary/50 font-bold uppercase tracking-wider mt-1">+ 4,999 QAR setup fee</p>
               </div>
 
               {/* Sync Add-On Toggle */}
               <div className="mt-6 p-4 bg-surface rounded-xl border border-primary/5">
-                <p className="text-[10px] font-extrabold text-primary uppercase tracking-wider mb-2.5">Want to automate data sync?</p>
+                <p className="text-xs font-extrabold text-primary uppercase tracking-wider mb-2.5">Want to automate data sync?</p>
                 <div className="flex bg-primary/5 p-0.5 rounded-full border border-primary/10">
                   <button
                     type="button"
                     onClick={() => setVoiceSync(false)}
-                    className={`flex-1 rounded-full py-1 text-[10px] font-bold transition-all duration-200 ${
+                    className={`flex-1 rounded-full py-1 text-xs font-bold transition-all duration-200 ${
                       !voiceSync ? 'bg-primary text-surface' : 'text-primary'
                     }`}
                   >
@@ -82,7 +82,7 @@ export default function PricingPage() {
                   <button
                     type="button"
                     onClick={() => setVoiceSync(true)}
-                    className={`flex-1 rounded-full py-1 text-[10px] font-bold transition-all duration-200 ${
+                    className={`flex-1 rounded-full py-1 text-xs font-bold transition-all duration-200 ${
                       voiceSync ? 'bg-primary text-surface' : 'text-primary'
                     }`}
                   >
@@ -93,7 +93,7 @@ export default function PricingPage() {
 
               {/* Employee Limit Input Validator */}
               <div className="mt-4 flex flex-col gap-1">
-                <label htmlFor="voice-employee-count" className="text-[10px] font-extrabold text-primary uppercase tracking-wider">Number of employees</label>
+                <label htmlFor="voice-employee-count" className="text-xs font-extrabold text-primary uppercase tracking-wider">Number of employees</label>
                 <input
                   id="voice-employee-count"
                   type="number"
@@ -139,23 +139,23 @@ export default function PricingPage() {
             <div>
               <div className="pb-6 border-b border-primary/10">
                 <h3 className="text-xl font-bold text-primary">Synthetiq Work Core</h3>
-                <p className="text-[10px] text-primary/50 font-bold uppercase tracking-wider mt-1">HR & Policy Chatbot</p>
+                <p className="text-xs text-primary/50 font-bold uppercase tracking-wider mt-1">HR & Policy Chatbot</p>
                 
                 <div className="mt-4 flex items-baseline gap-1">
                   <span className="text-3xl font-extrabold">{currentWorkPrice.toLocaleString()} QAR</span>
                   <span className="text-xs text-primary/60 font-bold">/mo</span>
                 </div>
-                <p className="text-[10px] text-primary/50 font-bold uppercase tracking-wider mt-1">+ 6,999 QAR setup fee</p>
+                <p className="text-xs text-primary/50 font-bold uppercase tracking-wider mt-1">+ 6,999 QAR setup fee</p>
               </div>
 
               {/* Sync Add-On Toggle */}
               <div className="mt-6 p-4 bg-surface rounded-xl border border-primary/5">
-                <p className="text-[10px] font-extrabold text-primary uppercase tracking-wider mb-2.5">Want to automate data sync?</p>
+                <p className="text-xs font-extrabold text-primary uppercase tracking-wider mb-2.5">Want to automate data sync?</p>
                 <div className="flex bg-primary/5 p-0.5 rounded-full border border-primary/10">
                   <button
                     type="button"
                     onClick={() => setWorkSync(false)}
-                    className={`flex-1 rounded-full py-1 text-[10px] font-bold transition-all duration-200 ${
+                    className={`flex-1 rounded-full py-1 text-xs font-bold transition-all duration-200 ${
                       !workSync ? 'bg-primary text-surface' : 'text-primary'
                     }`}
                   >
@@ -164,7 +164,7 @@ export default function PricingPage() {
                   <button
                     type="button"
                     onClick={() => setWorkSync(true)}
-                    className={`flex-1 rounded-full py-1 text-[10px] font-bold transition-all duration-200 ${
+                    className={`flex-1 rounded-full py-1 text-xs font-bold transition-all duration-200 ${
                       workSync ? 'bg-primary text-surface' : 'text-primary'
                     }`}
                   >
@@ -175,7 +175,7 @@ export default function PricingPage() {
 
               {/* Employee Limit Input Validator */}
               <div className="mt-4 flex flex-col gap-1">
-                <label htmlFor="work-employee-count" className="text-[10px] font-extrabold text-primary uppercase tracking-wider">Number of employees</label>
+                <label htmlFor="work-employee-count" className="text-xs font-extrabold text-primary uppercase tracking-wider">Number of employees</label>
                 <input
                   id="work-employee-count"
                   type="number"
@@ -226,17 +226,17 @@ export default function PricingPage() {
             <div>
               <div className="pb-6 border-b border-primary/10">
                 <h3 className="text-xl font-bold text-primary">Saqyn Rabt Enterprise</h3>
-                <p className="text-[10px] text-primary/50 font-bold uppercase tracking-wider mt-1">Full Automation Suite</p>
+                <p className="text-xs text-primary/50 font-bold uppercase tracking-wider mt-1">Full Automation Suite</p>
                 
                 <div className="mt-4 flex items-baseline gap-1">
                   <span className="text-3xl font-extrabold">Custom Quote</span>
                 </div>
-                <p className="text-[10px] text-primary/50 font-bold uppercase tracking-wider mt-1">Enterprise scale integrations</p>
+                <p className="text-xs text-primary/50 font-bold uppercase tracking-wider mt-1">Enterprise scale integrations</p>
               </div>
 
               {/* Employee Limit Disclaimer */}
               <div className="mt-6 p-4 bg-surface rounded-xl border border-primary/5">
-                <p className="text-[10px] font-semibold text-primary/70 leading-relaxed">
+                <p className="text-xs font-semibold text-primary/70 leading-relaxed">
                   Required for database scale operations with more than 150 active employees.
                 </p>
               </div>

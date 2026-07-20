@@ -163,7 +163,7 @@ export default function AdminAuditPage() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-primary">
+            <tbody className="divide-y divide-primary/10 text-xs font-semibold text-primary">
               {paginated.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-6 py-8 text-center text-xs text-primary/60">

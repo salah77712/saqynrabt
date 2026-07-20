@@ -40,9 +40,6 @@ const routes: { path: string; priority: string; changefreq: string }[] = [
 { path: '/cookie-policy', priority: '0.4', changefreq: 'yearly' },
 
 // Product
-{ path: '/synthetiq-voice', priority: '0.8', changefreq: 'monthly' },
-{ path: '/synthetiq-work', priority: '0.8', changefreq: 'monthly' },
-{ path: '/voice-agent', priority: '0.8', changefreq: 'monthly' },
 { path: '/thank-you', priority: '0.5', changefreq: 'monthly' },
 { path: '/sitemap', priority: '0.3', changefreq: 'weekly' },
 

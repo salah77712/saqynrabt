@@ -19,7 +19,7 @@ export function AutomationQueue({ requests, onSelect }: AutomationQueueProps) {
 <div className="overflow-x-auto w-full border border-surface dark:border-primary rounded-xl bg-surface dark:bg-primary shadow-sm">
       <table className="w-full text-left border-collapse">
         <thead>
-<tr className="bg-surface dark:bg-primary border-b text-[10px] font-black text-primary uppercase tracking-wider">
+<tr className="bg-surface dark:bg-primary border-b text-xs font-black text-primary uppercase tracking-wider">
             <th className="p-4">Customer</th>
             <th className="p-4">Request Type</th>
             <th className="p-4">Received</th>

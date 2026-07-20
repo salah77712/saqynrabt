@@ -29,7 +29,7 @@ export function RecentActivity({ activities }: { activities: ActivityItem[] }) {
                 {act.title}
               </p>
             </div>
-            <span className="text-[10px] font-bold text-primary">{act.time}</span>
+            <span className="text-xs font-bold text-primary">{act.time}</span>
           </div>
         ))}
       </div>

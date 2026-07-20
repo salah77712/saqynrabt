@@ -49,7 +49,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
           {/* Left Columns: Story */}
           <div className="lg:col-span-2 space-y-8">
             <div>
-              <span className="inline-block bg-accent/10 text-accent text-[10px] font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-4">
+              <span className="inline-block bg-accent/10 text-accent text-xs font-black uppercase tracking-widest px-3.5 py-1.5 rounded-full mb-4">
                 {details.industry}
               </span>
               <h1 className="text-3xl md:text-5xl font-black text-primary leading-tight tracking-tight">
@@ -72,7 +72,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
               
               <div className="flex items-start justify-between relative z-10">
                 <div className="flex flex-col gap-1">
-                  <span className="text-[10px] font-black uppercase tracking-widest text-accent">
+                  <span className="text-xs font-black uppercase tracking-widest text-accent">
                     {t({ en: 'SYSTEM ARCHITECTURE', ar: 'بنية النظام المطبقة' })}
                   </span>
                   <p className="text-xs text-surface/50 font-bold uppercase tracking-wider">

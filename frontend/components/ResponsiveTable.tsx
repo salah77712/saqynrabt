@@ -44,7 +44,7 @@ className="bg-surface border border-primary/10 rounded-xl p-4 shadow-sm active:s
 <div className="space-y-2">
 {columns.filter((col) => !col.hideOnMobile).map((col) => (
 <div key={col.key} className="flex items-center justify-between">
-<span className="text-[10px] font-bold uppercase tracking-wider text-primary/50">
+<span className="text-xs font-bold uppercase tracking-wider text-primary/50">
 {col.header}
 </span>
 <span className="text-xs font-semibold text-primary/70">
@@ -63,7 +63,7 @@ return (
 <div className="overflow-x-auto w-full border border-primary/10 rounded-xl bg-surface shadow-sm">
 <table className="w-full text-left border-collapse">
 <thead>
-<tr className="bg-surface border-b border-primary/10 text-[10px] font-black text-primary/40 uppercase tracking-wider">
+<tr className="bg-surface border-b border-primary/10 text-xs font-black text-primary/40 uppercase tracking-wider">
 {columns.map((col) => (
 <th key={col.key} className="p-4">{col.header}</th>
 ))}

@@ -12,7 +12,7 @@ export function QBRReport({ companyName, timeSavedHours, callsHandled }: QBRRepo
 return (
 <Card className="max-w-md w-full border-accent/20 border">
 <div className="border-b border-primary/10 pb-4 mb-4">
-<span className="text-[10px] font-extrabold uppercase tracking-widest text-accent">
+<span className="text-xs font-extrabold uppercase tracking-widest text-accent">
 Quarterly Business Review
 </span>
 <h3 className="font-bold text-primary dark:text-surface text-base mt-1">

@@ -32,7 +32,7 @@ export default function NotFound() {
         <div className="text-center max-w-lg animate-slideUp">
           {/* Large 404 with gradient */}
           <div className="relative mb-8">
-            <span className="text-gradient text-[140px] lg:text-[180px] font-extrabold leading-none select-none">
+            <span className="text-primary text-[140px] lg:text-[180px] font-extrabold leading-none select-none">
               404
             </span>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">

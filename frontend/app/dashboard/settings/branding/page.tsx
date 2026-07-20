@@ -91,7 +91,7 @@ export default function BrandingSettingsPage() {
 
       {loading ? (
         <div className="py-12 flex justify-center">
-          <span className="h-8 w-8 rounded-full border-4 border-primary/10 border-t-[#141F33] animate-spin" />
+          <span className="h-8 w-8 rounded-full border-4 border-primary/10 border-t-primary animate-spin" />
         </div>
       ) : (
         <form ref={formRef} onSubmit={handleSave} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col gap-8">

@@ -211,7 +211,7 @@ return (
 <div className="min-h-screen flex items-center justify-center bg-surface p-8 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <div className="max-w-lg w-full bg-surface rounded-xl shadow-xl p-8">
 {lastUpdated && (
-<div className="text-[10px] font-bold text-primary/60 flex items-center gap-1 mb-4" style={{direction: 'ltr'}}>
+<div className="text-xs font-bold text-primary/60 flex items-center gap-1 mb-4" style={{direction: 'ltr'}}>
 {t({en: 'Last updated:', ar: 'آخر تحديث:'})} {new Date(lastUpdated).toLocaleTimeString()}
 </div>
 )}
@@ -237,7 +237,7 @@ ar: 'بموجب قانون قطر رقم 8 لسنة 2019، يجب عليك قب�
 type="checkbox"
 checked={tosChecked}
 onChange={(e) => setTosChecked(e.target.checked)}
-className="mt-0.5 accent-[#141F33]"
+className="mt-0.5 accent-primary"
 />
 <div>
 <p className="text-sm font-bold text-primary">
@@ -266,7 +266,7 @@ className="text-xs font-bold text-accent hover:underline mt-1 inline-block"
 type="checkbox"
 checked={dpaChecked}
 onChange={(e) => setDpaChecked(e.target.checked)}
-className="mt-0.5 accent-[#141F33]"
+className="mt-0.5 accent-primary"
 />
 <div>
 <p className="text-sm font-bold text-primary">

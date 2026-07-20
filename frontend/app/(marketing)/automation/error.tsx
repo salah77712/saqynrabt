@@ -23,7 +23,7 @@ export default function AutomationError({
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-surface">S</div>
           <div className="ms-3">
             <p className="text-sm font-semibold tracking-[0.2em] text-primary">SAQYN RABT</p>
-            <p className="text-[10px] uppercase tracking-[0.35em] text-primary">Private AI operations</p>
+            <p className="text-xs uppercase tracking-[0.35em] text-primary">Private AI operations</p>
           </div>
         </div>
       </header>

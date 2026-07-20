@@ -69,37 +69,37 @@ export default function AdminMetricsPage() {
         
         {/* Metric 1 */}
         <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col justify-between h-32">
-          <p className="text-[10px] font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Requests / Sec', ar: 'Ø§Ù„Ø·Ù„Ø¨Ø§Øª ÙÙŠ Ø§Ù„Ø«Ø§Ù†ÙŠØ©' })}</p>
+          <p className="text-xs font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Requests / Sec', ar: 'Ø§Ù„Ø·Ù„Ø¨Ø§Øª ÙÙŠ Ø§Ù„Ø«Ø§Ù†ÙŠØ©' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-primary">{metrics.requestsPerSecond}</span>
-            <span className="text-[10px] font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">{t({ en: 'Healthy', ar: 'Ø³Ù„ÙŠÙ…' })}</span>
+            <span className="text-xs font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">{t({ en: 'Healthy', ar: 'Ø³Ù„ÙŠÙ…' })}</span>
           </div>
         </div>
 
         {/* Metric 2 */}
         <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col justify-between h-32">
-          <p className="text-[10px] font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Total OpenAI Calls', ar: 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø·Ù„Ø¨Ø§Øª OpenAI' })}</p>
+          <p className="text-xs font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Total OpenAI Calls', ar: 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø·Ù„Ø¨Ø§Øª OpenAI' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-primary">{metrics.openaiCalls}</span>
-            <span className="text-[10px] font-extrabold text-primary/40 uppercase tracking-wider">Accumulated</span>
+            <span className="text-xs font-extrabold text-primary/40 uppercase tracking-wider">Accumulated</span>
           </div>
         </div>
 
         {/* Metric 3 */}
         <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col justify-between h-32">
-          <p className="text-[10px] font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Active DB Pools', ar: 'Ø§ØªØµØ§Ù„Ø§Øª Ù‚Ø§Ø¹Ø¯Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù†Ø´Ø·Ø©' })}</p>
+          <p className="text-xs font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Active DB Pools', ar: 'Ø§ØªØµØ§Ù„Ø§Øª Ù‚Ø§Ø¹Ø¯Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ù†Ø´Ø·Ø©' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-primary">{metrics.dbConnections}</span>
-            <span className="text-[10px] font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">Neon Serverless</span>
+            <span className="text-xs font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">Neon Serverless</span>
           </div>
         </div>
 
         {/* Metric 4 */}
         <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col justify-between h-32">
-          <p className="text-[10px] font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Response Delay', ar: 'ØªØ£Ø®Ø± Ø§Ù„Ø§Ø³ØªØ¬Ø§Ø¨Ø©' })}</p>
+          <p className="text-xs font-extrabold uppercase text-primary/60 tracking-wider">{t({ en: 'Response Delay', ar: 'ØªØ£Ø®Ø± Ø§Ù„Ø§Ø³ØªØ¬Ø§Ø¨Ø©' })}</p>
           <div className="flex items-baseline justify-between mt-2">
             <span className="text-3xl font-black text-primary">{metrics.responseTimeMs} ms</span>
-            <span className="text-[10px] font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">Avg Latency</span>
+            <span className="text-xs font-extrabold text-accent bg-surface px-2 py-0.5 rounded-full uppercase tracking-wider">Avg Latency</span>
           </div>
         </div>
 

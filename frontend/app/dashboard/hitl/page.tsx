@@ -47,13 +47,13 @@ export default function HitlQueuePage() {
         {tasks.length === 0 ? (
           <p className="text-xs text-primary font-semibold text-center py-6">Nothing needs review right now.</p>
         ) : (
-          <div className="divide-[#141F33]/10">
+          <div className="divide-primary/10">
             {tasks.map((task) => (
               <div key={task.id} className="py-4 first:pt-0 last:pb-0 flex justify-between items-center gap-8">
                 <div className="min-w-0 space-y-1">
                   <p className="text-xs font-extrabold text-primary">"{task.request}"</p>
-                  <p className="text-[10px] text-primary font-semibold leading-normal">{task.context}</p>
-                  <span className={`inline-block text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full ${
+                  <p className="text-xs text-primary font-semibold leading-normal">{task.context}</p>
+                  <span className={`inline-block text-xs font-extrabold uppercase px-2 py-0.5 rounded-full ${
                     task.status === 'claimed' ? 'bg-primary text-surface' : 'bg-accent text-surface'
                   }`}>
                     {task.status}

@@ -72,7 +72,7 @@ key={idx}
 className="flex justify-between items-center border-b border-primary/5 py-2.5 last:border-b-0 text-xs font-bold text-primary"
 >
 <span>{s.desc}</span>
-<kbd className="bg-surface rounded px-2.5 py-1 text-[10px] font-mono border border-primary/10">
+<kbd className="bg-surface rounded px-2.5 py-1 text-xs font-mono border border-primary/10">
 {s.keys}
 </kbd>
 </div>

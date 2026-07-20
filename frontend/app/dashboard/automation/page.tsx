@@ -62,7 +62,7 @@ return (
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
 {t('Automation', 'Ù…Ø±ÙƒØ² Ø£ØªÙ…ØªØ© Ø§Ù„Ø¹Ù…Ù„ÙŠØ§Øª')}
 </h1>
-<p className="text-[10px] md:text-xs text-primary font-bold">
+<p className="text-xs md:text-xs text-primary font-bold">
 {t('Live calls, dispatch tasks, and channel activity.', 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø©ØŒ ÙˆØªÙˆØ²ÙŠØ¹ Ø§Ù„Ù…Ù‡Ø§Ù…ØŒ ÙˆØªÙ†Ø³ÙŠÙ‚ Ù‚Ù†ÙˆØ§Øª Ø§Ù„Ø§Ø³ØªØ¬Ø§Ø¨Ø©.')}
 </p>
 </div>
@@ -74,7 +74,7 @@ return (
 <Zap className="w-4 h-4 text-primary" />
 <span>{t('Live Customer Calls', 'Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„ÙˆØ§Ø±Ø¯Ø© Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø©')}</span>
 </h2>
-<div className="flex items-center gap-1.5 rounded-full bg-surface border border-primary/10 px-2.5 md:px-3 py-1 text-[10px] md:text-[10px] font-extrabold text-primary uppercase tracking-widest">
+<div className="flex items-center gap-1.5 rounded-full bg-surface border border-primary/10 px-2.5 md:px-3 py-1 text-xs md:text-xs font-extrabold text-primary uppercase tracking-widest">
 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
 <span>{t('Live', 'Ù…Ø¨Ø§Ø´Ø±')}</span>
 </div>
@@ -88,9 +88,9 @@ return (
 <div key={call.id} className="bg-surface rounded-xl p-8 border border-primary/10 animate-fadeIn">
 <div className="flex items-center justify-between gap-8 border-b border-primary/10 pb-3 mb-3">
 <span className="text-[11px] md:text-xs font-bold text-navy">{call.caller}</span>
-<span className="text-[10px] md:text-[10px] font-bold text-primary">{call.timestamp}</span>
+<span className="text-xs md:text-xs font-bold text-primary">{call.timestamp}</span>
 </div>
-<div className="font-mono text-[10px] md:text-xs text-primary space-y-2 max-h-36 md:max-h-48 overflow-y-auto leading-relaxed">
+<div className="font-mono text-xs md:text-xs text-primary space-y-2 max-h-36 md:max-h-48 overflow-y-auto leading-relaxed">
 {call.transcript.map((line, idx) => (
 <p key={idx}>{line}</p>
 ))}
@@ -125,7 +125,7 @@ className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm active:s
 <Badge variant={statusVariant(req.status) as any}>{req.status}</Badge>
 </div>
 <p className="text-[11px] font-semibold text-primary">{req.type}</p>
-<p className="text-[10px] text-primary/40 mt-1.5">{req.time}</p>
+<p className="text-xs text-primary/40 mt-1.5">{req.time}</p>
 </div>
 ))}
 </div>

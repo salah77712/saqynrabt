@@ -124,7 +124,7 @@ export default function SignUpPage() {
           <div className="text-center mb-8">
             <Link href="/" className="flex flex-col items-center gap-1">
               <span className="text-primary font-extrabold text-2xl tracking-tight">SAQYN RABT</span>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-primary/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
+              <span className="text-xs uppercase tracking-[0.2em] text-primary/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
             </Link>
           </div>
 
@@ -177,7 +177,7 @@ export default function SignUpPage() {
         <div className="text-center mb-8">
           <Link href="/" className="flex flex-col items-center gap-1">
             <span className="text-primary font-extrabold text-2xl tracking-tight">SAQYN RABT</span>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-primary/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
+            <span className="text-xs uppercase tracking-[0.2em] text-primary/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
           </Link>
         </div>
 
@@ -250,7 +250,7 @@ export default function SignUpPage() {
             />
             {/* Live Password Strength Meter */}
             {password && (
-              <div className="mt-3 flex items-center justify-between gap-4 text-[10px] font-bold">
+              <div className="mt-3 flex items-center justify-between gap-4 text-xs font-bold">
                 <div className="flex-1 bg-surface h-1.5 rounded-full overflow-hidden">
                   <div
                     className={`${strength.color} h-1.5 rounded-full transition-all duration-300`}

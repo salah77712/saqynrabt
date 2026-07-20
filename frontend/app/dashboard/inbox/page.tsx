@@ -66,7 +66,7 @@ return (
 </div>
 
 {lastUpdated && (
-<div className="text-[10px] font-bold text-primary/60 flex items-center gap-1">
+<div className="text-xs font-bold text-primary/60 flex items-center gap-1">
 {t({en: 'Last updated:', ar: 'آخر تحديث:'})} {new Date(lastUpdated).toLocaleTimeString()}
 </div>
 )}
@@ -108,19 +108,19 @@ icon={<Inbox className="w-10 h-10 text-primary/40" />}
 compact
 />
 ) : (
-<div className="divide-y divide-[#141F33]/10">
+<div className="divide-y divide-primary/10">
 {filtered.map((msg) => (
 <div key={msg.id} className="py-4 first:pt-0 last:pb-0 flex justify-between items-start gap-8">
 <div className="min-w-0">
 <div className="flex items-center gap-3">
 <span className="text-xs font-extrabold text-primary">{msg.sender}</span>
-<span className="bg-surface text-primary font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-primary/10">
+<span className="bg-surface text-primary font-mono text-xs font-extrabold px-2 py-0.5 rounded-full border border-primary/10">
 {msg.channel}
 </span>
 </div>
 <p className="text-xs text-primary font-semibold mt-1 leading-normal">{msg.body}</p>
 </div>
-<span className="text-[10px] text-primary font-bold shrink-0">{new Date(msg.timestamp).toLocaleTimeString()}</span>
+<span className="text-xs text-primary font-bold shrink-0">{new Date(msg.timestamp).toLocaleTimeString()}</span>
 </div>
 ))}
 </div>

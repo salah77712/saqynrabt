@@ -127,7 +127,7 @@ export default function WebhooksSettingsPage() {
                   onChange={() => handleToggleEvent(event)}
                   className="h-4 w-4 rounded border-primary/20 text-primary focus:ring-2 focus:ring-royal"
                 />
-                <span className="font-mono text-[10px] text-primary">{event}</span>
+                <span className="font-mono text-xs text-primary">{event}</span>
               </label>
             ))}
           </div>
@@ -149,19 +149,19 @@ export default function WebhooksSettingsPage() {
 
         {loading ? (
           <div className="py-6 flex justify-center">
-            <span className="h-6 w-6 rounded-full border-4 border-primary/10 border-t-[#141F33] animate-spin" />
+            <span className="h-6 w-6 rounded-full border-4 border-primary/10 border-t-primary animate-spin" />
           </div>
         ) : webhooks.length === 0 ? (
           <p className="text-xs text-primary font-semibold text-center py-6">{t({ en: 'No outgoing webhooks registered.', ar: 'لا توجد روابط ويب هوك صادرة حالياً.' })}</p>
         ) : (
-          <div className="divide-y divide-[#141F33]/10">
+          <div className="divide-y divide-primary/10">
             {webhooks.map((w) => (
               <div key={w.id} className="flex justify-between items-start py-4 first:pt-0 last:pb-0 gap-8">
                 <div className="min-w-0">
                   <p className="text-xs font-bold text-primary truncate">{w.url}</p>
                   <div className="flex flex-wrap gap-1.5 mt-2">
                     {w.events.map((e) => (
-                      <span key={e} className="bg-surface text-primary font-mono text-[10px] font-extrabold px-2 py-0.5 rounded-full border border-primary/10">
+                      <span key={e} className="bg-surface text-primary font-mono text-xs font-extrabold px-2 py-0.5 rounded-full border border-primary/10">
                         {e}
                       </span>
                     ))}
@@ -169,7 +169,7 @@ export default function WebhooksSettingsPage() {
                 </div>
                 <button
                   onClick={() => handleDelete(w.id)}
-                  className="text-[10px] font-bold text-primary hover:bg-surface px-3 py-1.5 rounded-lg border border-primary/10 shrink-0"
+                  className="text-xs font-bold text-primary hover:bg-surface px-3 py-1.5 rounded-lg border border-primary/10 shrink-0"
                 >
                   {t({ en: 'Delete', ar: 'حذف' })}
                 </button>

@@ -46,7 +46,7 @@ export default function ChatbotHelpPage() {
         {/* Content Panel */}
         <div className="flex-1 bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
           <div>
-            <span className="text-[10px] font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ ÙˆØ§Ù„ÙƒØªÙŠØ¨Ø§Øª', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼à¥€à¤•à¤°à¤£' })}</span>
+            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ ÙˆØ§Ù„ÙƒØªÙŠØ¨Ø§Øª', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼à¥€à¤•à¤°à¤£' })}</span>
             <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
               {t({ en: 'RAG Knowledge Chatbot Help', fr: 'Aide au chatbot de connaissances RAG', ar: 'Ù…Ø³Ø§Ø¹Ø¯Ø© Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ Ø§Ù„Ù…Ø¹ØªÙ…Ø¯ Ø¹Ù„Ù‰ Ø§Ù„Ù€ RAG', hi: 'à¤†à¤°à¤à¤œà¥€ à¤¨à¥‰à¤²à¥‡à¤œ à¤šà¥ˆà¤Ÿà¤¬à¥‰à¤Ÿ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' })}
             </h1>

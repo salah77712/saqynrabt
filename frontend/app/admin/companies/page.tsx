@@ -89,14 +89,14 @@ export default function AdminCompaniesPage() {
                 <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª' })}</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-[#141F33]/10 text-xs font-semibold text-primary">
+            <tbody className="divide-y divide-primary/10 text-xs font-semibold text-primary">
               {paginated.map((company) => (
                 <tr key={company.id} className="hover:bg-primary transition-colors">
                   <td className="px-6 py-4 font-bold text-primary">{company.name}</td>
                   <td className="px-6 py-4">{company.plan}</td>
                   <td className="px-6 py-4 text-center">{company.employees} / {company.maxEmployees}</td>
                   <td className="px-6 py-4">
-                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-extrabold uppercase ${
+                    <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase ${
                       company.status === 'active' ? 'bg-surface text-accent' : 'bg-surface text-primary'
                     }`}>
                       {company.status === 'active' ? t({ en: 'Active', ar: 'Ù†Ø´Ø·' }) : t({ en: 'Suspended', ar: 'Ù…Ø¹Ù„Ù‚' })}

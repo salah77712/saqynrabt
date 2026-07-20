@@ -62,10 +62,10 @@ export default function AdminUsagePage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {cards.map((card, idx) => (
           <div key={idx} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
-            <p className="text-[10px] font-extrabold uppercase text-primary/60 tracking-wider">{card.title}</p>
+            <p className="text-xs font-extrabold uppercase text-primary/60 tracking-wider">{card.title}</p>
             <div className="flex items-baseline justify-between mt-3">
               <span className="text-2xl font-black text-primary">{card.value}</span>
-              <span className={`text-[10px] font-extrabold px-2 py-0.5 rounded-full ${
+              <span className={`text-xs font-extrabold px-2 py-0.5 rounded-full ${
                 card.change.startsWith('+') ? 'bg-surface text-accent' : 'bg-surface text-primary'
               }`}>
                 {card.change}
@@ -79,7 +79,7 @@ export default function AdminUsagePage() {
       <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
         <div className="flex justify-between items-center mb-6">
           <h3 className="text-sm font-extrabold text-primary">{t({ en: '7-Day Platform Request Load', ar: 'أحمال طلبات المنصة خلال 7 أيام' })}</h3>
-          <span className="text-[10px] font-bold text-accent">{t({ en: 'Updated 2 min ago', ar: 'تم التحديث منذ دقيقتين' })}</span>
+          <span className="text-xs font-bold text-accent">{t({ en: 'Updated 2 min ago', ar: 'تم التحديث منذ دقيقتين' })}</span>
         </div>
 
         {/* SVG Vector Graph */}
@@ -102,7 +102,7 @@ export default function AdminUsagePage() {
           </svg>
 
           {/* X Axis Labels */}
-          <div className="absolute inset-x-0 bottom-0 flex justify-between px-6 translate-y-6 text-[10px] font-extrabold text-primary uppercase tracking-widest">
+          <div className="absolute inset-x-0 bottom-0 flex justify-between px-6 translate-y-6 text-xs font-extrabold text-primary uppercase tracking-widest">
             {chartData.map((d, idx) => (
               <span key={idx}>{d.day}</span>
             ))}

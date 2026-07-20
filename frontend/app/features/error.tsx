@@ -13,7 +13,7 @@ export default function FeaturesError({ error, reset }: { error: Error & { diges
       <header className="sticky top-0 z-50 w-full border-b border-primary/10/80 bg-surface backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center px-4 py-4 sm:px-6 lg:px-8">
           <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary text-sm font-semibold text-surface">S</div>
-          <div className="ms-3"><p className="text-sm font-semibold tracking-[0.2em] text-primary">SAQYN RABT</p><p className="text-[10px] uppercase tracking-[0.35em] text-primary">Connecting teams, automating workflows</p></div>
+          <div className="ms-3"><p className="text-sm font-semibold tracking-[0.2em] text-primary">SAQYN RABT</p><p className="text-xs uppercase tracking-[0.35em] text-primary">Connecting teams, automating workflows</p></div>
         </div>
       </header>
       <div className="flex-1 flex items-center justify-center px-6 py-20">

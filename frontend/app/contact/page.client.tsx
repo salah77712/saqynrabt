@@ -111,7 +111,7 @@ export default function ContactPage() {
                     errors.name ? 'border-red-600' : 'border-primary/10'
                   }`}
                 />
-                {errors.name && <p className="text-primary text-[10px] font-bold mt-1">{errors.name}</p>}
+                {errors.name && <p className="text-primary text-xs font-bold mt-1">{errors.name}</p>}
               </div>
 
               {/* Email */}
@@ -128,7 +128,7 @@ export default function ContactPage() {
                     errors.email ? 'border-red-600' : 'border-primary/10'
                   }`}
                 />
-                {errors.email && <p className="text-primary text-[10px] font-bold mt-1">{errors.email}</p>}
+                {errors.email && <p className="text-primary text-xs font-bold mt-1">{errors.email}</p>}
               </div>
 
               {/* Phone */}
@@ -146,7 +146,7 @@ export default function ContactPage() {
                     errors.phone ? 'border-red-600' : 'border-primary/10'
                   }`}
                 />
-                {errors.phone && <p className="text-primary text-[10px] font-bold mt-1">{errors.phone}</p>}
+                {errors.phone && <p className="text-primary text-xs font-bold mt-1">{errors.phone}</p>}
               </div>
 
               {/* Subject */}
@@ -180,7 +180,7 @@ export default function ContactPage() {
                     errors.message ? 'border-red-600' : 'border-primary/10'
                   }`}
                 />
-                {errors.message && <p className="text-primary text-[10px] font-bold mt-1">{errors.message}</p>}
+                {errors.message && <p className="text-primary text-xs font-bold mt-1">{errors.message}</p>}
               </div>
 
               {/* Submit button */}

@@ -88,7 +88,7 @@ export default function VisualSitemapPage() {
         {/* Back Link */}
         <Link
           href="/"
-          className="group inline-flex items-center gap-3 text-[10px] font-black uppercase tracking-wider text-primary/40 hover:text-primary transition-colors mb-12"
+          className="group inline-flex items-center gap-3 text-xs font-black uppercase tracking-wider text-primary/40 hover:text-primary transition-colors mb-12"
         >
           <span className="transition-transform group-hover:-translate-x-1 duration-150 inline-block">
             {locale === 'ar' ? <ArrowRight className="w-4 h-4" /> : <ArrowLeft className="w-4 h-4" />}
@@ -102,7 +102,7 @@ export default function VisualSitemapPage() {
             <span className="text-primary">SAQYN</span>
             <span className="text-primary/20 ms-1">MAP</span>
           </h1>
-          <p className="text-[10px] md:text-xs font-black uppercase tracking-widest text-primary/40 mt-4 leading-none">
+          <p className="text-xs md:text-xs font-black uppercase tracking-widest text-primary/40 mt-4 leading-none">
             {t('SAQYN RABT SITEMAP — COMPLETE DIRECTORY OF PAGES & SERVICES', 'خريطة موقع سقن ربط - دليل كامل بالصفحات والخدمات')}
           </p>
         </div>

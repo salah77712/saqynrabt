@@ -47,7 +47,7 @@ export default function MarketingPage() {
           <div className="absolute top-10 end-12 w-24 h-24 bg-surface border border-primary/10 rounded-xl shadow-elevation-low transform -rotate-[15deg] hidden lg:block pointer-events-none" />
 
           <div className={`flex flex-col items-center gap-8 max-w-3xl transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-gradient shimmer-text">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight text-primary">
               Total Business Automation. Human-like Voice & Internal AI.
             </h1>
 
@@ -93,10 +93,10 @@ export default function MarketingPage() {
             <div className="relative w-full flex flex-col items-center mt-2">
               <div className="flex gap-4">
                 <Link
-                  href={activeProduct === 'voice' ? '/synthetiq-voice' : '/synthetiq-work'}
+                  href="/features"
                   className="bg-primary hover:bg-primary/90 text-surface text-xs font-bold px-8 py-3 rounded-full transition-all duration-300 min-h-[44px] flex items-center shadow-elevation-mid hover:shadow-elevation-high hover:scale-[1.02] active:scale-95"
                 >
-                  {activeProduct === 'voice' ? t({ en: 'Start Voice AI', ar: 'بدء الذكاء الصوتي' }) : t({ en: 'Start Employee AI', ar: 'بدء ذكاء الموظف' })}
+                  {t({ en: 'Start Voice AI', ar: 'بدء الذكاء الصوتي' })}
                 </Link>
                 <Link
                   href="/pricing"
@@ -106,7 +106,7 @@ export default function MarketingPage() {
                 </Link>
               </div>
 
-              <div className="mt-8 animate-float">
+              <div className="mt-8">
                 <svg aria-hidden="true" width="40" height="40" viewBox="0 0 40 40" fill="none" className="stroke-primary/40" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M20,5 Q30,20 20,35 M12,28 L20,35 L28,28" />
                 </svg>
@@ -178,7 +178,7 @@ export default function MarketingPage() {
           </div>
 
           <div className={`flex flex-col items-center gap-4 mt-6 transition-all duration-700 delay-500 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <p className="text-[10px] font-extrabold tracking-widest text-primary/40 uppercase">
+            <p className="text-xs font-extrabold tracking-widest text-primary/40 uppercase">
               Direct HR & Call Stack Integrations
             </p>
             <div className="flex flex-wrap justify-center gap-4">

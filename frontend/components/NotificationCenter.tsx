@@ -40,7 +40,7 @@ aria-label="Open notifications"
 >
 <Bell className="w-5 h-5 text-primary dark:text-surface" />
 {unreadCount > 0 && (
-<span className="absolute top-0.5 end-0.5 bg-primary text-surface text-[10px] font-black h-4 w-4 rounded-full flex items-center justify-center border border-surface">
+<span className="absolute top-0.5 end-0.5 bg-primary text-surface text-xs font-black h-4 w-4 rounded-full flex items-center justify-center border border-surface">
 {unreadCount}
 </span>
 )}
@@ -55,7 +55,7 @@ aria-label="Open notifications"
 {unreadCount > 0 && (
 <button
 onClick={markAllRead}
-className="text-[10px] font-extrabold text-accent hover:underline uppercase"
+className="text-xs font-extrabold text-accent hover:underline uppercase"
 >
 {t('Mark all read', 'ØªØ­Ø¯ÙŠØ¯ Ø§Ù„ÙƒÙ„ ÙƒÙ…Ù‚Ø±ÙˆØ¡')}
 </button>
@@ -74,7 +74,7 @@ item.read ? 'opacity-70' : 'bg-primary'
 <p className="text-xs font-bold text-primary dark:text-surface leading-normal">
 {t(item.title, item.titleAr)}
 </p>
-<p className="text-[10px] text-primary/60 dark:text-surface/60 font-semibold mt-1">
+<p className="text-xs text-primary/60 dark:text-surface/60 font-semibold mt-1">
 {item.time}
 </p>
 </div>

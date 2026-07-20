@@ -46,7 +46,7 @@ export default function BillingHelpPage() {
         {/* Content Panel */}
         <div className="flex-1 bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
           <div>
-            <span className="text-[10px] font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ ÙˆØ§Ù„ÙƒØªÙŠØ¨Ø§Øª', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼à¥€à¤•à¤°à¤£' })}</span>
+            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ ÙˆØ§Ù„ÙƒØªÙŠØ¨Ø§Øª', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼à¥€à¤•à¤°à¤£' })}</span>
             <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
               {t({ en: 'Pricing & Overage Policies', fr: 'Tarification & Politiques de dÃ©passement', ar: 'Ø³ÙŠØ§Ø³Ø§Øª Ø§Ù„Ø£Ø³Ø¹Ø§Ø± ÙˆØ§Ù„ØªØ¬Ø§ÙˆØ²', hi: 'à¤®à¥‚à¤²à¥à¤¯ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£ à¤”à¤° à¤“à¤µà¤°à¤à¤œ à¤¨à¥€à¤¤à¤¿à¤¯à¤¾à¤‚' })}
             </h1>

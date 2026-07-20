@@ -37,7 +37,7 @@ export default function BillingSettingsPage() {
             </p>
             <div className="mt-3 flex items-center gap-3 text-xs text-accent">
 <span className="font-bold text-primary">{t({ en: 'Status:', ar: 'الحالة:' })}</span>
-<span className="bg-accent text-surface px-2 py-0.5 rounded-full text-[10px] font-bold">
+<span className="bg-accent text-surface px-2 py-0.5 rounded-full text-xs font-bold">
                 {t({ en: 'Active', ar: 'نشط' })}
               </span>
             </div>
@@ -58,7 +58,7 @@ export default function BillingSettingsPage() {
                 ar: 'يمكنك إلغاء اشتراكك في أي وقت عبر إعدادات لوحة التحكم. عند الإلغاء، تظل الخدمة نشطة حتى نهاية فترة الفوترة الحالية. لا يتم إصدار استرداد للأشهر الجزئية من الخدمة. رسوم الإعداد غير قابلة للاسترداد بعد إجراء مكالمة الإعداد.',
               })}
             </p>
-            <Button variant="outline" className="mt-3 border-primary/10 text-primary hover:bg-primary py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
+            <Button variant="ghost" className="mt-3 border-primary/10 text-primary hover:bg-primary py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]">
               {t({ en: 'Cancel Subscription', ar: 'إلغاء الاشتراك' })}
             </Button>
           </div>

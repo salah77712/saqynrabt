@@ -28,7 +28,7 @@ export default function MarketingError({
             </div>
             <div>
               <p className="text-sm font-semibold tracking-[0.2em] text-primary">SAQYN RABT</p>
-              <p className="text-[10px] uppercase tracking-[0.35em] text-primary">Private AI operations</p>
+              <p className="text-xs uppercase tracking-[0.35em] text-primary">Private AI operations</p>
             </div>
           </div>
         </div>

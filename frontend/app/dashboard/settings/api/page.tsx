@@ -105,7 +105,7 @@ export default function ApiKeysSettingsPage() {
       {newKeyVal && (
         <div className="bg-surface border border-accent/10 rounded-xl p-8 space-y-3">
           <h3 className="text-xs font-extrabold text-accent uppercase tracking-widest">{t({ en: 'API Key Created Successfully', ar: 'تم إنشاء مفتاح واجهة التطبيق بنجاح' })}</h3>
-          <p className="text-[10px] text-accent font-semibold">{t({ en: 'Copy this key now. It will not be shown again for security reasons.', ar: 'انسخ هذا المفتاح الآن. لن يتم عرضه مرة أخرى لأسباب أمنية.' })}</p>
+          <p className="text-xs text-accent font-semibold">{t({ en: 'Copy this key now. It will not be shown again for security reasons.', ar: 'انسخ هذا المفتاح الآن. لن يتم عرضه مرة أخرى لأسباب أمنية.' })}</p>
           <div className="flex gap-3">
             <input
               type="text"
@@ -125,7 +125,7 @@ export default function ApiKeysSettingsPage() {
           </div>
           <button
             onClick={() => setNewKeyVal(null)}
-            className="text-[10px] text-accent font-bold hover:underline"
+            className="text-xs text-accent font-bold hover:underline"
           >
             Dismiss
           </button>
@@ -161,20 +161,20 @@ export default function ApiKeysSettingsPage() {
 
         {loading ? (
           <div className="py-6 flex justify-center">
-            <span className="h-6 w-6 rounded-full border-4 border-primary/10 border-t-[#141F33] animate-spin" />
+            <span className="h-6 w-6 rounded-full border-4 border-primary/10 border-t-primary animate-spin" />
           </div>
         ) : keys.length === 0 ? (
           <p className="text-xs text-primary font-semibold text-center py-6">{t({ en: 'No API keys configured yet.', ar: 'لا توجد مفاتيح واجهة تطبيقات مهيأة حالياً.' })}</p>
         ) : (
-          <div className="divide-y divide-[#141F33]/10">
+          <div className="divide-y divide-primary/10">
             {keys.map((k) => (
               <div key={k.id} className="flex justify-between items-center py-4 first:pt-0 last:pb-0 gap-8">
                 <div className="min-w-0">
                   <p className="text-xs font-bold text-primary truncate">{k.name}</p>
-                  <p className="text-[10px] font-mono text-primary font-bold mt-1">{k.key_hint}</p>
+                  <p className="text-xs font-mono text-primary font-bold mt-1">{k.key_hint}</p>
                 </div>
                 <div className="flex items-center gap-4 shrink-0">
-                  <span className="text-[10px] text-primary font-bold">{new Date(k.created_at).toLocaleDateString()}</span>
+                  <span className="text-xs text-primary font-bold">{new Date(k.created_at).toLocaleDateString()}</span>
                   <button
                     onClick={() => handleRevoke(k.id)}
                     className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] text-primary hover:bg-surface border border-primary/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"

@@ -16,7 +16,7 @@ return (
 <div className="flex justify-between items-center border-b border-primary/10 pb-4">
 <div>
 <h3 className="text-sm font-extrabold text-primary">{t({ en: 'Guardrails Oversight', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ø¬Ø¯Ø±Ø§Ù† Ø§Ù„Ø­Ù…Ø§ÙŠØ©' })}</h3>
-<p className="text-[10px] text-primary/40 font-bold mt-0.5">{t({ en: 'Observe blocked jailbreaks and toxicity levels.', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ù…Ø­Ø§ÙˆÙ„Ø§Øª Ø§Ù„Ø§Ø®ØªØ±Ø§Ù‚ ÙˆÙ†Ø³Ø¨ Ø§Ù„ÙƒÙ„Ù…Ø§Øª Ø§Ù„Ø¶Ø§Ø±Ø©.' })}</p>
+<p className="text-xs text-primary/40 font-bold mt-0.5">{t({ en: 'Observe blocked jailbreaks and toxicity levels.', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ù…Ø­Ø§ÙˆÙ„Ø§Øª Ø§Ù„Ø§Ø®ØªØ±Ø§Ù‚ ÙˆÙ†Ø³Ø¨ Ø§Ù„ÙƒÙ„Ù…Ø§Øª Ø§Ù„Ø¶Ø§Ø±Ø©.' })}</p>
 </div>
 
 <div className="flex gap-3">
@@ -52,11 +52,11 @@ activeTab === tab ? 'bg-primary text-surface' : 'bg-surface text-primary/50 hove
 ) : (
 <div className="space-y-3">
 <div className="p-4 bg-surface rounded-xl text-center space-y-1">
-<span className="text-[10px] font-extrabold uppercase text-primary/40 tracking-wider">Blocked jailbreak attempts</span>
+<span className="text-xs font-extrabold uppercase text-primary/40 tracking-wider">Blocked jailbreak attempts</span>
 <p className="text-xl font-extrabold text-primary">12</p>
 </div>
 <div className="p-4 bg-surface rounded-xl text-center space-y-1">
-<span className="text-[10px] font-extrabold uppercase text-primary/40 tracking-wider">Redacted PII fields</span>
+<span className="text-xs font-extrabold uppercase text-primary/40 tracking-wider">Redacted PII fields</span>
 <p className="text-xl font-extrabold text-primary">142</p>
 </div>
 </div>
