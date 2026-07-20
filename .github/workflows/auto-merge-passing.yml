@@ -21,19 +21,36 @@ jobs:
         with:
           script: |
             const pr = context.payload.pull_request;
-            
-            // Check CI status
+
+            // Check check runs (produced by workflow jobs)
             const { data: checks } = await github.rest.checks.listForRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: pr.head.sha,
             });
-            
-            const allPassing = checks.check_runs.every(
+
+            // Check commit statuses (produced by individual CI steps)
+            const { data: status } = await github.rest.repos.getCombinedStatusForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: pr.head.sha,
+            });
+
+            const hasChecks = checks.check_runs.length > 0;
+            const hasStatuses = status.statuses.length > 0;
+
+            if (!hasChecks && !hasStatuses) {
+              console.log('No CI checks found. Skipping merge.');
+              return;
+            }
+
+            const checksPassing = !hasChecks || checks.check_runs.every(
               r => r.conclusion === 'success' || r.conclusion === 'neutral'
             );
-            
-            if (!allPassing) {
+
+            const statusesPassing = !hasStatuses || status.state === 'success';
+
+            if (!checksPassing || !statusesPassing) {
               console.log('CI not all green yet. Skipping merge.');
               return;
             }
