@@ -40,7 +40,7 @@ export default function AdminCompaniesPage() {
   };
 
   const handleDelete = (id: string) => {
-    if (!confirm(t({ en: 'Are you sure you want to delete this company tenant? This cannot be undone.', ar: 'Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† Ø­Ø°Ù Ù‡Ø°Ø§ Ø§Ù„Ø¹Ù…ÙŠÙ„ Ø¨Ø§Ù„ÙƒØ§Ù…Ù„ØŸ Ù„Ø§ ÙŠÙ…ÙƒÙ† Ø§Ù„ØªØ±Ø§Ø¬Ø¹ Ø¹Ù† Ù‡Ø°Ø§ Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡.' }))) {
+    if (!confirm(t({ en: 'Are you sure you want to delete this company tenant? This cannot be undone.', ar: 'هل أنت متأكد من حذف هذا العميل بالكامل؟ لا يمكن التراجع عن هذا الإجراء.' }))) {
       return;
     }
     setCompanies(prev => prev.filter(c => c.id !== id));
@@ -60,14 +60,14 @@ export default function AdminCompaniesPage() {
       {/* Header and Search */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Client Workspace Directory', ar: 'Ø¯Ù„ÙŠÙ„ Ù…Ø³Ø§Ø­Ø§Øª Ø¹Ù…Ù„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡' })}</h1>
-          <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Monitor client limits, suspend services, and manage tenants.', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ØŒ ØªØ¹Ù„ÙŠÙ‚ Ø§Ù„Ø®Ø¯Ù…Ø§ØªØŒ ÙˆØ¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø­Ø³Ø§Ø¨Ø§Øª.' })}</p>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Client Workspace Directory', ar: 'دليل مساحات عمل العملاء' })}</h1>
+          <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Monitor client limits, suspend services, and manage tenants.', ar: 'مراقبة حدود العملاء، تعليق الخدمات، وإدارة الحسابات.' })}</p>
         </div>
 
         <div>
           <input
             type="text"
-            placeholder={t({ en: 'Search companies...', ar: 'Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø§Ù„Ø´Ø±ÙƒØ§Øª...' })}
+            placeholder={t({ en: 'Search companies...', ar: 'البحث عن الشركات...' })}
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             className="min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal w-64"
@@ -81,12 +81,12 @@ export default function AdminCompaniesPage() {
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
               <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
-                <th className="px-6 py-4">{t({ en: 'Company Name', ar: 'Ø§Ø³Ù… Ø§Ù„Ø´Ø±ÙƒØ©' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Plan Tier', ar: 'Ø¨Ø§Ù‚Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ' })}</th>
-                <th className="px-6 py-4 text-center">{t({ en: 'Employees', ar: 'Ø§Ù„Ù…ÙˆØ¸ÙÙˆÙ†' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Status', ar: 'Ø§Ù„Ø­Ø§Ù„Ø©' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Join Date', ar: 'ØªØ§Ø±ÙŠØ® Ø§Ù„Ø§Ù†Ø¶Ù…Ø§Ù…' })}</th>
-                <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Company Name', ar: 'اسم الشركة' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Plan Tier', ar: 'باقة الاشتراك' })}</th>
+                <th className="px-6 py-4 text-center">{t({ en: 'Employees', ar: 'الموظفون' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Status', ar: 'الحالة' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Join Date', ar: 'تاريخ الانضمام' })}</th>
+                <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'الإجراءات' })}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-primary/10 text-xs font-semibold text-primary">
@@ -99,7 +99,7 @@ export default function AdminCompaniesPage() {
                     <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase ${
                       company.status === 'active' ? 'bg-surface text-accent' : 'bg-surface text-primary'
                     }`}>
-                      {company.status === 'active' ? t({ en: 'Active', ar: 'Ù†Ø´Ø·' }) : t({ en: 'Suspended', ar: 'Ù…Ø¹Ù„Ù‚' })}
+                      {company.status === 'active' ? t({ en: 'Active', ar: 'نشط' }) : t({ en: 'Suspended', ar: 'معلق' })}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-primary/40 font-bold">{company.joinDate}</td>
@@ -109,7 +109,7 @@ export default function AdminCompaniesPage() {
                         onClick={() => addToast(`Viewing detailed logs for ${company.name}`, 'info')}
                         className="bg-surface border border-primary/10 text-primary hover:bg-primary font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
-                        {t({ en: 'View', ar: 'Ø¹Ø±Ø¶' })}
+                        {t({ en: 'View', ar: 'عرض' })}
                       </button>
                       <button
                         onClick={() => handleSuspend(company.id)}
@@ -119,13 +119,13 @@ export default function AdminCompaniesPage() {
                             : 'bg-accent text-surface hover:bg-accent/90'
                         }`}
                       >
-                        {company.status === 'active' ? t({ en: 'Suspend', ar: 'ØªØ¹Ù„ÙŠÙ‚' }) : t({ en: 'Activate', ar: 'ØªÙØ¹ÙŠÙ„' })}
+                        {company.status === 'active' ? t({ en: 'Suspend', ar: 'تعليق' }) : t({ en: 'Activate', ar: 'تفعيل' })}
                       </button>
                       <button
                         onClick={() => handleDelete(company.id)}
                         className="bg-surface text-primary border border-primary/10 hover:bg-primary font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
-                        {t({ en: 'Delete', ar: 'Ø­Ø°Ù' })}
+                        {t({ en: 'Delete', ar: 'حذف' })}
                       </button>
                     </div>
                   </td>
@@ -144,17 +144,17 @@ export default function AdminCompaniesPage() {
             disabled={page === 1}
             className="bg-surface hover:bg-primary border border-primary/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
-            {t({ en: 'Previous', ar: 'Ø§Ù„Ø³Ø§Ø¨Ù‚' })}
+            {t({ en: 'Previous', ar: 'السابق' })}
           </button>
           <span>
-            {t({ en: `Page ${page} of ${totalPages}`, ar: `Ø§Ù„ØµÙØ­Ø© ${page} Ù…Ù† ${totalPages}` })}
+            {t({ en: `Page ${page} of ${totalPages}`, ar: `الصفحة ${page} من ${totalPages}` })}
           </span>
           <button
             onClick={() => setPage(prev => Math.min(prev + 1, totalPages))}
             disabled={page === totalPages}
             className="bg-surface hover:bg-primary border border-primary/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
-            {t({ en: 'Next', ar: 'Ø§Ù„ØªØ§Ù„ÙŠ' })}
+            {t({ en: 'Next', ar: 'التالي' })}
           </button>
         </div>
       )}

@@ -11,10 +11,10 @@ export default function AutomationHelpPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const sidebarLinks = [
-    { name: { en: 'Getting Started', fr: 'Pour commencer', ar: 'Ø¯Ù„ÙŠÙ„ Ø§Ù„Ø¨Ø¯Ø§ÙŠØ©', hi: 'à¤¶à¥à¤°à¥à¤†à¤¤ à¤•à¤°à¤¨à¤¾' }, path: '/help/getting-started' },
-    { name: { en: 'Call Automation', fr: 'Automatisation des appels', ar: 'Ø£ØªÙ…ØªØ© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª', hi: 'à¤•à¥‰à¤² à¤‘à¤Ÿà¥‹à¤®à¥‡à¤¶à¤¨' }, path: '/help/automation' },
-    { name: { en: 'RAG Chatbot Help', fr: 'Aide au chatbot RAG', ar: 'Ù…Ø³Ø§Ø¹Ø¯Ø© Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ', hi: 'à¤†à¤°à¤à¤œà¥€ à¤šà¥ˆà¤Ÿà¤¬à¥‰à¤Ÿ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' }, path: '/help/chatbot' },
-    { name: { en: 'Pricing & Billing', fr: 'Tarification & Facturation', ar: 'Ø§Ù„Ø£Ø³Ø¹Ø§Ø± ÙˆØ§Ù„ÙÙˆØªØ±Ø©', hi: 'à¤®à¥‚à¤²à¥à¤¯ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£ à¤”à¤° à¤¬à¤¿à¤²à¤¿à¤‚à¤—' }, path: '/help/billing' },
+    { name: { en: 'Getting Started', fr: 'Pour commencer', ar: 'دليل البداية', hi: 'à¤¶à¥à¤°à¥à¤à¤¤ à¤à¤°à¤¨à¤¾' }, path: '/help/getting-started' },
+    { name: { en: 'Call Automation', fr: 'Automatisation des appels', ar: 'أتمتة المكالمات', hi: 'à¤à¥à¤² à¤à¤à¥à¤®à¥à¤¶à¤¨' }, path: '/help/automation' },
+    { name: { en: 'RAG Chatbot Help', fr: 'Aide au chatbot RAG', ar: 'مساعدة المساعد الذكي', hi: 'à¤à¤°à¤à¤à¥ à¤à¥à¤à¤¬à¥à¤ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' }, path: '/help/chatbot' },
+    { name: { en: 'Pricing & Billing', fr: 'Tarification & Facturation', ar: 'الأسعار والفوترة', hi: 'à¤®à¥à¤²à¥à¤¯ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£ à¤à¤° à¤¬à¤¿à¤²à¤¿à¤à¤' }, path: '/help/billing' },
   ];
 
   return (
@@ -25,7 +25,7 @@ export default function AutomationHelpPage() {
         {/* Help Center Sidebar */}
         <aside className="w-full md:w-64 shrink-0 space-y-2">
           <h3 className="text-xs font-extrabold text-primary uppercase tracking-widest px-4 mb-4">
-            {t({ en: 'Help Categories', fr: 'CatÃ©gories d\'aide', ar: 'Ø£Ù‚Ø³Ø§Ù… Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø©', hi: 'à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤¶à¥à¤°à¥‡à¤£à¤¿à¤¯à¤¾à¤' })}
+            {t({ en: 'Help Categories', fr: 'CatÃ©gories d\'aide', ar: 'أقسام المساعدة', hi: 'à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤¶à¥à¤°à¥à¤£à¤¿à¤¯à¤¾à¤' })}
           </h3>
           {sidebarLinks.map((link) => {
             const isActive = link.path === '/help/automation';
@@ -46,12 +46,12 @@ export default function AutomationHelpPage() {
         {/* Content Panel */}
         <div className="flex-1 bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
           <div>
-            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ ÙˆØ§Ù„ÙƒØªÙŠØ¨Ø§Øª', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼à¥€à¤•à¤°à¤£' })}</span>
+            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'الوثائق والكتيبات', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥à¤à¤¼à¥à¤à¤°à¤£' })}</span>
             <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
-              {t({ en: 'Business Call Automation', fr: 'Automatisation des appels d\'entreprise', ar: 'Ø£ØªÙ…ØªØ© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ù‡Ø§ØªÙÙŠØ©', hi: 'à¤¬à¤¿à¤œà¤¨à¥‡à¤¸ à¤•à¥‰à¤² à¤‘à¤Ÿà¥‹à¤®à¥‡à¤¶à¤¨' })}
+              {t({ en: 'Business Call Automation', fr: 'Automatisation des appels d\'entreprise', ar: 'أتمتة المكالمات الهاتفية', hi: 'à¤¬à¤¿à¤à¤¨à¥à¤¸ à¤à¥à¤² à¤à¤à¥à¤®à¥à¤¶à¤¨' })}
             </h1>
             <p className="text-xs font-semibold text-primary mt-2">
-              {t({ en: 'Configure incoming voice dispatches, queue routers, and scheduling integrations.', fr: 'Configurez les rÃ©partitions vocales entrantes, les routeurs de file d\'attente et les intÃ©grations de planification.', ar: 'ØªÙ‡ÙŠØ¦Ø© ÙˆØªÙƒÙˆÙŠÙ† ØªÙˆØ²ÙŠØ¹ Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„ØµÙˆØªÙŠØ© Ø§Ù„ÙˆØ§Ø±Ø¯Ø©ØŒ ÙˆÙ…ÙˆØ¬Ù‡Ø§Øª Ø§Ù„Ø·Ø§Ø¨ÙˆØ±.', hi: 'à¤†à¤¨à¥‡ à¤µà¤¾à¤²à¥‡ à¤µà¥‰à¤¯à¤¸ à¤¡à¤¿à¤¸à¥à¤ªà¥ˆà¤š, à¤•à¤¤à¤¾à¤° à¤°à¤¾à¤‰à¤Ÿà¤° à¤”à¤° à¤¶à¥‡à¤¡à¥à¤¯à¥‚à¤²à¤¿à¤‚à¤— à¤‡à¤‚à¤Ÿà¥€à¤—à¥à¤°à¥‡à¤¶à¤¨ à¤•à¥‹ à¤•à¥‰à¤¨à¥à¤«à¤¼à¤¿à¤—à¤° à¤•à¤°à¥‡à¤‚à¥¤' })}
+              {t({ en: 'Configure incoming voice dispatches, queue routers, and scheduling integrations.', fr: 'Configurez les rÃ©partitions vocales entrantes, les routeurs de file d\'attente et les intÃ©grations de planification.', ar: 'تهيئة وتكوين توزيع المكالمات الصوتية الواردة، وموجهات الطابور.', hi: 'à¤à¤¨à¥ à¤µà¤¾à¤²à¥ à¤µà¥à¤¯à¤¸ à¤¡à¤¿à¤¸à¥à¤ªà¥à¤, à¤à¤¤à¤¾à¤° à¤°à¤¾à¤à¤à¤° à¤à¤° à¤¶à¥à¤¡à¥à¤¯à¥à¤²à¤¿à¤à¤ à¤à¤à¤à¥à¤à¥à¤°à¥à¤¶à¤¨ à¤à¥ à¤à¥à¤¨à¥à¤«à¤¼à¤¿à¤à¤° à¤à¤°à¥à¤à¥¤' })}
             </p>
           </div>
 

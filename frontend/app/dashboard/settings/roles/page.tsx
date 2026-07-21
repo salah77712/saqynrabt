@@ -24,12 +24,12 @@ export default function RolesSettingsPage() {
   });
 
   const availablePermissions = [
-    { key: 'view_automation', label: t({ en: 'View Call Automation dispatches', ar: 'Ø¹Ø±Ø¶ Ø¹Ù…Ù„ÙŠØ§Øª Ø£ØªÙ…ØªØ© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª' }) },
-    { key: 'edit_automation', label: t({ en: 'Assign & change request queues', ar: 'ØªØ¹Ø¯ÙŠÙ„ ÙˆØ¥Ø³Ù†Ø§Ø¯ Ø·Ø§Ø¨ÙˆØ± Ø§Ù„Ø·Ù„Ø¨Ø§Øª' }) },
-    { key: 'view_chatbot', label: t({ en: 'Interact with internal knowledge chatbot', ar: 'Ø§Ù„ØªÙØ§Ø¹Ù„ Ù…Ø¹ Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ Ø§Ù„Ø¯Ø§Ø®Ù„ÙŠ' }) },
-    { key: 'edit_chatbot', label: t({ en: 'Manage knowledge gaps & documents', ar: 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„ÙØ¬ÙˆØ§Øª Ø§Ù„Ù…Ø¹Ø±ÙÙŠØ© ÙˆØ§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª' }) },
-    { key: 'manage_users', label: t({ en: 'Approve & invite staff accounts', ar: 'Ø¯Ø¹ÙˆØ© ÙˆØ¥Ø¯Ø§Ø±Ø© Ø­Ø³Ø§Ø¨Ø§Øª Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†' }) },
-    { key: 'view_billing', label: t({ en: 'Access usage settings & billing invoices', ar: 'Ø§Ù„ÙˆØµÙˆÙ„ Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª Ø§Ù„Ø§Ø³ØªÙ‡Ù„Ø§Ùƒ ÙˆØ§Ù„ÙÙˆØªØ±Ø©' }) },
+    { key: 'view_automation', label: t({ en: 'View Call Automation dispatches', ar: 'عرض عمليات أتمتة المكالمات' }) },
+    { key: 'edit_automation', label: t({ en: 'Assign & change request queues', ar: 'تعديل وإسناد طابور الطلبات' }) },
+    { key: 'view_chatbot', label: t({ en: 'Interact with internal knowledge chatbot', ar: 'التفاعل مع المساعد الذكي الداخلي' }) },
+    { key: 'edit_chatbot', label: t({ en: 'Manage knowledge gaps & documents', ar: 'إدارة الفجوات المعرفية والمستندات' }) },
+    { key: 'manage_users', label: t({ en: 'Approve & invite staff accounts', ar: 'دعوة وإدارة حسابات الموظفين' }) },
+    { key: 'view_billing', label: t({ en: 'Access usage settings & billing invoices', ar: 'الوصول لإعدادات الاستهلاك والفوترة' }) },
   ];
 
   const handleTogglePermission = (key: string) => {
@@ -54,14 +54,14 @@ export default function RolesSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Roles & Permissions', ar: 'Ø£Ø¯ÙˆØ§Ø± Ø§Ù„ÙØ±ÙŠÙ‚ ÙˆØµÙ„Ø§Ø­ÙŠØ§Øª Ø§Ù„Ø¯Ø®ÙˆÙ„' })}</h1>
-        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Control what each team member can see and do.', ar: 'ØªØ­Ø¯ÙŠØ¯ Ø£Ø¯ÙˆØ§Ø± Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù…Ø®ØµØµØ© ÙˆØªØ¹ÙŠÙŠÙ† ØµÙ„Ø§Ø­ÙŠØ§Øª Ø§Ù„Ù†Ø¸Ø§Ù….' })}</p>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Roles & Permissions', ar: 'أدوار الفريق وصلاحيات الدخول' })}</h1>
+        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Control what each team member can see and do.', ar: 'تحديد أدوار الوصول المخصصة وتعيين صلاحيات النظام.' })}</p>
       </div>
 
       {/* Form Custom Role */}
       <form onSubmit={handleCreate} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col gap-8">
         <div>
-          <label htmlFor="name" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Custom Role Title', ar: 'Ù…Ø³Ù…Ù‰ Ø§Ù„Ø¯ÙˆØ± Ø§Ù„Ù…Ø®ØµØµ' })}</label>
+          <label htmlFor="name" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Custom Role Title', ar: 'مسمى الدور المخصص' })}</label>
           <input
             type="text"
             id="name"
@@ -74,7 +74,7 @@ export default function RolesSettingsPage() {
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-primary mb-3">{t({ en: 'Grant Permissions', ar: 'Ù…Ù†Ø­ Ø§Ù„ØµÙ„Ø§Ø­ÙŠØ§Øª' })}</label>
+          <label className="block text-xs font-bold text-primary mb-3">{t({ en: 'Grant Permissions', ar: 'منح الصلاحيات' })}</label>
           <div className="space-y-2 text-xs font-semibold">
             {availablePermissions.map((perm) => (
               <label key={perm.key} className="flex items-start gap-4 p-3 border border-primary/10 rounded-xl bg-surface cursor-pointer hover:border-primary transition-all">
@@ -97,13 +97,13 @@ export default function RolesSettingsPage() {
           type="submit"
           className="w-full bg-primary text-surface font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
         >
-          {t({ en: 'Create Custom Access Role', ar: 'Ø¥Ù†Ø´Ø§Ø¡ Ø¯ÙˆØ± ÙˆØµÙˆÙ„ Ù…Ø®ØµØµ' })}
+          {t({ en: 'Create Custom Access Role', ar: 'إنشاء دور وصول مخصص' })}
         </button>
       </form>
 
       {/* Roles list */}
       <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
-        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">{t({ en: 'Configured Access Roles', ar: 'Ø£Ø¯ÙˆØ§Ø± Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ù…Ù‡ÙŠØ£Ø©' })}</h3>
+        <h3 className="text-xs font-extrabold text-primary uppercase tracking-wider mb-4">{t({ en: 'Configured Access Roles', ar: 'أدوار الوصول المهيأة' })}</h3>
 
         <div className="divide-y divide-primary/10">
           {roles.map((r) => (
@@ -111,7 +111,7 @@ export default function RolesSettingsPage() {
               <div className="flex justify-between items-center">
                 <p className="text-xs font-extrabold text-primary">{r.name}</p>
                 <span className="bg-surface text-primary text-xs font-extrabold px-2.5 py-0.5 rounded-full">
-                  {r.userCount} {t({ en: 'members', ar: 'Ø£Ø¹Ø¶Ø§Ø¡' })}
+                  {r.userCount} {t({ en: 'members', ar: 'أعضاء' })}
                 </span>
               </div>
               <div className="flex flex-wrap gap-1.5">

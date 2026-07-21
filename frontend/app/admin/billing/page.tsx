@@ -40,8 +40,8 @@ export default function AdminBillingPage() {
 
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Billing & Invoice Ledger', ar: 'Ø¯ÙØªØ± Ø§Ù„ÙÙˆØ§ØªÙŠØ± ÙˆØ§Ù„Ø­Ø³Ø§Ø¨Ø§Øª' })}</h1>
-        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Track tenant invoices, monthly subscription charges, and manual payments.', ar: 'Ù…ØªØ§Ø¨Ø¹Ø© ÙÙˆØ§ØªÙŠØ± Ø§Ù„Ø´Ø±ÙƒØ§ØªØŒ Ø§Ù„Ø§Ø´ØªØ±Ø§ÙƒØ§Øª Ø§Ù„Ø´Ù‡Ø±ÙŠØ©ØŒ ÙˆØ§Ù„Ù…Ø¯ÙÙˆØ¹Ø§Øª Ø§Ù„ÙŠØ¯ÙˆÙŠØ©.' })}</p>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Billing & Invoice Ledger', ar: 'دفتر الفواتير والحسابات' })}</h1>
+        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Track tenant invoices, monthly subscription charges, and manual payments.', ar: 'متابعة فواتير الشركات، الاشتراكات الشهرية، والمدفوعات اليدوية.' })}</p>
       </div>
 
       {/* Invoices List */}
@@ -50,14 +50,14 @@ export default function AdminBillingPage() {
           <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
             <thead>
               <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
-                <th className="px-6 py-4">{t({ en: 'Company', ar: 'Ø§Ù„Ø´Ø±ÙƒØ©' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Plan', ar: 'Ø§Ù„Ø¨Ø§Ù‚Ø©' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Monthly Fee', ar: 'Ø§Ù„Ø±Ø³ÙˆÙ… Ø§Ù„Ø´Ù‡Ø±ÙŠØ©' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Setup Fee', ar: 'Ø±Ø³ÙˆÙ… Ø§Ù„ØªØ£Ø³ÙŠØ³' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Total Paid', ar: 'Ø¥Ø¬Ù…Ø§Ù„ÙŠ Ø§Ù„Ù…Ø¯ÙÙˆØ¹' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Last Invoice Date', ar: 'ØªØ§Ø±ÙŠØ® Ø¢Ø®Ø± ÙØ§ØªÙˆØ±Ø©' })}</th>
-                <th className="px-6 py-4">{t({ en: 'Status', ar: 'Ø§Ù„Ø­Ø§Ù„Ø©' })}</th>
-                <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Company', ar: 'الشركة' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Plan', ar: 'الباقة' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Monthly Fee', ar: 'الرسوم الشهرية' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Setup Fee', ar: 'رسوم التأسيس' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Total Paid', ar: 'إجمالي المدفوع' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Last Invoice Date', ar: 'تاريخ آخر فاتورة' })}</th>
+                <th className="px-6 py-4">{t({ en: 'Status', ar: 'الحالة' })}</th>
+                <th className="px-6 py-4 text-center">{t({ en: 'Actions', ar: 'الإجراءات' })}</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-primary/10 text-xs font-semibold text-primary">
@@ -73,7 +73,7 @@ export default function AdminBillingPage() {
                     <span className={`inline-block px-2.5 py-0.5 rounded-full text-xs font-extrabold uppercase ${
                       inv.status === 'paid' ? 'bg-royal/10 text-royal border border-royal/20' : 'bg-surface text-accent'
                     }`}>
-                      {inv.status === 'paid' ? t({ en: 'Paid', ar: 'Ù…Ø¯ÙÙˆØ¹' }) : t({ en: 'Unpaid', ar: 'ØºÙŠØ± Ù…Ø¯ÙÙˆØ¹' })}
+                      {inv.status === 'paid' ? t({ en: 'Paid', ar: 'مدفوع' }) : t({ en: 'Unpaid', ar: 'غير مدفوع' })}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-center">
@@ -82,7 +82,7 @@ export default function AdminBillingPage() {
                         onClick={() => handleMarkPaid(inv.id)}
                         className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                       >
-                        {t({ en: 'Mark as Paid', ar: 'ØªØ­Ø¯ÙŠØ¯ ÙƒÙ…Ø¯ÙÙˆØ¹' })}
+                        {t({ en: 'Mark as Paid', ar: 'تحديد كمدفوع' })}
                       </button>
                     ) : (
                       <Check className="w-3 h-3 text-primary" />

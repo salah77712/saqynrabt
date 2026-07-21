@@ -47,7 +47,7 @@ setDeleteTargetId(null);
 const handleFileUpload = useCallback(async (file: File) => {
 if (!file) return;
 if (file.type !== 'application/pdf') {
-addToast(t('Only PDF documents are allowed.', 'ÙŠØ³Ù…Ø­ Ø¨Ù…Ù„ÙØ§Øª PDF ÙÙ‚Ø·.'), 'warning');
+addToast(t('Only PDF documents are allowed.', 'يسمح بملفات PDF فقط.'), 'warning');
 return;
 }
 
@@ -89,7 +89,7 @@ return (
 if (isError) {
 return (
 <EmptyStateWithRetry
-message={error?.message || t('Failed to load documents.', 'ÙØ´Ù„ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª.')}
+message={error?.message || t('Failed to load documents.', 'فشل تحميل المستندات.')}
 onRetry={() => refetch()}
 />
 );
@@ -100,16 +100,16 @@ return (
 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
 <div>
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
-{t('Document Library', 'Ù…Ø³ØªÙ†Ø¯Ø§Øª Ø§Ù„Ù…Ø¹Ø±ÙØ© Ø§Ù„Ø®Ø§ØµØ©')}
+{t('Document Library', 'مستندات المعرفة الخاصة')}
 </h1>
 <p className="text-xs md:text-xs text-primary font-bold">
-{t('Upload PDFs so your AI can answer questions from your policies and manuals.', 'ØªØ­Ù…ÙŠÙ„ ÙˆÙÙ‡Ø±Ø³Ø© Ù…Ù„ÙØ§Øª PDF Ù„ØªÙˆØ³ÙŠØ¹ Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ.')}
+{t('Upload PDFs so your AI can answer questions from your policies and manuals.', 'تحميل وفهرسة ملفات PDF لتوسيع معرفة المساعد الذكي.')}
 </p>
 </div>
 
 <div className="w-full md:max-w-xs">
 <Input
-placeholder={t('Search documents...', 'Ø§Ù„Ø¨Ø­Ø« ÙÙŠ Ø§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª...')}
+placeholder={t('Search documents...', 'البحث في المستندات...')}
 value={searchQuery}
 onChange={(e) => setSearchQuery(e.target.value)}
 className="min-h-[44px] text-xs md:text-sm"
@@ -121,14 +121,14 @@ className="min-h-[44px] text-xs md:text-sm"
       <div className="border-2 border-dashed border-primary/10 rounded-xl p-8 bg-surface flex flex-col items-center justify-center text-center transition-all duration-300 hover:shadow-md hover:border-primary group relative overflow-hidden cursor-pointer">
         <Folder className="w-8 h-8 md:w-10 md:h-10 text-primary group-hover:scale-110 transition-transform mb-3 md:mb-4" />
         <h3 className="text-xs md:text-sm font-extrabold text-primary">
-          {t('Tap to upload PDFs', 'Ø§Ø¶ØºØ· Ù„Ø±ÙØ¹ Ù…Ù„ÙØ§Øª PDF')}
+          {t('Tap to upload PDFs', 'اضغط لرفع ملفات PDF')}
         </h3>
         <p className="text-xs md:text-xs text-primary font-medium mt-1">
-          {t('PDF up to 10MB', 'PDF Ø­ØªÙ‰ 10 Ù…ÙŠØ¬Ø§Ø¨Ø§ÙŠØª')}
+          {t('PDF up to 10MB', 'PDF حتى 10 ميجابايت')}
         </p>
 
         <div className="transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 mt-3 md:mt-5 bg-primary hover:opacity-95 text-surface font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] inline-flex items-center justify-center">
-{t('Browse Files', 'ØªØµÙØ­ Ø§Ù„Ù…Ù„ÙØ§Øª')}
+{t('Browse Files', 'تصفح الملفات')}
 </div>
 <input
 ref={fileInputRef}
@@ -161,10 +161,10 @@ if (fileInputRef.current) fileInputRef.current.value = '';
 <DialogContent className="sm:max-w-md bg-surface border border-primary/10 shadow-2xl rounded-xl p-8">
 <DialogHeader>
 <DialogTitle className="text-lg font-extrabold text-primary">
-{t('Delete Document', 'Ø­Ø°Ù Ø§Ù„Ù…Ø³ØªÙ†Ø¯')}
+{t('Delete Document', 'حذف المستند')}
 </DialogTitle>
 <DialogDescription className="text-xs text-primary font-medium mt-2">
-{t('Are you sure you want to delete this document? This action cannot be undone.', 'Ù‡Ù„ Ø£Ù†Øª Ù…ØªØ£ÙƒØ¯ Ù…Ù† Ø±ØºØ¨ØªÙƒ ÙÙŠ Ø­Ø°Ù Ù‡Ø°Ø§ Ø§Ù„Ù…Ø³ØªÙ†Ø¯ØŸ Ù„Ø§ ÙŠÙ…ÙƒÙ† Ø§Ù„ØªØ±Ø§Ø¬Ø¹ Ø¹Ù† Ù‡Ø°Ø§ Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡.')}
+{t('Are you sure you want to delete this document? This action cannot be undone.', 'هل أنت متأكد من رغبتك في حذف هذا المستند؟ لا يمكن التراجع عن هذا الإجراء.')}
 </DialogDescription>
 </DialogHeader>
 <div className="flex items-center justify-end gap-4 mt-6">
@@ -173,14 +173,14 @@ variant="ghost"
 onClick={() => setDeleteTargetId(null)}
 className="min-h-[44px] rounded-xl text-xs font-bold px-6 border-primary/10 transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
-{t('Cancel', 'Ø¥Ù„ØºØ§Ø¡')}
+{t('Cancel', 'إلغاء')}
 </Button>
 <Button
 variant="danger"
 onClick={confirmDelete}
 className="min-h-[44px] rounded-xl text-xs font-bold px-6 bg-primary hover:bg-primary text-surface transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
-{t('Delete', 'Ø­Ø°Ù')}
+{t('Delete', 'حذف')}
 </Button>
 </div>
 </DialogContent>

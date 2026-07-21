@@ -34,8 +34,8 @@ return (
 <div className="space-y-6 animate-fadeIn">
 {/* Header */}
 <div className="mb-6">
-<h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Global Client Accounts', ar: 'Ø­Ø³Ø§Ø¨Ø§Øª Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡ Ø§Ù„Ø´Ø§Ù…Ù„Ø©' })}</h1>
-<p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Suspend/enable tenant access.', ar: 'Ù„ÙˆØ­Ø© Ø¥Ø¯Ø§Ø±Ø© Ù…ÙˆØ¸ÙÙŠ SAQYN. Ø¥ÙŠÙ‚Ø§Ù ÙˆØªÙØ¹ÙŠÙ„ ØµÙ„Ø§Ø­ÙŠØ§Øª ÙˆØµÙˆÙ„ Ø§Ù„Ø¹Ù…Ù„Ø§Ø¡.' })}</p>
+<h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Global Client Accounts', ar: 'حسابات العملاء الشاملة' })}</h1>
+<p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'SAQYN staff administrative panel. Suspend/enable tenant access.', ar: 'لوحة إدارة موظفي SAQYN. إيقاف وتفعيل صلاحيات وصول العملاء.' })}</p>
 </div>
 
 {/* Clients list */}

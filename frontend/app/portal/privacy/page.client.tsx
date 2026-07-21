@@ -35,12 +35,12 @@ return (
 <main className="flex-1 max-w-xl mx-auto py-24 px-6 w-full space-y-8 animate-fadeIn">
 {/* Header */}
 <div className="text-center">
-<span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Privacy & Sovereignty', ar: 'Ø§Ù„Ø®ØµÙˆØµÙŠØ© ÙˆØ³ÙŠØ§Ø¯Ø© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª' })}</span>
+<span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Privacy & Sovereignty', ar: 'الخصوصية وسيادة البيانات' })}</span>
 <h1 className="text-xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight mt-2">
-{t({ en: 'Data Subject Access Request (DSAR)', ar: 'Ø·Ù„Ø¨ Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ø®ØµÙˆØµÙŠØ© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª (DSAR)' })}
+{t({ en: 'Data Subject Access Request (DSAR)', ar: 'طلب معلومات خصوصية البيانات (DSAR)' })}
 </h1>
 <p className="text-xs font-semibold text-primary mt-2">
-{t({ en: 'Submit queries for access, rectification, or erasure under GDPR guidelines.', ar: 'Ø¥Ø±Ø³Ø§Ù„ Ø·Ù„Ø¨Ø§Øª Ø§Ù„ÙˆØµÙˆÙ„ØŒ Ø§Ù„ØªØµØ­ÙŠØ­ØŒ Ø£Ùˆ Ù…Ø­Ùˆ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª ØªØ­Øª Ù„ÙˆØ§Ø¦Ø­ GDPR.' })}
+{t({ en: 'Submit queries for access, rectification, or erasure under GDPR guidelines.', ar: 'إرسال طلبات الوصول، التصحيح، أو محو البيانات تحت لوائح GDPR.' })}
 </p>
 </div>
 
@@ -48,7 +48,7 @@ return (
 <form onSubmit={handleSubmit} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-4">
 
 <div>
-<label htmlFor="email" className="block text-xs font-bold text-primary dark:text-surface mb-1.5">{t({ en: 'Your Email Address', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ø§Ù„Ø®Ø§Øµ Ø¨Ùƒ' })}</label>
+<label htmlFor="email" className="block text-xs font-bold text-primary dark:text-surface mb-1.5">{t({ en: 'Your Email Address', ar: 'البريد الإلكتروني الخاص بك' })}</label>
 <input
 type="email"
 id="email"
@@ -61,7 +61,7 @@ required
 </div>
 
 <div>
-<label htmlFor="type" className="block text-xs font-bold text-primary dark:text-surface mb-1.5">{t({ en: 'Request Type', ar: 'Ù†ÙˆØ¹ Ø§Ù„Ø·Ù„Ø¨' })}</label>
+<label htmlFor="type" className="block text-xs font-bold text-primary dark:text-surface mb-1.5">{t({ en: 'Request Type', ar: 'نوع الطلب' })}</label>
 <select
 id="type"
 value={requestType}
@@ -75,7 +75,7 @@ className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl px
 </div>
 
 <div>
-<label htmlFor="details" className="block text-xs font-bold text-primary dark:text-surface mb-1.5">{t({ en: 'Request Scope details', ar: 'ØªÙØ§ØµÙŠÙ„ Ù†Ø·Ø§Ù‚ Ø§Ù„Ø·Ù„Ø¨' })}</label>
+<label htmlFor="details" className="block text-xs font-bold text-primary dark:text-surface mb-1.5">{t({ en: 'Request Scope details', ar: 'تفاصيل نطاق الطلب' })}</label>
 <textarea
 id="details"
 value={details}
@@ -92,7 +92,7 @@ type="submit"
 disabled={sending}
 className="w-full btn-primary text-xs"
 >
-{sending ? t({ en: 'Submitting...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...' }) : t({ en: 'Submit DSAR Request', ar: 'Ø¥Ø±Ø³Ø§Ù„ Ø·Ù„Ø¨ Ø§Ù„Ø®ØµÙˆØµÙŠØ©' })}
+{sending ? t({ en: 'Submitting...', ar: 'جاري الإرسال...' }) : t({ en: 'Submit DSAR Request', ar: 'إرسال طلب الخصوصية' })}
 </button>
 
 </form>

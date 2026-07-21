@@ -30,21 +30,21 @@ export default function PrivacyError({
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
           <AlertTriangle className="w-8 h-8 text-primary" />
         </div>
-        <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Privacy policy unavailable', ar: 'Ø³ÙŠØ§Ø³Ø© Ø§Ù„Ø®ØµÙˆØµÙŠØ© ØºÙŠØ± Ù…ØªÙˆÙØ±Ø©' })}</h1>
-        <p className="text-primary/60 mb-2">{t({ en: "We couldn&apos;t load the privacy policy.", ar: 'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ø³ÙŠØ§Ø³Ø© Ø§Ù„Ø®ØµÙˆØµÙŠØ©.' })}</p>
-        <p className="text-sm text-primary/40 mb-8">{t({ en: 'Please try again or contact us for a copy.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø§ØªØµØ§Ù„ Ø¨Ù†Ø§ Ù„Ù„Ø­ØµÙˆÙ„ Ø¹Ù„Ù‰ Ù†Ø³Ø®Ø©.' })}</p>
+        <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Privacy policy unavailable', ar: 'سياسة الخصوصية غير متوفرة' })}</h1>
+        <p className="text-primary/60 mb-2">{t({ en: "We couldn&apos;t load the privacy policy.", ar: 'تعذر تحميل سياسة الخصوصية.' })}</p>
+        <p className="text-sm text-primary/40 mb-8">{t({ en: 'Please try again or contact us for a copy.', ar: 'يرجى المحاولة مرة أخرى أو الاتصال بنا للحصول على نسخة.' })}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => reset()}
             className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
           >
-            {t({ en: 'Try again', ar: 'Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰' })}
+            {t({ en: 'Try again', ar: 'حاول مرة أخرى' })}
           </button>
           <a
             href="/"
             className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[rgba(20,31,51,0.1)] px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
           >
-            {t({ en: 'Back to Home', ar: 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©' })}
+            {t({ en: 'Back to Home', ar: 'العودة إلى الرئيسية' })}
           </a>
         </div>
       </main>

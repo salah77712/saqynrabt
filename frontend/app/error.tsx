@@ -24,27 +24,27 @@ export default function Error({
           <span lang="en">Something went wrong</span>
           <br />
           <span lang="ar" className="text-2xl font-semibold text-primary/70" dir="rtl">
-            Ø­Ø¯Ø« Ø®Ø·Ø£ ØºÙŠØ± Ù…ØªÙˆÙ‚Ø¹
+            حدث خطأ غير متوقع
           </span>
         </h1>
         <p className="text-primary/60 mb-3 leading-relaxed" lang="en">
           We encountered an unexpected error. Our team has been notified. Please try again, or return to the homepage.
         </p>
         <p className="text-primary/40 mb-8 leading-relaxed text-sm" lang="ar" dir="rtl">
-          Ø­Ø¯Ø« Ø®Ø·Ø£ ØºÙŠØ± Ù…ØªÙˆÙ‚Ø¹. ØªÙ… Ø¥Ø¨Ù„Ø§Øº ÙØ±ÙŠÙ‚Ù†Ø§. ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©.
+          حدث خطأ غير متوقع. تم إبلاغ فريقنا. يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => reset()}
             className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
           >
-            Try again / Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰
+            Try again / حاول مرة أخرى
           </button>
           <a
             href="/"
             className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[rgba(20,31,51,0.1)] px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
           >
-            Back to Home / Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„Ù„Ø±Ø¦ÙŠØ³ÙŠØ©
+            Back to Home / العودة للرئيسية
           </a>
           <button
             onClick={() => {
@@ -56,7 +56,7 @@ export default function Error({
             className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-[rgba(20,31,51,0.1)] px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
           >
             <Bug className="w-4 h-4" />
-            Report this issue / Ø§Ø¨Ù„Ø§Øº Ø¹Ù† Ù…Ø´ÙƒÙ„Ø©
+            Report this issue / ابلاغ عن مشكلة
           </button>
         </div>
       </div>

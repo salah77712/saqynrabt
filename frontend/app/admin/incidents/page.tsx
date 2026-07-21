@@ -30,8 +30,8 @@ export default function AdminIncidentsPage() {
 
       {/* Header */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Active System Incidents', ar: 'Ø§Ù„Ø­ÙˆØ§Ø¯Ø« ÙˆØ§Ù„ØªÙ‚Ø§Ø±ÙŠØ± Ø§Ù„ÙÙ†ÙŠØ© Ø§Ù„Ù†Ø´Ø·Ø©' })}</h1>
-        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'SAQYN operations console. Track outages and runtime errors.', ar: 'Ø´Ø§Ø´Ø© Ø§Ù„Ø¹Ù…Ù„ÙŠØ§Øª Ù„Ù…ØªØ§Ø¨Ø¹Ø© Ø§Ù„Ø£Ø¹Ø·Ø§Ù„ ÙˆØªØµØ­ÙŠØ­ Ø§Ù„Ø£Ø®Ø·Ø§Ø¡ Ø§Ù„ØªØ´ØºÙŠÙ„ÙŠØ©.' })}</p>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Active System Incidents', ar: 'الحوادث والتقارير الفنية النشطة' })}</h1>
+        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'SAQYN operations console. Track outages and runtime errors.', ar: 'شاشة العمليات لمتابعة الأعطال وتصحيح الأخطاء التشغيلية.' })}</p>
       </div>
 
       {/* Incidents List */}
@@ -60,7 +60,7 @@ export default function AdminIncidentsPage() {
                   onClick={() => handleResolve(inc.id)}
                   className="px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95"
                 >
-                  {t({ en: 'Resolve', ar: 'Ø­Ù„' })}
+                  {t({ en: 'Resolve', ar: 'حل' })}
                 </button>
               )}
             </div>

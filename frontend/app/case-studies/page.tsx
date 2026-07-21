@@ -99,13 +99,13 @@ export default function CaseStudiesPage() {
 
       <section className="max-w-7xl mx-auto px-6 pt-20 pb-10 text-center">
         <span className="inline-block bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-          {t({ en: 'Case Studies', ar: 'Ø¯Ø±Ø§Ø³Ø§Øª Ø§Ù„Ø­Ø§Ù„Ø©' })}
+          {t({ en: 'Case Studies', ar: 'دراسات الحالة' })}
         </span>
         <h1 className="text-4xl md:text-5xl font-extrabold text-primary leading-tight max-w-4xl mx-auto">
-          {t({ en: 'Real Results from Real Businesses', ar: 'Ù†ØªØ§Ø¦Ø¬ Ø­Ù‚ÙŠÙ‚ÙŠØ© Ù…Ù† Ø´Ø±ÙƒØ§Øª Ø­Ù‚ÙŠÙ‚ÙŠØ©' })}
+          {t({ en: 'Real Results from Real Businesses', ar: 'نتائج حقيقية من شركات حقيقية' })}
         </h1>
         <p className="mt-4 text-base md:text-lg text-primary/60 max-w-2xl mx-auto font-medium">
-          {t({ en: 'From the Middle East to the world â€” swipe to see how teams use SAQYN RABT to transform their operations.', ar: 'Ù…Ù† Ø§Ù„Ø´Ø±Ù‚ Ø§Ù„Ø£ÙˆØ³Ø· Ø¥Ù„Ù‰ Ø§Ù„Ø¹Ø§Ù„Ù… â€” Ø§Ø³Ø­Ø¨ Ù„Ù…Ø´Ø§Ù‡Ø¯Ø© ÙƒÙŠÙ ØªØ³ØªØ®Ø¯Ù… Ø§Ù„ÙØ±Ù‚ SAQYN RABT Ù„ØªØ­ÙˆÙŠÙ„ Ø¹Ù…Ù„ÙŠØ§ØªÙ‡Ù….' })}
+          {t({ en: 'From the Middle East to the world â swipe to see how teams use SAQYN RABT to transform their operations.', ar: 'من الشرق الأوسط إلى العالم â اسحب لمشاهدة كيف تستخدم الفرق SAQYN RABT لتحويل عملياتهم.' })}
         </p>
       </section>
 
@@ -204,9 +204,9 @@ export default function CaseStudiesPage() {
                             : 'bg-surface hover:bg-primary text-primary border-primary/10'
                         }`}
                       >
-                        <span>{t({ en: 'Explore Case Study', ar: 'Ø§Ø³ØªØ¹Ø±Ø¶ Ø¯Ø±Ø§Ø³Ø© Ø§Ù„Ø­Ø§Ù„Ø©' })}</span>
+                        <span>{t({ en: 'Explore Case Study', ar: 'استعرض دراسة الحالة' })}</span>
                         <span className="transition-transform duration-300 group-hover:translate-x-1">
-                          {locale === 'ar' ? 'â†' : 'â†’'}
+                          {locale === 'ar' ? 'â' : 'â'}
                         </span>
                       </Link>
                     </div>
@@ -261,7 +261,7 @@ export default function CaseStudiesPage() {
                 {list[currentIndex].meta}
               </span>
               <h3 className="text-lg font-extrabold text-primary">
-                {locale === 'ar' ? 'Ø§Ù„Ù…Ù‚Ø§ÙŠÙŠØ³ Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ© Ø§Ù„Ù…Ø­Ù‚Ù‚Ø©' : 'Key Metrics Achieved'}
+                {locale === 'ar' ? 'المقاييس الرئيسية المحققة' : 'Key Metrics Achieved'}
               </h3>
             </div>
             <div className="flex flex-wrap gap-8 justify-end">
@@ -279,10 +279,10 @@ export default function CaseStudiesPage() {
       <section className="py-20 bg-surface">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-extrabold text-primary mb-4">
-            {t({ en: 'Be the Next Success Story', ar: 'ÙƒÙ† Ù‚ØµØ© Ø§Ù„Ù†Ø¬Ø§Ø­ Ø§Ù„ØªØ§Ù„ÙŠØ©' })}
+            {t({ en: 'Be the Next Success Story', ar: 'كن قصة النجاح التالية' })}
           </h2>
           <p className="text-primary/60 font-medium mb-8">
-            {t({ en: 'Book a demo and see how SAQYN RABT can transform your operations.', ar: 'Ø§Ø­Ø¬Ø² Ø¹Ø±Ø¶Ø§Ù‹ ØªÙˆØ¶ÙŠØ­ÙŠØ§Ù‹ ÙˆØ´Ø§Ù‡Ø¯ ÙƒÙŠÙ ÙŠÙ…ÙƒÙ† Ù„Ù€ SAQYN RABT ØªØ­ÙˆÙŠÙ„ Ø¹Ù…Ù„ÙŠØ§ØªÙƒ.' })}
+            {t({ en: 'Book a demo and see how SAQYN RABT can transform your operations.', ar: 'احجز عرضاً توضيحياً وشاهد كيف يمكن لـ SAQYN RABT تحويل عملياتك.' })}
           </p>
           <a
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}
@@ -290,7 +290,7 @@ export default function CaseStudiesPage() {
             rel="noopener noreferrer"
             className="btn-primary py-3 px-6 text-xs"
           >
-            {t({ en: 'Book Your Demo Session', ar: 'Ø§Ø­Ø¬Ø² Ø¬Ù„Ø³Ø© Ø§Ù„Ø¹Ø±Ø¶ Ø§Ù„Ø®Ø§Øµ Ø¨Ùƒ' })}
+            {t({ en: 'Book Your Demo Session', ar: 'احجز جلسة العرض الخاص بك' })}
           </a>
         </div>
       </section>

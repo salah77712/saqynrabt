@@ -36,13 +36,13 @@ export default function HitlQueuePage() {
 
       {/* Header */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Review Queue', ar: 'Ø·Ø§Ø¨ÙˆØ± Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ø¨Ø´Ø±ÙŠØ© HITL' })}</h1>
-        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Check and override AI responses that need a human touch.', ar: 'Ù…Ø±Ø§Ø¬Ø¹Ø© Ù…Ø®Ø±Ø¬Ø§Øª Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ Ù…Ù†Ø®ÙØ¶Ø© Ø§Ù„Ø«Ù‚Ø© ÙˆØªØ¹Ø¯ÙŠÙ„Ù‡Ø§ ÙŠØ¯ÙˆÙŠÙ‹Ø§.' })}</p>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Review Queue', ar: 'طابور المراجعة البشرية HITL' })}</h1>
+        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Check and override AI responses that need a human touch.', ar: 'مراجعة مخرجات المساعد الذكي منخفضة الثقة وتعديلها يدويًا.' })}</p>
       </div>
 
       {/* Queue list */}
       <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
-        <h3 className="text-lg font-extrabold text-primary mb-4">{t({ en: 'Pending Review Tasks', ar: 'Ù…Ù‡Ø§Ù… Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©' })}</h3>
+        <h3 className="text-lg font-extrabold text-primary mb-4">{t({ en: 'Pending Review Tasks', ar: 'مهام المراجعة المعلقة' })}</h3>
 
         {tasks.length === 0 ? (
           <p className="text-xs text-primary font-semibold text-center py-6">Nothing needs review right now.</p>

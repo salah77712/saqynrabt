@@ -1,5 +1,4 @@
 import { neon } from '@neondatabase/serverless';
-import { Pinecone } from '@pinecone-database/pinecone';
 import { RecursiveCharacterTextSplitter } from '@langchain/textsplitters';
 import { encoding_for_model } from 'tiktoken';
 import type { Env } from '../utils';
@@ -134,23 +133,6 @@ async function embedBatch(
   return out;
 }
 
-function getPineconeClient(env: Env): Pinecone {
-  if (!env.PINECONE_API_KEY) {
-    throw new Error('PINECONE_API_KEY is not configured');
-  }
-  return new Pinecone({ apiKey: env.PINECONE_API_KEY });
-}
-
-function getPineconeIndex(pc: Pinecone, env: Env): any {
-  // Prefer PINECONE_INDEX_HOST (hosted index URL) when set; otherwise fall
-  // back to PINECONE_INDEX_NAME. Both are valid deployment shapes.
-  const name = (env as any).PINECONE_INDEX_NAME || 'saqyn-rag-index';
-  if ((env as any).PINECONE_INDEX_HOST) {
-    return pc.index(name, (env as any).PINECONE_INDEX_HOST);
-  }
-  return pc.index(name);
-}
-
 export async function processIngestionMessage(body: any, env: Env): Promise<void> {
   const { tenantId, docId, r2Key, filename, contentType } = body || {};
   if (!tenantId || !docId || !r2Key) {
@@ -206,27 +188,36 @@ export async function processIngestionMessage(body: any, env: Env): Promise<void
     throw err;
   }
 
-  // ── Step 4: UPSERT — Pinecone ────────────────────────────────────────────
-  const pc = getPineconeClient(env);
-  const index = getPineconeIndex(pc, env);
-  const namespace = tenantId; // tenant isolation via namespace
-  const records = chunks.map((chunk, i) => ({
-    id: `${docId}-chunk-${i}`,
-    values: vectors[i],
-    metadata: {
-      tenantId,
-      docId,
-      chunkIndex: i,
-      text: chunk.slice(0, 8000), // Pinecone metadata text cap
-      filename,
-    },
-  }));
-
-  // Pinecone SDK accepts up to 100 records per upsert call in v8+; batch safely.
-  const UPSERT_BATCH = 100;
-  for (let i = 0; i < records.length; i += UPSERT_BATCH) {
-    const slice = records.slice(i, i + UPSERT_BATCH);
-    await index.namespace(namespace).upsert(slice);
+  // ── Step 4: UPSERT — Pinecone via direct fetch ──────────────────────────
+  const pcHost = env.PINECONE_INDEX_HOST;
+  if (pcHost) {
+    const vectors = chunks.map((chunk, i) => ({
+      id: `${docId}-chunk-${i}`,
+      values: vectors[i],
+      metadata: {
+        tenantId,
+        docId,
+        chunkIndex: i,
+        text: chunk.slice(0, 8000),
+        filename,
+      },
+    }));
+    const UPSERT_BATCH = 100;
+    for (let i = 0; i < vectors.length; i += UPSERT_BATCH) {
+      const slice = vectors.slice(i, i + UPSERT_BATCH);
+      const res = await fetch(`${pcHost}/vectors/upsert`, {
+        method: 'POST',
+        headers: {
+          'Api-Key': env.PINECONE_API_KEY,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ vectors: slice, namespace: tenantId }),
+      });
+      if (!res.ok) {
+        const errText = await res.text();
+        console.error(`Pinecone upsert failed (${res.status}): ${errText}`);
+      }
+    }
   }
 
   // ── Step 5: PERSIST — mark completed + write extracted text back to R2 ──
@@ -252,18 +243,17 @@ export async function processIngestionMessage(body: any, env: Env): Promise<void
  */
 export async function handleIngestionBatch(batch: any, env: Env): Promise<void> {
   for (const msg of batch.messages) {
+    let body: any;
     try {
-      let body: any;
-      try {
-        body = typeof msg.body === 'string' ? JSON.parse(msg.body) : msg.body;
-      } catch {
-        body = msg.body;
-      }
+      body = typeof msg.body === 'string' ? JSON.parse(msg.body) : msg.body;
+    } catch {
+      body = msg.body;
+    }
+    try {
       await processIngestionMessage(body, env);
       msg.ack();
     } catch (err) {
       console.error(`[ingestion] failed for msg ${msg.id}:`, err);
-      msg.ack();
     }
   }
 }

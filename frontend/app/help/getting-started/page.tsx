@@ -11,10 +11,10 @@ export default function GettingStartedHelpPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const sidebarLinks = [
-    { name: { en: 'Getting Started', fr: 'Pour commencer', ar: 'Ø¯Ù„ÙŠÙ„ Ø§Ù„Ø¨Ø¯Ø§ÙŠØ©', hi: 'à¤¶à¥à¤°à¥à¤†à¤¤ à¤•à¤°à¤¨à¤¾' }, path: '/help/getting-started' },
-    { name: { en: 'Call Automation', fr: 'Automatisation des appels', ar: 'Ø£ØªÙ…ØªØ© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª', hi: 'à¤•à¥‰à¤² à¤‘à¤Ÿà¥‹à¤®à¥‡à¤¶à¤¨' }, path: '/help/automation' },
-    { name: { en: 'RAG Chatbot Help', fr: 'Aide au chatbot RAG', ar: 'Ù…Ø³Ø§Ø¹Ø¯Ø© Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ', hi: 'à¤†à¤°à¤à¤œà¥€ à¤šà¥ˆà¤Ÿà¤¬à¥‰à¤Ÿ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' }, path: '/help/chatbot' },
-    { name: { en: 'Pricing & Billing', fr: 'Tarification & Facturation', ar: 'Ø§Ù„Ø£Ø³Ø¹Ø§Ø± ÙˆØ§Ù„ÙÙˆØªØ±Ø©', hi: 'à¤®à¥‚à¤²à¥à¤¯ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£ à¤”à¤° à¤¬à¤¿à¤²à¤¿à¤‚à¤—' }, path: '/help/billing' },
+    { name: { en: 'Getting Started', fr: 'Pour commencer', ar: 'دليل البداية', hi: 'à¤¶à¥à¤°à¥à¤à¤¤ à¤à¤°à¤¨à¤¾' }, path: '/help/getting-started' },
+    { name: { en: 'Call Automation', fr: 'Automatisation des appels', ar: 'أتمتة المكالمات', hi: 'à¤à¥à¤² à¤à¤à¥à¤®à¥à¤¶à¤¨' }, path: '/help/automation' },
+    { name: { en: 'RAG Chatbot Help', fr: 'Aide au chatbot RAG', ar: 'مساعدة المساعد الذكي', hi: 'à¤à¤°à¤à¤à¥ à¤à¥à¤à¤¬à¥à¤ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' }, path: '/help/chatbot' },
+    { name: { en: 'Pricing & Billing', fr: 'Tarification & Facturation', ar: 'الأسعار والفوترة', hi: 'à¤®à¥à¤²à¥à¤¯ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£ à¤à¤° à¤¬à¤¿à¤²à¤¿à¤à¤' }, path: '/help/billing' },
   ];
 
   return (
@@ -25,7 +25,7 @@ export default function GettingStartedHelpPage() {
         {/* Help Center Sidebar */}
         <aside className="w-full md:w-64 shrink-0 space-y-2">
           <h3 className="text-xs font-extrabold text-primary uppercase tracking-widest px-4 mb-4">
-            {t({ en: 'Help Categories', fr: 'CatÃ©gories d\'aide', ar: 'Ø£Ù‚Ø³Ø§Ù… Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø©', hi: 'à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤¶à¥à¤°à¥‡à¤£à¤¿à¤¯à¤¾à¤' })}
+            {t({ en: 'Help Categories', fr: 'CatÃ©gories d\'aide', ar: 'أقسام المساعدة', hi: 'à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤¶à¥à¤°à¥à¤£à¤¿à¤¯à¤¾à¤' })}
           </h3>
           {sidebarLinks.map((link) => {
             const isActive = link.path === '/help/getting-started';
@@ -48,12 +48,12 @@ export default function GettingStartedHelpPage() {
         {/* Content Panel */}
         <div className="flex-1 bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
           <div>
-            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ ÙˆØ§Ù„ÙƒØªÙŠØ¨Ø§Øª', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼à¥€à¤•à¤°à¤£' })}</span>
+            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'الوثائق والكتيبات', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥à¤à¤¼à¥à¤à¤°à¤£' })}</span>
             <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
-              {t({ en: 'Getting Started Guide', fr: 'Guide de dÃ©marrage', ar: 'Ø¯Ù„ÙŠÙ„ Ø§Ù„Ø¨Ø¯Ø§ÙŠØ© Ø§Ù„Ø³Ø±ÙŠØ¹', hi: 'à¤¶à¥à¤°à¥à¤†à¤¤ à¤—à¤¾à¤‡à¤¡' })}
+              {t({ en: 'Getting Started Guide', fr: 'Guide de dÃ©marrage', ar: 'دليل البداية السريع', hi: 'à¤¶à¥à¤°à¥à¤à¤¤ à¤à¤¾à¤à¤¡' })}
             </h1>
             <p className="text-xs font-semibold text-primary mt-2">
-              {t({ en: 'Learn how to set up your SAQYN RABT workspace in less than 5 minutes.', fr: 'DÃ©couvrez comment configurer votre espace de travail SAQYN RABT en moins de 5 minutes.', ar: 'ØªØ¹Ø±Ù Ø¹Ù„Ù‰ ÙƒÙŠÙÙŠØ© ØªÙ‡ÙŠØ¦Ø© Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ ÙÙŠ Ø£Ù‚Ù„ Ù…Ù† 5 Ø¯Ù‚Ø§Ø¦Ù‚.', hi: 'à¤œà¤¾à¤¨à¥‡à¤‚ à¤•à¤¿ 5 à¤®à¤¿à¤¨à¤Ÿ à¤¸à¥‡ à¤­à¥€ à¤•à¤® à¤¸à¤®à¤¯ à¤®à¥‡à¤‚ à¤…à¤ªà¤¨à¤¾ SAQYN RABT à¤•à¤¾à¤°à¥à¤¯à¤•à¥à¤·à¥‡à¤¤à¥à¤° à¤•à¥ˆà¤¸à¥‡ à¤¸à¥‡à¤Ÿà¤…à¤ª à¤•à¤°à¥‡à¤‚à¥¤' })}
+              {t({ en: 'Learn how to set up your SAQYN RABT workspace in less than 5 minutes.', fr: 'DÃ©couvrez comment configurer votre espace de travail SAQYN RABT en moins de 5 minutes.', ar: 'تعرف على كيفية تهيئة مساحة العمل الخاصة بك في أقل من 5 دقائق.', hi: 'à¤à¤¾à¤¨à¥à¤ à¤à¤¿ 5 à¤®à¤¿à¤¨à¤ à¤¸à¥ à¤­à¥ à¤à¤® à¤¸à¤®à¤¯ à¤®à¥à¤ à¤à¤ªà¤¨à¤¾ SAQYN RABT à¤à¤¾à¤°à¥à¤¯à¤à¥à¤·à¥à¤¤à¥à¤° à¤à¥à¤¸à¥ à¤¸à¥à¤à¤à¤ª à¤à¤°à¥à¤à¥¤' })}
             </p>
           </div>
 

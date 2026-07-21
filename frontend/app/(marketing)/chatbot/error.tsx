@@ -30,12 +30,12 @@ export default function ChatbotError({
       <div className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="text-center max-w-md">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-primary/10"><AlertTriangle className="w-6 h-6 text-primary" /></div>
-          <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Chatbot page unavailable', ar: 'ØµÙØ­Ø© Ø§Ù„Ø´Ø§Øª Ø¨ÙˆØª ØºÙŠØ± Ù…ØªÙˆÙØ±Ø©' })}</h1>
-          <p className="text-sm text-primary mb-2">{t({ en: 'We couldn\'t load the chatbot content right now.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©.' })}</p>
-          <p className="text-xs text-primary mb-8">{t({ en: 'This is usually temporary. Please try again.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©.' })}</p>
+          <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Chatbot page unavailable', ar: 'صفحة الشات بوت غير متوفرة' })}</h1>
+          <p className="text-sm text-primary mb-2">{t({ en: 'We couldn\'t load the chatbot content right now.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}</p>
+          <p className="text-xs text-primary mb-8">{t({ en: 'This is usually temporary. Please try again.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: 'Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰' })}</button>
-            <a href="/" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/10 px-6 py-3 text-sm font-semibold text-primary hover:bg-surface transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Back to Home', ar: 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©' })}</a>
+            <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: 'حاول مرة أخرى' })}</button>
+            <a href="/" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/10 px-6 py-3 text-sm font-semibold text-primary hover:bg-surface transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Back to Home', ar: 'العودة إلى الرئيسية' })}</a>
           </div>
         </div>
       </div>

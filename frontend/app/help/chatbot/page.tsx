@@ -11,10 +11,10 @@ export default function ChatbotHelpPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const sidebarLinks = [
-    { name: { en: 'Getting Started', fr: 'Pour commencer', ar: 'Ø¯Ù„ÙŠÙ„ Ø§Ù„Ø¨Ø¯Ø§ÙŠØ©', hi: 'à¤¶à¥à¤°à¥à¤†à¤¤ à¤•à¤°à¤¨à¤¾' }, path: '/help/getting-started' },
-    { name: { en: 'Call Automation', fr: 'Automatisation des appels', ar: 'Ø£ØªÙ…ØªØ© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª', hi: 'à¤•à¥‰à¤² à¤‘à¤Ÿà¥‹à¤®à¥‡à¤¶à¤¨' }, path: '/help/automation' },
-    { name: { en: 'RAG Chatbot Help', fr: 'Aide au chatbot RAG', ar: 'Ù…Ø³Ø§Ø¹Ø¯Ø© Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ', hi: 'à¤†à¤°à¤à¤œà¥€ à¤šà¥ˆà¤Ÿà¤¬à¥‰à¤Ÿ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' }, path: '/help/chatbot' },
-    { name: { en: 'Pricing & Billing', fr: 'Tarification & Facturation', ar: 'Ø§Ù„Ø£Ø³Ø¹Ø§Ø± ÙˆØ§Ù„ÙÙˆØªØ±Ø©', hi: 'à¤®à¥‚à¤²à¥à¤¯ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£ à¤”à¤° à¤¬à¤¿à¤²à¤¿à¤‚à¤—' }, path: '/help/billing' },
+    { name: { en: 'Getting Started', fr: 'Pour commencer', ar: 'دليل البداية', hi: 'à¤¶à¥à¤°à¥à¤à¤¤ à¤à¤°à¤¨à¤¾' }, path: '/help/getting-started' },
+    { name: { en: 'Call Automation', fr: 'Automatisation des appels', ar: 'أتمتة المكالمات', hi: 'à¤à¥à¤² à¤à¤à¥à¤®à¥à¤¶à¤¨' }, path: '/help/automation' },
+    { name: { en: 'RAG Chatbot Help', fr: 'Aide au chatbot RAG', ar: 'مساعدة المساعد الذكي', hi: 'à¤à¤°à¤à¤à¥ à¤à¥à¤à¤¬à¥à¤ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' }, path: '/help/chatbot' },
+    { name: { en: 'Pricing & Billing', fr: 'Tarification & Facturation', ar: 'الأسعار والفوترة', hi: 'à¤®à¥à¤²à¥à¤¯ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£ à¤à¤° à¤¬à¤¿à¤²à¤¿à¤à¤' }, path: '/help/billing' },
   ];
 
   return (
@@ -25,7 +25,7 @@ export default function ChatbotHelpPage() {
         {/* Help Center Sidebar */}
         <aside className="w-full md:w-64 shrink-0 space-y-2">
           <h3 className="text-xs font-extrabold text-primary uppercase tracking-widest px-4 mb-4">
-            {t({ en: 'Help Categories', fr: 'CatÃ©gories d\'aide', ar: 'Ø£Ù‚Ø³Ø§Ù… Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯Ø©', hi: 'à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤¶à¥à¤°à¥‡à¤£à¤¿à¤¯à¤¾à¤' })}
+            {t({ en: 'Help Categories', fr: 'CatÃ©gories d\'aide', ar: 'أقسام المساعدة', hi: 'à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤¶à¥à¤°à¥à¤£à¤¿à¤¯à¤¾à¤' })}
           </h3>
           {sidebarLinks.map((link) => {
             const isActive = link.path === '/help/chatbot';
@@ -46,12 +46,12 @@ export default function ChatbotHelpPage() {
         {/* Content Panel */}
         <div className="flex-1 bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
           <div>
-            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'Ø§Ù„ÙˆØ«Ø§Ø¦Ù‚ ÙˆØ§Ù„ÙƒØªÙŠØ¨Ø§Øª', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼à¥€à¤•à¤°à¤£' })}</span>
+            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'الوثائق والكتيبات', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥à¤à¤¼à¥à¤à¤°à¤£' })}</span>
             <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
-              {t({ en: 'RAG Knowledge Chatbot Help', fr: 'Aide au chatbot de connaissances RAG', ar: 'Ù…Ø³Ø§Ø¹Ø¯Ø© Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ Ø§Ù„Ù…Ø¹ØªÙ…Ø¯ Ø¹Ù„Ù‰ Ø§Ù„Ù€ RAG', hi: 'à¤†à¤°à¤à¤œà¥€ à¤¨à¥‰à¤²à¥‡à¤œ à¤šà¥ˆà¤Ÿà¤¬à¥‰à¤Ÿ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' })}
+              {t({ en: 'RAG Knowledge Chatbot Help', fr: 'Aide au chatbot de connaissances RAG', ar: 'مساعدة المساعد الذكي المعتمد على الـ RAG', hi: 'à¤à¤°à¤à¤à¥ à¤¨à¥à¤²à¥à¤ à¤à¥à¤à¤¬à¥à¤ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' })}
             </h1>
             <p className="text-xs font-semibold text-primary mt-2">
-              {t({ en: 'Learn about indexed document search, citations, and unanswered gaps.', fr: 'En savoir plus sur la recherche de documents indexÃ©s, les citations et les lacunes non rÃ©solues.', ar: 'ØªØ¹Ø±Ù Ø¹Ù„Ù‰ Ø§Ù„Ø¨Ø­Ø« ÙÙŠ Ø§Ù„Ù…Ø³ØªÙ†Ø¯Ø§Øª Ø§Ù„Ù…ÙÙ‡Ø±Ø³Ø©ØŒ ÙˆØ§Ù„Ø§Ù‚ØªØ¨Ø§Ø³Ø§ØªØŒ ÙˆØ§Ù„ÙØ¬ÙˆØ§Øª Ø§Ù„Ù…Ø¹Ø±ÙÙŠØ©.', hi: 'à¤…à¤¨à¥à¤•à¥à¤°à¤®à¤¿à¤¤ à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥‡à¤œà¤¼ à¤–à¥‹à¤œ, à¤‰à¤¦à¥à¤§à¤°à¤£ à¤”à¤° à¤…à¤¨à¥à¤¤à¥à¤¤à¤°à¤¿à¤¤ à¤…à¤‚à¤¤à¤°à¤¾à¤²à¥‹à¤‚ à¤•à¥‡ à¤¬à¤¾à¤°à¥‡ à¤®à¥‡à¤‚ à¤œà¤¾à¤¨à¥‡à¤‚à¥¤' })}
+              {t({ en: 'Learn about indexed document search, citations, and unanswered gaps.', fr: 'En savoir plus sur la recherche de documents indexÃ©s, les citations et les lacunes non rÃ©solues.', ar: 'تعرف على البحث في المستندات المفهرسة، والاقتباسات، والفجوات المعرفية.', hi: 'à¤à¤¨à¥à¤à¥à¤°à¤®à¤¿à¤¤ à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥à¤à¤¼ à¤à¥à¤, à¤à¤¦à¥à¤§à¤°à¤£ à¤à¤° à¤à¤¨à¥à¤¤à¥à¤¤à¤°à¤¿à¤¤ à¤à¤à¤¤à¤°à¤¾à¤²à¥à¤ à¤à¥ à¤¬à¤¾à¤°à¥ à¤®à¥à¤ à¤à¤¾à¤¨à¥à¤à¥¤' })}
             </p>
           </div>
 

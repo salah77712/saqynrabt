@@ -31,7 +31,7 @@ export default function ForgotPasswordPage() {
  setSuccess(true);
  } catch (err: any) {
  console.error(err);
- setError(err.errors?.[0]?.message || t({ en: 'Failed to send reset link.', ar: 'ÙØ´Ù„ Ø¥Ø±Ø³Ø§Ù„ Ø±Ø§Ø¨Ø· Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„ØªØ¹ÙŠÙŠÙ†.' }));
+ setError(err.errors?.[0]?.message || t({ en: 'Failed to send reset link.', ar: 'فشل إرسال رابط إعادة التعيين.' }));
  } finally {
  setLoading(false);
  }
@@ -45,7 +45,7 @@ export default function ForgotPasswordPage() {
  <div className="text-center mb-8">
  <Link href="/" className="flex flex-col items-center gap-1">
  <span className="text-primary font-extrabold text-2xl tracking-tight">SAQYN RABT</span>
- <span className="text-xs uppercase tracking-[0.2em] text-primary/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'Ø¹Ù…Ù„ÙŠØ§Øª Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ø§Ù„Ø®Ø§ØµØ©' })}</span>
+ <span className="text-xs uppercase tracking-[0.2em] text-primary/60 font-bold">{t({ en: 'PRIVATE AI OPS', ar: 'عمليات الذكاء الاصطناعي الخاصة' })}</span>
  </Link>
  </div>
 
@@ -54,11 +54,11 @@ export default function ForgotPasswordPage() {
  <div className="h-12 w-12 rounded-full bg-surface text-accent flex items-center justify-center mx-auto">
  <Mail className="w-6 h-6 text-accent" />
  </div>
- <h2 className="text-lg font-extrabold text-primary">{t({ en: 'Check your email', ar: 'ØªØ­Ù‚Ù‚ Ù…Ù† Ø¨Ø±ÙŠØ¯Ùƒ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</h2>
+ <h2 className="text-lg font-extrabold text-primary">{t({ en: 'Check your email', ar: 'تحقق من بريدك الإلكتروني' })}</h2>
  <p className="text-xs font-semibold text-primary/60 leading-relaxed">
  {t({
  en: 'If an account exists with that email, we will send a password reset verification link.',
- ar: 'Ø¥Ø°Ø§ ÙƒØ§Ù† Ù‡Ù†Ø§Ùƒ Ø­Ø³Ø§Ø¨ Ø¨Ù‡Ø°Ø§ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠØŒ Ø³Ù†Ø±Ø³Ù„ Ø±Ø§Ø¨Ø· Ø¥Ø¹Ø§Ø¯Ø© ØªØ¹ÙŠÙŠÙ† ÙƒÙ„Ù…Ø© Ø§Ù„Ù…Ø±ÙˆØ±.',
+ ar: 'إذا كان هناك حساب بهذا البريد الإلكتروني، سنرسل رابط إعادة تعيين كلمة المرور.',
  })}
  </p>
 <div className="pt-4">
@@ -66,7 +66,7 @@ export default function ForgotPasswordPage() {
         href="/sign-in"
         className="inline-flex items-center justify-center py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] text-accent hover:bg-primary transition-all"
       >
-        {t({ en: 'Back to Sign In', ar: 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„' })}
+        {t({ en: 'Back to Sign In', ar: 'العودة لتسجيل الدخول' })}
       </Link>
     </div>
  </div>
@@ -79,7 +79,7 @@ export default function ForgotPasswordPage() {
 )}
  <form onSubmit={handleSubmit} className="space-y-4">
  <div>
- <label htmlFor="email" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Email Address', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</label>
+ <label htmlFor="email" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</label>
  <input
  type="email"
  id="email"
@@ -95,13 +95,13 @@ export default function ForgotPasswordPage() {
  disabled={loading}
  className="w-full bg-primary text-surface font-bold py-3 rounded-xl text-xs hover:opacity-95 transition-all min-h-[44px] flex items-center justify-center disabled:opacity-40"
  >
- {loading ? t({ en: 'Sending Reset Link...', ar: 'Ø¬Ø§Ø±ÙŠ Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø±Ø§Ø¨Ø·...' }) : t({ en: 'Send Reset Link', ar: 'Ø¥Ø±Ø³Ø§Ù„ Ø±Ø§Ø¨Ø· Ø¥Ø¹Ø§Ø¯Ø© Ø§Ù„ØªØ¹ÙŠÙŠÙ†' })}
+ {loading ? t({ en: 'Sending Reset Link...', ar: 'جاري إرسال الرابط...' }) : t({ en: 'Send Reset Link', ar: 'إرسال رابط إعادة التعيين' })}
  </button>
  </form>
 
  <div className="text-center mt-6">
  <Link href="/sign-in" className="text-xs font-semibold text-accent hover:underline">
- {t({ en: 'Back to Sign In', ar: 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ù„ØªØ³Ø¬ÙŠÙ„ Ø§Ù„Ø¯Ø®ÙˆÙ„' })}
+ {t({ en: 'Back to Sign In', ar: 'العودة لتسجيل الدخول' })}
  </Link>
  </div>
  </>

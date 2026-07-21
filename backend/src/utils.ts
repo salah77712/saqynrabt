@@ -20,7 +20,6 @@ export interface Env {
   INGESTION_QUEUE?: Queue;
   NODE_ENV?: string;
   VAPI_API_KEY?: string;
-  ALLOW_MOCK_TOKENS?: string;
   CLERK_WEBHOOK_SECRET?: string;
   VAPI_WEBHOOK_SECRET?: string;
   MESSAGE_WEBHOOK_SECRET?: string;
@@ -101,9 +100,10 @@ export async function verifyJWT(authHeader: string | null, env: Env): Promise<JW
   if (token.startsWith('mock-token-')) return null;
   try {
     const payload = await verifyToken(token, { secretKey: env.CLERK_SECRET_KEY });
-    const company_id = (payload as any).company_id || (payload as any).public_metadata?.company_id || (payload as any).org_id || 'dummy_company';
+    const company_id = (payload as any).company_id || (payload as any).public_metadata?.company_id || (payload as any).org_id;
     const role = (payload as any).role || (payload as any).public_metadata?.role || 'employee';
     const permissions = (payload as any).public_metadata?.permissions || (payload as any).org_role === 'org:admin' ? ['documents:create', 'documents:read', 'documents:update', 'documents:delete', 'employees:create', 'employees:read', 'employees:update', 'employees:delete', 'billing:read', 'billing:update', 'settings:read', 'settings:update'] : ['documents:read', 'documents:create'];
+    if (!company_id) return null;
     return { ...(payload as any), company_id, role, permissions };
   } catch { return null; }
 }
@@ -132,6 +132,22 @@ export async function verifyClerkWebhook(request: Request, bodyText: string, web
     }
   } catch (e) { console.error("Webhook verification error:", e); }
   return false;
+}
+
+export async function checkEdgeRateLimit(
+  redis: Redis,
+  tenantId: string,
+  limit: number,
+  windowSeconds: number
+): Promise<{ allowed: boolean; retryAfter: number }> {
+  const key = `edge_rate:${tenantId}`;
+  const current = await redis.incr(key);
+  if (current === 1) await redis.expire(key, windowSeconds);
+  if (current > limit) {
+    const ttl = await redis.ttl(key);
+    return { allowed: false, retryAfter: Math.max(1, ttl) };
+  }
+  return { allowed: true, retryAfter: 0 };
 }
 
 export async function checkRateLimit(redis: Redis, companyId: string): Promise<{ allowed: boolean; retryAfter: number }> {

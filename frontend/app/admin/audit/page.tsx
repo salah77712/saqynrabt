@@ -112,14 +112,14 @@ export default function AdminAuditPage() {
       {/* Page Header and Search */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Security & Audit Logs', ar: 'Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ø£Ù…Ù† ÙˆØ§Ù„ØªØ¯Ù‚ÙŠÙ‚' })}</h1>
-          <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Audit all platform events, tenant activity, and security changes.', ar: 'Ù…Ø±Ø§Ø¬Ø¹Ø© Ø¬Ù…ÙŠØ¹ Ø£Ø­Ø¯Ø§Ø« Ø§Ù„Ù…Ù†ØµØ©ØŒ Ù†Ø´Ø§Ø· Ø§Ù„Ø´Ø±ÙƒØ§ØªØŒ ÙˆØ§Ù„ØªØºÙŠÙŠØ±Ø§Øª Ø§Ù„Ø£Ù…Ù†ÙŠØ©.' })}</p>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'Security & Audit Logs', ar: 'سجلات الأمن والتدقيق' })}</h1>
+          <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Audit all platform events, tenant activity, and security changes.', ar: 'مراجعة جميع أحداث المنصة، نشاط الشركات، والتغييرات الأمنية.' })}</p>
         </div>
 
         <div className="flex gap-4 items-center">
           <input
             type="text"
-            placeholder={t({ en: 'Filter logs...', ar: 'ØªØµÙÙŠØ© Ø§Ù„Ø³Ø¬Ù„Ø§Øª...' })}
+            placeholder={t({ en: 'Filter logs...', ar: 'تصفية السجلات...' })}
             value={search}
             onChange={(e) => { setSearch(e.target.value); setPage(1); }}
             className="min-h-[44px] bg-surface border border-primary/10 rounded-xl px-4 py-2 text-xs font-semibold shadow-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-royal w-64"
@@ -150,16 +150,16 @@ export default function AdminAuditPage() {
                   />
                 </th>
                 <th className="px-6 py-4 cursor-pointer select-none hover:opacity-70 transition-opacity" onClick={() => handleSort('timestamp')} aria-sort={getSortAria('timestamp')} scope="col">
-                  {t({ en: 'Timestamp', ar: 'Ø§Ù„ÙˆÙ‚Øª ÙˆØ§Ù„Ø´Ø¨ÙƒØ©' })}
+                  {t({ en: 'Timestamp', ar: 'الوقت والشبكة' })}
                 </th>
                 <th className="px-6 py-4 cursor-pointer select-none hover:opacity-70 transition-opacity" onClick={() => handleSort('user')} aria-sort={getSortAria('user')} scope="col">
-                  {t({ en: 'Operator User', ar: 'Ø§Ù„Ù…Ø³ØªØ®Ø¯Ù… Ø§Ù„Ù…Ø´ØºÙ„' })}
+                  {t({ en: 'Operator User', ar: 'المستخدم المشغل' })}
                 </th>
                 <th className="px-6 py-4 cursor-pointer select-none hover:opacity-70 transition-opacity" onClick={() => handleSort('action')} aria-sort={getSortAria('action')} scope="col">
-                  {t({ en: 'Action Performed', ar: 'Ø§Ù„Ø¥Ø¬Ø±Ø§Ø¡ Ø§Ù„Ù…Ù†ÙØ°' })}
+                  {t({ en: 'Action Performed', ar: 'الإجراء المنفذ' })}
                 </th>
                 <th className="px-6 py-4 cursor-pointer select-none hover:opacity-70 transition-opacity" onClick={() => handleSort('ipAddress')} aria-sort={getSortAria('ipAddress')} scope="col">
-                  {t({ en: 'IP Address', ar: 'Ø¹Ù†ÙˆØ§Ù† Ø§Ù„Ù€ IP' })}
+                  {t({ en: 'IP Address', ar: 'عنوان الـ IP' })}
                 </th>
               </tr>
             </thead>
@@ -167,7 +167,7 @@ export default function AdminAuditPage() {
               {paginated.length === 0 ? (
                 <tr>
                   <td colSpan={5} className="px-6 py-8 text-center text-xs text-primary/60">
-                    {t({ en: 'No logs found.', ar: 'Ù„Ù… ØªØ¹Ø«Ø± Ø¹Ù„Ù‰ Ø³Ø¬Ù„Ø§Øª.' })}
+                    {t({ en: 'No logs found.', ar: 'لم تعثر على سجلات.' })}
                   </td>
                 </tr>
               ) : (
@@ -202,17 +202,17 @@ export default function AdminAuditPage() {
             disabled={page === 1}
             className="bg-surface hover:bg-primary border border-primary/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
-            {t({ en: 'Previous', ar: 'Ø§Ù„Ø³Ø§Ø¨Ù‚' })}
+            {t({ en: 'Previous', ar: 'السابق' })}
           </button>
           <span className="text-xs text-primary/60">
-            {t({ en: `Page ${page} of ${totalPages}`, ar: `Ø§Ù„ØµÙØ­Ø© ${page} Ù…Ù† ${totalPages}` })}
+            {t({ en: `Page ${page} of ${totalPages}`, ar: `الصفحة ${page} من ${totalPages}` })}
           </span>
           <button
             onClick={() => setPage(p => Math.min(p + 1, totalPages))}
             disabled={page === totalPages}
             className="bg-surface hover:bg-primary border border-primary/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
           >
-            {t({ en: 'Next', ar: 'Ø§Ù„ØªØ§Ù„ÙŠ' })}
+            {t({ en: 'Next', ar: 'التالي' })}
           </button>
         </div>
       )}

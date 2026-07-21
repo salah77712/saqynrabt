@@ -19,20 +19,20 @@ export default function WorkflowsPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const [nodes, setNodes] = useState<WorkflowNode[]>([
-    { id: '1', type: 'trigger', label: t({en: 'Incoming Guest Phone Call', ar: 'Ù…ÙƒØ§Ù„Ù…Ø© Ù‡Ø§ØªÙÙŠØ© ÙˆØ§Ø±Ø¯Ø© Ù…Ù† Ø¶ÙŠÙ'}), desc: t({en: 'Fires when Vapi webhook detects call.', ar: 'ÙŠØªÙ… ØªØ´ØºÙŠÙ„Ù‡ Ø¹Ù†Ø¯ Ø§ÙƒØªØ´Ø§Ù webhook Vapi Ù„Ù„Ù…ÙƒØ§Ù„Ù…Ø©.'}) },
-    { id: '2', type: 'condition', label: t({en: 'Outside Business Hours?', ar: 'Ø®Ø§Ø±Ø¬ Ø³Ø§Ø¹Ø§Øª Ø§Ù„Ø¹Ù…Ù„ØŸ'}), desc: t({en: 'Checks if time is between 6 PM and 8 AM.', ar: 'ÙŠØªØ­Ù‚Ù‚ Ù…Ù…Ø§ Ø¥Ø°Ø§ ÙƒØ§Ù† Ø§Ù„ÙˆÙ‚Øª Ø¨ÙŠÙ† 6 Ù…Ø³Ø§Ø¡Ù‹ Ùˆ 8 ØµØ¨Ø§Ø­Ø§Ù‹.'}) },
-    { id: '3', type: 'action', label: t({en: 'Route to Guest AI Agent', ar: 'ØªÙˆØ¬ÙŠÙ‡ Ø¥Ù„Ù‰ ÙˆÙƒÙŠÙ„ Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ù„Ù„Ø¶ÙŠÙ'}), desc: t({en: 'Launches RAG search flow on SOP.', ar: 'ØªØ´ØºÙŠÙ„ ØªØ¯ÙÙ‚ Ø§Ù„Ø¨Ø­Ø« RAG Ø¹Ù„Ù‰ Ø¥Ø¬Ø±Ø§Ø¡Ø§Øª Ø§Ù„ØªØ´ØºÙŠÙ„ Ø§Ù„Ù…ÙˆØ­Ø¯Ø©.'}) },
+    { id: '1', type: 'trigger', label: t({en: 'Incoming Guest Phone Call', ar: 'مكالمة هاتفية واردة من ضيف'}), desc: t({en: 'Fires when Vapi webhook detects call.', ar: 'يتم تشغيله عند اكتشاف webhook Vapi للمكالمة.'}) },
+    { id: '2', type: 'condition', label: t({en: 'Outside Business Hours?', ar: 'خارج ساعات العمل؟'}), desc: t({en: 'Checks if time is between 6 PM and 8 AM.', ar: 'يتحقق مما إذا كان الوقت بين 6 مساءً و 8 صباحاً.'}) },
+    { id: '3', type: 'action', label: t({en: 'Route to Guest AI Agent', ar: 'توجيه إلى وكيل الذكاء الاصطناعي للضيف'}), desc: t({en: 'Launches RAG search flow on SOP.', ar: 'تشغيل تدفق البحث RAG على إجراءات التشغيل الموحدة.'}) },
   ]);
 
   const handleAddNode = (type: WorkflowNode['type']) => {
     const label = type === 'action'
-      ? t({en: 'New Action Module', ar: 'ÙˆØ­Ø¯Ø© Ø¥Ø¬Ø±Ø§Ø¡ Ø¬Ø¯ÙŠØ¯Ø©'})
-      : t({en: 'New Decision Condition', ar: 'Ø´Ø±Ø· Ù‚Ø±Ø§Ø± Ø¬Ø¯ÙŠØ¯'});
+      ? t({en: 'New Action Module', ar: 'وحدة إجراء جديدة'})
+      : t({en: 'New Decision Condition', ar: 'شرط قرار جديد'});
     const newNode: WorkflowNode = {
       id: Date.now().toString(),
       type,
       label,
-      desc: t({en: 'Configured trigger parameters.', ar: 'Ù…Ø¹Ù„Ù…Ø§Øª Ø§Ù„Ù…Ø´ØºÙ„ Ø§Ù„Ù…ÙƒÙˆÙ†Ø©.'}),
+      desc: t({en: 'Configured trigger parameters.', ar: 'معلمات المشغل المكونة.'}),
     };
     setNodes((prev) => [...prev, newNode]);
   };
@@ -41,12 +41,12 @@ export default function WorkflowsPage() {
     <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Workflow Builder', ar: 'Ù„ÙˆØ­Ø© Ø£ØªÙ…ØªØ© Ø³ÙŠØ± Ø§Ù„Ø¹Ù…Ù„'})}</h1>
-          <p className="text-xs text-primary font-bold">{t({en: 'Design routing for calls, chats, and escalations.', ar: 'ØªØµÙ…ÙŠÙ… Ù…Ù†Ø·Ù‚ Ø§Ù„ØªÙˆØ¬ÙŠÙ‡ Ù„Ù„Ù‡Ø§ØªÙ ÙˆØ§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© ÙˆØ§Ù„ØªØµØ¹ÙŠØ¯.'})}</p>
+          <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Workflow Builder', ar: 'لوحة أتمتة سير العمل'})}</h1>
+          <p className="text-xs text-primary font-bold">{t({en: 'Design routing for calls, chats, and escalations.', ar: 'تصميم منطق التوجيه للهاتف والمحادثة والتصعيد.'})}</p>
         </div>
         <div className="flex gap-3">
-<Button variant="ghost" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ Ù‚Ø±Ø§Ø±'})}</Button>
-<Button variant="primary" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('action')}>{t({en: '+ Action', ar: '+ Ø¥Ø¬Ø±Ø§Ø¡'})}</Button>
+<Button variant="ghost" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('condition')}>{t({en: '+ Decision', ar: '+ قرار'})}</Button>
+<Button variant="primary" className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px]" size="sm" onClick={() => handleAddNode('action')}>{t({en: '+ Action', ar: '+ إجراء'})}</Button>
         </div>
       </div>
 

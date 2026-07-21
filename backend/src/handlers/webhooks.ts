@@ -122,29 +122,32 @@ export async function handleVapiWebhook(request: RequestWithContext): Promise<Re
   try {
     const bodyText = await request.text();
 
-    // Verify Vapi webhook signature
     const vapiSig = request.headers.get('x-vapi-signature') || '';
     const vapiSecret = env.VAPI_WEBHOOK_SECRET;
-    if (vapiSecret) {
-      if (!vapiSig) {
-        return new Response(JSON.stringify({ error: 'Missing signature' }), { status: 401, headers });
+    if (!vapiSecret) {
+      return new Response(JSON.stringify({ error: 'VAPI_WEBHOOK_SECRET not configured' }), { status: 500, headers });
+    }
+    if (!vapiSig) {
+      return new Response(JSON.stringify({ error: 'Missing signature' }), { status: 401, headers });
+    }
+    try {
+      const encoder = new TextEncoder();
+      const key = await crypto.subtle.importKey('raw', encoder.encode(vapiSecret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']);
+      const sigBytes = new Uint8Array(vapiSig.match(/.{1,2}/g)!.map((b: string) => parseInt(b, 16)));
+      const valid = await crypto.subtle.verify('HMAC', key, sigBytes, encoder.encode(bodyText));
+      if (!valid) {
+        return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 401, headers });
       }
-      try {
-        const encoder = new TextEncoder();
-        const key = await crypto.subtle.importKey('raw', encoder.encode(vapiSecret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']);
-        const sigBytes = new Uint8Array(vapiSig.match(/.{1,2}/g)!.map((b: string) => parseInt(b, 16)));
-        const valid = await crypto.subtle.verify('HMAC', key, sigBytes, encoder.encode(bodyText));
-        if (!valid) {
-          return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 401, headers });
-        }
-      } catch (e) {
-        return new Response(JSON.stringify({ error: 'Signature verification failed' }), { status: 401, headers });
-      }
+    } catch (e) {
+      return new Response(JSON.stringify({ error: 'Signature verification failed' }), { status: 401, headers });
     }
 
-    const body = JSON.parse(bodyText);
-    const company_id = body.company_id || 'dummy_company';
-    const transcript = body.message?.transcript || body.transcript || '';
+  const body = JSON.parse(bodyText);
+  if (!body.company_id) {
+    return new Response(JSON.stringify({ error: 'company_id is required in request body' }), { status: 400, headers });
+  }
+  const company_id = body.company_id;
+  const transcript = body.message?.transcript || body.transcript || '';
     const sql = neon(env.DATABASE_URL);
 
     if (transcript) {
@@ -168,34 +171,38 @@ export async function handleMessageWebhook(request: RequestWithContext): Promise
   try {
     const bodyText = await request.text();
 
-    // Verify Message webhook signature
     const msgSig = request.headers.get('x-message-signature') || '';
     const msgSecret = env.MESSAGE_WEBHOOK_SECRET;
-    if (msgSecret) {
-      if (!msgSig) {
-        return new Response(JSON.stringify({ error: 'Missing signature' }), { status: 401, headers });
+    if (!msgSecret) {
+      return new Response(JSON.stringify({ error: 'MESSAGE_WEBHOOK_SECRET not configured' }), { status: 500, headers });
+    }
+    if (!msgSig) {
+      return new Response(JSON.stringify({ error: 'Missing signature' }), { status: 401, headers });
+    }
+    try {
+      const encoder = new TextEncoder();
+      const key = await crypto.subtle.importKey('raw', encoder.encode(msgSecret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']);
+      const sigBytes = new Uint8Array(msgSig.match(/.{1,2}/g)!.map((b: string) => parseInt(b, 16)));
+      const valid = await crypto.subtle.verify('HMAC', key, sigBytes, encoder.encode(bodyText));
+      if (!valid) {
+        return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 401, headers });
       }
-      try {
-        const encoder = new TextEncoder();
-        const key = await crypto.subtle.importKey('raw', encoder.encode(msgSecret), { name: 'HMAC', hash: 'SHA-256' }, false, ['verify']);
-        const sigBytes = new Uint8Array(msgSig.match(/.{1,2}/g)!.map((b: string) => parseInt(b, 16)));
-        const valid = await crypto.subtle.verify('HMAC', key, sigBytes, encoder.encode(bodyText));
-        if (!valid) {
-          return new Response(JSON.stringify({ error: 'Invalid signature' }), { status: 401, headers });
-        }
-      } catch (e) {
-        return new Response(JSON.stringify({ error: 'Signature verification failed' }), { status: 401, headers });
-      }
+    } catch (e) {
+      return new Response(JSON.stringify({ error: 'Signature verification failed' }), { status: 401, headers });
     }
 
     const body = JSON.parse(bodyText);
+    const companyId = body.company_id || '';
+    if (!companyId) {
+      return new Response(JSON.stringify({ error: 'company_id is required in request body' }), { status: 400, headers });
+    }
     const message = body.message || '';
     const from = body.from || body.sender || 'unknown';
     const sql = neon(env.DATABASE_URL);
 
     await sql`
       INSERT INTO audit_logs (company_id, user_id, action, details)
-      VALUES ('webhook', ${from}, 'incoming_message', ${JSON.stringify({ message_length: message.length })}::jsonb)
+      VALUES (${companyId}, ${from}, 'incoming_message', ${JSON.stringify({ message_length: message.length })}::jsonb)
     `;
 
     return new Response(JSON.stringify({ success: true, received: true }), { headers });

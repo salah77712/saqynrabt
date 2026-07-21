@@ -10,9 +10,8 @@ export async function handleVoiceStream(request: RequestWithContext): Promise<Re
   }
 
   try {
-    const url = new URL(request.url);
-    const companyId = url.searchParams.get('company_id') || jwt.company_id || '';
-    const text = url.searchParams.get('text') || request.headers.get('X-Text') || 'Hello, this is SAQYN AI assistant.';
+    const companyId = jwt.company_id || '';
+    const text = request.headers.get('X-Text') || 'Hello, this is SAQYN AI assistant.';
 
     if (!companyId) {
       headers['Content-Type'] = 'application/json';

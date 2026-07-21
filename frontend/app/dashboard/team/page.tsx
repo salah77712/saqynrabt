@@ -87,9 +87,9 @@ addToast('Action failed. Please try again.', 'error');
 
 const validateInvite = () => {
     const errors: { name?: string; email?: string } = {};
-    if (!inviteName.trim()) errors.name = t('Name is required', 'Ø§Ù„Ø§Ø³Ù… Ù…Ø·Ù„ÙˆØ¨');
-    if (!inviteEmail.trim()) errors.email = t('Email is required', 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ù…Ø·Ù„ÙˆØ¨');
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inviteEmail)) errors.email = t('Invalid email format', 'ØªÙ†Ø³ÙŠÙ‚ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ ØºÙŠØ± ØµØ§Ù„Ø­');
+    if (!inviteName.trim()) errors.name = t('Name is required', 'الاسم مطلوب');
+    if (!inviteEmail.trim()) errors.email = t('Email is required', 'البريد الإلكتروني مطلوب');
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(inviteEmail)) errors.email = t('Invalid email format', 'تنسيق البريد الإلكتروني غير صالح');
     setInviteErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -177,7 +177,7 @@ return (
 if (isError) {
 return (
 <EmptyStateWithRetry
-message={error?.message || t('Failed to load team members.', 'ÙØ´Ù„ ØªØ­Ù…ÙŠÙ„ Ø£Ø¹Ø¶Ø§Ø¡ Ø§Ù„ÙØ±ÙŠÙ‚.')}
+message={error?.message || t('Failed to load team members.', 'فشل تحميل أعضاء الفريق.')}
 onRetry={() => refetch()}
 />
 );
@@ -188,10 +188,10 @@ return (
 <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8 mb-6">
 <div>
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
-          {t('Team', 'Ø¯Ù„ÙŠÙ„ Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„')}
+          {t('Team', 'دليل مساحة العمل')}
 </h1>
 <p className="text-xs md:text-xs text-primary font-bold">
-{t('Invite teammates, manage roles, and approve access requests.', 'Ø¥Ø¯Ø§Ø±Ø© Ø¶ÙˆØ§Ø¨Ø· Ø§Ù„ÙˆØµÙˆÙ„ Ù„Ù„ÙØ±ÙŠÙ‚ ÙˆØªÙ†Ø³ÙŠÙ‚ Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†.')}
+{t('Invite teammates, manage roles, and approve access requests.', 'إدارة ضوابط الوصول للفريق وتنسيق موافقات الموظفين.')}
 </p>
 </div>
         <div className="flex gap-4 w-full md:w-auto">
@@ -201,13 +201,13 @@ return (
               type="text"
               value={teamSearch}
               onChange={(e) => setTeamSearch(e.target.value)}
-              placeholder={t('Search team members...', 'Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø£Ø¹Ø¶Ø§Ø¡ Ø§Ù„ÙØ±ÙŠÙ‚...')}
+              placeholder={t('Search team members...', 'البحث عن أعضاء الفريق...')}
               className="w-full min-h-[44px] bg-surface border border-primary/10 rounded-xl pl-9 pr-4 py-2 text-xs font-semibold focus:outline-none focus:ring-2 focus:ring-accent"
-              aria-label={t('Search team members', 'Ø§Ù„Ø¨Ø­Ø« Ø¹Ù† Ø£Ø¹Ø¶Ø§Ø¡ Ø§Ù„ÙØ±ÙŠÙ‚')}
+              aria-label={t('Search team members', 'البحث عن أعضاء الفريق')}
             />
           </div>
           <Button variant="primary" onClick={() => { setInviteModalOpen(true); setInviteErrors({}); }} className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] whitespace-nowrap">
-            {t('Invite Colleague', 'Ø¯Ø¹ÙˆØ© Ø²Ù…ÙŠÙ„')}
+            {t('Invite Colleague', 'دعوة زميل')}
           </Button>
         </div>
       </div>
@@ -216,7 +216,7 @@ return (
 {pending.length > 0 ? (
             <div className="space-y-3">
 <h3 className="text-lg font-extrabold text-accent">
-                {t('Pending Approvals', 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©')} ({filteredPending.length})
+                {t('Pending Approvals', 'الموافقات المعلقة')} ({filteredPending.length})
 </h3>
           {isMobile ? (
             <div className="space-y-3">{filteredPending.map(renderMobileCard)}</div>
@@ -227,17 +227,17 @@ return (
 ) : (
 <div className="space-y-3">
 <h3 className="text-lg font-extrabold text-accent">
-            {t('Pending Approvals', 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø§Ù„Ù…Ø¹Ù„Ù‚Ø©')}
+            {t('Pending Approvals', 'الموافقات المعلقة')}
 </h3>
 <p className="text-xs text-primary">
-{t('No pending approvals.', 'Ù„Ø§ ØªÙˆØ¬Ø¯ Ù…ÙˆØ§ÙÙ‚Ø§Øª Ù…Ø¹Ù„Ù‚Ø©.')}
+{t('No pending approvals.', 'لا توجد موافقات معلقة.')}
 </p>
 </div>
 )}
 
 <div className="space-y-3">
 <h3 className="text-lg font-extrabold text-navy dark:text-surface">
-            {t('Active Members', 'Ø§Ù„Ø£Ø¹Ø¶Ø§Ø¡ Ø§Ù„Ù†Ø´Ø·ÙˆÙ†')} ({filteredActive.length})
+            {t('Active Members', 'الأعضاء النشطون')} ({filteredActive.length})
 </h3>
           {filteredActive.length === 0 && active.length === 0 ? (
             <EmptyTeamState onInvite={() => setInviteModalOpen(true)} />
@@ -252,11 +252,11 @@ return (
 <Dialog open={inviteModalOpen} onOpenChange={(open) => !open && setInviteModalOpen(false)}>
 <DialogContent>
 <DialogHeader>
-<DialogTitle>{t('Invite Colleague', 'Ø¯Ø¹ÙˆØ© Ø²Ù…ÙŠÙ„')}</DialogTitle>
+<DialogTitle>{t('Invite Colleague', 'دعوة زميل')}</DialogTitle>
 </DialogHeader>
         <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); handleSendInvite(); }} noValidate>
           <div>
-            <label htmlFor="invite-name" className="block text-xs font-bold text-primary uppercase mb-1">{t('Full Name', 'Ø§Ù„Ø§Ø³Ù… Ø§Ù„ÙƒØ§Ù…Ù„')}</label>
+            <label htmlFor="invite-name" className="block text-xs font-bold text-primary uppercase mb-1">{t('Full Name', 'الاسم الكامل')}</label>
             <Input
               id="invite-name"
               name="invite-name"
@@ -271,7 +271,7 @@ return (
             {inviteErrors.name && <p id="invite-name-error" className="mt-1.5 text-xs font-bold text-red-500">{inviteErrors.name}</p>}
           </div>
           <div>
-            <label htmlFor="invite-email" className="block text-xs font-bold text-primary uppercase mb-1">{t('Email Address', 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ')}</label>
+            <label htmlFor="invite-email" className="block text-xs font-bold text-primary uppercase mb-1">{t('Email Address', 'البريد الإلكتروني')}</label>
             <Input
               id="invite-email"
               name="invite-email"
@@ -295,10 +295,10 @@ return (
             {inviteSubmitting ? (
               <>
                 <LoadingSpinner size="sm" />
-                {t('Sending...', 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø¥Ø±Ø³Ø§Ù„...')}
+                {t('Sending...', 'جاري الإرسال...')}
               </>
             ) : (
-              t('Send Invitation', 'Ø¥Ø±Ø³Ø§Ù„ Ø§Ù„Ø¯Ø¹ÙˆØ©')
+              t('Send Invitation', 'إرسال الدعوة')
             )}
           </Button>
         </form>

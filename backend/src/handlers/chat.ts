@@ -55,16 +55,16 @@ export async function handleChat(request: RequestWithContext): Promise<Response>
     }
     const safeMessage = guardrailResult.cleanQuery;
 
-    let retrievedContext = '';
-    if (env.OPENAI_API_KEY) {
-      try {
-        const queryEmb = await generateEmbedding(safeMessage, env.OPENAI_API_KEY);
-        const pineconeHost = env.PINECONE_INDEX_HOST || 'saqyn-index';
-        const pineconeRes = await fetch(`${pineconeHost}/query`, {
-          method: 'POST',
-          headers: { 'Api-Key': env.PINECONE_API_KEY, 'Content-Type': 'application/json' },
-          body: JSON.stringify({ vector: queryEmb, topK: 10, includeMetadata: true }),
-        });
+  let retrievedContext = '';
+  if (env.OPENAI_API_KEY) {
+    try {
+      const queryEmb = await generateEmbedding(safeMessage, env.OPENAI_API_KEY);
+      const pineconeHost = env.PINECONE_INDEX_HOST || 'saqyn-index';
+      const pineconeRes = await fetch(`${pineconeHost}/query`, {
+        method: 'POST',
+        headers: { 'Api-Key': env.PINECONE_API_KEY, 'Content-Type': 'application/json' },
+        body: JSON.stringify({ vector: queryEmb, topK: 10, includeMetadata: true, namespace: company_id }),
+      });
         if (pineconeRes.ok) {
           const pineconeData: any = await pineconeRes.json();
           const matches: ChunkResult[] = (pineconeData.matches || [])

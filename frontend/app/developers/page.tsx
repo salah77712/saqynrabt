@@ -18,12 +18,12 @@ export default function DevelopersLandingPage() {
       <main className="flex-1 max-w-4xl mx-auto py-24 px-6 text-center space-y-8 animate-fadeIn">
         
         <div>
-          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Developer Platform', fr: 'Plateforme pour dÃ©veloppeurs', ar: 'Ù…Ù†ØµØ© Ø§Ù„Ù…Ø·ÙˆØ±ÙŠÙ†', hi: 'à¤¡à¥‡à¤µà¤²à¤ªà¤° à¤ªà¥à¤²à¥‡à¤Ÿà¤«à¤¼à¥‰à¤°à¥à¤®' })}</span>
+          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Developer Platform', fr: 'Plateforme pour dÃ©veloppeurs', ar: 'منصة المطورين', hi: 'à¤¡à¥à¤µà¤²à¤ªà¤° à¤ªà¥à¤²à¥à¤à¤«à¤¼à¥à¤°à¥à¤®' })}</span>
           <h1 className="text-4xl lg:text-5xl font-extrabold text-primary leading-tight tracking-tight mt-3">
-            {t({ en: 'Build Custom AI Operations Pipelines', fr: 'Construire des pipelines d\'opÃ©rations d\'IA personnalisÃ©s', ar: 'Ø¨Ù†Ø§Ø¡ Ù…Ø³Ø§Ø±Ø§Øª Ø¹Ù…Ù„ Ù…Ø®ØµØµØ© Ù„Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ', hi: 'à¤•à¤¸à¥à¤Ÿà¤® à¤à¤†à¤ˆ à¤‘à¤ªà¤°à¥‡à¤¶à¤‚à¤¸ à¤ªà¤¾à¤‡à¤ªà¤²à¤¾à¤‡à¤¨ à¤¬à¤¨à¤¾à¤à¤‚' })}
+            {t({ en: 'Build Custom AI Operations Pipelines', fr: 'Construire des pipelines d\'opÃ©rations d\'IA personnalisÃ©s', ar: 'بناء مسارات عمل مخصصة للذكاء الاصطناعي', hi: 'à¤à¤¸à¥à¤à¤® à¤à¤à¤ à¤à¤ªà¤°à¥à¤¶à¤à¤¸ à¤ªà¤¾à¤à¤ªà¤²à¤¾à¤à¤¨ à¤¬à¤¨à¤¾à¤à¤' })}
           </h1>
           <p className="text-sm font-semibold text-primary mt-4 leading-relaxed max-w-2xl mx-auto">
-            {t({ en: 'Integrate SAQYN RABT into your active ERP, CRM, and Property Management Systems (PMS). Read API guidelines and SDK references.', fr: 'IntÃ©grez SAQYN RABT dans vos systÃ¨mes ERP, CRM et de gestion immobiliÃ¨re (PMS) actifs. Lisez les directives de l\'API et les rÃ©fÃ©rences SDK.', ar: 'Ù‚Ù… Ø¨Ø¯Ù…Ø¬ SAQYN RABT Ù…Ø¹ Ø£Ù†Ø¸Ù…Ø© ERP Ùˆ CRM Ùˆ PMS Ø§Ù„Ø®Ø§ØµØ© Ø¨Ø´Ø±ÙƒØªÙƒ. Ø§Ù‚Ø±Ø£ Ø¥Ø±Ø´Ø§Ø¯Ø§Øª ÙˆØ§Ø¬Ù‡Ø© Ø§Ù„Ø¨Ø±Ù…Ø¬Ø© ÙˆÙ…Ø±Ø§Ø¬Ø¹ Ø§Ù„Ù€ SDK.', hi: 'SAQYN RABT à¤•à¥‹ à¤…à¤ªà¤¨à¥‡ à¤¸à¤•à¥à¤°à¤¿à¤¯ à¤ˆà¤†à¤°à¤ªà¥€, à¤¸à¥€à¤†à¤°à¤à¤® à¤”à¤° à¤¸à¤‚à¤ªà¤¤à¥à¤¤à¤¿ à¤ªà¥à¤°à¤¬à¤‚à¤§à¤¨ à¤ªà¥à¤°à¤£à¤¾à¤²à¥€ (à¤ªà¥€à¤à¤®à¤à¤¸) à¤®à¥‡à¤‚ à¤à¤•à¥€à¤•à¥ƒà¤¤ à¤•à¤°à¥‡à¤‚à¥¤ à¤à¤ªà¥€à¤†à¤ˆ à¤¦à¤¿à¤¶à¤¾à¤¨à¤¿à¤°à¥à¤¦à¥‡à¤¶ à¤”à¤° à¤à¤¸à¤¡à¥€à¤•à¥‡ à¤¸à¤‚à¤¦à¤°à¥à¤­ à¤ªà¤¢à¤¼à¥‡à¤‚à¥¤' })}
+            {t({ en: 'Integrate SAQYN RABT into your active ERP, CRM, and Property Management Systems (PMS). Read API guidelines and SDK references.', fr: 'IntÃ©grez SAQYN RABT dans vos systÃ¨mes ERP, CRM et de gestion immobiliÃ¨re (PMS) actifs. Lisez les directives de l\'API et les rÃ©fÃ©rences SDK.', ar: 'قم بدمج SAQYN RABT مع أنظمة ERP و CRM و PMS الخاصة بشركتك. اقرأ إرشادات واجهة البرمجة ومراجع الـ SDK.', hi: 'SAQYN RABT à¤à¥ à¤à¤ªà¤¨à¥ à¤¸à¤à¥à¤°à¤¿à¤¯ à¤à¤à¤°à¤ªà¥, à¤¸à¥à¤à¤°à¤à¤® à¤à¤° à¤¸à¤à¤ªà¤¤à¥à¤¤à¤¿ à¤ªà¥à¤°à¤¬à¤à¤§à¤¨ à¤ªà¥à¤°à¤£à¤¾à¤²à¥ (à¤ªà¥à¤à¤®à¤à¤¸) à¤®à¥à¤ à¤à¤à¥à¤à¥à¤¤ à¤à¤°à¥à¤à¥¤ à¤à¤ªà¥à¤à¤ à¤¦à¤¿à¤¶à¤¾à¤¨à¤¿à¤°à¥à¤¦à¥à¤¶ à¤à¤° à¤à¤¸à¤¡à¥à¤à¥ à¤¸à¤à¤¦à¤°à¥à¤­ à¤ªà¤¢à¤¼à¥à¤à¥¤' })}
           </p>
         </div>
 
@@ -32,13 +32,13 @@ export default function DevelopersLandingPage() {
             href="/developers/api-docs"
             className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-primary px-8 py-3 text-xs font-bold text-surface shadow-md hover:opacity-95 transition-all hover:scale-[1.01] hover:shadow-md"
           >
-            {t({ en: 'API Reference Swagger', fr: 'RÃ©fÃ©rence API Swagger', ar: 'Ù…Ø±Ø¬Ø¹ ÙˆØ§Ø¬Ù‡Ø© Ø§Ù„ØªØ·Ø¨ÙŠÙ‚Ø§Øª Swagger', hi: 'à¤à¤ªà¥€à¤†à¤ˆ à¤¸à¤‚à¤¦à¤°à¥à¤­ à¤¸à¥à¤µà¥ˆà¤—à¤°' })}
+            {t({ en: 'API Reference Swagger', fr: 'RÃ©fÃ©rence API Swagger', ar: 'مرجع واجهة التطبيقات Swagger', hi: 'à¤à¤ªà¥à¤à¤ à¤¸à¤à¤¦à¤°à¥à¤­ à¤¸à¥à¤µà¥à¤à¤°' })}
           </Link>
           <Link
             href="/dashboard"
             className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-surface border border-primary/10 px-8 py-3 text-xs font-bold text-primary shadow-sm hover:bg-surface transition-all hover:scale-[1.01] hover:shadow-md"
           >
-            {t({ en: 'Manage API Keys', fr: 'GÃ©rer les clÃ©s API', ar: 'Ø¥Ø¯Ø§Ø±Ø© Ù…ÙØ§ØªÙŠØ­ Ø§Ù„Ù€ API', hi: 'à¤à¤ªà¥€à¤†à¤ˆ à¤•à¥à¤‚à¤œà¥€ à¤ªà¥à¤°à¤¬à¤‚à¤§à¤¿à¤¤ à¤•à¤°à¥‡à¤‚' })}
+            {t({ en: 'Manage API Keys', fr: 'GÃ©rer les clÃ©s API', ar: 'إدارة مفاتيح الـ API', hi: 'à¤à¤ªà¥à¤à¤ à¤à¥à¤à¤à¥ à¤ªà¥à¤°à¤¬à¤à¤§à¤¿à¤¤ à¤à¤°à¥à¤' })}
           </Link>
         </div>
 

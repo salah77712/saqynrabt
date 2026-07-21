@@ -29,12 +29,12 @@ return (
 <main className="flex-1 flex items-center justify-center px-6 py-20">
 <div className="text-center max-w-md">
 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-surface"><AlertTriangle className="w-6 h-6 text-primary" /></div>
-<h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Pricing information unavailable', ar: 'Ù…Ø¹Ù„ÙˆÙ…Ø§Øª Ø§Ù„Ø£Ø³Ø¹Ø§Ø± ØºÙŠØ± Ù…ØªÙˆÙØ±Ø©' })}</h1>
-<p className="text-primary mb-2">{t({ en: "We couldn&apos;t load our pricing plans right now.", ar: 'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ø®Ø·Ø· Ø§Ù„Ø£Ø³Ø¹Ø§Ø± Ø­Ø§Ù„ÙŠØ§Ù‹.' })}</p>
-<p className="text-sm text-primary/60 mb-8">{t({ en: 'Please try again or contact us for pricing details.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø§ØªØµØ§Ù„ Ø¨Ù†Ø§ Ù„Ù„Ø­ØµÙˆÙ„ Ø¹Ù„Ù‰ ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ø£Ø³Ø¹Ø§Ø±.' })}</p>
+<h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Pricing information unavailable', ar: 'معلومات الأسعار غير متوفرة' })}</h1>
+<p className="text-primary mb-2">{t({ en: "We couldn&apos;t load our pricing plans right now.", ar: 'تعذر تحميل خطط الأسعار حالياً.' })}</p>
+<p className="text-sm text-primary/60 mb-8">{t({ en: 'Please try again or contact us for pricing details.', ar: 'يرجى المحاولة مرة أخرى أو الاتصال بنا للحصول على تفاصيل الأسعار.' })}</p>
 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-<button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: 'Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰' })}</button>
-<a href="/contact" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/20 px-6 py-3 text-sm font-semibold text-primary hover:bg-surface transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Contact us', ar: 'Ø§ØªØµÙ„ Ø¨Ù†Ø§' })}</a>
+<button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: 'حاول مرة أخرى' })}</button>
+<a href="/contact" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/20 px-6 py-3 text-sm font-semibold text-primary hover:bg-surface transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Contact us', ar: 'اتصل بنا' })}</a>
 </div>
 </div>
 </main>

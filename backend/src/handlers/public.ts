@@ -41,7 +41,7 @@ export async function handleAdminMigrate(request: RequestWithContext): Promise<R
   const headers = corsHeaders(request, request.env);
   headers['Content-Type'] = 'application/json';
   const env = request.env;
-  const adminSecret = request.headers.get('X-Admin-Secret') || new URL(request.url).searchParams.get('secret');
+  const adminSecret = request.headers.get('X-Admin-Secret');
   if (!env.ADMIN_SECRET || adminSecret !== env.ADMIN_SECRET) {
     return new Response(JSON.stringify({ error: 'Unauthorized' }), { status: 401, headers });
   }
@@ -76,6 +76,14 @@ export async function handleAdminMigrate(request: RequestWithContext): Promise<R
         await sql`CREATE TABLE IF NOT EXISTS audit_logs (id SERIAL PRIMARY KEY, company_id VARCHAR(255), user_id VARCHAR(255), action VARCHAR(255), details JSONB, ip_address VARCHAR(45), user_agent TEXT, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`;
         await sql`CREATE TABLE IF NOT EXISTS companies (id VARCHAR(255) PRIMARY KEY, name VARCHAR(255), slug VARCHAR(255), created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)`;
         await sql`INSERT INTO _schema_version (version) VALUES (3)`;
+      });
+    }
+    if (currentVersion < 4) {
+      migrations.push(async () => {
+        await sql`ALTER TABLE documents ADD COLUMN IF NOT EXISTS chunk_count INTEGER DEFAULT 0`;
+        await sql`ALTER TABLE documents ADD COLUMN IF NOT EXISTS extracted_r2_key VARCHAR(1024) DEFAULT ''`;
+        await sql`ALTER TABLE documents ADD COLUMN IF NOT EXISTS indexed_at TIMESTAMP`;
+        await sql`INSERT INTO _schema_version (version) VALUES (4)`;
       });
     }
 

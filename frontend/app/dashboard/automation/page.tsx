@@ -60,10 +60,10 @@ return (
 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
 <div>
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
-{t('Automation', 'Ù…Ø±ÙƒØ² Ø£ØªÙ…ØªØ© Ø§Ù„Ø¹Ù…Ù„ÙŠØ§Øª')}
+{t('Automation', 'مركز أتمتة العمليات')}
 </h1>
 <p className="text-xs md:text-xs text-primary font-bold">
-{t('Live calls, dispatch tasks, and channel activity.', 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø©ØŒ ÙˆØªÙˆØ²ÙŠØ¹ Ø§Ù„Ù…Ù‡Ø§Ù…ØŒ ÙˆØªÙ†Ø³ÙŠÙ‚ Ù‚Ù†ÙˆØ§Øª Ø§Ù„Ø§Ø³ØªØ¬Ø§Ø¨Ø©.')}
+{t('Live calls, dispatch tasks, and channel activity.', 'إدارة المكالمات المباشرة، وتوزيع المهام، وتنسيق قنوات الاستجابة.')}
 </p>
 </div>
 </div>
@@ -72,11 +72,11 @@ return (
 <div className="flex items-center justify-between pb-3 md:pb-4 border-b border-primary/10 mb-4 md:mb-6">
 <h2 className="text-xs md:text-sm font-extrabold text-primary dark:text-surface flex items-center gap-3 md:gap-4">
 <Zap className="w-4 h-4 text-primary" />
-<span>{t('Live Customer Calls', 'Ø§Ù„Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„ÙˆØ§Ø±Ø¯Ø© Ø§Ù„Ù…Ø¨Ø§Ø´Ø±Ø©')}</span>
+<span>{t('Live Customer Calls', 'المكالمات الواردة المباشرة')}</span>
 </h2>
 <div className="flex items-center gap-1.5 rounded-full bg-surface border border-primary/10 px-2.5 md:px-3 py-1 text-xs md:text-xs font-extrabold text-primary uppercase tracking-widest">
 <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-<span>{t('Live', 'Ù…Ø¨Ø§Ø´Ø±')}</span>
+<span>{t('Live', 'مباشر')}</span>
 </div>
 </div>
 

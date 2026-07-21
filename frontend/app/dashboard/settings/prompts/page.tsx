@@ -40,15 +40,15 @@ export default function PromptsSettingsPage() {
       
       {/* Header */}
       <div>
-        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'AI Prompts', ar: 'Ù‡Ù†Ø¯Ø³Ø© Ø§Ù„Ù†ØµÙˆØµ ÙˆØ§Ù„ØªØ¹Ù„ÙŠÙ…Ø§Øª Ø§Ù„Ø¨Ø±Ù…Ø¬ÙŠØ©' })}</h1>
-        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Customize how your AI assistant responds to questions.', ar: 'ØªØ¹Ø¯ÙŠÙ„ Ø§Ù„ØªØ¹Ù„ÙŠÙ…Ø§Øª ÙˆØ§Ù„ØªØ¹Ù„ÙŠÙ…Ø§Øª Ø§Ù„ÙØ±Ø¹ÙŠØ© ÙˆØ¨Ø§Ø±Ø§Ù…ØªØ±Ø§Øª Ù…Ø®Ø±Ø¬Ø§Øª Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ.' })}</p>
+        <h1 className="text-2xl md:text-3xl font-extrabold text-primary">{t({ en: 'AI Prompts', ar: 'هندسة النصوص والتعليمات البرمجية' })}</h1>
+        <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Customize how your AI assistant responds to questions.', ar: 'تعديل التعليمات والتعليمات الفرعية وبارامترات مخرجات الذكاء الاصطناعي.' })}</p>
       </div>
 
       {/* Editor */}
       <form ref={formRef} onSubmit={handleSave} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col gap-8">
         
         <div>
-          <label htmlFor="prompt" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Core System Prompt Instruction', ar: 'Ø§Ù„ØªØ¹Ù„ÙŠÙ…Ø§Øª Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ© Ù„Ù„Ù†Ø¸Ø§Ù…' })}</label>
+          <label htmlFor="prompt" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Core System Prompt Instruction', ar: 'التعليمات الأساسية للنظام' })}</label>
           <textarea
             id="prompt"
             value={prompt}
@@ -64,7 +64,7 @@ export default function PromptsSettingsPage() {
           disabled={saving}
           className="w-full bg-primary text-surface font-bold py-3 px-6 rounded-xl text-xs min-h-[44px] flex items-center justify-center transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40"
         >
-          {saving ? t({ en: 'Saving...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø­ÙØ¸...' }) : t({ en: 'Save System Prompt overrides', ar: 'Ø­ÙØ¸ ØªØ¹Ø¯ÙŠÙ„Ø§Øª ØªØ¹Ù„ÙŠÙ…Ø§Øª Ø§Ù„Ù†Ø¸Ø§Ù…' })}
+          {saving ? t({ en: 'Saving...', ar: 'جاري الحفظ...' }) : t({ en: 'Save System Prompt overrides', ar: 'حفظ تعديلات تعليمات النظام' })}
         </button>
 
       </form>

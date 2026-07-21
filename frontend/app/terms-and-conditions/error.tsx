@@ -30,21 +30,21 @@ export default function TermsError({
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary">
           <AlertTriangle className="w-8 h-8 text-primary" />
         </div>
-        <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Terms & conditions unavailable', ar: 'Ø§Ù„Ø´Ø±ÙˆØ· ÙˆØ§Ù„Ø£Ø­ÙƒØ§Ù… ØºÙŠØ± Ù…ØªÙˆÙØ±Ø©' })}</h1>
-        <p className="text-primary/60 mb-2">{t({ en: "We couldn&apos;t load the terms and conditions.", ar: 'ØªØ¹Ø°Ø± ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø´Ø±ÙˆØ· ÙˆØ§Ù„Ø£Ø­ÙƒØ§Ù….' })}</p>
-        <p className="text-sm text-primary/40 mb-8">{t({ en: 'Please try again or contact us for a copy.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø§ØªØµØ§Ù„ Ø¨Ù†Ø§ Ù„Ù„Ø­ØµÙˆÙ„ Ø¹Ù„Ù‰ Ù†Ø³Ø®Ø©.' })}</p>
+        <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Terms & conditions unavailable', ar: 'الشروط والأحكام غير متوفرة' })}</h1>
+        <p className="text-primary/60 mb-2">{t({ en: "We couldn&apos;t load the terms and conditions.", ar: 'تعذر تحميل الشروط والأحكام.' })}</p>
+        <p className="text-sm text-primary/40 mb-8">{t({ en: 'Please try again or contact us for a copy.', ar: 'يرجى المحاولة مرة أخرى أو الاتصال بنا للحصول على نسخة.' })}</p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button
             onClick={() => reset()}
             className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
           >
-            {t({ en: 'Try again', ar: 'Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰' })}
+            {t({ en: 'Try again', ar: 'حاول مرة أخرى' })}
           </button>
           <a
             href="/"
             className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-[rgba(20,31,51,0.1)] px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
           >
-            {t({ en: 'Back to Home', ar: 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©' })}
+            {t({ en: 'Back to Home', ar: 'العودة إلى الرئيسية' })}
           </a>
         </div>
       </main>

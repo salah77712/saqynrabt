@@ -100,10 +100,10 @@ export default function SettingsDashboardPage() {
   }, []);
 
   const tabOptions = [
-    { id: 'general', label: t('General', 'Ø¹Ø§Ù…') },
-    { id: 'billing', label: t('Billing', 'Ø§Ù„ÙÙˆØ§ØªÙŠØ±') },
-    { id: 'security', label: t('Security', 'Ø§Ù„Ø£Ù…Ø§Ù†') },
-    { id: 'integrations', label: t('Integrations', 'Ø§Ù„ØªÙƒØ§Ù…Ù„Ø§Øª') },
+    { id: 'general', label: t('General', 'عام') },
+    { id: 'billing', label: t('Billing', 'الفواتير') },
+    { id: 'security', label: t('Security', 'الأمان') },
+    { id: 'integrations', label: t('Integrations', 'التكاملات') },
   ];
 
   if (usageLoading) {
@@ -122,7 +122,7 @@ export default function SettingsDashboardPage() {
   if (usageError) {
     return (
       <EmptyStateWithRetry
-        message={usageErrorObj?.message || t('Failed to load settings.', 'ÙØ´Ù„ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª.')}
+        message={usageErrorObj?.message || t('Failed to load settings.', 'فشل تحميل الإعدادات.')}
         onRetry={() => refetchUsage()}
       />
     );
@@ -141,10 +141,10 @@ export default function SettingsDashboardPage() {
     <div className="flex flex-col gap-8 md:gap-8 animate-fadeIn">
       <div>
         <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
-          {t('Settings', 'Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù… ÙˆØ§Ù„Ø¥Ø¹Ø¯Ø§Ø¯Ø§Øª')}
+          {t('Settings', 'حدود الاستخدام والإعدادات')}
         </h1>
         <p className="text-xs md:text-xs text-primary font-bold mt-0.5">
-          {t('Billing, exports, and account preferences.', 'ØªÙƒÙˆÙŠÙ† Ø®ÙŠØ§Ø±Ø§Øª Ø§Ù„ÙÙˆØªØ±Ø©ØŒ ØªØµØ¯ÙŠØ± Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ø¨ÙŠØ§Ù†Ø§ØªØŒ ÙˆØªØ¹Ø¯ÙŠÙ„ Ø§Ù„Ù…Ø¹Ù„Ù…Ø§Øª.')}
+          {t('Billing, exports, and account preferences.', 'تكوين خيارات الفوترة، تصدير سجلات البيانات، وتعديل المعلمات.')}
         </p>
       </div>
 
@@ -171,7 +171,7 @@ export default function SettingsDashboardPage() {
   <div className="flex flex-col gap-8 md:gap-8">
   <Card className="p-8">
             <h2 className="text-sm font-bold text-primary">
-              {t('Overage Protection', 'Ø­Ù…Ø§ÙŠØ© Ø§Ù„ØªØ¬Ø§ÙˆØ² Ø§Ù„ØªÙ„Ù‚Ø§Ø¦ÙŠ')}
+              {t('Overage Protection', 'حماية التجاوز التلقائي')}
             </h2>
             <label className="flex items-start gap-8 p-3 md:p-4 rounded-xl border border-primary/10 bg-surface cursor-pointer">
               <input
@@ -183,7 +183,7 @@ export default function SettingsDashboardPage() {
               />
               <div className="flex-1">
                 <p className="text-[11px] md:text-xs font-bold text-primary">
-                  {t('I approve automatic billing overages.', 'Ø£ÙˆØ§ÙÙ‚ Ø¹Ù„Ù‰ ÙÙˆØ§ØªÙŠØ± Ø§Ù„ØªØ¬Ø§ÙˆØ² Ø§Ù„ØªÙ„Ù‚Ø§Ø¦ÙŠ.')}
+                  {t('I approve automatic billing overages.', 'أوافق على فواتير التجاوز التلقائي.')}
                 </p>
               </div>
             </label>
@@ -191,26 +191,26 @@ export default function SettingsDashboardPage() {
 
           <Card className="p-8 rounded-xl flex flex-col gap-8">
             <h2 className="text-sm font-bold text-primary">
-              {t('Usage Limits', 'Ø­Ø¯ÙˆØ¯ Ø§Ù„Ø§Ø³ØªØ®Ø¯Ø§Ù…')}
+              {t('Usage Limits', 'حدود الاستخدام')}
             </h2>
             <div className="space-y-4">
               <div>
                 <div className="flex justify-between text-xs md:text-xs font-bold text-primary mb-1.5">
-                  <span>{t('Automation Texts', 'Ù†ØµÙˆØµ Ø§Ù„Ø£ØªÙ…ØªØ©')}</span>
+                  <span>{t('Automation Texts', 'نصوص الأتمتة')}</span>
                   <span>{metrics.textsUsed} / {metrics.textsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.textsLimit > 0 ? (metrics.textsUsed / metrics.textsLimit) * 100 : 0} />
               </div>
               <div>
                 <div className="flex justify-between text-xs md:text-xs font-bold text-primary mb-1.5">
-                  <span>{t('Voice Minutes', 'Ø¯Ù‚Ø§Ø¦Ù‚ Ø§Ù„ØµÙˆØª')}</span>
+                  <span>{t('Voice Minutes', 'دقائق الصوت')}</span>
                   <span>{metrics.voiceMinsUsed} / {metrics.voiceMinsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.voiceMinsLimit > 0 ? (metrics.voiceMinsUsed / metrics.voiceMinsLimit) * 100 : 0} />
               </div>
               <div>
                 <div className="flex justify-between text-xs md:text-xs font-bold text-primary mb-1.5">
-                  <span>{t('RAG Questions', 'Ø£Ø³Ø¦Ù„Ø© RAG')}</span>
+                  <span>{t('RAG Questions', 'أسئلة RAG')}</span>
                   <span>{metrics.questionsUsed} / {metrics.questionsLimit}</span>
                 </div>
                 <ProgressBar value={metrics.questionsLimit > 0 ? (metrics.questionsUsed / metrics.questionsLimit) * 100 : 0} />
@@ -221,14 +221,14 @@ export default function SettingsDashboardPage() {
           <Card className="p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             <div>
               <h3 className="text-sm font-bold text-primary">
-                {t('Export Chat Log Audit', 'ØªØµØ¯ÙŠØ± Ø³Ø¬Ù„ Ø§Ù„ØªØ¯Ù‚ÙŠÙ‚ Ù„Ù„Ù…Ø­Ø§Ø¯Ø«Ø§Øª')}
+                {t('Export Chat Log Audit', 'تصدير سجل التدقيق للمحادثات')}
               </h3>
               <p className="text-xs md:text-xs text-primary/60 mt-1">
-                {t('Download employee RAG chatbot logs and question histories in .csv format.', 'ØªÙ†Ø²ÙŠÙ„ Ø¬Ù…ÙŠØ¹ Ø³Ø¬Ù„Ø§Øª Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ Ø§Ù„Ø°ÙƒÙŠ ÙˆØªØ§Ø±ÙŠØ® Ø§Ù„Ø£Ø³Ø¦Ù„Ø© Ø¨ØµÙŠØºØ© .csv Ù„Ù„ØªØ¯Ù‚ÙŠÙ‚.')}
+                {t('Download employee RAG chatbot logs and question histories in .csv format.', 'تنزيل جميع سجلات المساعد الذكي وتاريخ الأسئلة بصيغة .csv للتدقيق.')}
               </p>
             </div>
             <Button variant="primary" onClick={handleExportLogs} className="min-h-[44px] w-full md:w-auto text-xs py-3 px-6 rounded-xl font-bold">
-              {t('Export Logs', 'ØªØµØ¯ÙŠØ± Ø§Ù„Ø³Ø¬Ù„Ø§Øª')}
+              {t('Export Logs', 'تصدير السجلات')}
             </Button>
           </Card>
         </div>
@@ -236,12 +236,12 @@ export default function SettingsDashboardPage() {
 
 {activeTab === 'billing' && (
   <Card className="p-8 flex flex-col gap-4">
-          <h3 className="text-sm font-bold text-navy dark:text-surface">{t('Subscription Plan', 'Ø®Ø·Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ')}</h3>
+          <h3 className="text-sm font-bold text-navy dark:text-surface">{t('Subscription Plan', 'خطة الاشتراك')}</h3>
           <p className="text-xs md:text-xs text-primary leading-relaxed">
-            {t('Your workspace is currently registered under the Enterprise Growth Package.', 'Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„ Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ Ù…Ø³Ø¬Ù„Ø© Ø­Ø§Ù„ÙŠØ§Ù‹ ØªØ­Øª Ø¨Ø§Ù‚Ø© Ù†Ù…Ùˆ Ø§Ù„Ù…Ø¤Ø³Ø³Ø§Øª.')}
+            {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
           </p>
           <Button variant="primary" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-xl font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
-            {t('Manage Subscription', 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ')}
+            {t('Manage Subscription', 'إدارة الاشتراك')}
           </Button>
         </Card>
       )}

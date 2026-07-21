@@ -13,7 +13,7 @@ export default function DevelopersApiDocsPage() {
     {
       method: 'POST',
       path: '/api/v1/chat',
-      desc: t({ en: 'Send queries to RAG Assistant. Returns JSON answers and citations.', fr: 'Envoyer des requÃªtes Ã  l\'assistant RAG. Renvoie des rÃ©ponses JSON et des citations.', ar: 'Ø¥Ø±Ø³Ø§Ù„ Ø³Ø¤Ø§Ù„ Ù„Ù„Ù…Ø³Ø§Ø¹Ø¯. ÙŠØ¹ÙŠØ¯ Ø§Ù„Ø¥Ø¬Ø§Ø¨Ø© ÙˆØ§Ù„Ø§Ù‚ØªØ¨Ø§Ø³Ø§Øª.', hi: 'à¤†à¤°à¤à¤œà¥€ à¤¸à¤¹à¤¾à¤¯à¤• à¤•à¥‹ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤­à¥‡à¤œà¥‡à¤‚à¥¤ JSON à¤‰à¤¤à¥à¤¤à¤° à¤”à¤° à¤‰à¤¦à¥à¤§à¤°à¤£ à¤²à¥Œà¤Ÿà¤¾à¤¤à¤¾ à¤¹à¥ˆà¥¤' }),
+      desc: t({ en: 'Send queries to RAG Assistant. Returns JSON answers and citations.', fr: 'Envoyer des requÃªtes Ã  l\'assistant RAG. Renvoie des rÃ©ponses JSON et des citations.', ar: 'إرسال سؤال للمساعد. يعيد الإجابة والاقتباسات.', hi: 'à¤à¤°à¤à¤à¥ à¤¸à¤¹à¤¾à¤¯à¤ à¤à¥ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤­à¥à¤à¥à¤à¥¤ JSON à¤à¤¤à¥à¤¤à¤° à¤à¤° à¤à¤¦à¥à¤§à¤°à¤£ à¤²à¥à¤à¤¾à¤¤à¤¾ à¤¹à¥à¥¤' }),
       headers: [
         { name: 'x-api-key', desc: 'Active developer API key token' },
         { name: 'Content-Type', desc: 'application/json' },
@@ -23,7 +23,7 @@ export default function DevelopersApiDocsPage() {
     {
       method: 'POST',
       path: '/api/v1/automation',
-      desc: t({ en: 'Create call dispatches directly inside the queue.', fr: 'CrÃ©er des rÃ©partitions d\'appels directement dans la file d\'attente.', ar: 'Ø¥Ø¶Ø§ÙØ© Ù…Ù‡Ø§Ù… Ø£ØªÙ…ØªØ© Ø¬Ø¯ÙŠØ¯Ø© Ù…Ø¨Ø§Ø´Ø±Ø© ÙÙŠ Ø·Ø§Ø¨ÙˆØ± Ø§Ù„Ø¹Ù…Ù„ÙŠØ§Øª.', hi: 'à¤•à¥‰à¤² à¤¡à¤¿à¤¸à¥à¤ªà¥ˆà¤š à¤¸à¥€à¤§à¥‡ à¤•à¤¤à¤¾à¤° à¤•à¥‡ à¤…à¤‚à¤¦à¤° à¤¬à¤¨à¤¾à¤à¤‚à¥¤' }),
+      desc: t({ en: 'Create call dispatches directly inside the queue.', fr: 'CrÃ©er des rÃ©partitions d\'appels directement dans la file d\'attente.', ar: 'إضافة مهام أتمتة جديدة مباشرة في طابور العمليات.', hi: 'à¤à¥à¤² à¤¡à¤¿à¤¸à¥à¤ªà¥à¤ à¤¸à¥à¤§à¥ à¤à¤¤à¤¾à¤° à¤à¥ à¤à¤à¤¦à¤° à¤¬à¤¨à¤¾à¤à¤à¥¤' }),
       headers: [
         { name: 'x-api-key', desc: 'Active developer API key token' },
         { name: 'Content-Type', desc: 'application/json' },
@@ -39,12 +39,12 @@ export default function DevelopersApiDocsPage() {
       <main className="flex-1 max-w-4xl mx-auto py-24 px-6 w-full space-y-12">
         {/* Header */}
         <div>
-          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'API Portal', fr: 'Portail API', ar: 'Ù…Ù†ØµØ© Ø§Ù„Ù€ API', hi: 'à¤à¤ªà¥€à¤†à¤ˆ à¤ªà¥‹à¤°à¥à¤Ÿà¤²' })}</span>
+          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'API Portal', fr: 'Portail API', ar: 'منصة الـ API', hi: 'à¤à¤ªà¥à¤à¤ à¤ªà¥à¤°à¥à¤à¤²' })}</span>
           <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
-            {t({ en: 'Interactive Swagger Playground', fr: 'Aire de jeux Swagger interactive', ar: 'Ù…Ù†ØµØ© ØªÙØ§Ø¹Ù„ÙŠØ© Ù„Ø§Ø®ØªØ¨Ø§Ø± ÙˆØ§Ø¬Ù‡Ø© Ø¨Ø±Ù…Ø¬Ø© Ø§Ù„ØªØ·Ø¨ÙŠÙ‚Ø§Øª', hi: 'à¤‡à¤‚à¤Ÿà¤°à¤à¤•à¥à¤Ÿà¤¿à¤µ à¤¸à¥à¤µà¥ˆà¤—à¤° à¤ªà¥à¤²à¥‡à¤—à¥à¤°à¤¾à¤‰à¤‚à¤¡' })}
+            {t({ en: 'Interactive Swagger Playground', fr: 'Aire de jeux Swagger interactive', ar: 'منصة تفاعلية لاختبار واجهة برمجة التطبيقات', hi: 'à¤à¤à¤à¤°à¤à¤à¥à¤à¤¿à¤µ à¤¸à¥à¤µà¥à¤à¤° à¤ªà¥à¤²à¥à¤à¥à¤°à¤¾à¤à¤à¤¡' })}
           </h1>
           <p className="text-xs font-semibold text-primary mt-2">
-            {t({ en: 'Test endpoints with live API tokens inside the sandbox.', fr: 'Tester les points de terminaison avec des jetons API en direct dans le bac Ã  sable.', ar: 'Ø§Ø®ØªØ¨Ø± ÙˆØ§Ø¬Ù‡Ø§Øª Ø§Ù„Ø¨Ø±Ù…Ø¬Ø© Ù…Ø¹ Ù…ÙØ§ØªÙŠØ­ Ø§Ù„ÙˆØµÙˆÙ„ Ø§Ù„Ø­ÙŠØ© ÙÙŠ ÙˆØ¶Ø¹ Ø§Ù„Ø±Ù…Ù„.', hi: 'à¤¸à¥ˆà¤‚à¤¡à¤¬à¥‰à¤•à¥à¤¸ à¤•à¥‡ à¤…à¤‚à¤¦à¤° à¤²à¤¾à¤‡à¤µ à¤à¤ªà¥€à¤†à¤ˆ à¤Ÿà¥‹à¤•à¤¨ à¤•à¥‡ à¤¸à¤¾à¤¥ à¤à¤‚à¤¡à¤ªà¥‰à¤‡à¤‚à¤Ÿà¥à¤¸ à¤•à¤¾ à¤ªà¤°à¥€à¤•à¥à¤·à¤£ à¤•à¤°à¥‡à¤‚à¥¤' })}
+            {t({ en: 'Test endpoints with live API tokens inside the sandbox.', fr: 'Tester les points de terminaison avec des jetons API en direct dans le bac Ã  sable.', ar: 'اختبر واجهات البرمجة مع مفاتيح الوصول الحية في وضع الرمل.', hi: 'à¤¸à¥à¤à¤¡à¤¬à¥à¤à¥à¤¸ à¤à¥ à¤à¤à¤¦à¤° à¤²à¤¾à¤à¤µ à¤à¤ªà¥à¤à¤ à¤à¥à¤à¤¨ à¤à¥ à¤¸à¤¾à¤¥ à¤à¤à¤¡à¤ªà¥à¤à¤à¤à¥à¤¸ à¤à¤¾ à¤ªà¤°à¥à¤à¥à¤·à¤£ à¤à¤°à¥à¤à¥¤' })}
           </p>
         </div>
 

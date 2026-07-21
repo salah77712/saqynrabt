@@ -99,7 +99,7 @@ export default function OnboardingWizardPage() {
             {/* Header info */}
             <div className="flex justify-between items-center mb-8">
               <span className="text-xs font-extrabold uppercase tracking-widest text-primary">
-                {t({ en: `Step ${step} of 5`, ar: `Ø§Ù„Ø®Ø·ÙˆØ© ${step} Ù…Ù† 5` })}
+                {t({ en: `Step ${step} of 5`, ar: `الخطوة ${step} من 5` })}
               </span>
               <span className="text-xs font-bold text-accent">{getProgressPercentage()}%</span>
             </div>
@@ -108,13 +108,13 @@ export default function OnboardingWizardPage() {
             {step === 1 && (
               <div className="space-y-5 animate-fadeIn">
                 <h2 className="text-2xl font-extrabold text-primary leading-tight">
-                  {t({ en: 'Welcome to SAQYN RABT', ar: 'Ù…Ø±Ø­Ø¨Ø§Ù‹ Ø¨Ùƒ ÙÙŠ SAQYN RABT' })}
+                  {t({ en: 'Welcome to SAQYN RABT', ar: 'مرحباً بك في SAQYN RABT' })}
                 </h2>
                 <p className="text-xs font-semibold text-primary leading-relaxed">
-                  {t({ en: "Let's personalize your workspace dashboard. What is your full name?", ar: 'Ø¯Ø¹Ù†Ø§ Ù†Ø®ØµØµ Ù„ÙˆØ­Ø© Ø§Ù„ØªØ­ÙƒÙ… Ø§Ù„Ø®Ø§ØµØ© Ø¨Ùƒ. Ù…Ø§ Ù‡Ùˆ Ø§Ø³Ù…Ùƒ Ø§Ù„ÙƒØ§Ù…Ù„ØŸ' })}
+                  {t({ en: "Let's personalize your workspace dashboard. What is your full name?", ar: 'دعنا نخصص لوحة التحكم الخاصة بك. ما هو اسمك الكامل؟' })}
                 </p>
                 <div>
-                  <label htmlFor="userName" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Your Name', ar: 'Ø§Ø³Ù…Ùƒ' })}</label>
+                  <label htmlFor="userName" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Your Name', ar: 'اسمك' })}</label>
                   <input
                     type="text"
                     id="userName"
@@ -132,14 +132,14 @@ export default function OnboardingWizardPage() {
             {step === 2 && (
               <div className="space-y-4 animate-fadeIn">
                 <h2 className="text-2xl font-extrabold text-primary leading-tight">
-                  {t({ en: 'Company Details', ar: 'ØªÙØ§ØµÙŠÙ„ Ø§Ù„Ø´Ø±ÙƒØ©' })}
+                  {t({ en: 'Company Details', ar: 'تفاصيل الشركة' })}
                 </h2>
                 <p className="text-xs font-semibold text-primary leading-relaxed">
-                  {t({ en: 'Tell us a bit about your organization to set up your workspace.', ar: 'Ø£Ø®Ø¨Ø±Ù†Ø§ Ù‚Ù„ÙŠÙ„Ø§Ù‹ Ø¹Ù† Ø´Ø±ÙƒØªÙƒ Ù„ØªÙ‡ÙŠØ¦Ø© Ù…Ø³Ø§Ø­Ø© Ø§Ù„Ø¹Ù…Ù„.' })}
+                  {t({ en: 'Tell us a bit about your organization to set up your workspace.', ar: 'أخبرنا قليلاً عن شركتك لتهيئة مساحة العمل.' })}
                 </p>
                 
                 <div>
-                  <label htmlFor="companyName" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Company Name', ar: 'Ø§Ø³Ù… Ø§Ù„Ø´Ø±ÙƒØ©' })}</label>
+                  <label htmlFor="companyName" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Company Name', ar: 'اسم الشركة' })}</label>
                   <input
                     type="text"
                     id="companyName"
@@ -153,7 +153,7 @@ export default function OnboardingWizardPage() {
 
                 <div className="grid grid-cols-2 gap-8">
                   <div>
-                    <label htmlFor="industry" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Industry', ar: 'Ø§Ù„Ù‚Ø·Ø§Ø¹' })}</label>
+                    <label htmlFor="industry" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Industry', ar: 'القطاع' })}</label>
                     <select
                       id="industry"
                       name="industry"
@@ -169,7 +169,7 @@ export default function OnboardingWizardPage() {
                   </div>
 
                   <div>
-                    <label htmlFor="size" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Company Size', ar: 'Ø­Ø¬Ù… Ø§Ù„Ø´Ø±ÙƒØ©' })}</label>
+                    <label htmlFor="size" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Company Size', ar: 'حجم الشركة' })}</label>
                     <select
                       id="size"
                       name="size"
@@ -191,10 +191,10 @@ export default function OnboardingWizardPage() {
             {step === 3 && (
               <div className="space-y-4 animate-fadeIn">
                 <h2 className="text-2xl font-extrabold text-primary leading-tight">
-                  {t({ en: 'Product Preferences', ar: 'ØªÙØ¶ÙŠÙ„Ø§Øª Ø§Ù„Ù…Ù†ØªØ¬Ø§Øª' })}
+                  {t({ en: 'Product Preferences', ar: 'تفضيلات المنتجات' })}
                 </h2>
                 <p className="text-xs font-semibold text-primary leading-relaxed">
-                  {t({ en: 'Choose which product workspace we should configure first.', ar: 'Ø§Ø®ØªØ± Ù…Ø³Ø§Ø­Ø© Ø¹Ù…Ù„ Ø§Ù„Ù…Ù†ØªØ¬ Ø§Ù„ØªÙŠ ØªØ±ØºØ¨ ÙÙŠ ØªÙ‡ÙŠØ¦ØªÙ‡Ø§ Ø£ÙˆÙ„Ø§Ù‹.' })}
+                  {t({ en: 'Choose which product workspace we should configure first.', ar: 'اختر مساحة عمل المنتج التي ترغب في تهيئتها أولاً.' })}
                 </p>
 
                 <div className="flex flex-col gap-4 pt-2">
@@ -208,8 +208,8 @@ export default function OnboardingWizardPage() {
                       className="h-4 w-4 text-primary focus:ring-2 focus:ring-royal"
                     />
                     <div>
-                      <p className="text-xs font-bold text-primary">{t({ en: 'Set up Business Automation', ar: 'ØªÙ‡ÙŠØ¦Ø© Ø£ØªÙ…ØªØ© Ø§Ù„Ø£Ø¹Ù…Ø§Ù„' })}</p>
-                      <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Automate guest phone bookings & complaints.', ar: 'Ø£ØªÙ…ØªØ© Ø­Ø¬ÙˆØ²Ø§Øª Ø§Ù„Ù‡Ø§ØªÙ ÙˆØ´ÙƒØ§ÙˆÙ‰ Ø§Ù„Ø¶ÙŠÙˆÙ.' })}</p>
+                      <p className="text-xs font-bold text-primary">{t({ en: 'Set up Business Automation', ar: 'تهيئة أتمتة الأعمال' })}</p>
+                      <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Automate guest phone bookings & complaints.', ar: 'أتمتة حجوزات الهاتف وشكاوى الضيوف.' })}</p>
                     </div>
                   </label>
 
@@ -223,8 +223,8 @@ export default function OnboardingWizardPage() {
                       className="h-4 w-4 text-primary focus:ring-2 focus:ring-royal"
                     />
                     <div>
-                      <p className="text-xs font-bold text-primary">{t({ en: 'Set up Staff Knowledge Chatbot', ar: 'ØªÙ‡ÙŠØ¦Ø© Ù…Ø³Ø§Ø¹Ø¯ Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†' })}</p>
-                      <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Train AI on internal policies and handbook.', ar: 'ØªØ¯Ø±ÙŠØ¨ Ø§Ù„Ø°ÙƒØ§Ø¡ Ø§Ù„Ø§ØµØ·Ù†Ø§Ø¹ÙŠ Ø¹Ù„Ù‰ Ø§Ù„Ø³ÙŠØ§Ø³Ø§Øª ÙˆØ§Ù„ÙƒØªÙŠØ¨ Ø§Ù„Ø¯Ø§Ø®Ù„ÙŠ.' })}</p>
+                      <p className="text-xs font-bold text-primary">{t({ en: 'Set up Staff Knowledge Chatbot', ar: 'تهيئة مساعد معرفة الموظفين' })}</p>
+                      <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Train AI on internal policies and handbook.', ar: 'تدريب الذكاء الاصطناعي على السياسات والكتيب الداخلي.' })}</p>
                     </div>
                   </label>
 
@@ -238,8 +238,8 @@ export default function OnboardingWizardPage() {
                       className="h-4 w-4 text-primary focus:ring-2 focus:ring-royal"
                     />
                     <div>
-                      <p className="text-xs font-bold text-primary">{t({ en: 'Set up Both Products', ar: 'ØªÙ‡ÙŠØ¦Ø© ÙƒÙ„Ø§ Ø§Ù„Ù…Ù†ØªØ¬ÙŠÙ†' })}</p>
-                      <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Unify internal knowledge and front-desk call automation.', ar: 'ØªÙˆØ­ÙŠØ¯ Ø§Ù„Ù…Ø¹Ø±ÙØ© Ø§Ù„Ø¯Ø§Ø®Ù„ÙŠØ© ÙˆØ£ØªÙ…ØªØ© Ù…ÙƒØ§Ù„Ù…Ø§Øª Ø§Ù„Ø§Ø³ØªÙ‚Ø¨Ø§Ù„.' })}</p>
+                      <p className="text-xs font-bold text-primary">{t({ en: 'Set up Both Products', ar: 'تهيئة كلا المنتجين' })}</p>
+                      <p className="text-xs text-primary font-medium mt-0.5">{t({ en: 'Unify internal knowledge and front-desk call automation.', ar: 'توحيد المعرفة الداخلية وأتمتة مكالمات الاستقبال.' })}</p>
                     </div>
                   </label>
                 </div>
@@ -250,15 +250,15 @@ export default function OnboardingWizardPage() {
             {step === 4 && (
               <div className="space-y-4 animate-fadeIn">
                 <h2 className="text-2xl font-extrabold text-primary leading-tight">
-                  {t({ en: 'Invite Your Team', ar: 'Ø¯Ø¹ÙˆØ© ÙØ±ÙŠÙ‚Ùƒ' })}
+                  {t({ en: 'Invite Your Team', ar: 'دعوة فريقك' })}
                 </h2>
                 <p className="text-xs font-semibold text-primary leading-relaxed">
-                  {t({ en: 'Add your staff members now so they can start accessing knowledge handbooks.', ar: 'Ø£Ø¶Ù Ù…ÙˆØ¸ÙÙŠÙƒ Ø§Ù„Ø¢Ù† Ù„ÙŠØªÙ…ÙƒÙ†ÙˆØ§ Ù…Ù† Ø§Ù„ÙˆØµÙˆÙ„ Ù„ÙƒØªÙŠØ¨Ø§Øª Ø§Ù„Ù…Ø¹Ø±ÙØ©.' })}
+                  {t({ en: 'Add your staff members now so they can start accessing knowledge handbooks.', ar: 'أضف موظفيك الآن ليتمكنوا من الوصول لكتيبات المعرفة.' })}
                 </p>
                 
                 <div>
                   <label htmlFor="teamInvites" className="block text-xs font-bold text-primary mb-1.5">
-                    {t({ en: 'Team Emails (comma separated)', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ Ù„Ù„ÙØ±ÙŠÙ‚ (Ù…ÙØµÙˆÙ„ Ø¨ÙØ§ØµÙ„Ø©)' })}
+                    {t({ en: 'Team Emails (comma separated)', ar: 'البريد الإلكتروني للفريق (مفصول بفاصلة)' })}
                   </label>
                   <textarea
                     id="teamInvites"
@@ -277,16 +277,16 @@ export default function OnboardingWizardPage() {
             {step === 5 && (
               <div className="space-y-4 animate-fadeIn">
                 <h2 className="text-2xl font-extrabold text-primary leading-tight">
-                  {t({ en: 'First Policy Document', ar: 'Ù…Ø³ØªÙ†Ø¯ Ø§Ù„Ø³ÙŠØ§Ø³Ø© Ø§Ù„Ø£ÙˆÙ„' })}
+                  {t({ en: 'First Policy Document', ar: 'مستند السياسة الأول' })}
                 </h2>
                 <p className="text-xs font-semibold text-primary leading-relaxed">
-                  {t({ en: 'Upload your first SOP or employee handbook to train your RAG assistant immediately.', ar: 'Ù‚Ù… Ø¨ØªØ­Ù…ÙŠÙ„ Ø¯Ù„ÙŠÙ„ Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ† Ø£Ùˆ Ø¥Ø¬Ø±Ø§Ø¡ Ø§Ù„ØªØ´ØºÙŠÙ„ Ù„ØªØ¯Ø±ÙŠØ¨ Ø§Ù„Ù…Ø³Ø§Ø¹Ø¯ ÙÙˆØ±Ù‹Ø§.' })}
+                  {t({ en: 'Upload your first SOP or employee handbook to train your RAG assistant immediately.', ar: 'قم بتحميل دليل الموظفين أو إجراء التشغيل لتدريب المساعد فورًا.' })}
                 </p>
 
                 <div className="border-2 border-dashed border-primary/10 rounded-xl p-8 bg-surface flex flex-col items-center justify-center text-center">
                   <FileText className="w-8 h-8 text-primary mb-2" />
-                  <p className="text-xs font-bold text-primary">{t({ en: 'Drop policy PDF here to start', ar: 'Ø§Ø³Ù‚Ø· Ù…Ù„Ù PDF Ù„Ù„Ø³ÙŠØ§Ø³Ø© Ù‡Ù†Ø§ Ù„Ù„Ø¨Ø¯Ø¡' })}</p>
-                  <span className="text-xs text-primary font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'Ø£Ùˆ Ø§Ø¶ØºØ· Ø£Ø¯Ù†Ø§Ù‡ Ù„Ù„ØªØµÙØ­ (Ø§Ø®ØªÙŠØ§Ø±ÙŠ)' })}</span>
+                  <p className="text-xs font-bold text-primary">{t({ en: 'Drop policy PDF here to start', ar: 'اسقط ملف PDF للسياسة هنا للبدء' })}</p>
+                  <span className="text-xs text-primary font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'أو اضغط أدناه للتصفح (اختياري)' })}</span>
                 </div>
               </div>
             )}
@@ -300,7 +300,7 @@ export default function OnboardingWizardPage() {
                 onClick={handleBack}
                 className="bg-surface hover:bg-primary text-primary font-bold py-3 px-6 rounded-xl border border-primary/10 transition-all text-xs min-h-[44px]"
               >
-                {t({ en: 'Back', ar: 'Ø§Ù„Ø³Ø§Ø¨Ù‚' })}
+                {t({ en: 'Back', ar: 'السابق' })}
               </button>
             )}
             <button
@@ -309,10 +309,10 @@ export default function OnboardingWizardPage() {
               className="flex-1 bg-primary hover:opacity-95 text-surface font-bold py-3 px-6 rounded-xl transition-all text-xs min-h-[44px] flex items-center justify-center"
             >
               {submitting
-                ? t({ en: 'Saving...', ar: 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ø­ÙØ¸...' })
+                ? t({ en: 'Saving...', ar: 'جاري الحفظ...' })
                 : step === 5
-                  ? t({ en: 'Complete Setup', ar: 'Ø¥ÙƒÙ…Ø§Ù„ Ø§Ù„Ø¥Ø¹Ø¯Ø§Ø¯' })
-                  : t({ en: 'Continue', ar: 'Ù…ØªØ§Ø¨Ø¹Ø©' })}
+                  ? t({ en: 'Complete Setup', ar: 'إكمال الإعداد' })
+                  : t({ en: 'Continue', ar: 'متابعة' })}
             </button>
           </div>
         </div>

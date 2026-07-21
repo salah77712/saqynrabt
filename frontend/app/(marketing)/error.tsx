@@ -38,26 +38,26 @@ export default function MarketingError({
         <div className="text-center max-w-md">
 <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-primary/10"><AlertTriangle className="w-6 h-6 text-primary" />
           </div>
-          <h1 className="text-xl md:text-3xl font-bold text-primary mb-3">{t({ en: 'Something went wrong', ar: 'Ø­Ø¯Ø« Ø®Ø·Ø£ ØºÙŠØ± Ù…ØªÙˆÙ‚Ø¹' })}</h1>
+          <h1 className="text-xl md:text-3xl font-bold text-primary mb-3">{t({ en: 'Something went wrong', ar: 'حدث خطأ غير متوقع' })}</h1>
           <p className="text-sm text-primary mb-8 leading-relaxed">
-            {t({ en: 'We encountered an error loading this page. Please try again.', ar: 'ÙŠØ±Ø¬Ù‰ Ø§Ù„Ù…Ø­Ø§ÙˆÙ„Ø© Ù…Ø±Ø© Ø£Ø®Ø±Ù‰ Ø£Ùˆ Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„ØµÙØ­Ø© Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©.' })}
+            {t({ en: 'We encountered an error loading this page. Please try again.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button
               onClick={() => reset()}
               className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             >
-              {t({ en: 'Try again', ar: 'Ø­Ø§ÙˆÙ„ Ù…Ø±Ø© Ø£Ø®Ø±Ù‰' })}
+              {t({ en: 'Try again', ar: 'حاول مرة أخرى' })}
             </button>
             <a
               href="/"
               className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/10 px-6 py-3 text-sm font-semibold text-primary hover:bg-surface transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2"
             >
-              {t({ en: 'Back to Home', ar: 'Ø§Ù„Ø¹ÙˆØ¯Ø© Ø¥Ù„Ù‰ Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©' })}
+              {t({ en: 'Back to Home', ar: 'العودة إلى الرئيسية' })}
             </a>
           </div>
           {error.digest && (
-            <p className="mt-6 text-xs text-primary font-mono">{t({ en: 'Error ID:', ar: 'Ù…Ø¹Ø±Ù Ø§Ù„Ø®Ø·Ø£:' })} {error.digest}</p>
+            <p className="mt-6 text-xs text-primary font-mono">{t({ en: 'Error ID:', ar: 'معرف الخطأ:' })} {error.digest}</p>
           )}
         </div>
       </div>
