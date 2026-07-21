@@ -75,5 +75,7 @@ logs/
 
 *.bak
 backend/dry-run-check/
+backend/src/**/*.js
+backend/scripts/**/*.js
 .vercel
 .env*
