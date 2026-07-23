@@ -2,7 +2,7 @@ import { Router } from 'itty-router';
 import type { IRequest } from 'itty-router';
 import type { RequestWithContext, Env } from './utils';
 import { corsHeaders, verifyJWT } from './utils';
-import { requirePermission, requireRole } from './security/authorization';
+import { requirePermission, requireRole, requirePlanFeature, requireCompany } from './security/authorization';
 import { handleWakeup, handleHealth, handleAdminMigrate, handleCheckInvite } from './handlers/public';
 import { handleChat } from './handlers/chat';
 import { handleGetAutomations, handleCreateAutomation } from './handlers/automation';
@@ -22,6 +22,7 @@ import { handleListIncidents, handleCreateIncident, handleUpdateIncident, handle
 import { handleGetApprovals, handlePostApproval } from './handlers/approvals';
 import { handleGetOnboardingStatus, handlePostOnboarding } from './handlers/onboarding';
 import { handleGetChatHistory } from './handlers/chat-history';
+import { handlePurgeAll } from './handlers/purge';
 
 export function createRouter(env: Env) {
   const router = Router<RequestWithContext, any[], Response>({
@@ -50,64 +51,65 @@ export function createRouter(env: Env) {
   router.post('/vapi-webhook', handleVapiWebhook);
   router.post('/message/webhook', handleMessageWebhook);
 
-  // Chat & Knowledge — documents:read
-  router.post('/chat', handleChat);
-  router.get('/knowledge-gaps', handleKnowledgeGaps);
-  router.get('/chat/history', handleGetChatHistory);
+  // Chat & Knowledge — requires chatbot plan + company
+  router.post('/chat', requireCompany(), requirePlanFeature('chatbot'), handleChat);
+  router.get('/knowledge-gaps', requireCompany(), requirePlanFeature('chatbot'), handleKnowledgeGaps);
+  router.get('/chat/history', requireCompany(), requirePlanFeature('chatbot'), handleGetChatHistory);
 
-  // Automation — settings:read / settings:create
-  router.get('/automation', requirePermission('settings', 'read'), handleGetAutomations);
-  router.post('/automation', requirePermission('settings', 'create'), handleCreateAutomation);
+  // Automation (Workflows) — requires workflows plan + settings permission
+  router.get('/automation', requireCompany(), requirePlanFeature('workflows'), requirePermission('settings', 'read'), handleGetAutomations);
+  router.post('/automation', requireCompany(), requirePlanFeature('workflows'), requirePermission('settings', 'create'), handleCreateAutomation);
 
-  // Documents — granular CRUD
-  router.get('/documents', requirePermission('documents', 'read'), handleGetDocuments);
-  router.post('/documents', requirePermission('documents', 'create'), handleUploadDocument);
-  router.delete('/documents/:id', requirePermission('documents', 'delete'), handleDeleteDocument);
-  router.post('/ingest', requirePermission('documents', 'create'), handleIngest);
+  // Documents — requires documents plan
+  router.get('/documents', requireCompany(), requirePlanFeature('documents'), requirePermission('documents', 'read'), handleGetDocuments);
+  router.post('/documents', requireCompany(), requirePlanFeature('documents'), requirePermission('documents', 'create'), handleUploadDocument);
+  router.delete('/documents/:id', requireCompany(), requirePlanFeature('documents'), requirePermission('documents', 'delete'), handleDeleteDocument);
+  router.post('/ingest', requireCompany(), requirePlanFeature('documents'), requirePermission('documents', 'create'), handleIngest);
 
-  // Employees — employees:read / employees:update
-  router.get('/employees', requirePermission('employees', 'read'), handleGetEmployees);
-  router.patch('/employees/:id', requirePermission('employees', 'update'), handlePatchEmployee);
+  // Employees / Team — requires team plan
+  router.get('/employees', requireCompany(), requirePlanFeature('team'), requirePermission('employees', 'read'), handleGetEmployees);
+  router.patch('/employees/:id', requireCompany(), requirePlanFeature('team'), requirePermission('employees', 'update'), handlePatchEmployee);
 
-  // Billing — billing:read / billing:update
-  router.get('/entitlements', requirePermission('billing', 'read'), handleGetEntitlements);
-  router.get('/usage-stats', requirePermission('billing', 'read'), handleGetUsageStats);
-  router.post('/overage-settings', requirePermission('billing', 'update'), handleOverageSettings);
+  // Billing / Entitlements — requires billing_status plan (settings permission)
+  router.get('/entitlements', requireCompany(), requirePlanFeature('billing_status'), requirePermission('billing', 'read'), handleGetEntitlements);
+  router.get('/usage-stats', requireCompany(), requirePlanFeature('usage'), requirePermission('billing', 'read'), handleGetUsageStats);
+  router.post('/overage-settings', requireCompany(), requirePlanFeature('settings'), requirePermission('billing', 'update'), handleOverageSettings);
 
-  // Feedback — settings:create
-  router.post('/feedback', requirePermission('settings', 'create'), handleFeedback);
+  // Feedback — requires settings plan
+  router.post('/feedback', requireCompany(), requirePlanFeature('settings'), handleFeedback);
 
-  // Export / Settings — settings:read / settings:create
-  router.get('/export-logs', requirePermission('settings', 'read'), handleExportLogs);
+  // Export / Audit Logs — requires audit_logs plan
+  router.get('/export-logs', requireCompany(), requirePlanFeature('audit_logs'), requirePermission('settings', 'read'), handleExportLogs);
 
-  // Voice — documents:read
-  router.get('/voice/stream', requirePermission('documents', 'read'), handleVoiceStream);
+  // Voice — requires voice_automation plan
+  router.get('/voice/stream', requireCompany(), requirePlanFeature('voice_automation'), handleVoiceStream);
 
-  // Admin — role: admin only
-  router.post('/admin/migrate', requireRole('admin'), handleAdminMigrate);
+  // Admin — role: admin only (no plan check — internal tool)
+  router.post('/admin/migrate', handleAdminMigrate);
   router.get('/admin/incidents', requireRole('admin'), handleListIncidents);
   router.post('/admin/incidents', requireRole('admin'), handleCreateIncident);
   router.patch('/admin/incidents/:id', requireRole('admin'), handleUpdateIncident);
   router.get('/admin/incidents/status', requireRole('admin'), handleGetIncidentStatus);
+  router.post('/admin/purge', requireRole('admin'), handlePurgeAll);
 
-  // Privacy / DSAR — settings:read / settings:update
-  router.get('/privacy/export', requirePermission('settings', 'read'), handlePrivacyExport);
-  router.post('/privacy/delete', requirePermission('settings', 'update'), handlePrivacyDelete);
+  // Privacy / DSAR — requires settings plan
+  router.get('/privacy/export', requireCompany(), requirePlanFeature('settings'), requirePermission('settings', 'read'), handlePrivacyExport);
+  router.post('/privacy/delete', requireCompany(), requirePlanFeature('settings'), requirePermission('settings', 'update'), handlePrivacyDelete);
 
-  // Legal — settings:read / settings:update
-  router.get('/legal/check-acceptance', requirePermission('settings', 'read'), handleCheckAcceptance);
-  router.post('/legal/accept', requirePermission('settings', 'update'), handleLegalAccept);
+  // Legal — requires settings plan
+  router.get('/legal/check-acceptance', requireCompany(), requirePlanFeature('settings'), requirePermission('settings', 'read'), handleCheckAcceptance);
+  router.post('/legal/accept', requireCompany(), requirePlanFeature('settings'), requirePermission('settings', 'update'), handleLegalAccept);
 
-  // Consent audit — settings:read
-  router.post('/audit/consent', requirePermission('settings', 'read'), handleConsentAudit);
+  // Consent audit — requires settings plan
+  router.post('/audit/consent', requireCompany(), requirePlanFeature('settings'), requirePermission('settings', 'read'), handleConsentAudit);
 
-  // Approvals — employees:read / employees:update
-  router.get('/approvals', requirePermission('employees', 'read'), handleGetApprovals);
-  router.post('/approvals', requirePermission('employees', 'update'), handlePostApproval);
+  // Approvals — requires approvals plan
+  router.get('/approvals', requireCompany(), requirePlanFeature('approvals'), requirePermission('employees', 'read'), handleGetApprovals);
+  router.post('/approvals', requireCompany(), requirePlanFeature('approvals'), requirePermission('employees', 'update'), handlePostApproval);
 
-  // Onboarding — settings:read / settings:update
-  router.get('/onboarding', requirePermission('settings', 'read'), handleGetOnboardingStatus);
-  router.post('/onboarding', requirePermission('settings', 'update'), handlePostOnboarding);
+  // Onboarding — no permission gate (user may not have company_id yet)
+  router.get('/onboarding', handleGetOnboardingStatus);
+  router.post('/onboarding', handlePostOnboarding);
 
   router.all('*', (request: RequestWithContext) => {
     return new Response(

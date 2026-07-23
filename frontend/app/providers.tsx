@@ -35,6 +35,7 @@ export interface Entitlements {
   dept_limit: number;
   active_employees: number;
   active_documents: number;
+  plan_key?: string;
 }
 
 interface EntitlementsContextProps {

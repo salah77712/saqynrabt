@@ -289,6 +289,7 @@ export default function SignUpPage() {
             </span>
           </label>
 
+          <div id="clerk-captcha"></div>
           <button
             type="submit"
             disabled={loading}

@@ -1,5 +1,33 @@
+import { neon } from '@neondatabase/serverless';
 import type { RequestWithContext, JWTPayload } from '../utils';
 import { corsHeaders } from '../utils';
+
+export type PlanFeature =
+  | 'chatbot'
+  | 'documents'
+  | 'voice_automation'
+  | 'workflows'
+  | 'call_dashboard'
+  | 'team'
+  | 'approvals'
+  | 'inbox'
+  | 'integrations'
+  | 'usage'
+  | 'audit_logs'
+  | 'settings'
+  | 'billing_status'
+  | 'admin_panel'
+  | 'profile';
+
+export const PLAN_FEATURES: Record<string, PlanFeature[]> = {
+  chatbot: ['chatbot', 'documents', 'profile'],
+  voice: ['voice_automation', 'workflows', 'call_dashboard', 'profile'],
+  platform: [
+    'chatbot', 'documents', 'voice_automation', 'workflows', 'call_dashboard',
+    'team', 'approvals', 'inbox', 'integrations', 'usage', 'audit_logs',
+    'settings', 'billing_status', 'admin_panel', 'profile',
+  ],
+};
 
 /**
  * Resource-action permission check (LPAC)
@@ -96,4 +124,51 @@ export function withPermission<
     return handler(request, ...rest);
   };
   return wrapped as unknown as T;
+}
+
+/**
+ * Middleware — rejects if the JWT lacks a company_id (user hasn't onboarded).
+ */
+export function requireCompany() {
+  return async (request: RequestWithContext): Promise<Response | void> => {
+    const jwt = request.jwt;
+    if (!jwt) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { ...corsHeaders(request, request.env), 'Content-Type': 'application/json' },
+      });
+    }
+    if (!jwt.company_id) {
+      return new Response(JSON.stringify({ error: 'onboarding_required' }), {
+        status: 403,
+        headers: { ...corsHeaders(request, request.env), 'Content-Type': 'application/json' },
+      });
+    }
+  };
+}
+
+/**
+ * Rejects if the company's plan does not include the required feature.
+ * Returns a plan-aware 403 with feature_not_in_plan.
+ */
+export function requirePlanFeature(feature: PlanFeature) {
+  return async (request: RequestWithContext): Promise<Response | void> => {
+    const jwt = request.jwt;
+    if (!jwt) {
+      return new Response(JSON.stringify({ error: 'Unauthorized' }), {
+        status: 401,
+        headers: { ...corsHeaders(request, request.env), 'Content-Type': 'application/json' },
+      });
+    }
+
+    let planKey = jwt.plan_key || 'platform';
+    const allowed = PLAN_FEATURES[planKey]?.includes(feature) ?? false;
+
+    if (!allowed) {
+      return new Response(JSON.stringify({ error: 'feature_not_in_plan', feature }), {
+        status: 403,
+        headers: { ...corsHeaders(request, request.env), 'Content-Type': 'application/json' },
+      });
+    }
+  };
 }

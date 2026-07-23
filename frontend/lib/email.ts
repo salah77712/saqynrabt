@@ -3,8 +3,7 @@ import { Resend } from 'resend';
 export async function sendEmail(to: string, subject: string, html: string) {
   const apiKey = process.env.EMAIL_API_KEY;
   if (!apiKey) {
-    console.error("Missing EMAIL_API_KEY. Cannot send email.");
-    return;
+    throw new Error("EMAIL_API_KEY is not configured.");
   }
   const resend = new Resend(apiKey);
   await resend.emails.send({

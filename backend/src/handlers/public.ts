@@ -86,6 +86,18 @@ export async function handleAdminMigrate(request: RequestWithContext): Promise<R
         await sql`INSERT INTO _schema_version (version) VALUES (4)`;
       });
     }
+    if (currentVersion < 5) {
+      migrations.push(async () => {
+        await sql`ALTER TABLE companies ADD COLUMN IF NOT EXISTS slug VARCHAR(255)`;
+        await sql`INSERT INTO _schema_version (version) VALUES (5)`;
+      });
+    }
+    if (currentVersion < 6) {
+      migrations.push(async () => {
+        await sql`ALTER TABLE company_entitlements ADD COLUMN IF NOT EXISTS plan_key VARCHAR(50) DEFAULT 'platform'`;
+        await sql`INSERT INTO _schema_version (version) VALUES (6)`;
+      });
+    }
 
     for (const migration of migrations) {
       await migration();

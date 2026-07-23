@@ -102,12 +102,19 @@ const validateInvite = () => {
       const token = await (window as any).Clerk?.session?.getToken();
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (token) headers['Authorization'] = `Bearer ${token}`;
-      await fetch('/api/approvals', {
+      const res = await fetch('/api/approvals', {
         method: 'POST',
         headers,
         body: JSON.stringify({ action: 'invite', name: inviteName.trim(), email: inviteEmail.trim() }),
       });
-      addToast('Invitation sent successfully', 'success');
+      const result = await res.json();
+      if (result.email_sent === true) {
+        addToast('Invitation sent successfully', 'success');
+      } else if (result.email_sent === false) {
+        addToast('Invitation created. Email delivery failed — check EMAIL_API_KEY configuration.', 'error');
+      } else {
+        addToast('Invitation sent successfully', 'success');
+      }
       refetch();
       setInviteModalOpen(false);
       setInviteName('');

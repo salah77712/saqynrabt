@@ -82,11 +82,10 @@ export async function POST(req: NextRequest) {
     try {
       const data = JSON.parse(text);
 
-      // If invite succeeded on the backend, send the email from the Next.js BFF proxy
+      // If invite succeeded on the backend, send the invitation email from the BFF
       if (res.status === 200 && data.success && body && typeof body === 'object' && (body as any).action === 'invite') {
         const { name, email } = body as any;
-        const apiKey = process.env.EMAIL_API_KEY;
-        if (apiKey && email && name) {
+        if (email && name) {
           try {
             const companyName = data.companyName || 'SAQYN';
             const inviterName = data.inviterName || 'A colleague';
@@ -111,9 +110,15 @@ export async function POST(req: NextRequest) {
                 </div>
               `
             );
-          } catch (emailErr) {
+            data.email_sent = true;
+          } catch (emailErr: any) {
             console.error("[/api/approvals POST] Failed to send invitation email:", emailErr);
+            data.email_sent = false;
+            data.email_error = emailErr?.message || 'Email delivery failed';
           }
+        } else {
+          data.email_sent = false;
+          data.email_error = 'Invite missing name or email';
         }
       }
 

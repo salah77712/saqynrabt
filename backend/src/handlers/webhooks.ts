@@ -27,14 +27,16 @@ export async function handleClerkWebhook(request: RequestWithContext): Promise<R
       const lastName = data.last_name || '';
 
       // Check if there is an invitation in company_members for this email
+      let inviteRole = 'employee';
       if (email) {
         const [member] = await sql`
-          SELECT company_id, status FROM company_members WHERE LOWER(email) = LOWER(${email})
+          SELECT company_id, status, role FROM company_members WHERE LOWER(email) = LOWER(${email})
         `;
         if (member) {
           if (!company_id) {
             company_id = member.company_id;
           }
+          inviteRole = member.role || 'employee';
           // Link clerk_user_id in company_members
           await sql`
             UPDATE company_members
@@ -57,7 +59,7 @@ export async function handleClerkWebhook(request: RequestWithContext): Promise<R
               body: JSON.stringify({
                 public_metadata: {
                   company_id: company_id,
-                  role: 'employee'
+                  role: inviteRole
                 }
               })
             });
@@ -76,10 +78,10 @@ export async function handleClerkWebhook(request: RequestWithContext): Promise<R
         const isActive = memStatus?.status === 'active';
 
         await sql`
-          INSERT INTO employees (company_id, clerk_user_id, email, first_name, last_name, is_active)
-          VALUES (${company_id}, ${clerkUserId}, ${email}, ${firstName}, ${lastName}, ${isActive})
+          INSERT INTO employees (company_id, clerk_user_id, email, first_name, last_name, role, is_active)
+          VALUES (${company_id}, ${clerkUserId}, ${email}, ${firstName}, ${lastName}, ${inviteRole}, ${isActive})
           ON CONFLICT (clerk_user_id)
-          DO UPDATE SET company_id = ${company_id}, email = ${email}, first_name = ${firstName}, last_name = ${lastName}, is_active = ${isActive}, updated_at = NOW()
+          DO UPDATE SET company_id = ${company_id}, email = ${email}, first_name = ${firstName}, last_name = ${lastName}, role = ${inviteRole}, is_active = ${isActive}, updated_at = NOW()
         `;
       }
     } else if (type === 'user.deleted') {

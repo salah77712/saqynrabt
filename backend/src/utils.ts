@@ -34,6 +34,7 @@ export interface JWTPayload {
   email?: string;
   name?: string;
   role?: string;
+  plan_key?: string;
   permissions?: string[];
   [key: string]: any;
 }
@@ -100,11 +101,31 @@ export async function verifyJWT(authHeader: string | null, env: Env): Promise<JW
   if (token.startsWith('mock-token-')) return null;
   try {
     const payload = await verifyToken(token, { secretKey: env.CLERK_SECRET_KEY });
-    const company_id = (payload as any).company_id || (payload as any).public_metadata?.company_id || (payload as any).org_id;
+    let company_id = (payload as any).company_id || (payload as any).public_metadata?.company_id || (payload as any).org_id;
+    const sql = neon(env.DATABASE_URL);
+    if (!company_id && (payload as any).sub) {
+      try {
+        const [emp] = await sql`SELECT company_id FROM employees WHERE clerk_user_id = ${(payload as any).sub}`;
+        company_id = emp?.company_id;
+      } catch { /* ignore */ }
+    }
     const role = (payload as any).role || (payload as any).public_metadata?.role || 'employee';
+    let roleFromDb = role;
+    if ((payload as any).sub) {
+      try {
+        const [emp] = await sql`SELECT role FROM employees WHERE clerk_user_id = ${(payload as any).sub}`;
+        if (emp?.role) roleFromDb = emp.role;
+      } catch { /* ignore */ }
+    }
     const permissions = (payload as any).public_metadata?.permissions || (payload as any).org_role === 'org:admin' ? ['documents:create', 'documents:read', 'documents:update', 'documents:delete', 'employees:create', 'employees:read', 'employees:update', 'employees:delete', 'billing:read', 'billing:update', 'settings:read', 'settings:update'] : ['documents:read', 'documents:create'];
-    if (!company_id) return null;
-    return { ...(payload as any), company_id, role, permissions };
+    let plan_key: string | undefined;
+    if (company_id) {
+      try {
+        const [row] = await sql`SELECT plan_key FROM company_entitlements WHERE company_id = ${company_id}`;
+        plan_key = row?.plan_key || 'platform';
+      } catch { plan_key = 'platform'; }
+    }
+    return { ...(payload as any), company_id, role: roleFromDb, plan_key, permissions };
   } catch { return null; }
 }
 

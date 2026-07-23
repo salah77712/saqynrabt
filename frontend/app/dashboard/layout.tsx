@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useUser } from '@clerk/nextjs';
 import { useEntitlements, useLocale } from '../providers';
@@ -13,6 +13,9 @@ import { EmailVerificationGate } from '../../components/dashboard/EmailVerificat
 import { DashboardSidebar } from '../../components/dashboard/DashboardSidebar';
 import { DashboardMobileHeader } from '../../components/dashboard/DashboardMobileHeader';
 import { DashboardDesktopHeader } from '../../components/dashboard/DashboardDesktopHeader';
+import { LockedPage } from '../../components/dashboard/LockedPage';
+import { MODULES, getModuleVisibility } from '../../lib/module-map';
+import type { PlanKey, UserRole } from '../../lib/module-map';
 
 export default function DashboardLayout({
   children,
@@ -21,14 +24,14 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { mockMode } = useEntitlements();
+  const { mockMode, entitlements } = useEntitlements();
   const { locale } = useLocale();
   const { user, isLoaded: userLoaded } = useUser();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [pendingCount, setPendingCount] = useState(0);
-  const [userRole, setUserRole] = useState<string>('employee');
+  const [userRole, setUserRole] = useState<UserRole>('employee');
   const [roleLoaded, setRoleLoaded] = useState(false);
 
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
@@ -38,34 +41,26 @@ export default function DashboardLayout({
     clientDashboard: { en: 'Client Dashboard', ar: 'لوحة تحكم العميل' },
   };
 
-  const menuItems = [
-    { name: dashboardContent.overview, path: '/dashboard', icon: <Home className="w-5 h-5" /> },
-    { name: { en: 'Automation', ar: 'الأتمتة' }, path: '/dashboard/automation', icon: <Zap className="w-5 h-5" /> },
-    { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
-    { name: { en: 'Documents', ar: 'المستندات' }, path: '/dashboard/documents', icon: <FileText className="w-5 h-5" /> },
-    { name: { en: 'Team', ar: 'الفريق' }, path: '/dashboard/team', icon: <Users className="w-5 h-5" />, badge: true },
-    { name: { en: 'Settings', ar: 'الإعدادات' }, path: '/dashboard/settings', icon: <Settings className="w-5 h-5" /> },
-  ];
+  const currentRole: UserRole = mockMode ? 'admin' : userRole;
+  const planKey: PlanKey = mockMode ? 'platform' : (entitlements?.plan_key as PlanKey) || 'platform';
 
-  const currentRole = mockMode ? 'admin' : userRole;
+  const navModules = useMemo(() => {
+    return MODULES.map((mod) => {
+      const vis = getModuleVisibility(mod, currentRole, planKey);
+      return { ...mod, ...vis };
+    });
+  }, [currentRole, planKey]);
 
-  const filteredMenuItems = currentRole === 'employee'
-    ? [
-        { name: { en: 'Chatbot', ar: 'المساعد الذكي' }, path: '/dashboard/chat', icon: <MessageSquare className="w-5 h-5" /> },
-        { name: { en: 'Workflows', ar: 'سير العمل' }, path: '/dashboard/workflows', icon: <Zap className="w-5 h-5" /> },
-      ]
-    : menuItems;
+  const visibleNavItems = navModules.filter((m) => m.visible);
 
-  const isEmployeeAllowedPath = (path: string) => {
-    return path.startsWith('/dashboard/chat') || path.startsWith('/dashboard/workflows');
-  };
-
-  const hasAccess = currentRole !== 'employee' || isEmployeeAllowedPath(pathname);
+  const currentModule = navModules.find(
+    (m) => m.path !== '/dashboard' && pathname.startsWith(m.path)
+  );
 
   const currentTitle = pathname === '/dashboard'
     ? t(dashboardContent.overview)
-    : filteredMenuItems.find((item) => item.path !== '/dashboard' && pathname.startsWith(item.path))
-      ? t(filteredMenuItems.find((item) => item.path !== '/dashboard' && pathname.startsWith(item.path))!.name)
+    : currentModule
+      ? t(currentModule.label)
       : t(dashboardContent.clientDashboard);
 
   const isEmailVerified = mockMode || !userLoaded || !user || user.emailAddresses.some(e => e.verification.status === 'verified');
@@ -112,6 +107,9 @@ export default function DashboardLayout({
     threshold: 50,
   });
 
+  const isLockedPath = pathname !== '/dashboard' && currentModule?.locked === true;
+  const isRestrictedPath = pathname !== '/dashboard' && currentModule?.visible === false;
+
   return (
     <div className="min-h-screen bg-surface text-primary flex flex-col font-sans selection:bg-accent selection:text-surface" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
 <NoIndex />
@@ -124,7 +122,7 @@ export default function DashboardLayout({
           onClose={() => setIsSidebarOpen(false)}
           pendingCount={pendingCount}
           currentRole={currentRole}
-          filteredMenuItems={filteredMenuItems}
+          navModules={navModules}
         />
 
         {isSidebarOpen && (
@@ -149,7 +147,7 @@ export default function DashboardLayout({
           <div className="flex-1 overflow-y-auto p-4 md:p-8 lg:p-8"
             style={{ WebkitOverflowScrolling: 'touch' }}>
             <div className="max-w-6xl mx-auto w-full">
-              {!hasAccess ? (
+              {isRestrictedPath ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center bg-surface border border-primary/10 rounded-xl shadow-sm p-8">
                   <AlertTriangle className="w-10 h-10 text-primary mb-4" />
                   <h2 className="text-lg font-extrabold text-primary">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h2>
@@ -157,6 +155,8 @@ export default function DashboardLayout({
                     {t({ en: 'You do not have permission to access this page.', ar: 'ليس لديك إذن للوصول إلى هذه الصفحة.' })}
                   </p>
                 </div>
+              ) : isLockedPath ? (
+                <LockedPage reason={currentModule.lockedReason || 'plan'} userRole={currentRole} />
               ) : (
                 children
               )}
@@ -164,7 +164,7 @@ export default function DashboardLayout({
           </div>
 
           <FeedbackWidget />
-          <MobileBottomNav userRole={currentRole} />
+          <MobileBottomNav userRole={currentRole} navModules={navModules} />
         </main>
       </div>
     </div>
