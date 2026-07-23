@@ -42,7 +42,7 @@ export default function CaseStudyDetailPage({ params }: { params: Promise<{ slug
           className="inline-flex items-center gap-3 text-xs font-bold text-accent hover:opacity-85 transition-all mb-8 hover:translate-x-[-2px] duration-200"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>{t({ en: 'Back to Case Studies', ar: 'العودة لدراسات الحالة' })}</span>
+          <span>{t({ en: 'Back to Use Cases', ar: 'العودة لحالات الاستخدام' })}</span>
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-start">

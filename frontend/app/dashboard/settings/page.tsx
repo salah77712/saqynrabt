@@ -11,6 +11,7 @@ import { Skeleton, SkeletonCard } from '../../../components/ui/Skeleton';
 import { EmptyStateWithRetry } from '../../../components/ui/EmptyState';
 import { useUsage } from '../../../hooks/queries/useUsage';
 import { useMediaQuery } from '../../../hooks/useMediaQuery';
+import { useGlobalToast } from '../../../lib/toast';
 import SecuritySettingsPage from './security/page';
 import IntegrationsSettingsPage from './integrations/page';
 
@@ -22,6 +23,7 @@ interface KnowledgeGap {
 
 export default function SettingsDashboardPage() {
   const { locale } = useLocale();
+  const { addToast } = useGlobalToast();
   const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
   const { data: usage, isLoading: usageLoading, isError: usageError, error: usageErrorObj, refetch: refetchUsage } = useUsage();
 
@@ -88,16 +90,9 @@ export default function SettingsDashboardPage() {
       a.remove();
       window.URL.revokeObjectURL(url);
     } catch {
-      const csvContent = 'data:text/csv;charset=utf-8,Date,Employee Name,Question,AI Answer\n2026-07-05,Salah,Test question,Test answer';
-      const encodedUri = encodeURI(csvContent);
-      const a = document.createElement('a');
-      a.href = encodedUri;
-      a.download = 'saqyn_chat_logs_export.csv';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
+      addToast(t('Could not export logs. Backend service may be unavailable.', 'تعذر تصدير السجلات. قد تكون خدمة الخلفية غير متوفرة.'), 'error');
     }
-  }, []);
+  }, [addToast, t]);
 
   const tabOptions = [
     { id: 'general', label: t('General', 'عام') },
@@ -240,9 +235,9 @@ export default function SettingsDashboardPage() {
           <p className="text-xs md:text-xs text-primary leading-relaxed">
             {t('Your workspace is currently registered under the Enterprise Growth Package.', 'مساحة العمل الخاصة بك مسجلة حالياً تحت باقة نمو المؤسسات.')}
           </p>
-          <Button variant="primary" className="min-h-[44px] text-xs w-full md:w-auto py-3 px-6 rounded-xl font-bold" onClick={() => window.open('https://billing.stripe.com', '_blank')}>
-            {t('Manage Subscription', 'إدارة الاشتراك')}
-          </Button>
+          <p className="text-xs text-primary/60">
+            {t('Billing is managed manually during pilot phase. Contact us at hello@saqynrabt.com for any billing questions.', 'تتم إدارة الفوترة يدوياً خلال المرحلة التجريبية. اتصل بنا على hello@saqynrabt.com لأي استفسارات حول الفوترة.')}
+          </p>
         </Card>
       )}
 

@@ -13,7 +13,7 @@ export default function DevelopersApiDocsPage() {
     {
       method: 'POST',
       path: '/api/v1/chat',
-      desc: t({ en: 'Send queries to RAG Assistant. Returns JSON answers and citations.', fr: 'Envoyer des requÃªtes Ã  l\'assistant RAG. Renvoie des rÃ©ponses JSON et des citations.', ar: 'إرسال سؤال للمساعد. يعيد الإجابة والاقتباسات.', hi: 'à¤à¤°à¤à¤à¥ à¤¸à¤¹à¤¾à¤¯à¤ à¤à¥ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤­à¥à¤à¥à¤à¥¤ JSON à¤à¤¤à¥à¤¤à¤° à¤à¤° à¤à¤¦à¥à¤§à¤°à¤£ à¤²à¥à¤à¤¾à¤¤à¤¾ à¤¹à¥à¥¤' }),
+      desc: t({ en: 'Send queries to RAG Assistant. Returns JSON answers and citations.', ar: 'إرسال سؤال للمساعد. يعيد الإجابة والاقتباسات.' }),
       headers: [
         { name: 'x-api-key', desc: 'Active developer API key token' },
         { name: 'Content-Type', desc: 'application/json' },
@@ -23,7 +23,7 @@ export default function DevelopersApiDocsPage() {
     {
       method: 'POST',
       path: '/api/v1/automation',
-      desc: t({ en: 'Create call dispatches directly inside the queue.', fr: 'CrÃ©er des rÃ©partitions d\'appels directement dans la file d\'attente.', ar: 'إضافة مهام أتمتة جديدة مباشرة في طابور العمليات.', hi: 'à¤à¥à¤² à¤¡à¤¿à¤¸à¥à¤ªà¥à¤ à¤¸à¥à¤§à¥ à¤à¤¤à¤¾à¤° à¤à¥ à¤à¤à¤¦à¤° à¤¬à¤¨à¤¾à¤à¤à¥¤' }),
+      desc: t({ en: 'Create call dispatches directly inside the queue.', ar: 'إضافة مهام أتمتة جديدة مباشرة في طابور العمليات.' }),
       headers: [
         { name: 'x-api-key', desc: 'Active developer API key token' },
         { name: 'Content-Type', desc: 'application/json' },
@@ -39,12 +39,12 @@ export default function DevelopersApiDocsPage() {
       <main className="flex-1 max-w-4xl mx-auto py-24 px-6 w-full space-y-12">
         {/* Header */}
         <div>
-          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'API Portal', fr: 'Portail API', ar: 'منصة الـ API', hi: 'à¤à¤ªà¥à¤à¤ à¤ªà¥à¤°à¥à¤à¤²' })}</span>
+          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'API Portal', ar: 'منصة الـ API' })}</span>
           <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
-            {t({ en: 'Interactive Swagger Playground', fr: 'Aire de jeux Swagger interactive', ar: 'منصة تفاعلية لاختبار واجهة برمجة التطبيقات', hi: 'à¤à¤à¤à¤°à¤à¤à¥à¤à¤¿à¤µ à¤¸à¥à¤µà¥à¤à¤° à¤ªà¥à¤²à¥à¤à¥à¤°à¤¾à¤à¤à¤¡' })}
+            {t({ en: 'Interactive Swagger Playground', ar: 'منصة تفاعلية لاختبار واجهة برمجة التطبيقات' })}
           </h1>
           <p className="text-xs font-semibold text-primary mt-2">
-            {t({ en: 'Test endpoints with live API tokens inside the sandbox.', fr: 'Tester les points de terminaison avec des jetons API en direct dans le bac Ã  sable.', ar: 'اختبر واجهات البرمجة مع مفاتيح الوصول الحية في وضع الرمل.', hi: 'à¤¸à¥à¤à¤¡à¤¬à¥à¤à¥à¤¸ à¤à¥ à¤à¤à¤¦à¤° à¤²à¤¾à¤à¤µ à¤à¤ªà¥à¤à¤ à¤à¥à¤à¤¨ à¤à¥ à¤¸à¤¾à¤¥ à¤à¤à¤¡à¤ªà¥à¤à¤à¤à¥à¤¸ à¤à¤¾ à¤ªà¤°à¥à¤à¥à¤·à¤£ à¤à¤°à¥à¤à¥¤' })}
+            {t({ en: 'Test endpoints with live API tokens inside the sandbox.', ar: 'اختبر واجهات البرمجة مع مفاتيح الوصول الحية في وضع الرمل.' })}
           </p>
         </div>
 

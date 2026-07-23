@@ -26,7 +26,7 @@ export default function DashboardError({
         </div>
 <h2 className="text-2xl font-bold text-primary mb-3">{t({ en: 'Something hiccupped', ar: 'حدث خطأ غير متوقع' })}</h2>
 <p className="text-primary mb-8 leading-relaxed">
-          {t({ en: 'This section didn\'t load properly. Don\'t worry â your data hasn\'t gone anywhere.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}
+          {t({ en: 'This section didn\'t load properly. Don\'t worry — your data hasn\'t gone anywhere.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <button

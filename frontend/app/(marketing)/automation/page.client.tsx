@@ -25,19 +25,19 @@ const useCaseIcons: Record<string, React.ReactNode> = {
 
 const useCases = {
   en: [
-    { icon: 'phone', title: 'Call Answering 24/7', desc: 'AI answers every incoming call, even at 3 AM, with natural voice.' },
+    { icon: 'phone', title: 'AI Call Handling', desc: 'AI voice answers calls, captures the caller\'s request, and creates a workflow for your team to act on.' },
     { icon: 'chat', title: 'WhatsApp & SMS Parsing', desc: 'Automatically reads and categorises inbound messages from any channel.' },
-    { icon: 'alert', title: 'Complaint Routing', desc: 'Flags urgent issues and routes them to the correct manager instantly.' },
-    { icon: 'clipboard', title: 'Booking Capture', desc: 'Captures reservations, orders, and appointments without human input.' },
-    { icon: 'chart', title: 'Live Transcripts', desc: 'Every call logged in real-time on your dashboard for full audit trail.' },
+    { icon: 'alert', title: 'Complaint Routing', desc: 'Flags urgent requests and routes them to the appropriate team member based on your rules.' },
+    { icon: 'clipboard', title: 'Booking Capture', desc: 'Captures appointment requests, orders, and reservations during the call and creates a trackable task.' },
+    { icon: 'chart', title: 'Live Transcripts', desc: 'Every call interaction is logged with a transcript stored in your dashboard for review.' },
     { icon: 'globe', title: 'Multi-Language Support', desc: 'Handles Arabic and English simultaneously across all channels.' },
   ],
   ar: [
-    { icon: 'phone', title: 'الرد على المكالمات 24/7', desc: 'يجيب الذكاء الاصطناعي على كل مكالمة واردة، حتى في الساعة 3 صباحاً، بصوت طبيعي.' },
+    { icon: 'phone', title: 'الرد على المكالمات 24/7', desc: 'يجيب الذكاء الاصطناعي على المكالمات، يلتقط طلب المتصل، وينشئ مهمة لفريقك للتعامل معها.' },
     { icon: 'chat', title: 'تحليل واتساب والرسائل النصية', desc: 'يقرأ ويصنف الرسائل الواردة تلقائياً من أي قناة.' },
-    { icon: 'alert', title: 'توجيه الشكاوى', desc: 'يحدد المشكلات العاجلة ويوجهها إلى المدير المناسب فوراً.' },
-    { icon: 'clipboard', title: 'التقاط الحجوزات', desc: 'يلتقط الحجوزات والطلبات والمواعيد دون تدخل بشري.' },
-    { icon: 'chart', title: 'النصوص الحية', desc: 'يتم تسجيل كل مكالمة في الوقت الفعلي على لوحة التحكم لسجل تدقيق كامل.' },
+    { icon: 'alert', title: 'توجيه الشكاوى', desc: 'يحدد الطلبات العاجلة ويوجهها إلى عضو الفريق المناسب بناءً على قواعدك.' },
+    { icon: 'clipboard', title: 'التقاط الحجوزات', desc: 'يلتقط طلبات المواعيد والطلبات والحجوزات أثناء المكالمة وينشئ مهمة قابلة للتتبع.' },
+    { icon: 'chart', title: 'النصوص الحية', desc: 'يتم تسجيل كل تفاعل مكالمة مع نص مخزن في لوحة التحكم للمراجعة.' },
     { icon: 'globe', title: 'دعم متعدد اللغات', desc: 'يتعامل مع العربية والإنجليزية في وقت واحد عبر جميع القنوات.' },
   ],
 };
@@ -198,7 +198,7 @@ export default function AutomationPage() {
             {t({ en: 'Never Miss a Customer Call, Booking, or Complaint Again.', ar: 'لا تفوت مكالمة عميل أو حجز أو شكوى مرة أخرى.' })}
           </h1>
           <p className="mt-6 text-lg md:text-xl text-primary/60 max-w-2xl mx-auto leading-relaxed font-medium animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-            {t({ en: 'The 24/7 AI front-desk that handles external inquiries, routes requests, and manages your guest experience.', ar: 'مكتب استقبال ذكاء اصطناعي 24/7 يتعامل مع الاستفسارات الخارجية ويوجه الطلبات وينظم تجربة الضيوف.' })}
+            {t({ en: 'The AI-powered platform that handles external inquiries, routes requests, and manages your guest experience.', ar: 'مكتب استقبال ذكاء اصطناعي 24/7 يتعامل مع الاستفسارات الخارجية ويوجه الطلبات وينظم تجربة الضيوف.' })}
           </p>
           <div className="mt-10 flex flex-wrap gap-8 justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
             <button
@@ -243,13 +243,13 @@ export default function AutomationPage() {
             </div>
 
             <div className="bg-surface rounded-xl border border-primary/10 shadow-xl p-8 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-center justify-between pb-4 border-b border-primary/10">
+              <div className="pb-4 border-b border-primary/10">
                 <span className="text-primary font-black text-base">
-                  {t({ en: 'Live Queue', ar: 'الطابور المباشر' })}
+                  {t({ en: 'Example Queue Flow', ar: 'مثال لسير عمل الطابور' })}
                 </span>
-                <span className="text-xs bg-royal/10 text-royal font-semibold border border-royal/20 rounded-full px-3 py-1">
-                  {t({ en: 'Live', ar: 'مباشر' })}
-                </span>
+                <p className="text-xs text-primary/40 mt-1">
+                  {t({ en: 'Illustrative example of how incoming requests appear in the dashboard.', ar: 'مثال توضيحي لكيفية ظهور الطلبات الواردة في لوحة التحكم.' })}
+                </p>
               </div>
               {queue.map((item, i) => (
                 <div key={i} className="flex items-center justify-between py-3 border-b border-primary/10 last:border-0">
@@ -278,7 +278,7 @@ export default function AutomationPage() {
               {t({ en: 'Automation Pricing', ar: 'أسعار الأتمتة' })}
             </h2>
             <p className="text-primary/60 font-medium">
-              {t({ en: 'All plans include onboarding support and your dedicated dashboard.', ar: 'جميع الخطط تشمل دعم الإعداد ولوحة تحكم مخصصة.' })}
+              {t({ en: 'All plans include setup and onboarding support.', ar: 'جميع الخطط تشمل الإعداد ودعم التشغيل.' })}
             </p>
           </div>
 

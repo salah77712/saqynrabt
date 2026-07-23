@@ -34,7 +34,7 @@ setDeleteTargetId(id);
 const confirmDelete = useCallback(async () => {
 if (!deleteTargetId) return;
 try {
-await fetch(`/api/documents?id=${deleteTargetId}`, { method: 'DELETE' });
+await fetch(`/api/documents/${deleteTargetId}`, { method: 'DELETE' });
 refetch();
 } catch (err) {
 console.error('Delete failed:', err);

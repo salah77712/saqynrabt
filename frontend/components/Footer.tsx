@@ -8,36 +8,20 @@ import { SocialLinks } from './Footer/SocialLinks';
 
 const content = {
 en: {
-  tagline: 'AI-powered operations for front desks and teams worldwide.',
-  address: 'Global Operations',
-  dpoEmail: 'saqynrabt@gmail.com',
+  tagline: 'AI-powered call handling for front desks and service teams.',
+  address: 'Doha, Qatar',
+  dpoEmail: 'hello@saqynrabt.com',
   companyTitle: 'Company',
   legalTitle: 'Legal & Compliance',
   backToTop: 'Back to Top',
 },
-fr: {
-  tagline: "Opérations alimentées par l'IA pour les bureaux d'accueil et les équipes dans le monde entier.",
-  address: 'Opérations Mondiales',
-  dpoEmail: 'saqynrabt@gmail.com',
-  companyTitle: 'Entreprise',
-  legalTitle: 'Juridique et Conformité',
-  backToTop: 'Retour en Haut',
-},
 ar: {
-  tagline: 'عمليات مدعومة بالذكاء الاصطناعي لمكاتب الاستقبال والفرق في جميع أنحاء العالم.',
-  address: 'عمليات عالمية',
-  dpoEmail: 'saqynrabt@gmail.com',
+  tagline: 'معالجة مكالمات ذكية لمكاتب الاستقبال وفرق الخدمة.',
+  address: 'الدوحة، قطر',
+  dpoEmail: 'hello@saqynrabt.com',
   companyTitle: 'الشركة',
   legalTitle: 'القانون والامتثال',
   backToTop: 'العودة للأعلى',
-},
-hi: {
-  tagline: 'दुनिया भर में फ्रंट डेस्क and टीमों के लिए AI-संचालित संचालन।',
-  address: 'वैश्विक संचालन',
-  dpoEmail: 'saqynrabt@gmail.com',
-  companyTitle: 'कंपनी',
-  legalTitle: 'कानूनी और अनुपालन',
-  backToTop: 'शीर्ष पर वापस जाएँ',
 },
 };
 

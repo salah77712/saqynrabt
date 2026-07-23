@@ -82,5 +82,6 @@ backend/scripts/**/*.js
 temp_files/
 .agents/
 .gemini/
-brain/
+# brain/ is the project source of truth — must be tracked
+# brain/
 

@@ -41,15 +41,15 @@ const trustCards: TrustCard[] = [
     icon: 'filetext',
     title: 'Privacy Policy',
     description: 'How we collect, use, and protect your personal information.',
-    href: '/legal/dpa',
-    badge: 'GDPR & Global Privacy',
+    href: '/legal/privacy',
+    badge: 'Qatar Law No. 13 of 2016',
   },
   {
     icon: 'shield',
     title: 'Terms of Service',
     description: 'Binding contract governing your use of our services.',
     href: '/terms-and-conditions',
-    badge: 'Global Terms of Service',
+    badge: 'Terms of Service',
   },
   {
     icon: 'lock',
@@ -74,14 +74,13 @@ href: '/legal/nda',
   },
   {
     icon: 'badgecheck',
-    title: 'Certifications & Audits',
-    description: 'Our ongoing compliance with international security and privacy standards.',
+    title: 'Security Practices',
+    description: 'We follow industry-standard security practices including encryption at rest and in transit, access controls, and regular audits of our infrastructure.',
     badges: [
-      { label: 'ISO 27001', status: 'in-progress' },
-      { label: 'SOC 2', status: 'in-progress' },
-      { label: 'Global Data Protection Registered', status: 'active' },
+      { label: 'AES-256 Encryption', status: 'active' },
+      { label: 'TLS 1.3', status: 'active' },
+      { label: 'Access Controls', status: 'active' },
     ],
-    actionLabel: 'Download Compliance Pack',
   },
 ];
 
@@ -96,11 +95,10 @@ export default function TrustPage() {
             Your Data, Our Responsibility.
           </h1>
           <p className="mt-4 text-lg text-surface/70 max-w-2xl mx-auto">
-            Built for Global Operations.
+            We take data protection and security seriously.
           </p>
           <p className="mt-3 text-sm text-surface/50 max-w-2xl mx-auto">
-            SAQYN RABT is committed to the highest standards of data protection, security, and
-            transparency, in full compliance with global data protection regulations and frameworks.
+            SAQYN RABT is committed to protecting your data. We follow industry best practices for security and privacy, and we are transparent about our current posture.
           </p>
         </div>
       </section>
@@ -136,24 +134,13 @@ export default function TrustPage() {
                         {card.badges.map((b, j) => (
                           <span
                             key={j}
-                            className={`text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full ${
-                              b.status === 'active'
-                                ? 'bg-surface text-accent'
-                                : 'bg-surface text-accent'
-                            }`}
+                            className="text-xs font-bold uppercase tracking-wider px-2 py-1 rounded-full bg-surface text-accent"
                           >
-                            {b.status === 'in-progress' ? <span className="inline-block w-2.5 h-2.5 border-2 border-accent border-t-transparent rounded-full animate-spin me-1" /> : <Check className="w-2.5 h-2.5 text-accent inline me-0.5" />}
+                            <Check className="w-2.5 h-2.5 text-accent inline me-0.5" />
                             {b.label}
                           </span>
                         ))}
                       </div>
-                      <button
-                        type="button"
-                        className="py-3 px-6 rounded-xl text-xs font-bold min-h-[44px] bg-primary text-primary hover:bg-primary transition-all hover:scale-[1.01] hover:shadow-md"
-                      >
-                        <Download className="w-4 h-4" />
-                        {card.actionLabel}
-                      </button>
                     </div>
                   ) : (
                     <Link

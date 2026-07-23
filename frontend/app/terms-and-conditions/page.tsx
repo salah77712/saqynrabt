@@ -91,7 +91,7 @@ You may cancel your subscription at any time through your dashboard settings. Se
 
 ## 8. Contact
 
-For questions about these Terms, please contact us at **saqynrabt@gmail.com**.`;
+For questions about these Terms, please contact us at **hello@saqynrabt.com**.`;
 
 export default function TermsPage() {
   return <LegalPage title="Terms of Service" content={content} />;

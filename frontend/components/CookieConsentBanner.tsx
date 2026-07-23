@@ -36,7 +36,8 @@ if (consent === 'accepted') {
 
 const recordConsentAudit = async (consent: 'accepted' | 'declined') => {
 try {
-  const token = window.Clerk ? await window.Clerk.session?.getToken() : null;
+  const clerk = (window as any).Clerk;
+  const token = clerk ? await clerk.session?.getToken() : null;
   await fetch('/api/audit/consent', {
   method: 'POST',
   headers: {

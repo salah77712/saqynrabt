@@ -25,17 +25,17 @@ const capabilityIcons: Record<string, React.ReactNode> = {
 
 const capabilities = {
   en: [
-    { icon: 'doc', title: 'PDF & Document Upload', desc: 'Upload your HR handbook, SOPs, and policies. The AI learns from them instantly.' },
-    { icon: 'search', title: 'RAG-Powered Q&A', desc: 'Employees ask questions in plain language, the AI finds the exact answer from your documents.' },
-    { icon: 'gap', title: 'Knowledge Gap Tracking', desc: 'See every question the AI couldn\'t answer — so you know exactly what documents to add.' },
+    { icon: 'doc', title: 'PDF & Document Upload', desc: 'Upload your HR handbook, SOPs, and policies. Your documents are uploaded and queued for indexing.' },
+    { icon: 'search', title: 'RAG-Powered Q&A', desc: 'Employees ask questions in plain language, the AI searches your uploaded documents to find relevant answers.' },
+    { icon: 'gap', title: 'Knowledge Gap Tracking', desc: 'See every question the AI couldn\'t answer — helps you know what documents to add.' },
     { icon: 'lock', title: 'Private & Isolated', desc: 'Your data never trains the model. It\'s locked to your company\'s knowledge base only.' },
     { icon: 'team', title: 'Employee Login & Roles', desc: 'Each employee has their own login. Admins manage access and document permissions.' },
     { icon: 'chart', title: 'Onboarding Accelerator', desc: 'New hires get instant answers to standard onboarding questions on day one.' },
   ],
   ar: [
-    { icon: 'doc', title: 'رفع PDF والمستندات', desc: 'ارفع دليل الموظفين وسياساتك. يتعلم الذكاء الاصطناعي منها فوراً.' },
-    { icon: 'search', title: 'أسئلة وأجوبة بتقنية RAG', desc: 'يسأل الموظفون بلغة بسيطة، ويجد الذكاء الاصطناعي الإجابة الدقيقة من مستنداتك.' },
-    { icon: 'gap', title: 'تتبع الفجوات المعرفية', desc: 'رؤية كل سؤال لم يتمكن الذكاء الاصطناعي من الإجابة عليه - لتعرف بالضبط أي المستندات تحتاج لإضافتها.' },
+    { icon: 'doc', title: 'رفع PDF والمستندات', desc: 'ارفع دليل الموظفين وسياساتك. مستنداتك مرفوعة وبانتظار الفهرسة.' },
+    { icon: 'search', title: 'أسئلة وأجوبة بتقنية RAG', desc: 'يسأل الموظفون بلغة بسيطة، ويبحث الذكاء الاصطناعي في مستنداتك للعثور على الإجابات المناسبة.' },
+    { icon: 'gap', title: 'تتبع الفجوات المعرفية', desc: 'رؤية كل سؤال لم يتمكن الذكاء الاصطناعي من الإجابة عليه - يساعدك على معرفة المستندات التي تحتاج لإضافتها.' },
     { icon: 'lock', title: 'خاص ومعزول', desc: 'بياناتك لا تدرب النموذج أبداً. مقفلة على قاعدة معرفة شركتك فقط.' },
     { icon: 'team', title: 'دخول الموظفين والأدوار', desc: 'لكل موظف دخول خاص. المدراء يديرون الوصول وصلاحيات المستندات.' },
     { icon: 'chart', title: 'مسرع التوظيف', desc: 'يحصل الموظفون الجدد على إجابات فورية لأسئلة التوظيف الأساسية من اليوم الأول.' },
@@ -140,7 +140,7 @@ export default function ChatbotPage() {
             {t({ en: 'Your Company Knowledge. Instantly Accessible by Your Team.', ar: 'معرفة شركتك. متاحة فوراً لفريقك.' })}
           </h1>
           <p className="mt-6 text-lg md:text-xl text-primary max-w-2xl mx-auto leading-relaxed font-medium animate-fadeIn" style={{ animationDelay: '0.2s' }}>
-            {t({ en: 'A private RAG-powered AI trained only on your HR policies, SOPs, and onboarding documents. Your employees get answers, not chatbots.', ar: 'ذكاء اصطناعي خاص بتقنية RAG مدرب فقط على سياسات الموارد البشرية وإجراءات التشغيل ومستندات التوظيف. موظفوك يحصلون على إجابات، ليس روبوتات محادثة.' })}
+            {t({ en: 'A private AI assistant for your team. Upload your company documents and let employees ask questions in plain language.', ar: 'مساعد ذكاء اصطناعي خاص لفريقك. ارفع مستندات شركتك ودع الموظفين يطرحون الأسئلة بلغة بسيطة.' })}
           </p>
           <div className="mt-10 flex flex-wrap gap-8 justify-center animate-fadeIn" style={{ animationDelay: '0.3s' }}>
             <button
@@ -182,38 +182,32 @@ export default function ChatbotPage() {
               </div>
             </div>
 
-            <div className="bg-surface rounded-xl border border-primary/10 p-8 space-y-4 animate-slideUp" style={{ animationDelay: '0.2s' }}>
-              <div className="flex items-center justify-between pb-4 border-b border-primary/10">
-                <span className="text-primary font-black text-base">
-                  {t({ en: 'Company Assistant', ar: 'مساعد الشركة' })}
-                </span>
-                <span className="text-xs bg-royal/10 text-royal font-semibold border border-royal/20 rounded-full px-3 py-1">
-                  {t({ en: 'Private', ar: 'خاص' })}
-                </span>
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <div className="self-end bg-primary text-surface text-sm px-4 py-2.5 rounded-xl rounded-be-sm max-w-[80%]">
-                  {t({ en: 'How many vacation days do I have left?', ar: 'كم يوم إجازة متبقي لدي؟' })}
+            <div className="bg-surface rounded-xl border border-primary/10 p-8 animate-slideUp" style={{ animationDelay: '0.2s' }}>
+              <h3 className="text-primary font-black text-base mb-6">
+                {t({ en: 'How It Works', ar: 'كيف يعمل' })}
+              </h3>
+              <div className="flex flex-col gap-6">
+                <div className="flex items-start gap-4">
+                  <span className="w-8 h-8 rounded-full bg-primary text-surface text-sm font-bold flex items-center justify-center shrink-0">1</span>
+                  <div>
+                    <p className="font-extrabold text-primary text-sm">{t({ en: 'Upload Documents', ar: 'ارفع المستندات' })}</p>
+                    <p className="text-primary text-xs mt-1 leading-relaxed">{t({ en: 'Upload your HR policies, SOPs, and onboarding materials. We support PDF, DOCX, and text files.', ar: 'ارفع سياسات الموارد البشرية وإجراءات التشغيل ومستندات التوظيف. ندعم PDF و DOCX والملفات النصية.' })}</p>
+                  </div>
                 </div>
-                <div className="self-start bg-surface text-primary text-sm px-4 py-2.5 rounded-xl rounded-bs-sm max-w-[85%]">
-                  {t({ en: 'Based on your profile, you have', ar: 'بناءً على ملفك، لديك' })} <strong>{t({ en: '14 days', ar: '14 يوماً' })}</strong> {t({ en: 'remaining this cycle. Your next accrual of 2.5 days is on August 1st.', ar: 'متبقية هذه الدورة. استحقاقك القادم 2.5 يوم في 1 أغسطس.' })}
+                <div className="flex items-start gap-4">
+                  <span className="w-8 h-8 rounded-full bg-primary text-surface text-sm font-bold flex items-center justify-center shrink-0">2</span>
+                  <div>
+                    <p className="font-extrabold text-primary text-sm">{t({ en: 'AI Indexes Content', ar: 'يفهرس الذكاء الاصطناعي المحتوى' })}</p>
+                    <p className="text-primary text-xs mt-1 leading-relaxed">{t({ en: 'Our system processes your documents so the AI can search them intelligently.', ar: 'يقوم نظامنا بمعالجة مستنداتك ليتمكن الذكاء الاصطناعي من البحث فيها بذكاء.' })}</p>
+                  </div>
                 </div>
-                <div className="self-end bg-primary text-surface text-sm px-4 py-2.5 rounded-xl rounded-be-sm max-w-[80%]">
-                  {t({ en: 'What\'s the SOP for reporting a maintenance issue?', ar: 'ما هو الإجراء المعياري للإبلاغ عن مشكلة صيانة؟' })}
+                <div className="flex items-start gap-4">
+                  <span className="w-8 h-8 rounded-full bg-primary text-surface text-sm font-bold flex items-center justify-center shrink-0">3</span>
+                  <div>
+                    <p className="font-extrabold text-primary text-sm">{t({ en: 'Employees Ask Questions', ar: 'يسأل الموظفون' })}</p>
+                    <p className="text-primary text-xs mt-1 leading-relaxed">{t({ en: 'Your team asks questions in plain language and gets answers sourced from your documents.', ar: 'فريقك يطرح الأسئلة بلغة بسيطة ويحصل على إجابات من مستنداتك.' })}</p>
+                  </div>
                 </div>
-                <div className="self-start bg-surface text-primary text-sm px-4 py-2.5 rounded-xl rounded-bs-sm max-w-[85%]">
-                  {t({ en: 'According to', ar: 'وفقاً لـ' })} <em>{t({ en: 'Operations Manual v3.2', ar: 'دليل العمليات الإصدار 3.2' })}</em>{t({ en: ', submit a ticket via the portal under', ar: '، أرسل تذكرة عبر البوابة تحت' })} <strong>{t({ en: 'Facilities → Maintenance', ar: 'المرافق ← الصيانة' })}</strong>. {t({ en: 'Urgent issues can be escalated directly to your floor supervisor.', ar: 'يمكن رفع المشكلات العاجلة مباشرة إلى مشرف الطابق.' })}
-                </div>
-                <div className="self-start bg-surface border border-dashed border-primary/20 text-primary text-xs px-4 py-2.5 rounded-xl max-w-[85%] italic">
-                  {t({ en: 'Sourced from: HR Handbook & Operations Manual', ar: 'المصدر: دليل الموارد البشرية ودليل العمليات' })}
-                </div>
-              </div>
-
-              <div className="pt-2 text-center">
-                <Link href="/dashboard/chat" className="text-xs text-accent font-bold hover:underline">
-                  {t({ en: 'View Full Chat Dashboard Demo →', ar: 'عرض عرض لوحة المحادثة الكامل ←' })}
-                </Link>
               </div>
             </div>
           </div>
@@ -228,7 +222,7 @@ export default function ChatbotPage() {
               {t({ en: 'Chatbot Pricing', ar: 'أسعار المساعد الذكي' })}
             </h2>
             <p className="text-primary font-medium">
-              {t({ en: 'All plans include private RAG setup, employee access, and your dedicated dashboard.', ar: 'جميع الخطط تشمل إعداد RAG خاص، وتجهيز الموظفين، ولوحة تحكم مخصصة.' })}
+              {t({ en: 'All plans include document upload, employee access, and your dedicated dashboard.', ar: 'جميع الخطط تشمل رفع المستندات، وتجهيز الموظفين، ولوحة تحكم مخصصة.' })}
             </p>
           </div>
 

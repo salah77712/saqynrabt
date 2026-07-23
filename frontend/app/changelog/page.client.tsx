@@ -13,20 +13,11 @@ export default function ChangelogPage() {
     {
       version: 'v1.2.0',
       date: 'July 4, 2026',
-      title: t({ en: 'Collapsible Sidebars & Limit Monitors', fr: 'Barres latÃ©rales repliables & Moniteurs de limites', ar: 'القوائم القابلة للطي ومراقبة حدود الاستهلاك', hi: 'à¤¬à¤à¤§à¤¨à¥à¤µà¤¾à¤²à¤¾ à¤¸à¤¾à¤à¤¡à¤¬à¤¾à¤° à¤à¤° à¤¸à¥à¤®à¤¾ à¤®à¥à¤¨à¤¿à¤à¤°' }),
+      title: t({ en: 'Collapsible Sidebars & Limit Monitors', ar: 'القوائم القابلة للطي ومراقبة حدود الاستهلاك' }),
       changes: [
-        t({ en: 'Implemented collapsible sidebar with icon-only hovers and tooltips.', fr: 'ImplÃ©mentation d\'une barre latÃ©rale repliable avec survol d\'icÃ´nes uniquement et infobulles.', ar: 'تنفيذ شريط جانبي قابل للطي مع تلميحات للأيقونات.', hi: 'à¤à¥à¤µà¤² à¤à¤à¤à¤¨ à¤¹à¥à¤µà¤° à¤à¤° à¤à¥à¤²à¤à¤¿à¤ªà¥à¤¸ à¤à¥ à¤¸à¤¾à¤¥ à¤¬à¤à¤§à¤¨à¥à¤µà¤¾à¤²à¤¾ à¤¸à¤¾à¤à¤¡à¤¬à¤¾à¤° à¤²à¤¾à¤à¥ à¤à¤¿à¤¯à¤¾ à¤à¤¯à¤¾à¥¤' }),
-        t({ en: 'Added settings progress bars for metered text, voice, and RAG usage.', fr: 'Ajout de barres de progression des paramÃ¨tres pour l\'utilisation du texte, de la voix et du RAG.', ar: 'إضافة أشرطة قياس الاستهلاك للنصوص، دقائق الصوت، وأسئلة الـ RAG.', hi: 'à¤®à¥à¤à¤°à¥à¤¡ à¤à¥à¤à¥à¤¸à¥à¤, à¤µà¥à¤¯à¤¸ à¤à¤° à¤à¤°à¤à¤à¥ à¤à¤ªà¤¯à¥à¤ à¤à¥ à¤²à¤¿à¤ à¤¸à¥à¤à¤¿à¤à¤ à¤ªà¥à¤°à¥à¤à¥à¤°à¥à¤¸ à¤¬à¤¾à¤° à¤à¥à¤¡à¤¼à¥ à¤à¤à¥¤' }),
-        t({ en: 'Integrated employee approvals capacity blocks.', fr: 'IntÃ©gration de blocs de capacitÃ© pour les approbations des employÃ©s.', ar: 'دمج التحقق من السعة والحد الأقصى للموافقة على الموظفين.', hi: 'à¤à¤à¥à¤à¥à¤¤ à¤à¤°à¥à¤®à¤à¤¾à¤°à¥ à¤à¤¨à¥à¤®à¥à¤¦à¤¨ à¤à¥à¤·à¤®à¤¤à¤¾ à¤¬à¥à¤²à¥à¤à¥¤' }),
-      ],
-    },
-    {
-      version: 'v1.1.0',
-      date: 'June 29, 2026',
-      title: t({ en: 'Stripe Webhooks & Overage Logs', fr: 'Webhooks Stripe & Journaux de dÃ©passement', ar: 'مدفوعات Stripe وسجلات التجاوز', hi: 'à¤¸à¥à¤à¥à¤°à¤¾à¤à¤ª à¤µà¥à¤¬à¤¹à¥à¤à¥à¤¸ à¤à¤° à¤à¤µà¤°à¤à¤ à¤²à¥à¤à¥à¤¸' }),
-      changes: [
-        t({ en: 'Configured automated Stripe Checkout triggers and billing callbacks.', fr: 'Configuration des dÃ©clencheurs Stripe Checkout automatisÃ©s et des rappels de facturation.', ar: 'تهيئة مدفوعات Stripe وبوابات التحقق التلقائي.', hi: 'à¤¸à¥à¤µà¤à¤¾à¤²à¤¿à¤¤ à¤¸à¥à¤à¥à¤°à¤¾à¤à¤ª à¤à¥à¤à¤à¤à¤ à¤à¥à¤°à¤¿à¤à¤° à¤à¤° à¤¬à¤¿à¤²à¤¿à¤à¤ à¤à¥à¤²à¤¬à¥à¤ à¤à¥à¤¨à¥à¤«à¤¼à¤¿à¤à¤° à¤à¤¿à¤ à¤à¤à¥¤' }),
-        t({ en: 'Added operational logs CSV exporters.', fr: 'Ajout d\'exportateurs CSV pour les journaux opÃ©rationnels.', ar: 'إضافة أدوات تصدير سجلات التشغيل بصيغة CSV.', hi: 'à¤ªà¤°à¤¿à¤à¤¾à¤²à¤¨ à¤²à¥à¤ à¤¸à¥à¤à¤¸à¤µà¥ à¤¨à¤¿à¤°à¥à¤¯à¤¾à¤¤à¤ à¤à¥à¤¡à¤¼à¥ à¤à¤à¥¤' }),
+        t({ en: 'Implemented collapsible sidebar with icon-only hovers and tooltips.', ar: 'تنفيذ شريط جانبي قابل للطي مع تلميحات للأيقونات.' }),
+        t({ en: 'Added settings progress bars for metered text, voice, and RAG usage.', ar: 'إضافة أشرطة قياس الاستهلاك للنصوص، دقائق الصوت، وأسئلة الـ RAG.' }),
+        t({ en: 'Integrated employee approvals capacity blocks.', ar: 'دمج التحقق من السعة والحد الأقصى للموافقة على الموظفين.' }),
       ],
     },
   ];
@@ -38,9 +29,9 @@ export default function ChangelogPage() {
       <main className="flex-1 max-w-3xl mx-auto py-24 px-6 w-full space-y-12 animate-fadeIn">
         {/* Header */}
         <div>
-          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Platform Updates', fr: 'Mises Ã  jour de la plateforme', ar: 'تحديثات المنصة', hi: 'à¤ªà¥à¤²à¥à¤à¤«à¤¼à¥à¤°à¥à¤® à¤à¤ªà¤¡à¥à¤' })}</span>
+          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Platform Updates', ar: 'تحديثات المنصة' })}</span>
           <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
-            {t({ en: 'System Changelog', fr: 'Journal des modifications du systÃ¨me', ar: 'سجل التغييرات وتحديثات النظام', hi: 'à¤¸à¤¿à¤¸à¥à¤à¤® à¤à¥à¤à¤à¤²à¥à¤' })}
+            {t({ en: 'System Changelog', ar: 'سجل التغييرات وتحديثات النظام' })}
           </h1>
           <p className="text-xs font-semibold text-primary mt-2">
             {t({ en: 'Follow our development path as we roll out new B2B private AI features.', fr: 'Suivez notre parcours de dÃ©veloppement alors que nous dÃ©ployons de nouvelles fonctionnalitÃ©s d\'IA privÃ©e B2B.', ar: 'تابع مسار التطوير الخاص بنا بينما نطلق ميزات الذكاء الاصطناعي الخاص بالشركات.', hi: 'à¤¹à¤®à¤¾à¤°à¥ à¤µà¤¿à¤à¤¾à¤¸ à¤ªà¤¥ à¤à¤¾ à¤à¤¨à¥à¤¸à¤°à¤£ à¤à¤°à¥à¤ à¤à¥à¤¯à¥à¤à¤à¤¿ à¤¹à¤® à¤¨à¤ à¤¬à¥2à¤¬à¥ à¤¨à¤¿à¤à¥ à¤à¤à¤ à¤¸à¥à¤µà¤¿à¤§à¤¾à¤à¤ à¤à¥ à¤ªà¥à¤¶ à¤à¤° à¤°à¤¹à¥ à¤¹à¥à¤à¥¤' })}

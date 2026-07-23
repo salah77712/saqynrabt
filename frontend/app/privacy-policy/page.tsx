@@ -19,7 +19,7 @@ This Privacy Policy applies to:
 
 **This policy does not apply to the practices of third parties that we do not own or control.**
 
-If you have any questions about this policy, you may contact us at **saqynrabt@gmail.com**.
+If you have any questions about this policy, you may contact us at **hello@saqynrabt.com**.
 
 ---
 
@@ -30,7 +30,7 @@ If you have any questions about this policy, you may contact us at **saqynrabt@g
 When you create an account, use our services, or communicate with us, we collect:
 - **Account Information:** Full name, email address, phone number, company name, physical address, and employee names.
 - **Business Content:** Company policies, standard operating procedures (SOPs), HR documents, and uploaded PDF files that you choose to ingest into our RAG system.
-- **Payment Information:** We process payments through Stripe. We do not store full credit card numbers.
+- **Payment Information:** If you use our paid services, payment details are collected by our payment processor. We do not store full credit card numbers. *(Note: Self-serve payments are currently disabled. All subscriptions are managed via manual onboarding.)*
 
 ### 2.2 Automatically Collected Information
 
@@ -77,13 +77,13 @@ Under **Law No. 13 of 2016 on the Protection of Personal Data**, you have the fo
 - **Right to Data Portability:** Request a copy of your data in a structured, machine-readable format.
 - **Right to Object:** Object to the processing of your data for direct marketing purposes.
 
-To exercise any of these rights, contact us at **saqynrabt@gmail.com**.
+To exercise any of these rights, contact us at **hello@saqynrabt.com**.
 
 ---
 
 ## 6. Contact Information
 
-- **General Inquiries:** saqynrabt@gmail.com
+- **General Inquiries:** hello@saqynrabt.com
 - **Registered Address:** State of Qatar (available upon request)`;
 
 export default function PrivacyPolicyPage() {

@@ -1,25 +1,26 @@
 ﻿'use client';
 
 import React, { useState, useCallback } from 'react';
+import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../providers';
 import { Card } from '@/components/shadcn/card';
 import { Button } from '@/components/shadcn/button';
-import { Toast } from '../../../components/ui/Toast';
+import { useGlobalToast } from '../../../lib/toast';
 
 type Format = 'PDF' | 'CSV' | 'EXCEL';
 
 export default function ReportsPage() {
 const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
-const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
+const { getToken } = useAuth();
+const { addToast } = useGlobalToast();
 const [loading, setLoading] = useState<Format | null>(null);
 
 const handleExport = useCallback(async (format: Format) => {
 setLoading(format);
-setToast(null);
 
 try {
-const token = await window.Clerk?.session?.getToken();
+const token = await getToken();
 const res = await fetch(`/api/export-logs?format=${format?.toLowerCase()}`, {
 method: 'GET',
 headers: token ? { Authorization: `Bearer ${token}` } : undefined,
@@ -30,7 +31,7 @@ const contentType = res.headers.get('content-type') || '';
 if (contentType.includes('application/json')) {
 const data = await res.json();
 if (!res.ok) throw new Error(data.message || 'Export failed');
-setToast({ message: data.message, type: 'success' });
+addToast(data.message, 'success');
 } else {
 const blob = await res.blob();
 const url = URL.createObjectURL(blob);
@@ -41,15 +42,15 @@ document.body.appendChild(a);
 a.click();
 a.remove();
 URL.revokeObjectURL(url);
-setToast({ message: t({ en: 'File downloaded successfully.', ar: 'تم تنزيل الملف بنجاح.' }), type: 'success' });
+addToast(t({ en: 'File downloaded successfully.', ar: 'تم تنزيل الملف بنجاح.' }), 'success');
 }
 } catch (err: unknown) {
 const message = err instanceof Error ? err.message : 'Export failed';
-setToast({ message, type: 'error' });
+addToast(message, 'error');
 } finally {
 setLoading(null);
 }
-}, [t]);
+}, [addToast, getToken, t]);
 
 return (
 <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
@@ -96,9 +97,7 @@ return (
 </Card>
 </div>
 
-{toast && (
-<Toast message={toast.message} type={toast.type} onClose={() => setToast(null)} />
-)}
+
 </main>
 );
 }

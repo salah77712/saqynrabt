@@ -2,6 +2,7 @@
 
 import React, { useState, useCallback } from 'react';
 import { Search } from 'lucide-react';
+import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../providers';
 import { Card } from '@/components/shadcn/card';
 import { Button } from '@/components/shadcn/button';
@@ -53,9 +54,11 @@ const filteredActive = active.filter(m =>
   m.role.toLowerCase().includes(q)
 );
 
+const { getToken } = useAuth();
+
 const handleAction = useCallback(async (id: string, action: 'approve' | 'suspend' | 'toggle-admin', currentRole?: string) => {
 try {
-const token = await (window as any).Clerk?.session?.getToken();
+const token = await getToken();
 const buildHeaders = (): Record<string, string> => {
 const h: Record<string, string> = { 'Content-Type': 'application/json' };
 if (token) h['Authorization'] = `Bearer ${token}`;
@@ -99,7 +102,7 @@ const validateInvite = () => {
     setInviteSubmitting(true);
 
     try {
-      const token = await (window as any).Clerk?.session?.getToken();
+      const token = await getToken();
       const headers: Record<string, string> = { 'Content-Type': 'application/json' };
       if (token) headers['Authorization'] = `Bearer ${token}`;
       const res = await fetch('/api/approvals', {

@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@clerk/nextjs';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useLocale } from '../../providers';
@@ -107,9 +108,11 @@ const [submitting, setSubmitting] = useState(false);
 const [accepted, setAccepted] = useState(false);
 const [lastUpdated, setLastUpdated] = useState<number | null>(null);
 
+const { getToken } = useAuth();
+
 const checkStatus = async () => {
 try {
-const token = await window.Clerk?.session?.getToken();
+const token = await getToken();
 const res = await fetch('/api/legal/check-acceptance', {
 headers: { Authorization: `Bearer ${token}` },
 });
@@ -138,7 +141,7 @@ const handleAccept = async () => {
 setSubmitting(true);
 setError('');
 try {
-const token = await window.Clerk?.session?.getToken();
+const token = await getToken();
 
 if (status?.tos.needsAccept) {
 const tosRes = await fetch('/api/legal/accept', {

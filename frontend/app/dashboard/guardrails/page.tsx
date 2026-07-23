@@ -59,7 +59,7 @@ setSettings(prev => ({ ...prev, [key]: !prev[key] }));
 
 const handleSave = (e: React.FormEvent) => {
 e.preventDefault();
-addToast('Guardrails configurations updated successfully!', 'success');
+addToast(t({ en: 'Guardrails are configured system-wide. Contact your admin for changes.', ar: 'تم تكوين جدران الحماية على مستوى النظام. اتصل بالمسؤول لإجراء التغييرات.' }), 'info');
 };
 
 return (

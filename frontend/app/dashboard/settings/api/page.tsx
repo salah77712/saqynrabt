@@ -81,7 +81,7 @@ export default function ApiKeysSettingsPage() {
       return;
     }
 
-    apiFetch(`?id=${id}`, { method: 'DELETE' })
+    apiFetch(`/${id}`, { method: 'DELETE' })
       .then(res => res.json())
       .then(() => {
         setKeys(prev => prev.filter(k => k.id !== id));

@@ -11,25 +11,25 @@ export default function AboutPage() {
   const ta = (obj: Record<string, string[]>) => obj[locale] || obj.en || [];
 
   const content = {
-    eyebrow: { en: 'Our Mission', ar: 'مهمتنا' },
-    title: { en: 'Built for the people answering calls and running operations.', ar: 'مبني للأشخاص الذين يردون على المكالمات ويديرون العمليات.' },
-    storyTitle: { en: 'The Story & Mission', ar: 'القصة والمهمة' },
+    eyebrow: { en: 'About Us', ar: 'من نحن' },
+    title: { en: 'We are building the bridge between your callers and your team.', ar: 'نبني الجسر بين متصليك وفريقك.' },
+    storyTitle: { en: 'Our Story', ar: 'قصتنا' },
     storyBody: {
       en: [
-        'SAQYN RABT was born from a fundamental truth we encountered across dozens of industries: businesses are held together by people answering phones, routing requests, and keeping operations moving — yet the tools available to them were built for massive call centres, not real-world teams. We set out to change that. Our mission is to equip every front desk, service desk, and operations team with enterprise-grade AI that feels personal, not impersonal. We bridge the gap between human judgment and machine efficiency, so your people can focus on what matters instead of repeating the same answers all day.',
-        'On the engineering side, we are a B2B platform first. Every feature we build starts with a question from a real operations manager or a front-desk lead. Our AI stack is designed for integration — it plugs into existing CRMs, ticketing systems, and telephony infrastructure without requiring a rip-and-replace. We prioritise latency, reliability, and data residency above all else, because we know that in B2B operations, a five-second delay or a misrouted inquiry can cost a deal or frustrate a client. Our inference layer runs on dedicated infrastructure with regional failover, and our voice pipelines are tuned for the dialects, cadences, and professional contexts our customers actually work in.',
-        'Operational excellence is not a buzzword for us — it is the metric we wake up to every morning. From automated quality assurance on every AI interaction to real-time dashboards that surface bottlenecks before they become emergencies, we obsess over the details that keep businesses running smoothly. Our support team works alongside customers during onboarding, not after. Our SLAs reflect real-world uptime requirements. And our product roadmap is public and driven by customer feedback, not by what is trendy. SAQYN RABT exists to make your operations invisible — so your team can be visible, responsive, and extraordinary.',
+        'SAQYN RABT is a Qatar-based B2B SaaS company building AI-powered tools for front desks, service teams, and operations staff. We started with a simple observation: businesses of all sizes rely on people answering phones and routing requests, but the software available to them was built for large call centres, not real-world teams.',
+        'Our platform connects external callers — customers, patients, tenants, leads, guests — directly to your internal workforce. AI voice captures the request, creates a workflow, and assigns it to the right person. No missed calls, no manual entry, no spreadsheets.',
+        'We are currently in pilot phase, working with early customers across Qatar and the region to refine the product. Our team is small, focused, and hands-on. Every customer we onboard helps us build a better product.',
       ],
       ar: [
-        'وُلدت SAQYN RABT من حقيقة أساسية لمسناها عبر عشرات القطاعات: الشركات تُدار بأشخاص يردون على الهواتف ويوجّهون الطلبات ويُبقون العمليات قيد التشغيل — لكن الأدوات المتاحة لهم صُممت لمراكات الاتصال الضخمة، وليس للفرق الحقيقية. قررنا تغيير ذلك. مهمتنا هي تجهيز كل مكتب استقبال وفريق خدمات وعمليات بأدوات ذكاء اصطناعي على مستوى المؤسسات لكنها تشعر بأنها شخصية، لا آلية. نسد الفجوة بين الحكم البشري والكفاءة الآلية، ليتمكن فريقك من التركيز على ما يهم حقاً بدلاً من تكرار نفس الإجابات طوال اليوم.',
-        'على صعيد الهندسة، نحن منصة B2B أولاً. كل ميزة نبنيها تبدأ بسؤال من مدير عمليات حقيقي أو رئيس مكتب استقبال. حزمة الذكاء الاصطناعي لدينا صُممت للتكامل — تتصل بأنظمة CRM وأنظمة التذاكر والبنية التحتية للاتصالات الهاتفية دون الحاجة لاستبدال أي نظام قائم. نعطي الأولوية القصوى لسرعة الاستجابة والموثوقية ومكان تخزين البيانات، لأننا نعلم أنه في عمليات B2B، تأخير خمس ثوانٍ أو توجيه خاطئ لاستفسار قد يكلف صفقة أو يُحبط عميلاً. طبقة الاستدلال لدينا تعمل على بنية تحتية مخصصة مع تجاوز الفشل إقليمياً، وخطوط الصوت لدينا مضبوطة على اللهجات والإيقاعات والسياقات المهنية التي يعمل بها عملاؤنا فعلاً.',
-        'التميز التشغيلي ليس مجرد شعار بالنسبة لنا — بل هو المؤشر الذي نستيقظ عليه كل صباح. من ضمان الجودة الآلي لكل تفاعل ذكي إلى لوحات القيادة الفورية التي تكشف الاختناقات قبل أن تتحول إلى أزمات، نولع بالتفاصيل التي تُبقي الأعمال تعمل بسلاسة. فريق الدعم لدينا يعمل جنباً إلى جنب مع العملاء أثناء مرحلة الإعداد، وليس بعدها. اتفاقيات مستوى الخدمة لدينا تعكس متطلبات وقت التشغيل الفعلية. وخارطة طريق منتجنا مفتوحة ويقودها ملاحظات العملاء، وليس ما هو رائج. SAQYN RABT موجودة لجعل عملياتك غير مرئية — ليكون فريقك مرئياً ومتجاوباً واستثنائياً.',
+        'SAQYN RABT هي شركة B2B SaaS مقرها قطر، تبني أدوات مدعومة بالذكاء الاصطناعي لمكاتب الاستقبال وفرق الخدمة والعمليات. بدأنا من ملاحظة بسيطة: الشركات بجميع أحجامها تعتمد على أشخاص يردون على الهواتف ويوجهون الطلبات، لكن البرامج المتاحة لهم صُممت لمراكز اتصال ضخمة، وليس للفرق الحقيقية.',
+        'منصتنا تربط المتصلين الخارجيين — العملاء والمرضى والمستأجرين والعملاء المحتملين والضيوف — مباشرة بقوتك العاملة الداخلية. يلتقط الذكاء الصوتي الطلب، وينشئ سير عمل، ويُسند المهمة للشخص المناسب. لا مكالمات ضائعة، لا إدخال يدوي، لا جداول بيانات.',
+        'نحن حالياً في المرحلة التجريبية، نعمل مع عملاء أوائل في قطر والمنطقة لتحسين المنتج. فريقنا صغير ومركز ويعمل عن كثب مع كل عميل.',
       ],
     },
-    badgeSecure: { en: 'Secure Encryption', ar: 'تشفير آمن' },
-    badgePrivate: { en: 'Strict Data Privacy', ar: 'خصوصية بيانات صارمة' },
-    badgeLive: { en: 'Available 24/7', ar: 'متاح 24/7' },
-    badgeLocal: { en: 'Global Operations', ar: 'عمليات عالمية' },
+    badgeSecure: { en: 'Qatar-Based', ar: 'مقرها قطر' },
+    badgePrivate: { en: 'B2B SaaS Platform', ar: 'منصة B2B سحابية' },
+    badgeLive: { en: 'Pilot Phase', ar: 'مرحلة تجريبية' },
+    badgeLocal: { en: 'Remote-First Team', ar: 'فريق عن بعد' },
   };
 
   return (

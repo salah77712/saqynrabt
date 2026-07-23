@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useState } from 'react';
+import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../providers';
 import { Card } from '@/components/shadcn/card';
 import { Button } from '@/components/shadcn/button';
@@ -24,12 +25,15 @@ const [confirmDelete, setConfirmDelete] = useState(false);
 const [deleting, setDeleting] = useState(false);
 const [deletionConfirmed, setDeletionConfirmed] = useState(false);
 
+const { getToken } = useAuth();
+
 const handleExport = async () => {
 setExporting(true);
 setExportError('');
 try {
+const token = await getToken();
 const res = await fetch('/api/privacy/export', {
-headers: { Authorization: `Bearer ${await window.Clerk?.session?.getToken()}` },
+headers: { Authorization: `Bearer ${token}` },
 });
 if (!res.ok) {
 const err = await res.json();
@@ -54,10 +58,11 @@ const handleDeleteRequest = async () => {
 if (!confirmDelete) return;
 setDeleting(true);
 try {
+const token = await getToken();
 const res = await fetch('/api/privacy/delete', {
 method: 'POST',
 headers: {
-Authorization: `Bearer ${await window.Clerk?.session?.getToken()}`,
+Authorization: `Bearer ${token}`,
 'Content-Type': 'application/json',
 },
 body: JSON.stringify({ confirm: true }),

@@ -47,9 +47,9 @@ export default function DashboardOverviewPage() {
   const voiceUsagePct = usage ? (usage.voice_minutes_used / (usage.voice_minutes_limit || 1)) * 100 : 0;
 
   const metrics = [
-    { label: t('Questions Answered Today', 'الأسئلة المجابة اليوم'), value: usage?.questions_used ?? 0, change: usage && usage.questions_used > 0 ? `â ${Math.round(usage.questions_used / 100)}% today` : t('No activity yet', 'لا يوجد نشاط بعد'), isPositive: true },
+    { label: t('Questions Answered Today', 'الأسئلة المجابة اليوم'), value: usage?.questions_used ?? 0, change: usage && usage.questions_used > 0 ? `\u2191 ${Math.round(usage.questions_used / 100)}% today` : t('No activity yet', 'لا يوجد نشاط بعد'), isPositive: true },
     { label: t('Employees Active', 'الموظفون النشطون'), value: usage?.employees_used ?? 0, change: t('Active members', 'أعضاء نشطون'), isPositive: true },
-    { label: t('Quota Consumption', 'استهلاك الكوتا'), value: `${Math.round(quotaUsagePct)}%`, change: quotaUsagePct > 80 ? t('High load â near limit', 'حمل مرتفع â بالقرب من الحد') : t('Optimal load', 'حمل مثالي'), isPositive: quotaUsagePct <= 80 },
+    { label: t('Quota Consumption', 'استهلاك الكوتا'), value: `${Math.round(quotaUsagePct)}%`, change: quotaUsagePct > 80 ? t('High load — near limit', 'حمل مرتفع — بالقرب من الحد') : t('Optimal load', 'حمل مثالي'), isPositive: quotaUsagePct <= 80 },
     { label: t('Voice Minutes', 'دقائق الصوت'), value: `${Math.round(voiceUsagePct)}%`, change: voiceUsagePct > 80 ? t('High usage', 'استخدام مرتفع') : t('Normal rate', 'معدل طبيعي'), isPositive: voiceUsagePct <= 80 },
   ];
 

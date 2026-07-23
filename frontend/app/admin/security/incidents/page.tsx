@@ -1,6 +1,7 @@
 ﻿'use client';
 
 import { useState, useEffect } from 'react';
+import { useAuth } from '@clerk/nextjs';
 import { useLocale } from '../../../providers';
 
 function ShieldSvg() { return <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>; }
@@ -46,6 +47,7 @@ const statusColors: Record<string, string> = {
 export default function AdminIncidentsPage() {
 const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+const { getToken } = useAuth();
 const [incidents, setIncidents] = useState<Incident[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -71,8 +73,9 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
       const params = new URLSearchParams();
       if (status) params.set('status', status);
       if (severity) params.set('severity', severity);
+      const token = await getToken();
       const res = await fetch(`/api/admin/incidents?${params}`, {
-        headers: { Authorization: `Bearer ${await window.Clerk?.session?.getToken()}` },
+        headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to fetch incidents');
       const data = await res.json();
@@ -86,10 +89,11 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
 
   const handleCreate = async () => {
     try {
+      const token = await getToken();
       const res = await fetch('/api/admin/incidents', {
         method: 'POST',
         headers: {
-          Authorization: `Bearer ${await window.Clerk?.session?.getToken()}`,
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(newIncident),
@@ -105,10 +109,11 @@ const [incidents, setIncidents] = useState<Incident[]>([]);
 
   const handleStatusUpdate = async (id: string, status: string) => {
     try {
+      const token = await getToken();
       await fetch(`/api/admin/incidents/${id}`, {
         method: 'PATCH',
         headers: {
-          Authorization: `Bearer ${await window.Clerk?.session?.getToken()}`,
+          Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ status, timelineAction: `Status changed to ${status}` }),

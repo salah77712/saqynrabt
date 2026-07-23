@@ -45,6 +45,7 @@ const fetchGaps = useCallback(async () => {
 try {
 setGapsError(false);
 const res = await fetch('/api/knowledge-gaps');
+if (!res.ok) throw new Error('Failed to fetch gaps');
 const data = await res.json();
 if (Array.isArray(data)) {
 setGaps(data);
@@ -53,7 +54,8 @@ setGaps(data.gaps);
 } else {
 setGaps([]);
 }
-} catch {
+} catch (err) {
+console.warn('Failed to fetch knowledge gaps:', err);
 setGapsError(true);
 setGaps([]);
 } finally {
@@ -87,10 +89,8 @@ scrollToBottom();
 }, [messages, scrollToBottom]);
 
 const handleRefresh = useCallback(async () => {
-return new Promise<void>((resolve) => {
-setTimeout(resolve, 800);
-});
-}, []);
+await fetchGaps();
+}, [fetchGaps]);
 
 const copyToClipboard = useCallback((text: string) => {
 navigator.clipboard.writeText(text).then(() => {

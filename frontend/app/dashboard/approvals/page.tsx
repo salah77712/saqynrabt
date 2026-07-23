@@ -44,15 +44,7 @@ setMaxEmployees(entData.max_employees);
 }
 setLastUpdated(Date.now());
 })
-.catch(err => {
-console.warn('Failed to fetch data, loading mock items:', err);
-setEmployees([
-{ clerk_user_id: 'u-1', email: 'ahmed@alsafa.qa', name: 'Ahmed Al-Thani', status: 'pending', role: 'member' },
-{ clerk_user_id: 'u-2', email: 'fatima@alsafa.qa', name: 'Fatima Al-Harazi', status: 'pending', role: 'member' },
-{ clerk_user_id: 'u-3', email: 'sara@alsafa.qa', name: 'Sara Al-Mansoori', status: 'active', role: 'member' },
-{ clerk_user_id: 'u-4', email: 'john@alsafa.qa', name: 'John Doe', status: 'active', role: 'member' },
-]);
-setMaxEmployees(3);
+.catch(() => {
 setLastUpdated(Date.now());
 })
 .finally(() => setLoading(false));
@@ -92,8 +84,7 @@ return () => clearInterval(interval);
       if (err.message === 'LIMIT_REACHED') {
         addToast(t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰ Ù„Ù„Ù…ÙˆØ¸ÙÙŠÙ†.' }), 'warning');
       } else {
-        console.error('Approve failed, simulating fallback:', err);
-        setEmployees(prev => prev.map(e => e.clerk_user_id === clerkUserId ? { ...e, status: 'active' } : e));
+        addToast(t({ en: 'Approval failed. Please try again.', ar: 'ï»¿ï»£ïº¤ï»´ ïºŽïºŽïº‘ï»§ïº¤.' }), 'error');
       }
     })
     .finally(() => setApprovingId(null));

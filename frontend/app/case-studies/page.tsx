@@ -99,17 +99,16 @@ export default function CaseStudiesPage() {
 
       <section className="max-w-7xl mx-auto px-6 pt-20 pb-10 text-center">
         <span className="inline-block bg-accent/10 text-accent text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-          {t({ en: 'Case Studies', ar: 'دراسات الحالة' })}
+          {t({ en: 'Use Cases', ar: 'حالات الاستخدام' })}
         </span>
         <h1 className="text-4xl md:text-5xl font-extrabold text-primary leading-tight max-w-4xl mx-auto">
-          {t({ en: 'Real Results from Real Businesses', ar: 'نتائج حقيقية من شركات حقيقية' })}
+          {t({ en: 'Example Use Cases', ar: 'حالات استخدام مثال' })}
         </h1>
         <p className="mt-4 text-base md:text-lg text-primary/60 max-w-2xl mx-auto font-medium">
-          {t({ en: 'From the Middle East to the world â swipe to see how teams use SAQYN RABT to transform their operations.', ar: 'من الشرق الأوسط إلى العالم â اسحب لمشاهدة كيف تستخدم الفرق SAQYN RABT لتحويل عملياتهم.' })}
+          {t({ en: 'These are illustrative scenarios of how SAQYN RABT could be deployed across different industries. We are currently in pilot phase with early customers.', ar: 'هذه سيناريوهات توضيحية لكيفية استخدام SAQYN RABT عبر القطاعات المختلفة. نحن حالياً في المرحلة التجريبية.' })}
         </p>
       </section>
 
-      {/* Swipeable Premium Showcase Slider (Vector Cards, No Images) */}
       <section className="py-12 bg-surface overflow-hidden select-none">
         <div 
           className="relative max-w-6xl mx-auto px-6 flex flex-col items-center"
@@ -121,7 +120,6 @@ export default function CaseStudiesPage() {
           onMouseUp={handleEnd}
           onMouseLeave={handleEnd}
         >
-          {/* Main Cards Row */}
           <div className="relative w-full flex items-center justify-center min-h-[500px]">
             <div className="flex gap-8 items-center justify-center w-full max-w-4xl transition-all duration-500 ease-out">
               {list.map((item, idx) => {
@@ -130,7 +128,6 @@ export default function CaseStudiesPage() {
                 const isPrev = idx === (currentIndex - 1 + list.length) % list.length;
                 const isNext = idx === (currentIndex + 1) % list.length;
 
-                // Hidden if outside focus group
                 if (!isActive && !isPrev && !isNext) return null;
 
                 const IconComponent = iconMap[item.iconName] || Briefcase;
@@ -150,12 +147,10 @@ export default function CaseStudiesPage() {
                         : 'bg-surface text-primary border-primary/10 scale-90 opacity-40 filter blur-[1px] z-10 hover:opacity-60'
                     }`}
                   >
-                    {/* Premium Sweep Shine (Active Card Only) */}
                     {isActive && sweepActive && (
-                      <div className="absolute inset-0 z-20 pointer-events-none     skew-x-12 translate-x-[-100%] animate-[shineSweep_0.8s_ease-out]" />
+                      <div className="absolute inset-0 z-20 pointer-events-none skew-x-12 translate-x-[-100%] animate-[shineSweep_0.8s_ease-out]" />
                     )}
 
-                    {/* Card Header: Industry & Icon */}
                     <div className="flex items-start justify-between w-full z-25">
                       <div className="flex flex-col gap-1.5">
                         <span className={`text-xs font-black uppercase tracking-widest ${isActive ? 'text-accent' : 'text-primary/40'}`}>
@@ -167,7 +162,6 @@ export default function CaseStudiesPage() {
                         </div>
                       </div>
                       
-                      {/* Stylized Circular Icon Container */}
                       <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-transform duration-300 ${
                         isActive 
                           ? 'bg-accent/15 text-accent scale-110 shadow-[0_0_20px_color-mix(in_srgb,var(--color-accent)_20%,_transparent)] animate-pulse' 
@@ -177,9 +171,7 @@ export default function CaseStudiesPage() {
                       </div>
                     </div>
 
-                    {/* Card Content Overlay */}
                     <div className="flex flex-col justify-end mt-auto z-25">
-                      {/* Flag & Location Header */}
                       <div className="flex items-center gap-3 mb-3">
                         <span className="text-xl">{item.flag}</span>
                         <span className={`text-xs tracking-widest uppercase font-black ${isActive ? 'text-surface/60' : 'text-primary/40'}`}>
@@ -195,7 +187,6 @@ export default function CaseStudiesPage() {
                         {item.result}
                       </p>
 
-                      {/* Explore Link (Animated Capsule Button) */}
                       <Link
                         href={`/case-studies/${item.slug}`}
                         className={`w-full flex items-center justify-between min-h-[44px] font-bold text-xs px-6 py-3 rounded-xl border transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 ${
@@ -204,9 +195,9 @@ export default function CaseStudiesPage() {
                             : 'bg-surface hover:bg-primary text-primary border-primary/10'
                         }`}
                       >
-                        <span>{t({ en: 'Explore Case Study', ar: 'استعرض دراسة الحالة' })}</span>
+                        <span>{t({ en: 'View Details', ar: 'عرض التفاصيل' })}</span>
                         <span className="transition-transform duration-300 group-hover:translate-x-1">
-                          {locale === 'ar' ? 'â' : 'â'}
+                          {locale === 'ar' ? '\u2190' : '\u2192'}
                         </span>
                       </Link>
                     </div>
@@ -216,17 +207,15 @@ export default function CaseStudiesPage() {
             </div>
           </div>
 
-          {/* Slider Controllers & Indicators */}
           <div className="flex items-center gap-8 mt-10">
             <button
               onClick={handlePrev}
               className="w-12 h-12 min-h-0 bg-surface hover:bg-primary border border-primary/10 text-primary flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
-              aria-label="Previous Study"
+              aria-label="Previous"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             
-            {/* Dots */}
             <div className="flex items-center gap-3 max-w-xs md:max-w-md overflow-x-auto py-2">
               {list.map((_, i) => (
                 <button
@@ -246,22 +235,21 @@ export default function CaseStudiesPage() {
             <button
               onClick={handleNext}
               className="w-12 h-12 min-h-0 bg-surface hover:bg-primary border border-primary/10 text-primary flex items-center justify-center rounded-full shadow-sm hover:shadow active:scale-95 transition-all"
-              aria-label="Next Study"
+              aria-label="Next"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* Detailed Metrics Panel of Active Card */}
-<div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
-<div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 shadow-card">
+        <div className="max-w-4xl mx-auto px-6 mt-12 animate-fadeIn" key={currentIndex}>
+          <div className="bg-background border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col md:flex-row items-center justify-between gap-8 shadow-card">
             <div className="flex-1">
               <span className="text-xs font-black uppercase tracking-widest text-primary/60 mb-1 block">
                 {list[currentIndex].meta}
               </span>
               <h3 className="text-lg font-extrabold text-primary">
-                {locale === 'ar' ? 'المقاييس الرئيسية المحققة' : 'Key Metrics Achieved'}
+                {locale === 'ar' ? 'المقاييس الرئيسية' : 'Key Metrics'}
               </h3>
             </div>
             <div className="flex flex-wrap gap-8 justify-end">
@@ -279,10 +267,10 @@ export default function CaseStudiesPage() {
       <section className="py-20 bg-surface">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-3xl font-extrabold text-primary mb-4">
-            {t({ en: 'Be the Next Success Story', ar: 'كن قصة النجاح التالية' })}
+            {t({ en: 'Want to Be One of Our Pilot Partners?', ar: 'هل تريد أن تكون أحد شركائنا التجريبيين؟' })}
           </h2>
           <p className="text-primary/60 font-medium mb-8">
-            {t({ en: 'Book a demo and see how SAQYN RABT can transform your operations.', ar: 'احجز عرضاً توضيحياً وشاهد كيف يمكن لـ SAQYN RABT تحويل عملياتك.' })}
+            {t({ en: 'Book a demo to discuss how SAQYN RABT can work for your business.', ar: 'احجز عرضاً توضيحياً لمناقشة كيف يمكن لـ SAQYN RABT أن تعمل لصالح عملك.' })}
           </p>
           <a
             href={process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo'}

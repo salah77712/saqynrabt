@@ -17,11 +17,7 @@ const { locale } = useLocale();
 const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
 const [isOpen, setIsOpen] = useState(false);
-const [list, setList] = useState<Notification[]>([
-{ id: '1', title: 'New Employee registration request', titleAr: 'Ø·Ù„Ø¨ ØªØ³Ø¬ÙŠÙ„ Ù…ÙˆØ¸Ù Ø¬Ø¯ÙŠØ¯', time: '5m', read: false },
-{ id: '2', title: 'Overage limit reached 80%', titleAr: 'ØªÙ… Ø¨Ù„ÙˆØº 80% Ù…Ù† Ø­Ø¯ Ø§Ù„Ø¨Ø§Ù‚Ø©', time: '1h', read: false },
-{ id: '3', title: 'Late checkout query resolved', titleAr: 'ØªÙ… Ø­Ù„ Ø§Ø³ØªÙØ³Ø§Ø± Ø§Ù„Ù…ØºØ§Ø¯Ø±Ø© Ø§Ù„Ù…ØªØ£Ø®Ø±Ø©', time: '3h', read: true },
-]);
+const [list, setList] = useState<Notification[]>([]);
 
 const toggleOpen = () => setIsOpen((prev) => !prev);
 

@@ -11,10 +11,10 @@ export default function AutomationHelpPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const sidebarLinks = [
-    { name: { en: 'Getting Started', fr: 'Pour commencer', ar: 'دليل البداية', hi: 'à¤¶à¥à¤°à¥à¤à¤¤ à¤à¤°à¤¨à¤¾' }, path: '/help/getting-started' },
-    { name: { en: 'Call Automation', fr: 'Automatisation des appels', ar: 'أتمتة المكالمات', hi: 'à¤à¥à¤² à¤à¤à¥à¤®à¥à¤¶à¤¨' }, path: '/help/automation' },
-    { name: { en: 'RAG Chatbot Help', fr: 'Aide au chatbot RAG', ar: 'مساعدة المساعد الذكي', hi: 'à¤à¤°à¤à¤à¥ à¤à¥à¤à¤¬à¥à¤ à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾' }, path: '/help/chatbot' },
-    { name: { en: 'Pricing & Billing', fr: 'Tarification & Facturation', ar: 'الأسعار والفوترة', hi: 'à¤®à¥à¤²à¥à¤¯ à¤¨à¤¿à¤°à¥à¤§à¤¾à¤°à¤£ à¤à¤° à¤¬à¤¿à¤²à¤¿à¤à¤' }, path: '/help/billing' },
+    { name: { en: 'Getting Started', ar: 'دليل البداية' }, path: '/help/getting-started' },
+    { name: { en: 'Call Automation', ar: 'أتمتة المكالمات' }, path: '/help/automation' },
+    { name: { en: 'RAG Chatbot Help', ar: 'مساعدة المساعد الذكي' }, path: '/help/chatbot' },
+    { name: { en: 'Pricing & Billing', ar: 'الأسعار والفوترة' }, path: '/help/billing' },
   ];
 
   return (
@@ -25,7 +25,7 @@ export default function AutomationHelpPage() {
         {/* Help Center Sidebar */}
         <aside className="w-full md:w-64 shrink-0 space-y-2">
           <h3 className="text-xs font-extrabold text-primary uppercase tracking-widest px-4 mb-4">
-            {t({ en: 'Help Categories', fr: 'CatÃ©gories d\'aide', ar: 'أقسام المساعدة', hi: 'à¤¸à¤¹à¤¾à¤¯à¤¤à¤¾ à¤¶à¥à¤°à¥à¤£à¤¿à¤¯à¤¾à¤' })}
+            {t({ en: 'Help Categories', ar: 'أقسام المساعدة' })}
           </h3>
           {sidebarLinks.map((link) => {
             const isActive = link.path === '/help/automation';
@@ -46,12 +46,12 @@ export default function AutomationHelpPage() {
         {/* Content Panel */}
         <div className="flex-1 bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
           <div>
-            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', fr: 'Documentation', ar: 'الوثائق والكتيبات', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥à¤à¤¼à¥à¤à¤°à¤£' })}</span>
+            <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Documentation', ar: 'الوثائق والكتيبات' })}</span>
             <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
-              {t({ en: 'Business Call Automation', fr: 'Automatisation des appels d\'entreprise', ar: 'أتمتة المكالمات الهاتفية', hi: 'à¤¬à¤¿à¤à¤¨à¥à¤¸ à¤à¥à¤² à¤à¤à¥à¤®à¥à¤¶à¤¨' })}
+              {t({ en: 'Business Call Automation', ar: 'أتمتة المكالمات الهاتفية' })}
             </h1>
             <p className="text-xs font-semibold text-primary mt-2">
-              {t({ en: 'Configure incoming voice dispatches, queue routers, and scheduling integrations.', fr: 'Configurez les rÃ©partitions vocales entrantes, les routeurs de file d\'attente et les intÃ©grations de planification.', ar: 'تهيئة وتكوين توزيع المكالمات الصوتية الواردة، وموجهات الطابور.', hi: 'à¤à¤¨à¥ à¤µà¤¾à¤²à¥ à¤µà¥à¤¯à¤¸ à¤¡à¤¿à¤¸à¥à¤ªà¥à¤, à¤à¤¤à¤¾à¤° à¤°à¤¾à¤à¤à¤° à¤à¤° à¤¶à¥à¤¡à¥à¤¯à¥à¤²à¤¿à¤à¤ à¤à¤à¤à¥à¤à¥à¤°à¥à¤¶à¤¨ à¤à¥ à¤à¥à¤¨à¥à¤«à¤¼à¤¿à¤à¤° à¤à¤°à¥à¤à¥¤' })}
+              {t({ en: 'Configure incoming voice dispatches, queue routers, and scheduling integrations.', ar: 'تهيئة وتكوين توزيع المكالمات الصوتية الواردة، وموجهات الطابور.' })}
             </p>
           </div>
 

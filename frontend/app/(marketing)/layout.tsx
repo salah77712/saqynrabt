@@ -1,11 +1,11 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'SAQYN RABT | AI Call Answering & Staff Knowledge Base',
-  description: "SAQYN RABT handles your incoming calls, bookings, and staff questions — so your team can focus on what matters. Built for global operations, trusted worldwide.",
+  title: 'SAQYN RABT | AI-Powered Staff Hub & Guest Intake',
+  description: "SAQYN RABT helps teams manage incoming requests, staff knowledge, and daily operations — so your team can focus on what matters. Built for global operations.",
   openGraph: {
-    title: 'SAQYN RABT | AI Call Answering & Staff Knowledge Base',
-    description: 'Handle calls, bookings, and staff questions automatically. Global AI operations platform.',
+    title: 'SAQYN RABT | AI-Powered Staff Hub & Guest Intake',
+    description: 'Streamline guest intake, staff knowledge, and daily operations with AI-powered tools.',
     url: 'https://saqynrabt.com',
     siteName: 'SAQYN RABT',
     type: 'website',
@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'SAQYN RABT | AI Call Answering & Staff Knowledge Base',
-    description: 'Handle calls, bookings, and staff questions automatically. Global AI operations platform.',
+    title: 'SAQYN RABT | AI-Powered Staff Hub & Guest Intake',
+    description: 'Streamline guest intake, staff knowledge, and daily operations with AI-powered tools.',
     images: ['https://saqynrabt.com/og-image'],
   },
 };

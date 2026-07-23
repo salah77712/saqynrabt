@@ -10,9 +10,9 @@ export default function DevelopersCliDocsPage() {
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const commands = [
-    { cmd: 'saqyn login', desc: t({ en: 'Authenticate CLI with your Clerk developer account credentials.', fr: 'Authentifier le CLI avec les identifiants de votre compte dÃ©veloppeur Clerk.', ar: 'تسجيل الدخول للمطور باستخدام بيانات Clerk.', hi: 'à¤à¤ªà¤¨à¥ à¤à¥à¤²à¤°à¥à¤ à¤¡à¥à¤µà¤²à¤ªà¤° à¤à¤¾à¤¤à¤¾ à¤à¥à¤°à¥à¤¡à¥à¤à¤¶à¤¿à¤¯à¤² à¤à¥ à¤¸à¤¾à¤¥ à¤¸à¥à¤à¤²à¤à¤ à¤à¥ à¤ªà¥à¤°à¤®à¤¾à¤£à¤¿à¤¤ à¤à¤°à¥à¤à¥¤' }) },
-    { cmd: 'saqyn chat "Is early checkout allowed?"', desc: t({ en: 'Send a prompt query and retrieve streaming RAG answers directly.', fr: 'Envoyer une requÃªte et rÃ©cupÃ©rer directement les rÃ©ponses RAG en streaming.', ar: 'إرسال سؤال واستلام إجابة المساعد الذكي فوريًا.', hi: 'à¤à¤ à¤¤à¥à¤µà¤°à¤¿à¤¤ à¤ªà¥à¤°à¤¶à¥à¤¨ à¤­à¥à¤à¥à¤ à¤à¤° à¤¸à¥à¤§à¥ à¤¸à¥à¤à¥à¤°à¥à¤®à¤¿à¤à¤ à¤à¤°à¤à¤à¥ à¤à¤¤à¥à¤¤à¤° à¤ªà¥à¤°à¤¾à¤ªà¥à¤¤ à¤à¤°à¥à¤à¥¤' }) },
-    { cmd: 'saqyn upload handbook.pdf', desc: t({ en: 'Upload and index a PDF file into the vector knowledge base.', fr: 'TÃ©lÃ©charger et indexer un fichier PDF dans la base de connaissances vectorielle.', ar: 'تحميل وفهرسة ملف PDF في قاعدة المعرفة.', hi: 'à¤µà¥à¤à¥à¤à¤° à¤à¥à¤à¤¾à¤¨ à¤à¤§à¤¾à¤° à¤®à¥à¤ à¤à¤ à¤ªà¥à¤¡à¥à¤à¤« à¤«à¤¾à¤à¤² à¤à¤ªà¤²à¥à¤¡ à¤à¤° à¤à¤à¤¡à¥à¤à¥à¤¸ à¤à¤°à¥à¤à¥¤' }) },
+    { cmd: 'saqyn login', desc: t({ en: 'Authenticate CLI with your Clerk developer account credentials.', ar: 'تسجيل الدخول للمطور باستخدام بيانات Clerk.' }) },
+    { cmd: 'saqyn chat "Is early checkout allowed?"', desc: t({ en: 'Send a prompt query and retrieve streaming RAG answers directly.', ar: 'إرسال سؤال واستلام إجابة المساعد الذكي فوريًا.' }) },
+    { cmd: 'saqyn upload handbook.pdf', desc: t({ en: 'Upload and index a PDF file into the vector knowledge base.', ar: 'تحميل وفهرسة ملف PDF في قاعدة المعرفة.' }) },
   ];
 
   return (
@@ -22,18 +22,18 @@ export default function DevelopersCliDocsPage() {
       <main className="flex-1 max-w-4xl mx-auto py-24 px-6 w-full space-y-12 animate-fadeIn">
         {/* Header */}
         <div>
-          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Command-Line Tools', fr: 'Outils en ligne de commande', ar: 'أدوات واجهة الأوامر CLI', hi: 'à¤à¤®à¤¾à¤à¤¡-à¤²à¤¾à¤à¤¨ à¤à¤ªà¤à¤°à¤£' })}</span>
+          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Command-Line Tools', ar: 'أدوات واجهة الأوامر CLI' })}</span>
           <h1 className="text-3xl font-extrabold text-primary tracking-tight mt-2">
-            {t({ en: 'Official SAQYN CLI Guide', fr: 'Guide officiel du CLI SAQYN', ar: 'دليل أداة CLI الرسمية لـ SAQYN', hi: 'à¤à¤§à¤¿à¤à¤¾à¤°à¤¿à¤ SAQYN CLI à¤à¤¾à¤à¤¡' })}
+            {t({ en: 'Official SAQYN CLI Guide', ar: 'دليل أداة CLI الرسمية لـ SAQYN' })}
           </h1>
           <p className="text-xs font-semibold text-primary mt-2">
-            {t({ en: 'Manage documents, index files, and run chat integrations directly from your terminal.', fr: 'GÃ©rez les documents, indexez les fichiers et exÃ©cutez les intÃ©grations de chat directement depuis votre terminal.', ar: 'إدارة المستندات، وفهرسة الملفات، وتشغيل محادثات المساعد مباشرة من التيرمينال.', hi: 'à¤¦à¤¸à¥à¤¤à¤¾à¤µà¥à¤à¤¼ à¤ªà¥à¤°à¤¬à¤à¤§à¤¿à¤¤ à¤à¤°à¥à¤, à¤«à¤¼à¤¾à¤à¤²à¥à¤ à¤à¤¨à¥à¤à¥à¤°à¤®à¤¿à¤¤ à¤à¤°à¥à¤, à¤à¤° à¤¸à¥à¤§à¥ à¤à¤ªà¤¨à¥ à¤à¤°à¥à¤®à¤¿à¤¨à¤² à¤¸à¥ à¤à¥à¤ à¤à¤à¥à¤à¤°à¤£ à¤à¤²à¤¾à¤à¤à¥¤' })}
+            {t({ en: 'Manage documents, index files, and run chat integrations directly from your terminal.', ar: 'إدارة المستندات، وفهرسة الملفات، وتشغيل محادثات المساعد مباشرة من التيرمينال.' })}
           </p>
         </div>
 
         {/* CLI Steps */}
         <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-6">
-          <h3 className="text-sm font-extrabold text-primary">{t({ en: 'Core CLI Command Reference', fr: 'RÃ©fÃ©rence des commandes CLI principales', ar: 'مرجع أوامر CLI الأساسية', hi: 'à¤®à¥à¤à¥à¤¯ à¤¸à¥à¤à¤²à¤à¤ à¤à¤®à¤¾à¤à¤¡ à¤¸à¤à¤¦à¤°à¥à¤­' })}</h3>
+          <h3 className="text-sm font-extrabold text-primary">{t({ en: 'Core CLI Command Reference', ar: 'مرجع أوامر CLI الأساسية' })}</h3>
 
           <div className="space-y-4">
             {commands.map((c, idx) => (

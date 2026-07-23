@@ -27,12 +27,7 @@ export default function AdminAuditPage() {
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const selectAllRef = useRef<HTMLInputElement>(null);
 
-  const [logs, setLogs] = useState<AuditItem[]>([
-    { id: 'log-1', timestamp: '2026-07-04T16:35:12Z', user: 'admin@alsafa.qa', action: 'Approved Employee Access (ahmed@alsafa.qa)', ipAddress: '82.148.97.10' },
-    { id: 'log-2', timestamp: '2026-07-04T16:22:45Z', user: 'admin@alsafa.qa', action: 'Uploaded private document (front_desk_sop.pdf)', ipAddress: '82.148.97.10' },
-    { id: 'log-3', timestamp: '2026-07-04T14:10:02Z', user: 'sara@alsafa.qa', action: 'Requested chatbot answer (rollover vacation)', ipAddress: '89.211.23.104' },
-    { id: 'log-4', timestamp: '2026-07-03T11:45:19Z', user: 'admin@alsafa.qa', action: 'Toggled au overage settings', ipAddress: '82.148.97.12' },
-  ]);
+  const [logs, setLogs] = useState<AuditItem[]>([]);
 
   const handleSort = (key: AuditSortKey) => {
     if (sortKey === key) {
@@ -133,89 +128,11 @@ export default function AdminAuditPage() {
         </div>
       </div>
 
-      {/* Audit Log Table */}
-      <div className="bg-background border border-primary/10 rounded-xl shadow-sm overflow-hidden shadow-card">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-            <thead>
-              <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
-                <th className="px-6 py-4 w-10" scope="col">
-                  <input
-                    ref={selectAllRef}
-                    type="checkbox"
-                    checked={allSelected}
-                    onChange={toggleAll}
-                    className="h-4 w-4 rounded border-primary/30 text-accent focus:ring-2 focus:ring-accent"
-                    aria-label="Select all rows"
-                  />
-                </th>
-                <th className="px-6 py-4 cursor-pointer select-none hover:opacity-70 transition-opacity" onClick={() => handleSort('timestamp')} aria-sort={getSortAria('timestamp')} scope="col">
-                  {t({ en: 'Timestamp', ar: 'الوقت والشبكة' })}
-                </th>
-                <th className="px-6 py-4 cursor-pointer select-none hover:opacity-70 transition-opacity" onClick={() => handleSort('user')} aria-sort={getSortAria('user')} scope="col">
-                  {t({ en: 'Operator User', ar: 'المستخدم المشغل' })}
-                </th>
-                <th className="px-6 py-4 cursor-pointer select-none hover:opacity-70 transition-opacity" onClick={() => handleSort('action')} aria-sort={getSortAria('action')} scope="col">
-                  {t({ en: 'Action Performed', ar: 'الإجراء المنفذ' })}
-                </th>
-                <th className="px-6 py-4 cursor-pointer select-none hover:opacity-70 transition-opacity" onClick={() => handleSort('ipAddress')} aria-sort={getSortAria('ipAddress')} scope="col">
-                  {t({ en: 'IP Address', ar: 'عنوان الـ IP' })}
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-primary/10 text-xs font-semibold text-primary">
-              {paginated.length === 0 ? (
-                <tr>
-                  <td colSpan={5} className="px-6 py-8 text-center text-xs text-primary/60">
-                    {t({ en: 'No logs found.', ar: 'لم تعثر على سجلات.' })}
-                  </td>
-                </tr>
-              ) : (
-                paginated.map((log) => (
-                  <tr key={log.id} className={`hover:bg-primary transition-colors ${selectedIds.has(log.id) ? 'bg-accent/5' : ''}`}>
-                    <td className="px-6 py-4">
-                      <input
-                        type="checkbox"
-                        checked={selectedIds.has(log.id)}
-                        onChange={() => toggleOne(log.id)}
-                        className="h-4 w-4 rounded border-primary/30 text-accent focus:ring-2 focus:ring-accent"
-                        aria-label={`Select log ${log.id}`}
-                      />
-                    </td>
-                    <td className="px-6 py-4 text-primary font-bold">{new Date(log.timestamp).toLocaleString()}</td>
-                    <td className="px-6 py-4 font-bold text-primary">{log.user}</td>
-                    <td className="px-6 py-4 text-primary">{log.action}</td>
-                    <td className="px-6 py-4 font-mono text-primary font-bold">{log.ipAddress}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
-        </div>
+      {/* Empty State */}
+      <div className="bg-surface border border-primary/10 rounded-xl p-12 shadow-sm text-center">
+        <p className="text-sm font-bold text-primary/60">{t({ en: 'No audit events recorded yet.', ar: 'لم يتم تسجيل أي أحداث تدقيق بعد.' })}</p>
+        <p className="text-xs text-primary/40 mt-2">{t({ en: 'Audit logs will appear once platform activity begins.', ar: 'ستظهر سجلات التدقيق بعد بدء نشاط المنصة.' })}</p>
       </div>
-
-      {/* Pagination */}
-      {totalPages > 1 && (
-        <div className="flex justify-between items-center bg-surface border border-primary/10 rounded-xl p-4 shadow-sm text-xs font-bold text-primary">
-          <button
-            onClick={() => setPage(p => Math.max(p - 1, 1))}
-            disabled={page === 1}
-            className="bg-surface hover:bg-primary border border-primary/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
-          >
-            {t({ en: 'Previous', ar: 'السابق' })}
-          </button>
-          <span className="text-xs text-primary/60">
-            {t({ en: `Page ${page} of ${totalPages}`, ar: `الصفحة ${page} من ${totalPages}` })}
-          </span>
-          <button
-            onClick={() => setPage(p => Math.min(p + 1, totalPages))}
-            disabled={page === totalPages}
-            className="bg-surface hover:bg-primary border border-primary/10 rounded-xl px-6 py-3 min-h-[44px] transition-all duration-300 hover:shadow-md hover:scale-[1.02] active:scale-95 disabled:opacity-40 disabled:hover:scale-100"
-          >
-            {t({ en: 'Next', ar: 'التالي' })}
-          </button>
-        </div>
-      )}
 
     </div>
   );

@@ -10,10 +10,11 @@ export default function VoicePage() {
 const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 const [callStatus, setCallStatus] = React.useState<CallStatus>('checking');
+const [pollError, setPollError] = React.useState(false);
 
 const isVoiceActivated = process.env.NEXT_PUBLIC_VOICE_AI_ACTIVATED === 'true';
 
-React.useEffect(() => {
+  React.useEffect(() => {
   if (!isVoiceActivated) return;
 
   let mounted = true;
@@ -21,14 +22,14 @@ React.useEffect(() => {
     try {
       const res = await fetch('/api/voice/stream?text=status');
       if (res.status === 200) {
-        if (mounted) setCallStatus('connected');
+        if (mounted) { setCallStatus('connected'); setPollError(false); }
       } else if (res.status === 503) {
-        if (mounted) setCallStatus('on_hold');
+        if (mounted) { setCallStatus('on_hold'); setPollError(false); }
       } else {
-        if (mounted) setCallStatus('disconnected');
+        if (mounted) { setCallStatus('disconnected'); setPollError(false); }
       }
     } catch {
-      if (mounted) setCallStatus('disconnected');
+      if (mounted) { setCallStatus('disconnected'); setPollError(true); }
     }
   };
   poll();
@@ -51,9 +52,9 @@ return (
 }
 
 const statusConfig: Record<CallStatus, { label: Record<string, string>; color: string; pulse: boolean }> = {
-  connected: { label: { en: 'Connected â Voice AI Ready', ar: 'متصل â الذكاء الصوتي جاهز' }, color: '#22C55E', pulse: true },
-  on_hold: { label: { en: 'On Hold â TTS Service Unavailable', ar: 'معلق â خدمة TTS غير متاحة' }, color: '#F59E0B', pulse: false },
-  disconnected: { label: { en: 'Disconnected â No Active Call', ar: 'غير متصل â لا توجد مكالمة نشطة' }, color: '#EF4444', pulse: false },
+  connected: { label: { en: 'Connected — Voice AI Ready', ar: 'متصل — الذكاء الصوتي جاهز' }, color: '#22C55E', pulse: true },
+  on_hold: { label: { en: 'On Hold — TTS Service Unavailable', ar: 'معلق — خدمة TTS غير متاحة' }, color: '#F59E0B', pulse: false },
+  disconnected: { label: { en: 'Disconnected — No Active Call', ar: 'غير متصل — لا توجد مكالمة نشطة' }, color: '#EF4444', pulse: false },
   checking: { label: { en: 'Checking Service Status...', ar: 'جار التحقق من حالة الخدمة...' }, color: '#6B7280', pulse: false },
 };
 
@@ -80,6 +81,12 @@ return (
 <p className="text-xs text-primary max-w-sm mx-auto">
 {t({ en: 'Live call status refreshes every 5 seconds. Status reflects the current voice AI service health.', ar: 'يتم تحديث حالة المكالمة المباشرة كل 5 ثوانٍ. يعكس الحالة الصحية الحالية لخدمة الذكاء الصوتي.' })}
 </p>
+
+{pollError && (
+<div className="bg-surface border border-primary/10 rounded-xl p-4 text-xs text-primary text-center">
+{t({ en: 'Could not reach voice service. Retrying automatically...', ar: 'تعذر الوصول إلى خدمة الصوت. جاري إعادة المحاولة تلقائياً...' })}
+</div>
+)}
 </div>
 </main>
 );

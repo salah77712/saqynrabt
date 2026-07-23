@@ -13,11 +13,6 @@ channel: 'WhatsApp' | 'SMS' | 'WebChat' | 'Email';
 timestamp: string;
 }
 
-const MOCK_MESSAGES: OmnichannelMessage[] = [
-{ id: 'm-1', sender: '+974 5555 1234', body: 'I need to cancel my booking.', channel: 'WhatsApp', timestamp: '2026-07-04T12:00:00Z' },
-{ id: 'm-2', sender: 'support@alsafa.qa', body: 'SOP file is missing in chatbot chunks.', channel: 'Email', timestamp: '2026-07-04T12:05:00Z' },
-];
-
 export default function OmnichannelInboxPage() {
 const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
@@ -26,27 +21,22 @@ const [messages, setMessages] = useState<OmnichannelMessage[]>([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState(false);
 const [filterChannel, setFilterChannel] = useState<string>('All');
-const [lastUpdated, setLastUpdated] = useState<number | null>(null);
-
-const fetchMessages = () => {
-fetch('/api/chat/history')
-.then(res => res.json())
-.then((data: any) => {
-const list = Array.isArray(data) ? data : data?.messages || data?.history || [];
-if (list.length > 0) {
-setMessages(list.slice(0, 20));
-} else {
-setMessages(MOCK_MESSAGES);
-}
-setLastUpdated(Date.now());
-})
-.catch(() => {
-setError(true);
-setMessages(MOCK_MESSAGES);
-setLastUpdated(Date.now());
-})
-.finally(() => setLoading(false));
-};
+const [lastUpdated, setLastUpdated] = useState<number | null>(null);const fetchMessages = () => {
+  setError(false);
+  fetch('/api/chat/history')
+    .then(res => res.json())
+    .then((data: any) => {
+      const list = Array.isArray(data) ? data : data?.messages || data?.history || [];
+      setMessages(list.slice(0, 20));
+      setLastUpdated(Date.now());
+    })
+    .catch(() => {
+      setError(true);
+      setMessages([]);
+      setLastUpdated(Date.now());
+    })
+    .finally(() => setLoading(false));
+  };
 
 useEffect(() => {
 fetchMessages();
@@ -72,8 +62,10 @@ return (
 )}
 
 {error && (
-<div className="bg-surface border border-primary/10 text-accent rounded-xl p-3 text-xs font-semibold">
-{t({ en: 'Could not load fresh data. Showing sample messages.', ar: 'تعذر تحميل البيانات الحديثة. يتم عرض رسائل نموذجية.' })}
+<div className="bg-surface border border-primary/10 text-accent rounded-xl p-8 text-xs font-semibold flex flex-col items-center gap-3">
+<Inbox className="w-8 h-8 text-primary/40" />
+<p>{t({ en: 'Could not load messages. Backend messaging service may be unavailable.', ar: 'تعذر تحميل الرسائل. قد تكون خدمة التراسل الخلفية غير متوفرة.' })}</p>
+<button onClick={fetchMessages} className="px-6 py-3 rounded-xl bg-primary text-surface text-xs font-bold min-h-[44px]">{t({ en: 'Retry', ar: 'إعادة المحاولة' })}</button>
 </div>
 )}
 

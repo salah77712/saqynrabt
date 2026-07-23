@@ -36,12 +36,12 @@ export default function PluginsMarketplacePage() {
       <main className="flex-1 max-w-4xl mx-auto py-24 px-6 w-full space-y-12">
         {/* Header */}
         <div>
-          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Community Ecosystem', fr: 'ÃcosystÃ¨me communautaire', ar: 'المنظومة البرمجية للمجتمع', hi: 'à¤¸à¤¾à¤®à¥à¤¦à¤¾à¤¯à¤¿à¤ à¤ªà¤¾à¤°à¤¿à¤¸à¥à¤¥à¤¿à¤¤à¤¿à¤à¥ à¤¤à¤à¤¤à¥à¤°' })}</span>
+          <span className="text-xs font-extrabold tracking-widest text-accent uppercase">{t({ en: 'Community Ecosystem', ar: 'المنظومة البرمجية للمجتمع' })}</span>
           <h1 className="text-xl md:text-3xl font-extrabold text-primary tracking-tight mt-2">
-            {t({ en: 'Integration Plugin Marketplace', fr: 'Marketplace de plugins d\'intÃ©gration', ar: 'متجر إضافات التكامل البرمجي', hi: 'à¤à¤à¥à¤à¤°à¤£ à¤ªà¥à¤²à¤à¤à¤¨ à¤®à¤¾à¤°à¥à¤à¥à¤à¤ªà¥à¤²à¥à¤¸' })}
+            {t({ en: 'Integration Plugin Marketplace', ar: 'متجر إضافات التكامل البرمجي' })}
           </h1>
           <p className="text-xs font-semibold text-primary mt-2">
-            {t({ en: 'Expand your company workspace with customized plugins and templates.', fr: 'DÃ©veloppez l\'espace de travail de votre entreprise avec des plugins et des modÃ¨les personnalisÃ©s.', ar: 'وسّع مساحة عمل شركتك باستخدام الإضافات والقوالب المخصصة.', hi: 'à¤à¤¸à¥à¤à¤® à¤ªà¥à¤²à¤à¤à¤¨à¥à¤¸ à¤à¤° à¤à¥à¤®à¥à¤ªà¥à¤²à¥à¤ à¤à¥ à¤¸à¤¾à¤¥ à¤à¤ªà¤¨à¥ à¤à¤à¤ªà¤¨à¥ à¤à¥ à¤à¤¾à¤°à¥à¤¯à¤à¥à¤·à¥à¤¤à¥à¤° à¤à¤¾ à¤µà¤¿à¤¸à¥à¤¤à¤¾à¤° à¤à¤°à¥à¤à¥¤' })}
+            {t({ en: 'Expand your company workspace with customized plugins and templates.', ar: 'وسّع مساحة عمل شركتك باستخدام الإضافات والقوالب المخصصة.' })}
           </p>
         </div>
 
@@ -59,7 +59,7 @@ export default function PluginsMarketplacePage() {
                 <span className={`text-xs font-extrabold uppercase px-2.5 py-0.5 rounded-full ${
                   plugin.installed ? 'bg-surface text-accent' : 'bg-surface text-primary'
                 }`}>
-                  {plugin.installed ? t({ en: 'Installed', fr: 'InstallÃ©', ar: 'مثبّت', hi: 'à¤¸à¥à¤¥à¤¾à¤ªà¤¿à¤¤' }) : t({ en: 'Available', fr: 'Disponible', ar: 'متاح', hi: 'à¤à¤ªà¤²à¤¬à¥à¤§' })}
+                  {plugin.installed ? t({ en: 'Installed', ar: 'مثبّت' }) : t({ en: 'Available', ar: 'متاح' })}
                 </span>
                 
                 <button
@@ -68,7 +68,7 @@ export default function PluginsMarketplacePage() {
                     plugin.installed ? 'bg-surface text-primary hover:bg-surface' : 'bg-primary hover:opacity-95 text-surface'
                   }`}
                 >
-                  {plugin.installed ? t({ en: 'Uninstall', fr: 'DÃ©sinstaller', ar: 'إلغاء التثبيت', hi: 'à¤à¤¨à¤à¤à¤¸à¥à¤à¥à¤² à¤à¤°à¥à¤' }) : t({ en: 'Install', fr: 'Installer', ar: 'تثبيت', hi: 'à¤¸à¥à¤¥à¤¾à¤ªà¤¿à¤¤ à¤à¤°à¥à¤' })}
+                  {plugin.installed ? t({ en: 'Uninstall', ar: 'إلغاء التثبيت' }) : t({ en: 'Install', ar: 'تثبيت' })}
                 </button>
               </div>
             </div>
