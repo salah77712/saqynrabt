@@ -79,3 +79,8 @@ backend/src/**/*.js
 backend/scripts/**/*.js
 .vercel
 .env*
+temp_files/
+.agents/
+.gemini/
+brain/
+
