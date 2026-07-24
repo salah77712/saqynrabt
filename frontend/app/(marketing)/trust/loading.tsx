@@ -1,7 +1,7 @@
 export default function TrustLoading() {
   return (
     <div className="min-h-screen bg-surface">
-      <header className="sticky top-0 z-50 border-b border-[rgba(20,31,51,0.1)] bg-surface backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-primary/10 bg-surface backdrop-blur-md">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
           <div className="flex items-center gap-4">
             <div className="h-8 w-8 rounded-lg bg-primary animate-pulse" />
@@ -27,7 +27,7 @@ export default function TrustLoading() {
           {[...Array(6)].map((_, i) => (
             <div
               key={i}
-              className="rounded-xl border border-[rgba(20,31,51,0.1)] bg-surface p-5 shadow-sm"
+              className="rounded-xl border border-primary/10 bg-surface p-5 shadow-sm"
               style={{ animationDelay: `${i * 80}ms` }}
             >
               <div className="mb-4 flex items-center gap-4">
@@ -42,7 +42,7 @@ export default function TrustLoading() {
                 <div className="h-2 w-5/6 rounded bg-primary animate-pulse" />
                 <div className="h-2 w-2/3 rounded bg-primary animate-pulse" />
               </div>
-              <div className="mt-4 flex items-center justify-between border-t border-[rgba(20,31,51,0.05)] pt-4">
+              <div className="mt-4 flex items-center justify-between border-t border-primary/10 pt-4">
                 <div className="h-3 w-16 rounded bg-primary animate-pulse" />
                 <div className="h-3 w-12 rounded bg-primary animate-pulse" />
               </div>

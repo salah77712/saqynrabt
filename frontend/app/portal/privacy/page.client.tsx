@@ -29,7 +29,7 @@ setDetails('');
 };
 
 return (
-<div className="bg-surface text-primary dark:text-surface min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="bg-surface text-primary dark:text-surface min-h-screen flex flex-col font-sans">
 <Header />
 
 <main className="flex-1 max-w-xl mx-auto py-24 px-6 w-full space-y-8 animate-fadeIn">

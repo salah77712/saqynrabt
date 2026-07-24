@@ -7,9 +7,9 @@ import { useLocale } from './providers';
 import { Bug } from 'lucide-react';
 
 const suggestions = [
-  { href: '/', en: 'Homepage', ar: 'الرئيسية' },
+  { href: '/', en: 'Homepage', ar: 'الصفحة الرئيسية' },
   { href: '/features', en: 'Features', ar: 'الميزات' },
-  { href: '/pricing', en: 'Pricing', ar: 'الأسعار' },
+  { href: '/pricing', en: 'Pricing', ar: 'التسعير' },
   { href: '/help/getting-started', en: 'Help Center', ar: 'مركز المساعدة' },
   { href: '/contact', en: 'Contact Us', ar: 'اتصل بنا' },
 ];
@@ -21,7 +21,7 @@ export default function NotFound() {
   return (
     <div
       className="bg-surface min-h-screen flex flex-col font-sans"
-      dir={locale === 'ar' ? 'rtl' : 'ltr'}
+     
     >
       <Header />
 
@@ -47,7 +47,7 @@ export default function NotFound() {
           <p className="text-primary/60 text-base mb-10 leading-relaxed max-w-md mx-auto">
             {t(
               "The page you're looking for doesn't exist or has been moved. Try one of these instead:",
-              'الصفحة التي تبحث عنها غير موجودة أو تم نقلها. جرب واحدة من هذه بدلاً من ذلك:'
+              'الصفحة التي تبحث عنها غير موجودة أو تم نقلها. حاول زيارة أحد هذه الروابط:'
             )}
           </p>
 
@@ -57,7 +57,7 @@ export default function NotFound() {
               <Link
                 key={s.href}
                 href={s.href}
-                className="rounded-xl border border-[rgba(20,31,51,0.1)] bg-surface px-4 py-2.5 text-sm font-semibold text-primary hover:border-accent hover:bg-accent/5 hover:text-accent transition-all shadow-sm"
+                className="rounded-xl border border-primary/10 bg-surface px-4 py-2.5 text-sm font-semibold text-primary hover:border-accent hover:bg-accent/5 hover:text-accent transition-all shadow-sm"
               >
                 {t(s.en, s.ar)}
               </Link>
@@ -75,10 +75,10 @@ export default function NotFound() {
               onClick={() => {
                 window.location.href = `mailto:support@saqynrabt.com?subject=404%20Report&body=URL:${encodeURIComponent(window.location.href)}`;
               }}
-              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[rgba(20,31,51,0.1)] px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
+              className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-primary/10 px-6 py-3 text-sm font-semibold text-primary hover:bg-primary transition-all"
             >
               <Bug className="w-4 h-4" />
-              {t('Report broken link', 'ابلاغ عن رابط معطل')}
+              {t('Report broken link', 'الإبلاغ عن رابط معطل')}
             </button>
           </div>
         </div>

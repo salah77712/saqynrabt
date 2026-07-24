@@ -104,7 +104,7 @@ export default function WebhooksSettingsPage() {
       <form onSubmit={handleRegister} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex flex-col gap-8">
         
         <div>
-          <label htmlFor="url" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Destination URL', ar: 'Ø§Ù„Ø±Ø§Ø¨Ø· Ø§Ù„Ù…Ø³ØªÙ‡Ø¯Ù' })}</label>
+          <label htmlFor="url" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Destination URL', ar: 'الرابط المستهدف' })}</label>
           <input
             type="url"
             id="url"
@@ -117,7 +117,7 @@ export default function WebhooksSettingsPage() {
         </div>
 
         <div>
-          <label className="block text-xs font-bold text-primary mb-3">{t({ en: 'Subscribe to Events', ar: 'Ø§Ù„Ø§Ø´ØªØ±Ø§Ùƒ ÙÙŠ Ø§Ù„Ø£Ø­Ø¯Ø§Ø«' })}</label>
+          <label className="block text-xs font-bold text-primary mb-3">{t({ en: 'Subscribe to Events', ar: 'الاشتراك في الأحداث' })}</label>
           <div className="grid grid-cols-2 gap-4 text-xs font-semibold">
             {['booking.created', 'complaint.routed', 'chat.answered'].map((event) => (
               <label key={event} className="flex items-center gap-3 cursor-pointer p-3 border border-primary/10 rounded-xl bg-surface hover:border-primary transition-colors">

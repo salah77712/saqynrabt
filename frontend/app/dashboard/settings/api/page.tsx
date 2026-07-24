@@ -135,7 +135,7 @@ export default function ApiKeysSettingsPage() {
       {/* Form Generate */}
       <form onSubmit={handleGenerate} className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm flex gap-8 items-end">
         <div className="flex-1">
-          <label htmlFor="keyName" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Credential Key Name', ar: 'Ø§Ø³Ù… Ø§Ù„Ù…ÙØªØ§Ø­ Ø§Ù„ØªØ¹Ø±ÙŠÙÙŠ' })}</label>
+          <label htmlFor="keyName" className="block text-xs font-bold text-primary mb-1.5">{t({ en: 'Credential Key Name', ar: 'اسم المفتاح التعريفي' })}</label>
           <input
             type="text"
             id="keyName"

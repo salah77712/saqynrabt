@@ -17,9 +17,9 @@ return (
 <div className="flex items-center gap-3">
 <AlertTriangle className="w-5 h-5 text-accent" />
 <div>
-<p className="text-xs font-bold text-primary dark:text-surface">{t({ en: 'Suspicious API Usage Spike Detected', ar: 'ØªÙ… Ø±ØµØ¯ Ù‚ÙØ²Ø© Ù…Ø´Ø¨ÙˆÙ‡Ø© ÙÙŠ Ø§Ø³ØªØ®Ø¯Ø§Ù… Ø§Ù„Ù€ API' })}</p>
+<p className="text-xs font-bold text-primary dark:text-surface">{t({ en: 'Suspicious API Usage Spike Detected', ar: 'تم رصد قفزة مشبوهة في استخدام الـ API' })}</p>
 <p className="text-xs text-primary/60 dark:text-surface/60 font-semibold mt-0.5">
-{t({ en: 'API requests are 4x higher than standard thresholds. Review key credentials.', ar: 'Ø·Ù„Ø¨Ø§Øª Ø§Ù„Ù€ API Ø£Ø¹Ù„Ù‰ Ø¨Ù€ 4 Ø£Ø¶Ø¹Ø§Ù Ù…Ù† Ø§Ù„Ù…Ø¹Ø¯Ù„ Ø§Ù„Ø·Ø¨ÙŠØ¹ÙŠ. ÙŠØ±Ø¬Ù‰ Ù…Ø±Ø§Ø¬Ø¹Ø© Ù…ÙØ§ØªÙŠØ­ Ø§Ù„ÙˆØµÙˆÙ„.' })}
+{t({ en: 'API requests are 4x higher than standard thresholds. Review key credentials.', ar: 'طلبات الـ API أعلى بـ 4 أضعاف من المعدل الطبيعي. يرجى مراجعة مفاتيح الوصول.' })}
 </p>
 </div>
 </div>

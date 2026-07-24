@@ -45,27 +45,27 @@ setFile(null);
 };
 
 return (
-<div className="bg-surface dark:bg-primary rounded-xl border border-primary/10 dark:border-surface/10 p-8 max-w-md w-full shadow-sm" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="bg-surface dark:bg-primary rounded-xl border border-primary/10 dark:border-surface/10 p-8 max-w-md w-full shadow-sm">
 <h3 className="text-lg font-bold text-primary dark:text-surface mb-2">
-{t('Bulk Import Operations', 'Ø§Ø³ØªÙŠØ±Ø§Ø¯ Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø¯ÙØ¹Ø© ÙˆØ§Ø­Ø¯Ø©')}
+{t('Bulk Import Operations', 'استيراد البيانات دفعة واحدة')}
 </h3>
 <p className="text-xs text-primary/60 dark:text-surface/60 mb-6 leading-relaxed">
 {t(
 'Upload a CSV file containing Employee name, email, and department to batch create member profiles.',
-'Ù‚Ù… Ø¨ØªØ­Ù…ÙŠÙ„ Ù…Ù„Ù CSV ÙŠØ­ØªÙˆÙŠ Ø¹Ù„Ù‰ Ø§Ø³Ù… Ø§Ù„Ù…ÙˆØ¸Ù ÙˆØ§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ ÙˆØ§Ù„Ù‚Ø³Ù… Ù„Ø¥Ù†Ø´Ø§Ø¡ Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø£Ø¹Ø¶Ø§Ø¡ Ø¯ÙØ¹Ø© ÙˆØ§Ø­Ø¯Ø©.'
+'قم بتحميل ملف CSV يحتوي على اسم الموظف والبريد الإلكتروني والقسم لإنشاء ملفات تعريف الأعضاء دفعة واحدة.'
 )}
 </p>
 
 {success ? (
 <div className="bg-surface dark:bg-primary border border-accent/20 rounded-xl p-4 text-center mb-6">
 <p className="text-sm font-bold text-accent">
-{t('Import completed successfully!', 'ØªÙ… Ø§Ù„Ø§Ø³ØªÙŠØ±Ø§Ø¯ Ø¨Ù†Ø¬Ø§Ø­!')}
+{t('Import completed successfully!', 'تم الاستيراد بنجاح!')}
 </p>
 <button
 onClick={() => setSuccess(false)}
 className="text-xs text-primary dark:text-surface underline font-bold mt-2"
 >
-{t('Import another file', 'Ø§Ø³ØªÙŠØ±Ø§Ø¯ Ù…Ù„Ù Ø¢Ø®Ø±')}
+{t('Import another file', 'استيراد ملف آخر')}
 </button>
 </div>
 ) : (
@@ -73,7 +73,7 @@ className="text-xs text-primary dark:text-surface underline font-bold mt-2"
 <label className="flex flex-col items-center justify-center border-2 border-dashed border-primary/10 dark:border-surface/10 rounded-xl p-8 hover:bg-primary dark:hover:bg-accent cursor-pointer transition-all">
 <FileText className="w-6 h-6 text-primary/60 dark:text-surface/60 mb-2" />
 <span className="text-xs font-bold text-primary dark:text-surface">
-{file ? file.name : t('Select CSV file', 'Ø§Ø®ØªØ± Ù…Ù„Ù CSV')}
+{file ? file.name : t('Select CSV file', 'اختر ملف CSV')}
 </span>
 <input
 type="file"
@@ -97,7 +97,7 @@ onClick={handleUpload}
 disabled={!file || importing}
 className="w-full bg-primary hover:bg-primary disabled:opacity-40 text-surface font-bold py-3 rounded-xl text-sm transition-all duration-300 min-h-[44px] hover:shadow-md hover:scale-[1.02] active:scale-95"
 >
-{importing ? t('Processing...', 'Ø¬Ø§Ø±ÙŠ Ø§Ù„Ù…Ø¹Ø§Ù„Ø¬Ø©...') : t('Upload and Process', 'ØªØ­Ù…ÙŠÙ„ ÙˆÙ…Ø¹Ø§Ù„Ø¬Ø©')}
+{importing ? t('Processing...', 'جاري المعالجة...') : t('Upload and Process', 'تحميل ومعالجة')}
 </button>
 </div>
 )}
@@ -107,7 +107,7 @@ href="#"
 onClick={(e) => e.preventDefault()}
 className="block text-center text-xs text-accent font-bold mt-4"
 >
-{t('Download CSV Template', 'ØªÙ†Ø²ÙŠÙ„ Ù†Ù…ÙˆØ°Ø¬ CSV')}
+{t('Download CSV Template', 'تنزيل نموذج CSV')}
 </a>
 </div>
 );

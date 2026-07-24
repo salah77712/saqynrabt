@@ -1,7 +1,8 @@
 ﻿'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useLocale } from '../app/providers';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 const COOKIE_CONSENT_KEY = 'cookie_consent_accepted';
 
@@ -13,6 +14,8 @@ const [consent, setConsent] = useState<ConsentStatus>(null);
 const [visible, setVisible] = useState(false);
 const [showPrefs, setShowPrefs] = useState(false);
 
+const prefsRef = useRef<HTMLDivElement>(null);
+useFocusTrap(showPrefs, prefsRef);
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
 useEffect(() => {
@@ -87,12 +90,12 @@ dir={locale === 'ar' ? 'rtl' : 'ltr'}
 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-8">
 <div className="flex-1 text-sm text-primary/60 dark:text-surface/60 leading-relaxed">
 <p className="font-bold text-primary dark:text-surface mb-1">
-{t({ en: 'We respect your privacy.', ar: 'Ù†Ø­Ù† Ù†Ø­ØªØ±Ù… Ø®ØµÙˆØµÙŠØªÙƒ.' })}
+{t({ en: 'We respect your privacy.', ar: 'نحن نحترم خصوصيتك.' })}
 </p>
 <p>
 {t({
 en: 'SAQYN RABT uses cookies to enhance your experience, secure your data, and analyze site traffic in compliance with global data protection standards. By clicking "Accept", you consent to our use of essential and analytics cookies.',
-ar: 'ÙŠØ³ØªØ®Ø¯Ù… SAQYN RABT Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø§Ø±ØªØ¨Ø§Ø· Ù„ØªØ­Ø³ÙŠÙ† ØªØ¬Ø±Ø¨ØªÙƒ ÙˆØªØ£Ù…ÙŠÙ† Ø¨ÙŠØ§Ù†Ø§ØªÙƒ ÙˆØªØ­Ù„ÙŠÙ„ Ø­Ø±ÙƒØ© Ù…Ø±ÙˆØ± Ø§Ù„Ù…ÙˆÙ‚Ø¹ ÙˆÙÙ‚Ù‹Ø§ Ù„Ù…Ø¹Ø§ÙŠÙŠØ± Ø­Ù…Ø§ÙŠØ© Ø§Ù„Ø¨ÙŠØ§Ù†Ø§Øª Ø§Ù„Ø¹Ø§Ù„Ù…ÙŠØ©. Ø¨Ø§Ù„Ù†Ù‚Ø± Ø¹Ù„Ù‰ "Ù‚Ø¨ÙˆÙ„"ØŒ ÙØ¥Ù†Ùƒ ØªÙˆØ§ÙÙ‚ Ø¹Ù„Ù‰ Ø§Ø³ØªØ®Ø¯Ø§Ù…Ù†Ø§ Ù„Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø§Ø±ØªØ¨Ø§Ø· Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ© ÙˆØ§Ù„ØªØ­Ù„ÙŠÙ„ÙŠØ©.',
+ar: 'يستخدم SAQYN RABT ملفات تعريف الارتباط لتحسين تجربتك وتأمين بياناتك وتحليل حركة مرور الموقع وفقًا لمعايير حماية البيانات العالمية. بالنقر على "قبول"، فإنك توافق على استخدامنا لملفات تعريف الارتباط الأساسية والتحليلية.',
 })}
 </p>
 </div>
@@ -102,34 +105,34 @@ type="button"
 onClick={handleRejectNonEssential}
 className="min-h-[44px] px-4 py-2.5 rounded-xl text-xs font-bold text-primary/50 dark:text-surface/50 hover:text-primary dark:hover:text-accent hover:underline transition-all"
 >
-{t({ en: 'Reject Non-Essential', ar: 'Ø±ÙØ¶ ØºÙŠØ± Ø§Ù„Ø£Ø³Ø§Ø³ÙŠ' })}
+{t({ en: 'Reject Non-Essential', ar: 'رفض غير الأساسي' })}
 </button>
 <button
 type="button"
 onClick={handleManagePrefs}
 className="min-h-[44px] px-4 py-2.5 rounded-xl border border-primary/10 dark:border-surface/10 text-xs font-bold text-primary dark:text-surface hover:bg-primary dark:hover:bg-accent transition-all"
 >
-{t({ en: 'Manage Preferences', ar: 'Ø¥Ø¯Ø§Ø±Ø© Ø§Ù„ØªÙØ¶ÙŠÙ„Ø§Øª' })}
+{t({ en: 'Manage Preferences', ar: 'إدارة التفضيلات' })}
 </button>
 <button
 type="button"
 onClick={handleAcceptAll}
 className="min-h-[44px] px-6 py-2.5 rounded-xl bg-primary text-surface text-xs font-bold hover:bg-primary transition-all"
 >
-{t({ en: 'Accept All', ar: 'Ù‚Ø¨ÙˆÙ„ Ø§Ù„ÙƒÙ„' })}
+{t({ en: 'Accept All', ar: 'قبول الكل' })}
 </button>
 </div>
 </div>
 </>
 ) : (
-<div className="space-y-4">
+<div ref={prefsRef} className="space-y-4" role="dialog" aria-modal="true" aria-label={t({ en: 'Cookie Preferences', ar: 'تفضيلات ملفات تعريف الارتباط' })}>
 <h3 className="text-sm font-bold text-primary dark:text-surface">
-{t({ en: 'Cookie Preferences', ar: 'ØªÙØ¶ÙŠÙ„Ø§Øª Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø§Ø±ØªØ¨Ø§Ø·' })}
+{t({ en: 'Cookie Preferences', ar: 'تفضيلات ملفات تعريف الارتباط' })}
 </h3>
 <p className="text-xs text-primary/60 dark:text-surface/60">
 {t({
 en: 'You can choose which cookies to allow. Essential cookies are required for the platform to function.',
-ar: 'ÙŠÙ…ÙƒÙ†Ùƒ Ø§Ø®ØªÙŠØ§Ø± Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø§Ø±ØªØ¨Ø§Ø· Ø§Ù„ØªÙŠ ØªØ³Ù…Ø­ Ø¨Ù‡Ø§. Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø§Ø±ØªØ¨Ø§Ø· Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ© Ù…Ø·Ù„ÙˆØ¨Ø© Ù„ÙƒÙŠ ØªØ¹Ù…Ù„ Ø§Ù„Ù…Ù†ØµØ©.',
+ar: 'يمكنك اختيار ملفات تعريف الارتباط التي تسمح بها. ملفات تعريف الارتباط الأساسية مطلوبة لكي تعمل المنصة.',
 })}
 </p>
 <div className="space-y-2">
@@ -137,10 +140,10 @@ ar: 'ÙŠÙ…ÙƒÙ†Ùƒ Ø§Ø®ØªÙŠØ§Ø± Ù…Ù„ÙØ§Øª Øª
 <input type="checkbox" checked disabled className="accent-primary" />
 <div>
 <p className="text-xs font-bold text-primary dark:text-surface">
-{t({ en: 'Essential Cookies', ar: 'Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø§Ø±ØªØ¨Ø§Ø· Ø§Ù„Ø£Ø³Ø§Ø³ÙŠØ©' })}
+{t({ en: 'Essential Cookies', ar: 'ملفات تعريف الارتباط الأساسية' })}
 </p>
 <p className="text-xs text-primary/60 dark:text-surface/60">
-{t({ en: 'Required for authentication (Clerk) and platform security. Cannot be disabled.', ar: 'Ù…Ø·Ù„ÙˆØ¨Ø© Ù„Ù„Ù…ØµØ§Ø¯Ù‚Ø© (Clerk) ÙˆØ£Ù…Ø§Ù† Ø§Ù„Ù…Ù†ØµØ©. Ù„Ø§ ÙŠÙ…ÙƒÙ† ØªØ¹Ø·ÙŠÙ„Ù‡Ø§.' })}
+{t({ en: 'Required for authentication (Clerk) and platform security. Cannot be disabled.', ar: 'مطلوبة للمصادقة (Clerk) وأمان المنصة. لا يمكن تعطيلها.' })}
 </p>
 </div>
 </label>
@@ -148,10 +151,10 @@ ar: 'ÙŠÙ…ÙƒÙ†Ùƒ Ø§Ø®ØªÙŠØ§Ø± Ù…Ù„ÙØ§Øª Øª
 <input type="checkbox" defaultChecked className="accent-primary" id="analytics-cookies" />
 <div>
 <p className="text-xs font-bold text-primary dark:text-surface">
-{t({ en: 'Analytics Cookies', ar: 'Ù…Ù„ÙØ§Øª ØªØ¹Ø±ÙŠÙ Ø§Ù„Ø§Ø±ØªØ¨Ø§Ø· Ø§Ù„ØªØ­Ù„ÙŠÙ„ÙŠØ©' })}
+{t({ en: 'Analytics Cookies', ar: 'ملفات تعريف الارتباط التحليلية' })}
 </p>
 <p className="text-xs text-primary/60 dark:text-surface/60">
-{t({ en: 'Cloudflare Insights and Vercel Analytics for traffic monitoring.', ar: 'Cloudflare Insights Ùˆ Vercel Analytics Ù„Ù…Ø±Ø§Ù‚Ø¨Ø© Ø­Ø±ÙƒØ© Ø§Ù„Ù…Ø±ÙˆØ±.' })}
+{t({ en: 'Cloudflare Insights and Vercel Analytics for traffic monitoring.', ar: 'Cloudflare Insights و Vercel Analytics لمراقبة حركة المرور.' })}
 </p>
 </div>
 </label>
@@ -162,14 +165,14 @@ type="button"
 onClick={() => setShowPrefs(false)}
 className="min-h-[44px] px-4 py-2.5 rounded-xl border border-primary/10 dark:border-surface/10 text-xs font-bold text-primary dark:text-surface hover:bg-primary dark:hover:bg-accent transition-all"
 >
-{t({ en: 'Cancel', ar: 'Ø¥Ù„ØºØ§Ø¡' })}
+{t({ en: 'Cancel', ar: 'إلغاء' })}
 </button>
 <button
 type="button"
 onClick={handleAcceptAll}
 className="min-h-[44px] px-6 py-2.5 rounded-xl bg-primary text-surface text-xs font-bold hover:bg-primary transition-all"
 >
-{t({ en: 'Save Preferences', ar: 'Ø­ÙØ¸ Ø§Ù„ØªÙØ¶ÙŠÙ„Ø§Øª' })}
+{t({ en: 'Save Preferences', ar: 'حفظ التفضيلات' })}
 </button>
 </div>
 </div>

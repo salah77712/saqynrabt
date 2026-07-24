@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React from 'react';
+
 import { useLocale } from '../../providers';
 import { Badge } from '../../../components/ui/Badge';
 

@@ -15,8 +15,8 @@ return (
 {/* Header Tabs */}
 <div className="flex justify-between items-center border-b border-primary/10 pb-4">
 <div>
-<h3 className="text-sm font-extrabold text-primary">{t({ en: 'Guardrails Oversight', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ø¬Ø¯Ø±Ø§Ù† Ø§Ù„Ø­Ù…Ø§ÙŠØ©' })}</h3>
-<p className="text-xs text-primary/40 font-bold mt-0.5">{t({ en: 'Observe blocked jailbreaks and toxicity levels.', ar: 'Ù…Ø±Ø§Ù‚Ø¨Ø© Ù…Ø­Ø§ÙˆÙ„Ø§Øª Ø§Ù„Ø§Ø®ØªØ±Ø§Ù‚ ÙˆÙ†Ø³Ø¨ Ø§Ù„ÙƒÙ„Ù…Ø§Øª Ø§Ù„Ø¶Ø§Ø±Ø©.' })}</p>
+<h3 className="text-sm font-extrabold text-primary">{t({ en: 'Guardrails Oversight', ar: 'مراقبة جدران الحماية' })}</h3>
+<p className="text-xs text-primary/40 font-bold mt-0.5">{t({ en: 'Observe blocked jailbreaks and toxicity levels.', ar: 'مراقبة محاولات الاختراق ونسب الكلمات الضارة.' })}</p>
 </div>
 
 <div className="flex gap-3">

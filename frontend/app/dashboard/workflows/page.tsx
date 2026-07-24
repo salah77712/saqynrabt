@@ -38,7 +38,7 @@ export default function WorkflowsPage() {
   };
 
   return (
-    <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
+    <div className="p-8 space-y-6 animate-fadeIn">
       <div className="flex justify-between items-center mb-6">
         <div>
           <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Workflow Builder', ar: 'لوحة أتمتة سير العمل'})}</h1>
@@ -66,6 +66,6 @@ export default function WorkflowsPage() {
           </React.Fragment>
         ))}
       </div>
-    </main>
+    </div>
   );
 }

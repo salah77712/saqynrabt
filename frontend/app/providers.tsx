@@ -42,16 +42,14 @@ interface EntitlementsContextProps {
   entitlements: Entitlements | null;
   loading: boolean;
   refreshEntitlements: () => Promise<void>;
-  mockMode: boolean;
-  setMockMode: (val: boolean) => void;
+
 }
 
 const EntitlementsContext = createContext<EntitlementsContextProps>({
   entitlements: null,
   loading: true,
   refreshEntitlements: async () => {},
-  mockMode: false,
-  setMockMode: () => {},
+
 });
 
 export const useEntitlements = () => useContext(EntitlementsContext);
@@ -117,6 +115,8 @@ function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem('saqyn-locale', locale);
+      document.documentElement.lang = locale;
+      document.documentElement.dir = locale === 'ar' ? 'rtl' : 'ltr';
     }
   }, [locale]);
 
@@ -129,13 +129,11 @@ function LanguageProvider({ children }: { children: React.ReactNode }) {
 
 function EntitlementsProvider({ children }: { children: React.ReactNode }) {
   const { getToken, isSignedIn, isLoaded } = useAuth();
-  const [entitlements, setEntitlements] = useState<Entitlements | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [mockMode, setMockMode] = useState(false);
+const [entitlements, setEntitlements] = useState<Entitlements | null>(null);
+const [loading, setLoading] = useState(true);
 
-  const refreshEntitlements = async () => {
-    if (mockMode) return;
-    if (!isSignedIn) {
+const refreshEntitlements = async () => {
+  if (!isSignedIn) {
       setEntitlements(null);
       setLoading(false);
       return;
@@ -153,14 +151,14 @@ function EntitlementsProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
-  useEffect(() => {
-    if (isLoaded && isSignedIn && !mockMode) {
-      refreshEntitlements();
-    }
-  }, [isLoaded, isSignedIn, mockMode]);
+useEffect(() => {
+  if (isLoaded && isSignedIn) {
+    refreshEntitlements();
+  }
+}, [isLoaded, isSignedIn]);
 
   return (
-    <EntitlementsContext.Provider value={{ entitlements, loading, refreshEntitlements, mockMode, setMockMode }}>
+    <EntitlementsContext.Provider value={{ entitlements, loading, refreshEntitlements }}>
       {children}
     </EntitlementsContext.Provider>
   );

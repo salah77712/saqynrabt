@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React from 'react';
+
 import { useLocale } from '../../../providers';
 import { Card } from '@/components/shadcn/card';
 import { Button } from '@/components/shadcn/button';

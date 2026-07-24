@@ -90,13 +90,13 @@ className={`px-6 py-3 rounded-xl text-xs font-bold min-h-[44px] border transitio
 <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm">
 {loading ? (
 <p className="text-xs text-primary font-semibold text-center py-6">
-{t({ en: 'Loading messages...', ar: 'Ø¬Ø§Ø±ÙŠ ØªØ­Ù…ÙŠÙ„ Ø§Ù„Ø±Ø³Ø§Ø¦Ù„...' })}
+{t({ en: 'Loading messages...', ar: 'جاري تحميل الرسائل...' })}
 </p>
 ) : filtered.length === 0 ? (
 <EmptyState
 icon={<Inbox className="w-10 h-10 text-primary/40" />}
-              title={t({ en: 'No messages found', ar: 'Ù„Ù… ÙŠØªÙ… Ø§Ù„Ø¹Ø«ÙˆØ± Ø¹Ù„Ù‰ Ø±Ø³Ø§Ø¦Ù„' })}
-              description={t({ en: 'Your inbox is empty. Messages from WhatsApp, SMS, email, and web chat will appear here.', ar: 'ØµÙ†Ø¯ÙˆÙ‚ Ø§Ù„Ø¨Ø±ÙŠØ¯ ÙØ§Ø±Øº. Ø³ØªØ¸Ù‡Ø± Ø±Ø³Ø§Ø¦Ù„ Ù…Ù† ÙˆØ§ØªØ³Ø§Ø¨ØŒ Ø§Ù„Ø±Ø³Ø§Ø¦Ù„ Ø§Ù„Ù†ØµÙŠØ©ØŒ Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠØŒ ÙˆØ§Ù„Ù…Ø­Ø§Ø¯Ø«Ø© Ù‡Ù†Ø§.' })}
+              title={t({ en: 'No messages found', ar: 'لم يتم العثور على رسائل' })}
+              description={t({ en: 'Your inbox is empty. Messages from WhatsApp, SMS, email, and web chat will appear here.', ar: 'صندوق البريد فارغ. ستظهر رسائل من واتساب، الرسائل النصية، البريد الإلكتروني، والمحادثة هنا.' })}
 compact
 />
 ) : (

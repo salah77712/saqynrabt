@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { UserButton, useAuth } from '@clerk/nextjs';
@@ -47,6 +47,52 @@ const navLinks = [
 ];
 
 const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
+const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const lastFocusedElementRef = useRef<HTMLElement | null>(null);
+
+useEffect(() => {
+  if (!mobileMenuOpen) return;
+  lastFocusedElementRef.current = document.activeElement as HTMLElement;
+  const handleEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      closeMenu();
+    }
+  };
+  const focusableSelector = 'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])';
+  const handleTab = (e: KeyboardEvent) => {
+    if (e.key !== 'Tab') return;
+    const container = menuRef.current;
+    if (!container) return;
+    const focusable = Array.from<HTMLElement>(container.querySelectorAll<HTMLElement>(focusableSelector)).filter(
+      (el) => el.offsetParent !== null
+    );
+    if (focusable.length === 0) return;
+    const firstEl = focusable[0];
+    const lastEl = focusable[focusable.length - 1];
+    if (e.shiftKey) {
+      if (document.activeElement === firstEl || !container.contains(document.activeElement)) {
+        e.preventDefault();
+        lastEl.focus();
+      }
+    } else {
+      if (document.activeElement === lastEl || !container.contains(document.activeElement)) {
+        e.preventDefault();
+        firstEl.focus();
+      }
+    }
+  };
+  document.addEventListener('keydown', handleEscape);
+  document.addEventListener('keydown', handleTab);
+  const firstEl = menuRef.current?.querySelector<HTMLElement>(focusableSelector);
+  if (firstEl) setTimeout(() => firstEl.focus(), 0);
+  return () => {
+    document.removeEventListener('keydown', handleEscape);
+    document.removeEventListener('keydown', handleTab);
+    lastFocusedElementRef.current?.focus();
+  };
+}, [mobileMenuOpen, closeMenu]);
 
 return (
 <header

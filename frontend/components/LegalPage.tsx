@@ -1,17 +1,14 @@
 ﻿'use client';
 
-import React from 'react';
+
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Header } from './Header';
-import { Footer } from './Footer';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
 export default function LegalPage({ title, content }: { title: string; content: string }) {
 return (
 <div className="min-h-screen bg-surface text-primary font-sans">
-<Header />
 <main className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
 <Link
 href="/trust"
@@ -26,7 +23,6 @@ Back to Trust Center
 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
 </article>
 </main>
-<Footer />
 </div>
 );
 }

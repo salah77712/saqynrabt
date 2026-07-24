@@ -173,15 +173,15 @@ m.role === 'admin'
 );
 
 if (isLoading) {
-return (
-<main id="main-content" className="space-y-6">
-<div className="animate-fadeIn">
-<div className="h-8 bg-primary dark:bg-primary rounded-lg w-72 mb-2" />
-<div className="h-4 bg-primary dark:bg-primary rounded-lg w-96" />
-</div>
-<SkeletonTable rows={3} />
-</main>
-);
+  return (
+    <div className="space-y-6">
+      <div className="animate-fadeIn">
+        <div className="h-8 bg-primary dark:bg-primary rounded-lg w-72 mb-2" />
+        <div className="h-4 bg-primary dark:bg-primary rounded-lg w-96" />
+      </div>
+      <SkeletonTable rows={3} />
+    </div>
+  );
 }
 
 if (isError) {
@@ -194,7 +194,7 @@ onRetry={() => refetch()}
 }
 
 return (
-<main id="main-content" className="space-y-6">
+  <div className="space-y-6">
 <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-8 mb-6">
 <div>
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
@@ -313,8 +313,8 @@ return (
           </Button>
         </form>
 </DialogContent>
-</Dialog>
-</main>
+  </Dialog>
+  </div>
 );
 }
 export type { Employee };

@@ -1,4 +1,4 @@
-import LegalPage from '../../../../components/LegalPage';
+import LegalPage from '@/components/LegalPage';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 

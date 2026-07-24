@@ -1,6 +1,5 @@
 ﻿'use client';
 
-import React from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { UserButton } from '@clerk/nextjs';
@@ -52,7 +51,6 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
   const pathname = usePathname();
   const router = useRouter();
   const { locale } = useLocale();
-  const { mockMode, setMockMode } = useEntitlements();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
   const dashboardContent = {
@@ -87,11 +85,6 @@ export function DashboardSidebar({ isCollapsed, onToggleCollapse, isSidebarOpen,
               <span className="text-xs uppercase tracking-[0.15em] text-primary font-bold truncate">{t(dashboardContent.clientPortal)}</span>
             )}
           </Link>
-          {mockMode && !isCollapsed && (
-            <span className="rounded-full bg-primary px-2 py-0.5 text-xs font-extrabold uppercase tracking-widest text-primary border border-primary/20 shrink-0">
-              {t(dashboardContent.sandbox)}
-            </span>
-          )}
         </div>
 
         <nav className="px-3 py-6 space-y-1.5 flex-1">
@@ -149,34 +142,14 @@ className="h-8 w-8 rounded-lg border border-primary/10 flex items-center justify
       </div>
 
       <div className="p-4 border-t border-surface bg-surface">
-        {mockMode ? (
-          <div className="rounded-xl border border-primary/10 bg-surface p-3 flex flex-col gap-3 min-w-0">
-            <div className="flex items-center justify-between gap-3 min-w-0">
-              <div className="min-w-0">
-                <p className="text-xs font-extrabold text-primary truncate">Salah ({t(dashboardContent.demo)})</p>
-                {!isCollapsed && <p className="text-xs font-medium text-primary truncate">admin@alsafa.qa</p>}
-              </div>
-              <button
-                onClick={() => {
-                  setMockMode(false);
-                  router.push('/');
-                }}
-                className="text-xs font-bold text-accent hover:underline shrink-0"
-              >
-                {t(dashboardContent.exit)}
-              </button>
+        <div className={`flex items-center p-1 rounded-xl min-w-0 ${isCollapsed ? 'justify-center' : 'gap-4'}`}>
+          <UserButton showName={!isCollapsed} />
+          {!isCollapsed && (
+            <div className="flex-1 min-w-0">
+              <p className="text-xs font-semibold text-primary uppercase tracking-wider truncate">{t(dashboardContent.activeClient)}</p>
             </div>
-          </div>
-        ) : (
-          <div className={`flex items-center p-1 rounded-xl min-w-0 ${isCollapsed ? 'justify-center' : 'gap-4'}`}>
-            <UserButton showName={!isCollapsed} />
-            {!isCollapsed && (
-              <div className="flex-1 min-w-0">
-                <p className="text-xs font-semibold text-primary uppercase tracking-wider truncate">{t(dashboardContent.activeClient)}</p>
-              </div>
-            )}
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </aside>
   );

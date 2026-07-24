@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React from 'react';
+
 import { useLocale } from '../../providers';
 import { Card } from '@/components/shadcn/card';
 import { Badge } from '../../../components/ui/Badge';
@@ -10,7 +10,7 @@ const { locale } = useLocale();
 const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
 return (
-<main id="main-content" className="p-8 space-y-6 animate-fadeIn">
+  <div className="p-8 space-y-6 animate-fadeIn">
 <div className="flex justify-between items-center mb-6">
 <div>
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Model Oversight', ar: 'حوكمة الذكاء الاصطناعي والشفافية'})}</h1>
@@ -74,6 +74,6 @@ return (
 </ul>
 </Card>
 </div>
-</main>
+  </div>
 );
 }

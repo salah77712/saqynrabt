@@ -1,9 +1,7 @@
 ﻿import * as React from 'react';
 import Link from 'next/link';
 import { Shield, FileText, Lock, Handshake, BadgeCheck, Download, Check, ArrowRight } from 'lucide-react';
-import { Header } from '../../../components/Header';
-import { Footer } from '../../../components/Footer';
-import { pageMetadata } from '../../../lib/metadata';
+import { pageMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = pageMetadata({
@@ -87,8 +85,6 @@ href: '/legal/nda',
 export default function TrustPage() {
   return (
     <div className="min-h-screen flex flex-col font-sans bg-surface selection:bg-accent selection:text-surface">
-      <Header />
-
       <section className="bg-primary text-surface py-24 px-6">
         <div className="mx-auto max-w-4xl text-center">
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl">
@@ -174,7 +170,6 @@ export default function TrustPage() {
         </div>
       </section>
 
-      <Footer />
     </div>
   );
 }

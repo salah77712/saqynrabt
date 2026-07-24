@@ -24,6 +24,7 @@ export default function OnboardingWizardPage() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -83,7 +84,7 @@ export default function OnboardingWizardPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-surface items-center justify-center px-4 py-12" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="flex min-h-screen bg-surface items-center justify-center px-4 py-12">
       <div className="bg-surface rounded-xl shadow-xl border border-primary/10 w-full max-w-lg overflow-hidden animate-fadeIn flex flex-col justify-between min-h-[500px]">
         
         {/* Progress Bar */}
@@ -283,11 +284,58 @@ export default function OnboardingWizardPage() {
                   {t({ en: 'Upload your first SOP or employee handbook to train your RAG assistant immediately.', ar: 'قم بتحميل دليل الموظفين أو إجراء التشغيل لتدريب المساعد فورًا.' })}
                 </p>
 
-                <div className="border-2 border-dashed border-primary/10 rounded-xl p-8 bg-surface flex flex-col items-center justify-center text-center">
-                  <FileText className="w-8 h-8 text-primary mb-2" />
-                  <p className="text-xs font-bold text-primary">{t({ en: 'Drop policy PDF here to start', ar: 'اسقط ملف PDF للسياسة هنا للبدء' })}</p>
-                  <span className="text-xs text-primary font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'أو اضغط أدناه للتصفح (اختياري)' })}</span>
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                    const file = e.target.files?.[0] || null;
+                    if (file && file.size > 20 * 1024 * 1024) {
+                      setFileError(t({ en: 'File exceeds 20MB limit', ar: 'الملف يتجاوز الحد الأقصى 20 ميجابايت' }));
+                      setSelectedFile(null);
+                      return;
+                    }
+                    setFileError(null);
+                    setSelectedFile(file);
+                  }}
+                  accept=".pdf,.doc,.docx,.txt,.md"
+                  className="hidden"
+                />
+
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className={`border-2 border-dashed rounded-xl p-8 bg-surface flex flex-col items-center justify-center text-center cursor-pointer transition-colors ${
+                    selectedFile
+                      ? 'border-green-500 bg-green-50/50'
+                      : 'border-primary/10 hover:border-primary/30'
+                  }`}
+                >
+                  {selectedFile ? (
+                    <>
+                      <div className="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mb-2">
+                        <svg className="w-5 h-5 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-xs font-bold text-green-700">{selectedFile.name}</p>
+                      <span className="text-[10px] text-green-600 font-semibold mt-0.5">
+                        {(selectedFile.size / 1024).toFixed(1)} KB
+                      </span>
+                      <span className="text-[10px] text-primary font-medium mt-2">
+                        {t({ en: 'Click to change', ar: 'انقر للتغيير' })}
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <FileText className="w-8 h-8 text-primary mb-2" />
+                      <p className="text-xs font-bold text-primary">{t({ en: 'Drop policy PDF here to start', ar: 'اسقط ملف PDF للسياسة هنا للبدء' })}</p>
+                      <span className="text-xs text-primary font-semibold mt-1">{t({ en: 'Or click below to browse (optional)', ar: 'أو اضغط أدناه للتصفح (اختياري)' })}</span>
+                    </>
+                  )}
                 </div>
+
+                {fileError && (
+                  <p className="text-xs font-semibold text-red-500 text-center">{fileError}</p>
+                )}
               </div>
             )}
           </div>

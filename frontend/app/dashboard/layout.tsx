@@ -24,7 +24,7 @@ export default function DashboardLayout({
 }) {
   const pathname = usePathname();
   const router = useRouter();
-  const { mockMode, entitlements } = useEntitlements();
+  const { entitlements } = useEntitlements();
   const { locale } = useLocale();
   const { user, isLoaded: userLoaded } = useUser();
 
@@ -41,8 +41,8 @@ export default function DashboardLayout({
     clientDashboard: { en: 'Client Dashboard', ar: 'لوحة تحكم العميل' },
   };
 
-  const currentRole: UserRole = mockMode ? 'admin' : userRole;
-  const planKey: PlanKey = mockMode ? 'platform' : (entitlements?.plan_key as PlanKey) || 'platform';
+const currentRole: UserRole = userRole;
+const planKey: PlanKey = (entitlements?.plan_key as PlanKey) || 'platform';
 
   const navModules = useMemo(() => {
     return MODULES.map((mod) => {
@@ -63,7 +63,7 @@ export default function DashboardLayout({
       ? t(currentModule.label)
       : t(dashboardContent.clientDashboard);
 
-  const isEmailVerified = mockMode || !userLoaded || !user || user.emailAddresses.some(e => e.verification.status === 'verified');
+  const isEmailVerified = !userLoaded || !user || user.emailAddresses.some(e => e.verification.status === 'verified');
 
   if (!isEmailVerified) {
     return <EmailVerificationGate />;
@@ -111,7 +111,7 @@ export default function DashboardLayout({
   const isRestrictedPath = pathname !== '/dashboard' && currentModule?.visible === false;
 
   return (
-    <div className="min-h-screen bg-surface text-primary flex flex-col font-sans selection:bg-accent selection:text-surface" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-surface text-primary flex flex-col font-sans selection:bg-accent selection:text-surface">
 <NoIndex />
       <div className="flex flex-1 relative" style={{ minHeight: 'calc(100vh - env(safe-area-inset-top, 0px))' }}>
 

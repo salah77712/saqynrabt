@@ -1,8 +1,8 @@
-﻿'use client';
+'use client';
 
 import { useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
-import { useLocale } from '../../providers';
+import { useT } from '@/lib/i18n';
 
 export default function ChatbotError({
   error,
@@ -12,9 +12,7 @@ export default function ChatbotError({
   reset: () => void;
 }) {
   useEffect(() => { console.error(error); }, [error]);
-
-  const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  const { t } = useT();
 
   return (
     <div className="bg-surface text-primary min-h-screen flex flex-col font-sans">
@@ -30,12 +28,12 @@ export default function ChatbotError({
       <div className="flex-1 flex items-center justify-center px-6 py-20">
         <div className="text-center max-w-md">
           <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-surface border border-primary/10"><AlertTriangle className="w-6 h-6 text-primary" /></div>
-          <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Chatbot page unavailable', ar: 'صفحة الشات بوت غير متوفرة' })}</h1>
-          <p className="text-sm text-primary mb-2">{t({ en: 'We couldn\'t load the chatbot content right now.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}</p>
-          <p className="text-xs text-primary mb-8">{t({ en: 'This is usually temporary. Please try again.', ar: 'يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.' })}</p>
+          <h1 className="text-2xl font-bold text-primary mb-2">{t({ en: 'Chatbot page unavailable', ar: '???? ????? ??? ??? ??????' })}</h1>
+          <p className="text-sm text-primary mb-2">{t({ en: 'We couldn\'t load the chatbot content right now.', ar: '???? ???????? ??? ???? ?? ?????? ??? ?????? ????????.' })}</p>
+          <p className="text-xs text-primary mb-8">{t({ en: 'This is usually temporary. Please try again.', ar: '???? ???????? ??? ???? ?? ?????? ??? ?????? ????????.' })}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: 'حاول مرة أخرى' })}</button>
-            <a href="/" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/10 px-6 py-3 text-sm font-semibold text-primary hover:bg-surface transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Back to Home', ar: 'العودة إلى الرئيسية' })}</a>
+            <button onClick={() => reset()} className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-surface hover:opacity-90 transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Try again', ar: '???? ??? ????' })}</button>
+            <a href="/" className="inline-flex min-h-[44px] items-center justify-center rounded-full border border-primary/10 px-6 py-3 text-sm font-semibold text-primary hover:bg-surface transition-all focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">{t({ en: 'Back to Home', ar: '?????? ??? ????????' })}</a>
           </div>
         </div>
       </div>

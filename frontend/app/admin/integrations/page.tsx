@@ -19,7 +19,7 @@ export default function AdminIntegrationsPage() {
   const [integrations] = React.useState<IntegrationItem[]>([]);
 
   return (
-    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans">
       <Header />
 
       <main className="flex-1 max-w-4xl mx-auto w-full px-6 py-12 lg:px-8">

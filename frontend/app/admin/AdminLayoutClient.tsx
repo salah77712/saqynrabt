@@ -36,11 +36,11 @@ export default function AdminLayout({
     return (
 <div className="min-h-screen flex flex-col items-center justify-center bg-surface px-6 text-center">
   <Ban className="w-10 h-10 text-primary mb-4" />
-        <h1 className="text-3xl font-extrabold text-primary tracking-tight">{t({ en: 'Access Denied', ar: '╪¬┘à ╪▒┘ü╪╢ ╪º┘ä┘ê╪╡┘ê┘ä' })}</h1>
+        <h1 className="text-3xl font-extrabold text-primary tracking-tight">{t({ en: 'Access Denied', ar: 'تم رفض الوصول' })}</h1>
         <p className="text-xs font-semibold text-primary/60 max-w-sm mt-3 leading-relaxed">
           {t({
             en: 'This panel is strictly restricted to SAQYN RABT internal administrators only. Please log in with an admin account to proceed.',
-            ar: '┘ç╪░┘ç ╪º┘ä┘ä┘ê╪¡╪⌐ ┘à╪«╪╡╪╡╪⌐ ┘ä┘à╪│╪ñ┘ê┘ä┘è SAQYN RABT ┘ü┘é╪╖. ┘è╪▒╪¼┘ë ╪¬╪│╪¼┘è┘ä ╪º┘ä╪»╪«┘ê┘ä ╪¿╪¡╪│╪º╪¿ ┘à╪│╪ñ┘ê┘ä ┘ä┘ä┘à╪¬╪º╪¿╪╣╪⌐.'
+            ar: 'هذه اللوحة مخصصة لمسؤولي SAQYN RABT فقط. يرجى تسجيل الدخول بحساب مسؤول للمتابعة.'
           })}
         </p>
         <div className="mt-8 flex gap-8">
@@ -48,13 +48,13 @@ export default function AdminLayout({
             href="/sign-in"
             className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-primary px-8 py-3 text-xs font-bold text-surface shadow-md hover:opacity-95 transition-all"
           >
-            {t({ en: 'Sign In as Admin', ar: '╪¬╪│╪¼┘è┘ä ╪»╪«┘ê┘ä ┘â┘à╪│╪ñ┘ê┘ä' })}
+            {t({ en: 'Sign In as Admin', ar: 'تسجيل دخول كمسؤول' })}
           </Link>
           <Link
             href="/"
             className="inline-flex min-h-[44px] items-center justify-center rounded-xl bg-surface border border-primary/10 px-8 py-3 text-xs font-bold text-primary shadow-sm hover:bg-primary transition-all"
           >
-            {t({ en: 'Back to Home', ar: '╪º┘ä╪╣┘ê╪»╪⌐ ┘ä┘ä╪▒╪ª┘è╪│┘è╪⌐' })}
+            {t({ en: 'Back to Home', ar: 'العودة للرئيسية' })}
           </Link>
         </div>
       </div>
@@ -62,14 +62,14 @@ export default function AdminLayout({
   }
 
   const menuItems = [
-    { name: { en: 'Companies', ar: '╪º┘ä╪┤╪▒┘â╪º╪¬' }, path: '/admin/companies', icon: <Building2 className="w-5 h-5" /> },
-    { name: { en: 'Usage Analytics', ar: '╪¬╪¡┘ä┘è┘ä╪º╪¬ ╪º┘ä╪º╪│╪¬╪«╪»╪º┘à' }, path: '/admin/usage', icon: <BarChart3 className="w-5 h-5" /> },
-    { name: { en: 'Billing & Invoices', ar: '╪º┘ä┘ü┘ê╪¬╪▒╪⌐ ┘ê╪º┘ä┘ü┘ê╪º╪¬┘è╪▒' }, path: '/admin/billing', icon: <DollarSign className="w-5 h-5" /> },
-    { name: { en: 'Audit Security Logs', ar: '╪│╪¼┘ä╪º╪¬ ╪º┘ä╪¬╪»┘é┘è┘é ╪º┘ä╪ú┘à┘å┘è' }, path: '/admin/audit', icon: <Shield className="w-5 h-5" /> },
+    { name: { en: 'Companies', ar: 'الشركات' }, path: '/admin/companies', icon: <Building2 className="w-5 h-5" /> },
+    { name: { en: 'Usage Analytics', ar: 'تحليلات الاستخدام' }, path: '/admin/usage', icon: <BarChart3 className="w-5 h-5" /> },
+    { name: { en: 'Billing & Invoices', ar: 'الفوترة والفواتير' }, path: '/admin/billing', icon: <DollarSign className="w-5 h-5" /> },
+    { name: { en: 'Audit Security Logs', ar: 'سجلات التدقيق الأمني' }, path: '/admin/audit', icon: <Shield className="w-5 h-5" /> },
   ];
 
   return (
-    <div className="min-h-screen bg-surface text-primary flex flex-col font-sans" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-surface text-primary flex flex-col font-sans">
       
       {/* Mobile Top Header */}
       <header className="flex h-16 w-full items-center justify-between border-b border-primary/10 bg-surface px-6 md:hidden sticky top-0 z-40 shadow-sm">
@@ -102,11 +102,11 @@ export default function AdminLayout({
             <div className="flex items-center justify-between px-6 py-6 border-b border-primary/10 min-h-[80px]">
               <Link href="/" className="flex flex-col items-start gap-0.5">
                 <span className="text-primary font-extrabold text-xl tracking-tight">SAQYN ADMIN</span>
-                <span className="text-xs uppercase tracking-widest text-primary/60 font-bold">{t({ en: 'Staff Operations', ar: '╪╣┘à┘ä┘è╪º╪¬ ╪º┘ä┘à┘ê╪╕┘ü┘è┘å' })}</span>
+                <span className="text-xs uppercase tracking-widest text-primary/60 font-bold">{t({ en: 'Staff Operations', ar: 'عمليات الموظفين' })}</span>
               </Link>
             </div>
 
-            <nav className="px-3 py-6 space-y-1.5">
+            <nav aria-label={t({ en: 'Admin navigation', ar: 'تنقل الإدارة' })} className="px-3 py-6 space-y-1.5">
               {menuItems.map((item) => {
                 const isActive = pathname.startsWith(item.path);
                 return (
@@ -154,8 +154,8 @@ export default function AdminLayout({
         <main className="flex min-w-0 flex-1 flex-col overflow-hidden">
           <header className="border-b border-primary/10 bg-surface px-8 py-5 sticky top-0 z-30 shadow-sm shrink-0 flex items-center justify-between">
             <div>
-              <p className="text-xs font-extrabold uppercase tracking-widest text-primary/60">{t({ en: 'Internal Control Centre', ar: '┘à╪▒┘â╪▓ ╪º┘ä╪¬╪¡┘â┘à ╪º┘ä╪»╪º╪«┘ä┘è' })}</p>
-              <h2 className="text-2xl font-extrabold text-primary tracking-tight mt-0.5">{t({ en: 'Staff Console', ar: '┘ä┘ê╪¡╪⌐ ╪¬╪¡┘â┘à ╪º┘ä┘à┘ê╪╕┘ü┘è┘å' })}</h2>
+              <p className="text-xs font-extrabold uppercase tracking-widest text-primary/60">{t({ en: 'Internal Control Centre', ar: 'مركز التحكم الداخلي' })}</p>
+              <h2 className="text-2xl font-extrabold text-primary tracking-tight mt-0.5">{t({ en: 'Staff Console', ar: 'لوحة تحكم الموظفين' })}</h2>
             </div>
           </header>
 

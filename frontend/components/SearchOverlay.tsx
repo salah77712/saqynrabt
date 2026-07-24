@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { useLocale } from '../app/providers';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 /** All searchable pages for the site-wide search */
 const searchIndex = [
@@ -46,6 +47,8 @@ const [query, setQuery] = useState('');
 const [selectedIndex, setSelectedIndex] = useState(0);
 const inputRef = useRef<HTMLInputElement>(null);
 const resultsRef = useRef<HTMLDivElement>(null);
+const overlayRef = useRef<HTMLDivElement>(null);
+useFocusTrap(isOpen, overlayRef);
 
 const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 
@@ -124,6 +127,7 @@ let flatIndex = -1;
 
 return (
 <div
+ref={overlayRef}
 className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 search-backdrop bg-primary"
 onClick={(e) => {
 if (e.target === e.currentTarget) onClose();
@@ -146,6 +150,7 @@ value={query}
 onChange={(e) => setQuery(e.target.value)}
 onKeyDown={handleKeyDown}
 placeholder={t('Search pages, help, and docs...', 'ابحث في الصفحات والمساعدة والوثائق...')}
+aria-label={t('Search pages, help, and docs...', 'ابحث في الصفحات والمساعدة والوثائق...')}
 className="flex-1 bg-transparent text-primary dark:text-surface text-sm font-medium placeholder:text-primary/40 dark:placeholder:text-surface/40 outline-none min-h-[36px]"
 autoComplete="off"
 spellCheck={false}

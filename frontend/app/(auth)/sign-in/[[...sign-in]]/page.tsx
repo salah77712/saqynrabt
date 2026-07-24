@@ -112,7 +112,7 @@ export default function SignInPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-surface items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="flex min-h-screen bg-surface items-center justify-center px-4">
       <div className="bg-surface rounded-xl shadow-xl p-8 border border-primary/10 w-full max-w-md animate-fadeIn">
         
         {/* Logo */}
@@ -129,11 +129,12 @@ export default function SignInPage() {
 </div>
 )}
 
-        {show2FA ? (
-          /* Two-Factor Authentication Form */
-          <form onSubmit={handle2FASubmit} className="space-y-4">
-            <div className="text-center mb-4">
-              <h3 className="text-sm font-bold text-primary mb-1">
+<h1 className="text-3xl md:text-4xl font-extrabold text-primary tracking-tight mb-6">Sign In</h1>
+{show2FA ? (
+             /* Two-Factor Authentication Form */
+             <form onSubmit={handle2FASubmit} className="space-y-4">
+             <div className="text-center mb-4">
+             <h3 className="text-sm font-bold text-primary mb-1">
                 {t({ en: 'Two-Factor Authentication', ar: 'التحقق بخطوتين' })}
               </h3>
               <p className="text-[11px] text-primary font-semibold">

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { useEffect } from 'react';
 import { AlertTriangle, Bug } from 'lucide-react';
@@ -23,14 +23,14 @@ export default function SecurityError({
         <h1 className="text-xl md:text-3xl font-bold text-primary mb-4 leading-snug">
           <span lang="en">Something went wrong</span>
           <br />
-          <span lang="ar" className="text-2xl font-semibold text-primary/70" dir="rtl">
+          <span lang="ar" className="text-2xl font-semibold text-primary/70">
             حدث خطأ غير متوقع
           </span>
         </h1>
         <p className="text-primary/60 mb-3 leading-relaxed" lang="en">
           We encountered an unexpected error. Please try again, or return to the homepage.
         </p>
-        <p className="text-primary/40 mb-8 leading-relaxed text-sm" lang="ar" dir="rtl">
+        <p className="text-primary/40 mb-8 leading-relaxed text-sm" lang="ar">
           حدث خطأ غير متوقع. يرجى المحاولة مرة أخرى أو العودة إلى الصفحة الرئيسية.
         </p>
         <div className="flex flex-col sm:flex_row gap-4 justify-center">

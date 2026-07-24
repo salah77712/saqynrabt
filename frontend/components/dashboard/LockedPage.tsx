@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Lock, AlertTriangle } from 'lucide-react';
 import { useLocale } from '../../app/providers';
 

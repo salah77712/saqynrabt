@@ -2,9 +2,10 @@
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
   variant?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info';
+  dot?: boolean;
 }
 
-export function Badge({ className = '', variant = 'primary', children, ...props }: BadgeProps) {
+export function Badge({ className = '', variant = 'primary', dot = false, children, ...props }: BadgeProps) {
   const baseStyle = 'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-bold tracking-wide uppercase';
 
   const variants = {
@@ -18,6 +19,7 @@ export function Badge({ className = '', variant = 'primary', children, ...props 
 
   return (
     <span className={`${baseStyle} ${variants[variant]} ${className}`} {...props}>
+      {dot && <span className="w-1.5 h-1.5 rounded-full bg-current" />}
       {children}
     </span>
   );

@@ -38,7 +38,7 @@ export default function ForgotPasswordPage() {
  };
 
  return (
- <div className="flex min-h-screen bg-surface items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+ <div className="flex min-h-screen bg-surface items-center justify-center px-4">
  <div className="bg-surface rounded-xl shadow-xl p-8 border border-primary/10 w-full max-w-md animate-fadeIn">
 
  {/* Logo */}
@@ -54,7 +54,8 @@ export default function ForgotPasswordPage() {
  <div className="h-12 w-12 rounded-full bg-surface text-accent flex items-center justify-center mx-auto">
  <Mail className="w-6 h-6 text-accent" />
  </div>
- <h2 className="text-lg font-extrabold text-primary">{t({ en: 'Check your email', ar: 'تحقق من بريدك الإلكتروني' })}</h2>
+ <h1 className="text-3xl md:text-4xl font-extrabold text-primary tracking-tight mb-6">Reset Password</h1>
+            <h2 className="text-lg font-extrabold text-primary">{t({ en: 'Check your email', ar: 'تحقق من بريدك الإلكتروني' })}</h2>
  <p className="text-xs font-semibold text-primary/60 leading-relaxed">
  {t({
  en: 'If an account exists with that email, we will send a password reset verification link.',

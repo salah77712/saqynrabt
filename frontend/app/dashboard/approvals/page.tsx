@@ -14,9 +14,8 @@ interface EmployeeItem {
 }
 
 export default function ApprovalsDashboardPage() {
-  const { locale } = useLocale();
-  const { mockMode } = useEntitlements();
-  const { addToast } = useGlobalToast();
+const { locale } = useLocale();
+const { addToast } = useGlobalToast();
   const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
 
 const [employees, setEmployees] = useState<EmployeeItem[]>([]);
@@ -61,7 +60,7 @@ return () => clearInterval(interval);
 
   const handleApprove = (clerkUserId: string) => {
     if (isLimitReached) {
-      addToast(t({ en: 'Plan limit reached. Upgrade to add more active employees.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰ Ù„Ù„Ù…ÙˆØ¸ÙÙŠÙ†. Ù‚Ù… Ø¨ØªØ±Ù‚ÙŠØ© Ø§Ù„Ø®Ø·Ø© Ù„Ø¥Ø¶Ø§ÙØ© Ø§Ù„Ù…Ø²ÙŠØ¯.' }), 'warning');
+      addToast(t({ en: 'Plan limit reached. Upgrade to add more active employees.', ar: 'تم الوصول إلى الحد الأقصى للموظفين. قم بترقية الخطة لإضافة المزيد.' }), 'warning');
       return;
     }
 
@@ -82,9 +81,9 @@ return () => clearInterval(interval);
     })
     .catch(err => {
       if (err.message === 'LIMIT_REACHED') {
-        addToast(t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ø¥Ù„Ù‰ Ø§Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰ Ù„Ù„Ù…ÙˆØ¸ÙÙŠÙ†.' }), 'warning');
+        addToast(t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول إلى الحد الأقصى للموظفين.' }), 'warning');
       } else {
-        addToast(t({ en: 'Approval failed. Please try again.', ar: 'ï»¿ï»£ïº¤ï»´ ïºŽïºŽïº‘ï»§ïº¤.' }), 'error');
+        addToast(t({ en: 'Approval failed. Please try again.', ar: 'فشلت الموافقة. حاول مرة أخرى.' }), 'error');
       }
     })
     .finally(() => setApprovingId(null));
@@ -99,10 +98,10 @@ return () => clearInterval(interval);
       {/* Header and Info Bar */}
       <div>
         <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">
-          {t({ en: 'Approvals', ar: 'Ù…ÙˆØ§ÙÙ‚Ø§Øª Ø¯Ø®ÙˆÙ„ Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ†' })}
+          {t({ en: 'Approvals', ar: 'موافقات دخول الموظفين' })}
         </h1>
         <p className="text-sm font-semibold text-primary mt-0.5">
-          {t({ en: 'Review and approve teammate access requests.', ar: 'Ø§Ù„Ù…ÙˆØ§ÙÙ‚Ø© Ø¹Ù„Ù‰ Ø·Ù„Ø¨Ø§Øª Ø§Ù„Ù…ÙˆØ¸ÙÙŠÙ† Ø§Ù„Ù…Ø¹Ù„Ù‚Ø© ÙˆØ¥Ø¯Ø§Ø±Ø© Ø§Ù„Ø­Ø³Ø§Ø¨Ø§Øª Ø§Ù„Ù†Ø´Ø·Ø©.' })}
+          {t({ en: 'Review and approve teammate access requests.', ar: 'الموافقة على طلبات الموظفين المعلقة وإدارة الحسابات النشطة.' })}
         </p>
 
         {/* Limit Warning Badge */}
@@ -145,11 +144,11 @@ return () => clearInterval(interval);
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+            <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
-                  <th className="px-6 py-4">{t({ en: 'Name', ar: 'Ø§Ù„Ø§Ø³Ù…' })}</th>
-                  <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Name', ar: 'الاسم' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</th>
                   <th className="px-6 py-4">{t({ en: 'Role', ar: 'الدور' })}</th>
                   <th className="px-6 py-4 text-center">{t({ en: 'Action', ar: 'الإجراء' })}</th>
                 </tr>
@@ -171,7 +170,7 @@ return () => clearInterval(interval);
                         </button>
                         {isLimitReached && (
                           <div className="absolute bottom-full start-1/2 -translate-x-1/2 bg-primary text-surface text-xs font-bold px-3 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none mb-3 whitespace-nowrap shadow-md">
-                            {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'ØªÙ… Ø§Ù„ÙˆØµÙˆÙ„ Ù„Ù„Ø­Ø¯ Ø§Ù„Ø£Ù‚ØµÙ‰. Ù‚Ù… Ø¨Ø§Ù„ØªØ±Ù‚ÙŠØ©.' })}
+                            {t({ en: 'Plan limit reached. Upgrade to add more.', ar: 'تم الوصول للحد الأقصى. قم بالترقية.' })}
                           </div>
                         )}
                       </div>
@@ -196,11 +195,11 @@ return () => clearInterval(interval);
           </div>
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-left border-collapse" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+            <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-surface border-b border-primary/10 text-xs font-extrabold text-primary uppercase tracking-wider">
-                  <th className="px-6 py-4">{t({ en: 'Name', ar: 'Ø§Ù„Ø§Ø³Ù…' })}</th>
-                  <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'Ø§Ù„Ø¨Ø±ÙŠØ¯ Ø§Ù„Ø¥Ù„ÙƒØªØ±ÙˆÙ†ÙŠ' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Name', ar: 'الاسم' })}</th>
+                  <th className="px-6 py-4">{t({ en: 'Email Address', ar: 'البريد الإلكتروني' })}</th>
                   <th className="px-6 py-4">{t({ en: 'Status', ar: 'الحالة' })}</th>
                 </tr>
               </thead>

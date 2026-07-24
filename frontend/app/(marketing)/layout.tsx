@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import MarketingShell from './layout-shell';
 
 export const metadata: Metadata = {
   title: 'SAQYN RABT | AI-Powered Staff Hub & Guest Intake',
@@ -20,5 +21,5 @@ export const metadata: Metadata = {
 };
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <MarketingShell>{children}</MarketingShell>;
 }

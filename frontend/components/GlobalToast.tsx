@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React from 'react';
+
 import { useGlobalToast } from '../lib/toast';
 import { Check, X, AlertTriangle, Info } from 'lucide-react';
 
@@ -10,7 +10,7 @@ const { toasts, removeToast } = useGlobalToast();
 if (toasts.length === 0) return null;
 
 return (
-<div className="fixed bottom-4 end-4 z-[100] space-y-2 max-w-sm w-full">
+<div className="fixed bottom-4 end-4 z-[100] space-y-2 max-w-sm w-full" aria-live="polite" role="status">
 {toasts.map((t) => (
 <div
 key={t.id}

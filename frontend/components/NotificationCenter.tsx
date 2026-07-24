@@ -46,14 +46,14 @@ aria-label="Open notifications"
 <div className="absolute end-0 rtl:end-auto rtl:start-0 mt-3 w-80 bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-xl shadow-xl z-50 overflow-hidden animate-slideDown">
 <div className="flex items-center justify-between px-4 py-3 border-b border-primary/10 dark:border-surface/10 bg-surface dark:bg-primary">
 <span className="text-xs font-bold text-primary dark:text-surface">
-            {t('Notifications', 'Ø§Ù„Ø¥Ø´Ø¹Ø§Ø±Ø§Øª')}
+            {t('Notifications', 'الإشعارات')}
 </span>
 {unreadCount > 0 && (
 <button
 onClick={markAllRead}
 className="text-xs font-extrabold text-accent hover:underline uppercase"
 >
-{t('Mark all read', 'ØªØ­Ø¯ÙŠØ¯ Ø§Ù„ÙƒÙ„ ÙƒÙ…Ù‚Ø±ÙˆØ¡')}
+{t('Mark all read', 'تحديد الكل كمقروء')}
 </button>
 )}
 </div>

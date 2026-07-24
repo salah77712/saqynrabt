@@ -11,7 +11,7 @@ const [visible, setVisible] = useState(true);
 if (!visible) return null;
 
 const steps = [
-{ title: 'Welcome to SAQYN', body: 'Your AI operations hub â€” all in one place.' },
+{ title: 'Welcome to SAQYN', body: 'Your AI operations hub — all in one place.' },
 { title: 'Knowledge Base Catalog', body: 'Upload your documents so your AI can answer team questions.' },
 { title: 'Client Identity Sync', body: 'Configure enterprise single sign-on properties under Settings.' },
 ];

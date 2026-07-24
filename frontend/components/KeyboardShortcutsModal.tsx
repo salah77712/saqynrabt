@@ -1,7 +1,8 @@
 ﻿'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useKeyboardShortcut } from '../hooks/useKeyboardShortcut';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 import { X } from 'lucide-react';
 
 interface KeyboardShortcutsModalProps {
@@ -11,6 +12,8 @@ onClose: () => void;
 
 export function KeyboardShortcutsModal({ isOpen, onClose }: KeyboardShortcutsModalProps) {
 const [search, setSearch] = useState('');
+const dialogRef = useRef<HTMLDivElement>(null);
+useFocusTrap(isOpen, dialogRef);
 
 // Universal hotkeys listener
 useKeyboardShortcut('k', (e) => {
@@ -39,6 +42,7 @@ s.keys?.toLowerCase().includes(search?.toLowerCase())
 
 return (
 <div
+ref={dialogRef}
 className="fixed inset-0 bg-primary backdrop-blur-sm z-[60] flex items-center justify-center p-4"
 onClick={onClose}
 role="dialog"
@@ -62,6 +66,7 @@ Keyboard Shortcuts Console
 value={search}
 onChange={(e) => setSearch(e.target.value)}
 placeholder="Type to search shortcuts..."
+aria-label="Search keyboard shortcuts"
 className="w-full bg-surface border-0 rounded-xl px-4 py-2.5 text-xs font-semibold focus:outline-none focus:ring-1 focus:ring-2 focus:ring-royal focus:bg-surface mb-4 text-primary"
 />
 

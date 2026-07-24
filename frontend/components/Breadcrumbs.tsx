@@ -74,7 +74,7 @@ return { href, label, isLast };
 });
 
 return (
-<nav aria-label={locale === 'ar' ? 'مسار التنقل' : 'Breadcrumb'} dir={locale === 'ar' ? 'rtl' : 'ltr'} className={`text-sm ${className}`}>
+<nav aria-label={locale === 'ar' ? 'مسار التنقل' : 'Breadcrumb'} className={`text-sm ${className}`}>
 <ol className="flex flex-wrap items-center gap-1.5 text-primary/70">
 <li className="flex items-center gap-1.5">
 <Link href="/" className="text-primary/70 hover:text-primary transition-colors font-medium">

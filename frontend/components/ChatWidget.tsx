@@ -120,7 +120,7 @@ export function ChatWidget() {
           ? `calc(env(safe-area-inset-bottom, 0px) + ${keyboardOffset}px + 16px)`
           : undefined,
       }}
-      dir={locale === 'ar' ? 'rtl' : 'ltr'}
+     
     >
       {/* Floating Toggle Button */}
       {!isOpen && (

@@ -211,7 +211,7 @@ return null;
 }
 
 return (
-<div className="min-h-screen flex items-center justify-center bg-surface p-8 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="min-h-screen flex items-center justify-center bg-surface p-8 animate-fadeIn">
 <div className="max-w-lg w-full bg-surface rounded-xl shadow-xl p-8">
 {lastUpdated && (
 <div className="text-xs font-bold text-primary/60 flex items-center gap-1 mb-4" style={{direction: 'ltr'}}>

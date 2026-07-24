@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React from 'react';
+
 import { useLocale } from '../../providers';
 
 export default function AdminMetricsPage() {

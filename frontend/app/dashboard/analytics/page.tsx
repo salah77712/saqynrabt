@@ -6,7 +6,8 @@ import { Card } from '@/components/shadcn/card';
 import { Badge } from '../../../components/ui/Badge';
 import { TrendingUp } from 'lucide-react';
 import { EmptyState } from '../../../components/ui/EmptyState';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';interface UsageStats {
+
+interface UsageStats {
   mrr: number;
   arr: number;
   active_companies: number;
@@ -60,30 +61,30 @@ const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';const [st
 
   if (loading) {
     return (
-      <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
+      <div className="p-8 space-y-6 animate-fadeIn">
         <div className="flex justify-center items-center h-64">
-<p className="text-xs text-primary font-bold">{t({en: 'Loading metrics...', ar: 'جاري تحميل المقاييس...'})}</p>
-</div>
-</main>
-);
+          <p className="text-xs text-primary font-bold">{t({en: 'Loading metrics...', ar: 'جاري تحميل المقاييس...'})}</p>
+        </div>
+      </div>
+    );
   }
 
   if (fetchError || !stats) {
     return (
-      <main id="main-content" className="p-8 space-y-6 animate-fadeIn">
+      <div className="p-8 space-y-6 animate-fadeIn">
         <EmptyState
           title={t({en: 'Could not load analytics', ar: 'تعذر تحميل التحليلات'})}
           description={t({en: 'Backend analytics service may be unavailable. Click retry.', ar: 'قد تكون خدمة تحليلات الخلفية غير متوفرة. انقر لإعادة المحاولة.'})}
           retry={fetchStats}
         />
-      </main>
+      </div>
     );
   }
 
   const s = stats;
 
 return (
-<main id="main-content" className="p-8 space-y-6 animate-fadeIn">
+<div className="p-8 space-y-6 animate-fadeIn">
 <div className="flex justify-between items-center mb-6">
 <div>
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Analytics', ar: 'وحة تحليلات الأداء'})}</h1>
@@ -136,6 +137,6 @@ return (
 </div>
 </Card>
 </div>
-</main>
+</div>
 );
 }

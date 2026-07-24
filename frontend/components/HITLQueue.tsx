@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React from 'react';
+
 import { useLocale } from '../app/providers';
 
 export function HITLQueue() {
@@ -15,7 +15,7 @@ const demoTasks = [
 return (
 <div className="bg-surface border border-primary/10 rounded-xl p-8 shadow-sm space-y-4">
 <div>
-<h3 className="text-xs font-extrabold text-primary/60 uppercase tracking-wider">{t({ en: 'HITL System Health', ar: 'Ù…Ø¤Ø´Ø±Ø§Øª Ø§Ù„Ù…Ø±Ø§Ø¬Ø¹Ø© Ø§Ù„Ø¨Ø´Ø±ÙŠØ© HITL' })}</h3>
+<h3 className="text-xs font-extrabold text-primary/60 uppercase tracking-wider">{t({ en: 'HITL System Health', ar: 'مؤشرات المراجعة البشرية HITL' })}</h3>
 <p className="text-xs text-primary/50 mt-1">Pending alerts requiring operator review.</p>
 </div>
 

@@ -59,7 +59,7 @@ export function EmailVerificationGate() {
   };
 
   return (
-    <div className="min-h-screen bg-surface flex items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="min-h-screen bg-surface flex items-center justify-center px-4">
       <div className="bg-surface rounded-xl shadow-xl p-8 md:p-12 border border-primary/10 w-full max-w-md animate-fadeIn text-center">
         <div className="mb-4"><Mail className="w-8 h-8 text-primary" /></div>
         <h2 className="text-xl font-extrabold text-primary mb-2">

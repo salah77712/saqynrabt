@@ -16,7 +16,7 @@ const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
 return (
 <div className="flex flex-col items-center gap-8">
 <p className="text-xs font-extrabold tracking-widest text-primary/60 dark:text-surface/60 uppercase text-center">
-{t('Engineered for Global Operations â€” Select Your Industry', 'Ù…ØµÙ…Ù… Ø®ØµÙŠØµÙ‹Ø§ Ù„Ù„Ø¹Ù…Ù„ÙŠØ§Øª Ø§Ù„Ø¹Ø§Ù„Ù…ÙŠØ© - Ø§Ø®ØªØ± Ù‚Ø·Ø§Ø¹Ùƒ')}
+{t('Engineered for Global Operations — Select Your Industry', 'مصمم خصيصًا للعمليات العالمية - اختر قطاعك')}
 </p>
 
 <div className="w-full flex flex-wrap justify-center gap-8 py-2">
@@ -30,7 +30,7 @@ activeId === ind.id
 : 'bg-surface text-primary border-primary/10 shadow-sm hover:shadow-md dark:bg-primary dark:text-surface dark:border-primary/30'
 }`}
 >
-{locale === 'ar' && ind.id === 'default' ? 'ÙƒÙ„ Ø§Ù„Ù‚Ø·Ø§Ø¹Ø§Øª' : ind.label}
+{locale === 'ar' && ind.id === 'default' ? 'كل القطاعات' : ind.label}
 </button>
 ))}
 </div>

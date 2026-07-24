@@ -53,7 +53,7 @@ setLoading(null);
 }, [addToast, getToken, t]);
 
 return (
-<main id="main-content" className="p-8 space-y-6 animate-fadeIn">
+<div className="p-8 space-y-6 animate-fadeIn">
 <div className="mb-6">
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({en: 'Reports', ar: 'تقارير التحليلات المخصصة'})}</h1>
 <p className="text-xs text-primary font-bold">{t({en: 'Download logs, usage stats, and chat transcripts.', ar: 'تجميع سجلات العمليات وإحصائيات المستخدمين وتتبعات المعرفة.'})}</p>
@@ -98,6 +98,6 @@ return (
 </div>
 
 
-</main>
+</div>
 );
 }

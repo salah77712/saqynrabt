@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { AlertTriangle } from 'lucide-react';
-import { useLocale } from '../../providers';
+import { useT } from '@/lib/i18n';
 
 export default function FeatureFlagsError({
   error,
@@ -14,9 +14,7 @@ export default function FeatureFlagsError({
   useEffect(() => {
     console.error(error);
   }, [error]);
-
-  const { locale } = useLocale();
-  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  const { t } = useT();
 
   return (
     <div className="flex items-center justify-center py-20">

@@ -1,6 +1,8 @@
 ﻿'use client';
 
+import { useRef } from 'react';
 import { createPortal } from 'react-dom';
+import { useFocusTrap } from '../../hooks/useFocusTrap';
 import { AlertTriangle } from 'lucide-react';
 
 interface UnsavedChangesModalProps {
@@ -10,10 +12,13 @@ interface UnsavedChangesModalProps {
 }
 
 export function UnsavedChangesModal({ isOpen, onConfirm, onCancel }: UnsavedChangesModalProps) {
+  const dialogRef = useRef<HTMLDivElement>(null);
+  useFocusTrap(isOpen, dialogRef);
   if (!isOpen) return null;
 
   return createPortal(
     <div
+      ref={dialogRef}
       className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary backdrop-blur-sm animate-fadeIn"
       role="dialog"
       aria-modal="true"

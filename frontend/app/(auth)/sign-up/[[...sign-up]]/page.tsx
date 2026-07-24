@@ -117,7 +117,7 @@ export default function SignUpPage() {
 
   if (pendingVerification) {
     return (
-      <div className="flex min-h-screen bg-surface items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+      <div className="flex min-h-screen bg-surface items-center justify-center px-4">
         <div className="bg-surface rounded-xl shadow-xl p-8 border border-primary/10 w-full max-w-md animate-fadeIn text-center">
           
           {/* Logo */}
@@ -170,7 +170,7 @@ export default function SignUpPage() {
   }
 
   return (
-    <div className="flex min-h-screen bg-surface items-center justify-center px-4" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+    <div className="flex min-h-screen bg-surface items-center justify-center px-4">
       <div className="bg-surface rounded-xl shadow-xl p-8 border border-primary/10 w-full max-w-md animate-fadeIn">
         
         {/* Logo */}
@@ -220,6 +220,7 @@ export default function SignUpPage() {
           </div>
         )}
 
+<h1 className="text-3xl md:text-4xl font-extrabold text-primary tracking-tight mb-6">Create Account</h1>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email */}
           <div>

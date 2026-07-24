@@ -1,9 +1,7 @@
 ﻿'use client';
 
-import React from 'react';
-import { useLocale } from '../app/providers';
-import { Header } from './Header';
-import { Footer } from './Footer';
+
+import { useLocale } from '@/app/providers';
 
 const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
 
@@ -28,8 +26,7 @@ const { locale } = useLocale();
 const t = (obj?: Localized) => (obj ? (obj[locale] || obj.en || '') : '');
 
 return (
-<div dir={locale === 'ar' ? 'rtl' : 'ltr'} className="min-h-screen bg-surface text-primary">
-<Header />
+<div className="min-h-screen bg-surface text-primary">
 <main className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
 {eyebrow && <p className="text-sm font-semibold uppercase tracking-[0.35em] text-primary">{t(eyebrow)}</p>}
 <h1 className="mt-4 text-4xl font-semibold leading-tight sm:text-5xl">{t(title)}</h1>
@@ -54,8 +51,6 @@ return (
 </div>
 )}
 </main>
-
-<Footer />
 
 {jsonLd && (
 <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />

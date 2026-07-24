@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React from 'react';
+
 import { useUser } from '@clerk/nextjs';
 import { useLocale, useEntitlements } from '../providers';
 import { OverviewMetrics } from '../../components/dashboard/OverviewMetrics';
@@ -14,12 +14,10 @@ import Link from 'next/link';
 
 export default function DashboardOverviewPage() {
   const { locale } = useLocale();
-  const { mockMode } = useEntitlements();
-  const { isLoaded, isSignedIn, user } = useUser();
-  const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
-  const { data: usage, isLoading, isError, error, refetch } = useUsage(mockMode || !!user);
-
-  const isAuth = mockMode || (isLoaded && isSignedIn);
+const { isLoaded, isSignedIn, user } = useUser();
+const t = (en: string, ar: string) => locale === 'ar' ? (ar || en) : en;
+const { data: usage, isLoading, isError, error, refetch } = useUsage(!!user);
+const isAuth = isLoaded && isSignedIn;
   if (!isAuth) {
     return (
       <div className="space-y-6 md:space-y-8 animate-fadeIn">
@@ -78,7 +76,8 @@ export default function DashboardOverviewPage() {
             {t('Live data from your active services.', 'بيانات حية من خدماتك النشطة.')}
           </p>
         </div>
-        {isTrial && (
+
+{isTrial && (
 <div className="flex items-center gap-3 rounded-full border border-accent/30 bg-surface px-4 py-1.5 text-xs font-bold text-accent self-start md:self-auto">
 <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
             {t('Free Trial Mode', 'وضع التجربة المجانية')}

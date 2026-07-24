@@ -37,7 +37,7 @@ setFields((prev) => prev.filter((f) => f.id !== id));
 };
 
 return (
-<div className="bg-surface dark:bg-primary rounded-xl border border-primary/10 dark:border-surface/10 p-8 max-w-md w-full shadow-sm" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="bg-surface dark:bg-primary rounded-xl border border-primary/10 dark:border-surface/10 p-8 max-w-md w-full shadow-sm">
 <h3 className="text-lg font-bold text-primary dark:text-surface mb-2">
 {t('Custom Form Fields', 'حقول مخصصة للنماذج')}
 </h3>

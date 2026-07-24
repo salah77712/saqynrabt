@@ -1,4 +1,4 @@
-import { pageMetadata } from '../../../lib/metadata';
+import { pageMetadata } from '@/lib/metadata';
 import type { Metadata } from 'next';
 import AutomationPage from './page.client';
 

@@ -27,7 +27,7 @@ ar: {
 
 function Logo() {
 return (
-<svg aria-hidden="true" width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SAQYN RABT">
+<svg width="120" height="32" viewBox="0 0 120 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="SAQYN RABT">
 <rect width="62" height="32" rx="4" fill="var(--color-primary)" />
 <text x="8" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="800" letterSpacing="1" fill="var(--color-primary-foreground)">SAQYN</text>
 <text x="68" y="22" fontFamily="system-ui, sans-serif" fontSize="14" fontWeight="300" letterSpacing="1" fill="var(--color-primary)" className="opacity-40">RABT</text>
@@ -70,7 +70,7 @@ const col4 = [
 ];
 
 return (
-<footer className="bg-surface text-primary border border-primary/10 rounded-xl shadow-card m-4 overflow-hidden" role="contentinfo" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<footer className="bg-surface text-primary border border-primary/10 rounded-xl shadow-card m-4 overflow-hidden" role="contentinfo">
   
   {/* 1. Top Status Bar */}
   <div className="border-b border-primary/10 bg-surface py-3 px-6 lg:px-8">

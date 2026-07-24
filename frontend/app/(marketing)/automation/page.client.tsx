@@ -2,12 +2,11 @@
 
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
-import { useLocale } from '../../providers';
-import { Footer } from '../../../components/Footer';
-import { Header } from '../../../components/Header';
-import { PricingCards } from '../../../components/PricingCards';
+import { useLocale } from '@/app/providers';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
+import { PricingCards } from '@/components/PricingCards';
 import { Zap, MessageSquare, Ambulance, ClipboardList, BarChart3, Globe, Check } from 'lucide-react';
-import { AUTOMATION_TIERS } from '../../../lib/pricing-config';
+import { AUTOMATION_TIERS } from '@/lib/pricing-config';
 import * as React from 'react';
 
 type Currency = 'USD' | 'QAR';
@@ -131,6 +130,7 @@ export default function AutomationPage() {
   const calendlyUrl = process.env.NEXT_PUBLIC_CALENDLY_URL || 'https://calendly.com/saqynrabt/demo';
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
+  useFocusTrap(isModalOpen, modalRef);
 
   const handleModalKeyDown = useCallback((e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
@@ -186,9 +186,7 @@ export default function AutomationPage() {
   const queue = queueItems[locale as keyof typeof queueItems] || queueItems.en;
 
   return (
-    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans selection:bg-accent selection:text-surface" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-      <Header />
-
+    <div className="bg-surface text-primary min-h-screen flex flex-col font-sans selection:bg-accent selection:text-surface">
       <section className="relative overflow-hidden py-20 md:py-28 bg-[radial-gradient(circle_at_top_right,_rgba(42,92,255,0.05),_transparent_35%)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
           <span className="inline-block bg-royal/10 text-royal text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6 animate-fadeIn">
@@ -320,12 +318,13 @@ export default function AutomationPage() {
         </div>
       </section>
 
-      <Footer />
-
       {isModalOpen && (
         <div
           ref={modalRef}
           onKeyDown={handleModalKeyDown}
+          role="dialog"
+          aria-modal="true"
+          aria-label={t({ en: 'See how it works', ar: 'شاهد كيف يعمل' })}
           className="fixed inset-0 z-50 flex items-center justify-center px-4 bg-primary backdrop-blur-sm animate-fadeIn">
           <div className="bg-surface border border-primary/10 rounded-xl max-w-md w-full p-8 shadow-2xl animate-scaleIn">
             <h3 className="text-xl font-extrabold text-primary mb-2">

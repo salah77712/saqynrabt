@@ -1,54 +1,54 @@
 ﻿'use client';
 
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { Phone } from 'lucide-react';
 import { useLocale } from '../../providers';
 
 type CallStatus = 'connected' | 'on_hold' | 'disconnected' | 'checking';
 
 export default function VoicePage() {
-const { locale } = useLocale();
-const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
-const [callStatus, setCallStatus] = React.useState<CallStatus>('checking');
-const [pollError, setPollError] = React.useState(false);
+  const { locale } = useLocale();
+  const t = (obj: Record<string, string>) => obj[locale] || obj.en || '';
+  const [callStatus, setCallStatus] = useState<CallStatus>('checking');
+  const [pollError, setPollError] = useState(false);
 
-const isVoiceActivated = process.env.NEXT_PUBLIC_VOICE_AI_ACTIVATED === 'true';
+  const isVoiceActivated = process.env.NEXT_PUBLIC_VOICE_AI_ACTIVATED === 'true';
 
-  React.useEffect(() => {
-  if (!isVoiceActivated) return;
+  useEffect(() => {
+    if (!isVoiceActivated) return;
 
-  let mounted = true;
-  const poll = async () => {
-    try {
-      const res = await fetch('/api/voice/stream?text=status');
-      if (res.status === 200) {
-        if (mounted) { setCallStatus('connected'); setPollError(false); }
-      } else if (res.status === 503) {
-        if (mounted) { setCallStatus('on_hold'); setPollError(false); }
-      } else {
-        if (mounted) { setCallStatus('disconnected'); setPollError(false); }
+    let mounted = true;
+    const poll = async () => {
+      try {
+        const res = await fetch('/api/voice/stream?text=status');
+        if (res.status === 200) {
+          if (mounted) { setCallStatus('connected'); setPollError(false); }
+        } else if (res.status === 503) {
+          if (mounted) { setCallStatus('on_hold'); setPollError(false); }
+        } else {
+          if (mounted) { setCallStatus('disconnected'); setPollError(false); }
+        }
+      } catch {
+        if (mounted) { setCallStatus('disconnected'); setPollError(true); }
       }
-    } catch {
-      if (mounted) { setCallStatus('disconnected'); setPollError(true); }
-    }
-  };
-  poll();
-  const interval = setInterval(poll, 5_000);
-  return () => { mounted = false; clearInterval(interval); };
-}, [isVoiceActivated]);
+    };
+    poll();
+    const interval = setInterval(poll, 5_000);
+    return () => { mounted = false; clearInterval(interval); };
+  }, [isVoiceActivated]);
 
 if (!isVoiceActivated) {
-return (
-<main id="main-content" className="flex flex-col items-center justify-center min-h-[300px] text-center gap-8 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
-<Phone className="w-12 h-12 text-primary/30" />
-<h1 className="text-lg font-bold text-primary dark:text-surface">
-{t({ en: 'Voice Calls Not Enabled', ar: 'مكالمات الصوت غير مفعلة' })}
-</h1>
-<p className="text-sm text-primary max-w-sm">
-{t({ en: 'Contact your admin to enable Voice AI for this workspace.', ar: 'تواصل مع مسؤول النظام لتفعيل الذكاء الاصطناعي الصوتي في مساحة العمل.' })}
-</p>
-</main>
-);
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[300px] text-center gap-8 animate-fadeIn">
+      <Phone className="w-12 h-12 text-primary/30" />
+      <h1 className="text-lg font-bold text-primary dark:text-surface">
+        {t({ en: 'Voice Calls Not Enabled', ar: 'مكالمات الصوت غير مفعلة' })}
+      </h1>
+      <p className="text-sm text-primary max-w-sm">
+        {t({ en: 'Contact your admin to enable Voice AI for this workspace.', ar: 'تواصل مع مسؤول النظام لتفعيل الذكاء الاصطناعي الصوتي في مساحة العمل.' })}
+      </p>
+    </div>
+  );
 }
 
 const statusConfig: Record<CallStatus, { label: Record<string, string>; color: string; pulse: boolean }> = {
@@ -61,7 +61,7 @@ const statusConfig: Record<CallStatus, { label: Record<string, string>; color: s
 const cfg = statusConfig[callStatus];
 
 return (
-<main id="main-content" className="mx-auto space-y-6 animate-fadeIn" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+  <div className="mx-auto space-y-6 animate-fadeIn">
 <div className="border-b border-primary/10 dark:border-primary pb-6">
 <h1 className="text-2xl md:text-3xl font-extrabold text-primary dark:text-surface tracking-tight">{t({ en: 'Voice Calls', ar: 'مركز توزيع الصوت' })}</h1>
 <p className="text-sm text-primary mt-1">
@@ -88,6 +88,6 @@ return (
 </div>
 )}
 </div>
-</main>
-);
+</div>
+  );
 }

@@ -42,6 +42,12 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://saqynrabt.com',
+    languages: {
+      'en': 'https://saqynrabt.com',
+      'ar': 'https://saqynrabt.com/ar',
+      'fr': 'https://saqynrabt.com/fr',
+      'hi': 'https://saqynrabt.com/hi',
+    },
   },
   icons: {
     icon: '/favicon.svg',
@@ -54,12 +60,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable}`}>
+    <html suppressHydrationWarning className={`${GeistSans.variable} ${GeistMono.variable}`}>
       <head>
         <meta charSet="utf-8" />
         <script
           dangerouslySetInnerHTML={{
             __html: `(function(){try{var t=localStorage.getItem('saqyn-theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.classList.add('dark')}catch(e){}})()`,
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var l=localStorage.getItem('saqyn-locale')||'en';document.documentElement.lang=l;document.documentElement.dir=l==='ar'?'rtl':'ltr';}catch(e){}`,
           }}
         />
         <script
@@ -73,11 +84,11 @@ export default function RootLayout({
               operatingSystem: 'Web & Mobile',
               description: 'Secure AI-powered automation for guest intake, staff knowledge, and business operations.',
               url: 'https://saqynrabt.com',
-              offers: {
-                '@type': 'Offer',
-                price: '1499',
-                priceCurrency: 'USD',
-              },
+  offers: {
+        '@type': 'Offer',
+        price: '1499',
+        priceCurrency: 'QAR',
+      },
             }),
           }}
         />
@@ -91,7 +102,7 @@ export default function RootLayout({
           <OfflineBanner />
           <KeyboardShortcutsBar />
           <Providers>
-            <main id="main-content">
+            <main id="main-content" tabIndex={-1}>
               <PageTransitionWrapper>
                 {children}
               </PageTransitionWrapper>

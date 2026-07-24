@@ -1,6 +1,6 @@
 ﻿'use client';
 
-import React from 'react';
+
 import { useLocale } from '../../app/providers';
 import { LanguageSwitcher } from '../LanguageSwitcher';
 import { DarkModeToggle } from '../DarkModeToggle';

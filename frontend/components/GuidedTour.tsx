@@ -52,7 +52,7 @@ const current = tourSteps[step - 1];
 
 return (
 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-primary backdrop-blur-sm animate-fadeIn">
-<div className="bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-xl max-w-sm w-full p-8 shadow-2xl space-y-6 relative" dir={locale === 'ar' ? 'rtl' : 'ltr'}>
+<div className="bg-surface dark:bg-primary border border-primary/10 dark:border-surface/10 rounded-xl max-w-sm w-full p-8 shadow-2xl space-y-6 relative">
 
 <div>
 <span className="text-xs font-extrabold uppercase tracking-widest text-accent">{t({ en: 'Quick Workspace Tour', ar: 'جولة سريعة في مساحة العمل' })}</span>
